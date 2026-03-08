@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Socionics Type Compatibility</title>
+<meta name="theme-color" content="#ff4fd8" />
+<style>
+:root{
+  /* Dark theme colors - matching diagnostic tool */
+  --bg-dark:#0b1020;
+  --bg-medium:#121a33;
+  --bg-light:#1a2341;
+  --text-primary:#eaf0ff;
+  --text-secondary:#a8b3d3;
+  --text-muted:#6b7aa1;
+  --panel-dark:rgba(26,35,65,0.8);
+  --panel-light:rgba(255,255,255,0.08);
+  --border-dark:rgba(255,255,255,0.1);
+  --border-light:rgba(255,255,255,0.05);
+
+  /* Quadra colors */
+  --q-alpha:#ff5db1;
+  --q-beta:#4aa3ff;
+  --q-gamma:#ffd24a;
+  --q-delta:#43e07a;
+
+  /* Accent gradients */
+  --hi:#ff5db1;
+  --hi2:#4aa3ff;
+  --hi3:#ffd24a;
+  --hi4:#43e07a;
+
+  /* Shadows and glows */
+  --shadow-dark:0 20px 60px rgba(0,0,0,0.4);
+  --shadow-glow:0 0 20px rgba(255,93,209,0.3);
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  background:radial-gradient(ellipse at top, rgba(255,93,209,0.15), transparent 40%),
+            linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
+  color:var(--text-primary);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  min-height:100vh;
+}
+
+.wrap{
+  max-width:900px;
+  margin:0 auto;
+  padding:20px 16px 40px;
+}
+
+h1{
+  font-size:24px;
+  margin:16px 0 24px;
+  text-align:center;
+  background:linear-gradient(135deg, var(--hi), var(--hi2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-fill-color:transparent;
+  letter-spacing:0.5px;
+}
+
+.card{
+  background:var(--panel-dark);
+  border:1px solid var(--border-dark);
+  border-radius:16px;
+  box-shadow:var(--shadow-dark), 0 0 30px rgba(255,93,209,0.1);
+  backdrop-filter:blur(10px);
+}
+
+.hd{
+  padding:16px 20px;
+  border-bottom:1px solid var(--border-dark);
+  font-weight:800;
+  font-size:16px;
+  color:var(--text-primary);
+}
+
+.body{
+  padding:20px;
+}
+
+.small{
+  font-size:13px;
+  color:var(--text-secondary);
+  margin-bottom:12px;
+}
+
+/* 相性UI */
+.relgrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:20px;
+}
+
+@media(min-width:640px){
+  .relgrid{grid-template-columns:repeat(4,1fr)}
+}
+
+.relbtn{
+  padding:14px 8px;
+  border:1px solid var(--border-dark);
+  border-radius:12px;
+  background:var(--panel-light);
+  color:var(--text-primary);
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  user-select:none;
+  transition:all 0.2s ease;
+  text-align:center;
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.relbtn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(255,93,209,0.2);
+  border-color:var(--q-alpha);
+}
+
+.relbtn.sel{
+  background:linear-gradient(135deg, rgba(255,93,209,0.2), rgba(74,163,255,0.1));
+  border-color:var(--q-alpha);
+  outline:2px solid rgba(255,93,209,0.4);
+  outline-offset:2px;
+  box-shadow:0 0 20px rgba(255,93,209,0.3), inset 0 0 20px rgba(255,93,209,0.1);
+}
+
+.relbtn .q{
+  font-size:11px;
+  color:var(--text-muted);
+  margin-left:4px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 12px;
+  border-radius:20px;
+  background:var(--panel-light);
+  border:1px solid var(--border-dark);
+  font-size:13px;
+  font-weight:600;
+  color:var(--text-primary);
+  margin:0 4px;
+}
+
+.reltitle{
+  font-size:18px;
+  font-weight:700;
+  margin:16px 0 12px;
+  color:var(--text-primary);
+  padding:12px 16px;
+  background:var(--panel-light);
+  border-radius:12px;
+  border:1px solid var(--border-dark);
+}
+
+#relDesc{
+  background:var(--panel-light);
+  border:1px solid var(--border-dark);
+  border-radius:12px;
+  padding:16px;
+  margin:12px 0 0;
+  font-size:14px;
+  line-height:1.7;
+  color:var(--text-primary);
+  white-space:pre-wrap;
+}
+
+#relDesc:empty{
+  display:none;
+}
+
+.btn{
+  padding:8px 16px;
+  border:1px solid var(--border-dark);
+  border-radius:10px;
+  background:var(--panel-light);
+  color:var(--text-primary);
+  font-weight:600;
+  font-size:13px;
+  cursor:pointer;
+  user-select:none;
+  transition:all 0.2s ease;
+  margin:0 4px;
+}
+
+.btn:hover{
+  background:var(--q-alpha);
+  border-color:var(--q-alpha);
+  transform:translateY(-1px);
+}
+
+.btn:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.qalpha{background:rgba(255,93,209,0.1);border-color:var(--q-alpha)}
+.qbeta{background:rgba(74,163,255,0.1);border-color:var(--q-beta)}
+.qgamma{background:rgba(255,210,74,0.1);border-color:var(--q-gamma)}
+.qdelta{background:rgba(67,224,122,0.1);border-color:var(--q-delta)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1>Socionics Type Compatibility</h1>
+  
+  <div class="card">
+    <div class="hd">相性測定</div>
+    <div class="body">
+      <div class="relgrid" id="relPicker"></div>
+      
+      <div class="small" style="margin-top:20px">
+        選択中：<span id="pickA" class="badge">—</span> × <span id="pickB" class="badge">—</span>
+        <button id="clear" class="btn">リセット</button>
+      </div>
+      
+      <div class="reltitle" id="relTitle">関係名 —</div>
+      <pre id="relDesc">2タイプを選ぶと説明が出ます。</pre>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ==== クアドラ/配色 ==== */
+const QUADRA={ ILE:"Alpha", SEI:"Alpha", ESE:"Alpha", LII:"Alpha",
+               EIE:"Beta",  LSI:"Beta",  SLE:"Beta",  IEI:"Beta",
+               SEE:"Gamma", ILI:"Gamma", LIE:"Gamma", ESI:"Gamma",
+               IEE:"Delta", SLI:"Delta", LSE:"Delta", EII:"Delta" };
+const QSYM={Alpha:"α",Beta:"β",Gamma:"γ",Delta:"Δ"};
+const QCLS=t=>({Alpha:"qalpha",Beta:"qbeta",Gamma:"qgamma",Delta:"qdelta"}[QUADRA[t]]||"");
+
+/* 全タイプ */
+const TYPES_ALL=["ILE","SEI","ESE","LII","EIE","LSI","SLE","IEI","SEE","ILI","LIE","ESI","LSE","EII","IEE","SLI"];
+
+/* 相性マトリクス */
+const RM = {
+  ILE:{ILE:"同",SEI:"双",ESE:"活",LII:"鏡",EIE:"要+",LSI:"監+",SLE:"協",IEI:"幻",SEE:"超",ILI:"消",LIE:"似",ESI:"衝",LSE:"要-",EII:"監-",IEE:"共",SLI:"準"},
+  SEI:{ILE:"双",SEI:"同",ESE:"鏡",LII:"活",EIE:"監+",LSI:"要+",SLE:"幻",IEI:"協",SEE:"消",ILI:"超",LIE:"衝",ESI:"似",LSE:"監-",EII:"要-",IEE:"準",SLI:"共"},
+  ESE:{ILE:"活",SEI:"鏡",ESE:"同",LII:"双",EIE:"共",LSI:"準",SLE:"要-",IEI:"監-",SEE:"似",ILI:"衝",LIE:"超",ESI:"消",LSE:"協",EII:"幻",IEE:"要+",SLI:"監+"},
+  LII:{ILE:"鏡",SEI:"活",ESE:"双",LII:"同",EIE:"準",LSI:"共",SLE:"監-",IEI:"要-",SEE:"衝",ILI:"似",LIE:"消",ESI:"超",LSE:"幻",EII:"協",IEE:"監+",SLI:"要+"},
+
+  EIE:{ILE:"要-",SEI:"監-",ESE:"共",LII:"準",EIE:"同",LSI:"双",SLE:"活",IEI:"鏡",SEE:"要+",ILI:"監+",LIE:"協",ESI:"幻",LSE:"超",EII:"消",IEE:"似",SLI:"衝"},
+  LSI:{ILE:"監-",SEI:"要-",ESE:"準",LII:"共",EIE:"双",LSI:"同",SLE:"鏡",IEI:"活",SEE:"監+",ILI:"要+",LIE:"幻",ESI:"協",LSE:"消",EII:"超",IEE:"衝",SLI:"似"},
+  SLE:{ILE:"協",SEI:"幻",ESE:"要+",LII:"監+",EIE:"活",LSI:"鏡",SLE:"同",IEI:"双",SEE:"共",ILI:"準",LIE:"要-",ESI:"監-",LSE:"似",EII:"衝",IEE:"超",SLI:"消"},
+  IEI:{ILE:"幻",SEI:"協",ESE:"監+",LII:"要+",EIE:"鏡",LSI:"活",SLE:"双",IEI:"同",SEE:"準",ILI:"共",LIE:"監-",ESI:"要-",LSE:"衝",EII:"似",IEE:"消",SLI:"超"},
+
+  SEE:{ILE:"超",SEI:"消",ESE:"似",LII:"衝",EIE:"要-",LSI:"監-",SLE:"共",IEI:"準",SEE:"同",ILI:"双",LIE:"活",ESI:"鏡",LSE:"要+",EII:"監+",IEE:"協",SLI:"幻"},
+  ILI:{ILE:"消",SEI:"超",ESE:"衝",LII:"似",EIE:"監-",LSI:"要-",SLE:"準",IEI:"共",SEE:"双",ILI:"同",LIE:"鏡",ESI:"活",LSE:"監+",EII:"要+",IEE:"幻",SLI:"協"},
+  LIE:{ILE:"似",SEI:"衝",ESE:"超",LII:"消",EIE:"協",LSI:"幻",SLE:"要+",IEI:"監+",SEE:"活",ILI:"鏡",LIE:"同",ESI:"双",LSE:"共",EII:"準",IEE:"要-",SLI:"監-"},
+  ESI:{ILE:"衝",SEI:"似",ESE:"消",LII:"超",EIE:"幻",LSI:"協",SLE:"監+",IEI:"要+",SEE:"鏡",ILI:"活",LIE:"双",ESI:"同",LSE:"準",EII:"共",IEE:"監-",SLI:"要-"},
+
+  LSE:{ILE:"要+",SEI:"監+",ESE:"協",LII:"幻",EIE:"超",LSI:"消",SLE:"似",IEI:"衝",SEE:"要-",ILI:"監-",LIE:"共",ESI:"準",LSE:"同",EII:"双",IEE:"活",SLI:"鏡"},
+  EII:{ILE:"監+",SEI:"要+",ESE:"幻",LII:"協",EIE:"消",LSI:"超",SLE:"衝",IEI:"似",SEE:"監-",ILI:"要-",LIE:"準",ESI:"共",LSE:"双",EII:"同",IEE:"鏡",SLI:"活"},
+  IEE:{ILE:"共",SEI:"準",ESE:"要-",LII:"監-",EIE:"似",LSI:"衝",SLE:"超",IEI:"消",SEE:"協",ILI:"幻",LIE:"要+",ESI:"監+",LSE:"活",EII:"鏡",IEE:"同",SLI:"双"},
+  SLI:{ILE:"準",SEI:"共",ESE:"監-",LII:"要-",EIE:"衝",LSI:"似",SLE:"消",IEI:"超",SEE:"幻",ILI:"協",LIE:"監+",ESI:"要+",LSE:"鏡",EII:"活",IEE:"双",SLI:"同"},
+};
+
+const RNAME={
+"同":"同一関係",
+  "双":"双対関係",
+  "活":"活性化関係",
+  "鏡":"鏡像関係",
+  "準":"準双対関係",
+  "幻":"幻影関係",
+  "似":"疑似同一関係",
+  "共":"共鳴関係",
+  "協":"協力関係",
+  "消":"消滅関係",
+  "超":"超自我関係",
+  "衝":"衝突関係",
+
+  // 方向つき（表の注記に準拠）
+  "要+":"要求関係（左が要求する側）",
+  "要-":"要求関係（左が要求される側）",
+  "監+":"監督関係（左が監督する側）",
+  "監-":"監督関係（左が監督される側）",
+};
+
+/* 相性説明 */
+function relText(a,b){
+  const rel = RM[a][b];
+  const base = RNAME[rel] || rel;
+  const desc = {
+     "同":
+"同じタイプ同士の関係です。\n\
+考え方や感じ方がとても似ていて、「言わなくても分かる」場面が多くなります。\n\
+一緒にいて自然体でいられ、安心感は強いです。\n\
+その一方で、視点や発想が広がりにくく、刺激は少なめになりがちです。\n\
+穏やかで安定した関係を好む場合に向いています。",
+
+  "双":
+"双対関係は、もっとも相性が良いとされる組み合わせです。\n\
+自分が苦手なことを、相手が自然にフォローしてくれます。\n\
+無理をしなくても役割分担ができ、長く一緒にいても疲れにくいです。\n\
+意見が違っても衝突になりにくく、安心して成長し合えます。\n\
+恋愛・仕事どちらでも理想的な関係になりやすいです。",
+
+  "活":
+"活性化関係は、一緒にいると元気が出やすい関係です。\n\
+会話や行動のテンポが合いやすく、自然とやる気が引き出されます。\n\
+新しいことに挑戦しやすく、関係が前に進みやすいのが特徴です。\n\
+ただし、落ち着きたい場面では少し騒がしく感じることもあります。\n\
+短期的にも長期的にも刺激を楽しめる関係です。",
+
+  "鏡":
+"鏡像関係は、考え方の流れは似ているのに重視点が少し違う関係です。\n\
+相手の言っていることは理解できるけれど、どこか噛み合わない感覚があります。\n\
+お互いの視点から学べる点が多く、成長のきっかけになりやすいです。\n\
+ただ、価値観の違いが続くとストレスになることもあります。\n\
+距離感を保つことで良い関係を保ちやすいです。",
+
+  "準":
+"準双対関係は、双対に近いものの完全には噛み合わない関係です。\n\
+一緒にいると心地よい部分も多く、話も通じやすいです。\n\
+ただし、肝心な場面で微妙なズレを感じることがあります。\n\
+「分かり合えそうで分かりきらない」感覚が続きやすいです。\n\
+期待しすぎなければ、安定した関係を築けます。",
+
+  "幻":
+"幻影関係は、最初に強い共感を感じやすい関係です。\n\
+出会った直後は「すごく分かり合える」と感じることが多いです。\n\
+しかし、時間が経つにつれて期待とのズレが目立ち始めます。\n\
+相手に理想を投影しやすく、失望しやすい点が特徴です。\n\
+適度な距離を保つことで心地よさを維持できます。",
+
+  "似":
+"疑似同一関係は、表面的にはよく似て見える関係です。\n\
+行動や話し方が近いため、最初は親近感を持ちやすいです。\n\
+しかし、根本的な価値観や判断基準は異なります。\n\
+深く関わるほど「なんとなく合わない」感覚が出やすいです。\n\
+軽い関係性の方がうまくいきやすいです。",
+
+  "共":
+"共鳴関係は、大切にしている方向性が似ている関係です。\n\
+一緒にいると安心感があり、価値観を共有しやすいです。\n\
+共感は多いものの、役割が重なりやすい傾向があります。\n\
+そのため、作業分担を意識しないと停滞しがちです。\n\
+仲間意識を大切にすると良い関係になります。",
+
+  "協":
+"協力関係は、実務や目的達成で力を発揮しやすい関係です。\n\
+お互いの役割が分かりやすく、作業がスムーズに進みます。\n\
+感情的な深さより、結果重視の付き合いになりやすいです。\n\
+仕事仲間やプロジェクトでは特に相性が良いです。\n\
+割り切った関係性が続きやすいです。",
+
+  "消":
+"消滅関係は、関わるほど熱意が下がりやすい関係です。\n\
+最初は問題がなくても、徐々に関心が薄れていきます。\n\
+相手の良さが見えにくくなり、印象が平坦になりがちです。\n\
+大きな衝突は少ないものの、深まりにくいです。\n\
+自然消滅しやすい関係と言えます。",
+
+  "超":
+"超自我関係は、相手の言動が「正論」に感じやすい関係です。\n\
+無意識に評価されているような気分になりやすいです。\n\
+緊張感が生まれやすく、素の自分を出しにくい傾向があります。\n\
+お互いにストレスを感じやすい関係です。\n\
+距離を取ることで摩擦を減らせます。",
+
+  "衝":
+"衝突関係は、価値観が正面からぶつかりやすい関係です。\n\
+相手の考えが理解しづらく、違和感を覚えやすいです。\n\
+意見の対立が起こりやすく、感情的になりがちです。\n\
+強い成長のきっかけになることもありますが負荷は大きいです。\n\
+深い関係には慎重さが必要です。",
+
+  "要+":
+"要求関係で、こちらが相手に助けを求めやすい立場です。\n\
+無意識のうちに「これをしてほしい」と期待しがちです。\n\
+相手が応えてくれると楽ですが、依存になりやすいです。\n\
+バランスを意識しないと一方通行になります。\n\
+感謝と自立を意識すると良好になります。",
+
+  "要-":
+"要求関係で、こちらが求められやすい立場です。\n\
+相手の期待を感じ取りやすく、応え続けやすいです。\n\
+最初は役に立てる実感がありますが、疲れやすくなります。\n\
+無理をすると負担が大きくなります。\n\
+境界線を意識することが大切です。",
+
+  "監+":
+"監督関係で、こちらが指摘や評価をしやすい立場です。\n\
+相手の行動が気になり、つい口を出したくなります。\n\
+良かれと思っての助言が、圧に感じられることもあります。\n\
+上下関係のように見えやすい関係です。\n\
+距離感を保つことで摩擦を減らせます。",
+
+  "監-":
+"監督関係で、こちらが見られやすい立場です。\n\
+相手の視線や評価を強く意識しやすくなります。\n\
+萎縮したり、反発したくなることもあります。\n\
+自然体でいるのが難しく感じやすいです。\n\
+関係を浅めに保つと楽になります。"  };
+  return `${base}\n\n${desc[rel] || ""}`;
+}
+
+/* UI変数 */
+let A = null;
+let B = null;
+
+/* タイプB選択UIを生成 */
+function pickRel(){
+  const relPicker = document.getElementById('relPicker');
+  relPicker.innerHTML = TYPES_ALL.map(t=>`
+    <div class="relbtn ${QCLS(t)}" data-type="${t}">
+      ${t}<span class="q">${QSYM[QUADRA[t]]}</span>
+    </div>
+  `).join('');
+  
+  relPicker.querySelectorAll('.relbtn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const t = btn.getAttribute('data-type');
+      B = t;
+      updateUI();
+      showRel();
+    });
+  });
+}
+
+/* UI更新 */
+function updateUI(){
+  document.getElementById('pickA').textContent = A || '—';
+  document.getElementById('pickB').textContent = B || '—';
+  
+  document.querySelectorAll('.relbtn').forEach(btn=>{
+    const t = btn.getAttribute('data-type');
+    btn.classList.toggle('sel', t === B);
+  });
+}
+
+/* 相性表示 */
+function showRel(){
+  if(!A || !B) return;
+  
+  const rel = RM[A][B];
+  const relName = RNAME[rel] || rel; 
+  document.getElementById('relTitle').textContent = `${A} × ${B}：${relName}`;
+  document.getElementById('relDesc').textContent = relText(A,B);
+}
+
+/* クリアボタン */
+document.getElementById('clear').addEventListener('click',()=>{
+  B = null;
+  updateUI();
+  document.getElementById('relTitle').textContent = '関係名 —';
+  document.getElementById('relDesc').textContent = '2タイプを選ぶと説明が出ます。';
+});
+
+/* 初期化 */
+function init(){
+  // URLクエリからタイプAを取得
+  const qs = new URLSearchParams(location.search);
+  const A0 = (qs.get("type") || "").toUpperCase();
+  
+  // 有効なタイプなら設定、なければデフォルト
+  A = TYPES_ALL.includes(A0) ? A0 : "ILE";
+  
+  // UI初期化
+  pickRel();
+  updateUI();
+}
+
+// ページ読み込み時に初期化
+init();
+</script>
+
+</body>
+</html>

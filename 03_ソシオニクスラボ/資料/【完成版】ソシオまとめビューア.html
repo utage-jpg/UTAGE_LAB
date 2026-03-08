@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Socionics Type Quick Lookup – ボタン配置修正</title>
+<meta name="theme-color" content="#0ea5e9" />
+<style>
+:root{
+  --bg:#ffffff; --panel:#f8fafc; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --hi:#0ea5e9;
+  --alpha:#e7f5ff; --beta:#ffe7ef; --gamma:#fff3d6; --delta:#eaf7ea;
+  --val:#e7f2ff;   /* 価値=水色 */
+  --noval:#ffffff; /* 非価値=白  */
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:12px;display:grid;gap:12px}
+h1{font-size:18px;margin:8px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(2,6,23,.04)}
+.hd{padding:10px 12px;border-bottom:1px solid var(--line);font-weight:800;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.body{padding:12px}
+.small{font-size:12px;color:var(--muted)}
+/* タイプ選択 */
+.types{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:640px){ .types{grid-template-columns:repeat(4,1fr)} }
+.btn{padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-weight:800;cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:48px;touch-action:manipulation}
+.btn .q{font-size:12px;color:#334155;opacity:.9}
+.btn:active{transform:scale(.98)}
+.btn.sel{outline:2px solid rgba(253,224,71,.85);background:#fffbeb;border-color:#facc15;box-shadow:0 0 0 6px rgba(253,224,71,.25)}
+.qalpha{background:var(--alpha)} .qbeta{background:var(--beta)} .qgamma{background:var(--gamma)} .qdelta{background:var(--delta)}
+/* バッジ（タップで説明） */
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.badge{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#f8fafc;font-size:12px;cursor:default}
+.badge.link{cursor:pointer;color:#0b74c7;border-color:#cfe8ff;background:#f0f7ff}
+/* 8ブロック（1→2, 4←3, 6←5, 7→8） */
+.flow{display:grid;gap:10px}
+.flowrow{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.block{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;position:relative;min-height:96px}
+.block .t{display:flex;justify-content:space-between;align-items:center;font-weight:900}
+.block .f{font-size:28px;letter-spacing:.6px}
+.block .d{font-size:12px;color:#0b74c7;text-decoration:underline;cursor:pointer}
+.block .tag{position:absolute;right:10px;bottom:8px;font-size:11px;color:#334155;padding:3px 6px;border-radius:999px;border:1px solid var(--line);background:#f8fafc;cursor:pointer}
+.block.v{background:var(--val)} .block.nv{background:var(--noval)}
+.arrow{font-weight:900;color:#94a3b8}
+.colcap{grid-column:1/-1;display:flex;align-items:center;gap:8px;margin-top:2px}
+.info{font-size:12px;color:#0ea5e9;cursor:pointer;text-decoration:underline}
+/* 相性UI */
+.grid2{display:grid;gap:12px}
+@media(min-width:1024px){ .grid2{grid-template-columns:440px 1fr} }
+.relgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+@media(min-width:520px){ .relgrid{grid-template-columns:repeat(8,1fr)} }
+.relbtn{padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff;font-weight:700;cursor:pointer;min-height:44px}
+.relbtn:active{transform:scale(.98)} .relbtn.sel{outline:2px solid rgba(14,165,233,.3);background:#f0f9ff}
+.reltitle{font-weight:900;font-size:18px;margin:6px 0}
+pre{white-space:pre-wrap;line-height:1.7}
+/* ポップ */
+.pop{position:absolute;z-index:40;min-width:240px;max-width:360px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 40px rgba(2,6,23,.18);padding:10px}
+.pop .ttl{font-weight:900;margin-bottom:6px}
+.pop .txt{font-size:13px;color:#334155;line-height:1.8;white-space:pre-wrap}
+.pop .close{margin-top:6px;font-size:12px;color:#64748b;cursor:pointer;text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="hd">
+      <h1 style="margin:0">ソシオニクス：タイプ即時ビュー</h1>
+      <span class="small">参照（表現は要約）：From Over the Sea</span>
+    </div>
+    <div class="body grid2">
+      <!-- 左：タイプ＋8ブロック -->
+      <section>
+        <div class="types" id="typeList"></div>
+        <div class="badges" id="badges"></div>
+
+        <!-- 1→2 / 4←3 / 6←5 / 7→8 -->
+        <div class="flow" id="flow">
+          <div class="colcap"><b>自我（Ego）</b><span class="info" data-info="ego">説明</span></div>
+          <div class="flowrow">
+            <div class="block v" id="b1"></div>
+            <div class="arrow">→</div>
+            <div class="block v" id="b2"></div>
+          </div>
+
+          <div class="colcap"><b>超自我（Super-ego）</b><span class="info" data-info="sego">説明</span></div>
+          <div class="flowrow">
+            <div class="block nv" id="b4"></div>
+            <div class="arrow">←</div>
+            <div class="block nv" id="b3"></div>
+          </div>
+
+          <div class="colcap"><b>超イド（Super-id）</b><span class="info" data-info="sid">説明</span></div>
+          <div class="flowrow">
+            <div class="block v" id="b6"></div>
+            <div class="arrow">←</div>
+            <div class="block v" id="b5"></div>
+          </div>
+
+          <div class="colcap"><b>イド（Id）</b><span class="info" data-info="id">説明</span></div>
+          <div class="flowrow">
+            <div class="block nv" id="b7"></div>
+            <div class="arrow">→</div>
+            <div class="block nv" id="b8"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 右：相性 -->
+      <section>
+        <div class="small">手順：左でタイプAを選択 → 下からタイプBを選ぶと関係名と説明（5行）が出ます。</div>
+        <div class="relgrid" id="relPicker" style="margin-top:10px"></div>
+        <div class="small" style="margin-top:10px">選択中：<span id="pickA" class="badge">—</span> × <span id="pickB" class="badge">—</span>
+          <button id="swap" class="btn" style="margin-left:8px">入れ替え</button>
+          <button id="clear" class="btn" style="margin-left:6px">リセット</button>
+        </div>
+        <div class="reltitle" id="relTitle">関係名 —</div>
+        <pre id="relDesc">2タイプを選ぶと説明が出ます。</pre>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ポップ -->
+<div id="pop" class="pop" style="display:none">
+  <div class="ttl" id="popT"></div>
+  <div class="txt" id="popB"></div>
+  <div class="close" id="popC">閉じる</div>
+</div>
+
+<script>
+/* ==== クアドラ/配色 ==== */
+const QUADRA={ ILE:"Alpha", SEI:"Alpha", ESE:"Alpha", LII:"Alpha",
+               EIE:"Beta",  LSI:"Beta",  SLE:"Beta",  IEI:"Beta",
+               SEE:"Gamma", ILI:"Gamma", LIE:"Gamma", ESI:"Gamma",
+               IEE:"Delta", SLI:"Delta", LSE:"Delta", EII:"Delta" };
+const QSYM={Alpha:"α",Beta:"β",Gamma:"γ",Delta:"Δ"};
+const QCLS=t=>({Alpha:"qalpha",Beta:"qbeta",Gamma:"qgamma",Delta:"qdelta"}[QUADRA[t]]||"");
+
+/* —— UI用の並び（ご指定のグリッド） —— */
+const TYPES_UI=["ILE","SEI","ESE","LII","EIE","LSI","SLE","IEI","SEE","ILI","LIE","ESI","LSE","EII","IEE","SLI"];
+
+/* クアドラの説明 */
+const QUADRA_EXP={
+  Alpha:"・価値＝Ne・Ti・Fe・Si。\n・自由な発想と情報交換、フレンドリーな空気。\n・ユーモア/ゲーム性で合意を作りやすい。\n・衝突は避け、議論はオープン＆軽快に。\n・探究と学習のコミュニティ運営が得意。",
+  Beta :"・価値＝Fe・Ni・Se・Ti。\n・一体感・役割分担・ドラマ性で動く。\n・モメンタムを重視し、決断が速い。\n・上下や儀礼を整え、集団で突破する。\n・祭り/舞台/キャンペーンに強い。",
+  Gamma:"・価値＝Fi・Te・Se・Ni。\n・実利・成果・信頼を重視。直言しやすい。\n・契約や責任範囲を明確化し前進。\n・短期勝負や交渉、ビジネス実装に強い。\n・“やる/やらない”の切り分けが明快。",
+  Delta:"・価値＝Si・Te・Fi・Ne。\n・穏やかな改善・生活基盤・共同体を重視。\n・職人気質で着実、過度なドラマは好まない。\n・環境整備と合意形成でじわっと伸ばす。\n・教育/福祉/ものづくりに適性。"
+};
+
+/* —— 機能配列（①〜⑧）※前回ご指定のまま —— */
+const F={
+  LSE:["Te","Si","Fe","Ni","Fi","Ne","Ti","Se"],
+  LIE:["Te","Ni","Fe","Si","Fi","Se","Ti","Ne"],
+  ESE:["Fe","Si","Te","Ni","Ti","Ne","Fi","Se"],
+  EIE:["Fe","Ni","Te","Si","Ti","Se","Fi","Ne"],
+  SLE:["Se","Ti","Ne","Fi","Ni","Fe","Si","Te"],
+  SEE:["Se","Fi","Ne","Ti","Ni","Te","Si","Fe"],
+  ILE:["Ne","Ti","Se","Fi","Si","Fe","Ni","Te"],
+  IEE:["Ne","Fi","Se","Ti","Si","Te","Ni","Fe"],
+  SLI:["Si","Te","Ni","Fe","Ne","Fi","Se","Ti"],
+  ILI:["Ni","Te","Si","Fe","Se","Fi","Ne","Ti"],
+  SEI:["Si","Fe","Ni","Te","Ne","Ti","Se","Fi"],
+  IEI:["Ni","Fe","Si","Te","Se","Ti","Ne","Fi"],
+  LSI:["Ti","Se","Fi","Ne","Fe","Ni","Te","Si"],
+  ESI:["Fi","Se","Ti","Ne","Te","Ni","Fe","Si"],
+  LII:["Ti","Ne","Fi","Se","Fe","Si","Te","Ni"],
+  EII:["Fi","Ne","Ti","Se","Te","Si","Fe","Ni"]
+};
+
+/* ラベル／次元／役割 */
+const TITLES=["主導①","創造②","規範③","脆弱④","暗示⑤","動員⑥","無視⑦","証明⑧"];
+const DIMTAG_JP=["4次元","3次元","2次元","1次元","1次元","2次元","3次元","4次元"];
+const DIMDESC={
+  "1次元":"1次元：個人的体験域でのみ安定。失敗に弱く、負荷がかかると萎縮しやすい。",
+  "2次元":"2次元：自分の経験範囲では堅実。応用や多様な状況では不安定になりがち。",
+  "3次元":"3次元：社会規範や他者経験も参照し柔軟。実務対応力が高い。",
+  "4次元":"4次元：時間軸や規範・文脈を跨いで自在に運用。最も厚みのある次元。"
+};
+const ROLE_SHORT={
+  0:"主導：もっとも得意で自発的。軸足となる働き。",
+  1:"創造：主導を具体化し、調整・実装する。",
+  2:"規範：社会規範に合わせて頑張る。疲れやすい。",
+  3:"脆弱：狭い条件でのみ発揮。負荷に弱い。",
+  4:"暗示：外から与えられると嬉しい支援。",
+  5:"動員：刺激で活性化し伸びる領域。",
+  6:"無視：できるが評価は求めない裏方資源。",
+  7:"証明：裏で安定化。必要時にだけ示す強さ。"
+};
+const VALDESC={
+  "価値":"価値機能：重視しやすく、働くと満足感が生まれやすい機能。",
+  "非価値":"非価値機能：必要に応じて使うが評価対象にしづらい。長時間は負担になりやすい。"
+};
+
+/* 認知スタイル・ロマンス */
+const COG={
+  ILE:"因果決定論的（CD）", LSI:"因果決定論的（CD）", SEE:"因果決定論的（CD）", EII:"因果決定論的（CD）",
+  SEI:"弁証法的アルゴリズム的（DA）", EIE:"弁証法的アルゴリズム的（DA）", ILI:"弁証法的アルゴリズム的（DA）", LSE:"弁証法的アルゴリズム的（DA）",
+  LII:"ホログラフィック・パノラマ的（HP）", SLE:"ホログラフィック・パノラマ的（HP）", ESI:"ホログラフィック・パノラマ的（HP）", IEE:"ホログラフィック・パノラマ的（HP）",
+  ESE:"ヴォーティカル・シナジェティクス的（VS）", IEI:"ヴォーティカル・シナジェティクス的（VS）", LIE:"ヴォーティカル・シナジェティクス的（VS）", SLI:"ヴォーティカル・シナジェティクス的（VS）"
+};
+const COG_EXP={
+  "因果決定論的（CD）":"・出来事を因果の連鎖として整理する。\n・再現性と安定した規則性を重視。\n・“原因→手順→検証”の順に運ぶと強い。\n・想定外は原因探索で収束させる。\n・堅牢な運用や品質管理に適性。",
+  "弁証法的アルゴリズム的（DA）":"・変化と対立を前提にプロセスで捉える。\n・仮説→調整→合意のループを回す。\n・例外処理やピボットが得意。\n・流動的な環境で最適点を探る。\n・設計変更や道筋づくりに強い。",
+  "ホログラフィック・パノラマ的（HP）":"・多視点を同時保持し像を合成する。\n・全体の調和や整合性を優先。\n・比喩/図解での説明が得意。\n・部分最適より全体最適へ。\n・俯瞰設計・編集的思考に適性。",
+  "ヴォーティカル・シナジェティクス的（VS）":"・層を縦断して核を掴み、上下を結ぶ。\n・骨格→肉付けで一気呵成に構築。\n・勢いが出ると加速しやすい。\n・抽象と具体を往復して整理。\n・構想立案や突破に向く。"
+};
+const ROM={ SLE:"侵略者", LSI:"侵略者", SEE:"侵略者", ESI:"侵略者",
+            EIE:"犠牲者", IEI:"犠牲者", LIE:"犠牲者", ILI:"犠牲者",
+            ESE:"保護者", SEI:"保護者", LSE:"保護者", SLI:"保護者",
+            ILE:"子供",   LII:"子供",   EII:"子供",   IEE:"子供" };
+const ROM_EXP={
+  "侵略者":"・主導的で押し出しが強いアプローチ。\n・相手の反応で熱量が高まる。\n・率直さが魅力だが過度な圧は禁物。\n・境界の合意が関係を安定させる。\n・“前に進める”局面で力を発揮。",
+  "犠牲者":"・情緒の機微に敏感で受容的。\n・保護されると魅力が引き出される。\n・ドラマ性を好む側面。\n・安心できる枠組みが重要。\n・深い結びつきで力を発揮。",
+  "保護者":"・面倒見が良く、安定供給を重視。\n・リスクを先回りして支える。\n・過干渉にならない配慮が鍵。\n・信頼の蓄積で愛情が増す。\n・生活実務に強い。",
+  "子供":"・好奇心と遊び心で関係を温める。\n・安全基地があると伸びやすい。\n・過度な管理は萎縮を招く。\n・肯定的なフィードバックが効く。\n・軽やかな親密さを好む。"
+};
+
+/* 相性（256） */
+const RM={"ILE":["同","双","活","鏡","要+","監+","協","幻","超","消","似","衝","要-","監-","共","準"],"SEI":["双","同","鏡","活","監+","要+","幻","協","消","超","衝","似","監-","要-","準","共"],"ESE":["活","鏡","同","双","共","準","要-","監-","似","衝","超","消","協","幻","要+","監+"],"LII":["鏡","活","双","同","準","共","監-","要-","衝","似","消","超","幻","協","監+","要+"],"EIE":["要-","監-","共","準","同","双","活","鏡","要+","監+","協","幻","超","消","似","衝"],"LSI":["監-","要-","準","共","双","同","鏡","活","監+","要+","幻","協","消","超","衝","似"],"SLE":["協","幻","要+","監+","活","鏡","同","双","共","準","要-","監-","似","衝","超","消"],"IEI":["幻","協","監+","要+","鏡","活","双","同","準","共","監-","要-","衝","似","消","超"],"SEE":["超","消","似","衝","要-","監-","共","準","同","双","活","鏡","要+","監+","協","幻"],"ILI":["消","超","衝","似","監-","要-","準","共","双","同","鏡","活","監+","要+","幻","協"],"LIE":["似","衝","超","消","協","幻","要+","監+","活","鏡","同","双","共","準","要-","監-"],"ESI":["衝","似","消","超","幻","協","監+","要+","鏡","活","双","同","準","共","監-","要-"],"LSE":["要+","監+","協","幻","超","消","似","衝","要-","監-","共","準","同","双","活","鏡"],"EII":["監+","要+","幻","協","消","超","衝","似","監-","要-","準","共","双","同","鏡","活"],"IEE":["共","準","要-","監-","似","衝","超","消","協","幻","要+","監+","活","鏡","同","双"],"SLI":["準","共","監-","要-","衝","似","消","超","幻","協","監+","要+","鏡","活","双","同"]};
+const RNAME={ "同":"同一関係","双":"双対関係","活":"活性化関係","鏡":"鏡像関係","共":"共鳴関係","準":"準双対関係","要+":"要求+（左：要求する側/恩恵を与える）","要-":"要求-（左：要求される側/恩恵を受ける）","監+":"監督+（左：監督する側）","監-":"監督-（左：監督される側）","協":"協力関係","幻":"幻影関係","超":"超自我関係","消":"消滅関係","似":"疑似同一関係","衝":"衝突関係"};
+
+/* ===== UI構築 ===== */
+const typeList=document.getElementById('typeList');
+const relPicker=document.getElementById('relPicker');
+const pop=document.getElementById('pop'), popT=document.getElementById('popT'), popB=document.getElementById('popB');
+document.getElementById('popC').onclick=()=>hidePop();
+
+/* 左側ボタンは UI 用の順序で生成（情報配列は F を参照） */
+TYPES_UI.forEach(t=>{
+  const b=document.createElement('button');
+  b.className='btn '+QCLS(t);
+  b.innerHTML=`<span>${t}</span><span class="q">${QSYM[QUADRA[t]]} ${QUADRA[t]}</span>`;
+  b.addEventListener('pointerup',e=>{ e.preventDefault(); selectType(t,b); }, {passive:false});
+  typeList.appendChild(b);
+});
+
+/* 相性ピッカーは従来通り（標準順で見やすく） */
+["ILE","SEI","ESE","LII","EIE","LSI","SLE","IEI","SEE","ILI","LIE","ESI","LSE","EII","IEE","SLI"]
+.forEach(t=>{
+  const rb=document.createElement('button');
+  rb.className='relbtn'; rb.textContent=t;
+  rb.addEventListener('pointerup',e=>{ e.preventDefault(); pickRel(t,rb); }, {passive:false});
+  relPicker.appendChild(rb);
+});
+
+let A=null,B=null;
+
+function selectType(t,btn){
+  document.querySelectorAll('.btn').forEach(x=>x.classList.remove('sel'));
+  btn.classList.add('sel');
+  renderBlocks(t);
+
+  const badges=document.getElementById('badges'); badges.innerHTML='';
+  addBadge(badges, `タイプ：${t}`, ()=>showPop(btn,"タイプ",`${t} のModel A配置を表示中。①主導から⑧証明までの流れと価値/非価値、各次元を確認できます。`));
+  const q=QUADRA[t]; addBadge(badges, `クアドラ：${QSYM[q]} ${q}`, ()=>showPop(badges, `${q} クアドラ`, QUADRA_EXP[q]));
+  const cog=COG[t]||"—"; addBadge(badges, `認知：${cog}`, ()=>showPop(badges,`認知スタイル：${cog}`, COG_EXP[cog]||"—"));
+  const rom=ROM[t]||"—"; addBadge(badges, `ロマンス：${rom}`, ()=>showPop(badges,`ロマンス：${rom}`, ROM_EXP[rom]||"—"));
+
+  A=t; B=null; document.getElementById('pickA').textContent=t; document.getElementById('pickB').textContent='—';
+  document.getElementById('relTitle').textContent='関係名 —';
+  document.getElementById('relDesc').textContent='2タイプを選ぶと説明が出ます。';
+  document.querySelectorAll('.relbtn').forEach(x=>x.classList.remove('sel'));
+}
+function addBadge(holder, text, onClick){
+  const el=document.createElement('div'); el.className='badge link'; el.textContent=text;
+  el.addEventListener('pointerup',e=>{ e.preventDefault(); onClick(); }, {passive:false});
+  holder.appendChild(el);
+}
+
+/* 8ブロック描画（価値=水色/非価値=白、次元=「○次元」） */
+function renderBlocks(t){
+  const f=F[t];
+  const ids=["b1","b2","b4","b3","b6","b5","b7","b8"], idx=[0,1,3,2,5,4,6,7];
+  ids.forEach((id,k)=>{
+    const i=idx[k], node=document.getElementById(id);
+    const isVal=[0,1,4,5].includes(i);
+    node.classList.toggle('v', isVal);
+    node.classList.toggle('nv', !isVal);
+    node.innerHTML = `
+      <div class="t"><span>${TITLES[i]}</span><span class="d" data-d="${DIMTAG_JP[i]}">${DIMTAG_JP[i]}</span></div>
+      <div class="f">${f[i]}</div>
+      <div class="tag" data-val="${isVal?'価値':'非価値'}">${isVal?'価値':'非価値'}</div>`;
+    node.onpointerup = (ev)=>{ if(ev.target.closest('.d,.tag')) return; showPop(node, TITLES[i], ROLE_SHORT[i]); };
+    node.querySelector('.d').onpointerup = (ev)=>{ ev.preventDefault(); const key=ev.currentTarget.dataset.d; showPop(ev.currentTarget, key, DIMDESC[key]); };
+    node.querySelector('.tag').onpointerup = (ev)=>{ ev.preventDefault(); const v=ev.currentTarget.dataset.val; showPop(ev.currentTarget, v, VALDESC[v]); };
+  });
+}
+
+/* 行説明（自我・超自我…） */
+document.querySelectorAll('.info').forEach(el=>{
+  el.addEventListener('pointerup',e=>{
+    e.preventDefault();
+    const map={ego:"自我（Ego）：①主導・②創造。強い／意識的。自発的に使い、成果の核を作る領域。",
+               sego:"超自我（Super-ego）：③規範・④脆弱。弱い／意識的。努力はするが負荷が溜まりやすい。",
+               sid:"超イド（Super-id）：⑤暗示・⑥動員。弱い／無意識。外部から与えられると嬉しい支援領域。",
+               id:"イド（Id）：⑦無視・⑧証明。強い／無意識。できるが評価は求めない裏方資源。"};
+    showPop(e.currentTarget, e.currentTarget.previousSibling.textContent.trim(), map[e.currentTarget.dataset.info]);
+  }, {passive:false});
+});
+
+/* 相性 */
+const TYPES_ALL=["ILE","SEI","ESE","LII","EIE","LSI","SLE","IEI","SEE","ILI","LIE","ESI","LSE","EII","IEE","SLI"];
+function pickRel(t,btn){
+  if(!A){ alert("先に左の16タイプからタイプAを選んでください。"); return; }
+  document.querySelectorAll('.relbtn').forEach(x=>x.classList.remove('sel'));
+  btn.classList.add('sel'); B=t; document.getElementById('pickB').textContent=t; showRel();
+}
+function showRel(){
+  if(!A||!B) return;
+  const idx=TYPES_ALL.indexOf(B);
+  const token=RM[A][idx];
+  document.getElementById('relTitle').textContent=`${A} × ${B} → ${RNAME[token]}`;
+  document.getElementById('relDesc').textContent=token?relText(token):"—";
+}
+function relText(k){return ({
+"同":"・思考様式が一致して理解が速い。\n・説明コストが低く安心感が大きい。\n・ただし相補性が弱く停滞しやすい。\n・盲点が重なり失策が増える恐れ。\n・学習/雑談に最適、役割分担は苦手。",
+"双":"・互いの弱点を自然に補う相補関係。\n・癒やしと実用支援が同時に得られる。\n・長期協働や伴侶に最も適する。\n・理想視/過保護は窮屈さに注意。\n・対話を続けるほど効率と安心が増す。",
+"活":"・同クアドラで価値が近く起動が速い。\n・短期プロジェクトや並走学習に強い。\n・“あと一歩”の物足りなさが残りやすい。\n・第三者（鏡像/双対）で補うと安定。\n・軽やかなスプリント運用が向く。",
+"鏡":"・得意は同じで役割が逆。学習相性◎。\n・別角度からの洞察で理解が深まる。\n・決定が遅く停滞しやすい点に注意。\n・目標/役割を明確化すれば成果が伸びる。\n・相互レビューの相棒に最適。",
+"共":"・礼節的で穏やか、摩擦が少ない。\n・関心は重なるが熱量はやや弱い。\n・進展が遅く停滞しやすい。\n・第三者がいると交流が活性化。\n・中〜遠距離の協調に向く。",
+"準":"・双対に近い“惜しい”関係。\n・短期的な魅力と当惑が交互に来る。\n・長期では疲労が溜まりやすい。\n・視野拡張の刺激源として有益。\n・定期すり合わせと距離感が鍵。",
+"協":"・手法が似て実務連携しやすい。\n・浅く広くで飽きやすい傾向。\n・競争が弱く摩擦が少ない。\n・成果連携＞感情共有で設計。\n・並走タスクや情報交換に適する。",
+"幻":"・リラックス系。実用支援は得やすい。\n・主導へ苛立ちが出やすく近距離は難。\n・遠距離では好印象になりがち。\n・第三者がいると円滑化。\n・“再教育衝動”を抑えるのがコツ。",
+"要+":"・恩恵を与える側（ベネファクター）。\n・教える/支えるが過干渉に注意。\n・境界と頻度を決めると健全。\n・短期メンタリングに有効。\n・成果の可視化で循環を作る。",
+"要-":"・恩恵を受ける側（ベネフィシャリ）。\n・心地よさと依存の両面がある。\n・主体性維持と感謝設計が鍵。\n・成果で返す/卒業時期を決める。\n・短期で伸びるが長期依存は回避。",
+"監+":"・監督者側。要求が直球になりがち。\n・範囲/時間/目的を先に合意する。\n・短時間コーチングに高効率。\n・第三者の緩衝で安定。\n・人格批判に見えない言い回しを。",
+"監-":"・被監督側。圧迫/誤解を感じやすい。\n・小さい成功と安全基地を設計。\n・依頼は短く具体/段階的に。\n・レビュー/時間制限で緊張を緩和。\n・課題限定のスポット運用が現実的。",
+"超":"・弱点を突かれやすい高緊張関係。\n・“正しさ”のぶつけ合いで消耗しやすい。\n・評価より情報共有を優先。\n・近距離を避け距離/休止を戦略的に。\n・痛点の自覚には役立つ。",
+"消":"・価値は近いが噛み合いにくい。\n・同対象でもアプローチが不可解。\n・ルール運用で摩擦を軽減。\n・第三者がいると安定しやすい。\n・共同より成果物の交換が現実的。",
+"似":"・似て非なる。理解は早いが物足りない。\n・近すぎると相違が目立つ。\n・軽い共同や趣味には向く。\n・第三者がいると動きが出る。\n・深い依存は非推奨。",
+"衝":"・価値/期待が真逆で緊張が最大。\n・相互否定に感じやすく消耗が大。\n・ルール/第三者を挟んで最小接触。\n・学びは大きいが代償も大きい。\n・基本は距離を置くのが最適。"
+}[k]);}
+
+document.getElementById('swap').addEventListener('pointerup',e=>{ e.preventDefault(); if(A&&B){ [A,B]=[B,A]; document.getElementById('pickA').textContent=A; document.getElementById('pickB').textContent=B; showRel(); } }, {passive:false});
+document.getElementById('clear').addEventListener('pointerup',e=>{ e.preventDefault(); A=null; B=null; document.getElementById('pickA').textContent='—'; document.getElementById('pickB').textContent='—'; document.getElementById('relTitle').textContent='関係名 —'; document.getElementById('relDesc').textContent='2タイプを選ぶと説明が出ます。'; document.querySelectorAll('.btn,.relbtn').forEach(x=>x.classList.remove('sel')); }, {passive:false});
+
+/* ポップ */
+function showPop(anchor, title, body){
+  popT.textContent=title; popB.textContent=body; pop.style.display='block';
+  const r=anchor.getBoundingClientRect(); const pw=pop.offsetWidth||300, ph=pop.offsetHeight||180;
+  let x=scrollX+r.left, y=scrollY+r.bottom+8;
+  if(x+pw>scrollX+innerWidth-12) x=scrollX+innerWidth-pw-12;
+  if(y+ph>scrollY+innerHeight-12) y=scrollY+r.top-ph-8;
+  pop.style.left=`${x}px`; pop.style.top=`${y}px`;
+}
+function hidePop(){ pop.style.display='none'; }
+document.getElementById('popC').onclick=hidePop;
+document.addEventListener('pointerdown',e=>{ if(pop.style.display==='none')return; if(!pop.contains(e.target) && !e.target.closest('.info,.badge,.block,.d,.tag')) hidePop(); }, {passive:true});
+
+/* 初期：UI 並びの先頭（ILE）を選択 */
+(function init(){ const first=document.querySelector('#typeList .btn'); if(first) first.dispatchEvent(new PointerEvent('pointerup')); })();
+</script>
+</body>
+</html>

@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTAGE LAB｜総合心理診断ポータル - あなたの深層心理を解き明かす</title>
+<meta name="description" content="UTAGE LABは心理診断・タイプ診断・相性診断・占いを集めた総合心理診断ポータル。MBTIから深層心理まで、自分を知る旅を始めよう。">
+<meta name="keywords" content="心理診断,MBTI,16タイプ,性格診断,相性診断,ソシオニクス,心理テスト">
+<meta property="og:title" content="UTAGE LAB｜総合心理診断ポータル">
+<meta property="og:description" content="あなたの深層心理を解き明かす。心理診断・タイプ診断・相性診断・占いを集めた総合心理診断ポータル。">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;700;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #1a1025;
+    --parchment: #f7f3ed;
+    --cream: #faf7f2;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --rose: #c9607a;
+    --rose-light: #f5dde3;
+    --teal: #3d8b8b;
+    --teal-light: #c8e8e8;
+    --violet: #7b5ea7;
+    --violet-light: #e8e0f5;
+    --amber: #d4843a;
+    --amber-light: #fae9d5;
+    --text: #2d2140;
+    --text-light: #6b5f80;
+    --border: #e0d5c8;
+    --shadow: rgba(26,16,37,0.12);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* Noise texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ===== NAV ===== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(250,247,242,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo-main {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+  }
+  .nav-logo-sub {
+    font-size: 10px;
+    color: var(--text-light);
+    letter-spacing: 0.12em;
+    font-weight: 300;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-light);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--parchment) !important;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 12px !important;
+    letter-spacing: 0.08em;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--violet) !important; }
+
+  /* Hamburger */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    border: none;
+    background: transparent;
+    z-index: 201;
+  }
+  .nav-hamburger span {
+    width: 24px; height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all 0.3s;
+    display: block;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu overlay */
+  .nav-mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,16,37,0.5);
+    z-index: 190;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .nav-mobile-overlay.open { opacity: 1; }
+
+  /* Mobile drawer */
+  .nav-mobile-drawer {
+    position: fixed;
+    top: 60px;
+    left: 0; right: 0;
+    background: rgba(250,247,242,0.98);
+    backdrop-filter: blur(16px);
+    z-index: 195;
+    padding: 20px 28px 32px;
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-110%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 12px 32px var(--shadow);
+  }
+  .nav-mobile-drawer.open { transform: translateY(0); }
+  .nav-mobile-drawer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .nav-mobile-drawer li a {
+    display: block;
+    padding: 12px 0;
+    font-size: 16px;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .nav-mobile-drawer li:last-child a { border-bottom: none; }
+  .nav-mobile-drawer li a:hover { color: var(--violet); padding-left: 6px; }
+  .nav-mobile-cta-wrap {
+    margin-top: 20px;
+  }
+  .nav-mobile-cta {
+    display: block;
+    text-align: center;
+    background: var(--ink);
+    color: var(--parchment) !important;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(123,94,167,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 20% 80%, rgba(201,168,76,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 80% 20%, rgba(201,96,122,0.15) 0%, transparent 50%),
+      var(--ink);
+  }
+  .hero-deco {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+  }
+  .hero-deco-1 { width: 600px; height: 600px; border: 1px solid var(--gold); right: -100px; top: -150px; animation: rotateSlowly 40s linear infinite; }
+  .hero-deco-2 { width: 400px; height: 400px; border: 1px solid var(--rose); right: 50px; top: -50px; animation: rotateSlowly 30s linear infinite reverse; }
+  .hero-deco-3 { width: 800px; height: 800px; border: 1px solid var(--violet); left: -200px; bottom: -300px; animation: rotateSlowly 60s linear infinite; }
+
+  @keyframes rotateSlowly {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(34px, 5vw, 58px);
+    font-weight: 900;
+    color: var(--parchment);
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  .hero-title em { font-style: italic; font-family: 'DM Serif Display', serif; color: var(--gold); }
+  .hero-subtitle {
+    font-size: 15px;
+    color: rgba(247,243,237,0.65);
+    line-height: 1.9;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { background: #e0be6a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(247,243,237,0.3);
+    color: var(--parchment);
+    padding: 15px 26px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    white-space: nowrap;
+  }
+  .btn-ghost:hover { border-color: var(--parchment); background: rgba(247,243,237,0.08); }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(247,243,237,0.12);
+  }
+  .hero-stat-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--gold); }
+  .hero-stat-label { font-size: 11px; color: rgba(247,243,237,0.45); letter-spacing: 0.1em; margin-top: 2px; }
+
+  /* Hero right: floating tool cards */
+  .hero-cards { position: relative; height: 420px; }
+  .hero-card {
+    position: absolute;
+    background: rgba(247,243,237,0.07);
+    border: 1px solid rgba(247,243,237,0.14);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 20px 24px;
+    color: var(--parchment);
+    transition: transform 0.3s;
+  }
+  .hero-card:hover { transform: translateY(-4px) !important; }
+  .hero-card-1 { top: 0; left: 20px; width: 230px; animation: floatA 6s ease-in-out infinite; }
+  .hero-card-2 { top: 90px; right: 0; width: 210px; animation: floatB 7s ease-in-out infinite; }
+  .hero-card-3 { bottom: 50px; left: 30px; width: 250px; animation: floatC 8s ease-in-out infinite; }
+
+  @keyframes floatA { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+  @keyframes floatB { 0%,100% { transform: translateY(0px) rotate(1deg); } 50% { transform: translateY(-8px) rotate(-1deg); } }
+  @keyframes floatC { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+
+  .hero-card-tag { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-card-type { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 4px; }
+  .hero-card-desc { font-size: 12px; color: rgba(247,243,237,0.55); line-height: 1.6; }
+  .hero-card-bar { margin-top: 12px; height: 4px; background: rgba(247,243,237,0.1); border-radius: 2px; overflow: hidden; }
+  .hero-card-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--gold), var(--rose)); }
+
+  /* ===== CATEGORY STRIP ===== */
+  .cat-strip {
+    background: white;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .cat-strip::-webkit-scrollbar { display: none; }
+  .cat-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 24px;
+    min-width: max-content;
+  }
+  .cat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 24px;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    gap: 5px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .cat-item:hover, .cat-item.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .cat-item span:first-child { font-size: 18px; }
+
+  /* ===== SECTION BASE ===== */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .section-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .section-more {
+    font-size: 13px;
+    color: var(--violet);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    transition: gap 0.2s;
+  }
+  .section-more:hover { gap: 8px; }
+  .section-divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ===== POPULAR CARDS ===== */
+  .popular-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .popular-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+    position: relative;
+    display: block;
+  }
+  .popular-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px var(--shadow); border-color: transparent; }
+  .popular-card-hero {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .popular-card-rank {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    background: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: var(--ink);
+    z-index: 2;
+  }
+  .popular-card-body { padding: 16px 18px 20px; }
+  .popular-card-cat { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; font-weight: 700; }
+  .popular-card-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; color: var(--ink); }
+  .popular-card-meta { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--text-light); }
+  .popular-card-cta {
+    margin-top: 12px;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+  }
+  .popular-card-cta:hover { opacity: 0.8; }
+
+  /* ===== FEATURED BANNER ===== */
+  .feature-banner {
+    background: linear-gradient(135deg, var(--ink) 0%, #2d1a4a 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+  }
+  .feature-banner::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(123,94,167,0.3), transparent 70%);
+    right: -100px; top: -150px;
+    pointer-events: none;
+  }
+  .feature-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--gold); color: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; }
+  .feature-title { font-family: 'Noto Serif JP', serif; font-size: clamp(18px, 2.5vw, 26px); font-weight: 700; color: var(--parchment); margin-bottom: 12px; line-height: 1.4; }
+  .feature-desc { font-size: 14px; color: rgba(247,243,237,0.6); line-height: 1.8; margin-bottom: 24px; }
+  .feature-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .feature-tag { background: rgba(247,243,237,0.08); border: 1px solid rgba(247,243,237,0.15); color: rgba(247,243,237,0.7); font-size: 12px; padding: 5px 14px; border-radius: 20px; }
+  .feature-right { text-align: center; position: relative; z-index: 2; }
+  .feature-type-display { font-family: 'DM Serif Display', serif; font-size: 64px; color: var(--gold); line-height: 1; margin-bottom: 8px; text-shadow: 0 0 40px rgba(201,168,76,0.4); }
+  .feature-type-sub { font-size: 12px; color: rgba(247,243,237,0.5); letter-spacing: 0.12em; }
+
+  /* ===== DIAGNOSIS CATEGORIES ===== */
+  .diag-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .diag-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .diag-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px var(--shadow); border-color: transparent; }
+  .diag-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .diag-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 700; color: var(--ink); }
+  .diag-desc { font-size: 12px; color: var(--text-light); line-height: 1.7; flex: 1; }
+  .diag-count { font-size: 11px; color: var(--text-light); margin-top: auto; }
+
+  /* ===== FORTUNE SECTION ===== */
+  .fortune-section { background: linear-gradient(180deg, var(--cream) 0%, #f0e9fa 100%); }
+  .fortune-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 16px; }
+  .fortune-main {
+    background: linear-gradient(135deg, #1a1025 0%, #2d1a4a 60%, #1a2a40 100%);
+    border-radius: 20px;
+    padding: 36px 32px;
+    text-decoration: none;
+    color: var(--parchment);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .fortune-main::before { content: ''; position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.2), transparent 70%); right: -40px; top: -60px; }
+  .fortune-main:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(26,16,37,0.25); }
+  .fortune-main-eyebrow { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
+  .fortune-main-title { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; line-height: 1.4; position: relative; z-index: 1; }
+  .fortune-main-desc { font-size: 13px; color: rgba(247,243,237,0.65); line-height: 1.8; flex: 1; position: relative; z-index: 1; }
+  .fortune-main-cta { display: inline-block; background: var(--gold); color: var(--ink); font-size: 13px; font-weight: 700; padding: 10px 20px; border-radius: 6px; margin-top: 8px; align-self: flex-start; position: relative; z-index: 1; transition: opacity 0.2s; }
+  .fortune-main-cta:hover { opacity: 0.85; }
+  .fortune-sub {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .fortune-sub:hover { transform: translateY(-3px); box-shadow: 0 12px 32px var(--shadow); border-color: transparent; }
+
+  /* ===== SOCIONICS SECTION ===== */
+  .socio-section { background: linear-gradient(180deg, #f0e9fa 0%, #e8f4f8 100%); }
+  .socio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .socio-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .socio-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--violet));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .socio-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px var(--shadow); border-color: transparent; }
+  .socio-card:hover::before { opacity: 1; }
+  .socio-card-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .socio-card-title { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 700; color: var(--ink); }
+  .socio-card-desc { font-size: 12px; color: var(--text-light); line-height: 1.7; flex: 1; }
+  .socio-card-link { font-size: 12px; color: var(--teal); font-weight: 700; margin-top: auto; }
+
+  /* ===== PREMIUM SECTION ===== */
+  .premium-section {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .premium-section::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(123,94,167,0.2), transparent 70%);
+    right: -200px; top: -200px;
+    pointer-events: none;
+  }
+  .premium-section::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%);
+    left: -100px; bottom: -100px;
+    pointer-events: none;
+  }
+  .premium-inner { position: relative; z-index: 1; }
+  .premium-header { text-align: center; margin-bottom: 48px; }
+  .premium-eyebrow { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .premium-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+  .premium-eyebrow::after { content: ''; width: 20px; height: 1px; background: var(--gold); }
+  .premium-title { font-family: 'Noto Serif JP', serif; font-size: clamp(24px, 4vw, 36px); font-weight: 700; color: var(--parchment); margin-bottom: 12px; line-height: 1.3; }
+  .premium-sub { font-size: 15px; color: rgba(247,243,237,0.5); }
+  .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .plan-card {
+    background: rgba(247,243,237,0.04);
+    border: 1px solid rgba(247,243,237,0.12);
+    border-radius: 20px;
+    padding: 32px 28px;
+    position: relative;
+    transition: transform 0.3s;
+  }
+  .plan-card:hover { transform: translateY(-4px); }
+  .plan-card.featured {
+    background: rgba(201,168,76,0.08);
+    border-color: rgba(201,168,76,0.4);
+    transform: scale(1.02);
+  }
+  .plan-card.featured:hover { transform: scale(1.02) translateY(-4px); }
+  .plan-popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--ink); font-size: 11px; font-weight: 700; padding: 4px 16px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.05em; }
+  .plan-name { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--parchment); margin-bottom: 16px; }
+  .plan-price { margin-bottom: 24px; }
+  .plan-price-num { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--gold); }
+  .plan-price-period { font-size: 13px; color: rgba(247,243,237,0.4); margin-left: 4px; }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .plan-features li { font-size: 13px; color: rgba(247,243,237,0.7); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+  .plan-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .plan-btn { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; letter-spacing: 0.05em; font-family: 'Zen Kaku Gothic New', sans-serif; transition: all 0.2s; }
+  .plan-btn-free { background: rgba(247,243,237,0.08); color: rgba(247,243,237,0.7); border: 1px solid rgba(247,243,237,0.15); }
+  .plan-btn-free:hover { background: rgba(247,243,237,0.14); }
+  .plan-btn-gold { background: var(--gold); color: var(--ink); }
+  .plan-btn-gold:hover { background: #e0be6a; }
+  .plan-btn-silver { background: rgba(247,243,237,0.12); color: var(--parchment); border: 1px solid rgba(247,243,237,0.2); }
+  .plan-btn-silver:hover { background: rgba(247,243,237,0.18); }
+
+  /* ===== DEEP DIVE ===== */
+  .deepdive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .deepdive-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .deepdive-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px var(--shadow); border-color: transparent; }
+  .deepdive-ext-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 20px; align-self: flex-start; }
+  .deepdive-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.4; flex: 1; }
+  .deepdive-desc { font-size: 13px; color: var(--text-light); line-height: 1.8; }
+  .deepdive-link { font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 4px; margin-top: auto; transition: gap 0.2s; }
+  .deepdive-link:hover { gap: 8px; }
+
+  /* ===== COLUMN ===== */
+  .column-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .col-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .col-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px var(--shadow); border-color: transparent; }
+  .col-img-wrap { height: 100px; background: var(--violet-light); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+  .col-body { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .col-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
+  .col-title { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.5; flex: 1; }
+  .col-meta { font-size: 11px; color: var(--text-light); margin-top: auto; }
+
+  /* ===== FOOTER ===== */
+  .footer { background: var(--ink); padding: 0; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; padding: 64px 24px 32px; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand-name { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--parchment); margin-bottom: 12px; }
+  .footer-brand-desc { font-size: 13px; color: rgba(247,243,237,0.45); line-height: 1.8; }
+  .footer-heading { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13px; color: rgba(247,243,237,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--parchment); }
+  .footer-bottom { border-top: 1px solid rgba(247,243,237,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom div { font-size: 12px; color: rgba(247,243,237,0.3); }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .diag-grid { grid-template-columns: repeat(3, 1fr); }
+    .socio-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    .hero-content { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .hero-title { font-size: 34px; }
+    .hero-cards { height: 300px; }
+    .hero-card-1 { width: 180px; top: 0; left: 10px; }
+    .hero-card-2 { width: 165px; top: 60px; right: 10px; }
+    .hero-card-3 { width: 195px; bottom: 10px; left: 10px; }
+    .hero-stats { gap: 20px; }
+    .hero-stat-num { font-size: 22px; }
+
+    .section { padding: 56px 20px; }
+    .popular-grid { grid-template-columns: 1fr; }
+    .diag-grid { grid-template-columns: repeat(2, 1fr); }
+    .socio-grid { grid-template-columns: 1fr 1fr; }
+    .fortune-grid { grid-template-columns: 1fr; }
+    .plans-grid { grid-template-columns: 1fr; gap: 32px; }
+    .plan-card.featured { transform: none; }
+    .deepdive-grid { grid-template-columns: 1fr; }
+    .column-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    .feature-banner { grid-template-columns: 1fr; padding: 32px; }
+    .feature-right { display: none; }
+    .hero-buttons { flex-direction: column; }
+    .hero-buttons a { justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .diag-grid { grid-template-columns: 1fr 1fr; }
+    .socio-grid { grid-template-columns: 1fr; }
+    .column-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .hero-cards { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-main">UTAGE LAB</span>
+    <span class="nav-logo-sub">総合心理診断</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#diagnoses">診断</a></li>
+    <li><a href="#fortune">占い</a></li>
+    <li><a href="#socionics">ソシオニクス</a></li>
+    <li><a href="#deepdive">研究</a></li>
+    <li><a href="#premium" class="nav-cta">✦ プレミアム</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Overlay -->
+<div class="nav-mobile-overlay" id="mobileOverlay"></div>
+
+<!-- Mobile Drawer -->
+<div class="nav-mobile-drawer" id="mobileDrawer">
+  <ul>
+    <li><a href="#diagnoses" class="mobile-link">🧠 診断ツール</a></li>
+    <li><a href="#fortune" class="mobile-link">✨ 占いコンテンツ</a></li>
+    <li><a href="#socionics" class="mobile-link">🔬 ソシオニクスラボ</a></li>
+    <li><a href="#deepdive" class="mobile-link">🔗 研究・Deep Dive</a></li>
+  </ul>
+  <div class="nav-mobile-cta-wrap">
+    <a href="#premium" class="nav-mobile-cta mobile-link">✦ プレミアムプランを見る</a>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-deco hero-deco-1"></div>
+  <div class="hero-deco hero-deco-2"></div>
+  <div class="hero-deco hero-deco-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">総合心理診断ポータル</div>
+      <h1 class="hero-title">
+        あなたの<em>深層心理</em>を<br>解き明かす
+      </h1>
+      <p class="hero-subtitle">
+        心理診断・タイプ分析・相性診断・ソシオニクス・占いを融合した、<br>
+        日本発の総合心理探求プラットフォーム。
+      </p>
+      <div class="hero-buttons">
+        <a href="#diagnoses" class="btn-primary">✦ 診断ツールを見る</a>
+        <a href="#socionics" class="btn-ghost">ソシオニクスラボへ →</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-label">診断コンテンツ</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-label">ソシオニクスツール</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">∞</div>
+          <div class="hero-stat-label">相性パターン</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-cards">
+      <div class="hero-card hero-card-1">
+        <div class="hero-card-tag">思考スタイル</div>
+        <div class="hero-card-type">ThinkType</div>
+        <div class="hero-card-desc">外向×内向・視覚×言語の2軸で思考を分析</div>
+        <div class="hero-card-bar">
+          <div class="hero-card-bar-fill" style="width:72%"></div>
+        </div>
+      </div>
+      <div class="hero-card hero-card-2">
+        <div class="hero-card-tag">ソシオニクス相性</div>
+        <div class="hero-card-type">二重同一</div>
+        <div class="hero-card-desc">256通りの関係性を瞬時に判定</div>
+      </div>
+      <div class="hero-card hero-card-3">
+        <div class="hero-card-tag">関係改善</div>
+        <div class="hero-card-type">💌 モヤモヤ整理</div>
+        <div class="hero-card-desc">言えない気持ちを可視化してパートナーと共有</div>
+        <div class="hero-card-bar">
+          <div class="hero-card-bar-fill" style="width:88%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CATEGORY STRIP ===== -->
+<div class="cat-strip">
+  <div class="cat-inner">
+    <a class="cat-item active" href="#diagnoses">
+      <span>🧠</span><span>タイプ診断</span>
+    </a>
+    <a class="cat-item" href="#fortune">
+      <span>✨</span><span>占い・数秘</span>
+    </a>
+    <a class="cat-item" href="#socionics">
+      <span>🔬</span><span>ソシオニクス</span>
+    </a>
+    <a class="cat-item" href="#diagnoses">
+      <span>❤</span><span>関係改善</span>
+    </a>
+    <a class="cat-item" href="#diagnoses">
+      <span>😂</span><span>笑いタイプ</span>
+    </a>
+    <a class="cat-item" href="#deepdive">
+      <span>📖</span><span>研究</span>
+    </a>
+    <a class="cat-item" href="#premium">
+      <span>✦</span><span>プレミアム</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===== POPULAR DIAGNOSES ===== -->
+<div id="diagnoses">
+<div class="section fade-up">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Popular</div>
+      <h2 class="section-title">おすすめ診断ツール</h2>
+    </div>
+  </div>
+
+  <div class="popular-grid">
+    <!-- ThinkType -->
+    <a href="./01_診断コンテンツ/thinktype/index.html" class="popular-card">
+      <div class="popular-card-hero" style="background: linear-gradient(135deg, #7b5ea7, #4a2d70);">
+        <span>🧠</span>
+        <div class="popular-card-rank"># 1</div>
+      </div>
+      <div class="popular-card-body">
+        <div class="popular-card-cat" style="color: var(--violet)">思考スタイル</div>
+        <div class="popular-card-title">ThinkType｜思考タイプ診断</div>
+        <div class="popular-card-meta">
+          <div>外向×内向・視覚×言語の2軸</div>
+          <div>⏱ 約3分</div>
+        </div>
+        <div class="popular-card-cta" style="background: var(--violet-light); color: var(--violet)">診断スタート →</div>
+      </div>
+    </a>
+
+    <!-- 関係改善ジェネレータ -->
+    <a href="./01_診断コンテンツ/関係改善ジェネレータ/index.html" class="popular-card">
+      <div class="popular-card-hero" style="background: linear-gradient(135deg, #c9607a, #8b3050);">
+        <span>💌</span>
+        <div class="popular-card-rank"># 2</div>
+      </div>
+      <div class="popular-card-body">
+        <div class="popular-card-cat" style="color: var(--rose)">恋愛・関係</div>
+        <div class="popular-card-title">ふたりのモヤモヤ整理室</div>
+        <div class="popular-card-meta">
+          <div>言えない気持ちを可視化</div>
+          <div>⏱ 約3分</div>
+        </div>
+        <div class="popular-card-cta" style="background: var(--rose-light); color: var(--rose)">診断スタート →</div>
+      </div>
+    </a>
+
+    <!-- 感動タイプ診断 -->
+    <a href="./01_診断コンテンツ/感動タイプ診断/index.html" class="popular-card">
+      <div class="popular-card-hero" style="background: linear-gradient(135deg, #3d8b8b, #1a5555);">
+        <span>🌟</span>
+        <div class="popular-card-rank"># 3</div>
+      </div>
+      <div class="popular-card-body">
+        <div class="popular-card-cat" style="color: var(--teal)">感性・感動</div>
+        <div class="popular-card-title">感動タイプ診断</div>
+        <div class="popular-card-meta">
+          <div>あなたの感動のツボを発見</div>
+          <div>⏱ 約3分</div>
+        </div>
+        <div class="popular-card-cta" style="background: var(--teal-light); color: var(--teal)">診断スタート →</div>
+      </div>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- ===== FEATURED BANNER ===== -->
+<div class="section fade-up" style="padding-top: 0">
+  <a href="./03_ソシオニクスラボ/診断ツール/index.html" class="feature-banner" style="text-decoration:none">
+    <div>
+      <div class="feature-badge">✦ おすすめ</div>
+      <h3 class="feature-title">ソシオニクス総合診断<br>— 16タイプ × 相互関係理論</h3>
+      <p class="feature-desc">旧ソ連発祥の心理類型論「ソシオニクス」で、<br>あなたの情報代謝スタイルと対人関係パターンを科学的に分析します。</p>
+      <div class="feature-tags">
+        <span class="feature-tag">🔬 情報代謝分析</span>
+        <span class="feature-tag">❤ 256通りの相性</span>
+        <span class="feature-tag">🧠 モデルA機能構造</span>
+        <span class="feature-tag">📊 16タイプ詳細</span>
+      </div>
+      <div class="btn-primary" style="display:inline-flex">診断を受ける</div>
+    </div>
+    <div class="feature-right">
+      <div class="feature-type-display">INTj</div>
+      <div class="feature-type-sub">ソシオニクス型</div>
+    </div>
+  </a>
+</div>
+
+<!-- ===== DIAGNOSIS CATEGORIES ===== -->
+<div class="section fade-up" style="padding-top: 0">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">All Tools</div>
+      <h2 class="section-title">すべての診断ツール</h2>
+    </div>
+  </div>
+
+  <div class="diag-grid">
+    <a href="./01_診断コンテンツ/thinktype/index.html" class="diag-card">
+      <div class="diag-icon" style="background: var(--violet-light)">🧠</div>
+      <div class="diag-title">ThinkType</div>
+      <div class="diag-desc">外向×内向・視覚×言語の2軸で、あなた固有の思考スタイルを明らかに。</div>
+      <div class="diag-count">思考スタイル診断</div>
+    </a>
+    <a href="./01_診断コンテンツ/関係改善ジェネレータ/index.html" class="diag-card">
+      <div class="diag-icon" style="background: var(--rose-light)">💌</div>
+      <div class="diag-title">モヤモヤ整理室</div>
+      <div class="diag-desc">言えずにいる気持ちを可視化。関係改善のきっかけを診断から見つけよう。</div>
+      <div class="diag-count">恋愛・関係改善診断</div>
+    </a>
+    <a href="./01_診断コンテンツ/感動タイプ診断/index.html" class="diag-card">
+      <div class="diag-icon" style="background: var(--teal-light)">🌟</div>
+      <div class="diag-title">感動タイプ診断</div>
+      <div class="diag-desc">あなたの「感動のツボ」を分析。どんな体験が心を動かすのかを診断。</div>
+      <div class="diag-count">感性・感動診断</div>
+    </a>
+    <a href="./01_診断コンテンツ/uniquetype/index.html" class="diag-card">
+      <div class="diag-icon" style="background: var(--amber-light)">😂</div>
+      <div class="diag-title">わらいのツボ診断</div>
+      <div class="diag-desc">あなたの「笑いのクセ」を4タイプに分類。ほっこり・ひらめき・スパイス・カオス。</div>
+      <div class="diag-count">ユニークタイプ診断</div>
+    </a>
+    <a href="./01_診断コンテンツ/数秘術/index.html" class="diag-card">
+      <div class="diag-icon" style="background: #fdf0e8">🔢</div>
+      <div class="diag-title">数秘術診断</div>
+      <div class="diag-desc">誕生日から導くライフパスナンバー。魂の使命と人格の秘密を解き明かす。</div>
+      <div class="diag-count">数秘術・スピリチュアル</div>
+    </a>
+    <a href="./03_ソシオニクスラボ/診断ツール/index.html" class="diag-card">
+      <div class="diag-icon" style="background: #e8f4f8">🔬</div>
+      <div class="diag-title">ソシオニクス診断</div>
+      <div class="diag-desc">情報代謝タイプ・認知機能の精密診断。16タイプ × 相互関係理論で人間関係を分析。</div>
+      <div class="diag-count">ソシオニクス総合診断</div>
+    </a>
+    <a href="./03_ソシオニクスラボ/相性確認/index.html" class="diag-card">
+      <div class="diag-icon" style="background: var(--rose-light)">❤</div>
+      <div class="diag-title">ソシオニクス相性</div>
+      <div class="diag-desc">16タイプ × 16タイプの256通りの関係性を瞬時に判定。向きと強度も確認できる。</div>
+      <div class="diag-count">相性・関係性診断</div>
+    </a>
+    <a href="./02_占いコンテンツ/typefortune/index.html" class="diag-card" style="border-style: dashed">
+      <div class="diag-icon" style="background: var(--gold-light)">✨</div>
+      <div class="diag-title">16タイプ占い</div>
+      <div class="diag-desc">MBTIタイプ × 占星術の融合。タイプ別の運命・使命・今年の運勢を鑑定。</div>
+      <div class="diag-count">タイプ占いコンテンツ</div>
+    </a>
+  </div>
+</div>
+
+<!-- ===== DIVIDER ===== -->
+<div class="section-divider"></div>
+
+<!-- ===== FORTUNE SECTION ===== -->
+<div class="fortune-section" id="fortune">
+  <div class="section fade-up">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Fortune</div>
+        <h2 class="section-title">占いコンテンツ</h2>
+      </div>
+    </div>
+
+    <div class="fortune-grid">
+      <a href="./02_占いコンテンツ/typefortune/index.html" class="fortune-main">
+        <div class="fortune-main-eyebrow">✦ Featured</div>
+        <div class="fortune-main-title">16タイプ別<br>タイプ占いコンテンツ</div>
+        <div class="fortune-main-desc">
+          MBTIタイプ × 占星術の融合。あなたのタイプが持つ運命と使命を解き明かします。16通りの専用リーディング付き。
+        </div>
+        <div class="fortune-main-cta">✨ 占いを受ける</div>
+      </a>
+
+      <a href="./01_診断コンテンツ/数秘術/index.html" class="fortune-sub">
+        <div style="font-size: 32px">🔢</div>
+        <div class="popular-card-cat" style="color: var(--amber)">数秘術</div>
+        <div class="diag-title">ライフパスナンバー診断</div>
+        <div class="diag-desc">誕生日から導く魂の使命と人格の秘密</div>
+      </a>
+
+      <a href="./03_ソシオニクスラボ/相性確認/index.html" class="fortune-sub">
+        <div style="font-size: 32px">💞</div>
+        <div class="popular-card-cat" style="color: var(--rose)">相性</div>
+        <div class="diag-title">ソシオニクス相性確認</div>
+        <div class="diag-desc">16タイプ組み合わせ全256通りの関係性を即診断</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SOCIONICS SECTION ===== -->
+<div class="socio-section" id="socionics">
+  <div class="section fade-up">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Socionics Lab</div>
+        <h2 class="section-title">ソシオニクスツール</h2>
+      </div>
+      <a href="./03_ソシオニクスラボ/ラボ自己サイト/index.html" class="section-more" target="_blank">ラボサイトへ →</a>
+    </div>
+
+    <div class="socio-grid">
+      <a href="./03_ソシオニクスラボ/診断ツール/index.html" class="socio-card">
+        <div class="socio-card-icon" style="background: var(--teal-light)">🔬</div>
+        <div class="socio-card-title">ソシオニクス総合診断</div>
+        <div class="socio-card-desc">情報代謝タイプを特定。モデルA機能構造・認知スタイル・機能別解説を網羅した精密診断。</div>
+        <div class="socio-card-link">診断を受ける →</div>
+      </a>
+      <a href="./03_ソシオニクスラボ/相性確認/index.html" class="socio-card">
+        <div class="socio-card-icon" style="background: var(--rose-light)">❤</div>
+        <div class="socio-card-title">相性確認ツール</div>
+        <div class="socio-card-desc">2つのタイプを選ぶだけで、関係名・関係解説・向き（要求±/監督±）を即判定。</div>
+        <div class="socio-card-link">相性を確認 →</div>
+      </a>
+      <a href="./03_ソシオニクスラボ/情報代謝ビューア/index.html" class="socio-card">
+        <div class="socio-card-icon" style="background: var(--violet-light)">🕸</div>
+        <div class="socio-card-title">情報代謝×関係性ビューア</div>
+        <div class="socio-card-desc">各タイプの情報代謝スタイルと対人関係パターンをビジュアルで把握できるインタラクティブツール。</div>
+        <div class="socio-card-link">ビューアを開く →</div>
+      </a>
+      <a href="./03_ソシオニクスラボ/情報要素ツール/index.html" class="socio-card">
+        <div class="socio-card-icon" style="background: var(--amber-light)">⚡</div>
+        <div class="socio-card-title">情報要素ツール</div>
+        <div class="socio-card-desc">8つの情報要素（Se/Si/Ne/Ni/Te/Ti/Fe/Fi）の価値・非価値を判定。認知機能の強弱を可視化。</div>
+        <div class="socio-card-link">ツールを開く →</div>
+      </a>
+    </div>
+
+    <!-- 資料リンク -->
+    <div style="margin-top: 24px; padding: 20px 24px; background: white; border: 1px solid var(--border); border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <div>
+        <div style="font-size: 13px; color: var(--text-light); margin-bottom: 4px; letter-spacing: 0.05em;">📚 研究資料</div>
+        <div style="font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--ink);">ソシオニクス学習資料コレクション</div>
+        <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">PDF・PPTX・XLSX など各種資料を格納</div>
+      </div>
+      <a href="./03_ソシオニクスラボ/資料/" style="display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--parchment); padding: 12px 24px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background 0.2s;" onmouseover="this.style.background='#3d2a5e'" onmouseout="this.style.background='var(--ink)'">資料を見る →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PREMIUM SECTION ===== -->
+<section class="premium-section" id="premium">
+  <div class="section premium-inner">
+    <div class="premium-header fade-up">
+      <div class="premium-eyebrow">✦ Premium</div>
+      <h2 class="premium-title">あなたの深層を、もっと深く</h2>
+      <p class="premium-sub">プレミアム会員限定の詳細分析でさらに深く自分を知る</p>
+    </div>
+
+    <div class="plans-grid fade-up">
+      <!-- Free -->
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">
+          <span class="plan-price-num">¥0</span>
+          <span class="plan-price-period">/ 永久無料</span>
+        </div>
+        <ul class="plan-features">
+          <li>基本タイプ診断（全ツール）</li>
+          <li>ソシオニクス基本診断</li>
+          <li>相性確認ツール</li>
+          <li>占いコンテンツ（一部）</li>
+          <li>SNS共有機能</li>
+        </ul>
+        <button class="plan-btn plan-btn-free">無料で始める</button>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card featured">
+        <div class="plan-popular-badge">✦ 最もオトク</div>
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">
+          <span class="plan-price-num">¥580</span>
+          <span class="plan-price-period">/ 月（年払い）</span>
+        </div>
+        <ul class="plan-features">
+          <li>すべての無料コンテンツ</li>
+          <li>詳細心理プロファイル（30ページ+）</li>
+          <li>恋愛タイプ & 愛着スタイル分析</li>
+          <li>全16タイプとの詳細相性データ</li>
+          <li>認知機能スタック分析</li>
+          <li>深層心理・シャドウ解析</li>
+          <li>月次占い & タイプ別運勢</li>
+          <li>ソシオニクス診断連携</li>
+        </ul>
+        <button class="plan-btn plan-btn-gold">プレミアムを始める</button>
+      </div>
+
+      <!-- Lab -->
+      <div class="plan-card">
+        <div class="plan-name">Lab</div>
+        <div class="plan-price">
+          <span class="plan-price-num">¥1,480</span>
+          <span class="plan-price-period">/ 月</span>
+        </div>
+        <ul class="plan-features">
+          <li>Premiumの全機能</li>
+          <li>ソシオニクス完全診断</li>
+          <li>類型ポータル全コンテンツ</li>
+          <li>研究データベース閲覧</li>
+          <li>有名人タイプ比較分析</li>
+          <li>コミュニティアクセス</li>
+          <li>診断履歴 & 成長トラッキング</li>
+        </ul>
+        <button class="plan-btn plan-btn-silver">Labを始める</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEEP DIVE ===== -->
+<div class="section fade-up" id="deepdive">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Deep Dive</div>
+      <h2 class="section-title">もっと深く知りたい方へ</h2>
+    </div>
+  </div>
+
+  <div class="deepdive-grid">
+    <a href="./03_ソシオニクスラボ/ラボ自己サイト/index.html" target="_blank" class="deepdive-card">
+      <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--teal),var(--violet))"></div>
+      <div class="deepdive-ext-badge" style="background: var(--teal-light); color: var(--teal)">
+        🔬 研究ツール
+      </div>
+      <div class="deepdive-title">UTAGE SOCIONICS LAB<br>— ソシオニクス専門サイト</div>
+      <div class="deepdive-desc">
+        旧ソ連発祥の心理類型論「ソシオニクス」を専門的に探求。情報代謝タイプ・相互関係理論・モデルA機能を網羅したコア層向けポータル。
+      </div>
+      <div class="deepdive-link" style="color: var(--teal)">Socionics Labへ ↗</div>
+    </a>
+
+    <a href="https://utage-jpg.github.io/ruikei_portal/" target="_blank" class="deepdive-card">
+      <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--violet),var(--gold))"></div>
+      <div class="deepdive-ext-badge" style="background: var(--violet-light); color: var(--violet)">
+        🔗 外部サイト
+      </div>
+      <div class="deepdive-title">類型ポータル<br>— 中級者向け類型論の総合解説</div>
+      <div class="deepdive-desc">
+        MBTI・ソシオニクス・エニアグラム・ビッグファイブなど、主要な類型論を体系的に学べる中級者向けポータル。タイプ別詳細解説と比較研究が充実。
+      </div>
+      <div class="deepdive-link" style="color: var(--violet)">類型ポータルへ ↗</div>
+    </a>
+
+    <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="deepdive-card">
+      <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),var(--rose))"></div>
+      <div class="deepdive-ext-badge" style="background: var(--amber-light); color: var(--amber)">
+        ✨ 占いツール
+      </div>
+      <div class="deepdive-title">16タイプ占い<br>— タイプ別運命鑑定</div>
+      <div class="deepdive-desc">
+        あなたのMBTIタイプが導く運命と使命を占星術的手法で解読。タイプ別の詳細な運勢・相性・人生テーマを専用コンテンツで提供。
+      </div>
+      <div class="deepdive-link" style="color: var(--amber)">16タイプ占いへ ↗</div>
+    </a>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">UTAGE LAB</div>
+        <div class="footer-brand-desc">
+          心理診断・タイプ分析・ソシオニクス・占いを融合した<br>
+          総合心理探求プラットフォーム。
+        </div>
+        <div style="display:flex; gap:12px; margin-top:16px">
+          <a href="#" style="color: rgba(247,243,237,0.45); font-size:13px; text-decoration:none; transition: color 0.2s;" onmouseover="this.style.color='rgba(247,243,237,0.8)'" onmouseout="this.style.color='rgba(247,243,237,0.45)'">𝕏 Twitter</a>
+          <a href="#" style="color: rgba(247,243,237,0.45); font-size:13px; text-decoration:none; transition: color 0.2s;" onmouseover="this.style.color='rgba(247,243,237,0.8)'" onmouseout="this.style.color='rgba(247,243,237,0.45)'">📷 Instagram</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">診断ツール</div>
+        <ul class="footer-links">
+          <li><a href="./01_診断コンテンツ/thinktype/index.html">ThinkType診断</a></li>
+          <li><a href="./01_診断コンテンツ/関係改善ジェネレータ/index.html">モヤモヤ整理室</a></li>
+          <li><a href="./01_診断コンテンツ/感動タイプ診断/index.html">感動タイプ診断</a></li>
+          <li><a href="./01_診断コンテンツ/uniquetype/index.html">わらいのツボ診断</a></li>
+          <li><a href="./01_診断コンテンツ/数秘術/index.html">数秘術診断</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">ソシオニクス</div>
+        <ul class="footer-links">
+          <li><a href="./03_ソシオニクスラボ/診断ツール/index.html">ソシオニクス診断</a></li>
+          <li><a href="./03_ソシオニクスラボ/相性確認/index.html">相性確認ツール</a></li>
+          <li><a href="./03_ソシオニクスラボ/情報代謝ビューア/index.html">情報代謝ビューア</a></li>
+          <li><a href="./03_ソシオニクスラボ/情報要素ツール/index.html">情報要素ツール</a></li>
+          <li><a href="./03_ソシオニクスラボ/ラボ自己サイト/index.html" target="_blank">ラボ自己サイト ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">研究・外部サイト</div>
+        <ul class="footer-links">
+          <li><a href="https://utage-jpg.github.io/ruikei_portal/" target="_blank">類型ポータル ↗</a></li>
+          <li><a href="https://utage-jpg.github.io/16type_fortune/" target="_blank">16タイプ占い ↗</a></li>
+          <li><a href="./02_占いコンテンツ/typefortune/index.html">typefortune</a></li>
+          <li><a href="./04_設計・ドキュメント/UTAGELAB_DESIGN.md">設計仕様書</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 UTAGE LAB. All rights reserved.</div>
+      <div style="font-size:11px; letter-spacing:0.1em; color: rgba(247,243,237,0.25)">TOTAL PSYCHOLOGY PLATFORM</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Scroll fade animations =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Stagger grid children
+  document.querySelectorAll('.popular-grid, .diag-grid, .socio-grid, .deepdive-grid, .column-grid').forEach(grid => {
+    [...grid.children].forEach((child, i) => {
+      child.style.transitionDelay = `${i * 0.07}s`;
+      child.classList.add('fade-up');
+      observer.observe(child);
+    });
+  });
+
+  // ===== Mobile Menu =====
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('mobileOverlay');
+  const drawer = document.getElementById('mobileDrawer');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    overlay.style.display = 'block';
+    drawer.classList.add('open');
+    setTimeout(() => overlay.classList.add('open'), 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { overlay.style.display = 'none'; }, 300);
+  }
+
+  hamburger.addEventListener('click', () => {
+    drawer.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  overlay.addEventListener('click', closeMenu);
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // ===== Category strip active state =====
+  const catItems = document.querySelectorAll('.cat-item');
+  catItems.forEach(item => {
+    item.addEventListener('click', () => {
+      catItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  // ===== Scrollspy for category strip =====
+  const sections = [
+    { el: document.getElementById('diagnoses'), cat: 0 },
+    { el: document.getElementById('fortune'), cat: 1 },
+    { el: document.getElementById('socionics'), cat: 2 },
+    { el: document.getElementById('deepdive'), cat: 5 },
+  ];
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const match = sections.find(s => s.el === e.target);
+        if (match) {
+          catItems.forEach(i => i.classList.remove('active'));
+          if (catItems[match.cat]) catItems[match.cat].classList.add('active');
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => { if (s.el) scrollObserver.observe(s.el); });
+</script>
+</body>
+</html>

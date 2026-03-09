@@ -924,7 +924,7 @@ let lastType = 'INTJ';
 // ============================================================
 async function init() {
   try {
-    const res = await fetch('./data/16type.json');
+    const res = await fetch('./16type.json');
     if (!res.ok) throw new Error('HTTP ' + res.status);
     diagData = await res.json();
 

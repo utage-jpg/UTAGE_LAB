@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>16タイプ 本格心理診断 | UTAGE LAB</title>
+<meta name="description" content="20問でわかる本格16タイプ（MBTI）診断。恋愛・仕事・人間関係の傾向も分析。42万人が受診した無料の心理診断。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;700;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1025;
+    --cream: #faf7f2;
+    --parchment: #f7f3ed;
+    --gold: #c9a84c;
+    --gold-light: #f5edd5;
+    --rose: #c9607a;
+    --rose-light: #fce8ed;
+    --teal: #3d8b8b;
+    --teal-light: #c8e8e8;
+    --violet: #7b5ea7;
+    --violet-light: #ede8f8;
+    --amber: #d4843a;
+    --text: #2d2140;
+    --text-light: #6b5f80;
+    --border: #e0d5c8;
+    --shadow: rgba(26,16,37,0.1);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,247,242,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--violet); text-decoration:none; letter-spacing:.02em; }
+  .nav-back { display:flex; align-items:center; gap:6px; color:var(--text-light); font-size:.85rem; text-decoration:none; transition:color .2s; }
+  .nav-back:hover { color:var(--violet); }
+
+  /* CONTAINER */
+  .container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+  /* === LANDING PAGE === */
+  #landing { padding: 48px 0 64px; }
+  .landing-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--violet-light); color: var(--violet);
+    padding: 4px 14px; border-radius: 20px; font-size:.78rem; font-weight:700;
+    letter-spacing:.05em; margin-bottom: 20px;
+  }
+  .landing-icon { font-size: 4rem; margin-bottom: 16px; display: block; }
+  .landing-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    font-weight: 900; line-height: 1.3; margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .landing-sub { font-size:.95rem; color:var(--text-light); line-height:1.7; margin-bottom:32px; }
+  .landing-stats {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 12px; margin-bottom: 36px;
+  }
+  .stat-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 12px; text-align: center;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .stat-num { font-family:'DM Serif Display',serif; font-size:1.5rem; color:var(--violet); display:block; }
+  .stat-label { font-size:.72rem; color:var(--text-light); margin-top:2px; }
+
+  .features { display:flex; flex-direction:column; gap:10px; margin-bottom:40px; }
+  .feature-row {
+    display:flex; align-items:center; gap:10px;
+    background:white; border:1px solid var(--border); border-radius:12px;
+    padding:12px 16px; font-size:.88rem;
+  }
+  .feature-icon { font-size:1.1rem; flex-shrink:0; }
+
+  .btn-start {
+    display:block; width:100%; padding:18px;
+    background: linear-gradient(135deg, var(--violet) 0%, #9b6ac9 100%);
+    color:white; border:none; border-radius:16px;
+    font-size:1.05rem; font-weight:700; font-family:inherit;
+    cursor:pointer; transition:all .25s; letter-spacing:.04em;
+    box-shadow: 0 4px 20px rgba(123,94,167,0.35);
+  }
+  .btn-start:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(123,94,167,0.45); }
+  .btn-start:active { transform:translateY(0); }
+  .free-note { text-align:center; color:var(--text-light); font-size:.78rem; margin-top:10px; }
+
+  /* === QUIZ PAGE === */
+  #quiz { display:none; padding: 24px 0 64px; }
+
+  .progress-header { margin-bottom:24px; }
+  .progress-nums { display:flex; justify-content:space-between; font-size:.8rem; color:var(--text-light); margin-bottom:8px; }
+  .progress-bar {
+    height: 6px; background: var(--border); border-radius: 99px; overflow:hidden;
+  }
+  .progress-fill {
+    height:100%; background: linear-gradient(90deg, var(--violet), #9b6ac9);
+    border-radius:99px; transition: width .4s ease;
+  }
+  .axis-tag {
+    display:inline-block; background:var(--violet-light); color:var(--violet);
+    padding:3px 10px; border-radius:20px; font-size:.72rem; font-weight:700;
+    letter-spacing:.05em; margin-bottom:16px;
+  }
+
+  .question-card {
+    background: white; border-radius: 20px;
+    border: 1px solid var(--border);
+    padding: 28px 24px 24px;
+    box-shadow: 0 4px 24px var(--shadow);
+    margin-bottom: 20px;
+    animation: slideIn .35s ease;
+  }
+  @keyframes slideIn {
+    from { opacity:0; transform:translateY(16px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  .question-num { font-size:.75rem; color:var(--text-light); margin-bottom:10px; font-weight:700; letter-spacing:.08em; }
+  .question-text {
+    font-size: clamp(.95rem, 3vw, 1.1rem);
+    font-weight:700; line-height:1.6; color:var(--ink);
+  }
+
+  .options { display:flex; flex-direction:column; gap:12px; }
+  .option-btn {
+    width:100%; padding:16px 18px;
+    background:var(--parchment); border:2px solid var(--border);
+    border-radius:14px; font-size:.9rem; font-family:inherit;
+    color:var(--text); text-align:left; cursor:pointer;
+    transition:all .2s; line-height:1.5; font-weight:400;
+  }
+  .option-btn:hover {
+    background:var(--violet-light); border-color:var(--violet);
+    color:var(--violet); transform:translateX(4px);
+  }
+  .option-btn.selected {
+    background:var(--violet); border-color:var(--violet);
+    color:white; transform:translateX(4px);
+  }
+  .option-label { display:block; font-size:.7rem; font-weight:700; letter-spacing:.08em; margin-bottom:4px; opacity:.6; }
+
+  .quiz-nav { display:flex; gap:10px; margin-top:20px; }
+  .btn-prev {
+    flex:0 0 auto; padding:14px 20px;
+    background:white; border:1px solid var(--border);
+    border-radius:12px; font-size:.88rem; font-family:inherit;
+    color:var(--text-light); cursor:pointer; transition:all .2s;
+  }
+  .btn-prev:hover { border-color:var(--violet); color:var(--violet); }
+  .btn-prev:disabled { opacity:.3; cursor:default; }
+  .btn-next {
+    flex:1; padding:14px;
+    background:linear-gradient(135deg,var(--violet),#9b6ac9);
+    color:white; border:none; border-radius:12px;
+    font-size:.92rem; font-weight:700; font-family:inherit;
+    cursor:pointer; transition:all .2s;
+    box-shadow: 0 3px 12px rgba(123,94,167,0.3);
+  }
+  .btn-next:hover { transform:translateY(-1px); box-shadow:0 5px 18px rgba(123,94,167,0.4); }
+  .btn-next:disabled { opacity:.35; cursor:default; transform:none; }
+
+  /* === LOADING === */
+  #loading { display:none; padding: 80px 0; text-align:center; }
+  .loading-icon { font-size:3.5rem; margin-bottom:24px; animation:pulse 1.5s infinite; display:block; }
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.1);opacity:.7} }
+  .loading-title { font-family:'Noto Serif JP',serif; font-size:1.3rem; font-weight:700; margin-bottom:12px; }
+  .loading-steps { display:flex; flex-direction:column; gap:8px; margin:24px auto; max-width:280px; text-align:left; }
+  .loading-step { font-size:.85rem; color:var(--text-light); display:flex; align-items:center; gap:8px; }
+  .loading-step.active { color:var(--violet); font-weight:700; }
+  .loading-step .step-dot { width:8px; height:8px; border-radius:50%; background:var(--border); flex-shrink:0; }
+  .loading-step.active .step-dot { background:var(--violet); animation:blink .8s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  /* === RESULT PAGE === */
+  #result { display:none; padding: 32px 0 80px; }
+
+  .result-header {
+    text-align:center; padding:36px 24px;
+    background:white; border-radius:24px;
+    border:1px solid var(--border);
+    box-shadow:0 8px 40px var(--shadow);
+    margin-bottom:24px;
+    position:relative; overflow:hidden;
+  }
+  .result-header::before {
+    content:''; position:absolute; top:-40px; right:-40px;
+    width:160px; height:160px; border-radius:50%;
+    background:var(--type-color,var(--violet)); opacity:.08;
+  }
+  .result-tag { font-size:.72rem; font-weight:700; letter-spacing:.1em; color:var(--text-light); margin-bottom:8px; }
+  .result-type {
+    font-family:'DM Serif Display',serif;
+    font-size: clamp(3.5rem,12vw,5rem);
+    line-height:1; color:var(--type-color,var(--violet));
+    margin-bottom:8px; letter-spacing:.04em;
+  }
+  .result-name { font-family:'Noto Serif JP',serif; font-size:1.1rem; font-weight:700; color:var(--ink); margin-bottom:6px; }
+  .result-tagline { font-size:.85rem; color:var(--text-light); line-height:1.6; padding:0 8px; }
+
+  .result-traits { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin:16px 0; }
+  .trait-badge {
+    background:var(--parchment); border:1px solid var(--border);
+    padding:4px 12px; border-radius:20px; font-size:.75rem; color:var(--text);
+  }
+
+  .score-section {
+    background:white; border-radius:20px;
+    border:1px solid var(--border); padding:24px;
+    box-shadow:0 4px 20px var(--shadow); margin-bottom:20px;
+  }
+  .section-title { font-family:'Noto Serif JP',serif; font-size:.9rem; font-weight:700; color:var(--text-light); letter-spacing:.06em; margin-bottom:16px; }
+  .score-row { margin-bottom:14px; }
+  .score-labels { display:flex; justify-content:space-between; font-size:.78rem; font-weight:700; margin-bottom:6px; }
+  .score-label-l { color:var(--text); }
+  .score-label-r { color:var(--text-light); }
+  .score-track { height:8px; background:var(--border); border-radius:99px; overflow:hidden; position:relative; }
+  .score-bar {
+    height:100%; border-radius:99px;
+    background:linear-gradient(90deg,var(--violet),#9b6ac9);
+    transition:width 1s ease; width:0%;
+  }
+  .score-pct { font-size:.72rem; color:var(--text-light); text-align:right; margin-top:3px; }
+
+  .desc-section {
+    background:white; border-radius:20px;
+    border:1px solid var(--border); padding:24px;
+    box-shadow:0 4px 20px var(--shadow); margin-bottom:20px;
+  }
+  .desc-text { font-size:.9rem; line-height:1.85; color:var(--text); }
+  .desc-text + .desc-text { margin-top:12px; }
+
+  /* Share */
+  .share-section {
+    background:linear-gradient(135deg,var(--violet-light),white);
+    border:1px solid rgba(123,94,167,.2); border-radius:20px;
+    padding:28px 24px; text-align:center; margin-bottom:20px;
+  }
+  .share-title { font-family:'Noto Serif JP',serif; font-size:1rem; font-weight:700; margin-bottom:8px; }
+  .share-sub { font-size:.82rem; color:var(--text-light); margin-bottom:20px; }
+  .share-buttons { display:flex; flex-direction:column; gap:10px; }
+  .btn-share {
+    width:100%; padding:14px;
+    border:none; border-radius:12px; font-size:.9rem; font-weight:700;
+    font-family:inherit; cursor:pointer; transition:all .2s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .btn-x { background:#000; color:#fff; }
+  .btn-x:hover { background:#333; }
+  .btn-line { background:#06c755; color:#fff; }
+  .btn-line:hover { background:#05b04a; }
+  .btn-copy { background:var(--parchment); color:var(--text); border:1px solid var(--border); }
+  .btn-copy:hover { background:var(--border); }
+
+  /* Premium teaser */
+  .premium-section {
+    background:linear-gradient(135deg,#fff8ee,#fceaf0);
+    border:2px solid var(--gold); border-radius:20px;
+    padding:28px 24px; margin-bottom:20px; position:relative; overflow:hidden;
+  }
+  .premium-section::before {
+    content:'👑'; position:absolute; top:-10px; right:-10px;
+    font-size:5rem; opacity:.08;
+  }
+  .premium-badge {
+    display:inline-flex; align-items:center; gap:5px;
+    background:var(--gold); color:white;
+    padding:3px 12px; border-radius:20px; font-size:.72rem; font-weight:700;
+    letter-spacing:.06em; margin-bottom:12px;
+  }
+  .premium-title { font-family:'Noto Serif JP',serif; font-size:1.05rem; font-weight:700; margin-bottom:8px; color:var(--ink); }
+  .premium-list { list-style:none; display:flex; flex-direction:column; gap:7px; margin-bottom:20px; }
+  .premium-list li { font-size:.85rem; display:flex; align-items:center; gap:8px; }
+  .premium-list li::before { content:'🔒'; font-size:.85rem; }
+  .premium-blur {
+    background:white; border-radius:12px; padding:16px; margin-bottom:16px;
+    filter:blur(3px); user-select:none; pointer-events:none; opacity:.7;
+    font-size:.85rem; line-height:1.7;
+  }
+  .btn-premium {
+    display:block; width:100%; padding:16px;
+    background:linear-gradient(135deg,var(--gold),var(--amber));
+    color:white; border:none; border-radius:14px;
+    font-size:.95rem; font-weight:700; font-family:inherit;
+    cursor:pointer; transition:all .25s;
+    box-shadow:0 4px 16px rgba(201,168,76,.4);
+  }
+  .btn-premium:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,168,76,.5); }
+  .premium-note { text-align:center; font-size:.75rem; color:var(--text-light); margin-top:8px; }
+
+  /* Related */
+  .related-section { margin-bottom:20px; }
+  .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .related-card {
+    background:white; border:1px solid var(--border); border-radius:16px;
+    padding:16px 14px; text-decoration:none; color:var(--text);
+    transition:all .2s; display:block;
+  }
+  .related-card:hover { border-color:var(--violet); transform:translateY(-2px); box-shadow:0 4px 16px var(--shadow); }
+  .related-icon { font-size:1.6rem; margin-bottom:8px; display:block; }
+  .related-name { font-size:.82rem; font-weight:700; margin-bottom:3px; }
+  .related-sub { font-size:.72rem; color:var(--text-light); }
+
+  .btn-retry {
+    display:block; width:100%; padding:14px;
+    background:white; border:1px solid var(--border); border-radius:14px;
+    font-size:.88rem; color:var(--text-light); font-family:inherit;
+    cursor:pointer; transition:all .2s; text-align:center;
+  }
+  .btn-retry:hover { border-color:var(--violet); color:var(--violet); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-back">← ホームに戻る</a>
+  <a href="../index.html" class="nav-logo">UTAGE LAB</a>
+</nav>
+
+<!-- =================== LANDING =================== -->
+<div id="landing">
+  <div class="container">
+    <div class="landing-badge">🧠 人気No.1診断</div>
+    <span class="landing-icon">🧠</span>
+    <h1 class="landing-title">16タイプ<br>本格心理診断</h1>
+    <p class="landing-sub">
+      20の質問に答えるだけで、あなたの心理タイプが明らかに。<br>
+      恋愛・仕事・人間関係の傾向を深く分析します。
+    </p>
+
+    <div class="landing-stats">
+      <div class="stat-card">
+        <span class="stat-num">42万</span>
+        <div class="stat-label">累計受診者</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">20問</span>
+        <div class="stat-label">設問数</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">5分</span>
+        <div class="stat-label">所要時間</div>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feature-row">
+        <span class="feature-icon">✅</span>
+        <span>4軸20問の科学的な設問設計</span>
+      </div>
+      <div class="feature-row">
+        <span class="feature-icon">✅</span>
+        <span>16タイプの詳細な説明・強み・弱みを解説</span>
+      </div>
+      <div class="feature-row">
+        <span class="feature-icon">✅</span>
+        <span>SNSで結果をシェアできる</span>
+      </div>
+      <div class="feature-row">
+        <span class="feature-icon">🔒</span>
+        <span>【プレミアム】認知機能・恋愛タイプ・相性データ</span>
+      </div>
+    </div>
+
+    <button class="btn-start" onclick="startQuiz()">診断スタート →</button>
+    <p class="free-note">無料 · 登録不要 · 約5分</p>
+  </div>
+</div>
+
+<!-- =================== QUIZ =================== -->
+<div id="quiz">
+  <div class="container">
+    <div class="progress-header">
+      <div class="progress-nums">
+        <span id="qNum">質問 1 / 20</span>
+        <span id="qAxis">E / I 軸</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width:5%"></div>
+      </div>
+    </div>
+
+    <div class="question-card" id="questionCard">
+      <div class="question-num" id="questionNum">Q01</div>
+      <p class="question-text" id="questionText"></p>
+    </div>
+
+    <div class="options" id="optionsContainer"></div>
+
+    <div class="quiz-nav">
+      <button class="btn-prev" id="btnPrev" onclick="prevQuestion()" disabled>← 戻る</button>
+      <button class="btn-next" id="btnNext" onclick="nextQuestion()" disabled>次へ →</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== LOADING =================== -->
+<div id="loading">
+  <div class="container" style="text-align:center">
+    <span class="loading-icon">🔮</span>
+    <div class="loading-title">あなたの回答を解析中...</div>
+    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:20px">少々お待ちください</p>
+    <div class="loading-steps" id="loadingSteps">
+      <div class="loading-step active" id="step1"><span class="step-dot"></span>回答データを収集中</div>
+      <div class="loading-step" id="step2"><span class="step-dot"></span>4軸スコアを計算中</div>
+      <div class="loading-step" id="step3"><span class="step-dot"></span>16タイプと照合中</div>
+      <div class="loading-step" id="step4"><span class="step-dot"></span>心理プロファイルを生成中</div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== RESULT =================== -->
+<div id="result">
+  <div class="container">
+
+    <div class="result-header" id="resultHeader">
+      <div class="result-tag">YOUR TYPE</div>
+      <div class="result-type" id="resultType">INTJ</div>
+      <div class="result-name" id="resultName">建築家型</div>
+      <div class="result-tagline" id="resultTagline">先を見通す洞察力と完璧を追求する稀有な戦略家</div>
+      <div class="result-traits" id="resultTraits"></div>
+    </div>
+
+    <div class="score-section">
+      <div class="section-title">── 4軸スコア ──</div>
+      <div id="scoreRows"></div>
+    </div>
+
+    <div class="desc-section">
+      <div class="section-title">── あなたの心理プロファイル ──</div>
+      <p class="desc-text" id="desc1"></p>
+      <p class="desc-text" id="desc2"></p>
+    </div>
+
+    <div class="share-section">
+      <div class="share-title">📢 結果をシェアしよう</div>
+      <div class="share-sub">友達のタイプも気になる？シェアして一緒に受けてみよう</div>
+      <div class="share-buttons">
+        <button class="btn-share btn-x" onclick="shareX()">𝕏 でシェアする</button>
+        <button class="btn-share btn-line" onclick="shareLine()">LINE でシェア</button>
+        <button class="btn-share btn-copy" onclick="copyResult()">🔗 リンクをコピー</button>
+      </div>
+    </div>
+
+    <div class="premium-section">
+      <div class="premium-badge">👑 PREMIUM</div>
+      <div class="premium-title">さらに深く知りたい方へ</div>
+      <ul class="premium-list">
+        <li>認知機能スタック詳細分析（Ni/Ne/Si/Se/Ti/Te/Fi/Fe）</li>
+        <li>恋愛タイプと理想のパートナー傾向</li>
+        <li>16タイプ全員との相性スコア</li>
+        <li>シャドウ（影の自己）分析</li>
+        <li>人格成長マップ</li>
+      </ul>
+      <div class="premium-blur">
+        あなたのINTJとしての最大の強みは「長期的思考と戦略立案」にあります。
+        認知機能の主機能Niが、他者には見えないパターンを…（続きはプレミアムで）
+      </div>
+      <button class="btn-premium" onclick="alert('プレミアム機能は近日公開予定です！')">
+        👑 プレミアムで全文を見る
+      </button>
+      <p class="premium-note">初月無料 · ¥580/月 · いつでも解約可</p>
+    </div>
+
+    <div class="related-section">
+      <div class="section-title" style="font-family:'Noto Serif JP',serif;font-size:.9rem;color:var(--text-light);margin-bottom:16px;letter-spacing:.06em;">── 関連診断 ──</div>
+      <div class="related-grid">
+        <a href="love-type.html" class="related-card">
+          <span class="related-icon">💕</span>
+          <div class="related-name">恋愛タイプ診断</div>
+          <div class="related-sub">あなたの愛し方は？</div>
+        </a>
+        <a href="deep.html" class="related-card">
+          <span class="related-icon">🔮</span>
+          <div class="related-name">深層心理テスト</div>
+          <div class="related-sub">潜在意識を探る</div>
+        </a>
+        <a href="career.html" class="related-card">
+          <span class="related-icon">💼</span>
+          <div class="related-name">職業適性診断</div>
+          <div class="related-sub">天職を見つけよう</div>
+        </a>
+        <a href="attachment.html" class="related-card">
+          <span class="related-icon">🤝</span>
+          <div class="related-name">愛着スタイル診断</div>
+          <div class="related-sub">人との絆の傾向</div>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-bottom:12px">
+      <a href="https://utage-jpg.github.io/ruikei_portal/" target="_blank" class="related-card" style="display:block;text-decoration:none;background:linear-gradient(135deg,#f0f8f0,white);border-color:#6aaa8a">
+        <span class="related-icon">🌐</span>
+        <div class="related-name" style="color:#3d7a5a">類型ポータルで詳しく学ぶ</div>
+        <div class="related-sub">ソシオニクス・エニアグラムなど中級コンテンツへ</div>
+      </a>
+    </div>
+
+    <button class="btn-retry" onclick="retryQuiz()">🔄 もう一度診断する</button>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  { id:1, axis:"EI", text:"友人との長い会話の後、あなたはどう感じますか？", options:[{text:"充電された気分になり、もっと話したいと感じる",scores:{EI:-1}},{text:"少し疲れを感じ、一人の時間が必要だと感じる",scores:{EI:1}}] },
+  { id:2, axis:"EI", text:"大勢のパーティーに参加したとき、あなたは？", options:[{text:"積極的に見知らぬ人に話しかけ、輪を広げる",scores:{EI:-1}},{text:"顔見知りと深く話すことを好み、人混みで疲弊する",scores:{EI:1}}] },
+  { id:3, axis:"NS", text:"新しいプロジェクトを始めるとき、まず何を考えますか？", options:[{text:"このプロジェクトの意義と将来的な可能性は何か",scores:{NS:1}},{text:"具体的に何をいつまでに、どのように進めるか",scores:{NS:-1}}] },
+  { id:4, axis:"NS", text:"学習するとき、どちらが好きですか？", options:[{text:"背後にある理論やパターン、概念を理解すること",scores:{NS:1}},{text:"実際に手を動かし、具体的な事例から学ぶこと",scores:{NS:-1}}] },
+  { id:5, axis:"TF", text:"友人が悩みを打ち明けてきたとき、あなたはまず？", options:[{text:"問題を整理し、論理的な解決策を一緒に考える",scores:{TF:1}},{text:"まずしっかり話を聞き、共感と感情的サポートを提供する",scores:{TF:-1}}] },
+  { id:6, axis:"TF", text:"議論で意見が衝突したとき、あなたは？", options:[{text:"論理と根拠で相手を説得しようとする",scores:{TF:1}},{text:"相手の感情を考慮し、摩擦を避けながら調整する",scores:{TF:-1}}] },
+  { id:7, axis:"JP", text:"週末の予定を立てるとき、あなたは？", options:[{text:"前もって計画を立て、その通りに進めることが好き",scores:{JP:1}},{text:"その日の気分や状況に応じて柔軟に行動する",scores:{JP:-1}}] },
+  { id:8, axis:"JP", text:"締め切りに対して、あなたのスタイルは？", options:[{text:"早めに終わらせ、余裕を持って完了させる",scores:{JP:1}},{text:"ギリギリまで取り組み、最後に集中力を発揮する",scores:{JP:-1}}] },
+  { id:9, axis:"EI", text:"アイデアを発展させるとき、あなたはどうしますか？", options:[{text:"人と話しながら、対話の中でアイデアを磨く",scores:{EI:-1}},{text:"一人で深く考え、自分の中でアイデアを熟成させる",scores:{EI:1}}] },
+  { id:10, axis:"NS", text:"問題解決のとき、あなたが信頼するのは？", options:[{text:"過去の経験やデータ、実証された方法",scores:{NS:-1}},{text:"直感や第六感、内なるひらめき",scores:{NS:1}}] },
+  { id:11, axis:"TF", text:"グループの意思決定で、あなたが重視するのは？", options:[{text:"最も論理的で効率的な選択肢",scores:{TF:1}},{text:"グループ全員が納得でき、調和が保たれる選択肢",scores:{TF:-1}}] },
+  { id:12, axis:"JP", text:"新しい情報が入ってきたとき、あなたは？", options:[{text:"既存の計画や結論を見直すことに抵抗を感じる",scores:{JP:1}},{text:"新情報を柔軟に取り込み、考えを更新できる",scores:{JP:-1}}] },
+  { id:13, axis:"EI", text:"充実した一日とはどのようなものですか？", options:[{text:"人と関わり、活動的に過ごした日",scores:{EI:-1}},{text:"一人の時間や静かな活動で内省できた日",scores:{EI:1}}] },
+  { id:14, axis:"NS", text:"「現実的」という言葉をどう捉えますか？", options:[{text:"大切な視点で、地に足のついた考え方だと思う",scores:{NS:-1}},{text:"時に可能性を狭める言葉で、革新を阻む壁だと感じる",scores:{NS:1}}] },
+  { id:15, axis:"TF", text:"厳しいフィードバックを受けたとき、あなたは？", options:[{text:"内容が正当なら受け入れ、感情を抑えて対処できる",scores:{TF:1}},{text:"たとえ正しくても、傷つき、しばらく引きずる",scores:{TF:-1}}] },
+  { id:16, axis:"JP", text:"「未完了のタスク」に対してどう感じますか？", options:[{text:"完了するまで気になり、早く終わらせたいと強く感じる",scores:{JP:1}},{text:"そのままにしておいても、さほど気にならない",scores:{JP:-1}}] },
+  { id:17, axis:"NS", text:"詳細な説明書があるとき、あなたは？", options:[{text:"全体像をまず把握してから、必要な部分だけ読む",scores:{NS:1}},{text:"順番通りにきちんと読んで理解を確実にする",scores:{NS:-1}}] },
+  { id:18, axis:"TF", text:"重要な決断を前に、あなたが最終的に信頼するのは？", options:[{text:"論理と根拠に基づいた頭の判断",scores:{TF:1}},{text:"心の感覚や、「これは正しい」という直感的な感情",scores:{TF:-1}}] },
+  { id:19, axis:"EI", text:"自分のことを他人に話すのは？", options:[{text:"比較的得意で、自分のことをオープンに話せる",scores:{EI:-1}},{text:"親しい人以外には話さず、基本的に内側に持っておく",scores:{EI:1}}] },
+  { id:20, axis:"JP", text:"選択肢がたくさんある状況では？", options:[{text:"早めに1つに絞り、迷いなく進む方が好き",scores:{JP:1}},{text:"できる限り選択肢を残しておきたい",scores:{JP:-1}}] }
+];
+
+const TYPES_DATA = {
+  "INTJ":{ name:"建築家", tagline:"先を見通す洞察力と完璧を追求する稀有な戦略家", traits:["内向的","直感型","思考型","判断型"], color:"#7b5ea7", desc1:"INTJは全人口の約2%という稀有なタイプです。強い洞察力と戦略的思考を持ち、長期的なビジョンの実現に向けて着実に歩みます。", desc2:"知識への渇望は尽きることなく、専門分野を深く掘り下げることに喜びを感じます。感情よりも論理を重視し、高い基準を自他に求めます。" },
+  "INTP":{ name:"論理学者", tagline:"理論と可能性の探求に生きる孤高の思想家", traits:["内向的","直感型","思考型","知覚型"], color:"#3d8b8b", desc1:"INTPは複雑な理論を紐解くことに喜びを感じる知的探求者です。既存の枠組みを疑い、自分なりの理論体系を構築することに長けています。", desc2:"完璧主義的な側面があり、まだ不完全だと感じるアイデアの発表を躊躇することも。内的な思考の世界は非常に豊かです。" },
+  "ENTJ":{ name:"指揮官", tagline:"生まれながらの指導者。目標を達成する力の象徴", traits:["外向的","直感型","思考型","判断型"], color:"#c9607a", desc1:"ENTJは天性のリーダーシップを持ちます。明確なビジョンを持ち、それを実現するためのシステムと人材を巧みに組み上げる能力があります。", desc2:"高い基準と効率性を重んじ、無能さや優柔不断を苦手とします。自信に満ちた発言と決断力で周囲を引っ張っていきます。" },
+  "ENTP":{ name:"討論者", tagline:"既成概念を覆す革新的な議論好きのアイデアマン", traits:["外向的","直感型","思考型","知覚型"], color:"#d4843a", desc1:"ENTPは頭の回転が速く、議論と知的刺激を求めて生きています。型破りなアイデアを生み出すことに喜びを感じ、どんな問題にも独自のアプローチで挑みます。", desc2:"ルーティン作業は苦手で、新しい挑戦や変化を常に求めます。人を刺激し触発する能力に長け、カリスマ的な魅力があります。" },
+  "INFJ":{ name:"提唱者", tagline:"理想と直感で世界を変えようとする静かな先見者", traits:["内向的","直感型","感情型","判断型"], color:"#5a8a6a", desc1:"INFJは最も稀なタイプの一つとされます。強い直感力と深い共感力を持ち、人々の助けになることを人生の使命と感じています。", desc2:"表面上は穏やかですが、内側には強い意志と確固たる価値観があります。長期的なビジョンを持ち、世界をより良くしたいという信念で行動します。" },
+  "INFP":{ name:"仲介者", tagline:"内なる詩人。理想と感情の深い海に生きる創造者", traits:["内向的","直感型","感情型","知覚型"], color:"#7b9ac9", desc1:"INFPは豊かな内的世界を持つ理想主義者です。真のつながりを求め、自分の価値観に沿った生き方を追求します。", desc2:"創造的な表現と感受性の高さが際立ちます。他者の痛みに敏感で、傷ついた人を助けたいという強い衝動を持っています。" },
+  "ENFJ":{ name:"主人公", tagline:"他者の成長を促すカリスマ的な教育者・指導者", traits:["外向的","直感型","感情型","判断型"], color:"#c9a84c", desc1:"ENFJは生まれながらのリーダーであり、人々を鼓舞し成長させることに天職を感じます。高い共感力と説得力で、組織や集団を動かすことができます。", desc2:"他者の感情に敏感で、時に自分の欲求よりも他人を優先しすぎることも。人間関係に深い投資をし、真のつながりを大切にします。" },
+  "ENFP":{ name:"運動家", tagline:"情熱と可能性に満ちた自由な魂の探求者", traits:["外向的","直感型","感情型","知覚型"], color:"#e07090", desc1:"ENFPは情熱的で創造的、人と可能性に溢れた活動家です。世界を独自のカラフルな視点で見つめ、あらゆることに意味と繋がりを見出します。", desc2:"他者を深く理解する共感力と、どんな状況でも笑いを見出せる明るさを持ちます。自由と変化を愛し、一つのことに縛られることを嫌います。" },
+  "ISTJ":{ name:"管理者", tagline:"信頼と責任の体現者。社会の柱となる実直な守護者", traits:["内向的","感覚型","思考型","判断型"], color:"#4a7a9b", desc1:"ISTJは責任感が強く、約束を必ず守る信頼の人です。実証されたシステムと伝統を重んじ、組織の安定を保つ役割を果たします。", desc2:"几帳面で計画的、事実と具体的なデータを好みます。感情に流されず、どんな状況でも冷静に職務を遂行する能力があります。" },
+  "ISFJ":{ name:"擁護者", tagline:"静かなる守り人。愛情と献身で周囲を支える縁の下の力持ち", traits:["内向的","感覚型","感情型","判断型"], color:"#6aaa8a", desc1:"ISFJは穏やかで思いやり深く、周囲の人を献身的にサポートします。細部への注意力と優れた記憶力で、大切な人への心遣いを欠かしません。", desc2:"調和を重視し、対立を避けようとします。自分の感情を表に出すことは少ないですが、内側には温かい感情が流れています。" },
+  "ESTJ":{ name:"幹部", tagline:"秩序と実行力の象徴。揺るぎないリーダーシップを持つ管理者", traits:["外向的","感覚型","思考型","判断型"], color:"#9b7fd4", desc1:"ESTJは秩序と規律を重んじ、物事を効率よく整然と進めることに長けています。明確なルールと手順を好み、組織を統率する能力があります。", desc2:"実直で信頼性が高く、コミュニティや組織の柱となります。約束は必ず守り、他者にも同様の誠実さを求めます。" },
+  "ESFJ":{ name:"領事", tagline:"人々を結びつける社交的なケアテイカー", traits:["外向的","感覚型","感情型","判断型"], color:"#d4843a", desc1:"ESFJは社交的で温かく、周囲の人の幸福を強く気にかけます。グループの調和を保ち、誰もが歓迎されていると感じられる環境を作ることを喜びとします。", desc2:"実際的な方法で愛情を表現し、具体的なサポートを惜しみません。他者の承認を必要とする面もあり、批判には敏感です。" },
+  "ISTP":{ name:"巨匠", tagline:"冷静な観察と巧みな手技を持つ実際的な解決者", traits:["内向的","感覚型","思考型","知覚型"], color:"#5a8a9a", desc1:"ISTPは静かでクールな分析家です。物事の仕組みを理解することが好きで、実際に手を動かして問題を解決することに喜びを感じます。", desc2:"自由と柔軟性を重んじ、ルールや構造に縛られることを嫌います。危機的な状況でも冷静を保ち、即座に最善の行動を取れます。" },
+  "ISFP":{ name:"冒険家", tagline:"今この瞬間を生きる感受性豊かな芸術家", traits:["内向的","感覚型","感情型","知覚型"], color:"#c9607a", desc1:"ISFPは穏やかで感受性豊かな芸術家です。今この瞬間に完全に存在し、美しいものを見つけることに喜びを感じます。", desc2:"価値観に強くこだわり、自分らしさを大切にします。言葉より行動で愛情を表し、調和した人間関係を深く愛します。" },
+  "ESTP":{ name:"起業家", tagline:"今を生きる行動派。リスクを楽しむエネルギッシュな実行者", traits:["外向的","感覚型","思考型","知覚型"], color:"#b8860b", desc1:"ESTPは活力と知性に溢れたパフォーマーです。社交的でユーモラス、どんな状況でも機転が利き、瞬時に最善策を実行します。", desc2:"今この瞬間を最大限に楽しむことを信条とし、退屈を極端に嫌います。観察眼が鋭く、人々の感情や反応を素早く読み取ります。" },
+  "ESFP":{ name:"エンターテイナー", tagline:"人生という舞台の主役。その場を輝かせる天性の芸人", traits:["外向的","感覚型","感情型","知覚型"], color:"#e07090", desc1:"ESFPは生来の楽天家です。人々を楽しませ、笑顔にすることが何より好きで、周囲の雰囲気を明るくする天性の才を持ちます。", desc2:"冒険と新鮮な体験を求め、計画よりも自発的な行動を好みます。他者に寛大で、喜びを分かち合うことに喜びを感じます。" }
+};
+
+const AXIS_LABELS = { EI:"E（外向）/ I（内向）", NS:"N（直感）/ S（感覚）", TF:"T（思考）/ F（感情）", JP:"J（判断）/ P（知覚）" };
+
+let current = 0;
+let answers = {};
+let scores = { EI:0, NS:0, TF:0, JP:0 };
+
+function startQuiz() {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('quiz').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[current];
+  document.getElementById('qNum').textContent = `質問 ${current+1} / ${QUESTIONS.length}`;
+  document.getElementById('qAxis').textContent = AXIS_LABELS[q.axis];
+  document.getElementById('progressFill').style.width = `${((current+1)/QUESTIONS.length)*100}%`;
+  document.getElementById('questionNum').textContent = `Q${String(current+1).padStart(2,'0')}`;
+  document.getElementById('questionText').textContent = q.text;
+
+  const container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn' + (answers[current] === i ? ' selected' : '');
+    btn.innerHTML = `<span class="option-label">${String.fromCharCode(65+i)}</span>${opt.text}`;
+    btn.onclick = () => selectOption(i);
+    container.appendChild(btn);
+  });
+
+  document.getElementById('btnPrev').disabled = current === 0;
+  document.getElementById('btnNext').disabled = answers[current] === undefined;
+  document.getElementById('btnNext').textContent = current === QUESTIONS.length - 1 ? '結果を見る ✨' : '次へ →';
+
+  // Animate card
+  const card = document.getElementById('questionCard');
+  card.style.animation = 'none';
+  card.offsetHeight;
+  card.style.animation = 'slideIn .35s ease';
+}
+
+function selectOption(idx) {
+  answers[current] = idx;
+  document.querySelectorAll('.option-btn').forEach((btn, i) => {
+    btn.classList.toggle('selected', i === idx);
+  });
+  document.getElementById('btnNext').disabled = false;
+}
+
+function nextQuestion() {
+  if (answers[current] === undefined) return;
+  if (current < QUESTIONS.length - 1) {
+    current++;
+    renderQuestion();
+  } else {
+    showLoading();
+  }
+}
+
+function prevQuestion() {
+  if (current > 0) { current--; renderQuestion(); }
+}
+
+function showLoading() {
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+
+  const steps = ['step1','step2','step3','step4'];
+  let si = 0;
+  const interval = setInterval(() => {
+    if (si > 0) document.getElementById(steps[si-1]).classList.remove('active');
+    if (si < steps.length) {
+      document.getElementById(steps[si]).classList.add('active');
+      si++;
+    } else {
+      clearInterval(interval);
+      setTimeout(showResult, 500);
+    }
+  }, 600);
+}
+
+function calcResult() {
+  const s = { EI:0, NS:0, TF:0, JP:0 };
+  QUESTIONS.forEach((q, i) => {
+    if (answers[i] !== undefined) {
+      const opt = q.options[answers[i]];
+      Object.entries(opt.scores).forEach(([axis, val]) => { s[axis] += val; });
+    }
+  });
+  return s;
+}
+
+function showResult() {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('result').style.display = 'block';
+
+  const s = calcResult();
+  const type = [
+    s.EI >= 0 ? 'I' : 'E',
+    s.NS >= 0 ? 'N' : 'S',
+    s.TF >= 0 ? 'T' : 'F',
+    s.JP >= 0 ? 'J' : 'P'
+  ].join('');
+
+  const data = TYPES_DATA[type];
+  document.getElementById('resultType').textContent = type;
+  document.getElementById('resultName').textContent = data.name + '型';
+  document.getElementById('resultTagline').textContent = data.tagline;
+  document.getElementById('resultHeader').style.setProperty('--type-color', data.color);
+  document.getElementById('resultType').style.color = data.color;
+
+  const traits = document.getElementById('resultTraits');
+  traits.innerHTML = data.traits.map(t => `<span class="trait-badge">${t}</span>`).join('');
+
+  // Score bars
+  const axes = [
+    { id:'EI', label1:`E（外向）${s.EI<0?'●':''}`, label2:`${s.EI>=0?'●':''}I（内向）`, val: s.EI >= 0 ? 50 + s.EI*10 : 50 - Math.abs(s.EI)*10, color: data.color },
+    { id:'NS', label1:`N（直感）${s.NS>0?'●':''}`, label2:`${s.NS<=0?'●':''}S（感覚）`, val: s.NS >= 0 ? 50 + s.NS*10 : 50 - Math.abs(s.NS)*10, color:'#3d8b8b' },
+    { id:'TF', label1:`T（思考）${s.TF>0?'●':''}`, label2:`${s.TF<=0?'●':''}F（感情）`, val: s.TF >= 0 ? 50 + s.TF*10 : 50 - Math.abs(s.TF)*10, color:'#c9a84c' },
+    { id:'JP', label1:`J（判断）${s.JP>0?'●':''}`, label2:`${s.JP<=0?'●':''}P（知覚）`, val: s.JP >= 0 ? 50 + s.JP*10 : 50 - Math.abs(s.JP)*10, color:'#c9607a' }
+  ];
+  const scoreRows = document.getElementById('scoreRows');
+  scoreRows.innerHTML = axes.map(a => {
+    const pct = Math.min(95, Math.max(20, a.val));
+    return `<div class="score-row">
+      <div class="score-labels"><span class="score-label-l">${a.label1}</span><span class="score-label-r">${a.label2}</span></div>
+      <div class="score-track"><div class="score-bar" id="bar_${a.id}" style="background:${a.color};width:0%"></div></div>
+      <div class="score-pct">${Math.round(pct)}%</div>
+    </div>`;
+  }).join('');
+
+  setTimeout(() => {
+    axes.forEach(a => {
+      const pct = Math.min(95, Math.max(20, a.val));
+      const bar = document.getElementById('bar_' + a.id);
+      if (bar) bar.style.width = pct + '%';
+    });
+  }, 200);
+
+  document.getElementById('desc1').textContent = data.desc1;
+  document.getElementById('desc2').textContent = data.desc2;
+
+  // Store for share
+  window._resultType = type;
+  window._resultName = data.name;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function shareX() {
+  const t = window._resultType || 'INTJ';
+  const n = window._resultName || '建築家';
+  const text = `私の心理タイプは #${t}（${n}型）でした！\n\nあなたも診断してみて👇\nhttps://utage-jpg.github.io/UTAGE_LAB/diagnoses/16type.html\n\n#MBTI #心理診断 #UTAGELAB`;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function shareLine() {
+  const t = window._resultType || 'INTJ';
+  const text = `私の心理タイプは${t}でした！あなたも試してみて → https://utage-jpg.github.io/UTAGE_LAB/diagnoses/16type.html`;
+  window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent('https://utage-jpg.github.io/UTAGE_LAB/diagnoses/16type.html')}&text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function copyResult() {
+  const t = window._resultType || 'INTJ';
+  const url = 'https://utage-jpg.github.io/UTAGE_LAB/diagnoses/16type.html';
+  navigator.clipboard.writeText(`私の心理タイプは${t}でした！ ${url}`).then(() => {
+    alert('コピーしました！');
+  });
+}
+
+function retryQuiz() {
+  current = 0;
+  answers = {};
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('landing').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

@@ -167,13 +167,46 @@ body::before {
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1800&q=85');
+  overflow: hidden;
+}
+.hero-slide {
+  position: absolute; inset: 0;
   background-size: cover;
-  background-position: center 30%;
-  animation: heroKen 1.3s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+  background-position: center 40%;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.hero-slide.active {
+  opacity: 1;
+  animation: heroKen 8s ease-in-out forwards;
+}
+.hero-slide:first-child {
+  opacity: 1;
+}
+/* Slideshow dots */
+.hero-dots {
+  position: absolute;
+  bottom: 28px;
+  right: 36px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.hero-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  border: none;
+  padding: 0;
+}
+.hero-dot.active {
+  background: white;
+  transform: scale(1.35);
 }
 @keyframes heroKen {
-  from { transform: scale(1.07); }
+  from { transform: scale(1.05); }
   to   { transform: scale(1.00); }
 }
 .hero-overlay {
@@ -1095,10 +1128,10 @@ body::before {
   line-height: 1.75;
 }
 
-/* ── PREMIUM SECTION (light gold) ── */
+/* ── PREMIUM SECTION (dark) ── */
 .premium-section {
-  background: linear-gradient(170deg, var(--paper) 0%, #fdf8ee 100%);
-  border-top: 1px solid var(--border);
+  background: linear-gradient(170deg, #1a1025 0%, #0d0a17 100%);
+  border-top: 1px solid rgba(201,168,76,0.15);
   position: relative;
   overflow: hidden;
 }
@@ -1108,7 +1141,7 @@ body::before {
   font-family: var(--font-display);
   font-size: clamp(80px, 14vw, 200px);
   color: transparent;
-  -webkit-text-stroke: 1px rgba(201,168,76,0.07);
+  -webkit-text-stroke: 1px rgba(201,168,76,0.08);
   left: -10px;
   bottom: -20px;
   line-height: 1;
@@ -1135,13 +1168,13 @@ body::before {
   font-family: var(--font-display);
   font-size: clamp(36px, 4.5vw, 58px);
   font-weight: 700;
-  color: var(--ink);
+  color: white;
   margin-bottom: 12px;
   line-height: 1.15;
 }
 .premium-sub {
   font-size: 14px;
-  color: var(--text-light);
+  color: rgba(255,255,255,0.5);
 }
 .plans-grid {
   display: grid;
@@ -1150,8 +1183,8 @@ body::before {
   align-items: start;
 }
 .plan-card {
-  background: white;
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 16px;
   padding: 36px 28px;
   position: relative;
@@ -1159,7 +1192,7 @@ body::before {
 .plan-card.featured {
   border-color: var(--gold);
   padding-top: 52px;
-  background: linear-gradient(180deg, #fffdf4 0%, white 100%);
+  background: rgba(201,168,76,0.06);
 }
 .plan-popular-badge {
   position: absolute;
@@ -1187,14 +1220,14 @@ body::before {
 .plan-price-num {
   font-family: var(--font-display);
   font-size: 46px;
-  color: var(--ink);
+  color: white;
   line-height: 1;
 }
 .plan-price-period {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: var(--text-light);
+  color: rgba(255,255,255,0.4);
   margin-left: 4px;
 }
 .plan-features {
@@ -1206,7 +1239,7 @@ body::before {
 }
 .plan-features li {
   font-size: 13px;
-  color: var(--text);
+  color: rgba(255,255,255,0.75);
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -1238,14 +1271,14 @@ body::before {
 }
 .plan-btn span { position: relative; z-index: 1; }
 .plan-btn-free {
-  border: 1px solid var(--border);
-  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8);
   background: transparent;
 }
 .plan-btn-free::before {
   content: '';
   position: absolute; inset: 0;
-  background: var(--ink);
+  background: rgba(255,255,255,0.1);
   transform: translateX(-100%);
   transition: transform 0.35s ease;
 }
@@ -1267,14 +1300,14 @@ body::before {
 .plan-btn-gold:hover::before { transform: translateX(0); }
 
 .plan-btn-silver {
-  border: 1px solid var(--border);
-  color: var(--text-light);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.55);
   background: transparent;
 }
 .plan-btn-silver::before {
   content: '';
   position: absolute; inset: 0;
-  background: var(--text-light);
+  background: rgba(255,255,255,0.12);
   transform: translateX(-100%);
   transition: transform 0.35s ease;
 }
@@ -1611,6 +1644,122 @@ body::before {
   }
   .marquee-track { animation: none; }
 }
+
+/* ── DIAGNOSIS MODAL ── */
+.diag-card { cursor: pointer; }
+.diag-modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(26,16,37,0.75);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.diag-modal-overlay.open {
+  display: flex;
+}
+.diag-modal-box {
+  background: white;
+  border-radius: 20px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 48px 40px;
+  box-shadow: 0 40px 100px rgba(26,16,37,0.35);
+  animation: modalIn 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.diag-modal-close {
+  position: absolute;
+  top: 18px; right: 20px;
+  background: var(--cream);
+  border: none;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--text-light);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.diag-modal-close:hover { background: var(--rose-light); color: var(--rose-deep); }
+.diag-modal-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.diag-modal-icon {
+  font-size: 44px;
+  margin-bottom: 14px;
+  width: 72px; height: 72px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+.diag-modal-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.diag-modal-sub {
+  font-size: 13px;
+  color: var(--text-light);
+}
+.diag-modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.diag-modal-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.22s;
+  background: var(--cream);
+}
+.diag-modal-item:hover {
+  border-color: var(--rose);
+  background: white;
+  transform: translateX(4px);
+  box-shadow: 0 4px 18px var(--shadow);
+}
+.diag-modal-item-info {}
+.diag-modal-item-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.diag-modal-item-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-light);
+}
+.diag-modal-item-arrow {
+  color: var(--rose);
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: transform 0.22s;
+}
+.diag-modal-item:hover .diag-modal-item-arrow { transform: translateX(4px); }
+
 </style>
 </head>
 <body>
@@ -1633,17 +1782,31 @@ body::before {
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg">
+    <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=85'); background-position: center 60%;"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=1800&q=85'); background-position: center 50%;"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1476611317561-60117649dd94?w=1800&q=85'); background-position: center 40%;"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1800&q=85'); background-position: center 50%;"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=1800&q=85'); background-position: center 40%;"></div>
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-light"></div>
+  <!-- Slideshow dots -->
+  <div class="hero-dots" id="heroDots">
+    <button class="hero-dot active" onclick="goToSlide(0)"></button>
+    <button class="hero-dot" onclick="goToSlide(1)"></button>
+    <button class="hero-dot" onclick="goToSlide(2)"></button>
+    <button class="hero-dot" onclick="goToSlide(3)"></button>
+    <button class="hero-dot" onclick="goToSlide(4)"></button>
+  </div>
 
   <div class="hero-content">
     <!-- Left: main copy -->
     <div class="hero-left">
       <div class="hero-eyebrow">総合心理診断ポータル</div>
       <h1 class="hero-title">
-        内なる自分を、<br>
-        <em>解き明かせ。</em>
+        心の奥を、<br>
+        <em>のぞいてみよう。</em>
       </h1>
       <p class="hero-subtitle">
         心理診断・タイプ分析・相性診断・占いを融合した、<br>
@@ -1744,7 +1907,7 @@ body::before {
 
 <!-- ===== DAILY FORTUNE ===== -->
 <div class="fortune-daily-wrap" id="daily-fortune">
-  <div class="section" style="padding-bottom: 0;">
+  <div class="section" style="padding-bottom: 48px;">
     <div class="fortune-daily-header reveal">
       <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank">
         <img src="fortune-logo.jpg" alt="16type × fortune" class="fortune-daily-logo">
@@ -1752,27 +1915,9 @@ body::before {
       <p class="fortune-daily-subtitle">
         あなたのMBTIタイプを選んで、今日の運勢を確認しよう。毎日更新。
       </p>
-    </div>
-    <div class="fortune-type-grid reveal">
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-intj">INTJ</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-intp">INTP</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-entj">ENTJ</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-entp">ENTP</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-infj">INFJ</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-infp">INFP</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-enfj">ENFJ</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-enfp">ENFP</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-istj">ISTJ</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-isfj">ISFJ</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-estj">ESTJ</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-esfj">ESFJ</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-istp">ISTP</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-isfp">ISFP</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-estp">ESTP</a>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-type-btn ft-esfp">ESFP</a>
-    </div>
-    <div style="text-align:center; padding: 24px 0 48px;">
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-daily-cta"><span>✨ すべてのタイプの運勢を見る</span></a>
+      <div style="margin-top: 24px;">
+        <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-daily-cta"><span>✨ 今日の運勢を見る</span></a>
+      </div>
     </div>
   </div>
 </div>
@@ -1846,30 +1991,6 @@ body::before {
 </div>
 </div>
 
-<!-- ===== FEATURE BANNER ===== -->
-<div style="background: var(--cream);">
-<div class="section" style="padding-top: 0">
-  <div class="feature-banner-wrap reveal">
-    <div>
-      <div class="feature-badge">✦ New</div>
-      <h3 class="feature-title">16タイプ × ソシオニクス<br>統合パーソナリティ診断</h3>
-      <p class="feature-desc">MBTIの直感的わかりやすさとソシオニクスの学術的深さを融合。<br>あなたの認知スタイルを多角的に解析する新世代の診断。</p>
-      <div class="feature-tags">
-        <span class="feature-tag">🧠 認知機能分析</span>
-        <span class="feature-tag">❤ 相性マップ</span>
-        <span class="feature-tag">🔮 深層心理</span>
-        <span class="feature-tag">📊 統計データ</span>
-      </div>
-      <a href="16type.html" class="btn-slide btn-primary-slide"><span>診断を受ける（無料）</span></a>
-    </div>
-    <div class="feature-right">
-      <div class="feature-type-big">INTj</div>
-      <div class="feature-type-sub">ソシオニクス型</div>
-    </div>
-  </div>
-</div>
-</div>
-
 <!-- ===== DIAGNOSIS CATEGORIES ===== -->
 <div style="background: var(--parchment);">
 <div class="section" style="padding-top: 0">
@@ -1881,48 +2002,48 @@ body::before {
   </div>
 
   <div class="diag-grid">
-    <a href="16type.html" class="diag-card reveal">
+    <div class="diag-card reveal" onclick="openDiagModal('type')">
       <div class="diag-icon" style="background: var(--violet-light)">🧠</div>
       <div class="diag-title">タイプ診断</div>
       <div class="diag-desc">MBTI・16タイプ・ソシオニクスなど多様な類型論で自分を知る</div>
       <div class="diag-count">→ 32の診断</div>
-    </a>
-    <a href="love-type.html" class="diag-card reveal reveal-delay-1">
+    </div>
+    <div class="diag-card reveal reveal-delay-1" onclick="openDiagModal('love')">
       <div class="diag-icon" style="background: var(--rose-light)">❤</div>
       <div class="diag-title">恋愛・相性診断</div>
       <div class="diag-desc">恋愛スタイル・愛着スタイル・タイプ別相性を詳細分析</div>
       <div class="diag-count">→ 28の診断</div>
-    </a>
-    <a href="deep.html" class="diag-card reveal reveal-delay-2">
+    </div>
+    <div class="diag-card reveal reveal-delay-2" onclick="openDiagModal('deep')">
       <div class="diag-icon" style="background: var(--teal-light)">🔮</div>
       <div class="diag-title">深層心理</div>
       <div class="diag-desc">ユング心理学・シャドウ・元型など無意識の世界を探る</div>
       <div class="diag-count">→ 20の診断</div>
-    </a>
-    <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="diag-card reveal reveal-delay-3">
+    </div>
+    <div class="diag-card reveal reveal-delay-3" onclick="openDiagModal('fortune')">
       <div class="diag-icon" style="background: var(--amber-light)">✨</div>
       <div class="diag-title">占い・スピリチュアル</div>
       <div class="diag-desc">星座・数秘術・タロットを心理学的観点で解釈</div>
       <div class="diag-count">→ 24の診断</div>
-    </a>
-    <a href="career.html" class="diag-card reveal">
+    </div>
+    <div class="diag-card reveal" onclick="openDiagModal('career')">
       <div class="diag-icon" style="background: #e8f0fd">💼</div>
       <div class="diag-title">仕事・強み診断</div>
       <div class="diag-desc">職業適性・リーダーシップ・ストレス耐性を測定</div>
       <div class="diag-count">→ 18の診断</div>
-    </a>
-    <a href="attachment.html" class="diag-card reveal reveal-delay-1">
+    </div>
+    <div class="diag-card reveal reveal-delay-1" onclick="openDiagModal('growth')">
       <div class="diag-icon" style="background: #f0fae8">🌱</div>
       <div class="diag-title">成長・自己理解</div>
       <div class="diag-desc">防衛機制・成熟度・自己効力感を多面的に評価</div>
       <div class="diag-count">→ 16の診断</div>
-    </a>
-    <a href="stress.html" class="diag-card reveal reveal-delay-2">
+    </div>
+    <div class="diag-card reveal reveal-delay-2" onclick="openDiagModal('stress')">
       <div class="diag-icon" style="background: #fdf0e8">🧩</div>
       <div class="diag-title">ストレス・メンタル</div>
       <div class="diag-desc">ストレス耐性・消耗パターン・回復タイプを多面的に評価</div>
       <div class="diag-count">→ 12の診断</div>
-    </a>
+    </div>
     <a href="https://utage-jpg.github.io/ruikei_portal/" target="_blank" class="diag-card reveal reveal-delay-3" style="border-style: dashed;">
       <div class="diag-icon" style="background: var(--border)">＋</div>
       <div class="diag-title">もっと見る</div>
@@ -1931,6 +2052,19 @@ body::before {
     </a>
   </div>
 </div>
+</div>
+
+<!-- ===== DIAGNOSIS MODAL ===== -->
+<div id="diagModal" class="diag-modal-overlay" onclick="closeDiagModal(event)">
+  <div class="diag-modal-box">
+    <button class="diag-modal-close" onclick="closeDiagModal()">✕</button>
+    <div class="diag-modal-header">
+      <div class="diag-modal-icon" id="modalIcon"></div>
+      <h3 class="diag-modal-title" id="modalTitle"></h3>
+      <p class="diag-modal-sub" id="modalSub"></p>
+    </div>
+    <div class="diag-modal-list" id="modalList"></div>
+  </div>
 </div>
 
 <!-- ===== FORTUNE SECTION ===== -->
@@ -1962,7 +2096,7 @@ body::before {
         <div class="fortune-sub-desc">あなたのMBTIと星座が交差する運命とは</div>
       </a>
 
-      <a href="#" class="fortune-sub">
+      <a href="suuhijutu.html" class="fortune-sub">
         <div class="fortune-sub-icon">🔢</div>
         <div class="fortune-sub-cat" style="color: var(--amber)">数秘術</div>
         <div class="fortune-sub-title">ライフパスナンバー診断</div>
@@ -2043,32 +2177,6 @@ body::before {
   </div>
 </section>
 
-<!-- ===== 16タイプ FORTUNE BANNER ===== -->
-<div style="background: var(--cream);">
-<div class="section reveal">
-  <div class="fortune-banner">
-    <div class="fortune-banner-left">
-      <div class="fortune-banner-eyebrow">✨ Daily Fortune</div>
-      <div class="fortune-banner-num">16type</div>
-      <div class="fortune-banner-title">今日の運勢占い</div>
-      <div class="fortune-banner-tags">
-        <span class="fortune-banner-tag">🔮 毎日更新</span>
-        <span class="fortune-banner-tag">⚡ 全16タイプ対応</span>
-        <span class="fortune-banner-tag">❤ 恋愛運・仕事運</span>
-      </div>
-    </div>
-    <div class="fortune-banner-right">
-      <div class="fortune-banner-right-title">あなたのタイプの<br>今日の運命は？</div>
-      <p class="fortune-banner-right-desc">
-        MBTIの16タイプそれぞれに特化した今日の運勢。
-        恋愛運・仕事運・対人運を毎日更新。
-        あなたのタイプを選んですぐに確認できます。
-      </p>
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="btn-slide btn-primary-slide"><span>✨ 今日の運勢を見る</span></a>
-    </div>
-  </div>
-</div>
-</div>
 
 <!-- ===== DEEP DIVE ===== -->
 <div style="background: var(--parchment);">
@@ -2267,6 +2375,177 @@ document.querySelectorAll('.cat-item').forEach(item => {
     document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
     item.classList.add('active');
   });
+});
+
+/* ── HERO SLIDESHOW ── */
+(function() {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+  let current  = 0;
+  let timer;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+
+  function start() { timer = setInterval(next, 5000); }
+  function stop()  { clearInterval(timer); }
+
+  start();
+
+  // Pause on hover
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    heroBg.addEventListener('mouseenter', stop);
+    heroBg.addEventListener('mouseleave', start);
+  }
+
+  window.goToSlide = function(n) {
+    stop();
+    goTo(n);
+    start();
+  };
+})();
+
+/* ── DIAGNOSIS MODAL ── */
+const diagData = {
+  type: {
+    icon: '🧠',
+    bg: '#ede9f8',
+    title: 'タイプ診断',
+    sub: 'MBTI・16タイプ・ソシオニクスなど多様な類型論で自分を知る',
+    items: [
+      { name: '16タイプ 本格心理診断', meta: '約5分 ・ 42万人が受診', url: '16type.html' },
+      { name: 'MBTI認知機能タイプ診断', meta: '約8分 ・ 精度の高い認知機能分析', url: '16type.html' },
+      { name: 'ソシオニクス診断', meta: '約6分 ・ 16型相関マップ付き', url: 'https://utage-jpg.github.io/socionics/' },
+      { name: 'ビッグファイブ性格診断', meta: '約4分 ・ 科学的5因子モデル', url: '16type.html' },
+      { name: 'エニアグラム診断', meta: '約6分 ・ 9つのタイプと翼', url: '16type.html' },
+    ]
+  },
+  love: {
+    icon: '❤',
+    bg: '#fae0e6',
+    title: '恋愛・相性診断',
+    sub: '恋愛スタイル・愛着スタイル・タイプ別相性を詳細分析',
+    items: [
+      { name: '恋愛タイプ診断', meta: '約3分 ・ 28万人が受診', url: 'love-type.html' },
+      { name: '愛着スタイル診断', meta: '約5分 ・ 安定型/回避型/不安型', url: 'attachment.html' },
+      { name: '16タイプ相性診断', meta: '約4分 ・ タイプ別詳細相性表', url: 'love-type.html' },
+      { name: '恋愛コミュニケーションスタイル', meta: '約3分 ・ あなたの愛し方は？', url: 'love-type.html' },
+      { name: 'ソウルメイトタイプ診断', meta: '約4分 ・ 運命的相性の探求', url: 'love-type.html' },
+    ]
+  },
+  deep: {
+    icon: '🔮',
+    bg: '#e2f4f4',
+    title: '深層心理',
+    sub: 'ユング心理学・シャドウ・元型など無意識の世界を探る',
+    items: [
+      { name: '深層心理テスト', meta: '約4分 ・ 19万人が受診', url: 'deep.html' },
+      { name: 'シャドウ診断', meta: '約6分 ・ あなたの隠れた面', url: 'deep.html' },
+      { name: 'ユング元型（アーキタイプ）診断', meta: '約5分 ・ 12の元型を探る', url: 'deep.html' },
+      { name: '防衛機制スタイル診断', meta: '約4分 ・ 心理的防衛パターン', url: 'deep.html' },
+      { name: '内向・外向エネルギー診断', meta: '約3分 ・ エネルギー充電スタイル', url: 'deep.html' },
+    ]
+  },
+  fortune: {
+    icon: '✨',
+    bg: '#fef3e0',
+    title: '占い・スピリチュアル',
+    sub: '星座・数秘術・タロットを心理学的観点で解釈',
+    items: [
+      { name: '16タイプ今日の運勢', meta: '毎日更新 ・ 全タイプ対応', url: 'https://utage-jpg.github.io/16type_fortune/' },
+      { name: 'ライフパスナンバー診断', meta: '約2分 ・ 誕生日から導く使命', url: 'suuhijutu.html' },
+      { name: 'タイプ別星座運命鑑定', meta: '約3分 ・ MBTI × 占星術', url: '#' },
+      { name: '2025年タイプ別運勢占い', meta: '特別版 ・ 全16タイプ分析', url: '#' },
+      { name: 'タロット心理テスト', meta: '約4分 ・ カードが映す深層心理', url: '#' },
+    ]
+  },
+  career: {
+    icon: '💼',
+    bg: '#e8f0fd',
+    title: '仕事・強み診断',
+    sub: '職業適性・リーダーシップ・ストレス耐性を測定',
+    items: [
+      { name: '職業適性タイプ診断', meta: '約5分 ・ タイプ別天職を探る', url: 'career.html' },
+      { name: 'リーダーシップスタイル診断', meta: '約4分 ・ 5つのリーダータイプ', url: 'career.html' },
+      { name: '強み・才能診断', meta: '約5分 ・ StrengthsFinderスタイル', url: 'career.html' },
+      { name: 'チームでの役割診断', meta: '約3分 ・ ベルビン理論ベース', url: 'career.html' },
+      { name: '仕事のモチベーション分析', meta: '約4分 ・ 何があなたを動かすか', url: 'career.html' },
+    ]
+  },
+  growth: {
+    icon: '🌱',
+    bg: '#f0fae8',
+    title: '成長・自己理解',
+    sub: '防衛機制・成熟度・自己効力感を多面的に評価',
+    items: [
+      { name: '自己効力感診断', meta: '約4分 ・ あなたの心の強さ', url: 'attachment.html' },
+      { name: '感情知性（EQ）診断', meta: '約6分 ・ 感情理解と管理力', url: 'attachment.html' },
+      { name: '価値観スタイル診断', meta: '約5分 ・ 何を大切にしているか', url: 'attachment.html' },
+      { name: '成熟度・自己受容診断', meta: '約4分 ・ 心理的成熟レベル', url: 'attachment.html' },
+    ]
+  },
+  stress: {
+    icon: '🧩',
+    bg: '#fdf0e8',
+    title: 'ストレス・メンタル',
+    sub: 'ストレス耐性・消耗パターン・回復タイプを測定',
+    items: [
+      { name: 'ストレス耐性診断', meta: '約4分 ・ あなたの耐久スタイル', url: 'stress.html' },
+      { name: '燃え尽き症候群リスク診断', meta: '約3分 ・ バーンアウト予防', url: 'stress.html' },
+      { name: '回復・リチャージスタイル診断', meta: '約3分 ・ エネルギーを回復する方法', url: 'stress.html' },
+      { name: 'タイプ別消耗パターン診断', meta: '約4分 ・ 何があなたを疲弊させるか', url: 'stress.html' },
+    ]
+  }
+};
+
+function openDiagModal(category) {
+  const data = diagData[category];
+  if (!data) return;
+  const modal = document.getElementById('diagModal');
+  const icon = document.getElementById('modalIcon');
+  const title = document.getElementById('modalTitle');
+  const sub = document.getElementById('modalSub');
+  const list = document.getElementById('modalList');
+
+  icon.textContent = data.icon;
+  icon.style.background = data.bg;
+  title.textContent = data.title;
+  sub.textContent = data.sub;
+
+  list.innerHTML = data.items.map(item => `
+    <a href="${item.url}" class="diag-modal-item" ${item.url.startsWith('http') ? 'target="_blank"' : ''}>
+      <div class="diag-modal-item-info">
+        <div class="diag-modal-item-name">${item.name}</div>
+        <div class="diag-modal-item-meta">${item.meta}</div>
+      </div>
+      <div class="diag-modal-item-arrow">→</div>
+    </a>
+  `).join('');
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDiagModal(e) {
+  if (e && e.target !== document.getElementById('diagModal')) return;
+  document.getElementById('diagModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('diagModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 });
 </script>
 </body>

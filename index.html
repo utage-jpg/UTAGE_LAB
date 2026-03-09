@@ -164,6 +164,7 @@ body::before {
   align-items: flex-end;
   padding-bottom: 80px;
   overflow: visible;
+  background: #2d1f3d;
 }
 .hero-bg {
   position: absolute; inset: 0;
@@ -257,19 +258,19 @@ body::before {
 }
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(36px, 5.5vw, 88px);
+  font-size: clamp(28px, 4.5vw, 88px);
   font-weight: 700;
   color: white;
   line-height: 1.2;
   margin-bottom: 28px;
   opacity: 0;
   animation: revealUp 1s ease 0.5s forwards;
-  white-space: nowrap;
 }
 .hero-title em {
   font-style: italic;
   color: var(--rose-light);
   display: inline;
+  white-space: nowrap;
 }
 .hero-subtitle {
   font-size: 15px;
@@ -1646,6 +1647,60 @@ body::before {
   .marquee-track { animation: none; }
 }
 
+/* ── MOBILE MENU DRAWER ── */
+.nav-drawer {
+  position: fixed;
+  top: 60px;
+  left: 0; right: 0;
+  background: rgba(250,247,242,0.98);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  z-index: 490;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.nav-drawer.open {
+  max-height: 420px;
+}
+.nav-drawer-inner {
+  padding: 8px 24px 24px;
+}
+.nav-drawer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.nav-drawer ul li a {
+  display: block;
+  padding: 15px 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+.nav-drawer ul li:last-child a { border-bottom: none; }
+.nav-drawer ul li a:hover { color: var(--rose); }
+.nav-drawer .drawer-cta {
+  display: block;
+  margin-top: 16px;
+  padding: 14px;
+  background: var(--rose);
+  color: white;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+}
+.nav-drawer .drawer-cta:hover { background: var(--rose-deep); }
+
 /* ── DIAGNOSIS MODAL ── */
 .diag-card { cursor: pointer; }
 .diag-modal-overlay {
@@ -1781,14 +1836,28 @@ body::before {
   </div>
 </nav>
 
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-inner">
+    <ul>
+      <li><a href="#diagnoses" onclick="toggleMenu()">診断</a></li>
+      <li><a href="#fortune" onclick="toggleMenu()">占い</a></li>
+      <li><a href="#types" onclick="toggleMenu()">タイプ解説</a></li>
+      <li><a href="#column" onclick="toggleMenu()">コラム</a></li>
+      <li><a href="#deepdive" onclick="toggleMenu()">研究</a></li>
+    </ul>
+    <a href="#premium" class="drawer-cta" onclick="toggleMenu()">✦ プレミアム</a>
+  </div>
+</div>
+
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="hero-bg">
-    <div class="hero-slide active" style="background-image: url('https://picsum.photos/seed/ocean1/1920/1080'); background-position: center 60%;"></div>
-    <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/forest2/1920/1080'); background-position: center 50%;"></div>
-    <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/mountain3/1920/1080'); background-position: center 40%;"></div>
-    <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/night4/1920/1080'); background-position: center 50%;"></div>
-    <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/sunrise5/1920/1080'); background-position: center 40%;"></div>
+    <div class="hero-slide active" style="background-image: url('https://picsum.photos/id/1015/1920/1080'); background-position: center 60%;"></div>
+    <div class="hero-slide" style="background-image: url('https://picsum.photos/id/1035/1920/1080'); background-position: center 50%;"></div>
+    <div class="hero-slide" style="background-image: url('https://picsum.photos/id/1036/1920/1080'); background-position: center 40%;"></div>
+    <div class="hero-slide" style="background-image: url('https://picsum.photos/id/1019/1920/1080'); background-position: center 50%;"></div>
+    <div class="hero-slide" style="background-image: url('https://picsum.photos/id/1018/1920/1080'); background-position: center 40%;"></div>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-light"></div>
@@ -1806,7 +1875,7 @@ body::before {
     <div class="hero-left">
       <div class="hero-eyebrow">総合心理診断ポータル</div>
       <h1 class="hero-title">
-        心の奥を、<em>のぞいてみよう。</em>
+        心の奥を、<br><em>のぞいてみよう。</em>
       </h1>
       <p class="hero-subtitle">
         心理診断・タイプ分析・相性診断・占いを融合した、<br>
@@ -1937,7 +2006,7 @@ body::before {
     <!-- Card 1 (featured) -->
     <a href="16type.html" class="popular-card feat reveal">
       <div class="popular-card-img">
-        <img src="https://picsum.photos/seed/psych1/800/500" alt="16タイプ診断" loading="lazy">
+        <img src="https://picsum.photos/id/1025/800/500" alt="16タイプ診断" loading="lazy">
         <div class="popular-card-img-overlay"></div>
         <div class="popular-card-rank">No.1</div>
       </div>
@@ -1955,7 +2024,7 @@ body::before {
     <!-- Card 2 -->
     <a href="love-type.html" class="popular-card reveal reveal-delay-1">
       <div class="popular-card-img">
-        <img src="https://picsum.photos/seed/love2/600/400" alt="恋愛タイプ診断" loading="lazy">
+        <img src="https://picsum.photos/id/1024/600/400" alt="恋愛タイプ診断" loading="lazy">
         <div class="popular-card-img-overlay"></div>
         <div class="popular-card-rank">No.2</div>
       </div>
@@ -1973,7 +2042,7 @@ body::before {
     <!-- Card 3 -->
     <a href="deep.html" class="popular-card reveal reveal-delay-2">
       <div class="popular-card-img">
-        <img src="https://picsum.photos/seed/mind3/600/400" alt="深層心理テスト" loading="lazy">
+        <img src="https://picsum.photos/id/1043/600/400" alt="深層心理テスト" loading="lazy">
         <div class="popular-card-img-overlay"></div>
         <div class="popular-card-rank">No.3</div>
       </div>
@@ -2232,7 +2301,7 @@ body::before {
   <div class="column-grid">
     <a href="#" class="col-card reveal">
       <div class="col-img-wrap">
-        <img src="https://picsum.photos/seed/think4/500/350" alt="認知機能" loading="lazy">
+        <img src="https://picsum.photos/id/1040/500/350" alt="認知機能" loading="lazy">
       </div>
       <div class="col-cat" style="color: var(--violet)">認知機能</div>
       <div class="col-title">Niとは何か？未来を見通す「内向的直感」の正体</div>
@@ -2240,7 +2309,7 @@ body::before {
     </a>
     <a href="#" class="col-card reveal reveal-delay-1">
       <div class="col-img-wrap">
-        <img src="https://picsum.photos/seed/couple5/500/350" alt="恋愛心理" loading="lazy">
+        <img src="https://picsum.photos/id/1041/500/350" alt="恋愛心理" loading="lazy">
       </div>
       <div class="col-cat" style="color: var(--rose)">恋愛心理</div>
       <div class="col-title">タイプ別の愛し方 — INFPはなぜ尽くしすぎるのか</div>
@@ -2248,7 +2317,7 @@ body::before {
     </a>
     <a href="#" class="col-card reveal reveal-delay-2">
       <div class="col-img-wrap">
-        <img src="https://picsum.photos/seed/deep6/500/350" alt="深層心理" loading="lazy">
+        <img src="https://picsum.photos/id/1042/500/350" alt="深層心理" loading="lazy">
       </div>
       <div class="col-cat" style="color: var(--ink)">深層心理</div>
       <div class="col-title">シャドウと向き合う — ユングが語る「影」の統合</div>
@@ -2256,7 +2325,7 @@ body::before {
     </a>
     <a href="#" class="col-card reveal reveal-delay-3">
       <div class="col-img-wrap">
-        <img src="https://picsum.photos/seed/study7/500/350" alt="研究" loading="lazy">
+        <img src="https://picsum.photos/id/1044/500/350" alt="研究" loading="lazy">
       </div>
       <div class="col-cat" style="color: var(--teal)">研究</div>
       <div class="col-title">ソシオニクスとMBTIの違いを徹底比較</div>
@@ -2349,24 +2418,9 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 /* ── MOBILE MENU ── */
 function toggleMenu() {
-  const links = document.querySelector('.nav-links');
-  if (!links) return;
-  const isOpen = links.style.display === 'flex';
-  if (isOpen) {
-    links.removeAttribute('style');
-  } else {
-    links.style.display = 'flex';
-    links.style.flexDirection = 'column';
-    links.style.position = 'absolute';
-    links.style.top = '60px';
-    links.style.left = '0';
-    links.style.right = '0';
-    links.style.background = 'rgba(250,247,242,0.98)';
-    links.style.padding = '20px 28px';
-    links.style.borderBottom = '1px solid #e5d8cc';
-    links.style.gap = '20px';
-    links.style.zIndex = '400';
-  }
+  const drawer = document.getElementById('navDrawer');
+  if (!drawer) return;
+  drawer.classList.toggle('open');
 }
 
 /* ── CATEGORY STRIP ACTIVE ── */
@@ -2383,6 +2437,16 @@ document.querySelectorAll('.cat-item').forEach(item => {
   const dots   = document.querySelectorAll('.hero-dot');
   let current  = 0;
   let timer;
+
+  // Preload all slide images to ensure they appear on PC
+  slides.forEach(slide => {
+    const bg = slide.style.backgroundImage;
+    const match = bg.match(/url\(['"]?([^'"]+)['"]?\)/);
+    if (match) {
+      const img = new Image();
+      img.src = match[1];
+    }
+  });
 
   function goTo(n) {
     slides[current].classList.remove('active');

@@ -855,6 +855,364 @@ body::before {
 }
 .popular-card:hover .popular-card-cta::before { opacity: 1; }
 
+/* ── POLA FEATURED SECTION ── */
+.pola-featured-wrap {
+  background: linear-gradient(160deg, #fff6f8 0%, #fce8ed 40%, #f5eeff 100%);
+  border-top: 1px solid rgba(201,96,122,0.15);
+  border-bottom: 1px solid rgba(201,96,122,0.12);
+  position: relative;
+  overflow: hidden;
+}
+.pola-featured-wrap::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(201,96,122,0.06) 0%, transparent 65%);
+  top: -200px; right: -100px;
+  pointer-events: none;
+}
+
+/* Main card */
+.pola-main-card {
+  display: block;
+  background: white;
+  border: 1px solid rgba(201,96,122,0.2);
+  border-radius: 20px;
+  padding: 48px 52px;
+  text-decoration: none;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s;
+  margin-bottom: 16px;
+}
+.pola-main-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 72px rgba(201,96,122,0.16);
+  border-color: rgba(201,96,122,0.4);
+}
+.pola-bg-text {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(180px, 28vw, 340px);
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,96,122,0.055);
+  right: -20px;
+  bottom: -60px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pola-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--rose);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  padding: 6px 18px;
+  border-radius: 2px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.pola-badge-dot {
+  width: 6px; height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: pola-pulse 1.6s ease infinite;
+}
+@keyframes pola-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.pola-logo-lockup {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 6vw, 68px);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.pola-logo-p { color: var(--rose); font-style: italic; }
+.pola-logo-rest { color: var(--ink); }
+
+.pola-subtitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+.pola-desc {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.9;
+  margin-bottom: 22px;
+}
+.pola-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.pola-tag {
+  background: rgba(201,96,122,0.06);
+  border: 1px solid rgba(201,96,122,0.18);
+  color: var(--rose-deep);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border-radius: 4px;
+}
+
+.pola-cta-row {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+.pola-btn-portal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  background: white;
+  border: 2px solid rgba(201,96,122,0.35);
+  color: var(--rose-deep);
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s;
+}
+.pola-btn-portal:hover {
+  background: var(--rose-light);
+  border-color: var(--rose);
+  color: var(--rose-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(201,96,122,0.15);
+}
+.pola-btn-main {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  background: var(--rose);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.pola-main-card:hover .pola-btn-main {
+  background: var(--rose-deep);
+  box-shadow: 0 8px 24px rgba(201,96,122,0.35);
+  transform: translateY(-1px);
+}
+.pola-btn-inner { position: relative; z-index: 1; }
+.pola-btn-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-light);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.pola-btn-sub:hover { color: var(--rose); border-color: var(--rose); }
+
+/* Right: type preview */
+.pola-type-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.pola-type-card {
+  background: var(--ptb, #fce8ed);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform 0.2s;
+}
+.pola-main-card:hover .pola-type-card { transform: translateY(-2px); }
+.pola-type-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ptc);
+  opacity: 0.7;
+}
+.pola-type-name {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.pola-type-axis {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ptc);
+  margin-top: 2px;
+}
+.pola-type-total {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-light);
+  margin-top: 12px;
+}
+.pola-type-total strong { color: var(--rose); }
+
+/* Sub row */
+.pola-sub-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.pola-sub-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s;
+}
+.pola-sub-portal:hover {
+  border-color: var(--rose);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(201,96,122,0.1);
+}
+.pola-sub-icon { font-size: 32px; flex-shrink: 0; }
+.pola-sub-body { flex: 1; }
+.pola-sub-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pola-sub-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.pola-sub-desc {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.pola-sub-arrow {
+  font-size: 18px;
+  color: var(--text-light);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.pola-sub-portal:hover .pola-sub-arrow { color: var(--rose); transform: translateX(4px); }
+
+/* Axis card */
+.pola-axis-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+.pola-axis-title {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.pola-axis-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pola-axis-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+.pola-axis-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.pola-axis-name {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.pola-axis-desc {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+}
+.pola-axis-divider {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--rose);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pola-main-card {
+    padding: 28px 24px;
+  }
+  .pola-bg-text { font-size: 120px; right: -10px; bottom: -20px; }
+}
+
 /* ── FEATURE BANNER (warm light) ── */
 .feature-banner-wrap {
   background: linear-gradient(145deg, #fff5f8 0%, #fce8ed 50%, #f7f0ff 100%);
@@ -951,16 +1309,17 @@ body::before {
 .diag-card {
   background: var(--paper);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 26px 20px;
+  border-radius: 14px;
+  padding: 24px 20px 20px;
   text-decoration: none;
   color: var(--text);
   transition: all 0.3s;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   position: relative;
   overflow: hidden;
+  min-height: 160px;
 }
 .diag-card:hover {
   transform: translateY(-4px);
@@ -1622,8 +1981,14 @@ body::before {
   .nav { padding: 0 24px; height: 60px; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
-  .hero { padding-bottom: 48px; }
+  .hero {
+    padding-bottom: 48px;
+    padding-top: 100px;
+    align-items: center;
+    min-height: 100svh;
+  }
   .hero-content { padding: 0 24px; }
+  .hero-eyebrow { margin-bottom: 14px; }
   .popular-grid { grid-template-columns: 1fr; }
   .diag-grid { grid-template-columns: 1fr 1fr; }
   .footer-top { grid-template-columns: 1fr; gap: 22px; }
@@ -1634,7 +1999,10 @@ body::before {
   .feature-banner-wrap { padding: 28px 24px; }
 }
 @media (max-width: 480px) {
-  .diag-grid { grid-template-columns: 1fr; }
+  .diag-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .diag-card { min-height: 140px; padding: 18px 14px 16px; }
+  .diag-title { font-size: 13px; }
+  .diag-desc { font-size: 11px; line-height: 1.6; }
   .column-grid { grid-template-columns: 1fr; }
   .fortune-type-grid { gap: 6px; }
   .fortune-type-btn { font-size: 12px; padding: 12px 3px; }
@@ -1988,6 +2356,60 @@ body::before {
         <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-daily-cta"><span>✨ 今日の運勢を見る</span></a>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ===== POLA FEATURED SECTION ===== -->
+<div class="pola-featured-wrap" id="pola-featured">
+  <div class="section">
+
+    <!-- Section header -->
+    <div class="section-header reveal" style="margin-bottom: 28px;">
+      <div>
+        <div class="section-eyebrow">✦ Featured Diagnosis</div>
+        <h2 class="section-title" style="white-space: nowrap;">恋愛極性診断</h2>
+      </div>
+    </div>
+
+    <!-- Main featured card -->
+    <div class="pola-main-card reveal">
+
+      <!-- Left content -->
+      <div class="pola-main-left">
+        <div class="pola-badge">
+          <span class="pola-badge-dot"></span>
+          NEW — UTAGE LABの代表作
+        </div>
+
+        <div class="pola-logo-lockup">
+          <span class="pola-logo-p">P</span><span class="pola-logo-rest">ola</span>
+        </div>
+
+        <p class="pola-subtitle">— 恋愛極性診断 —</p>
+
+        <p class="pola-desc">
+          「どう動くか」と「なぜ動くか」。2つの軸が交差するところに、あなたの恋愛の本質がある。全30問・12タイプ・深層まで分析する本格恋愛診断。
+        </p>
+
+        <div class="pola-tags">
+          <span class="pola-tag">💡 12タイプ</span>
+          <span class="pola-tag">📝 全30問</span>
+          <span class="pola-tag">⏱ 約5〜7分</span>
+          <span class="pola-tag">👥 受診者急増中</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA row (outside card) -->
+    <div class="pola-cta-row reveal">
+      <a href="https://utage-jpg.github.io/pola_diagnosis/" target="_blank" class="pola-btn-main">
+        <span class="pola-btn-inner">診断を始める →</span>
+      </a>
+      <a href="https://utage-jpg.github.io/pola_portal/" target="_blank" class="pola-btn-portal">
+        🗺️ タイプ一覧を見る
+      </a>
+    </div>
+
   </div>
 </div>
 

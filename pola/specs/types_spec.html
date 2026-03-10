@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>タイプ詳細仕様書 v1.0 ｜恋愛引力理論 — UTAGE LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#faf7f2; --parchment:#f5f0e8; --paper:#fffcf8; --paper2:#fff9f5;
+  --ink:#1a1025; --text:#2d2140; --text-light:#7a6e88; --text-mid:#4a3f5c;
+  --border:#e5d8cc; --shadow:rgba(26,16,37,0.10);
+  --rose:#c9607a; --rose-light:#fae0e6; --rose-deep:#9e3a52;
+  --gold:#c9a84c; --gold-light:#f5edd4;
+  --violet:#7b5ea7; --violet-light:#ede9f8;
+  --teal:#3d8b8b; --teal-light:#e2f4f4;
+  --amber:#c47d2a; --amber-light:#fef3e0;
+  --heart:#c9607a; --heart-light:#fae0e6; --heart-mid:#9e3a52;
+  --head:#5b7fa6; --head-light:#deeaf7; --head-mid:#3a5a7c;
+  --guts:#7a9c5b; --guts-light:#e4f0d8; --guts-mid:#4a6c30;
+  --se-c:#c9607a; --ni-c:#7b5ea7; --si-c:#3d8b8b; --ne-c:#c9a84c;
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-s:'Noto Serif JP',serif;
+  --font-m:'DM Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-s);background:var(--cream);color:var(--text);line-height:1.8;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.5;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(250,247,242,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:var(--font-d);font-size:.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.nav-label{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);letter-spacing:.1em;}
+
+/* HERO */
+.hero{padding:86px 24px 48px;text-align:center;background:linear-gradient(155deg,#fffcf8 0%,#f7f0e8 100%);border-bottom:1px solid var(--border);}
+.spec-tag{font-family:var(--font-m);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);padding:4px 14px;border:1px solid var(--border);border-radius:100px;display:inline-block;margin-bottom:14px;}
+.hero h1{font-family:var(--font-d);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:10px;}
+.hero h1 em{font-style:italic;color:var(--rose);}
+.hero p{font-size:.88rem;color:var(--text-mid);max-width:540px;margin:0 auto 28px;font-weight:300;line-height:1.8;}
+.hero-meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+.hm{font-family:var(--font-m);font-size:.68rem;color:var(--text-light);background:var(--parchment);padding:4px 12px;border-radius:100px;border:1px solid var(--border);}
+
+/* THEORY OVERVIEW */
+.theory-wrap{max-width:960px;margin:0 auto;padding:52px 24px 36px;}
+.sec-tag{font-family:var(--font-m);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;display:block;}
+.sec-title{font-family:var(--font-d);font-size:clamp(1.3rem,3vw,1.75rem);font-weight:700;color:var(--ink);margin-bottom:20px;}
+.sec-title em{font-style:italic;color:var(--rose);}
+
+.axis-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;}
+@media(max-width:620px){.axis-grid{grid-template-columns:1fr;}}
+.axis-card{border:1px solid var(--border);border-radius:16px;padding:20px 22px;background:var(--paper);}
+.axis-name{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.axis-sub{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);letter-spacing:.08em;margin-bottom:12px;}
+.axis-items{display:flex;flex-direction:column;gap:8px;}
+.axis-item{display:flex;align-items:flex-start;gap:10px;}
+.axis-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:.65rem;font-weight:500;flex-shrink:0;color:white;}
+.axis-item-body{flex:1;}
+.axis-item-name{font-size:.88rem;font-weight:700;color:var(--ink);}
+.axis-item-desc{font-size:.78rem;color:var(--text-mid);line-height:1.6;}
+
+/* MATRIX */
+.matrix-wrap{max-width:960px;margin:0 auto;padding:0 24px 40px;overflow-x:auto;}
+.matrix-table{width:100%;min-width:560px;border-collapse:collapse;font-size:.78rem;}
+.matrix-table th{background:var(--parchment);padding:10px 14px;text-align:left;font-family:var(--font-m);font-size:.65rem;letter-spacing:.08em;color:var(--text-light);border:1px solid var(--border);}
+.matrix-table td{padding:10px 14px;border:1px solid var(--border);vertical-align:top;background:var(--paper);}
+.mt-id{font-family:var(--font-m);font-size:.72rem;color:var(--text-light);}
+.mt-name{font-weight:700;color:var(--ink);font-size:.88rem;}
+.mt-style{font-size:.75rem;font-weight:500;}
+.mt-center{font-size:.75rem;font-weight:500;}
+.mt-core{font-size:.78rem;color:var(--text-mid);line-height:1.6;}
+.badge{display:inline-block;padding:2px 8px;border-radius:100px;font-family:var(--font-m);font-size:.62rem;font-weight:500;margin-right:4px;}
+
+/* TYPE SECTION */
+.types-wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+.type-block{border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:28px;background:var(--paper);}
+.type-header{padding:22px 24px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:16px;}
+.type-num{font-family:var(--font-d);font-size:2rem;font-weight:900;line-height:1;flex-shrink:0;opacity:.2;}
+.type-head-body{flex:1;}
+.type-id{font-family:var(--font-m);font-size:.65rem;letter-spacing:.12em;color:var(--text-light);margin-bottom:4px;}
+.type-name{font-family:var(--font-d);font-size:1.35rem;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.3;}
+.type-badges{display:flex;gap:6px;flex-wrap:wrap;}
+.type-oneline{font-size:.88rem;color:var(--text-mid);line-height:1.7;font-style:italic;margin-left:auto;max-width:280px;text-align:right;font-family:var(--font-d);}
+@media(max-width:580px){.type-header{flex-direction:column;}.type-oneline{max-width:100%;text-align:left;margin-left:0;}}
+
+.type-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+@media(max-width:600px){.type-body{grid-template-columns:1fr;}}
+.type-section{padding:18px 22px;border-bottom:1px solid var(--border);}
+.type-section:last-child{border-bottom:none;}
+.type-section.full{grid-column:1/-1;}
+.ts-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;display:block;}
+.ts-text{font-size:.82rem;color:var(--text-mid);line-height:1.8;}
+.ts-text strong{color:var(--ink);}
+
+/* PATTERN LIST */
+.pattern-list{list-style:none;display:flex;flex-direction:column;gap:4px;}
+.pattern-list li{font-size:.8rem;color:var(--text-mid);padding-left:16px;position:relative;line-height:1.7;}
+.pattern-list li::before{content:'—';position:absolute;left:0;color:var(--text-light);}
+.pattern-list li strong{color:var(--ink);}
+
+/* WING SECTION */
+.wing-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.wing-grid{grid-template-columns:1fr;}}
+.wing-card{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:var(--parchment);}
+.wing-id{font-family:var(--font-m);font-size:.72rem;font-weight:500;color:var(--text-light);margin-bottom:4px;}
+.wing-name{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.wing-text{font-size:.78rem;color:var(--text-mid);line-height:1.7;}
+
+/* DEVELOPMENT LEVELS */
+.level-stack{display:flex;flex-direction:column;gap:8px;}
+.level-item{border-radius:10px;padding:12px 14px;border-left:3px solid;}
+.level-item.healthy{border-color:var(--guts);background:var(--guts-light);}
+.level-item.average{border-color:var(--gold);background:var(--gold-light);}
+.level-item.stress{border-color:var(--rose);background:var(--rose-light);}
+.level-label{font-family:var(--font-m);font-size:.62rem;letter-spacing:.08em;margin-bottom:4px;font-weight:500;}
+.level-item.healthy .level-label{color:var(--guts-mid);}
+.level-item.average .level-label{color:var(--amber);}
+.level-item.stress .level-label{color:var(--rose-deep);}
+.level-text{font-size:.78rem;color:var(--text-mid);line-height:1.7;}
+
+/* QUOTE */
+.type-quote{font-family:var(--font-d);font-size:1rem;font-style:italic;color:var(--text-mid);text-align:center;padding:16px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--parchment);line-height:1.7;}
+.type-quote::before{content:'"';font-size:2rem;color:var(--border);margin-right:4px;line-height:0;vertical-align:-.4em;}
+.type-quote::after{content:'"';font-size:2rem;color:var(--border);margin-left:4px;line-height:0;vertical-align:-.4em;}
+
+/* COMPAT HINT */
+.compat-hint-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+@media(max-width:500px){.compat-hint-grid{grid-template-columns:1fr;}}
+.ch-card{border-radius:10px;padding:10px 12px;border:1px solid var(--border);}
+.ch-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.08em;margin-bottom:6px;display:block;}
+.ch-types{display:flex;flex-wrap:wrap;gap:4px;}
+.ch-badge{font-family:var(--font-m);font-size:.68rem;padding:2px 8px;border-radius:100px;border:1px solid var(--border);background:var(--parchment);}
+
+/* SCORING HINT */
+.score-bars{display:flex;flex-direction:column;gap:6px;}
+.score-row{display:flex;align-items:center;gap:10px;}
+.score-label{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);width:72px;flex-shrink:0;}
+.score-bar-wrap{flex:1;height:8px;background:var(--border);border-radius:100px;overflow:hidden;}
+.score-bar-fill{height:100%;border-radius:100px;transition:width .5s;}
+.score-val{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);width:28px;text-align:right;}
+
+/* SECTION DIVIDER */
+.sec-divider{max-width:960px;margin:0 auto 32px;padding:0 24px;}
+.sd-inner{border-top:1px solid var(--border);padding-top:32px;}
+
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;background:var(--parchment);}
+.footer-brand{font-family:var(--font-d);font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.footer-note{font-size:.7rem;color:var(--text-light);font-family:var(--font-m);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">UTAGE LAB</a>
+  <span class="nav-label">Love Gravity Theory — Types Spec v1.0</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="spec-tag">Internal Spec Document</span>
+  <h1>タイプ詳細仕様書<br><em>12 Types + Wings</em></h1>
+  <p>恋愛引力理論における12タイプの完全設計書。各タイプの核心・恋愛行動・失敗パターン・成長段階・ウィング記述を収録。一般公開用コンテンツ制作・診断設問設計・有料レポート制作の基礎資料として使用する。</p>
+  <div class="hero-meta">
+    <span class="hm">12 Core Types</span>
+    <span class="hm">24 Wing Subtypes</span>
+    <span class="hm">3 Growth Levels / Type</span>
+    <span class="hm">2 Axes: Style × Center</span>
+  </div>
+</div>
+
+<!-- THEORY OVERVIEW -->
+<div class="theory-wrap">
+  <span class="sec-tag">Theory Overview</span>
+  <h2 class="sec-title">理論の<em>骨格</em></h2>
+
+  <div class="axis-grid">
+    <!-- 縦軸：ロマンススタイル -->
+    <div class="axis-card">
+      <div class="axis-name">縦軸：ロマンススタイル</div>
+      <div class="axis-sub">ROMANCE STYLE — ソシオニクス モデルG由来</div>
+      <div class="axis-items">
+        <div class="axis-item">
+          <div class="axis-dot" style="background:var(--se-c);">Se</div>
+          <div class="axis-item-body">
+            <div class="axis-item-name">侵略者型</div>
+            <div class="axis-item-desc">自ら求め前に出る。愛は「取りに行くもの」。アプローチに迷いがない。</div>
+          </div>
+        </div>
+        <div class="axis-item">
+          <div class="axis-dot" style="background:var(--ni-c);">Ni</div>
+          <div class="axis-item-body">
+            <div class="axis-item-name">犠牲者型</div>
+            <div class="axis-item-desc">委ねる・受け止める。愛は「流れの中で深まるもの」。受け入れることで深まる。</div>
+          </div>
+        </div>
+        <div class="axis-item">
+          <div class="axis-dot" style="background:var(--si-c);">Si</div>
+          <div class="axis-item-body">
+            <div class="axis-item-name">保護者型</div>
+            <div class="axis-item-desc">包む・守り続ける。愛は「日常の積み重ね」。継続的な世話と安定で示す。</div>
+          </div>
+        </div>
+        <div class="axis-item">
+          <div class="axis-dot" style="background:var(--ne-c);">Ne</div>
+          <div class="axis-item-body">
+            <div class="axis-item-name">子ども型</div>
+            <div class="axis-item-desc">ときめく・可能性で動く。愛は「一緒にいると世界が広がる感覚」。</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding:10px 14px;background:var(--parchment);border-radius:10px;font-size:.75rem;color:var(--text-mid);line-height:1.7;">
+        <strong style="color:var(--ink);">重要：</strong>Se/Ne は「外向型」、Si/Ni は「内向型」とは別物。これは「機能の向き」であり、MBTIのI/E（社交性）とは無関係。各スタイルに内向的な人・外向的な人が均等に存在する。
+      </div>
+    </div>
+
+    <!-- 横軸：センター -->
+    <div class="axis-card">
+      <div class="axis-name">横軸：センター</div>
+      <div class="axis-sub">CENTER — エニアグラム由来・恋愛再定義</div>
+      <div class="axis-items">
+        <div class="axis-item">
+          <div class="axis-dot" style="background:var(--heart);">❤</div>
+          <div class="axis-item-body">
+            <div class="axis-item-name">ハートセンター</div>
+            <div class="axis-item-desc">「愛されているか」で動く。感情と承認が行動の燃料。失敗：確認が止まらない。</div>
+          </div>
+        </div>
+        <div class="axis-item">
+          <div class="axis-dot" style="background:var(--head);">▲</div>
+          <div class="axis-item-body">
+            <div class="axis-item-name">ヘッドセンター</div>
+            <div class="axis-item-desc">「安心できるか」で動く。確信と安全が行動の燃料。失敗：疑いと思考が止まらない。</div>
+          </div>
+        </div>
+        <div class="axis-item">
+          <div class="axis-dot" style="background:var(--guts);">◆</div>
+          <div class="axis-item-body">
+            <div class="axis-item-name">ガッツセンター</div>
+            <div class="axis-item-desc">「自分でいられるか」で動く。本能と意志が行動の燃料。失敗：衝動と意地が出る。</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding:10px 14px;background:var(--parchment);border-radius:10px;font-size:.75rem;color:var(--text-mid);line-height:1.7;">
+        <strong style="color:var(--ink);">センターの円環：</strong>ハート → ヘッド → ガッツ → ハートの順に循環。ウィングはこの円環に沿って隣のセンターに滲み出る形で設計。
+      </div>
+    </div>
+  </div>
+
+  <!-- MATRIX TABLE -->
+  <span class="sec-tag">Type Matrix</span>
+  <h2 class="sec-title" style="margin-bottom:16px;">12タイプ<em>一覧マトリクス</em></h2>
+  <div class="matrix-wrap" style="padding:0 0 32px;">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>スタイル</th>
+          <th>センター</th>
+          <th>タイプ名</th>
+          <th>核心動機</th>
+          <th>ウィング</th>
+        </tr>
+      </thead>
+      <tbody id="matrixBody"></tbody>
+    </table>
+  </div>
+
+  <!-- WING LOGIC -->
+  <span class="sec-tag">Wing Logic</span>
+  <h2 class="sec-title">ウィングの<em>設計原則</em></h2>
+  <div style="border:1px solid var(--border);border-radius:16px;padding:20px 22px;background:var(--paper);margin-bottom:16px;">
+    <div style="font-size:.85rem;color:var(--text-mid);line-height:1.9;">
+      <p style="margin-bottom:12px;"><strong style="color:var(--ink);">方向：</strong>同じロマンススタイル内で、センターが隣に「滲み出る」概念。センターは円環構造（ハート→ヘッド→ガッツ→ハート）なので、全タイプが均等に両側のウィングを持てる。</p>
+      <p style="margin-bottom:12px;"><strong style="color:var(--ink);">命名法：</strong>コアタイプ番号 + w + ウィング番号。例：02w01（制御する先手のハートウィング）、02w03（制御する先手のガッツウィング）</p>
+      <p style="margin-bottom:12px;"><strong style="color:var(--ink);">意味：</strong>ウィングはコアタイプを「色づける」補助特性。コアの動機は変わらないが、ウィングの影響で行動パターンや感情表現のスタイルが変化する。</p>
+      <p><strong style="color:var(--ink);">診断活用：</strong>コアタイプを先に確定させ、ウィングは「どちらの色が強いか」という補助診断として使う。24サブタイプが完成することで相性診断の精度も上がる。</p>
+    </div>
+  </div>
+</div>
+
+<!-- TYPES DETAIL -->
+<div class="types-wrap" id="typesContainer"></div>
+
+<footer>
+  <div class="footer-brand">UTAGE LAB</div>
+  <div class="footer-note">Love Gravity Theory — Types Spec v1.0 | Internal Document</div>
+</footer>
+
+<script>
+const STYLES = {
+  Se: { name:'侵略者型', color:'var(--se-c)', light:'var(--rose-light)' },
+  Ni: { name:'犠牲者型', color:'var(--ni-c)', light:'var(--violet-light)' },
+  Si: { name:'保護者型', color:'var(--si-c)', light:'var(--teal-light)' },
+  Ne: { name:'子ども型', color:'var(--ne-c)', light:'var(--gold-light)' },
+};
+const CENTERS = {
+  heart: { name:'ハート', symbol:'❤', color:'var(--heart)', light:'var(--heart-light)', label:'愛されているか' },
+  head:  { name:'ヘッド', symbol:'▲', color:'var(--head)',  light:'var(--head-light)',  label:'安心できるか' },
+  guts:  { name:'ガッツ', symbol:'◆', color:'var(--guts)',  light:'var(--guts-light)',  label:'自分でいられるか' },
+};
+const CENTER_NEXT = { heart:'head', head:'guts', guts:'heart' };
+const CENTER_PREV = { heart:'guts', head:'heart', guts:'head' };
+
+const TYPES = [
+  {
+    id: 1, style:'Se', center:'heart',
+    name: '確認する攻め手',
+    oneline: '愛されていると確信するまで、前進を止めない。',
+    core: '「愛されているか」を確認するために積極的に動く。アプローチの積極性は自信ではなく不安から来ている。求めることで愛の証明を得ようとする。',
+    love_behavior: [
+      '自分からアプローチし、相手の反応を細かく観察する',
+      '返信の速さ・文章量・声のトーンで愛情量を測ろうとする',
+      '既読スルーや返信遅延に過剰反応する',
+      '関係が深まるにつれ確認行動がエスカレートする傾向がある',
+      '独占欲が強く、他の異性との関係に過敏になる',
+    ],
+    fail_pattern: '確認→不安→再確認のループ。求めれば求めるほど相手が引く。「試す」行動（わざと連絡を遅らせるなど）が関係を壊す。',
+    strength: '愛情表現が豊か。相手を大切にしようとするエネルギーが強い。関係を発展させる推進力がある。',
+    desire_core: '「この人は私を愛してくれている」という確信。確認が完了したとき初めて安心できる。',
+    fear_core: '愛されていない、もしくは愛されなくなること。無関心が最も辛い。',
+    healthy: '愛の確認欲求が「表現する喜び」に転換される。相手を信頼し、求めすぎず自然に愛情を示せる。関係の温度を保つ名人になる。',
+    average: '確認行動を繰り返す。相手の行動を常に分析し、「愛されているかどうか」のジャッジを下す。独占欲と嫉妬が顔を出す。',
+    stress: '確認のための試し行動や感情的な爆発。「どうせ愛されていない」という自己成就予言に陥る。相手を傷つけながら引き留めようとする。',
+    wings: {
+      prev_center: 'guts',
+      next_center: 'head',
+      w_prev: {
+        label: '01w12（ガッツウィング）',
+        subname: '本能で求める攻め手',
+        desc: 'ハートの確認欲求にガッツの衝動が加わる。感情的な確認行動が本能的なアグレッシブさを帯びる。アプローチはより直接的・即物的になり、「感じたままに動く」要素が強まる。ガッツの影響で意地っ張りな面が出やすい。',
+      },
+      w_next: {
+        label: '01w02（ヘッドウィング）',
+        subname: '分析する攻め手',
+        desc: 'ハートの確認欲求にヘッドの分析が加わる。相手の行動を論理的に解析しながら愛情量を測ろうとする。アプローチは計画的になり、「どうすれば振り向いてもらえるか」を考えてから動く。分析が増えることで行動に躊躇が生まれることも。',
+      },
+    },
+    compat_hint: {
+      resonance: [4],
+      bipolar: [5,6],
+      parallel: [7],
+      stimulus: [8,9],
+      mirror: [2,3],
+      stillwater: [10,11,12],
+    },
+    scores: { Se:90, Ni:20, Si:40, Ne:30, heart:85, head:40, guts:55 },
+  },
+  {
+    id: 2, style:'Se', center:'head',
+    name: '制御する先手',
+    oneline: '安心できる関係を、自分の手で設計しようとする。',
+    core: '「安心できるか」を確かめるために積極的に動く。リードすることで関係の安全性を管理しようとする。アプローチの積極性は「自分がコントロールしていれば安心できる」という防衛から来ている。',
+    love_behavior: [
+      '関係の主導権を握ることで安心感を得る',
+      '相手を「観察・分析・テスト」して信頼できるか判定する',
+      '関係のペースや深さをコントロールしようとする',
+      '不確実な要素を嫌い、「この人は信頼できる」という確証を求め続ける',
+      '感情より論理で関係を判断する傾向がある',
+    ],
+    fail_pattern: '信頼テストが相手を傷つける。「なぜ試されないといけないのか」と感じた相手が離れる。完璧な安全の証明が存在しないため、永遠に確信できない。',
+    strength: '関係の問題を冷静に分析できる。戦略的なアプローチで関係を発展させる能力がある。リードすることで相手に安心感を与えられる。',
+    desire_core: '「この関係は完全に安全だ」という確信。信頼の証明が完了したとき初めて深く関われる。',
+    fear_core: '裏切られること、信頼した相手に傷つけられること。コントロールを失うこと。',
+    healthy: '信頼は証明ではなく選択だと知る。リードしながらも相手に委ねる柔軟さを持つ。知性と感情のバランスで関係を深める。',
+    average: '関係を常に分析・管理しようとする。感情的なやり取りを「非論理的」と判断して距離を置く。信頼テストを繰り返す。',
+    stress: '不信感と猜疑心が最大化する。関係を精密に管理しようとして相手を窒息させる。または突然関係を切断して自分を守ろうとする。',
+    wings: {
+      prev_center: 'heart',
+      next_center: 'guts',
+      w_prev: {
+        label: '02w01（ハートウィング）',
+        subname: '感情で確かめる先手',
+        desc: 'ヘッドの分析的な安全確認にハートの感情が加わる。「安心できるか」と「愛されているか」が混在する。論理的にリードしながらも感情的な承認を求める場面がある。ハートの影響で感情表現が豊かになり、近づきやすくなる。',
+      },
+      w_next: {
+        label: '02w03（ガッツウィング）',
+        subname: '本能で制御する先手',
+        desc: 'ヘッドの分析的な安全確認にガッツの意志が加わる。「確かめながら動く」から「確かめながら意地を張る」要素が出る。論理的なリードが本能的な強さを帯び、より硬派な印象になる。譲れない一線を持つ。',
+      },
+    },
+    compat_hint: {
+      resonance: [5],
+      bipolar: [4,6],
+      parallel: [8],
+      stimulus: [7,9],
+      mirror: [1,3],
+      stillwater: [10,11,12],
+    },
+    scores: { Se:80, Ni:25, Si:45, Ne:35, heart:45, head:85, guts:50 },
+  },
+  {
+    id: 3, style:'Se', center:'guts',
+    name: '本能の狩人',
+    oneline: '欲しいと感じた瞬間に、もう動いている。',
+    core: '「自分でいられるか」を保ちながら本能的に動く。欲求に忠実で、考える前に行動する。愛は「感じたものを取りに行く行為」。',
+    love_behavior: [
+      '好意を持てばすぐ行動に移す。計画より衝動が先',
+      '感情を抑えることが苦手で、怒り・熱情が直接的に出る',
+      '相手に対して正直すぎるほど正直。裏表がない',
+      '独立性が高く、縛られることへの強い抵抗がある',
+      '一度深まると非常に強い保護本能が出る',
+    ],
+    fail_pattern: '衝動的な言動で相手を傷つける。独占欲と自由欲求の矛盾。「俺はこういう人間だ」と変化を拒絶して関係が硬直する。',
+    strength: '嘘がなく一緒にいると楽。情熱的で守護者としての強さがある。感情が素直なので関係の問題が明確になりやすい。',
+    desire_core: '「自分のまま」でいられること。変えることを強要されないこと。本能的な欲求が受け入れられること。',
+    fear_core: '自分を失うこと。相手に合わせるために自分を曲げることへの深い恐れ。',
+    healthy: '本能を「知性と統合する」ことができる。衝動の中に選択を持ち込む。保護者としての強さと繊細さが共存する。',
+    average: '衝動的行動が目立つ。感情のコントロールが難しく、関係に起伏が多い。「俺はこういうもん」で思考停止しやすい。',
+    stress: '暴力的な言動（言葉の暴力含む）が出る。または完全に引きこもる。自己嫌悪と攻撃性が混在する。',
+    wings: {
+      prev_center: 'head',
+      next_center: 'heart',
+      w_prev: {
+        label: '03w02（ヘッドウィング）',
+        subname: '計算する狩人',
+        desc: 'ガッツの本能的衝動にヘッドの分析が加わる。「感じたから動く」に「でも少し考える」が入る。衝動に知性の制動がかかり、より戦略的なアプローチをとれる。不安ベースの慎重さではなく、計算された行動の慎重さ。',
+      },
+      w_next: {
+        label: '03w01（ハートウィング）',
+        subname: '感情で燃える狩人',
+        desc: 'ガッツの本能的衝動にハートの感情が加わる。「感じたから動く」に「感情の豊かさ」が加わる。愛情表現が豊かになり、傷つきやすさも出る。本能と感情が合わさることで非常に情熱的な恋愛スタイルになる。',
+      },
+    },
+    compat_hint: {
+      resonance: [6],
+      bipolar: [4,5],
+      parallel: [9],
+      stimulus: [7,8],
+      mirror: [1,2],
+      stillwater: [10,11,12],
+    },
+    scores: { Se:95, Ni:15, Si:35, Ne:40, heart:55, head:40, guts:90 },
+  },
+  {
+    id: 4, style:'Ni', center:'heart',
+    name: '捧げる献身者',
+    oneline: '愛することが、自分でいることだと信じている。',
+    core: '「愛されているか」を確認するために自分を差し出す。尽くすことで愛の確認をしようとする。献身は自己表現であると同時に、愛されるための手段でもある。',
+    love_behavior: [
+      '相手のために自分を後回しにすることに喜びを感じる',
+      '相手の感情変化に非常に敏感で、機嫌を常に気にする',
+      '見返りを求めず尽くすが、実は深く「気づいてほしい」と思っている',
+      '委ねることが得意で、相手のリードに自然に従う',
+      '傷ついても我慢することが多い。感情を抑えて場を保とうとする',
+    ],
+    fail_pattern: '尽くしすぎて自分を消す。「気づかれない」「感謝されない」悲しみが積み重なる。我慢が限界を超えたとき突然爆発するか、無言で去る。',
+    strength: '深く寄り添う能力が高い。相手の感情を理解し共感する力がある。献身的な愛情表現は関係に安心感を与える。',
+    desire_core: '深く愛されること、自分の献身が見えていること、「あなたがいてくれてよかった」と言われること。',
+    fear_core: '利用されること、見えていないこと、尽くしたのに愛されないこと。',
+    healthy: '自分の感情も大切にしながら尽くせる。見返りを手放し、尽くすこと自体に喜びを見つける。自己犠牲ではなく自己表現としての献身。',
+    average: '自分を消して相手に合わせる。感情を我慢し続ける。「尽くしているのに」という無意識の勘定が溜まる。',
+    stress: '感情の爆発（泣き崩れる・責める）またはサイレント撤退。「自分には価値がない」という自己否定が出る。',
+    wings: {
+      prev_center: 'guts',
+      next_center: 'head',
+      w_prev: {
+        label: '04w06（ガッツウィング）',
+        subname: '芯を持つ献身者',
+        desc: 'ハートの献身にガッツの意志が加わる。尽くしながらも「自分の一線」を持つ。感情的に消えるのではなく、意志を持って委ねる。傷ついたとき感情で爆発するのではなく、静かに意志で対処できる。',
+      },
+      w_next: {
+        label: '04w05（ヘッドウィング）',
+        subname: '考えながら捧げる者',
+        desc: 'ハートの献身にヘッドの分析が加わる。「どう尽くせばより喜んでもらえるか」を考える。感情的な献身が知的に洗練される。一方で「こんなに尽くしているのになぜ」という思考ループに入りやすい。',
+      },
+    },
+    compat_hint: {
+      resonance: [1],
+      bipolar: [2,3],
+      parallel: [10],
+      stimulus: [11,12],
+      mirror: [5,6],
+      stillwater: [7,8,9],
+    },
+    scores: { Se:20, Ni:85, Si:50, Ne:35, heart:90, head:35, guts:40 },
+  },
+  {
+    id: 5, style:'Ni', center:'head',
+    name: '慎重な信者',
+    oneline: '確信が持てるまで、全力で委ねることができない。',
+    core: '「安心できるか」を確認しながら委ねていく。信頼の確証が揃うまでは深く関わらない。一度信頼すると非常に深く献身的になる。',
+    love_behavior: [
+      '関係が深まるまでに非常に時間がかかる。慎重に距離を縮める',
+      '相手を「信頼できるかどうか」という観点で長期観察する',
+      '信頼した相手への忠誠心は非常に高い',
+      '関係の将来を長期で考える傾向がある。「この人と続くのか」を常に意識',
+      '感情表現は穏やかで静か。情熱より誠実さで愛を示す',
+    ],
+    fail_pattern: '慎重すぎて関係が進まない。「まだ確信が持てない」が続く。信頼した後の裏切りに非常に大きなダメージを受ける。',
+    strength: '誠実で信頼性が高い。一度コミットすると非常に安定した関係を提供できる。深い絆を育てる能力がある。',
+    desire_core: '「この人は間違いなく信頼できる」という完全な確信。裏切られない安全。',
+    fear_core: '信頼した相手に裏切られること。判断を間違えること。予想外の展開に対応できないこと。',
+    healthy: '確信がなくても一歩踏み出せる。信頼は選択だと知る。慎重さを保ちながら柔軟に関係を深められる。',
+    average: '慎重な観察を続ける。感情を抑えて合理的に関係を判断しようとする。「信頼できる確証」を集め続ける。',
+    stress: '疑いが最大化し、相手の行動を全て裏切りの証拠として解釈する。または完全に関係を遮断して自分を守る。',
+    wings: {
+      prev_center: 'heart',
+      next_center: 'guts',
+      w_prev: {
+        label: '05w04（ハートウィング）',
+        subname: '感情で慎重な信者',
+        desc: 'ヘッドの慎重な信頼確認にハートの感情が加わる。「安心できるか」と「愛されているか」が混在する。感情的な確認欲求が慎重さと組み合わさり、より複雑な内面になる。感情が動く場面と論理で判断する場面が交互に来る。',
+      },
+      w_next: {
+        label: '05w06（ガッツウィング）',
+        subname: '芯のある慎重な信者',
+        desc: 'ヘッドの慎重な信頼確認にガッツの意志が加わる。「確かめること」に芯の強さが加わる。信頼するまでの壁が非常に高くなるが、一度信頼したらガッツの忠誠心が発動し非常に強い絆になる。',
+      },
+    },
+    compat_hint: {
+      resonance: [2],
+      bipolar: [1,3],
+      parallel: [11],
+      stimulus: [10,12],
+      mirror: [4,6],
+      stillwater: [7,8,9],
+    },
+    scores: { Se:25, Ni:90, Si:45, Ne:30, heart:40, head:88, guts:45 },
+  },
+  {
+    id: 6, style:'Ni', center:'guts',
+    name: '芯ある漂流者',
+    oneline: '流れに乗りながら、芯だけは手放さない。',
+    core: '「自分でいられるか」を保ちながら流れに委ねる。状況に柔軟に適応するが、自分の核心的な意志は決して曲げない。委ねることと自分でいることを同時にやり遂げる。',
+    love_behavior: [
+      '相手や状況の流れに自然に合わせるが、芯の部分は譲らない',
+      '感情を大きく表現しないが、内側に非常に強い意志を持っている',
+      '「なんでもいい」と言いながら実は「これだけはダメ」がある',
+      '関係に無理が生じたとき、静かに距離を置く',
+      '深い部分を見せるまでに時間がかかる',
+    ],
+    fail_pattern: '自分の感情・欲求を表現しないまま我慢し続ける。「芯」の部分を踏まれたとき突然関係を切ることがある。内面の豊かさが伝わらず「何を考えているかわからない」と思われる。',
+    strength: '柔軟性と芯の強さの共存。状況適応能力が高く、多様な人と関われる。深いところで繋がれると非常に安定した関係になる。',
+    desire_core: '自分の芯を保ちながら委ねられること。「あなたのままでいい」という受容。',
+    fear_core: '芯を踏みにじられること。自分らしさを失うほど相手に合わせることへの恐れ。',
+    healthy: '芯を持ちながら感情を表現できる。委ねることと自己保持のバランスが自然にとれる。流れに乗りながら豊かな内面を開示できる。',
+    average: '感情を抑えて「合わせているように見せる」。芯の部分への侵害に敏感で、突然壁を作る。',
+    stress: '完全な遮断。感情を全て切り離して「どうでもいい」モードに入る。芯が傷つきすぎた反動で無感覚になる。',
+    wings: {
+      prev_center: 'head',
+      next_center: 'heart',
+      w_prev: {
+        label: '06w05（ヘッドウィング）',
+        subname: '分析する漂流者',
+        desc: 'ガッツの芯ある委ねにヘッドの分析が加わる。流れに乗りながら「この状況を分析・判断」する要素が出る。本能的な「感じたら動く」に知的な確認が加わり、より慎重で見通しのある行動スタイルになる。',
+      },
+      w_next: {
+        label: '06w04（ハートウィング）',
+        subname: '感情を持つ漂流者',
+        desc: 'ガッツの芯ある委ねにハートの感情が加わる。感情を抑える傾向に感情豊かさが加わる。自分の芯を守りながらも感情的な繋がりを求める。深い感情表現が出る場面が増え、関係に温かさが加わる。',
+      },
+    },
+    compat_hint: {
+      resonance: [3],
+      bipolar: [1,2],
+      parallel: [12],
+      stimulus: [10,11],
+      mirror: [4,5],
+      stillwater: [7,8,9],
+    },
+    scores: { Se:30, Ni:88, Si:40, Ne:35, heart:45, head:50, guts:85 },
+  },
+  {
+    id: 7, style:'Si', center:'heart',
+    name: '尽くす世話人',
+    oneline: '気づかれなくても、今日も誰かのために動いている。',
+    core: '「愛されているか」を確認するために細やかに世話をする。行動で愛を示し、行動で愛を確認しようとする。尽くすことが愛の言語でありアイデンティティ。',
+    love_behavior: [
+      '相手の細かい変化に気づき、先回りして対応する',
+      '「大丈夫？」を言わずに行動で示す。言語より行動で愛を表現',
+      '相手の好きなものを覚えて日常に組み込む',
+      '自分の欲求は後回しにして相手を優先する',
+      '感謝されないことを内心辛く感じているが言えない',
+    ],
+    fail_pattern: '尽くしすぎて燃え尽きる。「なぜ気づかないの」という悲しみを抱えながら尽くし続ける。自分の欲求を抑えすぎて何が欲しいかわからなくなる。',
+    strength: '実用的な愛情表現が豊か。日常に安心感を作る能力が高い。細やかな気遣いで相手を支える。',
+    desire_core: '自分の行動が見えていること。「いつもありがとう」という言葉。努力を認めてもらうこと。',
+    fear_core: '無視されること、当たり前にされること、感謝されないこと。',
+    healthy: '自分のためにも尽くせる。見返りを手放し、行動すること自体に満足を見出す。「気づいてほしい」ではなく「気づいてもらえたら嬉しい」に変わる。',
+    average: '黙って尽くしながら内側で感情が積み重なる。「なんで気づかないの」が増えてくる。燃え尽き感が出始める。',
+    stress: '感情の爆発（「こんなにしてるのに！」）またはサイレント撤退。自分を犠牲にしすぎた反動で完全に引きこもる。',
+    wings: {
+      prev_center: 'guts',
+      next_center: 'head',
+      w_prev: {
+        label: '07w09（ガッツウィング）',
+        subname: '意志ある世話人',
+        desc: 'ハートの世話行動にガッツの意志が加わる。「見返りを求めず尽くす」に「自分の一線を持つ」が加わる。燃え尽きにくくなり、尽くしながらも自分の軸を保てる。感情的な爆発より静かな意志で境界線を引ける。',
+      },
+      w_next: {
+        label: '07w08（ヘッドウィング）',
+        subname: '計画する世話人',
+        desc: 'ハートの世話行動にヘッドの分析が加わる。より戦略的に「どう支えるか」を考える。感情と思考のバランスが取れた支援スタイルになる。自分の行動の効果を考えながら動くため、空回りが減る。',
+      },
+    },
+    compat_hint: {
+      resonance: [10],
+      bipolar: [11,12],
+      parallel: [1],
+      stimulus: [2,3],
+      mirror: [8,9],
+      stillwater: [4,5,6],
+    },
+    scores: { Se:35, Ni:50, Si:90, Ne:30, heart:88, head:40, guts:45 },
+  },
+  {
+    id: 8, style:'Si', center:'head',
+    name: '安定の建築家',
+    oneline: '崩れない関係を、一つひとつ丁寧に積み上げる。',
+    core: '「安心できる関係」を構築・維持することに全力を注ぐ。変化を嫌い、安定した環境と関係を守ることが愛の表現。',
+    love_behavior: [
+      '関係に「安定した構造」を作ろうとする。記念日・ルーティン・約束を大切にする',
+      '突発的な変化や不確実な要素に強いストレスを感じる',
+      '感情より「安定した行動」で愛を示す',
+      '関係の将来を具体的に考え、設計しようとする',
+      '変わらないことへの強いこだわり。「昨日と同じ」ことの安心感',
+    ],
+    fail_pattern: '変化への拒絶が相手の成長・変化を阻む。安定の追求が硬直した関係を生む。新しいことへの恐れが関係の可能性を狭める。',
+    strength: '安定した環境を作る能力が高い。約束を守る誠実さ。長期的な関係を維持する忍耐力がある。',
+    desire_core: '「この関係は変わらず続く」という確証。変化のない安全な日常。',
+    fear_core: '突然の変化、予測不能な出来事、関係の終わり。',
+    healthy: '変化の中にも安定を見つけられる。柔軟性を持ちながら核となる安定を守る。成長と安定が共存できると知る。',
+    average: '変化を拒否する。ルーティンへの固執。「いつも通り」であることへの強い執着が出る。',
+    stress: '変化への完全な拒絶または不安による麻痺。「何もかも崩れる」という恐怖から過剰な管理行動が出る。',
+    wings: {
+      prev_center: 'heart',
+      next_center: 'guts',
+      w_prev: {
+        label: '08w07（ハートウィング）',
+        subname: '温かみのある建築家',
+        desc: 'ヘッドの安定構築にハートの感情が加わる。安定した関係を作りながら感情的な温かさも示せる。「変わらない安心」に「愛されたい」感情が混ざることで、より人間的な温かさが関係に生まれる。',
+      },
+      w_next: {
+        label: '08w09（ガッツウィング）',
+        subname: '意志ある建築家',
+        desc: 'ヘッドの安定構築にガッツの意志が加わる。安定を守ることへの強い意志が出る。「変えさせない」という方向性が強まり、関係の安定を守るためなら強く出られる。ただし変化への抵抗が頑固さになりやすい。',
+      },
+    },
+    compat_hint: {
+      resonance: [11],
+      bipolar: [10,12],
+      parallel: [2],
+      stimulus: [1,3],
+      mirror: [7,9],
+      stillwater: [4,5,6],
+    },
+    scores: { Se:30, Ni:40, Si:92, Ne:35, heart:42, head:87, guts:48 },
+  },
+  {
+    id: 9, style:'Si', center:'guts',
+    name: '無言の番人',
+    oneline: '言葉にしなくても、ここにいることが答えだ。',
+    core: '「自分でいられること」を保ちながら、変わらずそこに居続ける。愛を言葉で示すより「継続する存在であること」で示す。去らないことが最大の愛の表現。',
+    love_behavior: [
+      '感情を言葉にすることが非常に苦手。行動で全てを示そうとする',
+      '何があっても離れない強い忠誠心がある',
+      '相手の感情的な要求に対して「でも俺はここにいる」と行動で答える',
+      '嫉妬や不安を感じても言わずに抱える',
+      '一度決めたことへの強いこだわり。「続けること」への執着',
+    ],
+    fail_pattern: '感情の表現がないため「何を考えているかわからない」と思われる。「いるのに伝わらない」孤独を抱える。積み重なった感情が限界を超えたとき突然爆発することがある。',
+    strength: '何があっても離れないという安心感。一貫性と信頼性が非常に高い。実用的な行動で安定を作る能力がある。',
+    desire_core: '「ここにいることを認めてもらうこと」。存在を大切にされること。',
+    fear_core: '自分の存在が軽視されること。感情を無理やり言語化させられること。',
+    healthy: '「ここにいる」を一言言えるようになる。行動と言葉を組み合わせて愛を示せる。継続することに意味を見出しながら、関係の温度も保てる。',
+    average: '黙って耐える。感情を抱えたまま何も言わない。「言わなくてもわかるはず」が積み重なる。',
+    stress: '沈黙による撤退。全ての感情を遮断して「どうでもいい」になる。または長年の我慢が突然の爆発に転化する。',
+    wings: {
+      prev_center: 'head',
+      next_center: 'heart',
+      w_prev: {
+        label: '09w08（ヘッドウィング）',
+        subname: '考える番人',
+        desc: 'ガッツの継続する意志にヘッドの分析が加わる。「ただいる」に「なぜいるかを考える」が加わる。行動の意味を言語化できるようになり、相手への説明能力が上がる。頑固さが知性的な頑固さに変わる。',
+      },
+      w_next: {
+        label: '09w07（ハートウィング）',
+        subname: '感情ある番人',
+        desc: 'ガッツの継続する意志にハートの感情が加わる。「ただいる」に「感情を少し見せる」が加わる。感情表現が増え、相手に温かみとして伝わるようになる。「いるのに伝わらない」の解決策になる。',
+      },
+    },
+    compat_hint: {
+      resonance: [12],
+      bipolar: [10,11],
+      parallel: [3],
+      stimulus: [1,2],
+      mirror: [7,8],
+      stillwater: [4,5,6],
+    },
+    scores: { Se:25, Ni:45, Si:88, Ne:20, heart:45, head:42, guts:90 },
+  },
+  {
+    id: 10, style:'Ne', center:'heart',
+    name: '感情の旅人',
+    oneline: 'ときめきが続く限り、どこまでも行ける。',
+    core: '「愛されているか」を新鮮なときめきの中で確認し続ける。感情の鮮度が関係の温度計。ときめきが薄れることへの強い恐れを持つ。',
+    love_behavior: [
+      '感情の起伏が大きく、ときめきの強度で関係を測る',
+      '新しい体験・会話・発見が関係の燃料になる',
+      '愛情確認をときめきのある形で求める（サプライズ・特別な時間）',
+      '日常化・マンネリに非常に敏感でストレスを感じる',
+      '感情的な表現が豊かで、関係に温度をもたらす',
+    ],
+    fail_pattern: 'ときめきが薄れると「愛が終わった」と感じる。マンネリが不安になり外に刺激を求める。感情的な確認を過剰に求めて相手が疲弊する。',
+    strength: '関係に感情的な豊かさをもたらす。ときめきを生む感性。感情表現の豊かさで相手を幸せにする能力がある。',
+    desire_core: '常に新鮮なときめきの中にあること。特別感を感じ続けること。感情的に満たされていること。',
+    fear_core: 'マンネリと普通の日常。特別でなくなること。ときめきが消えること。',
+    healthy: 'ときめきの先にある深さを見つけられる。日常の中にも特別を見出す感性が生まれる。安定とときめきの共存を知る。',
+    average: '常に刺激を求める。マンネリへの強い不満。感情的な確認を繰り返す。',
+    stress: '刺激を外に求める（新しい恋愛・友人・体験）。または感情的に崩壊し「もう何もときめかない」になる。',
+    wings: {
+      prev_center: 'guts',
+      next_center: 'head',
+      w_prev: {
+        label: '10w12（ガッツウィング）',
+        subname: '本能で感じる旅人',
+        desc: 'ハートのときめき確認にガッツの本能が加わる。感情的なときめきに衝動的な行動力が組み合わさる。「感じたからすぐ動く」「ときめいたから飛び込む」という勢いが出る。感情と本能が合わさった非常にエネルギッシュな恋愛スタイル。',
+      },
+      w_next: {
+        label: '10w11（ヘッドウィング）',
+        subname: '考えながら感じる旅人',
+        desc: 'ハートのときめき確認にヘッドの楽観的思考が加わる。「感情で感じる」と「可能性を描く」が合わさる。ときめきを未来への可能性として捉える。感情的な確認欲求が「この関係の可能性」という思考と結びつく。',
+      },
+    },
+    compat_hint: {
+      resonance: [7],
+      bipolar: [8,9],
+      parallel: [4],
+      stimulus: [5,6],
+      mirror: [11,12],
+      stillwater: [1,2,3],
+    },
+    scores: { Se:40, Ni:35, Si:30, Ne:88, heart:90, head:35, guts:45 },
+  },
+  {
+    id: 11, style:'Ne', center:'head',
+    name: '楽観の夢想家',
+    oneline: '「きっとうまくいく」が、最強の処世術。',
+    core: '「安心できる関係」を楽観的なビジョンで確保しようとする。問題が起きても「大丈夫」と思い込むことで不安を管理する。可能性への信頼が生きる力。',
+    love_behavior: [
+      '関係の問題を「きっと解決する」と楽観視する',
+      '悲観的な話・重い感情に不快感を持ちやすい',
+      '未来の可能性・夢・計画の話が大好き',
+      '感情的な重さを「前向きさ」で塗り替えようとする',
+      '関係の細かい問題より大きなビジョンを見ようとする',
+    ],
+    fail_pattern: '問題の直視を避ける。楽観が「問題がない」という現実逃避になる。相手の重い感情を「暗い」と感じて距離を置く。',
+    strength: '関係に希望とポジティブエネルギーをもたらす。重い局面を前向きに変換する能力がある。可能性を信じる力が相手を励ます。',
+    desire_core: '常に可能性の中にいること。「うまくいく未来」が見えていること。重くならないこと。',
+    fear_core: '深刻な問題・逃げ場のない重さ。「どうにもならない」という状況。',
+    healthy: '楽観と現実のバランスが取れる。問題を正面から見ながらも希望を失わない。楽観が「逃避」ではなく「知恵」になる。',
+    average: '楽観でコーティングして問題を回避する。重い話を苦手とする。「気にしすぎ」が口癖になる。',
+    stress: '楽観が機能しなくなり、一気に崩れる。「大丈夫だと思っていたのに」という落差で深く落ち込む。',
+    wings: {
+      prev_center: 'heart',
+      next_center: 'guts',
+      w_prev: {
+        label: '11w10（ハートウィング）',
+        subname: '感情ある夢想家',
+        desc: 'ヘッドの楽観的ビジョンにハートの感情が加わる。「うまくいく未来を描く」に「感情的な温かさ」が加わる。楽観にロマンティックな感情表現が混ざり、相手との感情的な繋がりも大切にする。',
+      },
+      w_next: {
+        label: '11w12（ガッツウィング）',
+        subname: '行動する夢想家',
+        desc: 'ヘッドの楽観的ビジョンにガッツの行動力が加わる。「描くだけ」から「描いて動く」になる。ビジョンを実行に移す力が生まれ、楽観が現実を動かす力を持つ。本能的な行動力と楽観的思考の組み合わせ。',
+      },
+    },
+    compat_hint: {
+      resonance: [8],
+      bipolar: [7,9],
+      parallel: [5],
+      stimulus: [4,6],
+      mirror: [10,12],
+      stillwater: [1,2,3],
+    },
+    scores: { Se:35, Ni:30, Si:40, Ne:90, heart:40, head:85, guts:45 },
+  },
+  {
+    id: 12, style:'Ne', center:'guts',
+    name: '自由な野生児',
+    oneline: '縛られた瞬間に、自分が死ぬ気がする。',
+    core: '「自分でいられるか」を保つために自由を守る。愛されることより「自由でいながら愛されること」が理想。束縛を死ぬほど嫌い、自由が愛の前提条件。',
+    love_behavior: [
+      '自由を束縛する関係から本能的に逃げる',
+      '「自由でいてくれる」相手に信頼と感情を向ける',
+      '感情は豊かだが関係を固定することに強い抵抗がある',
+      '「今感じること」に正直で、感情の方向が変わることがある',
+      '深まることを望みながら同時に恐れている',
+    ],
+    fail_pattern: '自由への欲求が関係を壊す。「縛られたくない」と逃げ続けて関係が深まらない。感情が変わりやすいため相手を翻弄する。',
+    strength: '自由な発想と行動力で関係に新鮮さをもたらす。縛らない愛し方ができる。自分らしさを保ちながら関係を深める独特の方法を持つ。',
+    desire_core: '「自由でいながら愛されること」。縛られずに深く繋がること。',
+    fear_core: '自由を失うこと。束縛されること。自分らしさを殺さなければならない状況。',
+    healthy: '自由と責任の共存を知る。「留まる選択」も自由の一つだと理解する。縛られずに深く繋がる自分だけの方法を見つける。',
+    average: '自由を守るために関係に距離を置く。「重くなる」前に逃げようとする。関係への真剣なコミットを避ける。',
+    stress: '全てから逃げる。または完全に孤立する。自由すぎて誰とも深く繋がれない孤独に落ちる。',
+    wings: {
+      prev_center: 'head',
+      next_center: 'heart',
+      w_prev: {
+        label: '12w11（ヘッドウィング）',
+        subname: '考える野生児',
+        desc: 'ガッツの自由への本能にヘッドの楽観的思考が加わる。「自由でいたい」に「でも大丈夫」という楽観が混ざる。衝動的な逃走に「まあ考えてみると」という一歩立ち止まりが生まれる。少しだけ計画的になれる。',
+      },
+      w_next: {
+        label: '12w10（ハートウィング）',
+        subname: '感情ある野生児',
+        desc: 'ガッツの自由への本能にハートの感情が加わる。「自由でいたい」に「でも愛されたい」が混ざる。自由への欲求と感情的な繋がりへの欲求が競合する。感情表現が豊かになり、自由の中に深さを求め始める。',
+      },
+    },
+    compat_hint: {
+      resonance: [9],
+      bipolar: [7,8],
+      parallel: [6],
+      stimulus: [4,5],
+      mirror: [10,11],
+      stillwater: [1,2,3],
+    },
+    scores: { Se:45, Ni:35, Si:25, Ne:92, heart:50, head:40, guts:88 },
+  },
+];
+
+const STYLE_COLOR = { Se:'var(--se-c)', Ni:'var(--ni-c)', Si:'var(--si-c)', Ne:'var(--ne-c)' };
+const STYLE_LIGHT = { Se:'var(--rose-light)', Ni:'var(--violet-light)', Si:'var(--teal-light)', Ne:'var(--gold-light)' };
+const CENTER_COLOR = { heart:'var(--heart)', head:'var(--head)', guts:'var(--guts)' };
+const CENTER_LIGHT = { heart:'var(--heart-light)', head:'var(--head-light)', guts:'var(--guts-light)' };
+
+// Matrix render
+function renderMatrix() {
+  const tbody = document.getElementById('matrixBody');
+  TYPES.forEach(t => {
+    const sc = STYLE_COLOR[t.style];
+    const sl = STYLE_LIGHT[t.style];
+    const cc = CENTER_COLOR[t.center];
+    const cl = CENTER_LIGHT[t.center];
+    const wn = CENTERS[CENTER_NEXT[t.center]].name;
+    const wp = CENTERS[CENTER_PREV[t.center]].name;
+    tbody.innerHTML += `
+      <tr>
+        <td><span class="mt-id">Type ${String(t.id).padStart(2,'0')}</span></td>
+        <td><span class="badge" style="background:${sl};color:${sc};">${t.style}</span><span class="mt-style" style="color:${sc};">${STYLES[t.style].name}</span></td>
+        <td><span class="badge" style="background:${cl};color:${cc};">${CENTERS[t.center].name}</span></td>
+        <td class="mt-name">${t.name}</td>
+        <td class="mt-core" style="max-width:200px;">${t.desire_core}</td>
+        <td><span class="mt-id" style="line-height:1.9;">${t.wings.w_prev.label}<br>${t.wings.w_next.label}</span></td>
+      </tr>`;
+  });
+}
+
+// Type blocks render
+function renderTypes() {
+  const container = document.getElementById('typesContainer');
+  TYPES.forEach(t => {
+    const sc = STYLE_COLOR[t.style];
+    const sl = STYLE_LIGHT[t.style];
+    const cc = CENTER_COLOR[t.center];
+    const cl = CENTER_LIGHT[t.center];
+    const sname = STYLES[t.style].name;
+    const cname = CENTERS[t.center].name;
+
+    // Wing IDs
+    const prevC = CENTER_PREV[t.center];
+    const nextC = CENTER_NEXT[t.center];
+
+    const div = document.createElement('div');
+    div.className = 'type-block';
+    div.id = `type-${t.id}`;
+
+    div.innerHTML = `
+      <!-- HEADER -->
+      <div class="type-header" style="background:linear-gradient(135deg,${sl} 0%,var(--paper) 100%);">
+        <div class="type-num" style="color:${sc};">${String(t.id).padStart(2,'0')}</div>
+        <div class="type-head-body">
+          <div class="type-id">Type ${String(t.id).padStart(2,'0')} — Love Gravity Theory</div>
+          <div class="type-name">${t.name}</div>
+          <div class="type-badges">
+            <span class="badge" style="background:${sl};color:${sc};">${t.style} ${sname}</span>
+            <span class="badge" style="background:${cl};color:${cc};">${cname}センター</span>
+          </div>
+        </div>
+        <div class="type-oneline">"${t.oneline}"</div>
+      </div>
+
+      <!-- QUOTE / CORE -->
+      <div class="type-quote">${t.core}</div>
+
+      <!-- BODY GRID -->
+      <div class="type-body">
+
+        <!-- 恋愛行動 -->
+        <div class="type-section">
+          <span class="ts-label">Love Behavior — 恋愛行動パターン</span>
+          <ul class="pattern-list">
+            ${t.love_behavior.map(b=>`<li>${b}</li>`).join('')}
+          </ul>
+        </div>
+
+        <!-- 失敗パターン + 強み -->
+        <div class="type-section">
+          <span class="ts-label">Fail Pattern — 失敗パターン</span>
+          <div class="ts-text" style="margin-bottom:14px;">${t.fail_pattern}</div>
+          <span class="ts-label">Strength — 強み</span>
+          <div class="ts-text">${t.strength}</div>
+        </div>
+
+        <!-- 核心動機 + 核心恐怖 -->
+        <div class="type-section">
+          <span class="ts-label">Core Desire — 核心動機</span>
+          <div class="ts-text" style="margin-bottom:12px;"><strong>${t.desire_core}</strong></div>
+          <span class="ts-label">Core Fear — 核心恐怖</span>
+          <div class="ts-text">${t.fear_core}</div>
+        </div>
+
+        <!-- スコアイメージ -->
+        <div class="type-section">
+          <span class="ts-label">Score Profile — 診断スコアイメージ</span>
+          <div class="score-bars">
+            ${['Se','Ni','Si','Ne'].map(s=>`
+              <div class="score-row">
+                <span class="score-label">${s}</span>
+                <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${t.scores[s]}%;background:${STYLE_COLOR[s]};"></div></div>
+                <span class="score-val">${t.scores[s]}</span>
+              </div>`).join('')}
+            <div style="height:4px;"></div>
+            ${['heart','head','guts'].map(c=>`
+              <div class="score-row">
+                <span class="score-label">${CENTERS[c].name}</span>
+                <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${t.scores[c]}%;background:${CENTER_COLOR[c]};"></div></div>
+                <span class="score-val">${t.scores[c]}</span>
+              </div>`).join('')}
+          </div>
+        </div>
+
+        <!-- 成長段階 -->
+        <div class="type-section full">
+          <span class="ts-label">Growth Levels — 成長段階（3レベル）</span>
+          <div class="level-stack">
+            <div class="level-item healthy">
+              <div class="level-label">HEALTHY — 健全状態</div>
+              <div class="level-text">${t.healthy}</div>
+            </div>
+            <div class="level-item average">
+              <div class="level-label">AVERAGE — 平均状態</div>
+              <div class="level-text">${t.average}</div>
+            </div>
+            <div class="level-item stress">
+              <div class="level-label">STRESS — ストレス状態</div>
+              <div class="level-text">${t.stress}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ウィング -->
+        <div class="type-section full">
+          <span class="ts-label">Wings — ウィング（24サブタイプ設計）</span>
+          <div class="wing-grid">
+            <div class="wing-card">
+              <div class="wing-id">${t.wings.w_prev.label}</div>
+              <div class="wing-name">${t.wings.w_prev.subname}</div>
+              <div class="wing-text">${t.wings.w_prev.desc}</div>
+            </div>
+            <div class="wing-card">
+              <div class="wing-id">${t.wings.w_next.label}</div>
+              <div class="wing-name">${t.wings.w_next.subname}</div>
+              <div class="wing-text">${t.wings.w_next.desc}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 相性ヒント -->
+        <div class="type-section full">
+          <span class="ts-label">Compatibility Hint — 相性早見</span>
+          <div class="compat-hint-grid">
+            <div class="ch-card" style="background:var(--resonance-bg,#ede9f8);">
+              <span class="ch-label" style="color:var(--resonance,#7b5ea7);">共鳴</span>
+              <div class="ch-types">${t.compat_hint.resonance.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+            </div>
+            <div class="ch-card" style="background:var(--bipolar-bg,#fae0e6);">
+              <span class="ch-label" style="color:var(--bipolar,#c9607a);">双極</span>
+              <div class="ch-types">${t.compat_hint.bipolar.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+            </div>
+            <div class="ch-card" style="background:var(--parallel-bg,#e2f4f4);">
+              <span class="ch-label" style="color:var(--parallel,#3d8b8b);">並走</span>
+              <div class="ch-types">${t.compat_hint.parallel.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+            </div>
+            <div class="ch-card" style="background:var(--stimulus-bg,#f5edd4);">
+              <span class="ch-label" style="color:var(--stimulus,#c9a84c);">刺激</span>
+              <div class="ch-types">${t.compat_hint.stimulus.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+            </div>
+            <div class="ch-card" style="background:var(--mirror-bg,#deeaf7);">
+              <span class="ch-label" style="color:var(--mirror,#5b7fa6);">鏡像</span>
+              <div class="ch-types">${t.compat_hint.mirror.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+            </div>
+            <div class="ch-card" style="background:var(--stillwater-bg,#f0e8dc);">
+              <span class="ch-label" style="color:var(--stillwater,#8b7355);">静水</span>
+              <div class="ch-types">${t.compat_hint.stillwater.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+            </div>
+          </div>
+        </div>
+
+      </div>`;
+
+    container.appendChild(div);
+  });
+}
+
+renderMatrix();
+renderTypes();
+</script>
+</body>
+</html>

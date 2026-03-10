@@ -1,0 +1,3041 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTAGE LAB｜総合心理診断ポータル - あなたの深層心理を解き明かす</title>
+<meta name="description" content="UTAGE LABは心理診断・タイプ診断・相性診断・占いを集めた総合心理診断ポータル。MBTIから深層心理まで、自分を知る旅を始めよう。">
+<meta name="keywords" content="心理診断,MBTI,16タイプ,性格診断,相性診断,ソシオニクス,心理テスト">
+<meta property="og:title" content="UTAGE LAB｜総合心理診断ポータル">
+<meta property="og:description" content="あなたの深層心理を解き明かす。心理診断・タイプ診断・相性診断・占いを集めた総合心理診断ポータル。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://utage-jpg.github.io/UTAGE_LAB/">
+<meta property="og:image" content="https://utage-jpg.github.io/UTAGE_LAB/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://utage-jpg.github.io/UTAGE_LAB/preview.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ── ROOT VARIABLES ── */
+:root {
+  --ink:         #1a1025;
+  --cream:       #faf7f2;
+  --parchment:   #f5f0e8;
+  --paper:       #fff9f5;
+  --rose:        #c9607a;
+  --rose-light:  #fae0e6;
+  --rose-deep:   #9e3a52;
+  --gold:        #c9a84c;
+  --gold-light:  #f5edd4;
+  --violet:      #7b5ea7;
+  --violet-light:#ede9f8;
+  --teal:        #3d8b8b;
+  --teal-light:  #e2f4f4;
+  --amber:       #c47d2a;
+  --amber-light: #fef3e0;
+  --text:        #2d2140;
+  --text-light:  #7a6e88;
+  --border:      #e5d8cc;
+  --shadow:      rgba(26,16,37,0.12);
+  --font-display:'Playfair Display', Georgia, serif;
+  --font-serif:  'Noto Serif JP', serif;
+  --font-mono:   'DM Mono', 'Courier New', monospace;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-serif);
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* ── NAVIGATION ── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 0 48px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.45s, box-shadow 0.45s;
+}
+.nav.scrolled {
+  background: rgba(250,247,242,0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color 0.45s;
+}
+.nav.scrolled .nav-logo { color: var(--ink); }
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s;
+}
+.nav.scrolled .nav-links a { color: var(--text-light); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--rose);
+  transition: width 0.32s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: white; }
+.nav.scrolled .nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  font-family: var(--font-mono) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.15em !important;
+  padding: 9px 22px;
+  background: var(--rose);
+  color: white !important;
+  border-radius: 2px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+.nav-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--rose-deep);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.32s ease;
+}
+.nav-cta:hover::before { transform: scaleX(1); }
+.nav-cta .cta-inner { position: relative; z-index: 1; }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  width: 24px; height: 1.5px;
+  background: white;
+  border-radius: 2px;
+  transition: background 0.45s;
+}
+.nav.scrolled .nav-hamburger span { background: var(--ink); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 80px;
+  overflow: visible;
+  background: #2d1f3d;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero-slide {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center 40%;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.hero-slide.active {
+  opacity: 1;
+  animation: heroKen 8s ease-in-out forwards;
+}
+/* Slideshow dots */
+.hero-dots {
+  position: absolute;
+  bottom: 28px;
+  right: 36px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.hero-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  border: none;
+  padding: 0;
+}
+.hero-dot.active {
+  background: white;
+  transform: scale(1.35);
+}
+@keyframes heroKen {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1.00); }
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(165deg,
+      rgba(26,16,37,0.62) 0%,
+      rgba(26,16,37,0.28) 55%,
+      rgba(158,58,82,0.18) 100%);
+}
+/* Environmental light blobs */
+.hero-light {
+  position: absolute; inset: 0; pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 50% 60% at 85% 25%, rgba(201,168,76,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 10% 75%, rgba(201,96,122,0.10) 0%, transparent 55%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 60px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 56px;
+  align-items: flex-end;
+}
+.hero-left {}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: rgba(250,224,230,0.85);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: revealUp 0.8s ease 0.3s forwards;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 1px;
+  background: var(--rose-light);
+  opacity: 0.7;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 88px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: revealUp 1s ease 0.5s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--rose-light);
+  display: inline;
+  white-space: nowrap;
+}
+.hero-subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.70);
+  line-height: 1.95;
+  max-width: 480px;
+  margin-bottom: 40px;
+  font-weight: 300;
+  opacity: 0;
+  animation: revealUp 0.9s ease 0.75s forwards;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: revealUp 0.9s ease 0.95s forwards;
+}
+.hero-stats {
+  display: flex;
+  gap: 44px;
+  margin-top: 52px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  opacity: 0;
+  animation: revealUp 0.9s ease 1.15s forwards;
+  flex-wrap: wrap;
+}
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 34px;
+  color: white;
+  line-height: 1;
+}
+.hero-stat-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.45);
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+/* Profile card – overlapping hero */
+.hero-profile {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 28px 64px rgba(26,16,37,0.25);
+  opacity: 0;
+  animation: revealUp 1s ease 1.05s forwards;
+  align-self: flex-end;
+}
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.profile-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--amber-light), var(--rose-light));
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.profile-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: none;
+}
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.profile-handle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-light);
+  letter-spacing: 0.05em;
+}
+.profile-bio {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.profile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.25s;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.profile-link::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--ink);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+.profile-link:hover { color: var(--parchment); border-color: var(--ink); }
+.profile-link:hover::before { transform: translateX(0); }
+.profile-link-icon {
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  position: relative; z-index: 1;
+}
+.profile-link-text { position: relative; z-index: 1; }
+.profile-link-sub {
+  font-size: 10px;
+  color: var(--text-light);
+  font-weight: 300;
+  margin-top: 1px;
+}
+.profile-link:hover .profile-link-sub { color: rgba(247,243,237,0.6); }
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SLIDE-IN BUTTONS ── */
+.btn-slide {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 34px;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.35s;
+  cursor: pointer;
+  border: none;
+}
+.btn-slide span { position: relative; z-index: 1; }
+.btn-primary-slide {
+  background: var(--rose);
+  color: white;
+}
+.btn-primary-slide::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--rose-deep);
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+}
+.btn-primary-slide:hover::before { transform: translateX(0); }
+
+.btn-ghost-slide {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.45);
+}
+.btn-ghost-slide::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: white;
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+}
+.btn-ghost-slide:hover { color: var(--ink); }
+.btn-ghost-slide:hover::before { transform: translateX(0); }
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  background: var(--ink);
+  overflow: hidden;
+  padding: 13px 0;
+  margin-top: 80px;
+  position: relative; z-index: 5;
+}
+.marquee-track {
+  display: flex;
+  width: fit-content;
+  animation: marqueeScroll 32s linear infinite;
+  white-space: nowrap;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 24px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: rgba(247,243,237,0.5);
+  text-transform: uppercase;
+}
+.marquee-sep { color: var(--rose); }
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── CATEGORY STRIP ── */
+.cat-strip {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.cat-strip::-webkit-scrollbar { display: none; }
+.cat-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  padding: 0 40px;
+}
+.cat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 26px;
+  text-decoration: none;
+  color: var(--text-light);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  gap: 7px;
+  transition: all 0.25s;
+  text-transform: uppercase;
+}
+.cat-item:hover, .cat-item.active {
+  color: var(--rose);
+  border-bottom-color: var(--rose);
+}
+.cat-item-icon { font-size: 18px; }
+
+/* ── SECTION SHARED ── */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--rose);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--rose);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+}
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 52px;
+  gap: 20px;
+}
+.section-more {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--rose);
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rose);
+  transition: gap 0.25s;
+}
+.section-more:hover { gap: 14px; }
+.section-divider {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  border: none;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* ── DAILY FORTUNE ── */
+.fortune-daily-wrap {
+  background: linear-gradient(170deg, var(--paper) 0%, #f0ebf8 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.fortune-daily-wrap::before {
+  content: 'FORTUNE';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(120px, 20vw, 280px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(123,94,167,0.06);
+  right: -20px;
+  bottom: -30px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.04em;
+}
+.fortune-daily-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.fortune-daily-logo {
+  max-width: min(420px, 72vw);
+  height: auto;
+  display: block;
+  margin: 0 auto 14px;
+  mix-blend-mode: multiply;
+}
+.fortune-daily-subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+.fortune-type-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  max-width: 580px;
+  margin: 0 auto 6px;
+}
+.fortune-type-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 6px;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.22s;
+  border: 1.5px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.fortune-type-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+/* NT — violet */
+.ft-intj,.ft-intp,.ft-entj,.ft-entp {
+  background: var(--violet-light); color: var(--violet);
+  border-color: rgba(123,94,167,0.15);
+}
+.ft-intj:hover,.ft-intp:hover,.ft-entj:hover,.ft-entp:hover {
+  background: var(--violet); color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(123,94,167,0.3);
+}
+/* NF — teal */
+.ft-infj,.ft-infp,.ft-enfj,.ft-enfp {
+  background: var(--teal-light); color: var(--teal);
+  border-color: rgba(61,139,139,0.15);
+}
+.ft-infj:hover,.ft-infp:hover,.ft-enfj:hover,.ft-enfp:hover {
+  background: var(--teal); color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(61,139,139,0.3);
+}
+/* SJ — amber */
+.ft-istj,.ft-isfj,.ft-estj,.ft-esfj {
+  background: var(--amber-light); color: var(--amber);
+  border-color: rgba(196,125,42,0.15);
+}
+.ft-istj:hover,.ft-isfj:hover,.ft-estj:hover,.ft-esfj:hover {
+  background: var(--amber); color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(196,125,42,0.3);
+}
+/* SP — rose */
+.ft-istp,.ft-isfp,.ft-estp,.ft-esfp {
+  background: var(--rose-light); color: var(--rose-deep);
+  border-color: rgba(201,96,122,0.15);
+}
+.ft-istp:hover,.ft-isfp:hover,.ft-estp:hover,.ft-esfp:hover {
+  background: var(--rose); color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(201,96,122,0.3);
+}
+.fortune-daily-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--rose);
+  color: white;
+  padding: 15px 38px;
+  border-radius: 2px;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.35s;
+}
+.fortune-daily-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--rose-deep);
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+}
+.fortune-daily-cta:hover::before { transform: translateX(0); }
+.fortune-daily-cta span { position: relative; z-index: 1; }
+
+/* ── POPULAR GRID (asymmetric) ── */
+.popular-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1fr;
+  gap: 16px;
+}
+.popular-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.32s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.popular-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 52px var(--shadow);
+  border-color: transparent;
+}
+.popular-card-img {
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+.popular-card.feat .popular-card-img { height: 220px; }
+.popular-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+  display: block;
+  loading: lazy;
+}
+.popular-card:hover .popular-card-img img { transform: scale(1.06); }
+.popular-card-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(26,16,37,0.42) 100%);
+}
+.popular-card-rank {
+  position: absolute;
+  top: 14px; left: 14px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  background: white;
+  padding: 4px 12px;
+  border-radius: 2px;
+  color: var(--ink);
+  z-index: 2;
+  text-transform: uppercase;
+}
+.popular-card-body {
+  padding: 20px 22px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.popular-card-cat {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.popular-card-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.popular-card.feat .popular-card-title { font-size: 20px; }
+.popular-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-light);
+  letter-spacing: 0.1em;
+  margin-top: auto;
+}
+.popular-card-cta {
+  margin-top: 14px;
+  padding: 11px 0;
+  text-align: center;
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s;
+}
+.popular-card-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.07);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.popular-card:hover .popular-card-cta::before { opacity: 1; }
+
+/* ── POLA FEATURED SECTION ── */
+.pola-featured-wrap {
+  background: linear-gradient(160deg, #fff6f8 0%, #fce8ed 40%, #f5eeff 100%);
+  border-top: 1px solid rgba(201,96,122,0.15);
+  border-bottom: 1px solid rgba(201,96,122,0.12);
+  position: relative;
+  overflow: hidden;
+}
+.pola-featured-wrap::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(201,96,122,0.06) 0%, transparent 65%);
+  top: -200px; right: -100px;
+  pointer-events: none;
+}
+
+/* Main card */
+.pola-main-card {
+  display: block;
+  background: white;
+  border: 1px solid rgba(201,96,122,0.2);
+  border-radius: 20px;
+  padding: 48px 52px;
+  text-decoration: none;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s;
+  margin-bottom: 16px;
+}
+.pola-main-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 72px rgba(201,96,122,0.16);
+  border-color: rgba(201,96,122,0.4);
+}
+.pola-bg-text {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(180px, 28vw, 340px);
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,96,122,0.055);
+  right: -20px;
+  bottom: -60px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pola-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--rose);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  padding: 6px 18px;
+  border-radius: 2px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.pola-badge-dot {
+  width: 6px; height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: pola-pulse 1.6s ease infinite;
+}
+@keyframes pola-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.pola-logo-lockup {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 6vw, 68px);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.pola-logo-p { color: var(--rose); font-style: italic; }
+.pola-logo-rest { color: var(--ink); }
+
+.pola-subtitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+.pola-desc {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.9;
+  margin-bottom: 22px;
+}
+.pola-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.pola-tag {
+  background: rgba(201,96,122,0.06);
+  border: 1px solid rgba(201,96,122,0.18);
+  color: var(--rose-deep);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border-radius: 4px;
+}
+
+.pola-cta-row {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+.pola-btn-portal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  background: white;
+  border: 2px solid rgba(201,96,122,0.35);
+  color: var(--rose-deep);
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s;
+}
+.pola-btn-portal:hover {
+  background: var(--rose-light);
+  border-color: var(--rose);
+  color: var(--rose-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(201,96,122,0.15);
+}
+.pola-btn-main {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  background: var(--rose);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.pola-main-card:hover .pola-btn-main {
+  background: var(--rose-deep);
+  box-shadow: 0 8px 24px rgba(201,96,122,0.35);
+  transform: translateY(-1px);
+}
+.pola-btn-inner { position: relative; z-index: 1; }
+.pola-btn-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-light);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.pola-btn-sub:hover { color: var(--rose); border-color: var(--rose); }
+
+/* Right: type preview */
+.pola-type-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.pola-type-card {
+  background: var(--ptb, #fce8ed);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform 0.2s;
+}
+.pola-main-card:hover .pola-type-card { transform: translateY(-2px); }
+.pola-type-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ptc);
+  opacity: 0.7;
+}
+.pola-type-name {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.pola-type-axis {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ptc);
+  margin-top: 2px;
+}
+.pola-type-total {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-light);
+  margin-top: 12px;
+}
+.pola-type-total strong { color: var(--rose); }
+
+/* Sub row */
+.pola-sub-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.pola-sub-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s;
+}
+.pola-sub-portal:hover {
+  border-color: var(--rose);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(201,96,122,0.1);
+}
+.pola-sub-icon { font-size: 32px; flex-shrink: 0; }
+.pola-sub-body { flex: 1; }
+.pola-sub-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pola-sub-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.pola-sub-desc {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.pola-sub-arrow {
+  font-size: 18px;
+  color: var(--text-light);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.pola-sub-portal:hover .pola-sub-arrow { color: var(--rose); transform: translateX(4px); }
+
+/* Axis card */
+.pola-axis-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+.pola-axis-title {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.pola-axis-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pola-axis-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+.pola-axis-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.pola-axis-name {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.pola-axis-desc {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+}
+.pola-axis-divider {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--rose);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pola-main-card {
+    padding: 28px 24px;
+  }
+  .pola-bg-text { font-size: 120px; right: -10px; bottom: -20px; }
+}
+
+/* ── FEATURE BANNER (warm light) ── */
+.feature-banner-wrap {
+  background: linear-gradient(145deg, #fff5f8 0%, #fce8ed 50%, #f7f0ff 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(201,96,122,0.13);
+  padding: 60px;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.feature-banner-wrap::before {
+  content: 'NEW';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(200px, 30vw, 380px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,96,122,0.05);
+  right: -60px;
+  bottom: -90px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.feature-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--rose);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  padding: 5px 16px;
+  border-radius: 2px;
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+.feature-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 14px;
+  line-height: 1.28;
+}
+.feature-desc {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.95;
+  margin-bottom: 24px;
+}
+.feature-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.feature-tag {
+  background: rgba(201,96,122,0.07);
+  border: 1px solid rgba(201,96,122,0.15);
+  color: var(--rose-deep);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  padding: 5px 14px;
+  border-radius: 2px;
+}
+.feature-right { text-align: center; position: relative; }
+.feature-type-big {
+  font-family: var(--font-display);
+  font-size: 84px;
+  font-style: italic;
+  color: var(--rose);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.feature-type-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+/* ── DIAGNOSIS GRID ── */
+.diag-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.diag-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 20px 20px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  min-height: 160px;
+}
+.diag-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px var(--shadow);
+  border-color: var(--rose);
+  background: white;
+}
+.diag-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.diag-card:hover::after { transform: scaleX(1); }
+.diag-icon {
+  width: 46px; height: 46px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.diag-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.diag-desc {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.75;
+  flex: 1;
+}
+.diag-count {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--rose);
+  margin-top: auto;
+}
+
+/* ── FORTUNE SECTION ── */
+.fortune-section-bg {
+  background: linear-gradient(170deg, var(--cream) 0%, #ede8f8 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.fortune-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 16px;
+}
+.fortune-main {
+  background: linear-gradient(140deg, #fdf5ff, #fce9ed);
+  border: 1px solid rgba(201,96,122,0.14);
+  border-radius: 16px;
+  padding: 42px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.fortune-main:hover { transform: translateY(-4px); }
+.fortune-main::before {
+  content: '✦';
+  position: absolute;
+  font-size: 200px;
+  right: -30px; bottom: -60px;
+  opacity: 0.04;
+  line-height: 1;
+  color: var(--rose);
+  pointer-events: none;
+}
+.fortune-main-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.fortune-main-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.32;
+  margin-bottom: 14px;
+}
+.fortune-main-desc {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.9;
+  flex: 1;
+}
+.fortune-main-cta {
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--rose);
+  color: white;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 26px;
+  border-radius: 4px;
+  width: fit-content;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.35s;
+}
+.fortune-main-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--rose-deep);
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+}
+.fortune-main-cta:hover::before { transform: translateX(0); }
+.fortune-main-cta span { position: relative; z-index: 1; }
+.fortune-sub {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 26px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.3s;
+}
+.fortune-sub:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px var(--shadow);
+  border-color: var(--rose);
+}
+.fortune-sub-icon { font-size: 36px; line-height: 1; }
+.fortune-sub-cat {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.fortune-sub-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.fortune-sub-desc {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.75;
+}
+
+/* ── PREMIUM SECTION (dark) ── */
+.premium-section {
+  background: linear-gradient(170deg, #1a1025 0%, #0d0a17 100%);
+  border-top: 1px solid rgba(201,168,76,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.premium-section::before {
+  content: 'PREMIUM';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(80px, 14vw, 200px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,168,76,0.08);
+  left: -10px;
+  bottom: -20px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.04em;
+}
+.premium-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.premium-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.premium-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.premium-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+.plans-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.plan-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 36px 28px;
+  position: relative;
+}
+.plan-card.featured {
+  border-color: var(--gold);
+  padding-top: 52px;
+  background: rgba(201,168,76,0.06);
+}
+.plan-popular-badge {
+  position: absolute;
+  top: -14px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  padding: 5px 22px;
+  border-radius: 2px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.plan-name {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.plan-price { margin-bottom: 28px; }
+.plan-price-num {
+  font-family: var(--font-display);
+  font-size: 46px;
+  color: white;
+  line-height: 1;
+}
+.plan-price-period {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  margin-left: 4px;
+}
+.plan-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.plan-features li {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.6;
+}
+.plan-features li::before {
+  content: '—';
+  color: var(--gold);
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.plan-btn {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.35s;
+  font-family: var(--font-serif);
+}
+.plan-btn span { position: relative; z-index: 1; }
+.plan-btn-free {
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8);
+  background: transparent;
+}
+.plan-btn-free::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.1);
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+}
+.plan-btn-free:hover { color: white; }
+.plan-btn-free:hover::before { transform: translateX(0); }
+
+.plan-btn-gold {
+  background: var(--gold);
+  color: var(--ink);
+}
+.plan-btn-gold::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: #a07820;
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+}
+.plan-btn-gold:hover { color: white; }
+.plan-btn-gold:hover::before { transform: translateX(0); }
+
+.plan-btn-silver {
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+}
+.plan-btn-silver::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.12);
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+}
+.plan-btn-silver:hover { color: white; }
+.plan-btn-silver:hover::before { transform: translateX(0); }
+
+/* ── FORTUNE BANNER (16type) ── */
+.fortune-banner {
+  background: linear-gradient(140deg, #fff4f7 0%, #f7efff 100%);
+  border: 1px solid rgba(201,96,122,0.12);
+  border-radius: 16px;
+  padding: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.fortune-banner::before {
+  content: '16';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(260px, 36vw, 420px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,96,122,0.04);
+  right: -40px;
+  bottom: -100px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.fortune-banner-left { position: relative; z-index: 1; }
+.fortune-banner-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fortune-banner-eyebrow::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--rose);
+}
+.fortune-banner-num {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7vw, 80px);
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.fortune-banner-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.fortune-banner-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.fortune-banner-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(201,96,122,0.08);
+  border: 1px solid rgba(201,96,122,0.15);
+  color: var(--rose-deep);
+}
+.fortune-banner-right { position: relative; z-index: 1; }
+.fortune-banner-right-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+.fortune-banner-right-desc {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+
+/* ── DEEP DIVE ── */
+.deepdive-grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 16px;
+}
+.deepdive-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 38px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.32s;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.deepdive-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 52px var(--shadow);
+  border-color: var(--rose);
+}
+.deepdive-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.deepdive-card:hover::before { transform: scaleX(1); }
+.deepdive-ext-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  padding: 4px 12px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+.deepdive-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.deepdive-desc {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.85;
+  flex: 1;
+}
+.deepdive-link {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.25s;
+}
+.deepdive-card:hover .deepdive-link { gap: 12px; }
+
+/* ── COLUMN ── */
+.column-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.col-card {
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.col-img-wrap {
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--border);
+}
+.col-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.52s ease;
+  display: block;
+}
+.col-card:hover .col-img-wrap img { transform: scale(1.07); }
+.col-img-bg {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.col-cat {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.col-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.col-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-light);
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--ink);
+  color: rgba(247,243,237,0.5);
+  padding: 72px 48px 36px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(247,243,237,0.07);
+  margin-bottom: 36px;
+}
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--parchment);
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+}
+.footer-brand-desc {
+  font-size: 13px;
+  line-height: 1.85;
+  margin-bottom: 24px;
+}
+.footer-heading {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-links a {
+  font-size: 13px;
+  color: rgba(247,243,237,0.42);
+  text-decoration: none;
+  transition: color 0.25s;
+  position: relative;
+  display: inline-block;
+}
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 0; height: 1px;
+  background: var(--rose);
+  transition: width 0.3s ease;
+}
+.footer-links a:hover { color: var(--parchment); }
+.footer-links a:hover::after { width: 100%; }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 32px; }
+  .hero-profile { max-width: 420px; }
+  .popular-grid { grid-template-columns: 1fr 1fr; }
+  .diag-grid { grid-template-columns: repeat(2, 1fr); }
+  .plans-grid { grid-template-columns: 1fr; gap: 20px; }
+  .plan-card.featured { padding-top: 36px; }
+  .plan-popular-badge { position: static; transform: none; display: inline-block; margin-bottom: 14px; }
+  .fortune-grid { grid-template-columns: 1fr; }
+  .column-grid { grid-template-columns: repeat(2, 1fr); }
+  .deepdive-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .feature-banner-wrap { grid-template-columns: 1fr; padding: 40px; }
+  .feature-right { display: none; }
+  .fortune-banner { grid-template-columns: 1fr; padding: 40px; gap: 32px; }
+  .section { padding: 80px 32px; }
+  .footer { padding: 64px 32px 32px; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 0 24px; height: 60px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero {
+    padding-bottom: 48px;
+    padding-top: 100px;
+    align-items: center;
+    min-height: 100svh;
+  }
+  .hero-content { padding: 0 24px; }
+  .hero-eyebrow { margin-bottom: 14px; }
+  .popular-grid { grid-template-columns: 1fr; }
+  .diag-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 22px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .column-grid { grid-template-columns: 1fr 1fr; }
+  .section { padding: 64px 22px; }
+  .footer { padding: 56px 22px 28px; }
+  .feature-banner-wrap { padding: 28px 24px; }
+}
+@media (max-width: 480px) {
+  .diag-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .diag-card { min-height: 140px; padding: 18px 14px 16px; }
+  .diag-title { font-size: 13px; }
+  .diag-desc { font-size: 11px; line-height: 1.6; }
+  .column-grid { grid-template-columns: 1fr; }
+  .fortune-type-grid { gap: 6px; }
+  .fortune-type-btn { font-size: 12px; padding: 12px 3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .marquee-track { animation: none; }
+}
+
+/* ── MOBILE MENU DRAWER ── */
+.nav-drawer {
+  position: fixed;
+  top: 60px;
+  left: 0; right: 0;
+  background: rgba(250,247,242,0.98);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  z-index: 490;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.nav-drawer.open {
+  max-height: 420px;
+}
+.nav-drawer-inner {
+  padding: 8px 24px 24px;
+}
+.nav-drawer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.nav-drawer ul li a {
+  display: block;
+  padding: 15px 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+.nav-drawer ul li:last-child a { border-bottom: none; }
+.nav-drawer ul li a:hover { color: var(--rose); }
+.nav-drawer .drawer-cta {
+  display: block;
+  margin-top: 16px;
+  padding: 14px;
+  background: var(--rose);
+  color: white;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+}
+.nav-drawer .drawer-cta:hover { background: var(--rose-deep); }
+
+/* ── DIAGNOSIS MODAL ── */
+.diag-card { cursor: pointer; }
+.diag-modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(26,16,37,0.75);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.diag-modal-overlay.open {
+  display: flex;
+}
+.diag-modal-box {
+  background: white;
+  border-radius: 20px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 48px 40px;
+  box-shadow: 0 40px 100px rgba(26,16,37,0.35);
+  animation: modalIn 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.diag-modal-close {
+  position: absolute;
+  top: 18px; right: 20px;
+  background: var(--cream);
+  border: none;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--text-light);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.diag-modal-close:hover { background: var(--rose-light); color: var(--rose-deep); }
+.diag-modal-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.diag-modal-icon {
+  font-size: 44px;
+  margin-bottom: 14px;
+  width: 72px; height: 72px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+.diag-modal-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.diag-modal-sub {
+  font-size: 13px;
+  color: var(--text-light);
+}
+.diag-modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.diag-modal-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.22s;
+  background: var(--cream);
+}
+.diag-modal-item:hover {
+  border-color: var(--rose);
+  background: white;
+  transform: translateX(4px);
+  box-shadow: 0 4px 18px var(--shadow);
+}
+.diag-modal-item-info {}
+.diag-modal-item-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.diag-modal-item-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-light);
+}
+.diag-modal-item-arrow {
+  color: var(--rose);
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: transform 0.22s;
+}
+.diag-modal-item:hover .diag-modal-item-arrow { transform: translateX(4px); }
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" id="mainNav">
+  <a href="#" class="nav-logo">UTAGE LAB</a>
+  <ul class="nav-links">
+    <li><a href="#diagnoses">診断</a></li>
+    <li><a href="#fortune">占い</a></li>
+    <li><a href="#types">タイプ解説</a></li>
+    <li><a href="#column">コラム</a></li>
+    <li><a href="#deepdive">研究</a></li>
+    <li><a href="#premium" class="nav-cta"><span class="cta-inner">✦ プレミアム</span></a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-inner">
+    <ul>
+      <li><a href="#diagnoses" onclick="toggleMenu()">診断</a></li>
+      <li><a href="#fortune" onclick="toggleMenu()">占い</a></li>
+      <li><a href="#types" onclick="toggleMenu()">タイプ解説</a></li>
+      <li><a href="#column" onclick="toggleMenu()">コラム</a></li>
+      <li><a href="#deepdive" onclick="toggleMenu()">研究</a></li>
+    </ul>
+    <a href="#premium" class="drawer-cta" onclick="toggleMenu()">✦ プレミアム</a>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-slide active" style="background-image: url('https://picsum.photos/id/1015/1920/1080'); background-position: center 60%;"></div>
+    <div class="hero-slide" style="background-image: url('https://picsum.photos/id/1035/1920/1080'); background-position: center 50%;"></div>
+    <div class="hero-slide" style="background-image: url('https://picsum.photos/id/1036/1920/1080'); background-position: center 40%;"></div>
+    <div class="hero-slide" style="background-image: url('https://picsum.photos/id/1019/1920/1080'); background-position: center 50%;"></div>
+    <div class="hero-slide" style="background-image: url('https://picsum.photos/id/1018/1920/1080'); background-position: center 40%;"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-light"></div>
+  <!-- Slideshow dots -->
+  <div class="hero-dots" id="heroDots">
+    <button class="hero-dot active" onclick="goToSlide(0)"></button>
+    <button class="hero-dot" onclick="goToSlide(1)"></button>
+    <button class="hero-dot" onclick="goToSlide(2)"></button>
+    <button class="hero-dot" onclick="goToSlide(3)"></button>
+    <button class="hero-dot" onclick="goToSlide(4)"></button>
+  </div>
+
+  <div class="hero-content">
+    <!-- Left: main copy -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">総合心理診断ポータル</div>
+      <h1 class="hero-title">
+        心の奥を、<br><em>のぞいてみよう。</em>
+      </h1>
+      <p class="hero-subtitle">
+        心理診断・タイプ分析・相性診断・占いを融合した、<br>
+        あなたの内側を深く探るプラットフォーム。<br>
+        初心者からコア層まで、段階的に深まれる設計。
+      </p>
+      <div class="hero-actions">
+        <a href="#diagnoses" class="btn-slide btn-primary-slide"><span>今すぐ診断する</span></a>
+        <a href="https://utage-jpg.github.io/ruikei_portal/" target="_blank" class="btn-slide btn-ghost-slide"><span>類型ポータルへ</span></a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">120+</div>
+          <div class="hero-stat-label">Diagnoses</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">16</div>
+          <div class="hero-stat-label">Personality Types</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">∞</div>
+          <div class="hero-stat-label">Compatibility</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Profile card (overlapping) -->
+    <div class="hero-profile">
+      <div class="profile-top">
+        <div class="profile-avatar" id="profileAvatar">
+          <img src="" alt="プロフィール画像" id="profileImg">
+          <span id="profileEmoji">👤</span>
+        </div>
+        <div>
+          <div class="profile-name">あなたの名前</div>
+          <div class="profile-handle">@yourhandle</div>
+        </div>
+      </div>
+      <p class="profile-bio">
+        心理学・MBTI・ソシオニクスを研究中。<br>
+        タイプ論と自己理解に興味があるすべての人へ、
+        このサイトを届けたいと思っています。
+      </p>
+      <div class="profile-links">
+        <a href="https://x.com/" target="_blank" class="profile-link">
+          <div class="profile-link-icon" style="background:#000; color:white; position:relative; z-index:1;">𝕏</div>
+          <div class="profile-link-text">
+            <div>X（Twitter）</div>
+            <div class="profile-link-sub">@yourhandle でつぶやき中</div>
+          </div>
+        </a>
+        <a href="https://note.com/" target="_blank" class="profile-link">
+          <div class="profile-link-icon" style="background:#41C9B4; color:white; font-size:12px; font-weight:700; position:relative; z-index:1;">n</div>
+          <div class="profile-link-text">
+            <div>note</div>
+            <div class="profile-link-sub">心理学コラムを書いています</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE SEPARATOR ===== -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">MBTI <span class="marquee-sep">·</span> 16タイプ <span class="marquee-sep">·</span> ソシオニクス <span class="marquee-sep">·</span> 心理診断 <span class="marquee-sep">·</span> 相性診断 <span class="marquee-sep">·</span> 深層心理 <span class="marquee-sep">·</span> 認知機能 <span class="marquee-sep">·</span> エニアグラム <span class="marquee-sep">·</span> ビッグファイブ <span class="marquee-sep">·</span> タイプ論 <span class="marquee-sep">·</span> 自己理解 <span class="marquee-sep">·</span> 占い <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">MBTI <span class="marquee-sep">·</span> 16タイプ <span class="marquee-sep">·</span> ソシオニクス <span class="marquee-sep">·</span> 心理診断 <span class="marquee-sep">·</span> 相性診断 <span class="marquee-sep">·</span> 深層心理 <span class="marquee-sep">·</span> 認知機能 <span class="marquee-sep">·</span> エニアグラム <span class="marquee-sep">·</span> ビッグファイブ <span class="marquee-sep">·</span> タイプ論 <span class="marquee-sep">·</span> 自己理解 <span class="marquee-sep">·</span> 占い <span class="marquee-sep">·</span></span>
+  </div>
+</div>
+
+<!-- ===== CATEGORY STRIP ===== -->
+<div class="cat-strip">
+  <div class="cat-inner">
+    <a class="cat-item active" href="#diagnoses">
+      <span class="cat-item-icon">🧠</span><span>タイプ診断</span>
+    </a>
+    <a class="cat-item" href="#fortune">
+      <span class="cat-item-icon">✨</span><span>占い</span>
+    </a>
+    <a class="cat-item" href="#diagnoses">
+      <span class="cat-item-icon">❤</span><span>相性診断</span>
+    </a>
+    <a class="cat-item" href="#diagnoses">
+      <span class="cat-item-icon">🔮</span><span>深層心理</span>
+    </a>
+    <a class="cat-item" href="#column">
+      <span class="cat-item-icon">📖</span><span>コラム</span>
+    </a>
+    <a class="cat-item" href="#deepdive">
+      <span class="cat-item-icon">🔬</span><span>研究</span>
+    </a>
+    <a class="cat-item" href="#premium">
+      <span class="cat-item-icon">✦</span><span>プレミアム</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===== DAILY FORTUNE ===== -->
+<div class="fortune-daily-wrap" id="daily-fortune">
+  <div class="section" style="padding-bottom: 48px;">
+    <div class="fortune-daily-header reveal">
+      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank">
+        <img src="assets/fortune-logo.jpg" alt="16type × fortune" class="fortune-daily-logo">
+      </a>
+      <p class="fortune-daily-subtitle">
+        あなたのMBTIタイプを選んで、今日の運勢を確認しよう。毎日更新。
+      </p>
+      <div style="margin-top: 24px;">
+        <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-daily-cta"><span>✨ 今日の運勢を見る</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== POLA FEATURED SECTION ===== -->
+<div class="pola-featured-wrap" id="pola-featured">
+  <div class="section">
+
+    <!-- Section header -->
+    <div class="section-header reveal" style="margin-bottom: 28px;">
+      <div>
+        <div class="section-eyebrow">✦ Featured Diagnosis</div>
+        <h2 class="section-title" style="white-space: nowrap;">恋愛極性診断</h2>
+      </div>
+    </div>
+
+    <!-- Main featured card -->
+    <div class="pola-main-card reveal">
+
+      <!-- Left content -->
+      <div class="pola-main-left">
+        <div class="pola-badge">
+          <span class="pola-badge-dot"></span>
+          NEW — UTAGE LABの代表作
+        </div>
+
+        <div class="pola-logo-lockup">
+          <span class="pola-logo-p">P</span><span class="pola-logo-rest">ola</span>
+        </div>
+
+        <p class="pola-subtitle">— 恋愛極性診断 —</p>
+
+        <p class="pola-desc">
+          「どう動くか」と「なぜ動くか」。2つの軸が交差するところに、あなたの恋愛の本質がある。全30問・12タイプ・深層まで分析する本格恋愛診断。
+        </p>
+
+        <div class="pola-tags">
+          <span class="pola-tag">💡 12タイプ</span>
+          <span class="pola-tag">📝 全30問</span>
+          <span class="pola-tag">⏱ 約5〜7分</span>
+          <span class="pola-tag">👥 受診者急増中</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA row (outside card) -->
+    <div class="pola-cta-row reveal">
+      <a href="https://utage-jpg.github.io/pola_diagnosis/" target="_blank" class="pola-btn-main">
+        <span class="pola-btn-inner">診断を始める →</span>
+      </a>
+      <a href="https://utage-jpg.github.io/pola_portal/" target="_blank" class="pola-btn-portal">
+        🗺️ タイプ一覧を見る
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== POPULAR DIAGNOSES ===== -->
+<div id="diagnoses" style="background: var(--cream);">
+<div class="section">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Popular</div>
+      <h2 class="section-title">人気の心理診断</h2>
+    </div>
+    <a href="#" class="section-more">すべて見る →</a>
+  </div>
+
+  <div class="popular-grid">
+    <!-- Card 1 (featured) -->
+    <a href="pages/16type.html" class="popular-card feat reveal">
+      <div class="popular-card-img">
+        <img src="https://picsum.photos/id/1025/800/500" alt="16タイプ診断" loading="lazy">
+        <div class="popular-card-img-overlay"></div>
+        <div class="popular-card-rank">No.1</div>
+      </div>
+      <div class="popular-card-body">
+        <div class="popular-card-cat" style="color: var(--violet)">MBTI系</div>
+        <div class="popular-card-title">16タイプ 本格心理診断</div>
+        <div class="popular-card-meta">
+          <span>👥 42万人が受診</span>
+          <span>⏱ 約5分</span>
+        </div>
+        <div class="popular-card-cta" style="background: var(--violet-light); color: var(--violet)">診断スタート →</div>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="pages/love-type.html" class="popular-card reveal reveal-delay-1">
+      <div class="popular-card-img">
+        <img src="https://picsum.photos/id/1024/600/400" alt="恋愛タイプ診断" loading="lazy">
+        <div class="popular-card-img-overlay"></div>
+        <div class="popular-card-rank">No.2</div>
+      </div>
+      <div class="popular-card-body">
+        <div class="popular-card-cat" style="color: var(--rose)">恋愛</div>
+        <div class="popular-card-title">恋愛タイプ診断 〜 あなたの愛し方は？</div>
+        <div class="popular-card-meta">
+          <span>👥 28万人が受診</span>
+          <span>⏱ 約3分</span>
+        </div>
+        <div class="popular-card-cta" style="background: var(--rose-light); color: var(--rose-deep)">診断スタート →</div>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="pages/deep.html" class="popular-card reveal reveal-delay-2">
+      <div class="popular-card-img">
+        <img src="https://picsum.photos/id/1043/600/400" alt="深層心理テスト" loading="lazy">
+        <div class="popular-card-img-overlay"></div>
+        <div class="popular-card-rank">No.3</div>
+      </div>
+      <div class="popular-card-body">
+        <div class="popular-card-cat" style="color: var(--teal)">深層心理</div>
+        <div class="popular-card-title">深層心理テスト〜あなたの無意識が語るもの</div>
+        <div class="popular-card-meta">
+          <span>👥 19万人が受診</span>
+          <span>⏱ 約4分</span>
+        </div>
+        <div class="popular-card-cta" style="background: var(--teal-light); color: var(--teal)">診断スタート →</div>
+      </div>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- ===== DIAGNOSIS CATEGORIES ===== -->
+<div style="background: var(--parchment);">
+<div class="section" style="padding-top: 0">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Categories</div>
+      <h2 class="section-title">診断カテゴリ一覧</h2>
+    </div>
+  </div>
+
+  <div class="diag-grid">
+    <div class="diag-card reveal" onclick="openDiagModal('type')">
+      <div class="diag-icon" style="background: var(--violet-light)">🧠</div>
+      <div class="diag-title">タイプ診断</div>
+      <div class="diag-desc">MBTI・16タイプ・ソシオニクスなど多様な類型論で自分を知る</div>
+      <div class="diag-count">→ 32の診断</div>
+    </div>
+    <div class="diag-card reveal reveal-delay-1" onclick="openDiagModal('love')">
+      <div class="diag-icon" style="background: var(--rose-light)">❤</div>
+      <div class="diag-title">恋愛・相性診断</div>
+      <div class="diag-desc">恋愛スタイル・愛着スタイル・タイプ別相性を詳細分析</div>
+      <div class="diag-count">→ 28の診断</div>
+    </div>
+    <div class="diag-card reveal reveal-delay-2" onclick="openDiagModal('deep')">
+      <div class="diag-icon" style="background: var(--teal-light)">🔮</div>
+      <div class="diag-title">深層心理</div>
+      <div class="diag-desc">ユング心理学・シャドウ・元型など無意識の世界を探る</div>
+      <div class="diag-count">→ 20の診断</div>
+    </div>
+    <div class="diag-card reveal reveal-delay-3" onclick="openDiagModal('fortune')">
+      <div class="diag-icon" style="background: var(--amber-light)">✨</div>
+      <div class="diag-title">占い・スピリチュアル</div>
+      <div class="diag-desc">星座・数秘術・タロットを心理学的観点で解釈</div>
+      <div class="diag-count">→ 24の診断</div>
+    </div>
+    <div class="diag-card reveal" onclick="openDiagModal('career')">
+      <div class="diag-icon" style="background: #e8f0fd">💼</div>
+      <div class="diag-title">仕事・強み診断</div>
+      <div class="diag-desc">職業適性・リーダーシップ・ストレス耐性を測定</div>
+      <div class="diag-count">→ 18の診断</div>
+    </div>
+    <div class="diag-card reveal reveal-delay-1" onclick="openDiagModal('growth')">
+      <div class="diag-icon" style="background: #f0fae8">🌱</div>
+      <div class="diag-title">成長・自己理解</div>
+      <div class="diag-desc">防衛機制・成熟度・自己効力感を多面的に評価</div>
+      <div class="diag-count">→ 16の診断</div>
+    </div>
+    <div class="diag-card reveal reveal-delay-2" onclick="openDiagModal('stress')">
+      <div class="diag-icon" style="background: #fdf0e8">🧩</div>
+      <div class="diag-title">ストレス・メンタル</div>
+      <div class="diag-desc">ストレス耐性・消耗パターン・回復タイプを多面的に評価</div>
+      <div class="diag-count">→ 12の診断</div>
+    </div>
+    <a href="https://utage-jpg.github.io/ruikei_portal/" target="_blank" class="diag-card reveal reveal-delay-3" style="border-style: dashed;">
+      <div class="diag-icon" style="background: var(--border)">＋</div>
+      <div class="diag-title">もっと見る</div>
+      <div class="diag-desc">全120以上の診断コンテンツを探索する</div>
+      <div class="diag-count">→ 類型ポータルへ ↗</div>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- ===== DIAGNOSIS MODAL ===== -->
+<div id="diagModal" class="diag-modal-overlay" onclick="closeDiagModal(event)">
+  <div class="diag-modal-box">
+    <button class="diag-modal-close" onclick="closeDiagModal()">✕</button>
+    <div class="diag-modal-header">
+      <div class="diag-modal-icon" id="modalIcon"></div>
+      <h3 class="diag-modal-title" id="modalTitle"></h3>
+      <p class="diag-modal-sub" id="modalSub"></p>
+    </div>
+    <div class="diag-modal-list" id="modalList"></div>
+  </div>
+</div>
+
+<!-- ===== FORTUNE SECTION ===== -->
+<div class="fortune-section-bg" id="fortune">
+  <div class="section">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow">Fortune</div>
+        <h2 class="section-title">占いコンテンツ</h2>
+      </div>
+      <a href="#" class="section-more">すべて見る →</a>
+    </div>
+
+    <div class="fortune-grid reveal">
+      <a href="#" class="fortune-main">
+        <div class="fortune-main-eyebrow">✦ Featured</div>
+        <div class="fortune-main-title">16タイプ別<br>2025年の運命占い</div>
+        <div class="fortune-main-desc">
+          MBTIタイプ × 占星術の融合。あなたのタイプが持つ今年の宿命と、
+          最も輝く季節を解き明かします。16通りの専用リーディング付き。
+        </div>
+        <span class="fortune-main-cta"><span>✨ 占いを受ける</span></span>
+      </a>
+
+      <a href="#" class="fortune-sub">
+        <div class="fortune-sub-icon">♈</div>
+        <div class="fortune-sub-cat" style="color: var(--violet)">占星術</div>
+        <div class="fortune-sub-title">タイプ別 星座運命鑑定</div>
+        <div class="fortune-sub-desc">あなたのMBTIと星座が交差する運命とは</div>
+      </a>
+
+      <a href="pages/suuhijutu.html" class="fortune-sub">
+        <div class="fortune-sub-icon">🔢</div>
+        <div class="fortune-sub-cat" style="color: var(--amber)">数秘術</div>
+        <div class="fortune-sub-title">ライフパスナンバー診断</div>
+        <div class="fortune-sub-desc">誕生日から導く魂の使命と人格の秘密</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PREMIUM SECTION ===== -->
+<section class="premium-section" id="premium">
+  <div class="section">
+    <div class="premium-header reveal">
+      <div class="premium-eyebrow">✦ Premium</div>
+      <h2 class="premium-title">あなたの深層を、もっと深く</h2>
+      <p class="premium-sub">プレミアム会員限定の詳細分析であなたの心理を完全解明</p>
+    </div>
+
+    <div class="plans-grid reveal">
+      <!-- Free -->
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">
+          <span class="plan-price-num">¥0</span>
+          <span class="plan-price-period">/ 永久無料</span>
+        </div>
+        <ul class="plan-features">
+          <li>基本タイプ診断（全16タイプ）</li>
+          <li>タイプ説明・基本解説</li>
+          <li>SNS共有機能</li>
+          <li>占いコンテンツ（一部）</li>
+          <li>心理コラム閲覧</li>
+        </ul>
+        <button class="plan-btn plan-btn-free"><span>無料で始める</span></button>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card featured">
+        <div class="plan-popular-badge">✦ 最もオトク</div>
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">
+          <span class="plan-price-num">¥580</span>
+          <span class="plan-price-period">/ 月（年払い）</span>
+        </div>
+        <ul class="plan-features">
+          <li>すべての無料コンテンツ</li>
+          <li>詳細心理プロファイル（30ページ+）</li>
+          <li>恋愛タイプ &amp; 愛着スタイル分析</li>
+          <li>全16タイプとの詳細相性データ</li>
+          <li>認知機能スタック分析</li>
+          <li>深層心理・シャドウ解析</li>
+          <li>人格統合マップ（ビジュアル）</li>
+          <li>月次占い &amp; タイプ別運勢</li>
+          <li>ソシオニクス診断連携</li>
+        </ul>
+        <button class="plan-btn plan-btn-gold"><span>プレミアムを始める</span></button>
+      </div>
+
+      <!-- Lab -->
+      <div class="plan-card">
+        <div class="plan-name">Lab</div>
+        <div class="plan-price">
+          <span class="plan-price-num">¥1,480</span>
+          <span class="plan-price-period">/ 月</span>
+        </div>
+        <ul class="plan-features">
+          <li>Premiumの全機能</li>
+          <li>ソシオニクス完全診断</li>
+          <li>類型ポータル全コンテンツ</li>
+          <li>研究データベース閲覧</li>
+          <li>有名人タイプ比較分析</li>
+          <li>コミュニティアクセス</li>
+          <li>診断履歴 &amp; トラッキング</li>
+        </ul>
+        <button class="plan-btn plan-btn-silver"><span>Labを始める</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== DEEP DIVE ===== -->
+<div style="background: var(--parchment);">
+<div class="section reveal" id="deepdive">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Deep Dive</div>
+      <h2 class="section-title">もっと深く知りたい方へ</h2>
+    </div>
+  </div>
+
+  <div class="deepdive-grid">
+    <a href="https://utage-jpg.github.io/ruikei_portal/" target="_blank" class="deepdive-card reveal">
+      <div class="deepdive-ext-badge" style="background: var(--violet-light); color: var(--violet)">
+        🔗 外部サイト
+      </div>
+      <div class="deepdive-title">類型ポータル<br>— 中級者向け類型論の総合解説</div>
+      <div class="deepdive-desc">
+        MBTI・ソシオニクス・エニアグラム・ビッグファイブなど、
+        主要な類型論を体系的に学べる中級者向けポータル。
+        タイプ別の詳細解説と比較研究が充実。
+      </div>
+      <div class="deepdive-link" style="color: var(--violet)">類型ポータルへ ↗</div>
+    </a>
+
+    <a href="https://utage-jpg.github.io/socionics/" target="_blank" class="deepdive-card reveal reveal-delay-1">
+      <div class="deepdive-ext-badge" style="background: var(--teal-light); color: var(--teal)">
+        🔬 研究ツール
+      </div>
+      <div class="deepdive-title">Socionics Lab<br>— ソシオニクス診断・研究</div>
+      <div class="deepdive-desc">
+        旧ソ連発祥の心理類型論「ソシオニクス」を専門的に探求。
+        16タイプ × 相互関係理論で人間関係を科学的に分析する
+        コア層向けの研究プラットフォーム。
+      </div>
+      <div class="deepdive-link" style="color: var(--teal)">Socionics Labへ ↗</div>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- ===== COLUMN ===== -->
+<div style="background: var(--cream);">
+<div class="section reveal" id="column">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Column</div>
+      <h2 class="section-title">心理コラム</h2>
+    </div>
+    <a href="#" class="section-more">すべて見る →</a>
+  </div>
+
+  <div class="column-grid">
+    <a href="#" class="col-card reveal">
+      <div class="col-img-wrap">
+        <img src="https://picsum.photos/id/1040/500/350" alt="認知機能" loading="lazy">
+      </div>
+      <div class="col-cat" style="color: var(--violet)">認知機能</div>
+      <div class="col-title">Niとは何か？未来を見通す「内向的直感」の正体</div>
+      <div class="col-meta">2025.03.01</div>
+    </a>
+    <a href="#" class="col-card reveal reveal-delay-1">
+      <div class="col-img-wrap">
+        <img src="https://picsum.photos/id/1041/500/350" alt="恋愛心理" loading="lazy">
+      </div>
+      <div class="col-cat" style="color: var(--rose)">恋愛心理</div>
+      <div class="col-title">タイプ別の愛し方 — INFPはなぜ尽くしすぎるのか</div>
+      <div class="col-meta">2025.02.25</div>
+    </a>
+    <a href="#" class="col-card reveal reveal-delay-2">
+      <div class="col-img-wrap">
+        <img src="https://picsum.photos/id/1042/500/350" alt="深層心理" loading="lazy">
+      </div>
+      <div class="col-cat" style="color: var(--ink)">深層心理</div>
+      <div class="col-title">シャドウと向き合う — ユングが語る「影」の統合</div>
+      <div class="col-meta">2025.02.18</div>
+    </a>
+    <a href="#" class="col-card reveal reveal-delay-3">
+      <div class="col-img-wrap">
+        <img src="https://picsum.photos/id/1044/500/350" alt="研究" loading="lazy">
+      </div>
+      <div class="col-cat" style="color: var(--teal)">研究</div>
+      <div class="col-title">ソシオニクスとMBTIの違いを徹底比較</div>
+      <div class="col-meta">2025.02.10</div>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">UTAGE LAB</div>
+        <div class="footer-brand-desc">
+          心理診断・タイプ分析・相性診断・占いを融合した<br>
+          日本最大級の総合心理探求プラットフォーム。
+        </div>
+        <div style="display:flex; gap:14px;">
+          <a href="#" style="color: rgba(247,243,237,0.4); font-size:13px; text-decoration:none; transition: color 0.25s;" onmouseover="this.style.color='rgba(247,243,237,0.85)'" onmouseout="this.style.color='rgba(247,243,237,0.4)'">𝕏 Twitter</a>
+          <a href="#" style="color: rgba(247,243,237,0.4); font-size:13px; text-decoration:none; transition: color 0.25s;" onmouseover="this.style.color='rgba(247,243,237,0.85)'" onmouseout="this.style.color='rgba(247,243,237,0.4)'">📷 Instagram</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">診断</div>
+        <ul class="footer-links">
+          <li><a href="pages/16type.html">タイプ診断</a></li>
+          <li><a href="pages/love-type.html">恋愛診断</a></li>
+          <li><a href="pages/deep.html">深層心理</a></li>
+          <li><a href="pages/attachment.html">相性診断</a></li>
+          <li><a href="https://utage-jpg.github.io/16type_fortune/" target="_blank">占い</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">研究</div>
+        <ul class="footer-links">
+          <li><a href="https://utage-jpg.github.io/ruikei_portal/" target="_blank">類型ポータル</a></li>
+          <li><a href="https://utage-jpg.github.io/socio_lens/" target="_blank">Socionics Lab</a></li>
+          <li><a href="https://utage-jpg.github.io/16type_fortune/" target="_blank">16タイプ占い</a></li>
+          <li><a href="#">心理コラム</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">サービス</div>
+        <ul class="footer-links">
+          <li><a href="#">プレミアム</a></li>
+          <li><a href="#">プロフィール</a></li>
+          <li><a href="#">利用規約</a></li>
+          <li><a href="#">プライバシー</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 UTAGE LAB. All rights reserved.</div>
+      <div style="font-size:9px; letter-spacing:0.18em; color: rgba(247,243,237,0.2); text-transform: uppercase;">Total Psychology Platform</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── PROFILE AVATAR ── */
+const profileImg  = document.getElementById('profileImg');
+const profileEmoji = document.getElementById('profileEmoji');
+if (profileImg && profileImg.src && profileImg.src !== window.location.href) {
+  profileImg.style.display = 'block';
+  profileEmoji.style.display = 'none';
+}
+
+/* ── NAV SCROLL STATE ── */
+const nav = document.getElementById('mainNav');
+function updateNav() {
+  if (window.scrollY > 40) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── MOBILE MENU ── */
+function toggleMenu() {
+  const drawer = document.getElementById('navDrawer');
+  if (!drawer) return;
+  drawer.classList.toggle('open');
+}
+
+/* ── CATEGORY STRIP ACTIVE ── */
+document.querySelectorAll('.cat-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
+
+/* ── HERO SLIDESHOW ── */
+(function() {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+  let current  = 0;
+  let timer;
+
+  // Preload all slide images to ensure they appear on PC
+  slides.forEach(slide => {
+    const bg = slide.style.backgroundImage;
+    const match = bg.match(/url\(['"]?([^'"]+)['"]?\)/);
+    if (match) {
+      const img = new Image();
+      img.src = match[1];
+    }
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+
+  function start() { timer = setInterval(next, 5000); }
+  function stop()  { clearInterval(timer); }
+
+  start();
+
+  // Pause on hover
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    heroBg.addEventListener('mouseenter', stop);
+    heroBg.addEventListener('mouseleave', start);
+  }
+
+  window.goToSlide = function(n) {
+    stop();
+    goTo(n);
+    start();
+  };
+})();
+
+/* ── DIAGNOSIS MODAL ── */
+const diagData = {
+  type: {
+    icon: '🧠',
+    bg: '#ede9f8',
+    title: 'タイプ診断',
+    sub: 'MBTI・16タイプ・ソシオニクスなど多様な類型論で自分を知る',
+    items: [
+      { name: '16タイプ 本格心理診断', meta: '約5分 ・ 42万人が受診', url: 'pages/16type.html' },
+      { name: 'MBTI認知機能タイプ診断', meta: '約8分 ・ 精度の高い認知機能分析', url: 'pages/16type.html' },
+      { name: 'ソシオニクス診断', meta: '約6分 ・ 16型相関マップ付き', url: 'https://utage-jpg.github.io/socionics/' },
+      { name: 'ビッグファイブ性格診断', meta: '約4分 ・ 科学的5因子モデル', url: 'pages/16type.html' },
+      { name: 'エニアグラム診断', meta: '約6分 ・ 9つのタイプと翼', url: 'pages/16type.html' },
+      { name: '思考タイプ診断（ThinkType）', meta: '約4分 ・ ビジョナリー/アーキテクト型など4タイプ', url: 'pages/thinktype.html' },
+    ]
+  },
+  love: {
+    icon: '❤',
+    bg: '#fae0e6',
+    title: '恋愛・相性診断',
+    sub: '恋愛スタイル・愛着スタイル・タイプ別相性を詳細分析',
+    items: [
+      { name: '恋愛タイプ診断', meta: '約3分 ・ 28万人が受診', url: 'pages/love-type.html' },
+      { name: '愛着スタイル診断', meta: '約5分 ・ 安定型/回避型/不安型', url: 'pages/attachment.html' },
+      { name: '16タイプ相性診断', meta: '約4分 ・ タイプ別詳細相性表', url: 'pages/love-type.html' },
+      { name: '恋愛コミュニケーションスタイル', meta: '約3分 ・ あなたの愛し方は？', url: 'pages/love-type.html' },
+      { name: 'ソウルメイトタイプ診断', meta: '約4分 ・ 運命的相性の探求', url: 'pages/love-type.html' },
+    ]
+  },
+  deep: {
+    icon: '🔮',
+    bg: '#e2f4f4',
+    title: '深層心理',
+    sub: 'ユング心理学・シャドウ・元型など無意識の世界を探る',
+    items: [
+      { name: '深層心理テスト', meta: '約4分 ・ 19万人が受診', url: 'pages/deep.html' },
+      { name: 'シャドウ診断', meta: '約6分 ・ あなたの隠れた面', url: 'pages/deep.html' },
+      { name: 'ユング元型（アーキタイプ）診断', meta: '約5分 ・ 12の元型を探る', url: 'pages/deep.html' },
+      { name: '防衛機制スタイル診断', meta: '約4分 ・ 心理的防衛パターン', url: 'pages/deep.html' },
+      { name: '内向・外向エネルギー診断', meta: '約3分 ・ エネルギー充電スタイル', url: 'pages/deep.html' },
+      { name: '感動タイプ診断', meta: '約3分 ・ What moves you? あなたの感性を探る', url: 'pages/movedtype.html' },
+    ]
+  },
+  fortune: {
+    icon: '✨',
+    bg: '#fef3e0',
+    title: '占い・スピリチュアル',
+    sub: '星座・数秘術・タロットを心理学的観点で解釈',
+    items: [
+      { name: '16タイプ今日の運勢', meta: '毎日更新 ・ 全タイプ対応', url: 'https://utage-jpg.github.io/16type_fortune/' },
+      { name: 'ライフパスナンバー診断', meta: '約2分 ・ 誕生日から導く使命', url: 'pages/suuhijutu.html' },
+      { name: 'タイプ別星座運命鑑定', meta: '約3分 ・ MBTI × 占星術', url: '#' },
+      { name: '2025年タイプ別運勢占い', meta: '特別版 ・ 全16タイプ分析', url: '#' },
+      { name: 'タロット心理テスト', meta: '約4分 ・ カードが映す深層心理', url: '#' },
+    ]
+  },
+  career: {
+    icon: '💼',
+    bg: '#e8f0fd',
+    title: '仕事・強み診断',
+    sub: '職業適性・リーダーシップ・ストレス耐性を測定',
+    items: [
+      { name: '職業適性タイプ診断', meta: '約5分 ・ タイプ別天職を探る', url: 'pages/career.html' },
+      { name: 'リーダーシップスタイル診断', meta: '約4分 ・ 5つのリーダータイプ', url: 'pages/career.html' },
+      { name: '強み・才能診断', meta: '約5分 ・ StrengthsFinderスタイル', url: 'pages/career.html' },
+      { name: 'チームでの役割診断', meta: '約3分 ・ ベルビン理論ベース', url: 'pages/career.html' },
+      { name: '仕事のモチベーション分析', meta: '約4分 ・ 何があなたを動かすか', url: 'pages/career.html' },
+    ]
+  },
+  growth: {
+    icon: '🌱',
+    bg: '#f0fae8',
+    title: '成長・自己理解',
+    sub: '防衛機制・成熟度・自己効力感を多面的に評価',
+    items: [
+      { name: '自己効力感診断', meta: '約4分 ・ あなたの心の強さ', url: 'pages/attachment.html' },
+      { name: '感情知性（EQ）診断', meta: '約6分 ・ 感情理解と管理力', url: 'pages/attachment.html' },
+      { name: '価値観スタイル診断', meta: '約5分 ・ 何を大切にしているか', url: 'pages/attachment.html' },
+      { name: '成熟度・自己受容診断', meta: '約4分 ・ 心理的成熟レベル', url: 'pages/attachment.html' },
+      { name: 'わらいのツボ診断', meta: '約3分 ・ あなたの「笑い」のクセを探る', url: 'pages/uniquetype.html' },
+    ]
+  },
+  stress: {
+    icon: '🧩',
+    bg: '#fdf0e8',
+    title: 'ストレス・メンタル',
+    sub: 'ストレス耐性・消耗パターン・回復タイプを測定',
+    items: [
+      { name: 'ストレス耐性診断', meta: '約4分 ・ あなたの耐久スタイル', url: 'pages/stress.html' },
+      { name: '燃え尽き症候群リスク診断', meta: '約3分 ・ バーンアウト予防', url: 'pages/stress.html' },
+      { name: '回復・リチャージスタイル診断', meta: '約3分 ・ エネルギーを回復する方法', url: 'pages/stress.html' },
+      { name: 'タイプ別消耗パターン診断', meta: '約4分 ・ 何があなたを疲弊させるか', url: 'pages/stress.html' },
+    ]
+  }
+};
+
+function openDiagModal(category) {
+  const data = diagData[category];
+  if (!data) return;
+  const modal = document.getElementById('diagModal');
+  const icon = document.getElementById('modalIcon');
+  const title = document.getElementById('modalTitle');
+  const sub = document.getElementById('modalSub');
+  const list = document.getElementById('modalList');
+
+  icon.textContent = data.icon;
+  icon.style.background = data.bg;
+  title.textContent = data.title;
+  sub.textContent = data.sub;
+
+  list.innerHTML = data.items.map(item => `
+    <a href="${item.url}" class="diag-modal-item" ${item.url.startsWith('http') ? 'target="_blank"' : ''}>
+      <div class="diag-modal-item-info">
+        <div class="diag-modal-item-name">${item.name}</div>
+        <div class="diag-modal-item-meta">${item.meta}</div>
+      </div>
+      <div class="diag-modal-item-arrow">→</div>
+    </a>
+  `).join('');
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDiagModal(e) {
+  if (e && e.target !== document.getElementById('diagModal')) return;
+  document.getElementById('diagModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('diagModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+</body>
+</html>

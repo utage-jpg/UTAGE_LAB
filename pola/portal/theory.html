@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恋愛引力理論｜理論解説 — Pola Portal</title>
+<meta name="description" content="恋愛引力理論の骨格を解説。ロマンススタイル（Se/Ni/Si/Ne）とセンター（ハート/ヘッド/ガッツ）の2軸モデルの全体像。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#faf8f5;--bg2:#f4f0e8;--paper:#fffdf9;
+  --ink:#1c1520;--text:#2e2440;--text-mid:#5a4f6e;--text-light:#9b8faa;
+  --border:#e2d5c8;--border2:#cfc0b0;
+  --rose:#c4566e;--rose-l:#fae0e8;--rose-d:#9c3a53;
+  --violet:#7655a8;--violet-l:#ece6f8;
+  --teal:#2e8b7a;--teal-l:#ddf2ee;
+  --amber:#c47830;--amber-l:#fdefd8;
+  --head:#5b7fa6;--head-l:#deeaf7;
+  --guts:#7a9c5b;--guts-l:#e4f0d8;
+  --shadow:rgba(28,21,32,0.10);
+  --font-d:'Cormorant Garamond',Georgia,serif;
+  --font-s:'Noto Serif JP',serif;
+  --font-m:'DM Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-s);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.8;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 24px;
+  background:rgba(250,248,245,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.nav-brand span{color:var(--rose);}
+.nav-links{display:flex;gap:4px;}
+.nav-link{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);text-decoration:none;letter-spacing:.06em;padding:5px 10px;border-radius:6px;transition:all .2s;}
+.nav-link:hover,.nav-link.active{color:var(--ink);background:var(--border);}
+@media(max-width:520px){.nav-links{display:none;}}
+
+/* HERO */
+.hero{padding:88px 24px 52px;text-align:center;background:linear-gradient(155deg,#fffcf8 0%,#f2e8dc 100%);border-bottom:1px solid var(--border);}
+.hero-tag{font-family:var(--font-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);padding:4px 16px;border:1px solid var(--border);border-radius:100px;display:inline-block;margin-bottom:16px;}
+.hero h1{font-family:var(--font-d);font-size:clamp(2rem,6vw,3.2rem);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:10px;}
+.hero h1 em{font-style:italic;color:var(--rose);}
+.hero p{font-size:.86rem;color:var(--text-mid);max-width:520px;margin:0 auto;font-weight:300;line-height:1.9;}
+
+/* TOC */
+.toc{max-width:860px;margin:0 auto;padding:32px 24px 0;}
+.toc-inner{border:1px solid var(--border);border-radius:14px;padding:20px 24px;background:var(--paper);}
+.toc-title{font-family:var(--font-m);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;}
+.toc-list{display:flex;flex-direction:column;gap:4px;}
+.toc-item{font-size:.82rem;color:var(--text-mid);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);transition:color .2s;}
+.toc-item:last-child{border-bottom:none;}
+.toc-item:hover{color:var(--rose);}
+.toc-num{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);margin-right:8px;}
+
+/* CONTENT */
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px;}
+.sec-tag{font-family:var(--font-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;display:block;}
+.sec-title{font-family:var(--font-d);font-size:clamp(1.5rem,3.5vw,2rem);font-weight:700;color:var(--ink);margin-bottom:16px;line-height:1.2;}
+.sec-title em{font-style:italic;color:var(--rose);}
+.lead{font-size:.88rem;color:var(--text-mid);line-height:1.95;margin-bottom:28px;font-weight:300;}
+
+/* CONCEPT */
+.concept-box{
+  border:1px solid var(--border);border-radius:16px;padding:28px;background:var(--paper);
+  margin-bottom:32px;
+}
+.concept-quote{
+  font-family:var(--font-d);font-size:1.1rem;font-style:italic;
+  color:var(--ink);line-height:1.7;margin-bottom:14px;padding-left:16px;
+  border-left:3px solid var(--rose);
+}
+.concept-body{font-size:.84rem;color:var(--text-mid);line-height:1.9;}
+
+/* AXIS CARDS */
+.axis-section{margin-bottom:40px;}
+.axis-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:600px){.axis-cards{grid-template-columns:1fr;}}
+.axis-card{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--paper);}
+.axis-card-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.axis-badge{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:.75rem;font-weight:600;color:white;flex-shrink:0;}
+.axis-card-name{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--ink);}
+.axis-card-sub{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);letter-spacing:.08em;}
+.axis-card-body{padding:16px 20px;}
+.axis-card-desc{font-size:.82rem;color:var(--text-mid);line-height:1.8;margin-bottom:12px;}
+.axis-card-key{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);letter-spacing:.06em;}
+.axis-card-key span{color:var(--ink);font-weight:500;}
+
+/* MATRIX */
+.matrix-section{margin-bottom:40px;}
+.matrix-overflow{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.matrix-table{width:100%;min-width:560px;border-collapse:collapse;font-size:.78rem;}
+.matrix-table th{padding:10px 14px;text-align:left;font-family:var(--font-m);font-size:.62rem;letter-spacing:.08em;color:var(--text-light);border:1px solid var(--border);background:var(--bg2);}
+.matrix-table td{padding:10px 14px;border:1px solid var(--border);vertical-align:top;background:var(--paper);}
+.mt-style{font-size:.75rem;font-weight:700;}
+.mt-name{font-weight:600;color:var(--ink);font-size:.85rem;}
+.mt-center{font-size:.72rem;font-weight:500;}
+.mt-core{font-size:.78rem;color:var(--text-mid);line-height:1.6;}
+
+/* WING EXPLAIN */
+.wing-explain{border:1px solid var(--border);border-radius:16px;padding:24px 28px;background:var(--paper);margin-bottom:32px;}
+.wing-explain h3{font-family:var(--font-d);font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:12px;}
+.wing-explain p{font-size:.84rem;color:var(--text-mid);line-height:1.9;margin-bottom:10px;}
+
+/* ORIGIN */
+.origin-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
+@media(max-width:560px){.origin-grid{grid-template-columns:1fr;}}
+.origin-card{border:1px solid var(--border);border-radius:14px;padding:20px;background:var(--paper);}
+.origin-card-title{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.origin-card-sub{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);letter-spacing:.06em;margin-bottom:10px;}
+.origin-card-desc{font-size:.8rem;color:var(--text-mid);line-height:1.8;}
+
+/* IMPORTANT NOTE */
+.note-box{background:#fdf3e8;border:1px solid #e8c99a;border-radius:12px;padding:16px 20px;margin:20px 0;}
+.note-title{font-family:var(--font-m);font-size:.65rem;letter-spacing:.1em;color:#b8763e;margin-bottom:6px;}
+.note-text{font-size:.82rem;color:var(--text-mid);line-height:1.8;}
+
+.divider{border:none;border-top:1px solid var(--border);margin:40px 0;}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;background:#f5f0e8;}
+.footer-brand{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.footer-brand span{color:var(--rose);}
+.footer-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:12px 0;}
+.footer-link{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);text-decoration:none;}
+.footer-link:hover{color:var(--text-mid);}
+.footer-note{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);}
+
+.fade-in{opacity:0;transform:translateY(16px);transition:all .55s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand"><em>Pola</em> <span>Portal</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">HOME</a>
+    <a href="theory.html" class="nav-link active">THEORY</a>
+    <a href="types.html" class="nav-link">TYPES</a>
+    <a href="compat.html" class="nav-link">COMPAT</a>
+    <a href="https://utage-jpg.github.io/pola_diagnosis/" class="nav-link">DIAGNOSIS</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="hero-tag">Theory — Love Gravity</span>
+  <h1>恋愛引力理論<br><em>の骨格</em></h1>
+  <p>「なぜ私は同じ恋愛を繰り返すのか」——<br>この問いに答えるために設計された2軸モデルの全体像を解説します。</p>
+</div>
+
+<div class="toc fade-in">
+  <div class="toc-inner">
+    <div class="toc-title">Contents</div>
+    <div class="toc-list">
+      <a href="#concept" class="toc-item"><span class="toc-num">01</span>理論の核心コンセプト</a>
+      <a href="#axis" class="toc-item"><span class="toc-num">02</span>2つの軸：ロマンススタイル × センター</a>
+      <a href="#matrix" class="toc-item"><span class="toc-num">03</span>12タイプ マトリクス</a>
+      <a href="#wing" class="toc-item"><span class="toc-num">04</span>ウィング（サブタイプ）の仕組み</a>
+      <a href="#origin" class="toc-item"><span class="toc-num">05</span>理論の起源と参考体系</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONCEPT -->
+<div class="wrap fade-in" id="concept">
+  <span class="sec-tag">01 — Concept</span>
+  <h2 class="sec-title">理論の<em>核心</em></h2>
+  <p class="lead">恋愛引力理論は「パターン」に注目します。「どんな人が好きか」ではなく、「どう動くか」と「なぜ動くか」——この2点が分かると、繰り返す恋愛のパターンの根本原因が見えてきます。</p>
+
+  <div class="concept-box">
+    <div class="concept-quote">「引き寄せられる相手」は変わっても、「関係の中での自分の動き方」は変わらない。</div>
+    <div class="concept-body">人は恋愛において、特定の「引力の方向性」を持っています。それは意識的な好みではなく、もっと深いところにある衝動——どう愛を求め、どう愛を確かめ、どう愛を表現するか、という本能的なパターンです。このパターンを「極性（Polarity）」と呼びます。<br><br>
+    Pola（極性診断）は、この「極性」を2つの軸——「ロマンススタイル」と「センター」——で測定し、12のコアタイプとして分類します。</div>
+  </div>
+
+  <div class="note-box">
+    <div class="note-title">⚠ 重要な前提</div>
+    <div class="note-text">このタイプ分類は「性格の良し悪し」や「恋愛の上手下手」を示すものではありません。どのタイプにも強みがあり、どのタイプにも成長すべき課題があります。診断結果は「自分を理解する地図」として使ってください。</div>
+  </div>
+</div>
+
+<hr class="divider" style="max-width:860px;margin:0 auto 0;padding:0 24px;">
+
+<!-- AXIS -->
+<div class="wrap fade-in" id="axis">
+  <span class="sec-tag">02 — Two Axes</span>
+  <h2 class="sec-title">2つの<em>軸</em></h2>
+  <p class="lead">タイプは縦軸「ロマンススタイル」と横軸「センター」の組み合わせで決まります。縦軸が「どう動くか（行動様式）」、横軸が「なぜ動くか（動機の源）」を示します。</p>
+
+  <!-- 縦軸 -->
+  <div class="axis-section">
+    <h3 style="font-family:var(--font-d);font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:16px;">縦軸 — ロマンススタイル（4種）</h3>
+    <p style="font-size:.83rem;color:var(--text-mid);margin-bottom:18px;line-height:1.9;">ソシオニクスの「モデルG」から抽出した機能の方向性を、恋愛行動に特化して再解釈したもの。「愛をどう動いて表現するか」という行動の型です。</p>
+
+    <div class="axis-cards">
+      <div class="axis-card">
+        <div class="axis-card-head">
+          <div class="axis-badge" style="background:#c4566e;">Se</div>
+          <div>
+            <div class="axis-card-name">侵略者型</div>
+            <div class="axis-card-sub">AGGRESSOR · 外向感覚</div>
+          </div>
+        </div>
+        <div class="axis-card-body">
+          <p class="axis-card-desc">自ら求め、前に出る。愛は「取りに行くもの」。アプローチに迷いがなく、欲しいと思った瞬間に動く。相手の反応を確認しながら前進する。</p>
+          <div class="axis-card-key">キーワード：<span>積極性 / 確認 / 求める</span></div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-card-head">
+          <div class="axis-badge" style="background:#7655a8;">Ni</div>
+          <div>
+            <div class="axis-card-name">犠牲者型</div>
+            <div class="axis-card-sub">VICTIM · 内向直感</div>
+          </div>
+        </div>
+        <div class="axis-card-body">
+          <p class="axis-card-desc">委ねる・受け止める。愛は「流れの中で深まるもの」。受け入れることで関係が深まる。尽くすことで存在を示す。</p>
+          <div class="axis-card-key">キーワード：<span>委ねる / 受容 / 深まる</span></div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-card-head">
+          <div class="axis-badge" style="background:#2e8b7a;">Si</div>
+          <div>
+            <div class="axis-card-name">保護者型</div>
+            <div class="axis-card-sub">CAREGIVER · 内向感覚</div>
+          </div>
+        </div>
+        <div class="axis-card-body">
+          <p class="axis-card-desc">包む・守り続ける。愛は「日常の積み重ね」。継続的な世話と安定した環境作りで愛を示す。記念日・ルーティンを大切にする。</p>
+          <div class="axis-card-key">キーワード：<span>安定 / 継続 / 守る</span></div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-card-head">
+          <div class="axis-badge" style="background:#c47830;">Ne</div>
+          <div>
+            <div class="axis-card-name">子ども型</div>
+            <div class="axis-card-sub">CHILD · 外向直感</div>
+          </div>
+        </div>
+        <div class="axis-card-body">
+          <p class="axis-card-desc">ときめく・可能性で動く。愛は「一緒にいると世界が広がる感覚」。感情の鮮度が関係の温度計。新しい発見が関係の燃料。</p>
+          <div class="axis-card-key">キーワード：<span>ときめき / 可能性 / 自由</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-top:16px;">
+      <div class="note-title">⚠ MBTIとの違い</div>
+      <div class="note-text">Se/Ne は「外向型」、Si/Ni は「内向型」とは別物です。これは「機能の方向性」であり、MBTIのI/E（社交エネルギーの向き）とは無関係です。各スタイルに内向的な人・外向的な人が均等に存在します。</div>
+    </div>
+  </div>
+
+  <!-- 横軸 -->
+  <div class="axis-section">
+    <h3 style="font-family:var(--font-d);font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:16px;">横軸 — センター（3種）</h3>
+    <p style="font-size:.83rem;color:var(--text-mid);margin-bottom:18px;line-height:1.9;">エニアグラムの「センター（中心）」概念を恋愛場面に特化して再定義。「なぜその行動を取るのか」という動機の源泉です。</p>
+
+    <div class="axis-cards" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="axis-card">
+        <div class="axis-card-head" style="flex-direction:column;align-items:flex-start;gap:6px;">
+          <div class="axis-badge" style="background:#c4566e;">❤</div>
+          <div>
+            <div class="axis-card-name">ハートセンター</div>
+            <div class="axis-card-sub">HEART CENTER</div>
+          </div>
+        </div>
+        <div class="axis-card-body">
+          <p class="axis-card-desc">「愛されているか」で動く。感情と承認が行動の燃料。愛の確認が止まらない。</p>
+          <div class="axis-card-key">失敗：<span>確認行動のエスカレート</span></div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-card-head" style="flex-direction:column;align-items:flex-start;gap:6px;">
+          <div class="axis-badge" style="background:#5b7fa6;">▲</div>
+          <div>
+            <div class="axis-card-name">ヘッドセンター</div>
+            <div class="axis-card-sub">HEAD CENTER</div>
+          </div>
+        </div>
+        <div class="axis-card-body">
+          <p class="axis-card-desc">「安心できるか」で動く。確信と安全が行動の燃料。疑いと思考が止まらない。</p>
+          <div class="axis-card-key">失敗：<span>過剰な分析と慎重さ</span></div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-card-head" style="flex-direction:column;align-items:flex-start;gap:6px;">
+          <div class="axis-badge" style="background:#7a9c5b;">◆</div>
+          <div>
+            <div class="axis-card-name">ガッツセンター</div>
+            <div class="axis-card-sub">GUTS CENTER</div>
+          </div>
+        </div>
+        <div class="axis-card-body">
+          <p class="axis-card-desc">「自分でいられるか」で動く。本能と意志が行動の燃料。衝動と意地が出る。</p>
+          <div class="axis-card-key">失敗：<span>境界線を超えた衝動行動</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;border:1px solid var(--border);border-radius:12px;padding:16px 20px;background:var(--paper);">
+      <div style="font-family:var(--font-m);font-size:.65rem;color:var(--text-light);letter-spacing:.1em;margin-bottom:8px;">センターの円環構造</div>
+      <div style="font-size:.82rem;color:var(--text-mid);line-height:1.9;">ハート → ヘッド → ガッツ → ハートの順に循環します。ウィング（サブタイプ）はこの円環に沿って、隣接センターの特性が「滲み出る」形で設計されています。</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" style="max-width:860px;margin:0 auto 0;padding:0 24px;">
+
+<!-- MATRIX -->
+<div class="wrap fade-in" id="matrix">
+  <span class="sec-tag">03 — Type Matrix</span>
+  <h2 class="sec-title">12タイプ<em>マトリクス</em></h2>
+  <p class="lead">2軸の組み合わせで生まれる12のコアタイプ一覧です。各タイプの詳細は<a href="types.html" style="color:var(--rose);">タイプ一覧ページ</a>をご覧ください。</p>
+
+  <div class="matrix-section">
+    <div class="matrix-overflow">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>ID</th><th>スタイル</th><th>センター</th><th>タイプ名</th><th>核心動機</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">01</span></td><td><span class="mt-style" style="color:#c4566e;">Se 侵略者型</span></td><td><span class="mt-center" style="color:#c4566e;">❤ ハート</span></td><td><span class="mt-name">確認する攻め手</span></td><td class="mt-core">愛されていると確信するまで、前進を止めない。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">02</span></td><td><span class="mt-style" style="color:#c4566e;">Se 侵略者型</span></td><td><span class="mt-center" style="color:#5b7fa6;">▲ ヘッド</span></td><td><span class="mt-name">制御する先手</span></td><td class="mt-core">安心できる関係を、自分の手で設計しようとする。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">03</span></td><td><span class="mt-style" style="color:#c4566e;">Se 侵略者型</span></td><td><span class="mt-center" style="color:#7a9c5b;">◆ ガッツ</span></td><td><span class="mt-name">本能の狩人</span></td><td class="mt-core">欲しいと感じた瞬間に、もう動いている。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">04</span></td><td><span class="mt-style" style="color:#7655a8;">Ni 犠牲者型</span></td><td><span class="mt-center" style="color:#c4566e;">❤ ハート</span></td><td><span class="mt-name">捧げる献身者</span></td><td class="mt-core">愛することが、自分でいることだと信じている。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">05</span></td><td><span class="mt-style" style="color:#7655a8;">Ni 犠牲者型</span></td><td><span class="mt-center" style="color:#5b7fa6;">▲ ヘッド</span></td><td><span class="mt-name">慎重な信者</span></td><td class="mt-core">確信が持てるまで、全力で委ねることができない。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">06</span></td><td><span class="mt-style" style="color:#7655a8;">Ni 犠牲者型</span></td><td><span class="mt-center" style="color:#7a9c5b;">◆ ガッツ</span></td><td><span class="mt-name">芯ある漂流者</span></td><td class="mt-core">流れに乗りながら、芯だけは手放さない。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">07</span></td><td><span class="mt-style" style="color:#2e8b7a;">Si 保護者型</span></td><td><span class="mt-center" style="color:#c4566e;">❤ ハート</span></td><td><span class="mt-name">尽くす世話人</span></td><td class="mt-core">気づかれなくても、今日も誰かのために動いている。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">08</span></td><td><span class="mt-style" style="color:#2e8b7a;">Si 保護者型</span></td><td><span class="mt-center" style="color:#5b7fa6;">▲ ヘッド</span></td><td><span class="mt-name">安定の建築家</span></td><td class="mt-core">崩れない関係を、一つひとつ丁寧に積み上げる。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">09</span></td><td><span class="mt-style" style="color:#2e8b7a;">Si 保護者型</span></td><td><span class="mt-center" style="color:#7a9c5b;">◆ ガッツ</span></td><td><span class="mt-name">無言の番人</span></td><td class="mt-core">言葉にしなくても、ここにいることが答えだ。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">10</span></td><td><span class="mt-style" style="color:#c47830;">Ne 子ども型</span></td><td><span class="mt-center" style="color:#c4566e;">❤ ハート</span></td><td><span class="mt-name">感情の旅人</span></td><td class="mt-core">ときめきが続く限り、どこまでも行ける。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">11</span></td><td><span class="mt-style" style="color:#c47830;">Ne 子ども型</span></td><td><span class="mt-center" style="color:#5b7fa6;">▲ ヘッド</span></td><td><span class="mt-name">楽観の夢想家</span></td><td class="mt-core">「きっとうまくいく」が、最強の処世術。</td></tr>
+          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">12</span></td><td><span class="mt-style" style="color:#c47830;">Ne 子ども型</span></td><td><span class="mt-center" style="color:#7a9c5b;">◆ ガッツ</span></td><td><span class="mt-name">自由の火花</span></td><td class="mt-core">縛られないことが、愛の前提条件だ。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" style="max-width:860px;margin:0 auto 0;padding:0 24px;">
+
+<!-- WING -->
+<div class="wrap fade-in" id="wing">
+  <span class="sec-tag">04 — Wing System</span>
+  <h2 class="sec-title">ウィングの<em>仕組み</em></h2>
+  <p class="lead">コアタイプに「隣のセンターの特性」が滲み出たものをウィングと呼びます。全12タイプが2つのウィングを持ち、合計24サブタイプが存在します。</p>
+
+  <div class="wing-explain">
+    <h3>ウィングの設計原則</h3>
+    <p><strong style="color:var(--ink);">方向：</strong>同じロマンススタイル内で、センターが隣に「滲み出る」概念。センターはハート → ヘッド → ガッツ → ハートという円環構造なので、全タイプが均等に両側のウィングを持てます。</p>
+    <p><strong style="color:var(--ink);">命名法：</strong>コアタイプ番号 + w + ウィング番号。例：02w01（制御する先手のハートウィング）、02w03（制御する先手のガッツウィング）</p>
+    <p><strong style="color:var(--ink);">意味：</strong>ウィングはコアタイプを「色づける」補助特性。コアの動機は変わらないが、ウィングの影響で行動パターンや感情表現のスタイルが変化します。</p>
+    <p style="margin-bottom:0;"><strong style="color:var(--ink);">診断活用：</strong>コアタイプを先に確定させ、ウィングは「どちらの色が強いか」という補助診断として使います。</p>
+  </div>
+</div>
+
+<hr class="divider" style="max-width:860px;margin:0 auto 0;padding:0 24px;">
+
+<!-- ORIGIN -->
+<div class="wrap fade-in" id="origin">
+  <span class="sec-tag">05 — Origin</span>
+  <h2 class="sec-title">理論の<em>起源</em></h2>
+  <p class="lead">恋愛引力理論は、既存の心理類型論を参照しながら独自に構築されたモデルです。</p>
+
+  <div class="origin-grid">
+    <div class="origin-card">
+      <div class="origin-card-title">ソシオニクス / モデルG</div>
+      <div class="origin-card-sub">SOCIONICS — SOVIET ORIGIN</div>
+      <div class="origin-card-desc">旧ソ連発祥の16タイプ理論。ユング心理学を発展させたもので、機能の方向性（Se/Ni/Si/Ne等）を「対人関係における引力」として解釈するモデルGの概念を採用。</div>
+    </div>
+    <div class="origin-card">
+      <div class="origin-card-title">エニアグラム</div>
+      <div class="origin-card-sub">ENNEAGRAM — CENTER THEORY</div>
+      <div class="origin-card-desc">9タイプの性格分類論。「センター（知性センター・感情センター・本能センター）」という概念を恋愛場面に特化して「ヘッド/ハート/ガッツ」として再定義。</div>
+    </div>
+    <div class="origin-card">
+      <div class="origin-card-title">愛着理論</div>
+      <div class="origin-card-sub">ATTACHMENT THEORY — BOWLBY</div>
+      <div class="origin-card-desc">ボウルビィの愛着理論における「安全基地」「愛着スタイル」の概念が、センター軸の設計に影響。特にハートセンターとヘッドセンターの動機設計に反映。</div>
+    </div>
+    <div class="origin-card">
+      <div class="origin-card-title">独自拡張</div>
+      <div class="origin-card-sub">ORIGINAL — UTAGE LAB</div>
+      <div class="origin-card-desc">上記3理論を統合し、「恋愛行動のパターン分析」という実用的目的に特化して設計。既存理論の直接翻訳ではなく、恋愛場面における独自解釈・命名・体系化を行っています。</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px;">
+    <a href="https://utage-jpg.github.io/pola_diagnosis/" style="font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:white;background:var(--rose);border:none;padding:13px 32px;border-radius:100px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(196,86,110,.3);">診断を受けてみる →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">UTAGE LAB — <em>Pola</em> <span>Portal</span></div>
+  <div class="footer-links">
+    <a href="index.html" class="footer-link">HOME</a>
+    <a href="theory.html" class="footer-link">THEORY</a>
+    <a href="types.html" class="footer-link">TYPES</a>
+    <a href="compat.html" class="footer-link">COMPATIBILITY</a>
+    <a href="https://utage-jpg.github.io/pola_diagnosis/" class="footer-link">DIAGNOSIS</a>
+  </div>
+  <div class="footer-note">© 2025 UTAGE LAB — Love Gravity Theory</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e => e.forEach(el => {if(el.isIntersecting) el.target.classList.add('visible');}),{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

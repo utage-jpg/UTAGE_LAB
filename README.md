@@ -1,62 +1,64 @@
-# UTAGE LAB — 診断データJSON 使い方ガイド
+# UTAGE LAB — 総合心理診断ポータル
 
-## ファイル構成
+心理診断・タイプ診断・相性診断・占いを集めた総合心理診断ポータルのソースコードです。
+
+---
+
+## フォルダ構成
 
 ```
-typelab/
-├── index.html          ← トップページ（このまま）
-├── diagnosis.html      ← 診断ページ（このまま）
-└── data/
-    ├── 16type.json     ← 16タイプ診断データ（質問・タイプ説明）
-    └── top-content.json ← トップページ表示データ（人気診断・カテゴリ等）
+UTAGE_LAB/
+├── index.html              ← メインポータル（トップページ）
+├── README.md               ← このファイル
+│
+├── pages/                  ← 各診断ページ
+│   ├── 16type.html         　16タイプ（MBTI）診断
+│   ├── attachment.html     　愛着スタイル診断
+│   ├── career.html         　職業適性タイプ診断
+│   ├── deep.html           　深層心理テスト
+│   ├── diagnosis.html      　汎用診断ページ（JSONデータ使用）
+│   ├── love-type.html      　恋愛タイプ診断
+│   ├── movedtype.html      　感動タイプ診断
+│   ├── stress.html         　ストレス耐性診断
+│   ├── suuhijutu.html      　数秘術診断
+│   ├── thinktype.html      　思考タイプ診断
+│   └── uniquetype.html     　わらいのツボ診断
+│
+├── data/                   ← JSONデータファイル
+│   ├── 16type.json         　16タイプ診断の質問・タイプ定義
+│   └── top-content.json    　トップページ表示データ（将来的な動的生成用）
+│
+├── assets/                 ← 画像・静的ファイル
+│   └── fortune-logo.jpg    　16type fortune ロゴ
+│
+├── pola/                   ← POLA診断 専用コンテンツ（別デプロイ用）
+│   ├── diagnosis/          　POLA診断ページ
+│   ├── portal/             　POLAポータルサイト
+│   └── specs/              　POLA理論仕様書
+│
+└── docs/                   ← 設計・仕様ドキュメント
+    └── UTAGELAB_DESIGN.md  　サイト全体の設計書
 ```
 
 ---
 
-## diagnosis.html での読み込み方
+## 新しい診断ページを追加するとき
 
-diagnosis.html の `<script>` 冒頭の `const questions = [...]` と `const typeMap = {...}` を
-以下のコードに置き換えるだけです。
-
-```html
-<script>
-// ---- JSONから読み込む ----
-let questions = [];
-let typeMap = {};
-let diagData = {};
-
-async function loadDiagData() {
-  const res = await fetch('./data/16type.json');
-  diagData = await res.json();
-
-  // questionsを既存コードと同じ形式に変換
-  questions = diagData.questions.map(q => ({
-    dim: q.axis + " 軸",
-    text: q.text,
-    opts: q.options.map(o => o.text)
-  }));
-
-  // typeMapをそのまま使える
-  typeMap = diagData.types;
-}
-
-// ページ読み込み時にデータを取得してから診断を開始できるようにする
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadDiagData();
-  // 既存の startDiag() などはそのまま使える
-});
-</script>
-```
+1. `pages/` フォルダに `your-diag.html` を作成する
+2. `index.html` 内のリンクを `href="pages/your-diag.html"` の形式で追加する
+3. ページ内でトップに戻るリンクは `href="../index.html"` にする
 
 ---
 
-## 新しい診断を追加するとき
+## JSONデータを使う診断（diagnosis.html）
 
-1. `data/` フォルダに新しいJSONファイルを置く（例: `data/love-type.json`）
-2. `top-content.json` の `popular` か `categories` にエントリを追加する
-3. HTMLは触らなくてOK
+`pages/diagnosis.html` は `data/16type.json` を fetch して動作します。
 
-### JSONの最小構成（コピーして使う）
+```javascript
+const res = await fetch('../data/16type.json');
+```
+
+JSONの最小構成（新しい診断データを追加するときのテンプレート）:
 
 ```json
 {
@@ -93,28 +95,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 ---
 
-## GitHub Pages での注意点
+## ローカル開発について
 
-`fetch('./data/16type.json')` はローカルファイル（`file://`）では動きません。
-GitHub Pagesにアップすれば普通に動きます。
+`fetch()` はローカルの `file://` では動作しません。
+VS Code の **Live Server** 拡張機能を使うとローカルでも正常に動作します。
 
-ローカルでテストしたい場合は VS Code の「Live Server」拡張機能を使うと簡単です。
+GitHub Pages にデプロイすれば、そのまま動作します。
 
 ---
 
-## top-content.json の使い方（将来的に）
+## 外部連携サイト（別リポジトリ）
 
-現在のトップページはHTMLにカードが直書きされていますが、
-将来的に以下のように動的生成に切り替えると管理が楽になります。
+以下は別の GitHub リポジトリとして独立してデプロイされています。
 
-```javascript
-const res = await fetch('./data/top-content.json');
-const data = await res.json();
-
-// 人気診断カードを動的に生成
-data.popular.forEach(diag => {
-  // カードHTMLを生成してDOMに追加
-});
-```
-
-今は急ぐ必要はなく、カードの内容を変えたいときだけJSONを編集すればOKです。
+| サイト | URL |
+|--------|-----|
+| POLA診断 | https://utage-jpg.github.io/pola_diagnosis/ |
+| POLAポータル | https://utage-jpg.github.io/pola_portal/ |
+| 類型ポータル | https://utage-jpg.github.io/ruikei_portal/ |
+| 16タイプ占い | https://utage-jpg.github.io/16type_fortune/ |
+| Socionics Lab | https://utage-jpg.github.io/socio_lens/ |

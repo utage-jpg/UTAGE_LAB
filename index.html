@@ -974,20 +974,54 @@ body::before {
 
 .pola-cta-row {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  align-items: stretch;
+  gap: 12px;
   flex-wrap: wrap;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+.pola-btn-portal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  background: white;
+  border: 2px solid rgba(201,96,122,0.35);
+  color: var(--rose-deep);
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s;
+}
+.pola-btn-portal:hover {
+  background: var(--rose-light);
+  border-color: var(--rose);
+  color: var(--rose-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(201,96,122,0.15);
 }
 .pola-btn-main {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
   background: var(--rose);
   color: white;
-  padding: 14px 32px;
+  padding: 14px 20px;
   border-radius: 4px;
   font-family: var(--font-serif);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
+  text-decoration: none;
   position: relative;
   overflow: hidden;
   transition: all 0.3s;
@@ -2338,9 +2372,7 @@ body::before {
     </div>
 
     <!-- Main featured card -->
-    <a href="https://utage-jpg.github.io/pola_diagnosis/" target="_blank" class="pola-main-card reveal">
-      <!-- Decorative background text -->
-      <span class="pola-bg-text">Pola</span>
+    <div class="pola-main-card reveal">
 
       <!-- Left content -->
       <div class="pola-main-left">
@@ -2365,28 +2397,16 @@ body::before {
           <span class="pola-tag">⏱ 約5〜7分</span>
           <span class="pola-tag">👥 受診者急増中</span>
         </div>
-
-        <div class="pola-cta-row">
-          <span class="pola-btn-main">
-            <span class="pola-btn-inner">診断を始める →</span>
-          </span>
-          <a href="https://utage-jpg.github.io/pola_portal/" target="_blank" class="pola-btn-sub" onclick="event.stopPropagation()">
-            タイプ一覧を見る
-          </a>
-        </div>
       </div>
-    </a>
+    </div>
 
-    <!-- Portal sub-card -->
-    <div class="reveal reveal-delay-1">
-      <a href="https://utage-jpg.github.io/pola_portal/" target="_blank" class="pola-sub-card pola-sub-portal">
-        <div class="pola-sub-icon">🗺️</div>
-        <div class="pola-sub-body">
-          <div class="pola-sub-label">TYPE MAP</div>
-          <div class="pola-sub-title">恋愛極性ポータル</div>
-          <div class="pola-sub-desc">12タイプの全体マップ・相性・深層解説を見る</div>
-        </div>
-        <span class="pola-sub-arrow">→</span>
+    <!-- CTA row (outside card) -->
+    <div class="pola-cta-row reveal">
+      <a href="https://utage-jpg.github.io/pola_diagnosis/" target="_blank" class="pola-btn-main">
+        <span class="pola-btn-inner">診断を始める →</span>
+      </a>
+      <a href="https://utage-jpg.github.io/pola_portal/" target="_blank" class="pola-btn-portal">
+        🗺️ タイプ一覧を見る
       </a>
     </div>
 

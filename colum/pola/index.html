@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pola コラム一覧 | UTAGE LAB</title>
+<meta name="description" content="恋愛極性診断Polaに関するコラム記事一覧。12タイプの恋愛傾向・深層心理・相性を詳しく解説します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:         #1a1025;
+  --cream:       #faf7f2;
+  --parchment:   #f5f0e8;
+  --paper:       #fff9f5;
+  --rose:        #c9607a;
+  --rose-light:  #fae0e6;
+  --rose-deep:   #9e3a52;
+  --gold:        #c9a84c;
+  --gold-light:  #f5edd4;
+  --violet:      #7b5ea7;
+  --violet-light:#ede9f8;
+  --teal:        #3d8b8b;
+  --teal-light:  #e2f4f4;
+  --amber:       #c47d2a;
+  --amber-light: #fef3e0;
+  --text:        #2d2140;
+  --text-light:  #7a6e88;
+  --border:      #e5d8cc;
+  --shadow:      rgba(26,16,37,0.12);
+  --font-display:'Playfair Display', Georgia, serif;
+  --font-serif:  'Noto Serif JP', serif;
+  --font-mono:   'DM Mono', 'Courier New', monospace;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-serif);
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999; opacity: 0.5;
+}
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  padding: 0 48px; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(250,247,242,0.95);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display); font-size: 20px;
+  color: var(--ink); text-decoration: none; letter-spacing: 0.1em;
+}
+.nav-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.14em; color: var(--text-light);
+  text-transform: uppercase;
+}
+.nav-breadcrumb a {
+  color: var(--text-light); text-decoration: none; transition: color 0.2s;
+}
+.nav-breadcrumb a:hover { color: var(--rose); }
+.nav-breadcrumb span { color: var(--border); }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+}
+.nav-hamburger span { width: 24px; height: 1.5px; background: var(--ink); border-radius: 2px; }
+
+/* PAGE HEADER */
+.page-header {
+  background: linear-gradient(160deg, #fff6f8 0%, #fce8ed 40%, #f5eeff 100%);
+  border-bottom: 1px solid rgba(201,96,122,0.12);
+  padding: 120px 40px 80px;
+  position: relative; overflow: hidden;
+}
+.page-header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.page-header-bg-text {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(120px, 22vw, 300px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,96,122,0.06);
+  right: -20px; bottom: -40px;
+  line-height: 1; pointer-events: none; user-select: none;
+  font-style: italic;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.breadcrumb a { color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--rose); }
+.breadcrumb span { color: var(--border); }
+.breadcrumb-current { color: var(--rose); }
+
+.page-header-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--rose); color: white;
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.2em; padding: 5px 16px;
+  border-radius: 2px; margin-bottom: 20px; text-transform: uppercase;
+}
+.page-header-badge-dot {
+  width: 6px; height: 6px; background: white; border-radius: 50%;
+  animation: pulse 1.6s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)} }
+
+.page-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 7vw, 80px);
+  font-weight: 700; color: var(--ink);
+  line-height: 1.1; margin-bottom: 16px;
+}
+.page-header-title .pola-p { color: var(--rose); font-style: italic; }
+.page-header-subtitle {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.22em; color: var(--text-light);
+  margin-bottom: 18px; text-transform: uppercase;
+}
+.page-header-desc {
+  font-size: 14px; color: var(--text-light);
+  line-height: 1.95; max-width: 520px; margin-bottom: 32px;
+}
+.page-header-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--rose); color: white;
+  padding: 14px 32px; border-radius: 2px;
+  font-family: var(--font-serif); font-size: 14px; font-weight: 700;
+  text-decoration: none; letter-spacing: 0.04em;
+  position: relative; overflow: hidden; transition: color 0.35s;
+}
+.page-header-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--rose-deep);
+  transform: translateX(-100%); transition: transform 0.35s ease;
+}
+.page-header-cta:hover::before { transform: translateX(0); }
+.page-header-cta span { position: relative; z-index: 1; }
+
+/* ARTICLES SECTION */
+.articles-section {
+  max-width: 1200px; margin: 0 auto;
+  padding: 80px 40px 120px;
+}
+.section-eyebrow {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.32em; color: var(--rose); text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+}
+.section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--rose); }
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700; color: var(--ink);
+  margin-bottom: 40px;
+}
+
+/* EMPTY STATE */
+.empty-state {
+  background: var(--paper);
+  border: 1px dashed var(--border);
+  border-radius: 20px;
+  padding: 72px 40px;
+  text-align: center;
+}
+.empty-state-icon { font-size: 52px; margin-bottom: 20px; }
+.empty-state-title {
+  font-family: var(--font-display); font-size: 22px;
+  font-weight: 700; color: var(--ink); margin-bottom: 12px;
+}
+.empty-state-desc {
+  font-size: 13px; color: var(--text-light);
+  line-height: 1.9; max-width: 380px; margin: 0 auto 28px;
+}
+.empty-state-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  background: var(--rose-light); color: var(--rose-deep);
+  border: 1px solid rgba(201,96,122,0.2);
+  padding: 8px 22px; border-radius: 2px;
+}
+
+/* ARTICLES GRID (for when articles exist) */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.article-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  text-decoration: none; color: var(--text);
+  transition: all 0.32s; display: flex; flex-direction: column;
+}
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px var(--shadow);
+  border-color: transparent;
+}
+.article-card-img {
+  height: 180px; overflow: hidden;
+  background: linear-gradient(135deg, var(--rose-light), var(--violet-light));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px;
+  position: relative;
+}
+.article-card-body { padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.article-card-cat {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose);
+}
+.article-card-title {
+  font-family: var(--font-display); font-size: 17px;
+  font-weight: 700; color: var(--ink); line-height: 1.35;
+}
+.article-card-desc {
+  font-size: 12px; color: var(--text-light);
+  line-height: 1.8; flex: 1;
+}
+.article-card-meta {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.1em; color: var(--text-light);
+  margin-top: auto; padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* FOOTER */
+.footer {
+  background: var(--ink); color: rgba(247,243,237,0.5);
+  padding: 56px 48px 32px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-logo { font-family: var(--font-display); font-size: 22px; color: var(--parchment); margin-bottom: 12px; }
+.footer-desc { font-size: 12px; line-height: 1.8; margin-bottom: 24px; }
+.footer-nav {
+  display: flex; gap: 24px; margin-bottom: 32px; flex-wrap: wrap;
+}
+.footer-nav a {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(247,243,237,0.4); text-decoration: none;
+  transition: color 0.25s;
+}
+.footer-nav a:hover { color: var(--parchment); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+  border-top: 1px solid rgba(247,243,237,0.07); padding-top: 24px;
+}
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav { padding: 0 24px; }
+  .nav-breadcrumb { display: none; }
+  .nav-hamburger { display: flex; }
+  .page-header { padding: 100px 22px 60px; }
+  .articles-section { padding: 60px 22px 80px; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .footer { padding: 48px 22px 28px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../../index.html" class="nav-logo">UTAGE LAB</a>
+  <div class="nav-breadcrumb">
+    <a href="../../index.html">Home</a>
+    <span>/</span>
+    <a href="../index.html">Column</a>
+    <span>/</span>
+    <span style="color: var(--rose);">Pola</span>
+  </div>
+  <div class="nav-hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg-text">Pola</div>
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a>
+      <span>/</span>
+      <a href="../index.html">Column</a>
+      <span>/</span>
+      <span class="breadcrumb-current">Pola</span>
+    </div>
+    <div class="page-header-badge">
+      <span class="page-header-badge-dot"></span>
+      恋愛極性診断
+    </div>
+    <h1 class="page-header-title">
+      <span class="pola-p">P</span>ola<br>コラム
+    </h1>
+    <p class="page-header-subtitle">— 恋愛極性診断 解説記事 —</p>
+    <p class="page-header-desc">
+      「どう動くか」と「なぜ動くか」の2軸で恋愛を分析するPola診断。
+      12タイプそれぞれの特徴・恋愛傾向・深層心理・タイプ別相性を詳しく解説するコラムを掲載しています。
+    </p>
+    <a href="https://utage-jpg.github.io/pola_diagnosis/" target="_blank" class="page-header-cta">
+      <span>💗 Pola診断を受ける →</span>
+    </a>
+  </div>
+</div>
+
+<div class="articles-section">
+  <div class="section-eyebrow reveal">Pola Articles</div>
+  <h2 class="section-title reveal">Polaコラム記事</h2>
+
+  <!-- 記事が存在しない場合の空ステート -->
+  <div class="empty-state reveal reveal-delay-1">
+    <div class="empty-state-icon">✍️</div>
+    <h3 class="empty-state-title">記事を準備中です</h3>
+    <p class="empty-state-desc">
+      Polaの12タイプ解説・相性記事・恋愛傾向コラムを順次公開予定です。
+      まずはPola診断を受けてみてください。
+    </p>
+    <a href="https://utage-jpg.github.io/pola_diagnosis/" target="_blank" class="empty-state-badge">
+      💗 Pola診断を受ける →
+    </a>
+  </div>
+
+  <!-- 記事が増えたらこのグリッドを使う（現在はコメントアウト）
+  <div class="articles-grid">
+    <a href="./article-slug/index.html" class="article-card">
+      <div class="article-card-img">💗</div>
+      <div class="article-card-body">
+        <div class="article-card-cat">Pola / タイプ解説</div>
+        <h3 class="article-card-title">記事タイトルがここに入ります</h3>
+        <p class="article-card-desc">記事の概要説明文がここに入ります。120字程度が目安です。</p>
+        <div class="article-card-meta">2025.03.11 · 5 min read</div>
+      </div>
+    </a>
+  </div>
+  -->
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">総合心理診断ポータル — あなたの深層心理を解き明かす</p>
+    <div class="footer-nav">
+      <a href="../../index.html">ポータルトップ</a>
+      <a href="../index.html">コラム一覧</a>
+      <a href="https://utage-jpg.github.io/pola_diagnosis/" target="_blank">Pola診断</a>
+      <a href="https://utage-jpg.github.io/pola_portal/" target="_blank">Polaタイプ一覧</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 UTAGE LAB</span>
+      <span>Pola Column</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

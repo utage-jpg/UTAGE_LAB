@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理コラム一覧 | UTAGE LAB</title>
+<meta name="description" content="MBTI・エニアグラム・ソシオニクス・Polaなど、心理学に関するコラム記事を多数掲載。自己理解を深める読み物が揃っています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:         #1a1025;
+  --cream:       #faf7f2;
+  --parchment:   #f5f0e8;
+  --paper:       #fff9f5;
+  --rose:        #c9607a;
+  --rose-light:  #fae0e6;
+  --rose-deep:   #9e3a52;
+  --gold:        #c9a84c;
+  --gold-light:  #f5edd4;
+  --violet:      #7b5ea7;
+  --violet-light:#ede9f8;
+  --teal:        #3d8b8b;
+  --teal-light:  #e2f4f4;
+  --amber:       #c47d2a;
+  --amber-light: #fef3e0;
+  --text:        #2d2140;
+  --text-light:  #7a6e88;
+  --border:      #e5d8cc;
+  --shadow:      rgba(26,16,37,0.12);
+  --font-display:'Playfair Display', Georgia, serif;
+  --font-serif:  'Noto Serif JP', serif;
+  --font-mono:   'DM Mono', 'Courier New', monospace;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-serif);
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999; opacity: 0.5;
+}
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  padding: 0 48px; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(250,247,242,0.95);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display); font-size: 20px;
+  color: var(--ink); text-decoration: none; letter-spacing: 0.1em;
+}
+.nav-back {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.18em; color: var(--text-light);
+  text-decoration: none; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+  transition: color 0.25s;
+}
+.nav-back:hover { color: var(--rose); }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+}
+.nav-hamburger span { width: 24px; height: 1.5px; background: var(--ink); border-radius: 2px; }
+
+/* PAGE HEADER */
+.page-header {
+  padding: 120px 40px 80px;
+  max-width: 1200px; margin: 0 auto;
+  position: relative;
+}
+.page-header-eyebrow {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.35em; color: var(--rose);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 18px;
+}
+.page-header-eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: var(--rose);
+}
+.page-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700; color: var(--ink);
+  line-height: 1.1; margin-bottom: 20px;
+}
+.page-header-title em {
+  font-style: italic; color: var(--rose);
+}
+.page-header-desc {
+  font-size: 15px; color: var(--text-light);
+  line-height: 1.95; max-width: 560px;
+}
+.page-header-bg-text {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(120px, 20vw, 260px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,96,122,0.05);
+  right: 0; top: 60px;
+  line-height: 1; pointer-events: none; user-select: none;
+  font-style: italic;
+}
+
+/* CATEGORY CARDS */
+.categories-wrap {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 40px 120px;
+}
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.cat-card {
+  display: block;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 36px;
+  text-decoration: none; color: var(--text);
+  transition: all 0.35s;
+  position: relative; overflow: hidden;
+}
+.cat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 64px var(--shadow);
+  border-color: transparent;
+}
+.cat-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 4px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.cat-card:hover::after { transform: scaleX(1); }
+.cat-card-rose::after  { background: var(--rose); }
+.cat-card-violet::after { background: var(--violet); }
+.cat-card-teal::after  { background: var(--teal); }
+.cat-card-amber::after { background: var(--amber); }
+
+.cat-card-icon {
+  font-size: 40px; margin-bottom: 20px;
+  width: 68px; height: 68px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cat-card-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.cat-card-title {
+  font-family: var(--font-display); font-size: 26px;
+  font-weight: 700; color: var(--ink);
+  line-height: 1.25; margin-bottom: 14px;
+}
+.cat-card-desc {
+  font-size: 13px; color: var(--text-light);
+  line-height: 1.9; margin-bottom: 24px;
+}
+.cat-card-meta {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cat-card-count {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.cat-card-arrow {
+  font-size: 20px; transition: transform 0.25s;
+}
+.cat-card:hover .cat-card-arrow { transform: translateX(5px); }
+
+/* COMING SOON badge */
+.cat-coming {
+  opacity: 0.55; cursor: not-allowed;
+}
+.cat-coming:hover {
+  transform: none; box-shadow: none; border-color: var(--border);
+}
+.cat-coming::after { display: none; }
+.coming-badge {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  background: var(--parchment); color: var(--text-light);
+  border: 1px solid var(--border);
+  padding: 4px 12px; border-radius: 2px;
+}
+
+/* DIVIDER */
+.section-divider {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 40px;
+  border: none; height: 1px; background: var(--border);
+}
+
+/* FOOTER */
+.footer {
+  background: var(--ink); color: rgba(247,243,237,0.5);
+  padding: 56px 48px 32px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+}
+.footer-logo {
+  font-family: var(--font-display); font-size: 22px;
+  color: var(--parchment); margin-bottom: 12px;
+}
+.footer-desc { font-size: 12px; line-height: 1.8; margin-bottom: 32px; }
+.footer-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(247,243,237,0.4); text-decoration: none;
+  border: 1px solid rgba(247,243,237,0.12);
+  padding: 10px 22px; border-radius: 2px;
+  transition: all 0.25s;
+}
+.footer-back:hover { color: var(--parchment); border-color: rgba(247,243,237,0.3); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav { padding: 0 24px; }
+  .nav-links-desktop { display: none; }
+  .nav-hamburger { display: flex; }
+  .page-header { padding: 100px 22px 60px; }
+  .page-header-bg-text { display: none; }
+  .categories-wrap { padding: 0 22px 80px; }
+  .categories-grid { grid-template-columns: 1fr; }
+  .cat-card { padding: 28px 24px; }
+  .footer { padding: 48px 22px 28px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back nav-links-desktop">← ポータルに戻る</a>
+  <div class="nav-hamburger" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg-text">Column</div>
+  <div class="page-header-eyebrow">Psychology Column</div>
+  <h1 class="page-header-title">心理<em>コラム</em></h1>
+  <p class="page-header-desc">
+    MBTI・エニアグラム・ソシオニクス・Polaなど、心理学の各ジャンルを深掘りする読み物。
+    タイプ論の本質から恋愛・仕事への応用まで、知的好奇心を満たすコンテンツが揃っています。
+  </p>
+</div>
+
+<div class="categories-wrap">
+  <div class="categories-grid">
+
+    <!-- Pola -->
+    <a href="./pola/index.html" class="cat-card cat-card-rose reveal">
+      <div class="cat-card-icon" style="background: var(--rose-light);">💗</div>
+      <div class="cat-card-label" style="color: var(--rose);">Pola</div>
+      <h2 class="cat-card-title">恋愛極性診断<br>Pola</h2>
+      <p class="cat-card-desc">
+        「どう動くか」と「なぜ動くか」の2軸で恋愛を分析する本格診断。
+        12タイプそれぞれの恋愛傾向・深層心理・相性を詳しく解説します。
+      </p>
+      <div class="cat-card-meta">
+        <span class="cat-card-count" style="color: var(--rose);">記事を読む</span>
+        <span class="cat-card-arrow" style="color: var(--rose);">→</span>
+      </div>
+    </a>
+
+    <!-- MBTI -->
+    <div class="cat-card cat-card-coming reveal reveal-delay-1" style="background: var(--paper); border-color: var(--border);">
+      <div class="cat-card-icon" style="background: var(--violet-light);">🧠</div>
+      <div class="cat-card-label" style="color: var(--violet);">MBTI</div>
+      <h2 class="cat-card-title">MBTI<br>16タイプ解説</h2>
+      <p class="cat-card-desc">
+        16タイプそれぞれの認知機能・特徴・仕事・恋愛を多角的に解説。
+        INTJ・INFPなど各タイプの深い理解に。
+      </p>
+      <div class="cat-card-meta">
+        <span class="coming-badge">Coming Soon</span>
+      </div>
+    </div>
+
+    <!-- エニアグラム -->
+    <div class="cat-card cat-card-coming reveal reveal-delay-2" style="background: var(--paper); border-color: var(--border);">
+      <div class="cat-card-icon" style="background: var(--teal-light);">🔮</div>
+      <div class="cat-card-label" style="color: var(--teal);">Enneagram</div>
+      <h2 class="cat-card-title">エニアグラム</h2>
+      <p class="cat-card-desc">
+        9つのタイプで描く人格の地図。各タイプの核心的恐れ・欲求・成長の方向性を深掘りします。
+      </p>
+      <div class="cat-card-meta">
+        <span class="coming-badge">Coming Soon</span>
+      </div>
+    </div>
+
+    <!-- ソシオニクス -->
+    <div class="cat-card cat-card-coming reveal reveal-delay-3" style="background: var(--paper); border-color: var(--border);">
+      <div class="cat-card-icon" style="background: var(--amber-light);">⚗️</div>
+      <div class="cat-card-label" style="color: var(--amber);">Socionics</div>
+      <h2 class="cat-card-title">ソシオニクス</h2>
+      <p class="cat-card-desc">
+        ユング心理学をベースにした類型論の深い世界へ。IMタトリクス・インタータイプ関係など上級者向け解説。
+      </p>
+      <div class="cat-card-meta">
+        <span class="coming-badge">Coming Soon</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">総合心理診断ポータル — あなたの深層心理を解き明かす</p>
+    <a href="../index.html" class="footer-back">← ポータルトップに戻る</a>
+    <div style="height: 40px;"></div>
+    <div class="footer-bottom">
+      <span>© 2025 UTAGE LAB</span>
+      <span>Psychology Column</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

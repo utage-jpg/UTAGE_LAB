@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>相性一覧 66通り｜恋愛引力理論 — Pola Portal</title>
+<meta name="description" content="恋愛引力理論・12タイプ間の全66通りの相性パターンを解説。双極・共鳴・刺激・並走・鏡像・静水の6関係タイプで分類。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf8f5;--bg2:#f4f0e8;--paper:#fffdf9;
+  --ink:#1c1520;--text:#2e2440;--text-mid:#5a4f6e;--text-light:#9b8faa;
+  --border:#e2d5c8;
+  --rose:#c4566e;--rose-l:#fae0e8;--rose-d:#9c3a52;
+  --violet:#7655a8;--violet-l:#ece6f8;
+  --teal:#2e8b7a;--teal-l:#ddf2ee;
+  --amber:#c47830;--amber-l:#fdefd8;
+  --shadow:rgba(28,21,32,.10);
+  --font-d:'Cormorant Garamond',Georgia,serif;
+  --font-s:'Noto Serif JP',serif;
+  --font-m:'DM Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-s);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.8;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(250,248,245,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.nav-brand span{color:var(--rose);}
+.nav-links{display:flex;gap:4px;}
+.nav-link{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);text-decoration:none;letter-spacing:.06em;padding:5px 10px;border-radius:6px;transition:all .2s;}
+.nav-link:hover,.nav-link.active{color:var(--ink);background:var(--border);}
+@media(max-width:520px){.nav-links{display:none;}}
+
+.hero{padding:88px 24px 48px;text-align:center;background:linear-gradient(155deg,#fffcf8 0%,#f2e8dc 100%);border-bottom:1px solid var(--border);}
+.hero-tag{font-family:var(--font-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);padding:4px 16px;border:1px solid var(--border);border-radius:100px;display:inline-block;margin-bottom:16px;}
+.hero h1{font-family:var(--font-d);font-size:clamp(2rem,6vw,3.2rem);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:10px;}
+.hero h1 em{font-style:italic;color:var(--rose);}
+.hero p{font-size:.85rem;color:var(--text-mid);max-width:500px;margin:0 auto;font-weight:300;line-height:1.9;}
+
+/* REL TYPE OVERVIEW */
+.rel-overview{max-width:920px;margin:0 auto;padding:40px 24px 0;}
+.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+@media(max-width:600px){.rel-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:380px){.rel-grid{grid-template-columns:1fr;}}
+.rel-card{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:var(--paper);cursor:pointer;transition:all .2s;}
+.rel-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px var(--shadow);}
+.rel-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.rel-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.rel-name{font-family:var(--font-d);font-size:.95rem;font-weight:700;color:var(--ink);}
+.rel-en{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);letter-spacing:.06em;margin-left:auto;}
+.rel-rule{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);letter-spacing:.04em;margin-bottom:6px;}
+.rel-desc{font-size:.78rem;color:var(--text-mid);line-height:1.65;}
+
+/* SEARCH BAR */
+.search-wrap{max-width:920px;margin:24px auto 0;padding:0 24px;}
+.search-inner{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.search-label{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);letter-spacing:.08em;white-space:nowrap;}
+select{
+  font-family:var(--font-s);font-size:.82rem;color:var(--ink);
+  border:1px solid var(--border);border-radius:8px;padding:7px 12px;
+  background:var(--paper);cursor:pointer;flex:1;min-width:120px;max-width:200px;
+}
+.search-result-label{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);letter-spacing:.04em;}
+
+/* TABS */
+.tabs-wrap{
+  position:sticky;top:54px;z-index:100;
+  background:rgba(250,248,245,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:10px 24px;
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tabs-wrap::-webkit-scrollbar{display:none;}
+.tab-btn{
+  font-family:var(--font-m);font-size:.62rem;letter-spacing:.06em;white-space:nowrap;
+  padding:6px 14px;border-radius:100px;border:1px solid var(--border);
+  background:var(--paper);color:var(--text-light);cursor:pointer;transition:all .2s;flex-shrink:0;
+}
+.tab-btn.active{color:white;border-color:transparent;}
+.tab-count{font-family:var(--font-m);font-size:.58rem;margin-left:4px;opacity:.8;}
+
+/* CONTENT */
+.content-area{max-width:920px;margin:0 auto;padding:32px 24px 80px;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* COMPAT CARD */
+.cc{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--paper);margin-bottom:16px;}
+.cc-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;}
+.cc-badge{font-family:var(--font-m);font-size:.62rem;letter-spacing:.06em;padding:3px 12px;border-radius:100px;font-weight:600;flex-shrink:0;align-self:flex-start;margin-top:2px;}
+.cc-types{flex:1;min-width:0;}
+.cc-names{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--ink);line-height:1.4;}
+.cc-codes{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);letter-spacing:.06em;margin-top:4px;}
+.cc-body{padding:16px 20px;display:flex;flex-direction:column;gap:10px;}
+.cc-field{}
+.fl{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:4px;}
+.ft{font-size:.82rem;color:var(--text-mid);line-height:1.85;}
+.ft.key{font-weight:500;color:var(--ink);}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:60px 24px;}
+.empty-state p{font-family:var(--font-d);font-size:1.1rem;font-style:italic;color:var(--text-light);}
+
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;background:#f5f0e8;}
+.footer-brand{font-family:var(--font-d);font-size:.95rem;font-weight:700;color:var(--ink);}
+.footer-brand span{color:var(--rose);}
+.footer-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+.footer-link{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);text-decoration:none;}
+.footer-note{font-family:var(--font-m);font-size:.58rem;color:var(--text-light);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand"><em>Pola</em> <span>Portal</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">HOME</a>
+    <a href="theory.html" class="nav-link">THEORY</a>
+    <a href="types.html" class="nav-link">TYPES</a>
+    <a href="compat.html" class="nav-link active">COMPAT</a>
+    <a href="https://utage-jpg.github.io/pola_diagnosis/" class="nav-link">DIAGNOSIS</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="hero-tag">66 Compatibility Patterns</span>
+  <h1>相性<em>一覧</em></h1>
+  <p>12タイプ間の全66通りの相性パターンを収録。引力の質・共鳴ポイント・すれ違いの核・関係の鍵で解説します。</p>
+</div>
+
+<!-- REL TYPE OVERVIEW -->
+<div class="rel-overview">
+  <div class="rel-grid" id="relOverview"></div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-inner">
+    <span class="search-label">タイプで絞り込む：</span>
+    <select id="filterType1" onchange="filterByType()">
+      <option value="">— すべて —</option>
+    </select>
+    <span class="search-label">×</span>
+    <select id="filterType2" onchange="filterByType()">
+      <option value="">— すべて —</option>
+    </select>
+    <span class="search-result-label" id="resultLabel"></span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap" id="tabsNav"></div>
+
+<!-- CONTENT -->
+<div class="content-area" id="contentArea">
+  <div id="bipolar" class="tab-content active"></div>
+  <div id="resonance" class="tab-content"></div>
+  <div id="stimulus" class="tab-content"></div>
+  <div id="parallel" class="tab-content"></div>
+  <div id="mirror" class="tab-content"></div>
+  <div id="stillwater" class="tab-content"></div>
+</div>
+
+<footer>
+  <div class="footer-brand">UTAGE LAB — <em>Pola</em> <span>Portal</span></div>
+  <div class="footer-links">
+    <a href="index.html" class="footer-link">HOME</a>
+    <a href="theory.html" class="footer-link">THEORY</a>
+    <a href="types.html" class="footer-link">TYPES</a>
+    <a href="compat.html" class="footer-link">COMPATIBILITY</a>
+    <a href="https://utage-jpg.github.io/pola_diagnosis/" class="footer-link">DIAGNOSIS</a>
+  </div>
+  <div class="footer-note">© 2025 UTAGE LAB — Love Gravity Theory</div>
+</footer>
+
+<script>
+const TYPES_MAP = {
+  1:{name:'確認する攻め手',style:'Se',center:'heart',sc:'#c4566e',sb:'#fae0e8'},
+  2:{name:'制御する先手',  style:'Se',center:'head', sc:'#c4566e',sb:'#fae0e8'},
+  3:{name:'本能の狩人',    style:'Se',center:'guts', sc:'#c4566e',sb:'#fae0e8'},
+  4:{name:'捧げる献身者',  style:'Ni',center:'heart',sc:'#7655a8',sb:'#ece6f8'},
+  5:{name:'慎重な信者',    style:'Ni',center:'head', sc:'#7655a8',sb:'#ece6f8'},
+  6:{name:'芯ある漂流者',  style:'Ni',center:'guts', sc:'#7655a8',sb:'#ece6f8'},
+  7:{name:'尽くす世話人',  style:'Si',center:'heart',sc:'#2e8b7a',sb:'#ddf2ee'},
+  8:{name:'安定の建築家',  style:'Si',center:'head', sc:'#2e8b7a',sb:'#ddf2ee'},
+  9:{name:'無言の番人',    style:'Si',center:'guts', sc:'#2e8b7a',sb:'#ddf2ee'},
+  10:{name:'感情の旅人',   style:'Ne',center:'heart',sc:'#c47830',sb:'#fdefd8'},
+  11:{name:'楽観の夢想家', style:'Ne',center:'head', sc:'#c47830',sb:'#fdefd8'},
+  12:{name:'自由の火花',   style:'Ne',center:'guts', sc:'#c47830',sb:'#fdefd8'},
+};
+const CENTER_JA={heart:'ハート',head:'ヘッド',guts:'ガッツ'};
+const REL={
+  bipolar:   {name:'双極',   en:'Bipolar',   color:'#c4566e',bg:'#fae0e8', desc:'強烈に惹かれ合う補完関係。Se×NiまたはSi×Neの組み合わせ。',rule:'Se ↔ Ni / Si ↔ Ne'},
+  resonance: {name:'共鳴',   en:'Resonance', color:'#7655a8',bg:'#ece6f8', desc:'最も深まりやすい。補完スタイル＋同センターの組み合わせ。',rule:'補完スタイル × 同センター'},
+  stimulus:  {name:'刺激',   en:'Stimulus',  color:'#c47830',bg:'#fdefd8', desc:'成長し合える関係。同スタイル群の対角センターの組み合わせ。',rule:'同スタイル群 × 異センター'},
+  parallel:  {name:'並走',   en:'Parallel',  color:'#2e8b7a',bg:'#ddf2ee', desc:'同じ方向を向く。同スタイル群＋同センターの組み合わせ。',rule:'同スタイル群 × 同センター'},
+  mirror:    {name:'鏡像',   en:'Mirror',    color:'#5b7fa6',bg:'#deeaf7', desc:'自分の鏡のような関係。同スタイル×異センターの組み合わせ。',rule:'同スタイル × 異センター'},
+  stillwater:{name:'静水',   en:'Still Water',color:'#8b7355',bg:'#f0e8dc', desc:'穏やかに引き合う。Se×NeまたはNi×Siの交差グループ。',rule:'Se×Ne / Ni×Si の交差'},
+};
+
+const PAIRS = [
+  {t1:1,t2:5,rel:'bipolar',a:'01の積極性が05の一歩を作る。05が信頼を決めた後の深い献身が、01の「愛されたい」をこれ以上なく満たす。',r:'01が待つことを覚え、05が不完全な信頼でも一歩踏み出せたとき、この関係は最も深くなる。',c:'01は「今すぐ愛を確認したい」、05は「まだ確証が持てない」。求めるほど相手が慎重になる悪循環にはまりやすい。',k:'01が待つことを覚え、05が不完全な信頼でも一歩踏み出せたとき、この関係は最も深くなる。'},
+  {t1:1,t2:6,rel:'bipolar',a:'Se×Niの補完。01が前に出るほど06の「流れに委ねる」気質が引き出される。静かな深まりと激しい引力が同居する。',r:'01の明確な意志が06に安心を与える。06の芯のある委ねが01の確認欲求を静かに満たしていく。',c:'01は「もっと近づきたい」、06は「自分の芯を守りたい」。近づくほど06が後退するように見えて01が傷つく。',k:'01が06の静かな芯を信頼すること。言葉にされなくても、そこには揺るがない意志がある。'},
+  {t1:2,t2:4,rel:'bipolar',a:'Se×Niの補完。02の主導性が04の「委ねたい」気持ちに完璧に応える。制御する者と捧げる者の強烈な引力。',r:'02のリードが04に「ここは安全だ」という感覚を与える。04の深い献身が02の不安を静め、確かな絆を証明する。',c:'02は信頼を「試す行動」をとる。04は試されることで深く傷つく。信頼の確認方法が根本的にすれ違う。',k:'02が試すのをやめ、04が愛情の形は人それぞれと理解したとき、関係が一気に深まる。'},
+  {t1:2,t2:6,rel:'bipolar',a:'Se×Niの補完。02の思考的主導性と06の本能的静けさが引き合う。知的な緊張感を帯びた惹かれ合い。',r:'02の戦略と06の直感が補完し合う場面でこの関係は輝く。どちらも「安易に流されない」という共通の芯を持つ。',c:'02は言語化と確認を求める。06は言葉より感覚で動く。「ちゃんと話し合おう」と「感じればわかる」の深いズレ。',k:'言語と感覚をどちらも一つの知性として尊重できたとき、他に代えがたい理解関係になる。'},
+  {t1:3,t2:4,rel:'bipolar',a:'Se×Niの最強補完。本能的衝動と深い献身が激しく引き合う。理屈より前に体が反応する引力。',r:'03が求めたとき04が全力で応える、04が尽くしたとき03がそのまま受け取る。この循環が成立すると燃え上がる。',c:'03は「今感じたままに動く」、04は「相手のために自分を消す」。自己中心性と自己消失の衝突。',k:'03が「相手も感じている」ことに気づき、04が「自分の感情も大切にしていい」と学ぶ。対極の成長が鍵。'},
+  {t1:3,t2:5,rel:'bipolar',a:'Se×Niの補完。03の衝動的な情熱が05の「委ねたい」本能を呼び覚ます。予測不能な引力。',r:'03の行動力が05の慎重さをほぐす瞬間がある。05が信頼した後の深さが03のエネルギーと共鳴する。',c:'03は考える前に動く、05は動く前に考える。テンポの根本的な違いが深刻なすれ違いを生む。',k:'スピードの違いを正誤で判断しないこと。情熱と深さは時間さえ合えば最高の化学反応を起こす。'},
+  {t1:7,t2:11,rel:'bipolar',a:'Si×Neの補完。07の安定と温かさが11の「可能性の中で安心したい」気持ちに応える。安心の中に広がりが生まれる。',r:'07が整えた安定の場で11は最も自由に可能性を広げられる。07は11の楽観的エネルギーで日常が彩られていく。',c:'07は「私の気遣いに気づいてほしい」、11は「楽しい未来の話がしたい」。現在への感謝と未来への期待がズレる。',k:'07が見返りなく尽くす感覚を持ち、11が今の関係への感謝を言葉にする習慣を持てたとき完成する。'},
+  {t1:7,t2:12,rel:'bipolar',a:'Si×Neの補完。07の包容力が12の自由な魂を安心させる。「ここにいていい」という感覚の中で12が花開く。',r:'07が12の自由を否定しないとき、12は初めて「留まりたい」と感じる。07にとって12の存在は日常を豊かにする光。',c:'07は「もっと近くにいてほしい」、12は「縛られると自分でいられない」。愛情の確認と自由への欲求の正面衝突。',k:'07が12の自由を愛の否定と取らないこと、12が07の近づきたい気持ちを束縛と取らないこと。解釈の変換が鍵。'},
+  {t1:8,t2:10,rel:'bipolar',a:'Si×Neの補完。08の安定した構造の中で10のときめきが輝く。互いに持っていないものへの強い引力。',r:'08の安心感の中で10が感情豊かに動く。10の感情表現が08の固くなりがちな関係に温度をもたらす。',c:'08は「変わらない安心」を求める、10は「常に新鮮なときめき」を求める。安定と刺激の根本的な価値観衝突。',k:'08が日常の中の小さな変化を許容し、10が安定の中にも愛はあると気づくこと。'},
+  {t1:8,t2:12,rel:'bipolar',a:'Si×Neの補完。08の落ち着きが12の衝動性を包む。12にとって08は数少ない「側にいても自分でいられる」相手。',r:'08の安定感と12の自由が不思議と共存できる。どちらも相手に依存しないという共通の姿勢が心地よさを生む。',c:'08は「関係の見通しと確実性」を求める、12は「今感じることに正直でいたい」。将来設計と今この瞬間のズレ。',k:'08が確実でなくても美しい関係があると知り、12が自由と責任は共存できると学んだとき。'},
+  {t1:9,t2:10,rel:'bipolar',a:'Si×Neの補完。09の静かな存在感が10の感情の揺れを受け止める。09にとって10の感情の豊かさは温かみをもたらす。',r:'09が言葉にしない行動で示す愛情が、10の「愛されているか」という欲求を深いところで満たす。10の明るさが09を引き出す。',c:'09は「言わなくてもわかるはず」、10は「言ってほしい、感じさせてほしい」。沈黙の愛と感情的表現の根本的な違い。',k:'09が言葉にする一歩を踏み出し、10が行動の中にある愛を読む力をつけたとき。'},
+  {t1:9,t2:11,rel:'bipolar',a:'Si×Neの補完。09の安定感と11の楽観性。「今ここにいる」と「もっといい未来がある」が引き合う。',r:'09が守る安定の上で11が未来を描く。09にとって11の明るさは重くなりがちな沈黙を解いてくれる存在。',c:'09は感情を内に抱える、11は問題を楽観で塗り替えようとする。深刻な局面で「重く受け止めてほしい」と「大丈夫だよ」がぶつかる。',k:'09が溜めた感情を少しずつ言葉にし、11が楽観でなく正面から向き合う場面を作れたとき。'},
+  {t1:1,t2:4,rel:'resonance',a:'Se×Ni補完＋ハート同士。求める者と委ねる者が、同じ「愛されたい」という根本で繋がる。深い直感的な理解が生まれる。',r:'01が求め04が応える、04が尽くし01が受け取る。どちらも「愛を感じること」最優先なので愛情サイクルが自然に回る。',c:'共にハートセンターのため互いの愛情確認欲求が競合することがある。「もっと愛してほしい」が同時に起きると関係が重くなる。',k:'どちらかが与える側に自然に回れるとき最も安定する。愛の循環が生まれれば止まらない。'},
+  {t1:2,t2:5,rel:'resonance',a:'Se×Ni補完＋ヘッド同士。安心を求める者同士が、互いの安心の作り方の違いで惹かれ合う。知的な信頼関係。',r:'02の主導性が05に安全感を与え、05の慎重な信頼が02の「本当に安全か」を証明する。互いの不安解消が噛み合う。',c:'共にヘッドセンターなので不安の共鳴が起きやすい。02の試す行動と05の疑いがループし、不安を増幅させる危険がある。',k:'どちらかが先に信頼を示すこと。不安だから確認するではなく、信じるから動くという転換が関係を解放する。'},
+  {t1:3,t2:6,rel:'resonance',a:'Se×Ni補完＋ガッツ同士。本能と意志で動く者同士。言葉より先に体が反応するような強い引力。',r:'03の衝動的情熱と06の静かな意志が互いの存在をリスペクトし合う関係になる。「自分でいること」を互いに許し合える稀有なペア。',c:'共にガッツセンターなので意地の張り合いが起きる。どちらも自分の芯を曲げたくないので、詰まったとき誰も動かない。',k:'折れるではなく解放する感覚を持てたとき。ガッツ同士の和解は言葉より行動で起きる。'},
+  {t1:7,t2:10,rel:'resonance',a:'Si×Ne補完＋ハート同士。尽くす者とときめく者が、同じ「愛されたい」という根本で繋がる。温かく豊かな引力。',r:'07の細やかな気遣いが10の感情の旅に安心の地盤を作る。10の感情表現が07の「伝わった」という確認になる。愛情循環が最も自然に回る。',c:'共にハートセンターなので承認欲求が競合することがある。「もっと気づいてほしい」が両方から出ると互いに傷つく。',k:'愛情表現の言語を揃えること。行動と感情どちらが愛かという議論をしないこと。'},
+  {t1:8,t2:11,rel:'resonance',a:'Si×Ne補完＋ヘッド同士。安定を築く者と可能性を描く者が、同じ「安心したい」という動機で惹かれ合う。',r:'08の安定した基盤の上で11が未来を描く。11の楽観が08の慎重さをほぐす。今を守ると先を描くが自然に役割分担される。',c:'共にヘッドセンターなので不安の共鳴が起きやすい。安定への執着と楽観的回避が合わさると現実逃避になりやすい。',k:'不安を楽観でも安定でも誤魔化さず正面から向き合う時間を持つこと。二人の知性はそれに十分応えられる。'},
+  {t1:9,t2:12,rel:'resonance',a:'Si×Ne補完＋ガッツ同士。静かに守る者と自由に動く者が、同じ「自分でいたい」という芯で繋がる。',r:'09が12の自由を縛らず、12が09の沈黙を責めない。お互いの自分らしさを自然に尊重できる珍しい関係。',c:'共にガッツセンターなので意志の衝突が起きる。留まる意志と自由でいる意志が正面からぶつかることがある。',k:'「留まること」と「自由でいること」は矛盾しないという共通認識を、時間をかけて育てること。'},
+  {t1:1,t2:8,rel:'stimulus',a:'Se×Si同系＋ハート（01）とヘッド（08）のズレ。01の情熱と08の安定感が引き合う。',r:'01のアプローチが08の「安心できる関係を作りたい」動機を刺激する。08の落ち着きが01の確認欲求を静める瞬間がある。',c:'01は「今すぐ感情で確認したい」、08は「まず安全かどうか確かめたい」。緊急度と慎重さのズレが苛立ちになる。',k:'感情の緊急性と思考の慎重さ、どちらも相手を思ってのことだと理解した瞬間から関係が変わる。'},
+  {t1:1,t2:9,rel:'stimulus',a:'Se×Si同系＋ハート（01）とガッツ（09）のズレ。01の感情的積極性と09の本能的静けさが引き合う。',r:'01の熱量が09の内に秘めた意志を引き出す。09が行動で示す愛情が01の確認欲求を意外な形で満たす。',c:'01は「感情で確認したい」、09は「行動で示せばわかるはず」。愛の言語が全く違う。',k:'01が行動の中にある愛を読むこと、09が「ここにいる」を一度だけ言葉にすること。'},
+  {t1:2,t2:7,rel:'stimulus',a:'Se×Si同系＋ヘッド（02）とハート（07）のズレ。02の制御力と07の世話力が引き合う。',r:'02が主導し07が支える自然な分担が生まれやすい。互いの行動が関係の安定に貢献し合う。',c:'02は「安全かどうか」で関係を評価、07は「愛されているかどうか」で評価する。同じ出来事を全く違う基準で判断してすれ違う。',k:'評価の基準が違うことを知り、相手の感じ方を「間違い」と判断しないこと。'},
+  {t1:2,t2:9,rel:'stimulus',a:'Se×Si同系＋ヘッド（02）とガッツ（09）のズレ。02の戦略的動きと09の静かな意志が惹かれ合う。',r:'02の言語化と09の行動が組み合わさると、考えて動くという最強の組み合わせになる。',c:'02は不安を考え続ける、09は感じながらも動く。「まず考えよう」と「もう動いている」のズレ。',k:'思考と行動どちらが先かではなく、互いのアプローチを組み合わせることで最良の判断ができると気づくこと。'},
+  {t1:3,t2:7,rel:'stimulus',a:'Se×Si同系＋ガッツ（03）とハート（07）のズレ。03の本能的情熱と07の温かな世話力が引き合う。',r:'03が求めたとき07が温かく迎える。07が尽くしたとき03がそれを自然に受け取る。エネルギーの発信と受容の補完。',c:'03は「自分らしく動くこと」が愛の形、07は「相手のために変わること」が愛の形。自己表現と自己犠牲の価値観衝突。',k:'03が尽くしてもらうことへの感謝を言葉にし、07が自分のためにもいいと少しずつ学ぶこと。'},
+  {t1:3,t2:8,rel:'stimulus',a:'Se×Si同系＋ガッツ（03）とヘッド（08）のズレ。03の衝動と08の構造が引き合う。',r:'03のエネルギーを08が構造化し、08の安定を03が活性化する。この役割が機能するとき最高のチームになる。',c:'03は今この瞬間の本能で動く、08は先を見越して慎重に動く。テンポと計画性の根本的なズレが摩擦を生む。',k:'03が少し立ち止まり、08が少し衝動を信じる。互いの世界を一歩だけ試してみること。'},
+  {t1:4,t2:11,rel:'stimulus',a:'Ni×Ne同系＋ハート（04）とヘッド（11）のズレ。04の感情的深さと11の楽観的広さが引き合う。',r:'04の献身が11に「この人のためなら現実と向き合える」と思わせる。11の明るさが04の重くなりがちな感情を解放する。',c:'04は深く沈む感情を持つ、11は問題を楽観で包もうとする。「一緒に感じてほしい」と「大丈夫だよ」の深い衝突。',k:'11が04の感情の深さを一緒にいるという姿勢で受け止め、04が11の楽観を拒絶しないこと。'},
+  {t1:4,t2:12,rel:'stimulus',a:'Ni×Ne同系＋ハート（04）とガッツ（12）のズレ。04の深い献身と12の自由な直感が引き合う。',r:'04が全力で応えるとき、12の「この人のためなら少し留まりたい」という珍しい感覚が引き出される。',c:'04は「深く愛されるために自分を消す」、12は「自由でいることが愛の証」。自己消失と自己保持の衝突。',k:'04が自分を消さなくても愛されると知り、12が留まることも自由の一形態だと気づくこと。'},
+  {t1:5,t2:10,rel:'stimulus',a:'Ni×Ne同系＋ヘッド（05）とハート（10）のズレ。05の慎重さと10の感情豊かさが引き合う。',r:'05が信頼を決めた後の深さと10の感情表現が交わると、理知的な深さと感情的な豊かさを兼ねた関係になる。',c:'05はゆっくり確認しながら進む、10は感情の温度で関係を測る。タイムラインと感情的確認の方法が噛み合わない。',k:'05が感情の温度を言語化し、10が深まるには時間がかかることへの理解を持つこと。'},
+  {t1:5,t2:12,rel:'stimulus',a:'Ni×Ne同系＋ヘッド（05）とガッツ（12）のズレ。05の深い信頼確認と12の自由な直感が引き合う。',r:'05が信頼した相手に示す深さと12の型にはまらない愛し方が重なると、独自の深い関係になる。',c:'05は信頼の確証を求める、12は確証より今の感覚で動く。確認とフィーリング、愛の確かめ方のズレ。',k:'05が完全な確証がなくても信じてみて、12が自由でいながらも相手の安心を一つ作ること。'},
+  {t1:6,t2:10,rel:'stimulus',a:'Ni×Ne同系＋ガッツ（06）とハート（10）のズレ。06の静かな芯と10の感情の豊かさが引き合う。',r:'06の揺るがない意志が10に安心感を与える。10の感情表現が06の内に秘めたものを引き出す。',c:'06は感情より芯で動く、10は感情の鮮度で動く。「今感じることより大切なものがある」と「今感じることが全て」のズレ。',k:'06が感情を表現することの価値を、10が感情の下にある意志の強さを、互いから学べたとき。'},
+  {t1:6,t2:11,rel:'stimulus',a:'Ni×Ne同系＋ガッツ（06）とヘッド（11）のズレ。06の静けさと11の明るさが引き合う。',r:'06の静かな存在感と11の楽観的エネルギーが、暗さと明るさのバランスを生む。',c:'06は「表面的な楽観より深いところで繋がりたい」、11は「重くならずに前を向きたい」。深度の好みが合わない。',k:'11が06の深いところに時々下り、06が11の明るい場所に時々上がること。互いの世界に出向く意志。'},
+  {t1:1,t2:7,rel:'parallel',a:'Se×Si同系＋ハート同士。どちらも「現実を動かす感覚」を持ちながら、求めることと尽くすことで向き合う。',r:'01のエネルギーと07の気遣いが組み合わさると、力強さと温かさを兼ねた関係になる。共に「愛されたい」動機を持つため互いの気持ちが深く理解できる。',c:'共にハートセンターなので承認欲求が競合する。01が求め07が尽くすという役割固定が進むと、01が無自覚に消費者になってしまう。',k:'どちらかが尽くしどちらかが求めるという非対称を意識し、時々役割を交換すること。'},
+  {t1:2,t2:8,rel:'parallel',a:'Se×Si同系＋ヘッド同士。どちらも「安心できる関係」を求める。制御と安定、アプローチは違うが目的地は同じ。',r:'02の主導と08の安定が組み合わさると非常に堅牢な関係になる。どちらも「軽い関係は求めない」という共通の価値観がある。',c:'共にヘッドセンターなので不安の増幅が起きやすい。02の不信感と08の変化への恐怖が共鳴すると関係が縮小していく。',k:'二人の知性を「不安の確認」ではなく「関係の発展」に使うこと。'},
+  {t1:3,t2:9,rel:'parallel',a:'Se×Si同系＋ガッツ同士。本能と意志で動く者同士。言葉より行動、感情より芯という共通の価値観。',r:'どちらも「自分でいること」を最優先にするため相手を縛らず、自然な形で側にいられる。時間をかけて非常に深い信頼が育つ。',c:'共にガッツセンターなので感情表現に乏しい。愛しているのに伝わらない。互いに「わかるはず」と思って何も言わないうちに関係が静止する。',k:'どちらかが一度だけ言葉にするという行動を選ぶこと。その一言が関係を動かす。'},
+  {t1:4,t2:10,rel:'parallel',a:'Ni×Ne同系＋ハート同士。深く感じる者と豊かに感じる者が、同じ「愛されたい」という根本で共鳴する。',r:'04の献身の深さと10の感情表現の豊かさが共鳴すると、互いの感情世界を最も深く理解し合える関係になる。',c:'共にハートセンターなので感情的な過負荷が起きやすい。どちらも感情的に満たされたいため、欲求が競合することがある。',k:'感情の受け取り手になることと表現することのバランスを、どちらかが意識的に取ること。'},
+  {t1:5,t2:11,rel:'parallel',a:'Ni×Ne同系＋ヘッド同士。慎重に信頼を確認する者と楽観的に未来を描く者が、同じ「安心したい」という動機で共鳴する。',r:'05の深い信頼と11の前向きな展望が組み合わさると、安心と希望を両立した関係になる。',c:'共にヘッドセンターなので現実逃避が起きやすい。05の慎重さと11の楽観が合わさると問題を回避するパターンになる。',k:'二人の直観的な知性を現実の問題解決に使うこと。楽観と慎重さを合わせれば最良の判断ができる。'},
+  {t1:6,t2:12,rel:'parallel',a:'Ni×Ne同系＋ガッツ同士。静かな芯を持つ者と自由な本能で動く者が、同じ「自分でいたい」という価値観で共鳴する。',r:'どちらも「自分の軸を持っている」という深いリスペクトが生まれる。縛り合わない関係の中に、静かで深い繋がりが育つ。',c:'共にガッツセンターなので関係が深まりにくい。どちらも積極的に近づこうとしない。',k:'自分でいながらも「相手に近づく」という意志を一歩だけ持つこと。その一歩が関係を次の段階に連れていく。'},
+  {t1:1,t2:2,rel:'mirror',a:'Se同士＋ハート（01）とヘッド（02）のズレ。同じ「前に出る」エネルギーを持ちながら、動機が全く違う。',r:'01の感情的な積極性と02の戦略的な主導性が組み合わさると、感情と知性を両立した力強い関係になる。',c:'01は「今すぐ感情で動きたい」、02は「まず考えてから動きたい」。同じ方向を向きながらテンポが合わない。',k:'どちらかがリードを譲れるとき、この関係は最も機能する。二人のSeが同じ方向に向かえば最強のペアになれる。'},
+  {t1:1,t2:3,rel:'mirror',a:'Se同士＋ハート（01）とガッツ（03）のズレ。共に前に出るエネルギーを持ち、最初から強い引力がある。',r:'01の感情的積極性と03の本能的衝動が同じ方向に向かうとき、誰も止められないような勢いが生まれる。',c:'01は「愛されているか確認したい」という感情的動機、03は「欲しいから取りに行く」という本能的動機。同じ行動でも意味が全く違う。',k:'行動の意味を言語化することが鍵。「なぜそう動いたか」を話せるとき初めて深く繋がれる。'},
+  {t1:2,t2:3,rel:'mirror',a:'Se同士＋ヘッド（02）とガッツ（03）のズレ。戦略と本能、考える者と感じる者の引力。',r:'02の戦略的思考と03の本能的判断が組み合わさると、考えながらも勢いを失わない最強の動き方ができる。',c:'02は考えてから動く、03は動きながら考える。「なぜ考えないの」と「なぜ動かないの」の鮮やかなすれ違い。',k:'思考と直感はどちらが正しいかではなく、どちらも必要だと理解すること。'},
+  {t1:4,t2:5,rel:'mirror',a:'Ni同士＋ハート（04）とヘッド（05）のズレ。委ねることを知る者同士。ゆっくり深まるが一度深まると稀有な関係になる。',r:'04の感情的な献身と05の知的な信頼確認が組み合わさると、感情と理性の両面から深い絆が育つ。',c:'04は感情で委ねる、05は確信を持ってから委ねる。「なぜ全力で来ないの」と「なぜそんなに急ぐの」のズレ。',k:'委ねるスピードの違いを焦りや拒絶と解釈しないこと。到達点は同じ「深く委ねること」だと知ること。'},
+  {t1:4,t2:6,rel:'mirror',a:'Ni同士＋ハート（04）とガッツ（06）のズレ。深く委ねる者と芯を持ちながら流れる者の引力。',r:'04の「全てを捧げる」感情と06の「芯を持ちながら委ねる」意志が交わると、深さと強さを両立した関係になる。',c:'04は「全力で応えてほしい」、06は「自分の芯を守りながら応える」。全力と部分的な応答のズレが不満になる。',k:'04が「全て」を求めないこと、06が「一部」であっても誠実に与えていることを言葉にすること。'},
+  {t1:5,t2:6,rel:'mirror',a:'Ni同士＋ヘッド（05）とガッツ（06）のズレ。慎重に確認する者と静かな芯で流れる者の引力。',r:'05の知的な信頼構築と06の本能的な判断が組み合わさると、思慮深さと揺るがない芯を両立した関係になる。',c:'05は言語と論理で関係を確認したい、06は感覚と意志で関係を感じたい。確認の方法論が根本的に違う。',k:'思考と感覚、どちらの確認方法も「信頼したい」という同じ願いから来ていると理解すること。'},
+  {t1:7,t2:8,rel:'mirror',a:'Si同士＋ハート（07）とヘッド（08）のズレ。尽くすことと安定させること、愛の形は違うが「守る」という共通の姿勢がある。',r:'07の温かな気遣いと08の安定した構造が組み合わさると、感情的な温度と物理的な安定を兼ね備えた関係になる。',c:'07は「気持ちを感じてほしい」、08は「安定を評価してほしい」。同じ「守っている」行動への評価の要求がズレる。',k:'相手がどんな「守り方」で愛を示しているかを見ること。形が違うだけで、根っこは同じだ。'},
+  {t1:7,t2:9,rel:'mirror',a:'Si同士＋ハート（07）とガッツ（09）のズレ。尽くすことと存在し続けることで愛を示す者同士。',r:'07の細やかな行動と09の揺るがない継続が組み合わさると、感情的な温かさと本能的な安定を兼ねた深い関係になる。',c:'07は「気づいてほしい、感謝してほしい」、09は「言わなくてもわかるはず」。表現と沈黙の対立。',k:'07が09の「いることそのもの」を愛と読む力を持ち、09が07の「言葉にする必要性」を受け入れること。'},
+  {t1:8,t2:9,rel:'mirror',a:'Si同士＋ヘッド（08）とガッツ（09）のズレ。安定を構築する者と静かに守り続ける者。どちらも「変わらないもの」を大切にする。',r:'08の慎重な設計と09の本能的な継続が組み合わさると、考えた上で動き続けるという最も信頼性の高い関係になる。',c:'08は「将来の設計と確実性」を重視、09は「今ここにある継続」を重視。長期計画と日々の積み重ね、どちらが「安定」かという価値観のズレ。',k:'設計と継続は同じ安定への二つの道。どちらも必要だという認識を持つこと。'},
+  {t1:10,t2:11,rel:'mirror',a:'Ne同士＋ハート（10）とヘッド（11）のズレ。感情でときめく者と可能性を描く者。どちらも「広がり」を求める。',r:'10の感情的なときめきと11の楽観的な想像力が組み合わさると、感情と思考の両面から可能性を広げる豊かな関係になる。',c:'10は「今感じているときめき」が最優先、11は「これからの可能性」が最優先。現在と未来のどちらに重きを置くかのズレ。',k:'今を感じることと先を描くこと、どちらも関係を豊かにする。互いの時間軸を尊重すること。'},
+  {t1:10,t2:12,rel:'mirror',a:'Ne同士＋ハート（10）とガッツ（12）のズレ。感情で動く者と本能で動く者。どちらも「今この瞬間」を大切にする。',r:'10の感情的な豊かさと12の本能的な自由が交わると、型にはまらない活き活きとした関係になる。',c:'10は「愛されているという感情の確認」が必要、12は「自由でいることが愛の証」。感情的な確認と自由への欲求がぶつかる。',k:'12が10の感情確認をたまに言葉にし、10が12の自由を愛の否定と取らないこと。'},
+  {t1:11,t2:12,rel:'mirror',a:'Ne同士＋ヘッド（11）とガッツ（12）のズレ。可能性を描く者と本能で動く者。どちらも「固定されないこと」を好む。',r:'11の楽観的ビジョンと12の本能的行動が組み合わさると、描いたものをすぐ実行する夢想と現実の距離が最短の関係になる。',c:'11は「楽しい可能性を想像する」、12は「今感じたままに動く」。計画と衝動のズレ。',k:'11のビジョンを12が動かし、12の衝動を11が方向づける。この役割分担が自然にできるとき最強のペアになる。'},
+  {t1:1,t2:10,rel:'stillwater',a:'Se×Neの外向交差＋ハート同士。01の求める積極性と10の感情的なときめきが同じ「外向き」のエネルギーで引き合う。',r:'01の積極的なアプローチが10の感情的反応を引き出す。10の表情豊かな反応が01の「伝わっている」という確認になる。',c:'01は「愛されているか確認したい」という内的欲求で動く。10は「ときめきの鮮度」で動く。動機の根っこが違うため、ある段階で深まれない壁がある。',k:'表面の楽しさの下にある「なぜ動いているか」を話し合えたとき、静水の壁を越えられる。'},
+  {t1:1,t2:11,rel:'stillwater',a:'Se×Neの外向交差＋ハート（01）とヘッド（11）のズレ。01の積極性と11の明るい楽観性が引き合う。',r:'01のアプローチが11の可能性思考を刺激する。「こんな未来が描ける」という11の言葉が01の行動を後押しする。',c:'01は愛の確認のために動く、11は楽しい未来のために動く。確認と夢想、現在と未来のズレが深まりを妨げる。',k:'11が現在の01の気持ちに向き合い、01が11の描く未来に乗ってみること。'},
+  {t1:1,t2:12,rel:'stillwater',a:'Se×Neの外向交差＋ハート（01）とガッツ（12）のズレ。01の求める積極性と12の自由な本能が引き合う。',r:'01のエネルギーが12の自由な動きを呼び込む。12の予測不能な動きが01に「追いかけたい」という感情を生む。',c:'01は「近づきたい、確認したい」、12は「縛られたくない、自由でいたい」。追いかけるほど逃げる関係になりやすい。',k:'01が追いかけるのをやめたとき、12が初めて振り返る。逆説的な距離感の設計が必要。'},
+  {t1:2,t2:10,rel:'stillwater',a:'Se×Neの外向交差＋ヘッド（02）とハート（10）のズレ。02の戦略的主導性と10の感情的ときめきが引き合う。',r:'02の安定した主導性が10に安心感を与える。10の感情表現が02の関係の温度を上げる。',c:'02は関係を「安全かどうか」で評価、10は「ときめくかどうか」で評価する。同じ関係を見て全く違う判断をしてすれ違う。',k:'どちらの評価軸も正しいと認め合うこと。安全なときめきを一緒に作ることが目標になれる。'},
+  {t1:2,t2:11,rel:'stillwater',a:'Se×Neの外向交差＋ヘッド同士。安心を制御で作る者と楽観で作る者。アプローチは違うが目標が近い。',r:'02の戦略と11の楽観が組み合わさると、現実的な計画と前向きな姿勢を両立した関係になる。',c:'02の「確実に安心を作りたい」と11の「楽しく先に進みたい」のズレ。',k:'安心の作り方が違うだけで、安心を求めているのは同じ。互いのアプローチを批判せず組み合わせること。'},
+  {t1:2,t2:12,rel:'stillwater',a:'Se×Neの外向交差＋ヘッド（02）とガッツ（12）のズレ。02の思考的主導性と12の本能的自由が引き合う。',r:'02の戦略的な安全確保と12の本能的な行動力が組み合わさると、考えた上で大胆に動けるという組み合わせになる。',c:'02は「確実に安全な関係」を求め、12は「自由な関係」を求める。確実性と自由は時に相容れない。',k:'確実な自由という概念を二人で作れるかどうか。安全の中にある自由を一緒に設計すること。'},
+  {t1:3,t2:10,rel:'stillwater',a:'Se×Neの外向交差＋ガッツ（03）とハート（10）のズレ。03の本能的衝動と10の感情的ときめきが「外向き」のエネルギーで引き合う。',r:'03の衝動的な情熱と10のときめきが重なると、感情と本能の両方が動く非常に活発で明るい関係になる。',c:'03は「欲しいから動く」（本能）、10は「ときめくから動く」（感情）。似ているようで動機の純度が違い、ある段階でズレが表れる。',k:'衝動とときめきの違いを知ること。03が感情を少し意識し、10が本能を少し信じること。'},
+  {t1:3,t2:11,rel:'stillwater',a:'Se×Neの外向交差＋ガッツ（03）とヘッド（11）のズレ。03の本能的行動と11の楽観的思考が引き合う。',r:'03の衝動力と11のビジョンが組み合わさると、思い描いたことをすぐ実行するエネルギッシュな関係になる。',c:'03は「今この瞬間の感覚」で動く、11は「楽しい未来の想像」で動く。現在と未来、感覚と思考のズレ。',k:'03が11の描くビジョンに共感し、11が03の今この瞬間のエネルギーを大切にすること。'},
+  {t1:3,t2:12,rel:'stillwater',a:'Se×Neの外向交差＋ガッツ同士。本能で動く者と自由な本能で動く者。最も直感的な引力。',r:'共にガッツセンターで外向きのエネルギーを持つ。行動と自由が共鳴すると、互いを縛らず共に動ける非常に自然な関係になる。',c:'03は「求めて掴む」、12は「自由でいながら深まる」。能動的な獲得と受動的な深まりのズレ。',k:'どちらも「自分でいること」を大切にしている。その共通点から関係を育てること。'},
+  {t1:4,t2:7,rel:'stillwater',a:'Ni×Siの内向交差＋ハート同士。04の深い委ねと07の包む安定が引き合う。受け取る者と与える者の一見完璧な組み合わせ。',r:'07が尽くすとき04が全力で受け取る。04が委ねるとき07が温かく包む。表面上の相性は非常に良く見える。',c:'04は「愛されたいから自分を消す」、07は「尽くすことで愛されたい」。共に愛されたいという欲求が内向きになり、互いの欲求が届かない。',k:'どちらも「与える」だけでなく「求める」ことを許し合うこと。欲求を言葉にすること。'},
+  {t1:4,t2:8,rel:'stillwater',a:'Ni×Siの内向交差＋ハート（04）とヘッド（08）のズレ。04の深い感情と08の安定した構造が引き合う。',r:'08の作る安定した関係の中で04は安心して委ねられる。04の感情的な温度が08の固くなりがちな関係を柔らかくする。',c:'04は「感情で深く繋がりたい」、08は「安定した関係を維持したい」。感情的な深さと関係の安定性のどちらを優先するかでズレる。',k:'08が感情の深さを関係の豊かさと見ること、04が安定の中にも深さがあると気づくこと。'},
+  {t1:4,t2:9,rel:'stillwater',a:'Ni×Siの内向交差＋ハート（04）とガッツ（09）のズレ。04の感情的献身と09の行動的継続が引き合う。',r:'09がずっとそこにいるという事実が04の「愛されているか」という不安を静める。04の感情表現が09の内にあるものを引き出す。',c:'04は「感じてほしい、気づいてほしい」、09は「いるから大丈夫でしょ」。存在と感情表現、異なる愛の言語。',k:'09が「ここにいる」を言葉にすること、04が「いること自体が愛だ」と読めるようになること。'},
+  {t1:5,t2:7,rel:'stillwater',a:'Ni×Siの内向交差＋ヘッド（05）とハート（07）のズレ。05の慎重な信頼確認と07の細やかな世話が引き合う。',r:'07の気遣いが05の「ここは安全かもしれない」という感覚を育てる。05が少し開いた心に07の温かさがすっと入ってくる。',c:'05は「信頼の確証」が揃うまで距離を置く、07は「気遣いに気づいてほしい」と近づく。近づくほど05が引くように見えて07が傷つく。',k:'07が「近づくこと」を一時停止して「そこにいること」を選べたとき、05は初めて心を開き始める。'},
+  {t1:5,t2:8,rel:'stillwater',a:'Ni×Siの内向交差＋ヘッド同士。安心を確信で作る者と安定で作る者。ゆっくり深まる穏やかな関係。',r:'共にヘッドセンターで内向きの機能を持つ。慎重さと安定性が共鳴し、非常に信頼性の高い穏やかな関係になる。',c:'05の「信頼を確かめながら委ねる」と08の「変わらない安定を維持する」のズレ。',k:'どちらも「確かなものの上に立ちたい」という共通の願いがある。その安全地帯を二人で丁寧に作ること。'},
+  {t1:5,t2:9,rel:'stillwater',a:'Ni×Siの内向交差＋ヘッド（05）とガッツ（09）のズレ。05の慎重な信頼と09の静かな継続が引き合う。',r:'09の「ずっとそこにいる」という行動が05の「信頼していいのか」という疑いに静かに答えていく。時間をかけて非常に深い信頼が育つ。',c:'05は信頼の「確証」を言語で求める、09は行動で示すが言語化しない。証明の方法が噛み合わない。',k:'09が一度だけ「ここにいる」と言葉にすること。それが05の疑いを解く鍵になる。'},
+  {t1:6,t2:7,rel:'stillwater',a:'Ni×Siの内向交差＋ガッツ（06）とハート（07）のズレ。06の静かな芯と07の温かな包容力が引き合う。',r:'07の気遣いが06の「自分でいられる」感覚を強化する。06の揺るがない意志が07に「この人は離れない」という安心感を与える。',c:'06は「芯を保ちながら委ねたい」、07は「尽くすことで愛されたい」。どちらも与えることが得意で、愛の循環が止まりやすい。',k:'どちらかが「受け取る」という行為を意識的に選ぶこと。与え合うだけでなく受け取り合うことが関係を動かす。'},
+  {t1:6,t2:8,rel:'stillwater',a:'Ni×Siの内向交差＋ガッツ（06）とヘッド（08）のズレ。06の静かな本能的意志と08の思考的安定が引き合う。',r:'06の揺るがない芯と08の安定した構造が組み合わさると、非常に信頼性が高く安定した関係になる。',c:'06は感覚と意志で動く、08は思考と計画で動く。「感じたから動く」と「考えたから動く」の判断プロセスの根本的なズレ。',k:'どちらも「慎重」という共通点がある。その慎重さを活かして一緒に判断することで最良の関係になる。'},
+  {t1:6,t2:9,rel:'stillwater',a:'Ni×Siの内向交差＋ガッツ同士。静かな芯で流れる者と静かな意志で守る者。最も穏やかな引力。',r:'共にガッツセンターで内向きの機能を持つ。感情より意志、言葉より行動という共通の価値観が深い安心感を生む。',c:'06の「流れに乗りながら芯を保つ」と09の「その場に留まり守り続ける」のズレ。',k:'流れることと留まることは矛盾しない。どちらも「芯がある」という共通点から関係を育てること。'},
+];
+
+// Populate selects
+const typeOptions = Object.entries(TYPES_MAP).map(([id,t])=>
+  `<option value="${id}">Type ${String(id).padStart(2,'0')} ${t.name}</option>`).join('');
+document.getElementById('filterType1').innerHTML += typeOptions;
+document.getElementById('filterType2').innerHTML += typeOptions;
+
+// Render rel overview
+const relOverview = document.getElementById('relOverview');
+Object.entries(REL).forEach(([key,r])=>{
+  const cnt = PAIRS.filter(p=>p.rel===key).length;
+  const card = document.createElement('div');
+  card.className='rel-card';
+  card.onclick=()=>switchTab(key);
+  card.innerHTML=`
+    <div class="rel-head">
+      <div class="rel-dot" style="background:${r.color};"></div>
+      <div class="rel-name">${r.name}</div>
+      <div class="rel-en">${r.en} · ${cnt}</div>
+    </div>
+    <div class="rel-rule" style="color:${r.color};">${r.rule}</div>
+    <div class="rel-desc">${r.desc}</div>
+  `;
+  relOverview.appendChild(card);
+});
+
+// Render tabs
+const tabsNav = document.getElementById('tabsNav');
+const relOrder = ['bipolar','resonance','stimulus','parallel','mirror','stillwater'];
+relOrder.forEach((rel,i)=>{
+  const cnt = PAIRS.filter(p=>p.rel===rel).length;
+  const btn = document.createElement('button');
+  btn.className = 'tab-btn'+(i===0?' active':'');
+  btn.id = `tab-${rel}`;
+  btn.onclick = ()=>switchTab(rel);
+  btn.innerHTML = `${REL[rel].name} <span class="tab-count">${cnt}</span>`;
+  const c = REL[rel].color;
+  if(i===0){btn.style.background=c;btn.style.borderColor=c;}
+  tabsNav.appendChild(btn);
+});
+
+function switchTab(rel){
+  document.querySelectorAll('.tab-btn').forEach(b=>{
+    b.classList.remove('active');b.style.background='';b.style.borderColor='';b.style.color='';
+  });
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  const btn = document.getElementById(`tab-${rel}`);
+  btn.classList.add('active');
+  btn.style.background=REL[rel].color;btn.style.borderColor=REL[rel].color;btn.style.color='white';
+  document.getElementById(rel).classList.add('active');
+}
+
+// Initialize tab styles
+relOrder.forEach((rel,i)=>{
+  if(i===0){
+    const b=document.getElementById(`tab-${rel}`);
+    b.style.background=REL[rel].color;b.style.borderColor=REL[rel].color;b.style.color='white';
+  }
+});
+
+// Render all pairs
+function renderPairs(pairs, container){
+  container.innerHTML='';
+  if(!pairs.length){
+    container.innerHTML='<div class="empty-state"><p>該当する相性がありません</p></div>';return;
+  }
+  pairs.forEach(p=>{
+    const t1=TYPES_MAP[p.t1],t2=TYPES_MAP[p.t2],r=REL[p.rel];
+    const card=document.createElement('div');
+    card.className='cc';
+    card.innerHTML=`
+      <div class="cc-head">
+        <span class="cc-badge" style="background:${r.bg};color:${r.color};">${r.name}</span>
+        <div class="cc-types">
+          <div class="cc-names">
+            <span style="color:${t1.sc};">Type ${String(p.t1).padStart(2,'0')} ${t1.name}</span>
+            <span style="color:var(--text-light);font-weight:400;margin:0 6px;">×</span>
+            <span style="color:${t2.sc};">Type ${String(p.t2).padStart(2,'0')} ${t2.name}</span>
+          </div>
+          <div class="cc-codes">${t1.style} × ${CENTER_JA[t1.center]} &nbsp;／&nbsp; ${t2.style} × ${CENTER_JA[t2.center]}</div>
+        </div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-field"><span class="fl">① 引力の質</span><div class="ft">${p.a}</div></div>
+        <div class="cc-field"><span class="fl">② 共鳴ポイント</span><div class="ft">${p.r}</div></div>
+        <div class="cc-field"><span class="fl">③ すれ違いの核</span><div class="ft">${p.c}</div></div>
+        <div class="cc-field"><span class="fl">④ 関係の鍵</span><div class="ft key">${p.k}</div></div>
+      </div>`;
+    container.appendChild(card);
+  });
+}
+
+// Render all by group
+relOrder.forEach(rel=>{
+  const container=document.getElementById(rel);
+  renderPairs(PAIRS.filter(p=>p.rel===rel), container);
+});
+
+// Filter by type
+function filterByType(){
+  const v1=parseInt(document.getElementById('filterType1').value)||0;
+  const v2=parseInt(document.getElementById('filterType2').value)||0;
+  const label=document.getElementById('resultLabel');
+
+  if(!v1&&!v2){
+    // Reset all
+    relOrder.forEach(rel=>{
+      renderPairs(PAIRS.filter(p=>p.rel===rel), document.getElementById(rel));
+    });
+    label.textContent='';
+    return;
+  }
+
+  const filtered=PAIRS.filter(p=>{
+    if(v1&&v2) return (p.t1===v1&&p.t2===v2)||(p.t1===v2&&p.t2===v1);
+    if(v1) return p.t1===v1||p.t2===v1;
+    if(v2) return p.t1===v2||p.t2===v2;
+    return true;
+  });
+
+  label.textContent=`${filtered.length}件`;
+  relOrder.forEach(rel=>{
+    renderPairs(filtered.filter(p=>p.rel===rel), document.getElementById(rel));
+  });
+
+  // Switch to first tab that has results
+  const firstRel=relOrder.find(rel=>filtered.some(p=>p.rel===rel));
+  if(firstRel) switchTab(firstRel);
+}
+</script>
+</body>
+</html>

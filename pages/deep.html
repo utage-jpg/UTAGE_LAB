@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>深層心理テスト〜あなたの無意識が語るもの | UTAGE LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;700;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1a2a;
+    --parchment: #f2f5f0;
+    --cream: #f5f8f5;
+    --teal: #2d7d7d;
+    --teal-light: #c8e8e8;
+    --teal-deep: #1a4a4a;
+    --gold: #b8962c;
+    --rose: #c9607a;
+    --violet: #6b4e96;
+    --violet-light: #e8e0f5;
+    --border: #d0ddd8;
+    --text: #1a2d25;
+    --text-light: #5a7a6a;
+    --shadow: rgba(45,125,125,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Zen Kaku Gothic New', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+  .nav { position: sticky; top: 0; z-index: 100; background: rgba(245,248,245,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); text-decoration: none; }
+  .nav-back { font-size: 13px; color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: 4px; }
+  .nav-back:hover { color: var(--ink); }
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* START */
+  .start-wrap { max-width: 680px; margin: 0 auto; padding: 60px 24px; }
+  .diag-header { text-align: center; margin-bottom: 40px; }
+  .diag-icon-big { width: 80px; height: 80px; background: linear-gradient(135deg, var(--teal), var(--teal-deep)); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 20px; }
+  .diag-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+  .diag-title { font-family: 'Noto Serif JP', serif; font-size: clamp(22px,4vw,32px); font-weight: 700; color: var(--ink); margin-bottom: 12px; line-height: 1.4; }
+  .diag-desc { font-size: 14px; color: var(--text-light); line-height: 1.85; margin-bottom: 24px; }
+  .diag-meta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+  .diag-meta-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-light); background: white; border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; white-space: nowrap; }
+  .btn-start { display: block; background: linear-gradient(135deg, var(--teal), var(--teal-deep)); color: white; text-align: center; padding: 18px; border-radius: 10px; font-size: 16px; font-weight: 700; letter-spacing: 0.05em; cursor: pointer; border: none; width: 100%; font-family: 'Zen Kaku Gothic New', sans-serif; transition: all 0.3s; }
+  .btn-start:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--shadow); }
+  .diag-info-list { list-style: none; display: flex; flex-direction: column; gap: 10px; background: white; border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-top: 28px; }
+  .diag-info-list li { font-size: 13px; color: var(--text-light); display: flex; align-items: flex-start; gap: 8px; line-height: 1.6; }
+  .diag-info-list li::before { content: '◈'; color: var(--teal); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+
+  /* QUESTION */
+  .q-wrap { max-width: 680px; margin: 0 auto; padding: 40px 24px; }
+  .progress-bar-wrap { margin-bottom: 32px; }
+  .progress-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-light); margin-bottom: 8px; }
+  .progress-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--violet)); border-radius: 3px; transition: width 0.5s ease; }
+  .q-dimension { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+  .q-text { font-family: 'Noto Serif JP', serif; font-size: clamp(17px,3vw,22px); font-weight: 700; color: var(--ink); line-height: 1.55; margin-bottom: 32px; }
+  .q-scenario { background: linear-gradient(135deg, #e8f4f4, #f0f8f5); border: 1px solid var(--teal-light); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; font-size: 14px; color: var(--text); line-height: 1.8; font-style: italic; }
+  .q-scenario::before { content: '🔮 '; }
+  .q-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+  .q-option { border: 2px solid var(--border); border-radius: 12px; padding: 18px 20px; cursor: pointer; transition: all 0.25s; background: white; text-align: left; display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--text); font-family: 'Zen Kaku Gothic New', sans-serif; line-height: 1.6; width: 100%; }
+  .q-option:hover { border-color: var(--teal); background: var(--teal-light); transform: translateX(4px); }
+  .q-option.selected { border-color: var(--teal); background: var(--teal-light); }
+  .q-option-letter { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; transition: all 0.25s; color: var(--text-light); }
+  .q-option:hover .q-option-letter, .q-option.selected .q-option-letter { background: var(--teal); border-color: var(--teal); color: white; }
+  .q-nav { display: flex; gap: 12px; }
+  .q-btn { flex: 1; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; font-family: 'Zen Kaku Gothic New', sans-serif; transition: all 0.2s; }
+  .q-btn-back { background: white; border: 1.5px solid var(--border); color: var(--text-light); }
+  .q-btn-back:hover { border-color: var(--ink); color: var(--ink); }
+  .q-btn-next { background: linear-gradient(135deg, var(--teal), var(--teal-deep)); color: white; }
+  .q-btn-next:hover { opacity: 0.9; }
+  .q-btn-next:disabled { background: var(--border); color: var(--text-light); cursor: not-allowed; }
+
+  /* LOADING */
+  .loading-wrap { max-width: 480px; margin: 0 auto; padding: 80px 24px; text-align: center; }
+  .loading-spinner { width: 64px; height: 64px; border: 2px solid var(--border); border-top-color: var(--teal); border-radius: 50%; margin: 0 auto 28px; animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-title { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .loading-sub { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+  .loading-steps { display: flex; flex-direction: column; gap: 8px; margin-top: 32px; text-align: left; }
+  .loading-step { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: white; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text-light); transition: all 0.3s; }
+  .loading-step.done { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
+  .step-icon { width: 18px; text-align: center; flex-shrink: 0; }
+
+  /* RESULT */
+  .result-wrap { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; }
+  .result-hero { background: linear-gradient(135deg, #0a1a1a, #1a3a3a, #2d6060); border-radius: 0 0 24px 24px; padding: 48px 40px; text-align: center; color: var(--parchment); position: relative; overflow: hidden; margin: 0 -24px 32px; }
+  .result-hero::before { content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(45,125,125,0.3), transparent 70%); left: 50%; top: -100px; transform: translateX(-50%); }
+  .result-type-icon { font-size: 64px; margin-bottom: 12px; position: relative; animation: typeReveal 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+  @keyframes typeReveal { from { opacity:0; transform:scale(0.85); } to { opacity:1; transform:scale(1); } }
+  .result-hero-type { font-family: 'DM Serif Display', serif; font-size: clamp(26px,5vw,38px); color: #7fe8e0; line-height: 1.2; margin-bottom: 6px; position: relative; text-shadow: 0 0 40px rgba(127,232,224,0.5); }
+  .result-hero-name { font-family: 'Noto Serif JP', serif; font-size: clamp(15px,2.5vw,18px); font-weight: 700; margin-bottom: 12px; color: rgba(242,245,240,0.85); }
+  .result-hero-tagline { font-size: 14px; color: rgba(242,245,240,0.6); line-height: 1.7; max-width: 440px; margin: 0 auto 24px; }
+  .result-hero-traits { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .result-hero-trait { font-size: 12px; background: rgba(127,232,224,0.1); border: 1px solid rgba(127,232,224,0.2); padding: 5px 14px; border-radius: 20px; color: rgba(242,245,240,0.8); }
+  .jungian-section { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+  .jungian-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
+  .archetype-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .archetype-card { background: var(--cream); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .archetype-name { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .archetype-pct-wrap { display: flex; align-items: center; gap: 8px; }
+  .archetype-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .archetype-fill { height: 100%; border-radius: 3px; transition: width 1s cubic-bezier(0.22,1,0.36,1); width: 0; }
+  .archetype-pct { font-size: 12px; font-weight: 700; color: var(--text-light); width: 32px; text-align: right; }
+  .free-section { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+  .free-section h3 { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
+  .free-section p { font-size: 14px; color: var(--text); line-height: 1.85; margin-bottom: 12px; }
+  .shadow-hint { background: linear-gradient(135deg, #e8f4f4, #e0f0e8); border: 1px solid var(--teal-light); border-radius: 12px; padding: 20px; margin-top: 8px; }
+  .shadow-hint-title { font-weight: 700; color: var(--teal-deep); font-size: 14px; margin-bottom: 8px; }
+  .shadow-hint-text { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+  .upsell-card { background: linear-gradient(135deg, #0a1a1a 0%, #1a3a3a 100%); border-radius: 20px; padding: 36px; color: var(--parchment); margin-bottom: 20px; position: relative; overflow: hidden; }
+  .upsell-card::before { content: ''; position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(45,125,125,0.25), transparent 70%); right: -80px; bottom: -80px; }
+  .upsell-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--teal); color: white; font-size: 11px; font-weight: 700; padding: 5px 14px; border-radius: 20px; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .upsell-title { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; line-height: 1.4; }
+  .upsell-desc { font-size: 13px; line-height: 1.8; color: rgba(242,245,240,0.6); margin-bottom: 24px; }
+  .upsell-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+  .upsell-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: rgba(242,245,240,0.8); line-height: 1.5; }
+  .upsell-item::before { content: '◈'; color: #7fe8e0; font-size: 11px; margin-top: 2px; flex-shrink: 0; }
+  .upsell-price { margin-bottom: 20px; }
+  .upsell-price-num { font-family: 'DM Serif Display', serif; font-size: 40px; color: #7fe8e0; }
+  .upsell-price-sub { font-size: 13px; color: rgba(242,245,240,0.5); margin-left: 8px; }
+  .btn-premium { display: block; background: linear-gradient(135deg, var(--teal), #5ababa); color: white; text-align: center; padding: 18px; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; border: none; width: 100%; font-family: 'Zen Kaku Gothic New', sans-serif; transition: all 0.3s; position: relative; z-index: 1; }
+  .btn-premium:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(45,125,125,0.4); }
+  .share-section { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; text-align: center; }
+  .share-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
+  .share-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .share-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; font-family: 'Zen Kaku Gothic New', sans-serif; transition: all 0.2s; }
+  .share-btn-x { background: #000; color: white; }
+  .share-btn-x:hover { background: #333; }
+  .share-btn-line { background: #06C755; color: white; }
+  .share-btn-line:hover { background: #05a847; }
+  .retry-link { display: block; text-align: center; font-size: 14px; color: var(--text-light); cursor: pointer; margin-top: 8px; text-decoration: underline; }
+  .retry-link:hover { color: var(--teal); }
+  .home-link { display: block; text-align: center; background: white; border: 1.5px solid var(--border); color: var(--text); padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; margin-top: 10px; transition: all 0.2s; }
+  .home-link:hover { border-color: var(--teal); color: var(--teal); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back">← トップに戻る</a>
+</nav>
+
+<!-- START -->
+<div id="screen-start" class="screen active">
+  <div class="start-wrap">
+    <div class="diag-header">
+      <div class="diag-icon-big">🔮</div>
+      <div class="diag-eyebrow">DEEP PSYCHOLOGY TEST</div>
+      <h1 class="diag-title">深層心理テスト<br>〜 あなたの無意識が語るもの</h1>
+      <p class="diag-desc">ユング心理学に基づいた16問のイメージ投影テストです。日常の行動や直感的な反応から、あなたが気づいていない無意識のパターンを探ります。</p>
+      <div class="diag-meta-row">
+        <span class="diag-meta-item">⏱ 約4分</span>
+        <span class="diag-meta-item">📝 16問</span>
+        <span class="diag-meta-item">👥 19万人が受診</span>
+      </div>
+      <button class="btn-start" onclick="startDiag()">深層を探る 🔮</button>
+      <ul class="diag-info-list">
+        <li>ユング心理学の「元型（アーキタイプ）」理論に基づく診断</li>
+        <li>あなたの主要元型とシャドウ（影の自己）のヒントを提示</li>
+        <li>無意識の動機・防衛機制・心理的傾向を分析</li>
+        <li>「英雄・賢者・魔術師・反逆者」など12元型で分類</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTION -->
+<div id="screen-q" class="screen">
+  <div class="q-wrap">
+    <div class="progress-bar-wrap">
+      <div class="progress-info">
+        <span id="q-num-label">質問 1 / 16</span>
+        <span id="q-pct-label">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:5%"></div>
+      </div>
+    </div>
+    <div id="q-dimension" class="q-dimension"></div>
+    <div id="q-scenario" class="q-scenario" style="display:none"></div>
+    <div id="q-text" class="q-text"></div>
+    <div id="q-options" class="q-options"></div>
+    <div class="q-nav">
+      <button class="q-btn q-btn-back" id="q-back-btn" onclick="prevQ()">← 戻る</button>
+      <button class="q-btn q-btn-next" id="q-next-btn" onclick="nextQ()" disabled>次の質問 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div id="screen-loading" class="screen">
+  <div class="loading-wrap">
+    <div class="loading-spinner"></div>
+    <div class="loading-title">無意識の層を解析中…</div>
+    <div class="loading-sub">あなたの深層心理パターンとユング元型を特定しています</div>
+    <div class="loading-steps">
+      <div class="loading-step" id="step1"><span class="step-icon">💭</span>投影パターンを分析中</div>
+      <div class="loading-step" id="step2"><span class="step-icon">🔮</span>主要元型を特定中</div>
+      <div class="loading-step" id="step3"><span class="step-icon">🌑</span>シャドウ要素を検出中</div>
+      <div class="loading-step" id="step4"><span class="step-icon">✨</span>深層プロファイルを生成中</div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="screen-result" class="screen">
+  <div class="result-hero">
+    <div class="result-type-icon" id="r-icon">🔮</div>
+    <div class="result-hero-type" id="r-type">賢者の元型</div>
+    <div class="result-hero-name" id="r-name">The Sage Archetype</div>
+    <div class="result-hero-tagline" id="r-tagline"></div>
+    <div class="result-hero-traits" id="r-traits"></div>
+  </div>
+
+  <div class="result-wrap">
+    <div class="jungian-section">
+      <div class="jungian-title">🧬 元型スペクトラム分析</div>
+      <div class="archetype-grid" id="archetype-grid"></div>
+    </div>
+
+    <div class="free-section">
+      <h3>🌑 あなたの深層心理について</h3>
+      <p id="r-free-desc1"></p>
+      <p id="r-free-desc2"></p>
+      <div class="shadow-hint">
+        <div class="shadow-hint-title">🌒 シャドウのヒント</div>
+        <div class="shadow-hint-text" id="r-shadow"></div>
+      </div>
+    </div>
+
+    <div class="upsell-card">
+      <div class="upsell-badge">💎 PREMIUM</div>
+      <div class="upsell-title" id="upsell-title">あなたの深層心理を完全解析する</div>
+      <div class="upsell-desc">全12元型の詳細スコア、防衛機制パターン、コンプレックス分析、成長への道筋を完全レポートとして提供します。</div>
+      <div class="upsell-items">
+        <div class="upsell-item">全12元型の詳細スコア</div>
+        <div class="upsell-item">シャドウ完全分析レポート</div>
+        <div class="upsell-item">防衛機制パターン解析</div>
+        <div class="upsell-item">コンプレックス特定</div>
+        <div class="upsell-item">心理的成長の道筋</div>
+        <div class="upsell-item">MBTI × ユング統合分析</div>
+      </div>
+      <div class="upsell-price">
+        <span class="upsell-price-num">¥580</span>
+        <span class="upsell-price-sub">/月（初月無料）</span>
+      </div>
+      <button class="btn-premium">深層分析レポートを見る →</button>
+    </div>
+
+    <div class="share-section">
+      <div class="share-title">結果をシェアする</div>
+      <div class="share-buttons">
+        <button class="share-btn share-btn-x" onclick="shareX()">𝕏 Xにシェア</button>
+        <button class="share-btn share-btn-line" onclick="shareLine()">LINE でシェア</button>
+      </div>
+    </div>
+
+    <button class="retry-link" onclick="retryDiag()">もう一度診断する</button>
+    <a href="../index.html" class="home-link">← トップページに戻る</a>
+  </div>
+</div>
+
+<script>
+const questions = [
+  { dim: "IMAGE", scenario: "深い森の中で、あなたは一人で道に迷っています。", text: "そのとき、あなたはどうしますか？", opts: ["立ち止まり、冷静に状況を分析して最短ルートを探す", "直感を信じて、光や音がする方向へ進んでいく"], scores: [{ sage: 2, hero: 1 }, { magician: 2, explorer: 1 }] },
+  { dim: "MOTIVATION", scenario: null, text: "あなたが行動する最大の動機は何ですか？", opts: ["物事の真実や本質を理解したい", "困難を乗り越えて、成果や目標を達成したい"], scores: [{ sage: 2 }, { hero: 2, ruler: 1 }] },
+  { dim: "CONFLICT", scenario: null, text: "不正や不公平な状況を目の当たりにしたとき、あなたは？", opts: ["声を上げて戦う。たとえ孤立しても正義のために動く", "賢く立ち回り、内側から変えようとする"], scores: [{ outlaw: 2, hero: 1 }, { sage: 1, magician: 2 }] },
+  { dim: "DREAM", scenario: "夜、鮮明な夢を見ています。", text: "その夢に出てきやすいテーマはどちらに近いですか？", opts: ["宇宙・神話・古代・象徴的な場所が登場する壮大な夢", "現実的なシチュエーション・人間関係・感情的な体験"], scores: [{ magician: 2, sage: 1 }, { caregiver: 2, lover: 1 }] },
+  { dim: "ROLE", scenario: null, text: "グループの中でのあなたの自然な役割は？", opts: ["全体を俯瞰して方向性を示す。問題の本質を見抜く", "メンバーをサポートし、チームの調和を保つ"], scores: [{ sage: 1, ruler: 2 }, { caregiver: 2 }] },
+  { dim: "FEAR", scenario: null, text: "あなたが最も恐れることは？", opts: ["自分が無意味な存在であること。記憶されないこと", "大切な人を傷つけること。関係が壊れること"], scores: [{ hero: 1, ruler: 2 }, { caregiver: 2, lover: 1 }] },
+  { dim: "CREATIVITY", scenario: null, text: "新しいアイデアを生み出すとき、あなたはどうしますか？", opts: ["過去の知識・パターン・原則を組み合わせて体系化する", "直感・イメージ・感情の流れに従って自由に発想する"], scores: [{ sage: 2 }, { magician: 2, creator: 1 }] },
+  { dim: "RELATIONSHIP", scenario: null, text: "人間関係において、最も大切にしていることは？", opts: ["誠実さと知的なつながり。表面的な付き合いより深い対話", "温かさと感情的なつながり。人を愛し、愛される体験"], scores: [{ sage: 2, outlaw: 1 }, { caregiver: 1, lover: 2 }] },
+  { dim: "CHALLENGE", scenario: "大きな壁にぶつかっています。", text: "あなたはその困難をどのようにとらえますか？", opts: ["成長のための試練。乗り越えることで強くなれる", "変化のサイン。やり方や方向性を変えるタイミング"], scores: [{ hero: 2 }, { magician: 2, explorer: 1 }] },
+  { dim: "SHADOW", scenario: null, text: "自分の中にある「認めたくない部分」について？", opts: ["存在は知っている。直視するのが怖いが、いつか向き合いたい", "そういう側面も含めて自分だと受け入れている"], scores: [{ hero: 1, sage: 1 }, { magician: 2, outlaw: 1 }] },
+  { dim: "VALUE", scenario: null, text: "あなたが人生で最も価値を置くのはどちらですか？", opts: ["自由と探求。既存の틀に縛られず、未知を探り続けること", "秩序と達成。明確な目標を持ち、確実に前進すること"], scores: [{ explorer: 2, outlaw: 1 }, { ruler: 2, hero: 1 }] },
+  { dim: "INTUITION", scenario: null, text: "「虫の知らせ」や直感について、あなたはどう思いますか？", opts: ["強く信じている。直感は深い知恵からのメッセージだと感じる", "参考にするが、最終的には論理的な判断を優先する"], scores: [{ magician: 2 }, { sage: 2 }] },
+  { dim: "SYMBOL", scenario: "目の前に二つの扉があります。", text: "あなたはどちらの扉を選びますか？", opts: ["豪華で荘厳な扉。権威と伝統を感じさせる", "古びた木の扉。向こうから不思議な光が漏れている"], scores: [{ ruler: 2, hero: 1 }, { magician: 2, explorer: 1 }] },
+  { dim: "LEGACY", scenario: null, text: "自分の人生を終えるとき、何を残したいですか？", opts: ["人々の記憶や文化に影響を与えた作品・思想・知恵", "次の世代を守り、育て、生きやすい世界にした足跡"], scores: [{ sage: 1, creator: 2 }, { caregiver: 2, ruler: 1 }] },
+  { dim: "TRANSFORMATION", scenario: null, text: "大きな変化を前にしたとき、あなたは？", opts: ["変化を恐れない。むしろ積極的に変革を引き起こしたい", "慎重に進む。変化の意味と影響を見極めてから動く"], scores: [{ outlaw: 2, magician: 1 }, { sage: 2, ruler: 1 }] },
+  { dim: "CORE", scenario: null, text: "「本当の自分」とは何だと思いますか？", opts: ["社会的な役割や期待を超えた、純粋な内なる声", "関係の中で築かれ、磨かれていく存在"], scores: [{ outlaw: 2, explorer: 1 }, { caregiver: 1, lover: 2 }] }
+];
+
+const archetypes = {
+  sage: {
+    icon: "🦉",
+    type: "賢者",
+    name: "The Sage",
+    tagline: "真理を追求し、知識と洞察で世界を照らす存在",
+    traits: ["真理探求", "客観的分析", "深い洞察", "知的探求"],
+    desc1: "あなたの主要元型は「賢者（セージ）」です。賢者型の人は、物事の本質や真理を理解することに深い喜びを感じます。情報を収集・分析し、複雑なパターンを見抜く能力に優れています。感情よりも知性を信頼し、客観的な視点から世界を見る傾向があります。",
+    desc2: "賢者型の人は、深い思考と洞察力によって周囲に知的な影響を与えます。しかし時に「知ること」に集中しすぎて、感情や行動から距離を置いてしまうことも。知識を実際の行動や人間的なつながりと結びつけることで、あなたの知恵はより輝きを増します。",
+    shadow: "賢者のシャドウは「傲慢さ」や「冷淡さ」です。知識への過信や、感情を軽視する傾向が隠れている可能性があります。",
+    archetypeScores: { sage: 85, hero: 50, magician: 70, outlaw: 40, explorer: 65, caregiver: 45, lover: 40, ruler: 55 }
+  },
+  hero: {
+    icon: "⚔️",
+    type: "英雄",
+    name: "The Hero",
+    tagline: "困難に立ち向かい、勇気と行動力で道を切り拓く存在",
+    traits: ["勇敢", "行動力", "目標志向", "挑戦精神"],
+    desc1: "あなたの主要元型は「英雄（ヒーロー）」です。英雄型の人は、困難や挑戦に立ち向かうことに本能的な喜びを感じます。目標を定め、障害を乗り越え、成長する過程そのものに生きがいを見出します。強い意志と行動力で、周囲を鼓舞する力を持っています。",
+    desc2: "英雄型の人は、その勇気と達成志向でコミュニティや組織に大きな影響を与えます。ただし、「常に強くあらねばならない」という意識が強すぎると、弱さを認めることが難しくなることも。脆弱性を受け入れることが、英雄としての真の成長につながります。",
+    shadow: "英雄のシャドウは「傲慢さ」や「無謀さ」です。証明したいという欲求や、助けを求めることへの抵抗が潜んでいる可能性があります。",
+    archetypeScores: { sage: 55, hero: 88, magician: 50, outlaw: 65, explorer: 60, caregiver: 45, lover: 40, ruler: 70 }
+  },
+  magician: {
+    icon: "✨",
+    type: "魔術師",
+    name: "The Magician",
+    tagline: "変革の力を宿し、世界と内面を変容させる触媒",
+    traits: ["変革力", "直感的", "創造的思考", "カリスマ"],
+    desc1: "あなたの主要元型は「魔術師（マジシャン）」です。魔術師型の人は、目に見えない力や可能性を感知し、変革を起こす力を持っています。直感とビジョンで動き、物事の表面ではなく深い構造を見抜きます。アイデアを現実に変える錬金術師的な才能があります。",
+    desc2: "魔術師型の人は、そのカリスマと変革力でしばしば周囲に強い印象を残します。ただし、この力を正しく扱わないと、操作的になったり、現実から乖離したりすることも。自分の力と影響力に対して誠実であることが、魔術師としての本領発揮につながります。",
+    shadow: "魔術師のシャドウは「操作性」や「現実逃避」です。影響力を悪用する傾向や、都合の良い幻想にとらわれやすい面が潜んでいる可能性があります。",
+    archetypeScores: { sage: 65, hero: 50, magician: 90, outlaw: 55, explorer: 70, caregiver: 40, lover: 60, ruler: 45 }
+  },
+  outlaw: {
+    icon: "🔥",
+    type: "反逆者",
+    name: "The Outlaw / Revolutionary",
+    tagline: "既存の틀を破り、革命的変化をもたらす異端の魂",
+    traits: ["革命的", "既成概念を打破", "反権威", "真の自由"],
+    desc1: "あなたの主要元型は「反逆者（アウトロー）」です。反逆者型の人は、権威や既成概念に本能的に抵抗を感じ、変革を起こしたいという強い衝動を持っています。社会の不公正や形式的なルールに挑戦し、真のあり方を問い続けます。",
+    desc2: "反逆者型の人の革命的なエネルギーは、硬直した組織や社会に新鮮な空気をもたらします。ただし、反抗のための反抗に陥ったり、破壊的な方向に向かいすぎると逆効果になることも。建設的な変革者としての反逆は、世界を本当に変える力があります。",
+    shadow: "反逆者のシャドウは「破壊衝動」や「反社会的傾向」です。怒りのコントロールの難しさや、ルール全般への過度な反発が潜む可能性があります。",
+    archetypeScores: { sage: 50, hero: 65, magician: 55, outlaw: 88, explorer: 75, caregiver: 30, lover: 50, ruler: 35 }
+  },
+  explorer: {
+    icon: "🗺️",
+    type: "探求者",
+    name: "The Explorer",
+    tagline: "未知の領域を探索し、真の自己を発見する旅人",
+    traits: ["冒険心", "自由志向", "自己発見", "開拓者"],
+    desc1: "あなたの主要元型は「探求者（エクスプローラー）」です。探求者型の人は、未知の世界や新しい体験を通じて自己を発見していきます。自由と独立を愛し、既存の틀に縛られることなく自分だけの道を歩みます。多様な経験を重ねることで、豊かな内面世界を育んでいます。",
+    desc2: "探求者型の人は、その開放性と好奇心によって多くの人を惹きつけます。ただし、常に次を求めすぎると深みのある関係を築けなかったり、目標を見失ったりすることも。内なる探求と外への探索のバランスを取ることが、充実した旅路につながります。",
+    shadow: "探求者のシャドウは「逃避癖」や「コミットメントへの恐れ」です。深い関与を避けたり、責任から逃げようとする傾向が潜む可能性があります。",
+    archetypeScores: { sage: 60, hero: 55, magician: 65, outlaw: 60, explorer: 87, caregiver: 45, lover: 55, ruler: 40 }
+  },
+  caregiver: {
+    icon: "🌸",
+    type: "養育者",
+    name: "The Caregiver",
+    tagline: "他者を守り育て、愛と奉仕で世界に温かさをもたらす",
+    traits: ["思いやり深い", "奉仕精神", "保護者的", "共感力高い"],
+    desc1: "あなたの主要元型は「養育者（ケアギバー）」です。養育者型の人は、他者の幸福と成長を支援することに深い喜びを感じます。共感力が高く、困っている人に自然と手を差し伸べます。人と人のつながりを大切にし、コミュニティの絆を育むことが得意です。",
+    desc2: "養育者型の人の深い思いやりは、周囲の人に安心感と温かさをもたらします。ただし、自分のニーズを後回しにして他者への奉仕に没頭しすぎると、燃え尽き症候群になることも。自分自身も大切にすることが、持続的なケアギビングの基盤となります。",
+    shadow: "養育者のシャドウは「コントロール欲求」や「依存関係の形成」です。過保護や共依存傾向が潜む可能性があります。",
+    archetypeScores: { sage: 45, hero: 50, magician: 40, outlaw: 30, explorer: 50, caregiver: 90, lover: 70, ruler: 55 }
+  }
+};
+
+let current = 0;
+let answers = [];
+let resultArchetype = 'sage';
+
+function startDiag() {
+  current = 0;
+  answers = new Array(questions.length).fill(null);
+  showScreen('screen-q');
+  renderQ();
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function renderQ() {
+  const q = questions[current];
+  const total = questions.length;
+  const pct = Math.round((current / total) * 100);
+  document.getElementById('q-num-label').textContent = '質問 ' + (current + 1) + ' / ' + total;
+  document.getElementById('q-pct-label').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = Math.max(5, pct) + '%';
+  document.getElementById('q-dimension').textContent = q.dim;
+  document.getElementById('q-text').textContent = q.text;
+  const scenarioEl = document.getElementById('q-scenario');
+  if (q.scenario) { scenarioEl.style.display = 'block'; scenarioEl.textContent = ' ' + q.scenario; }
+  else { scenarioEl.style.display = 'none'; }
+  const container = document.getElementById('q-options');
+  container.innerHTML = '';
+  ['A', 'B'].forEach((letter, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'q-option' + (answers[current] === i ? ' selected' : '');
+    btn.innerHTML = '<div class="q-option-letter">' + letter + '</div><div>' + q.opts[i] + '</div>';
+    btn.onclick = () => selectOption(i);
+    container.appendChild(btn);
+  });
+  const isLast = current === total - 1;
+  document.getElementById('q-next-btn').disabled = answers[current] === null;
+  document.getElementById('q-next-btn').textContent = isLast ? '診断する 🔮' : '次の質問 →';
+  document.getElementById('q-back-btn').style.visibility = current === 0 ? 'hidden' : 'visible';
+}
+
+function selectOption(i) {
+  answers[current] = i;
+  document.querySelectorAll('.q-option').forEach((el, idx) => el.classList.toggle('selected', idx === i));
+  document.getElementById('q-next-btn').disabled = false;
+}
+
+function nextQ() {
+  if (answers[current] === null) return;
+  if (current < questions.length - 1) { current++; renderQ(); }
+  else { showLoading(); }
+}
+
+function prevQ() {
+  if (current > 0) { current--; renderQ(); }
+}
+
+function showLoading() {
+  showScreen('screen-loading');
+  ['step1','step2','step3','step4'].forEach((id, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      el.classList.add('done');
+      el.querySelector('.step-icon').textContent = '✓';
+    }, 600 + i * 500);
+  });
+  setTimeout(showResult, 3200);
+}
+
+function computeArchetype() {
+  const scores = { sage: 0, hero: 0, magician: 0, outlaw: 0, explorer: 0, caregiver: 0, lover: 0, ruler: 0 };
+  answers.forEach((ans, i) => {
+    if (ans === null) return;
+    const s = questions[i].scores[ans];
+    Object.entries(s).forEach(([k, v]) => { scores[k] = (scores[k] || 0) + v; });
+  });
+  let maxKey = 'sage', maxVal = 0;
+  Object.entries(scores).forEach(([k, v]) => { if (v > maxVal) { maxVal = v; maxKey = k; } });
+  return maxKey;
+}
+
+function showResult() {
+  resultArchetype = computeArchetype();
+  const info = archetypes[resultArchetype] || archetypes.sage;
+  document.getElementById('r-icon').textContent = info.icon;
+  document.getElementById('r-type').textContent = info.type + 'の元型';
+  document.getElementById('r-name').textContent = info.name;
+  document.getElementById('r-tagline').textContent = info.tagline;
+  document.getElementById('r-traits').innerHTML = info.traits.map(t => '<span class="result-hero-trait">' + t + '</span>').join('');
+  document.getElementById('r-free-desc1').textContent = info.desc1;
+  document.getElementById('r-free-desc2').textContent = info.desc2;
+  document.getElementById('r-shadow').textContent = info.shadow;
+  document.getElementById('upsell-title').textContent = 'あなたの「' + info.type + '」を完全に解析する';
+  const archetypeNames = { sage: '賢者', hero: '英雄', magician: '魔術師', outlaw: '反逆者', explorer: '探求者', caregiver: '養育者', lover: '愛好者', ruler: '支配者' };
+  const archetypeColors = { sage: '#3d8b8b', hero: '#c9607a', magician: '#9b59b6', outlaw: '#e74c3c', explorer: '#27ae60', caregiver: '#e67e22', lover: '#ff6b9d', ruler: '#c9a84c' };
+  const grid = document.getElementById('archetype-grid');
+  grid.innerHTML = '';
+  Object.entries(info.archetypeScores).slice(0, 6).forEach(([key, val]) => {
+    const card = document.createElement('div');
+    card.className = 'archetype-card';
+    card.innerHTML = '<div class="archetype-name">' + archetypeNames[key] + '</div><div class="archetype-pct-wrap"><div class="archetype-track"><div class="archetype-fill" style="background:' + archetypeColors[key] + ';width:0" data-val="' + val + '"></div></div><div class="archetype-pct">' + val + '%</div></div>';
+    grid.appendChild(card);
+  });
+  showScreen('screen-result');
+  setTimeout(() => {
+    document.querySelectorAll('.archetype-fill').forEach(el => { el.style.width = el.dataset.val + '%'; });
+  }, 200);
+}
+
+function retryDiag() {
+  current = 0;
+  answers = new Array(questions.length).fill(null);
+  showScreen('screen-start');
+}
+
+function shareX() {
+  const info = archetypes[resultArchetype] || archetypes.sage;
+  const text = encodeURIComponent('私の深層心理の元型は「' + info.type + '」でした！\n\n' + info.tagline + '\n\nUTAGE LABで診断してみよう👇\nhttps://utage-jpg.github.io/\n\n#深層心理 #ユング #UTAGELAB');
+  window.open('https://twitter.com/intent/tweet?text=' + text, '_blank');
+}
+
+function shareLine() {
+  const info = archetypes[resultArchetype] || archetypes.sage;
+  const text = encodeURIComponent('私の深層心理の元型は「' + info.type + '」！ UTAGE LABで診断してみて！');
+  window.open('https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent('https://utage-jpg.github.io/') + '&text=' + text, '_blank');
+}
+</script>
+</body>
+</html>

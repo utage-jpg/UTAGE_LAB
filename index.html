@@ -1844,6 +1844,43 @@ body::before {
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
 }
+.column-top-btn { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 12px; 
+  padding: 16px 36px; 
+  background: white; 
+  border: 1.5px solid var(--border); 
+  border-radius: 4px; 
+  font-family: var(--font-serif); 
+  font-size: 14px; 
+  font-weight: 700; 
+  color: var(--ink); 
+  text-decoration: none; 
+  letter-spacing: 0.04em; 
+  transition: all 0.3s; 
+  position: relative; 
+  overflow: hidden; 
+}
+.column-top-btn::before { 
+  content: ''; 
+  position: absolute; 
+  inset: 0; 
+  background: var(--ink); 
+  transform: translateX(-100%); 
+  transition: transform 0.35s ease; 
+}
+.column-top-btn:hover { 
+  color: white; 
+  border-color: var(--ink); 
+}
+.column-top-btn:hover::before { 
+  transform: translateX(0); 
+}
+.column-top-btn span { 
+  position: relative; 
+  z-index: 1; 
+}
 .col-card {
   text-decoration: none;
   color: var(--text);
@@ -2718,6 +2755,12 @@ body::before {
       <h2 class="section-title">心理コラム</h2>
     </div>
     <a href="#" class="section-more">すべて見る →</a>
+  </div>
+
+  <div style="margin-bottom: 36px;">
+    <a href="./colum/index.html" class="column-top-btn">
+      <span>📖 コラム一覧を見る →</span>
+    </a>
   </div>
 
   <div class="column-grid">

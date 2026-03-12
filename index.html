@@ -636,14 +636,35 @@ body::before {
   letter-spacing: 0.04em;
 }
 .fortune-daily-header {
-  text-align: center;
-  margin-bottom: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  padding: 52px 60px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(201,96,122,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.fortune-daily-header::after {
+  content: '✦';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 220px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,96,122,0.04);
+  right: -20px;
+  bottom: -60px;
+  line-height: 1;
+  pointer-events: none;
 }
 .fortune-daily-logo {
-  max-width: min(420px, 72vw);
+  max-width: min(320px, 100%);
   height: auto;
   display: block;
-  margin: 0 auto 14px;
+  margin: 0 0 16px;
   mix-blend-mode: multiply;
 }
 .fortune-daily-subtitle {
@@ -652,13 +673,87 @@ body::before {
   letter-spacing: 0.22em;
   color: var(--text-light);
   text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.fortune-daily-desc {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+
+/* ── FORTUNE SELECTOR (step UI) ── */
+.fortune-selector {
+  position: relative;
+  min-height: 200px;
+}
+.fortune-sel-step {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.fortune-sel-step.hidden {
+  display: none;
+}
+.fortune-sel-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  min-height: 28px;
+}
+.fortune-sel-badge {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--rose);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+.fortune-sel-back {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.fortune-sel-back:hover { color: var(--rose); }
+.fortune-month-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.fortune-month-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 4px;
+  border-radius: 8px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid rgba(201,96,122,0.15);
+  background: var(--rose-light);
+  color: var(--rose-deep);
+  transition: all 0.22s;
+}
+.fortune-month-btn:hover {
+  background: var(--rose);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(201,96,122,0.3);
+  border-color: transparent;
 }
 .fortune-type-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 9px;
-  max-width: 580px;
-  margin: 0 auto 6px;
 }
 .fortune-type-btn {
   display: flex;
@@ -2044,6 +2139,8 @@ body::before {
   .feature-banner-wrap { grid-template-columns: 1fr; padding: 40px; }
   .feature-right { display: none; }
   .fortune-banner { grid-template-columns: 1fr; padding: 40px; gap: 32px; }
+  .fortune-daily-header { grid-template-columns: 1fr; padding: 32px 28px; gap: 32px; }
+  .fortune-daily-logo { margin: 0 auto 16px; max-width: min(280px, 100%); }
   .section { padding: 80px 32px; }
   .footer { padding: 64px 32px 32px; }
 }
@@ -2415,16 +2512,84 @@ body::before {
 <!-- ===== DAILY FORTUNE ===== -->
 <div class="fortune-daily-wrap" id="daily-fortune">
   <div class="section" style="padding-bottom: 48px;">
+
+    <!-- Section header -->
+    <div class="section-header reveal" style="margin-bottom: 28px;">
+      <div>
+        <div class="section-eyebrow">Daily Fortune</div>
+        <h2 class="section-title">16type × 誕生月占い</h2>
+      </div>
+    </div>
+
+    <!-- Main card (2-column) -->
     <div class="fortune-daily-header reveal">
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank">
-        <img src="assets/fortune-logo.jpg" alt="16type × fortune" class="fortune-daily-logo">
-      </a>
-      <p class="fortune-daily-subtitle">
-        あなたのMBTIタイプを選んで、今日の運勢を確認しよう。毎日更新。
-      </p>
-      <div style="margin-top: 24px;">
+
+      <!-- Left: logo + description + CTA -->
+      <div class="fortune-daily-left">
+        <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank">
+          <img src="assets/fortune-logo.jpg" alt="16type × fortune" class="fortune-daily-logo">
+        </a>
+        <p class="fortune-daily-desc">
+          あなたのMBTIタイプと誕生月を組み合わせた、毎日更新の運勢コンテンツ。16タイプそれぞれに合わせたメッセージを、星の動きと心理学の知見でお届けします。
+        </p>
         <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-daily-cta"><span>✨ 今日の運勢を見る</span></a>
       </div>
+
+      <!-- Right: 2-step selector (type → month → navigate) -->
+      <div class="fortune-daily-right">
+        <div class="fortune-selector">
+
+          <!-- ナビ表示（ステップ2で選択済みタイプを表示） -->
+          <div class="fortune-sel-nav" id="fortuneNav" style="display:none;">
+            <span class="fortune-sel-badge" id="fortuneTypeBadge"></span>
+            <button class="fortune-sel-back" onclick="fortuneReset()">← タイプを選び直す</button>
+          </div>
+
+          <!-- Step 1: タイプ選択 -->
+          <div class="fortune-sel-step" id="fortuneStepType">
+            <p class="fortune-daily-subtitle" style="margin-bottom: 12px;">① タイプを選ぶ</p>
+            <div class="fortune-type-grid">
+              <button class="fortune-type-btn ft-intj" onclick="fortuneSelectType('INTJ',this)">INTJ</button>
+              <button class="fortune-type-btn ft-intp" onclick="fortuneSelectType('INTP',this)">INTP</button>
+              <button class="fortune-type-btn ft-entj" onclick="fortuneSelectType('ENTJ',this)">ENTJ</button>
+              <button class="fortune-type-btn ft-entp" onclick="fortuneSelectType('ENTP',this)">ENTP</button>
+              <button class="fortune-type-btn ft-infj" onclick="fortuneSelectType('INFJ',this)">INFJ</button>
+              <button class="fortune-type-btn ft-infp" onclick="fortuneSelectType('INFP',this)">INFP</button>
+              <button class="fortune-type-btn ft-enfj" onclick="fortuneSelectType('ENFJ',this)">ENFJ</button>
+              <button class="fortune-type-btn ft-enfp" onclick="fortuneSelectType('ENFP',this)">ENFP</button>
+              <button class="fortune-type-btn ft-istj" onclick="fortuneSelectType('ISTJ',this)">ISTJ</button>
+              <button class="fortune-type-btn ft-isfj" onclick="fortuneSelectType('ISFJ',this)">ISFJ</button>
+              <button class="fortune-type-btn ft-estj" onclick="fortuneSelectType('ESTJ',this)">ESTJ</button>
+              <button class="fortune-type-btn ft-esfj" onclick="fortuneSelectType('ESFJ',this)">ESFJ</button>
+              <button class="fortune-type-btn ft-istp" onclick="fortuneSelectType('ISTP',this)">ISTP</button>
+              <button class="fortune-type-btn ft-isfp" onclick="fortuneSelectType('ISFP',this)">ISFP</button>
+              <button class="fortune-type-btn ft-estp" onclick="fortuneSelectType('ESTP',this)">ESTP</button>
+              <button class="fortune-type-btn ft-esfp" onclick="fortuneSelectType('ESFP',this)">ESFP</button>
+            </div>
+          </div>
+
+          <!-- Step 2: 誕生月選択 -->
+          <div class="fortune-sel-step hidden" id="fortuneStepMonth">
+            <p class="fortune-daily-subtitle" style="margin-bottom: 12px;">② 誕生月を選ぶ</p>
+            <div class="fortune-month-grid">
+              <button class="fortune-month-btn" onclick="fortuneGo(1)">1月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(2)">2月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(3)">3月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(4)">4月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(5)">5月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(6)">6月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(7)">7月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(8)">8月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(9)">9月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(10)">10月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(11)">11月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(12)">12月</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -2902,6 +3067,29 @@ function updateNav() {
 }
 window.addEventListener('scroll', updateNav, { passive: true });
 updateNav();
+
+/* ── FORTUNE STEP SELECTOR ── */
+let fortuneCurrentType = '';
+
+function fortuneSelectType(type, el) {
+  fortuneCurrentType = type;
+  document.getElementById('fortuneTypeBadge').textContent = type;
+  document.getElementById('fortuneNav').style.display = 'flex';
+  document.getElementById('fortuneStepType').classList.add('hidden');
+  document.getElementById('fortuneStepMonth').classList.remove('hidden');
+}
+
+function fortuneGo(month) {
+  const base = 'https://utage-jpg.github.io/16type_fortune/';
+  window.open(base + '?type=' + fortuneCurrentType + '&month=' + month, '_blank');
+}
+
+function fortuneReset() {
+  fortuneCurrentType = '';
+  document.getElementById('fortuneNav').style.display = 'none';
+  document.getElementById('fortuneStepMonth').classList.add('hidden');
+  document.getElementById('fortuneStepType').classList.remove('hidden');
+}
 
 /* ── SCROLL REVEAL ── */
 const observer = new IntersectionObserver((entries) => {

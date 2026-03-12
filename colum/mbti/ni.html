@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ni（内向的直観）とは？ 未来を「見る」予言者の洞察力 | UTAGE LAB</title>
+<meta name="description" content="MBTI心理機能「Ni（内向的直観）」をやさしく解説。なぜINTJ・INFJはあんなに先が読めるのか？深層の洞察力の正体を初学者向けに解説。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1025; --cream:#faf7f2; --parchment:#f5f0e8; --paper:#fff9f5;
+  --rose:#c9607a; --rose-light:#fae0e6;
+  --violet:#7b5ea7; --violet-light:#ede9f8;
+  --teal:#3d8b8b; --teal-light:#e2f4f4;
+  --amber:#c47d2a; --amber-light:#fef3e0;
+  --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
+  --shadow:rgba(26,16,37,0.12);
+  --func-color: #4a3570; --func-light: #ede9f8;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-serif:'Noto Serif JP',serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-serif);background:var(--cream);color:var(--text);overflow-x:hidden;font-size:17px;line-height:1.9;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,242,0.95);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border);}
+.nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
+.nav-back{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-back:hover{color:var(--func-color);}
+.hero{padding:120px 40px 80px;background:linear-gradient(135deg,#e8e0f4 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+.hero::before{content:'Ni';position:absolute;right:-20px;top:20px;font-family:var(--font-display);font-size:280px;font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(74,53,112,0.08);pointer-events:none;line-height:1;}
+.hero-inner{max-width:860px;margin:0 auto;position:relative;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
+.hero-badge::before{content:'';width:28px;height:1px;background:var(--func-color);}
+.hero-func{font-family:var(--font-display);font-size:clamp(80px,14vw,160px);font-weight:900;color:var(--func-color);line-height:1;margin-bottom:8px;opacity:0.9;}
+.hero-title{font-family:var(--font-display);font-size:clamp(28px,4vw,48px);font-weight:700;color:var(--ink);margin-bottom:18px;line-height:1.25;}
+.hero-title em{font-style:italic;color:var(--func-color);}
+.hero-desc{font-size:18px;color:var(--text-light);line-height:2;max-width:600px;}
+.article{max-width:800px;margin:0 auto;padding:60px 40px 100px;}
+.article h2{font-family:var(--font-display);font-size:clamp(22px,3vw,32px);font-weight:700;color:var(--ink);margin:64px 0 24px;line-height:1.3;}
+.article h2 .num{font-family:var(--font-mono);font-size:12px;color:var(--func-color);letter-spacing:0.2em;display:block;margin-bottom:6px;}
+.article p{font-size:17px;line-height:2;margin-bottom:20px;color:var(--text);}
+.func-card{background:white;border:2px solid var(--func-color);border-radius:20px;padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
+.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#7b5ea7);}
+.func-card-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
+.func-card-text{font-size:20px;font-weight:700;color:var(--ink);line-height:1.7;}
+.scene{background:var(--parchment);border-left:4px solid var(--func-color);border-radius:0 16px 16px 0;padding:28px 32px;margin:32px 0;font-size:17px;line-height:2;}
+.scene-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.traits{background:white;border-radius:20px;border:1px solid var(--border);padding:36px 40px;margin:32px 0;}
+.trait-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);}
+.trait-item:last-child{border-bottom:none;}
+.trait-emoji{font-size:24px;flex-shrink:0;margin-top:2px;}
+.trait-text{font-size:17px;line-height:1.8;}
+.trait-text strong{color:var(--ink);}
+.funnel-vis{background:linear-gradient(135deg,var(--func-light),white);border-radius:24px;padding:40px;margin:40px 0;}
+.funnel-title{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:24px;text-align:center;}
+.funnel-steps{display:flex;flex-direction:column;align-items:center;gap:0;}
+.funnel-step{width:100%;max-width:500px;background:white;border-radius:12px;padding:16px 24px;box-shadow:0 4px 16px var(--shadow);margin-bottom:8px;display:flex;gap:16px;align-items:center;}
+.funnel-step-num{font-family:var(--font-display);font-size:32px;font-weight:900;color:var(--func-color);opacity:0.3;flex-shrink:0;}
+.funnel-step-text{font-size:14px;line-height:1.7;color:var(--text);}
+.funnel-arrow{font-size:20px;color:var(--func-color);opacity:0.5;margin:4px 0;}
+.sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0;}
+.sc-box{border-radius:16px;padding:28px;}
+.sc-box-s{background:linear-gradient(135deg,#e8f5e9,#f1f8e9);}
+.sc-box-c{background:linear-gradient(135deg,#fff3e0,#fce4ec);}
+.sc-box-title{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;}
+.sc-box-s .sc-box-title{color:#388e3c;}
+.sc-box-c .sc-box-title{color:#e64a19;}
+.sc-list{list-style:none;}
+.sc-list li{font-size:15px;padding:7px 0;border-bottom:1px solid rgba(0,0,0,0.06);line-height:1.7;}
+.sc-list li:last-child{border-bottom:none;}
+.sc-list li::before{content:'• ';font-weight:700;}
+.sc-box-s .sc-list li::before{color:#388e3c;}
+.sc-box-c .sc-list li::before{color:#e64a19;}
+.types-wrap{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0;}
+.type-badge{font-family:var(--font-mono);font-size:13px;letter-spacing:0.1em;padding:10px 18px;border-radius:8px;font-weight:700;}
+.type-dom{background:var(--func-color);color:white;}
+.type-aux{background:var(--func-light);color:var(--func-color);border:2px solid var(--func-color);}
+.type-legend{display:flex;gap:20px;margin-top:12px;}
+.type-legend-item{font-family:var(--font-mono);font-size:9px;letter-spacing:0.15em;color:var(--text-light);display:flex;align-items:center;gap:6px;}
+.type-legend-dot{width:10px;height:10px;border-radius:2px;}
+.pull-quote{border:none;margin:48px 0;padding:0;text-align:center;}
+.pull-quote-text{font-family:var(--font-display);font-size:clamp(20px,3vw,28px);font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:16px;}
+.pull-quote-text::before{content:'\201C';}
+.pull-quote-text::after{content:'\201D';}
+.pull-quote-line{width:60px;height:2px;background:var(--func-color);margin:0 auto;}
+.article-nav{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border);}
+.article-nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;transition:color 0.25s;}
+.article-nav a:hover{color:var(--func-color);}
+.footer{background:var(--ink);color:rgba(247,243,237,0.5);padding:56px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-logo{font-family:var(--font-display);font-size:22px;color:var(--parchment);margin-bottom:12px;}
+.footer-desc{font-size:12px;line-height:1.8;margin-bottom:32px;}
+.footer-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,237,0.4);text-decoration:none;border:1px solid rgba(247,243,237,0.12);padding:10px 22px;border-radius:2px;transition:all 0.25s;}
+.footer-back:hover{color:var(--parchment);border-color:rgba(247,243,237,0.3);}
+.footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .nav{padding:0 24px;}.hero{padding:100px 24px 60px;}.hero::before{font-size:160px;}
+  .article{padding:40px 24px 80px;}.sc-grid{grid-template-columns:1fr;}.footer{padding:48px 24px 28px;}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back">← コラム一覧</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">MBTI 心理機能 · 第4回</div>
+    <div class="hero-func">Ni</div>
+    <h1 class="hero-title">未来を<em>「見る」</em>予言者の洞察</h1>
+    <p class="hero-desc">ぼーっとしているように見えて、実は全体の本質を掴んでいる。「内向的直観」は、深海のように静かで、鋭い。</p>
+  </div>
+</div>
+
+<article class="article">
+
+  <div class="func-card reveal">
+    <div class="func-card-label">Ni とは？ — One Line</div>
+    <div class="func-card-text">「情報を潜在意識で統合し、本質・象徴・未来のパターンを直感的に把握する機能」</div>
+  </div>
+
+  <p class="reveal">Ni（Introverted Intuition：内向的直観）は、意識下で大量の情報を処理し、「これが本質だ」という洞察として表面に浮かび上がらせる機能です。まるで、深い海底で静かに熟成されたものが、ある日突然結晶として現れるような感覚。</p>
+  <p class="reveal">説明するのが難しいのが特徴で、「なぜそう思うの？」と聞かれても「なんとなく、そうなる気がする」としか答えられないことが多い。でも、その「なんとなく」は驚くほど正確だったりする。</p>
+
+  <h2 class="reveal"><span class="num">Scene 01</span>こんな日常、心当たりはない？</h2>
+
+  <div class="scene reveal">
+    <div class="scene-label">📍 会議シーン</div>
+    チームが細かい議論をしている間、Niが強い人はなぜかぼーっとしている。でも突然「あ、この問題の本質ってそこじゃなくて、実はこういうことじゃないですか？」と言い出す。<br><br>
+    全員が「...たしかに！」となる。本人は「自然とそう見えた」だけで、なぜそこに至ったかの説明が難しい。
+  </div>
+
+  <div class="scene reveal">
+    <div class="scene-label">📍 予感シーン</div>
+    「なんかこの仕事、うまくいかない気がする」と思った案件が、3ヶ月後に本当に問題になった。「なんで最初から言わなかったの？」「...うまく言語化できなかった」<br><br>
+    Niの予感は「論理的根拠」より先に来る。後から振り返ると、実はちゃんとした理由があったことがわかる。
+  </div>
+
+  <h2 class="reveal"><span class="num">Traits 02</span>Niが強い人の「あるある」チェック</h2>
+
+  <div class="traits reveal">
+    <div class="trait-item">
+      <div class="trait-emoji">🔮</div>
+      <div class="trait-text"><strong>「なんとなく」が当たりやすい</strong>——根拠は言えないが直感が鋭く、後で「やっぱりそうだった」が多い。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-emoji">🎯</div>
+      <div class="trait-text"><strong>本質思考・シンプル化が得意</strong>——複雑な問題を「つまり、こういうことでしょ？」と一言でまとめられる。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-emoji">🌀</div>
+      <div class="trait-text"><strong>ひとつのことを深く追求する</strong>——Neが「広がる」なら、Niは「深まる」。興味を持ったら、その本質に到達するまで離れられない。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-emoji">🗺️</div>
+      <div class="trait-text"><strong>長期ビジョンが明確</strong>——5年後・10年後のイメージが鮮明にある。そこから逆算して今何をすべきかを自然に考える。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-emoji">😶</div>
+      <div class="trait-text"><strong>内面が豊かで外に出にくい</strong>——頭の中は常に動いているが、それを言語化するのに時間がかかる。「何考えてるの？」と言われがち。</div>
+    </div>
+  </div>
+
+  <h2 class="reveal"><span class="num">Visual 03</span>NiとNeの違い——直観の「向き」</h2>
+
+  <div class="funnel-vis reveal">
+    <div class="funnel-title">Ni vs Ne — 直観の方向性</div>
+    <div class="funnel-steps">
+      <div class="funnel-step">
+        <div class="funnel-step-num">Ne</div>
+        <div class="funnel-step-text"><strong>外向き・拡張型</strong>——1つのテーマから可能性が枝分かれして広がる。「これって〜にも関係ない？」</div>
+      </div>
+      <div class="funnel-arrow">↕</div>
+      <div class="funnel-step">
+        <div class="funnel-step-num">Ni</div>
+        <div class="funnel-step-text"><strong>内向き・収束型</strong>——大量の情報が一点の本質へと絞り込まれる。「つまり、全部これだ」</div>
+      </div>
+    </div>
+    <p style="font-size:14px;color:var(--text-light);margin-top:20px;line-height:1.8;text-align:center;">Niは「拡散」ではなく「収束」の直観。バラバラな点が、ある瞬間に一本の線でつながる体験。</p>
+  </div>
+
+  <h2 class="reveal"><span class="num">Balance 04</span>強みと課題</h2>
+
+  <div class="sc-grid reveal">
+    <div class="sc-box sc-box-s">
+      <div class="sc-box-title">✦ 強み</div>
+      <ul class="sc-list">
+        <li>本質を見抜く深い洞察力</li>
+        <li>長期ビジョンの設計が得意</li>
+        <li>複雑なパターンの把握</li>
+        <li>象徴・メタファーの理解が深い</li>
+        <li>強い内的確信でぶれにくい</li>
+      </ul>
+    </div>
+    <div class="sc-box sc-box-c">
+      <div class="sc-box-title">△ 課題</div>
+      <ul class="sc-list">
+        <li>直感を言語化・説明するのが苦手</li>
+        <li>細部や今ここの現実を見落とす</li>
+        <li>確信が強すぎて柔軟性が失われることも</li>
+        <li>思考が内向きになりすぎる</li>
+        <li>行動より思考が先行し過ぎる</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="reveal"><span class="num">Types 05</span>主にこの機能が強いタイプ</h2>
+
+  <div class="types-wrap reveal">
+    <span class="type-badge type-dom">INTJ</span>
+    <span class="type-badge type-dom">INFJ</span>
+    <span class="type-badge type-aux">ENTJ</span>
+    <span class="type-badge type-aux">ENFJ</span>
+  </div>
+  <div class="type-legend">
+    <div class="type-legend-item"><div class="type-legend-dot" style="background:var(--func-color);"></div>主機能</div>
+    <div class="type-legend-item"><div class="type-legend-dot" style="background:var(--func-light);border:2px solid var(--func-color);"></div>補助機能</div>
+  </div>
+
+  <blockquote class="pull-quote reveal">
+    <div class="pull-quote-text">答えは、問いの前にもう届いている。あとは、それを見つける旅をするだけ。</div>
+    <div class="pull-quote-line"></div>
+  </blockquote>
+
+  <div class="article-nav reveal">
+    <a href="./ne.html">← 前の記事：Ne（外向的直観）</a>
+    <a href="./te.html">次の記事：Te（外向的思考）→</a>
+  </div>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">MBTI心理機能シリーズ — 8つの機能で自分を読み解く</p>
+    <a href="../index.html" class="footer-back">← コラム一覧に戻る</a>
+    <div class="footer-bottom">© 2025 UTAGE LAB · Psychology Column</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

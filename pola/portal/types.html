@@ -127,9 +127,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
 .level-txt{font-size:.78rem;color:var(--text-mid);line-height:1.7;}
 
 /* COMPAT HINT */
-.compat-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
-.compat-badge{font-family:var(--font-m);font-size:.6rem;padding:3px 10px;border-radius:100px;border:1px solid var(--border);background:var(--bg2);color:var(--text-mid);}
-.compat-badge strong{font-weight:700;}
+.compat-groups{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+.compat-group{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;}
+.compat-group-label{font-family:var(--font-m);font-size:.6rem;padding:3px 10px;border-radius:100px;border:1px solid var(--border);font-weight:700;min-width:54px;text-align:center;}
+.compat-buttons{display:flex;flex-wrap:wrap;gap:6px;flex:1;}
+.compat-type-link{font-family:var(--font-m);font-size:.62rem;padding:5px 10px;border-radius:100px;border:1px solid var(--border);background:var(--paper);color:var(--text-mid);text-decoration:none;transition:all .2s;}
+.compat-type-link:hover{transform:translateY(-1px);color:var(--ink);}
 
 /* QUOTE */
 .type-quote{
@@ -179,10 +182,10 @@ footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;ba
 
 <div class="filter-bar" id="filterBar">
   <button class="filter-btn active" onclick="filterTypes('all')" style="background:#1c1520;color:white;border-color:#1c1520;" id="filter-all">すべて</button>
-  <button class="filter-btn" onclick="filterTypes('Se')" data-color="#c4566e" id="filter-Se">Se 狩猟型</button>
-  <button class="filter-btn" onclick="filterTypes('Ni')" data-color="#7655a8" id="filter-Ni">Ni 共鳴型</button>
-  <button class="filter-btn" onclick="filterTypes('Si')" data-color="#2e8b7a" id="filter-Si">Si 守護型</button>
-  <button class="filter-btn" onclick="filterTypes('Ne')" data-color="#c47830" id="filter-Ne">Ne 冒険型</button>
+  <button class="filter-btn" onclick="filterTypes('Se')" data-color="#c4566e" id="filter-Se">狩猟型</button>
+  <button class="filter-btn" onclick="filterTypes('Ni')" data-color="#7655a8" id="filter-Ni">共鳴型</button>
+  <button class="filter-btn" onclick="filterTypes('Si')" data-color="#2e8b7a" id="filter-Si">守護型</button>
+  <button class="filter-btn" onclick="filterTypes('Ne')" data-color="#c47830" id="filter-Ne">冒険型</button>
 </div>
 
 <div class="wrap" id="typesContainer"></div>
@@ -299,12 +302,23 @@ const COMPAT_LABELS = {
 const COMPAT_COLORS = {
   resonance:'#7655a8',bipolar:'#c4566e',parallel:'#2e8b7a',stimulus:'#c47830',mirror:'#5b7fa6',stillwater:'#8b7355'
 };
+const STYLE_LABELS = {Se:'狩猟型',Ni:'共鳴型',Si:'守護型',Ne:'冒険型'};
+const CENTER_ICONS = {heart:'❤',head:'▲',guts:'◆'};
+
+function buildCompatButtons(ids, color) {
+  return ids.map(i => {
+    const target = TYPES.find(type => type.id === i);
+    const label = target ? `${i} ${target.name}` : `${i}`;
+    return `<a class="compat-type-link" href="#type-${i}" style="border-color:${color}44;color:${color};">${label}</a>`;
+  }).join('');
+}
 
 function buildCard(t) {
   const compatHTML = Object.entries(t.compat).map(([rel,ids]) => `
-    <span class="compat-badge" style="border-color:${COMPAT_COLORS[rel]};color:${COMPAT_COLORS[rel]};background:${COMPAT_COLORS[rel]}18;">
-      <strong>${COMPAT_LABELS[rel]}</strong>: ${ids.map(i=>`Type ${String(i).padStart(2,'0')}`).join('・')}
-    </span>`).join('');
+    <div class="compat-group">
+      <span class="compat-group-label" style="border-color:${COMPAT_COLORS[rel]};color:${COMPAT_COLORS[rel]};background:${COMPAT_COLORS[rel]}18;">${COMPAT_LABELS[rel]}</span>
+      <div class="compat-buttons">${buildCompatButtons(ids, COMPAT_COLORS[rel])}</div>
+    </div>`).join('');
 
   const wingsHTML = t.wings.map(w=>`<span class="wing-pill"><span>${w}</span></span>`).join('');
 
@@ -314,10 +328,10 @@ function buildCard(t) {
   card.dataset.style=t.style;
   card.innerHTML=`
     <div class="type-header" onclick="toggleCard(${t.id})">
-      <div class="type-num">${String(t.id).padStart(2,'0')}</div>
+      <div class="type-num">${t.id}</div>
       <div class="type-head-body">
         <div class="type-id-row">
-          <span class="type-style-badge" style="background:${t.styleBg};color:${t.styleColor};">${t.style}</span>
+          <span class="type-style-badge" style="background:${t.styleBg};color:${t.styleColor};">${STYLE_LABELS[t.style]}</span>
           <span class="type-center-badge" style="background:${t.centerBg};color:${t.centerColor};">${{heart:'❤',head:'▲',guts:'◆'}[t.center]} ${t.centerLabel}</span>
         </div>
         <div class="type-name">${t.name}</div>
@@ -345,7 +359,7 @@ function buildCard(t) {
         </div>
         <div class="type-section">
           <span class="ts-label">Compatibility — 相性ヒント</span>
-          <div class="compat-badges">${compatHTML}</div>
+          <div class="compat-groups">${compatHTML}</div>
         </div>
         <div class="type-section full">
           <span class="ts-label">Wing Subtypes — ウィングサブタイプ</span>
@@ -368,15 +382,21 @@ function toggleCard(id) {
   body.style.display = isOpen ? 'none' : 'block';
 }
 
-// Open card if hash matches
-if(location.hash) {
+function openCardFromHash() {
+  if(!location.hash) return;
   const el = document.querySelector(location.hash);
-  if(el) {
-    const id = parseInt(el.id.replace('type-',''));
-    if(!isNaN(id)) toggleCard(id);
-    setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),100);
+  if(!el) return;
+  const id = parseInt(el.id.replace('type-',''));
+  if(isNaN(id)) return;
+  if(el.dataset.style) {
+    filterTypes('all');
   }
+  if(!el.classList.contains('expanded')) toggleCard(id);
+  setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
+
+openCardFromHash();
+window.addEventListener('hashchange', openCardFromHash);
 
 function filterTypes(style) {
   document.querySelectorAll('.filter-btn').forEach(b => {

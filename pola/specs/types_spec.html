@@ -131,7 +131,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .ch-card{border-radius:10px;padding:10px 12px;border:1px solid var(--border);}
 .ch-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.08em;margin-bottom:6px;display:block;}
 .ch-types{display:flex;flex-wrap:wrap;gap:4px;}
-.ch-badge{font-family:var(--font-m);font-size:.68rem;padding:2px 8px;border-radius:100px;border:1px solid var(--border);background:var(--parchment);}
+.ch-badge{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:.68rem;padding:4px 10px;border-radius:100px;border:1px solid var(--border);background:var(--parchment);text-decoration:none;color:var(--text);transition:all .2s;}
+.ch-badge:hover{transform:translateY(-1px);color:var(--ink);}
 
 /* SCORING HINT */
 .score-bars{display:flex;flex-direction:column;gap:6px;}
@@ -826,6 +827,15 @@ const STYLE_COLOR = { Se:'var(--se-c)', Ni:'var(--ni-c)', Si:'var(--si-c)', Ne:'
 const STYLE_LIGHT = { Se:'var(--rose-light)', Ni:'var(--violet-light)', Si:'var(--teal-light)', Ne:'var(--gold-light)' };
 const CENTER_COLOR = { heart:'var(--heart)', head:'var(--head)', guts:'var(--guts)' };
 const CENTER_LIGHT = { heart:'var(--heart-light)', head:'var(--head-light)', guts:'var(--guts-light)' };
+const STYLE_PORTAL_LABEL = { Se:'狩猟型', Ni:'共鳴型', Si:'守護型', Ne:'冒険型' };
+
+function formatTypeId(id) {
+  return String(id);
+}
+
+function buildCompatTypeLinks(ids) {
+  return ids.map(n => `<a class="ch-badge" href="#type-${n}">${formatTypeId(n)} ${TYPES.find(type => type.id === n)?.name || ''}</a>`).join('');
+}
 
 // Matrix render
 function renderMatrix() {
@@ -839,8 +849,8 @@ function renderMatrix() {
     const wp = CENTERS[CENTER_PREV[t.center]].name;
     tbody.innerHTML += `
       <tr>
-        <td><span class="mt-id">Type ${String(t.id).padStart(2,'0')}</span></td>
-        <td><span class="badge" style="background:${sl};color:${sc};">${t.style}</span><span class="mt-style" style="color:${sc};">${STYLES[t.style].name}</span></td>
+        <td><span class="mt-id">Type ${formatTypeId(t.id)}</span></td>
+        <td><span class="badge" style="background:${sl};color:${sc};">${STYLE_PORTAL_LABEL[t.style]}</span><span class="mt-style" style="color:${sc};">${STYLES[t.style].name}</span></td>
         <td><span class="badge" style="background:${cl};color:${cc};">${CENTERS[t.center].name}</span></td>
         <td class="mt-name">${t.name}</td>
         <td class="mt-core" style="max-width:200px;">${t.desire_core}</td>
@@ -871,7 +881,7 @@ function renderTypes() {
     div.innerHTML = `
       <!-- HEADER -->
       <div class="type-header" style="background:linear-gradient(135deg,${sl} 0%,var(--paper) 100%);">
-        <div class="type-num" style="color:${sc};">${String(t.id).padStart(2,'0')}</div>
+        <div class="type-num" style="color:${sc};">${formatTypeId(t.id)}</div>
         <div class="type-head-body">
           <div class="type-id">Type ${String(t.id).padStart(2,'0')} — Love Polarity Theory</div>
           <div class="type-name">${t.name}</div>
@@ -975,27 +985,27 @@ function renderTypes() {
           <div class="compat-hint-grid">
             <div class="ch-card" style="background:var(--resonance-bg,#ede9f8);">
               <span class="ch-label" style="color:var(--resonance,#7b5ea7);">共鳴</span>
-              <div class="ch-types">${t.compat_hint.resonance.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+              <div class="ch-types">${buildCompatTypeLinks(t.compat_hint.resonance)}</div>
             </div>
             <div class="ch-card" style="background:var(--bipolar-bg,#fae0e6);">
               <span class="ch-label" style="color:var(--bipolar,#c9607a);">双極</span>
-              <div class="ch-types">${t.compat_hint.bipolar.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+              <div class="ch-types">${buildCompatTypeLinks(t.compat_hint.bipolar)}</div>
             </div>
             <div class="ch-card" style="background:var(--parallel-bg,#e2f4f4);">
               <span class="ch-label" style="color:var(--parallel,#3d8b8b);">並走</span>
-              <div class="ch-types">${t.compat_hint.parallel.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+              <div class="ch-types">${buildCompatTypeLinks(t.compat_hint.parallel)}</div>
             </div>
             <div class="ch-card" style="background:var(--stimulus-bg,#f5edd4);">
               <span class="ch-label" style="color:var(--stimulus,#c9a84c);">刺激</span>
-              <div class="ch-types">${t.compat_hint.stimulus.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+              <div class="ch-types">${buildCompatTypeLinks(t.compat_hint.stimulus)}</div>
             </div>
             <div class="ch-card" style="background:var(--mirror-bg,#deeaf7);">
               <span class="ch-label" style="color:var(--mirror,#5b7fa6);">鏡像</span>
-              <div class="ch-types">${t.compat_hint.mirror.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+              <div class="ch-types">${buildCompatTypeLinks(t.compat_hint.mirror)}</div>
             </div>
             <div class="ch-card" style="background:var(--stillwater-bg,#f0e8dc);">
               <span class="ch-label" style="color:var(--stillwater,#8b7355);">静水</span>
-              <div class="ch-types">${t.compat_hint.stillwater.map(n=>`<span class="ch-badge">${String(n).padStart(2,'0')}</span>`).join('')}</div>
+              <div class="ch-types">${buildCompatTypeLinks(t.compat_hint.stillwater)}</div>
             </div>
           </div>
         </div>
@@ -1006,8 +1016,24 @@ function renderTypes() {
   });
 }
 
+function normalizeRenderedTypeTexts() {
+  document.querySelectorAll('.type-block').forEach(block => {
+    const id = Number(block.id.replace('type-',''));
+    const type = TYPES.find(item => item.id === id);
+    const idEl = block.querySelector('.type-id');
+    const badges = block.querySelectorAll('.type-badges .badge');
+    if (idEl) {
+      idEl.textContent = `Type ${formatTypeId(id)} - Love Polarity Theory`;
+    }
+    if (badges[0] && type) {
+      badges[0].textContent = STYLE_PORTAL_LABEL[type.style];
+    }
+  });
+}
+
 renderMatrix();
 renderTypes();
+normalizeRenderedTypeTexts();
 </script>
 </body>
 </html>

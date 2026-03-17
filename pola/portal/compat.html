@@ -95,6 +95,13 @@ select{
 .cc-types{flex:1;min-width:0;}
 .cc-names{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--ink);line-height:1.4;}
 .cc-codes{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);letter-spacing:.06em;margin-top:4px;}
+.type-jump-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:6px 12px;border-radius:999px;border:1px solid currentColor;
+  background:transparent;color:inherit;text-decoration:none;
+  font-family:var(--font-m);font-size:.68rem;transition:all .2s;
+}
+.type-jump-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px var(--shadow);}
 .cc-body{padding:16px 20px;display:flex;flex-direction:column;gap:10px;}
 .cc-field{}
 .fl{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:4px;}
@@ -193,6 +200,7 @@ const TYPES_MAP = {
   12:{name:'フリースピリット（自由人）',style:'Ne',center:'guts', sc:'#c47830',sb:'#fdefd8'},
 };
 const CENTER_JA={heart:'愛情型',head:'安心型',guts:'本能型'};
+const STYLE_JA={Se:'狩猟型',Ni:'共鳴型',Si:'守護型',Ne:'冒険型'};
 const REL={
   bipolar:   {name:'双極',   en:'Bipolar',   color:'#c4566e',bg:'#fae0e8', desc:'強烈に惹かれ合う補完関係。Se×NiまたはSi×Neの組み合わせ。',rule:'Se ↔ Ni / Si ↔ Ne'},
   resonance: {name:'共鳴',   en:'Resonance', color:'#7655a8',bg:'#ece6f8', desc:'最も深まりやすい。補完スタイル＋同センターの組み合わせ。',rule:'補完スタイル × 同センター'},
@@ -273,9 +281,18 @@ const PAIRS = [
 
 // Populate selects
 const typeOptions = Object.entries(TYPES_MAP).map(([id,t])=>
-  `<option value="${id}">Type ${String(id).padStart(2,'0')} ${t.name}</option>`).join('');
+  `<option value="${id}">Type ${id} ${t.name}</option>`).join('');
 document.getElementById('filterType1').innerHTML += typeOptions;
 document.getElementById('filterType2').innerHTML += typeOptions;
+
+function replaceTerminology(text) {
+  return String(text)
+    .replace(/Se/g, STYLE_JA.Se)
+    .replace(/Ni/g, STYLE_JA.Ni)
+    .replace(/Si/g, STYLE_JA.Si)
+    .replace(/Ne/g, STYLE_JA.Ne)
+    .replace(/\b0([1-9])\b/g, '$1');
+}
 
 // Render rel overview
 const relOverview = document.getElementById('relOverview');
@@ -290,8 +307,8 @@ Object.entries(REL).forEach(([key,r])=>{
       <div class="rel-name">${r.name}</div>
       <div class="rel-en">${r.en} · ${cnt}</div>
     </div>
-    <div class="rel-rule" style="color:${r.color};">${r.rule}</div>
-    <div class="rel-desc">${r.desc}</div>
+    <div class="rel-rule" style="color:${r.color};">${replaceTerminology(r.rule)}</div>
+    <div class="rel-desc">${replaceTerminology(r.desc)}</div>
   `;
   relOverview.appendChild(card);
 });
@@ -345,18 +362,18 @@ function renderPairs(pairs, container){
         <span class="cc-badge" style="background:${r.bg};color:${r.color};">${r.name}</span>
         <div class="cc-types">
           <div class="cc-names">
-            <span style="color:${t1.sc};">Type ${String(p.t1).padStart(2,'0')} ${t1.name}</span>
+            <a class="type-jump-btn" href="types.html#type-${p.t1}" style="color:${t1.sc};">Type ${p.t1} ${t1.name}</a>
             <span style="color:var(--text-light);font-weight:400;margin:0 6px;">×</span>
-            <span style="color:${t2.sc};">Type ${String(p.t2).padStart(2,'0')} ${t2.name}</span>
+            <a class="type-jump-btn" href="types.html#type-${p.t2}" style="color:${t2.sc};">Type ${p.t2} ${t2.name}</a>
           </div>
-          <div class="cc-codes">${t1.style} × ${CENTER_JA[t1.center]} &nbsp;／&nbsp; ${t2.style} × ${CENTER_JA[t2.center]}</div>
+          <div class="cc-codes">${STYLE_JA[t1.style]} × ${CENTER_JA[t1.center]} &nbsp;／&nbsp; ${STYLE_JA[t2.style]} × ${CENTER_JA[t2.center]}</div>
         </div>
       </div>
       <div class="cc-body">
-        <div class="cc-field"><span class="fl">① 引力の質</span><div class="ft">${p.a}</div></div>
-        <div class="cc-field"><span class="fl">② 共鳴ポイント</span><div class="ft">${p.r}</div></div>
-        <div class="cc-field"><span class="fl">③ すれ違いの核</span><div class="ft">${p.c}</div></div>
-        <div class="cc-field"><span class="fl">④ 関係の鍵</span><div class="ft key">${p.k}</div></div>
+        <div class="cc-field"><span class="fl">① 引力の質</span><div class="ft">${replaceTerminology(p.a)}</div></div>
+        <div class="cc-field"><span class="fl">② 共鳴ポイント</span><div class="ft">${replaceTerminology(p.r)}</div></div>
+        <div class="cc-field"><span class="fl">③ すれ違いの核</span><div class="ft">${replaceTerminology(p.c)}</div></div>
+        <div class="cc-field"><span class="fl">④ 関係の鍵</span><div class="ft key">${replaceTerminology(p.k)}</div></div>
       </div>`;
     container.appendChild(card);
   });

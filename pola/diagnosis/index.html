@@ -152,9 +152,23 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   backdrop-filter:blur(8px);
   position:sticky;top:0;z-index:100;
 }
+.quiz-header-left{display:flex;align-items:center;gap:12px;}
 .quiz-brand{font-family:var(--font-d);font-size:1.1rem;font-weight:600;color:var(--ink);letter-spacing:.02em;}
 .quiz-brand span{font-style:italic;color:var(--rose);}
 .quiz-counter{font-family:var(--font-m);font-size:.68rem;color:var(--text-light);letter-spacing:.08em;}
+.quiz-back{
+  border:1px solid var(--border);
+  background:var(--paper);
+  color:var(--text-mid);
+  border-radius:999px;
+  padding:8px 14px;
+  font-family:var(--font-s);
+  font-size:.8rem;
+  cursor:pointer;
+  transition:all .2s;
+}
+.quiz-back:hover:not(:disabled){border-color:var(--rose);color:var(--rose);}
+.quiz-back:disabled{opacity:.45;cursor:not-allowed;}
 
 .progress-wrap{width:100%;height:3px;background:var(--border);}
 .progress-bar{height:100%;background:linear-gradient(90deg,var(--rose),var(--violet));transition:width .5s cubic-bezier(.4,0,.2,1);}
@@ -603,7 +617,10 @@ tr:last-child .td-type{border-bottom:none;}
 <!-- ══ QUIZ ══ -->
 <div id="screen-quiz" class="screen">
   <div class="quiz-header">
-    <div class="quiz-brand">P<span>o</span>la</div>
+    <div class="quiz-header-left">
+      <button type="button" class="quiz-back" id="quizBackBtn" onclick="goBackQuestion()">戻る</button>
+      <div class="quiz-brand">P<span>o</span>la</div>
+    </div>
     <div class="quiz-counter" id="quizCounter">1 / 30</div>
   </div>
   <div class="progress-wrap">
@@ -897,7 +914,8 @@ function renderQuestion() {
 
   document.getElementById('progressBar').style.width = pct + '%';
   document.getElementById('quizCounter').textContent = `${currentQ + 1} / ${total}`;
-  document.getElementById('qNum').textContent = `Question ${String(currentQ+1).padStart(2,'0')}`;
+  document.getElementById('qNum').textContent = `Question ${currentQ + 1}`;
+  document.getElementById('quizBackBtn').disabled = currentQ === 0;
 
   // テキスト更新（アニメーションリセット）
   const qText = document.getElementById('qText');
@@ -940,6 +958,13 @@ function selectAnswer(val, btn) {
       renderQuestion();
     }
   }, 380);
+}
+
+function goBackQuestion() {
+  if (currentQ === 0) return;
+  currentQ--;
+  answers.pop();
+  renderQuestion();
 }
 
 // ══════════════════════════════════════
@@ -1024,7 +1049,7 @@ function showResult() {
   hero.style.setProperty('--type-color-l', type.styleBg);
 
   // ヘッダー
-  document.getElementById('resultTypeId').textContent = `Type ${String(type.id).padStart(2,'0')}`;
+  document.getElementById('resultTypeId').textContent = `Type ${type.id}`;
   document.getElementById('resultTypeName').innerHTML = type.name.replace(/([^\s]{3,})/,'<em>$1</em>');
   document.getElementById('resultOneline').textContent = `"${type.oneline}"`;
 
@@ -1078,7 +1103,7 @@ function showResult() {
     const typeNums = type.compat[relKey] || [];
     const typeNames = typeNums.map(n => {
       const t = TYPES.find(t=>t.id===n);
-      return t ? `<span class="compat-type-badge" title="${t.name}">Type ${String(n).padStart(2,'0')}</span>` : '';
+      return t ? `<span class="compat-type-badge" title="${t.name}">Type ${n}</span>` : '';
     }).join('');
     compatEl.innerHTML += `
       <div class="compat-card" style="border-color:${info.color}20;background:${info.bg}88;">

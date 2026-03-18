@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Pola タイプ解説</title>
+<meta name="description" content="Pola恋愛極性診断 タイプ詳細解説">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#faf8f5;--bg2:#f4f0e8;--paper:#fffdf9;--ink:#1c1520;
+  --text:#2e2440;--text-mid:#5a4f6e;--text-light:#9b8faa;
+  --border:#e2d5c8;--border2:#cfc0b0;
+  --rose:#c4566e;--rose-l:#fae0e8;
+  --violet:#7655a8;--violet-l:#ece6f8;
+  --teal:#2e8b7a;--teal-l:#ddf2ee;
+  --amber:#c47830;--amber-l:#fdefd8;
+  --gold:#b8963e;
+  --shadow:rgba(28,21,32,0.10);
+  --font-d:'Cormorant Garamond',Georgia,serif;
+  --font-s:'Noto Serif JP',serif;
+  --font-m:'DM Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* ── Nav ── */
+.type-nav{position:sticky;top:0;z-index:100;background:rgba(250,248,245,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--ink);text-decoration:none;}
+.nav-brand span{font-style:italic;color:var(--rose);}
+.nav-back{font-family:var(--font-s);font-size:.8rem;color:var(--text-mid);text-decoration:none;display:flex;align-items:center;gap:5px;padding:7px 14px;border:1px solid var(--border);border-radius:999px;transition:all .2s;}
+.nav-back:hover{border-color:var(--rose);color:var(--rose);}
+
+/* ── Hero ── */
+.type-hero{padding:56px 24px 48px;text-align:center;position:relative;overflow:hidden;}
+.type-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 50% 0%,var(--tc-l,#fae0e8) 0%,transparent 70%);}
+.hero-eyebrow{font-family:var(--font-m);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:10px;position:relative;z-index:1;}
+.hero-type-id{font-family:var(--font-m);font-size:.72rem;letter-spacing:.15em;color:var(--tc,var(--rose));margin-bottom:6px;position:relative;z-index:1;}
+.hero-name{font-family:var(--font-d);font-size:clamp(2.2rem,8vw,3.6rem);font-weight:600;color:var(--ink);line-height:1.1;margin-bottom:12px;position:relative;z-index:1;}
+.hero-name em{font-style:italic;color:var(--tc,var(--rose));}
+.hero-catchcopy{font-family:var(--font-d);font-style:italic;font-size:clamp(1rem,3vw,1.3rem);color:var(--ink);line-height:1.6;margin-bottom:20px;position:relative;z-index:1;}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.hero-badge{font-family:var(--font-m);font-size:.62rem;padding:4px 14px;border-radius:100px;border:1px solid var(--tc,var(--rose));color:var(--tc,var(--rose));background:var(--tc-l,#fae0e8);letter-spacing:.06em;}
+
+/* ── Sections ── */
+.type-sections{width:100%;max-width:680px;margin:0 auto;padding:0 16px 80px;}
+.type-section{margin-bottom:14px;}
+.ts-block{border:1px solid var(--border);border-radius:18px;background:var(--paper);overflow:hidden;}
+.ts-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.ts-icon{font-size:1rem;opacity:.7;flex-shrink:0;}
+.ts-title{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--ink);}
+.ts-body{padding:20px;}
+.ts-text{font-size:.88rem;color:var(--text-mid);line-height:2;}
+.ts-text u{text-underline-offset:3px;color:var(--ink);font-weight:500;}
+.ts-text br{display:block;content:'';margin-top:.4em;}
+
+/* ── 特徴リスト ── */
+.feature-list{list-style:none;padding:12px 0 4px;}
+.feature-item{display:flex;align-items:flex-start;gap:12px;padding:12px 20px;font-size:.88rem;color:var(--text-mid);line-height:1.75;border-bottom:1px solid var(--border);}
+.feature-item:last-child{border-bottom:none;}
+.feature-item::before{content:'✦';color:var(--tc,var(--rose));font-size:.65rem;margin-top:4px;flex-shrink:0;opacity:.8;}
+
+/* ── 構造グリッド ── */
+.structure-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+@media(max-width:480px){.structure-grid{grid-template-columns:1fr;}}
+.structure-item{background:var(--paper);padding:16px 18px;}
+.structure-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--tc,var(--rose));margin-bottom:6px;display:block;text-transform:uppercase;}
+.structure-text{font-size:.83rem;color:var(--text-mid);line-height:1.75;}
+
+/* ── サブタイプ ── */
+.subtype-block{padding:18px 20px 0;}
+.subtype-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--text-light);margin-bottom:8px;}
+.subtype-combo{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.subtype-id{font-family:var(--font-m);font-size:.68rem;color:var(--tc,var(--rose));letter-spacing:.08em;margin-bottom:12px;}
+.subtype-desc{font-size:.83rem;color:var(--text-mid);line-height:1.8;margin-bottom:16px;}
+.subtype-divider{height:1px;background:var(--border);margin:0 -20px;}
+.subtype-rows{padding:4px 0;}
+.subtype-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.subtype-row:last-child{border-bottom:none;}
+.subtype-key{font-family:var(--font-m);font-size:.58rem;letter-spacing:.08em;color:var(--text-light);width:52px;flex-shrink:0;padding-top:2px;}
+.subtype-val{font-size:.83rem;color:var(--text-mid);line-height:1.75;flex:1;}
+.subtype-sep{height:1px;background:var(--border);margin:4px -20px 0;}
+
+/* ── 弱点・成長 ── */
+.insight-text{font-size:.88rem;color:var(--text-mid);line-height:1.95;padding:18px 20px;}
+.insight-arrow{color:var(--tc,var(--rose));margin-right:4px;}
+
+/* ── 相性 ── */
+.compat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 20px;}
+@media(max-width:480px){.compat-grid{grid-template-columns:1fr;}}
+.compat-card{border-radius:12px;padding:12px 14px;border:1px solid var(--border);}
+.compat-rel{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;margin-bottom:4px;display:block;font-weight:500;}
+.compat-rel-simple{font-size:.75rem;margin-bottom:4px;display:block;font-weight:700;color:var(--ink);}
+.compat-desc-text{font-size:.72rem;color:var(--text-mid);line-height:1.65;margin-bottom:8px;}
+.compat-types{display:flex;flex-wrap:wrap;gap:4px;}
+.compat-badge{font-size:.72rem;padding:4px 10px;border-radius:100px;background:var(--bg2);border:1px solid var(--border);color:var(--text-mid);font-family:var(--font-m);text-decoration:none;display:inline-block;transition:all .2s;}
+.compat-badge:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.stress-note{padding:12px 20px;border-top:1px solid var(--border);font-size:.78rem;color:var(--text-light);line-height:1.75;}
+.stress-badges{display:inline-flex;gap:4px;flex-wrap:wrap;}
+.stress-badge{font-size:.7rem;padding:1px 8px;border-radius:100px;background:var(--bg2);border:1px solid var(--border);color:var(--text-mid);font-family:var(--font-m);}
+
+/* ── All types nav ── */
+.all-types-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:16px 20px;}
+@media(max-width:480px){.all-types-grid{grid-template-columns:repeat(2,1fr);}}
+.type-nav-item{text-decoration:none;display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:12px;background:var(--bg2);border:1px solid var(--border);transition:all .2s;}
+.type-nav-item:hover{border-color:var(--rose);background:var(--rose-l);}
+.type-nav-item.active{border-color:var(--tc,var(--rose));background:var(--tc-l,var(--rose-l));}
+.tni-id{font-family:var(--font-m);font-size:.55rem;color:var(--text-light);}
+.tni-name{font-size:.72rem;color:var(--ink);font-weight:500;line-height:1.4;}
+
+/* ── Footer ── */
+.type-footer{width:100%;max-width:680px;margin:0 auto;padding:0 16px 40px;}
+.footer-block{border:1px solid var(--border);border-radius:18px;background:var(--bg2);overflow:hidden;}
+.footer-head{padding:16px 20px;border-bottom:1px solid var(--border);font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--ink);}
+.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:16px 20px;}
+@media(max-width:480px){.footer-links{grid-template-columns:1fr;}}
+.footer-link{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:12px;background:var(--paper);border:1px solid var(--border);text-decoration:none;transition:all .2s;}
+.footer-link:hover{border-color:var(--rose);background:var(--rose-l);}
+.fl-label{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;color:var(--text-light);}
+.fl-name{font-size:.84rem;font-weight:500;color:var(--ink);}
+.fl-desc{font-size:.72rem;color:var(--text-light);line-height:1.5;margin-top:2px;}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.type-hero,.type-section{animation:fadeIn .45s ease both;}
+.type-section:nth-child(1){animation-delay:.05s;}
+.type-section:nth-child(2){animation-delay:.1s;}
+.type-section:nth-child(3){animation-delay:.15s;}
+.type-section:nth-child(4){animation-delay:.2s;}
+.type-section:nth-child(5){animation-delay:.25s;}
+.type-section:nth-child(6){animation-delay:.3s;}
+</style>
+</head>
+<body>
+
+<nav class="type-nav">
+  <a href="../diagnosis/" class="nav-brand">P<span>o</span>la</a>
+  <a href="javascript:history.back()" class="nav-back">← 戻る</a>
+</nav>
+
+<div id="typeHero" class="type-hero"></div>
+
+<div class="type-sections" id="typeSections"></div>
+
+<div class="type-footer">
+  <div class="footer-block">
+    <div class="footer-head">— もっと深く知りたい方へ</div>
+    <div class="footer-links">
+      <a href="../diagnosis/" class="footer-link">
+        <span class="fl-label">DIAGNOSIS</span><span class="fl-name">Pola 診断を受ける</span><span class="fl-desc">あなたの極性タイプを診断</span>
+      </a>
+      <a href="../portal/" class="footer-link">
+        <span class="fl-label">PORTAL</span><span class="fl-name">Pola ポータル</span><span class="fl-desc">理論解説・タイプ一覧</span>
+      </a>
+      <a href="https://utage-jpg.github.io/UTAGE_LAB/" class="footer-link">
+        <span class="fl-label">UTAGE LAB</span><span class="fl-name">総合心理診断</span><span class="fl-desc">他の診断コンテンツへ</span>
+      </a>
+      <a href="https://utage-jpg.github.io/ruikei_portal/" class="footer-link">
+        <span class="fl-label">DEEP DIVE</span><span class="fl-name">類型ポータル</span><span class="fl-desc">さらに深い理論へ</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════
+// DATA（全12タイプ）
+// ══════════════════════════════════════
+const TYPES = [
+  {id:1, style:'Se',center:'heart',name:'ロマンハンター（狩人）',
+   oneline:'愛されていると確信するまで、前進を止めない。',
+   styleLabel:'狩猟型',centerLabel:'愛情型',
+   styleColor:'var(--rose)',styleBg:'var(--rose-l)',
+   centerColor:'var(--rose)',centerBg:'var(--rose-l)',
+   core:`このタイプの根底には、<u>「自分は本当に愛されているのか」</u>という問いが常にあります。その答えを確かめるために積極的に動き、アプローチし、相手の反応を細かく観察し続けます。<br><br>積極性の本質は自信ではありません。その裏に潜むのは、<u>愛の証明を得ずにはいられない強い欲求</u>です。追いかけている間こそ最もエネルギーに満ちており、相手が自分を求めていると感じる瞬間に、生きている実感を最も鮮明に感じます。<br><br>関係が深まるほど、確認したい気持ちは強まっていきます。<u>返信の速さ、文章の長さ、特別扱いの有無</u>——これらすべてが愛情量を測るバロメーターとなり、それが少しでも揺らぐたびに不安が増幅されます。<br><br>そのため、関係が深まるほど逆に不安も大きくなるという逆説を抱えます。<u>愛の確信は、得るたびに次の確認を求める循環</u>に入り込みやすく、相手を疲弊させてしまうことも。<br><br>しかし、愛の確信が持てたとき、このタイプは<u>非常に献身的で情熱的なパートナー</u>になります。相手を中心に世界が動き、細やかな気遣いと強い独占欲が、深い絆を生み出します。<br><br>このタイプの愛は、<u>「求めることで守る」という独自の形</u>を持っています。それを受け入れてくれる相手との関係では、誰にも真似できない強さの愛を育てることができます。`,
+   behaviors:['自分からアプローチし、相手の反応を細かく観察する','返信の速さや文章量で愛情量を測ろうとする','独占欲が強く、他の異性との関係に過敏になりやすい','関係が深まるにつれ確認行動がエスカレートする傾向がある'],
+   structure:{think:'「愛されているか・いないか」ですべてを判断する',feel:'確認が取れると安心し、取れないと不安が止まらない',act:'疑問を解消するために積極的に動く。待てない',relation:'深く愛するが、確認行動がエスカレートしやすい'},
+   wingDetails:{
+     head:{role:'分析眼が加わる',impact:'より計算的・戦略的に確認行動をとるようになる',drift:'冷静に見えるが内側の不安は変わらない'},
+     guts:{role:'本能が加速する',impact:'感情表現が直球になり、衝動が強まる',drift:'エネルギッシュだが感情爆発しやすくなる'},
+   },
+   weakness:'確認行動が止まらず、相手を追い詰めてしまう。「もっと愛を証明してほしい」という要求が、やがて相手の息の根を止める。',
+   growth:'「愛されていること」を出発点にできるようになること。証明を求める前に、今ここにある愛を受け取れるようになることが鍵。',
+   compat:{resonance:[4],bipolar:[5,6],parallel:[7],stimulus:[8,9],mirror:[2,3],stillwater:[10,11,12]},
+   stressTypes:[11,12]},
+
+  {id:2, style:'Se',center:'head',name:'ストラテジスト（戦略家）',
+   oneline:'安心できる関係を、自分の手で設計しようとする。',
+   styleLabel:'狩猟型',centerLabel:'安心型',
+   styleColor:'var(--rose)',styleBg:'var(--rose-l)',
+   centerColor:'var(--teal)',centerBg:'var(--teal-l)',
+   core:`このタイプは<u>「安心できるかどうか」を自分でコントロールすることで確保</u>しようとします。積極的にリードし、関係の主導権を握ることで、初めて心が落ち着く感覚を得られます。<br><br>外から見ると自信家で積極的に見えますが、内側では<u>「この関係は本当に安全か」</u>という問いが常に動いています。感情より論理で相手を評価し、信頼できると判断するまでは、深く関わることを意識的に抑制します。<br><br>相手を観察・分析し、<u>一貫性・誠実さ・予測可能性</u>が揃ったと確信できたとき、急速に関係を深めます。信頼の扉が開くと、それまでの慎重さが嘘のように、一気に深い関係へと進みます。<br><br>コントロールを手放すことが最大の恐怖で、<u>主導権を渡す＝不安の増幅</u>という回路が強く働いています。これが時として相手の自由を奪い、息苦しさを感じさせてしまう原因になります。<br><br>このタイプが輝くのは、<u>自分が設計した関係の中</u>。明確な役割分担と予測可能なルーティンがある関係では、安心感と愛情が最大限に発揮されます。<br><br>信頼できると確信した相手には、<u>計画的かつ戦略的な愛情表現</u>を惜しみなく注ぎます。一度信頼した相手への誠実さと、関係を守り続ける力は、12タイプの中でも際立っています。`,
+   behaviors:['関係の主導権を握ることで安心感を得る','相手を「観察・分析」して信頼できるか判定する','感情より論理で関係を判断する傾向がある','不確実な要素を嫌い、確証を求め続ける'],
+   structure:{think:'「この関係はコントロールできているか」を常に確認する',feel:'安心感は論理で作るもの。感情だけでは動けない',act:'主導権を握ることで不安を管理する',relation:'表面は積極的でも、心理的には非常に慎重'},
+   wingDetails:{
+     heart:{role:'感情的な熱量が加わる',impact:'行動がより積極的かつ情熱的になる',drift:'情熱と分析が混在する複雑さが出る'},
+     guts:{role:'本能性が加わる',impact:'より自分軸で動き、孤独を選びやすくなる',drift:'孤独な戦略家になりやすい'},
+   },
+   weakness:'コントロールへの執着で相手を窒息させてしまう。「主導権を渡す＝不安」という回路が、相手の自由を奪い続ける。',
+   growth:'「予測できない相手」を信頼することを学ぶこと。コントロールを手放したとき、より深い安心が生まれる。',
+   compat:{resonance:[5],bipolar:[4,6],parallel:[8],stimulus:[7,9],mirror:[1,3],stillwater:[10,11,12]},
+   stressTypes:[6,12]},
+
+  {id:3, style:'Se',center:'guts',name:'チャレンジャー（挑戦者）',
+   oneline:'欲しいと感じた瞬間に、もう動いている。',
+   styleLabel:'狩猟型',centerLabel:'本能型',
+   styleColor:'var(--rose)',styleBg:'var(--rose-l)',
+   centerColor:'var(--amber)',centerBg:'var(--amber-l)',
+   core:`このタイプは<u>「自分でいられるか」を最優先に恋愛を動かします</u>。好意を持った瞬間には行動しており、考える前に体が動く——それがこのタイプの本質的なスタイルです。<br><br>感情に嘘がなく、喜びも怒りも直球で表現します。<u>裏表がなく、衝動に忠実</u>であることが最大の特徴で、計算や戦略より「今この瞬間の本音」を常に優先します。<br><br>束縛への抵抗感は本能的に強く、<u>自分の自由と独立性を守れる関係</u>にのみ安心して深く関われます。自由を侵害されると感じた瞬間、感情のスイッチが切れます。<br><br>一度信頼した相手には、驚くほど<u>強い保護本能と忠誠心</u>を示します。普段の自由奔放さとは正反対に、深まった関係では誰よりも相手を守ろうとする力が湧き上がります。<br><br>このタイプの課題は<u>衝動と継続性のバランス</u>。熱が入りきった後に「あれは本当に好きだったのか」と自分でも戸惑うことがありますが、それは感情が薄れたのではなく、次の本音を探しているサインです。<br><br>深まった関係での誠実さと強さは本物で、<u>「一緒にいることが自然体でいること」という関係</u>を築けた相手とは、他の誰も入り込めない強固な絆を育てます。`,
+   behaviors:['好意を持てばすぐ行動に移す。計画より衝動が先','感情が素直で、怒りや熱情が直接的に出る','独立性が高く、縛られることへの強い抵抗がある','一度深まると非常に強い保護本能が出る'],
+   structure:{think:'「これが自分の本音か」を唯一の判断基準にする',feel:'感情はフルスロットル。抑制が苦手',act:'衝動が先。後から理由を考える',relation:'束縛を嫌うが、深まると保護本能が爆発する'},
+   wingDetails:{
+     heart:{role:'愛情確認欲求が加わる',impact:'行動後に「受け入れられたか」を気にするようになる',drift:'衝動の後に強い不安が来る'},
+     head:{role:'分析力が加わる',impact:'少し計算高くなり、衝動の中に戦略が混じる',drift:'行動は速いが、後で後悔しやすくなる'},
+   },
+   weakness:'衝動性が高すぎて相手が追いつけなくなる。感情の強さは武器だが、コントロールできないと関係を壊す。',
+   growth:'「待つこと」「受け取ること」を恐れずに試すこと。衝動を手放したとき、より深い関係が始まる。',
+   compat:{resonance:[6],bipolar:[4,5],parallel:[9],stimulus:[7,8],mirror:[1,2],stillwater:[10,11,12]},
+   stressTypes:[5,8]},
+
+  {id:4, style:'Ni',center:'heart',name:'エンパス（共感者）',
+   oneline:'愛することが、自分でいることだと信じている。',
+   styleLabel:'共鳴型',centerLabel:'愛情型',
+   styleColor:'var(--violet)',styleBg:'var(--violet-l)',
+   centerColor:'var(--rose)',centerBg:'var(--rose-l)',
+   core:`このタイプは<u>「愛することで自分の価値を証明する」</u>という深い信念を持っています。尽くすことが自己表現であると同時に、愛されるための手段でもあります。<br><br>相手のために自分を後回しにすることへの抵抗感が非常に薄く、むしろ<u>尽くすことに自然な喜びと充足感</u>を覚えます。委ねることが得意で、相手のリードに従うことで関係が深まると感じます。<br><br>ただし深層には、<u>「気づいてほしい」という静かな叫び</u>があります。見返りを求めているつもりはなくても、傷ついたとき「こんなに尽くしているのに」という感情が湧き上がることがあります。<br><br>傷ついても「気にしていない」と言ってしまう、相手が辛そうにしていると自分の問題より先に動いてしまう——この<u>献身の深さと傷つきやすさは、表裏一体</u>です。<br><br>「自分のために」より「相手のために」の方がずっと動きやすく、尽くすことをやめると自分の居場所が分からなくなる感覚があります。<u>尽くすことがアイデンティティの一部</u>になっています。<br><br>このタイプが最も輝くのは、<u>受け取ることと与えることが対等な関係</u>の中。尽くされることを当然と思わず、きちんと受け取って返してくれる相手との関係では、このタイプの愛情の深さが本当の意味で生きてきます。`,
+   behaviors:['相手のために自分を後回しにすることに喜びを感じる','委ねることが得意で、相手のリードに自然に従う','見返りを求めず尽くすが、深く「気づいてほしい」と思っている','傷ついても我慢することが多い'],
+   structure:{think:'「相手は今何を必要としているか」で思考が動く',feel:'尽くすことで愛を確認する。気づかれたい',act:'相手に合わせる形で動く。外から見えない能動性がある',relation:'献身が深く、傷つきやすい'},
+   wingDetails:{
+     head:{role:'観察眼が加わる',impact:'より静かに・深く尽くすようになる',drift:'内向きになり、感情を表に出さなくなる'},
+     guts:{role:'芯の強さが加わる',impact:'少し主張できるようになる',drift:'尽くしながらも自分軸を持つ'},
+   },
+   weakness:'自分を消すことで愛を維持しようとし、自己を失う。「尽くせば愛される」という信念が、やがて自分を壊す。',
+   growth:'「尽くさなくても愛される」を体験すること。何もしていない自分でも、愛されていいと知ること。',
+   compat:{resonance:[1],bipolar:[2,3],parallel:[10],stimulus:[11,12],mirror:[5,6],stillwater:[7,8,9]},
+   stressTypes:[2,3]},
+
+  {id:5, style:'Ni',center:'head',name:'オブザーバー（観察者）',
+   oneline:'確信が持てるまで、全力で委ねることができない。',
+   styleLabel:'共鳴型',centerLabel:'安心型',
+   styleColor:'var(--violet)',styleBg:'var(--violet-l)',
+   centerColor:'var(--teal)',centerBg:'var(--teal-l)',
+   core:`このタイプは<u>「確信が持てるまで全力で委ねることができない」</u>という慎重さを持ちます。関係が深まるまでの時間は非常に長いですが、一度信頼した相手には驚くほど深く誠実なパートナーになります。<br><br>相手を長期間観察し、<u>一貫性・誠実さ・安定性</u>が確認できたときだけ、心を開きます。このプロセスは相手を試しているのではなく、自分が傷つかないための本能的な防衛反応です。<br><br>「この人、本当は何を考えているんだろう」という問いが頭から離れず、<u>表面の言動と内面の一致</u>を長い時間をかけて確かめます。確証が得られないまま関係が進むことを、本能的に拒否します。<br><br>信頼した相手への忠誠心は突出して高く、<u>一度決めた関係への献身は非常に深い</u>ものになります。裏切らないし、裏切られることへの恐怖も非常に強い。<br><br>長期的な視点で関係を見ており、将来を具体的に考えながら動きます。<u>「この人と10年後も一緒にいられるか」</u>という問いが、常に関係の奥底で動いています。<br><br>このタイプの課題は<u>「確信を待つあまり関係が始まらない」</u>こと。完全な信頼は関係の外では得られず、踏み出すことでのみ育まれます。慎重さと踏み出す勇気のバランスを見つけることが、このタイプの鍵です。`,
+   behaviors:['信頼できるかどうか、長期観察しないと決断できない','一度信頼したらとことん深く関わるが、そこまでが長い','「この人、本当は何を考えているんだろう」が頭から離れない','関係の将来を深く考えすぎて、行動が遅れる','誰にでも心を開かない分、心を開いた相手への忠誠心が異常に高い','深く関わる前に、相手の一貫性を確かめている'],
+   structure:{think:'「この人は信頼できるか」を長期的に分析する',feel:'信頼と安心が揃って初めて感情を開く',act:'慎重に、一歩ずつ。確証なしに動かない',relation:'誠実さと忠誠心が突出して高い'},
+   wingDetails:{
+     heart:{role:'感情の深さが加わる',impact:'より感情的に関われるようになる',drift:'傷つきやすくなる'},
+     guts:{role:'流れへの信頼が加わる',impact:'委ねる力が少し増す',drift:'頑固さが和らぐ'},
+   },
+   weakness:'慎重すぎて、関係が始まる前に終わってしまう。「まだ信頼できない」が永遠に続く。',
+   growth:'「まだわからないけど進んでみる」を学ぶこと。完全な確信は、関係の中でしか生まれない。',
+   compat:{resonance:[2],bipolar:[1,3],parallel:[11],stimulus:[10,12],mirror:[4,6],stillwater:[7,8,9]},
+   stressTypes:[1,3]},
+
+  {id:6, style:'Ni',center:'guts',name:'フェイタリスト（運命論者）',
+   oneline:'流れに乗りながら、芯だけは手放さない。',
+   styleLabel:'共鳴型',centerLabel:'本能型',
+   styleColor:'var(--violet)',styleBg:'var(--violet-l)',
+   centerColor:'var(--amber)',centerBg:'var(--amber-l)',
+   core:`このタイプは<u>「流れに乗りながらも、芯だけは絶対に手放さない」</u>という独特のバランス感覚を持ちます。状況や相手に柔軟に適応するように見えて、核心的な意志は誰にも曲げられません。<br><br>「なんでもいい」と言いながら、<u>「これだけはダメ」という絶対的な境界線</u>を持っています。その線を踏まれない限り、驚くほど柔軟で穏やかな関係を築けます。<br><br>感情は深く、静かに湧き上がります。<u>表面に出すまでに時間がかかる</u>ため、相手から見ると読みにくい存在に映ることもありますが、深く関わった人間はその誠実さと芯の強さを必ず知ることになります。<br><br>「この人といると自分でいられる」という感覚が、このタイプにとって最高の愛情表現です。<u>自分の核を守れる関係</u>にのみ、本当の意味で深く関われます。<br><br>関係に無理が生じたとき、言葉にせず<u>静かに距離を置く</u>のがこのタイプの特徴。爆発するのではなく、静かに引いていく。それはすでに心が離れているのではなく、自分を守るための本能的な行動です。<br><br>委ねることと自分でいることを同時に実現し、<u>深まった関係では他に代えがたい安定感</u>をもたらします。このタイプと深く関われた人は、「この人の芯の強さ」に気づいたとき、より強く惹かれていきます。`,
+   behaviors:['相手や状況の流れに自然に合わせるが、芯の部分は譲らない','「なんでもいい」と言いながら実は「これだけはダメ」がある','深い部分を見せるまでに時間がかかる','関係に無理が生じたとき、静かに距離を置く'],
+   structure:{think:'「今の流れは自分に合っているか」を感じ取る',feel:'感情は深く、静かに湧き上がる',act:'流れに乗るが、核心的な意志は動かない',relation:'委ねながらも自分を失わない。唯一無二の安定感'},
+   wingDetails:{
+     heart:{role:'感情的な深みが加わる',impact:'より献身的になる',drift:'感情の波が大きくなる'},
+     head:{role:'分析眼が加わる',impact:'より慎重に流れを見極める',drift:'内向きが強くなる'},
+   },
+   weakness:'「流れに任せる」が逃避になってしまう。言葉にしない芯は、相手には伝わらない。',
+   growth:'自分の意志を、言葉で伝えることを覚えること。委ねることと、伝えることは両立する。',
+   compat:{resonance:[3],bipolar:[1,2],parallel:[12],stimulus:[10,11],mirror:[4,5],stillwater:[7,8,9]},
+   stressTypes:[1,2]},
+
+  {id:7, style:'Si',center:'heart',name:'ガーディアン（保護人）',
+   oneline:'気づかれなくても、今日も誰かのために動いている。',
+   styleLabel:'守護型',centerLabel:'愛情型',
+   styleColor:'var(--teal)',styleBg:'var(--teal-l)',
+   centerColor:'var(--rose)',centerBg:'var(--rose-l)',
+   core:`このタイプは<u>行動で愛を表現し、行動で愛を確認する</u>ことを本質とします。言葉より先に体が動いており、相手の細かい変化に誰よりも早く気づいて、先回りして動くことで愛を示します。<br><br>相手のために動くことが喜びであり、<u>自分のことを後回しにすることへの抵抗感が非常に薄い</u>のが特徴です。尽くすことがアイデンティティの一部になっており、それを止められると自分の存在意義が揺らぐ感覚があります。<br><br>「何か食べたいものある？」と無意識に聞いている、相手の好きなものを覚えて日常に組み込む——<u>細やかで継続的なケア</u>がこのタイプの愛の言語です。大きな行動より、日々の積み重ねに愛が宿っています。<br><br>ただし深層では、<u>「気づいてもらえない」という痛み</u>を静かに抱えています。感謝を求めているわけではないのに、認められないと消耗が蓄積していきます。その痛みを言葉にできないまま、抱え込み続けることがあります。<br><br>このタイプが安心できるのは、<u>自分の存在が相手の日常にとって欠かせないものになっているとき</u>。「あなたがいてくれてよかった」という言葉が、このタイプの愛情タンクを満たします。<br><br>継続的な行動で非常に深い信頼を築き、<u>揺るがない絆を作り出す力</u>を持っています。派手さはなくても、長い時間をかけて育てる関係では、このタイプの右に出る存在はいません。`,
+   behaviors:['相手の細かい変化に気づき、先回りして対応する','言語より行動で愛を表現する','相手の好きなものを覚えて日常に組み込む','感謝されないことを内心辛く感じているが言えない'],
+   structure:{think:'「相手のために今できることは何か」が常にある',feel:'尽くすことで愛を確認する。感謝が力になる',act:'先回りして動く。目立たない場所で細やかに',relation:'継続的な行動で深い信頼を築く'},
+   wingDetails:{
+     head:{role:'構造化する力が加わる',impact:'より計画的に尽くすようになる',drift:'感情より実用性を優先することがある'},
+     guts:{role:'忠誠心が加わる',impact:'より継続的に、粘り強く側にいる',drift:'変化への対応が遅くなる'},
+   },
+   weakness:'見返りを求めない尽くしが、やがて限界を迎える。誰も気づかない尽くしは、静かに自分を消耗させる。',
+   growth:'「助けを求める」「甘えてみる」を自分に許すこと。受け取ることも、愛のかたち。',
+   compat:{resonance:[10],bipolar:[11,12],parallel:[1],stimulus:[2,3],mirror:[8,9],stillwater:[4,5,6]},
+   stressTypes:[10,11]},
+
+  {id:8, style:'Si',center:'head',name:'アーキテクト（構築者）',
+   oneline:'崩れない関係を、一つひとつ丁寧に積み上げる。',
+   styleLabel:'守護型',centerLabel:'安心型',
+   styleColor:'var(--teal)',styleBg:'var(--teal-l)',
+   centerColor:'var(--teal)',centerBg:'var(--teal-l)',
+   core:`このタイプの愛は<u>「設計し、構築し、守り続ける」</u>ことで表現されます。関係に安定した構造を作り、維持することが愛の言語であり、記念日・ルーティン・約束がふたりの絆の柱になります。<br><br>突発的な変化や予測できない出来事に強いストレスを感じます。<u>「この関係は安定して続くか」</u>という問いが常にあり、確証が持てるまで心から安心することができません。<br><br>感情より「安定した行動」で愛を示すのがこのタイプのスタイル。<u>5年後・10年後を今から具体的に考えており</u>、長期的な視点でパートナーシップを設計しようとします。「記念日を忘れる」ことは、自分的にはあり得ない。<br><br>一見すると融通が利かないように見えますが、その根底にあるのは<u>「守りたいという強い意志」</u>。ルーティンや約束を大切にするのは、それらが壊れると関係全体が揺らいだように感じるからです。<br><br>このタイプが最も輝くのは、<u>共に未来を描ける相手と腰を据えた関係</u>を築くとき。安定した関係の中での情熱は静かで深く、長い時間をかけて確かな絆へと変わっていきます。<br><br>一度信頼を築けば、<u>どんな困難でも揺らがない強固なパートナーシップ</u>を実現できます。変化を恐れず、成長と安定を両立できるかどうかがこのタイプの長期的な鍵です。`,
+   behaviors:['記念日を忘れるとか、自分的にはあり得ない','関係に「予測できる安定」がないと不安になる','突然の予定変更が、地味に一番キツい','感情より「安定した行動」で愛を示す方が自然','5年後・10年後のことを、今から具体的に考えている','ルーティンが壊れると、関係全体が揺らいだように感じる'],
+   structure:{think:'「この関係は安定して続くか」を設計する',feel:'変化への不安は大きいが、外には出さない',act:'継続と安定を基盤に動く',relation:'記念日・ルーティン・約束が愛の言語'},
+   wingDetails:{
+     heart:{role:'感情的な温かさが加わる',impact:'より細やかなケアができるようになる',drift:'感情的な揺れが増す'},
+     guts:{role:'忠誠心が加わる',impact:'より粘り強く関係を守る',drift:'変化への拒絶が強まる'},
+   },
+   weakness:'変化を拒みすぎて、関係の成長を止めてしまう。安定という名の「固定」が、相手の息を詰まらせる。',
+   growth:'「予測できない変化」も愛の一部だと受け入れること。揺れることが、関係が生きている証拠。',
+   compat:{resonance:[11],bipolar:[10,12],parallel:[2],stimulus:[1,3],mirror:[7,9],stillwater:[4,5,6]},
+   stressTypes:[10,12]},
+
+  {id:9, style:'Si',center:'guts',name:'ケアテイカー（世話役）',
+   oneline:'言葉にしなくても、ここにいることが答えだ。',
+   styleLabel:'守護型',centerLabel:'本能型',
+   styleColor:'var(--teal)',styleBg:'var(--teal-l)',
+   centerColor:'var(--amber)',centerBg:'var(--amber-l)',
+   core:`このタイプの愛は<u>「ここにい続けること」</u>で表現されます。言葉にしなくても、去らないことが最大の愛情表現であり、継続する存在であることが関係の核心にあります。<br><br>感情を言語化することが非常に苦手で、<u>すべてを行動に変換して示そうとします</u>。嫉妬も不安も言わずに抱え、それでも離れないことを選び続ける——それがこのタイプの愛の形です。<br><br>一度決めた関係への<u>強いこだわりと忠誠心</u>があり、変化を拒む傾向があります。それは頑固さではなく、「ここに自分の居場所があるか」という根底にある問いへの答えを守ろうとする本能的な行動です。<br><br>何があっても離れないという強い確信を持っており、<u>嵐の中でも「ここにいる」と伝え続ける力</u>があります。言葉は少なくても、その存在感そのものが安心の源になります。<br><br>このタイプが深まると、<u>どんな状況にも動じない静かな強さ</u>を発揮します。派手な愛情表現はなくても、「この人は絶対に離れない」という確信が相手に伝わったとき、非常に深い信頼関係が生まれます。<br><br>「言わなくてもわかるはず」という信念が時に齟齬を生みますが、<u>言葉で伝える練習を積む</u>ことで、このタイプの愛はより豊かで深いものになっていきます。`,
+   behaviors:['感情を言葉にするのが一番苦手','何があっても離れないという強い確信がある','嫉妬や不安を感じても、言わずに抱えてしまう','「ずっとここにいる」が最大の愛情表現だと思っている','一度決めた関係を変えることへの強い抵抗がある','行動で全てを示そうとするから、言葉が少ない'],
+   structure:{think:'「自分はここにいていいか」を根底で問い続ける',feel:'感情は深く、外には出さない。行動に変換する',act:'継続する存在であることが最大の表現',relation:'去らないことが愛の証明。無言の忠誠心'},
+   wingDetails:{
+     heart:{role:'愛情確認欲求が加わる',impact:'より相手の気持ちを気にするようになる',drift:'感情的な不安が増す'},
+     head:{role:'構造化する力が加わる',impact:'より計画的・安定的に関係を維持する',drift:'感情表現がさらに内向きになる'},
+   },
+   weakness:'感情を言葉にしないことで、相手との齟齬が広がる。「言わなくてもわかるはず」は、伝わらないことがほとんど。',
+   growth:'気持ちを言葉にする練習を積み重ねること。行動だけでなく、言葉も愛のかたち。',
+   compat:{resonance:[12],bipolar:[10,11],parallel:[3],stimulus:[1,2],mirror:[7,8],stillwater:[4,5,6]},
+   stressTypes:[10,11]},
+
+  {id:10, style:'Ne',center:'heart',name:'トラベラー（旅人）',
+   oneline:'ときめきが続く限り、どこまでも行ける。',
+   styleLabel:'冒険型',centerLabel:'愛情型',
+   styleColor:'var(--amber)',styleBg:'var(--amber-l)',
+   centerColor:'var(--rose)',centerBg:'var(--rose-l)',
+   core:`このタイプにとって、<u>恋愛はときめきの強度で測られます</u>。感情の鮮度が関係の温度計であり、ときめきが続く限りどこまでも行けますが、薄れた瞬間に関係全体が色褪せて見えます。<br><br>新しい体験、新しい会話、新しい発見が<u>関係の燃料</u>になります。「この人といると新しい世界が広がる」という感覚が愛の条件になっており、マンネリは関係の終わりを意味するシグナルとして受け取ってしまいます。<br><br>感情の起伏は大きく、<u>ときめきの波に乗る高揚感と、薄れるときの落差</u>の両方が激しく訪れます。自分の感情に振り回されることもありますが、その豊かな感情表現が関係に温度と彩りをもたらします。<br><br>「出会いの瞬間のあの感覚を、ずっと求め続けている」——この傾向は、<u>愛が変化しているのではなく「深まっている」</u>という感覚をつかみにくくしています。<br><br>特別扱いされていると感じるとき、相手から大切にされていると実感できるとき、このタイプは<u>最大の安心と愛情を感じます</u>。その特別感を絶えず更新し続けられる関係が、理想の形です。<br><br>このタイプが見落としがちなのは、<u>「深まる愛」の豊かさ</u>。ときめきの先にある、積み重ねて初めて生まれる感情の深みを体験することが、このタイプにとっての大きな成長となります。`,
+   behaviors:['マンネリが来た瞬間に、関係の温度が下がる','「この人といると新しい世界が広がる」が恋愛の条件','ときめきの強さで「愛しているか」を測ってしまう','日常化すると愛が薄れた気がして不安になる','感情の起伏が大きすぎて、自分でも振り回される','出会いの瞬間のあの感覚を、ずっと求め続けている'],
+   structure:{think:'「この関係にまだときめきはあるか」を常に問う',feel:'感情の鮮度が全て。薄れると関係全体が色褪せる',act:'新鮮さを求めて動く',relation:'感情が豊かで、関係に温度と彩りをもたらす'},
+   wingDetails:{
+     head:{role:'楽観的なビジョンが加わる',impact:'「きっとうまくいく」でときめきの揺れを乗り越える',drift:'問題を直視しなくなる'},
+     guts:{role:'自由志向が加わる',impact:'ときめきと自由を両方求めるようになる',drift:'定着がさらに難しくなる'},
+   },
+   weakness:'ときめきが薄れた瞬間に関係を手放してしまう。「深まる愛」の豊かさに気づかないまま終わる。',
+   growth:'「深まる愛」の豊かさを知ること。ときめきの先に、もっと大きな感情がある。',
+   compat:{resonance:[7],bipolar:[8,9],parallel:[4],stimulus:[5,6],mirror:[11,12],stillwater:[1,2,3]},
+   stressTypes:[7,9]},
+
+  {id:11, style:'Ne',center:'head',name:'エクスプローラー（探検家）',
+   oneline:'「きっとうまくいく」が、最強の処世術。',
+   styleLabel:'冒険型',centerLabel:'安心型',
+   styleColor:'var(--amber)',styleBg:'var(--amber-l)',
+   centerColor:'var(--teal)',centerBg:'var(--teal-l)',
+   core:`このタイプは<u>「きっとうまくいく」という楽観性で不安を管理します</u>。問題が起きても可能性を見て、未来のビジョンと希望を力の源にして生きています。<br><br>関係において大切にするのは、<u>可能性・夢・一緒に描ける未来</u>。「この人と何ができるか」という問いが、関係継続の原動力になります。細かい問題より大きなビジョンを見ようとします。<br><br>悲観的な話や重い感情のやり取りに不快感を持ちやすく、<u>楽観的でいることで場を明るく保とうとします</u>。それは逃げているのではなく、不安との付き合い方として楽観を選んでいるのです。<br><br>「問題が起きても『なんとかなる』が先に来る」「つまらない現実より『面白い可能性』に生きている」——<u>この前向きさは、周囲の人に希望と活力</u>を与えます。暗い空気を明るく変える力があります。<br><br>楽観的すぎて、<u>相手の本音を聞き逃していることがあります</u>。相手が辛そうにしていても「きっと大丈夫」と思い込んでしまい、深刻なサインを見逃してしまう場合があります。<br><br>このタイプが持つ明るさと希望は、<u>深く付き合うほど本物の力</u>になっていきます。不快な感情を直視する勇気を持てると、楽観性は逃避ではなく、真の強さへと変わります。`,
+   behaviors:['問題が起きても「なんとかなる」が先に来る','未来の可能性を語るのが一番テンションが上がる','重い感情の話になると、少し逃げたくなる','関係の細かい問題より「この人と何ができるか」を見る','楽観的すぎて、相手の本音を聞き逃していることがある','「つまらない現実」より「面白い可能性」に生きている'],
+   structure:{think:'「この関係にどんな可能性があるか」を見ている',feel:'楽観によって不安を管理する',act:'可能性に向かって動く',relation:'明るさと希望で場を照らす'},
+   wingDetails:{
+     heart:{role:'ときめき志向が加わる',impact:'感情的な豊かさが増す',drift:'ときめきが薄れると関係に不安を感じやすくなる'},
+     guts:{role:'自由志向が加わる',impact:'「制約のない関係」をより強く求める',drift:'コミットメントがさらに苦手になる'},
+   },
+   weakness:'楽観が現実否認になり、問題が積み重なる。「きっとうまくいく」が、「見ないことにする」に変わる。',
+   growth:'不快な感情も直視する勇気を持つこと。現実を見ることが、本当の楽観主義への道。',
+   compat:{resonance:[8],bipolar:[7,9],parallel:[5],stimulus:[4,6],mirror:[10,12],stillwater:[1,2,3]},
+   stressTypes:[7,9]},
+
+  {id:12, style:'Ne',center:'guts',name:'フリースピリット（自由人）',
+   oneline:'縛られないことが、愛の前提条件だ。',
+   styleLabel:'冒険型',centerLabel:'本能型',
+   styleColor:'var(--amber)',styleBg:'var(--amber-l)',
+   centerColor:'var(--amber)',centerBg:'var(--amber-l)',
+   core:`このタイプにとって、<u>自由は愛の前提条件</u>です。束縛された瞬間に心が離れ始め、「自由でいながら愛されること」が理想の関係の形です。<br><br>深まりたいという気持ちは本物ですが、深まることを同時に恐れるという矛盾を抱えています。<u>「深まれば自由が失われる」という信念</u>が、関係の定着を無意識に妨げることがあります。<br><br>「あなたが好きだから一緒にいる、だから縛る必要はない」——これがこのタイプの愛の根幹にある考え方です。<u>縛らない愛し方ができる</u>分、縛られることが極めて苦手で、束縛された瞬間に関係への熱が急速に冷めていきます。<br><br>自由を守るためなら孤独も選べます。しかし孤独に耐えながらも、<u>深く愛したいという本音は消えない</u>。自由と愛の両立が、このタイプの永遠のテーマです。<br><br>「自由でいてくれる」が相手への最高の褒め言葉であり、<u>縛らず、でも離れない関係</u>を作れる相手が現れたとき、このタイプは驚くほど深く関われます。<br><br>このタイプが見出す答えは、<u>「深まっても自分でいられる」という体験</u>。自由と愛は両立できるという確信を持てたとき、縛らない関係を望む相手には最高のパートナーになれます。`,
+   behaviors:['束縛された瞬間に、心が離れ始める','「自由でいてくれる」が相手への最高の褒め言葉','深まりたいのに、深まることを恐れている','「あなたが好きだから一緒にいる」であって「だから縛りたい」ではない','自由を守るためなら孤独も選べる','縛らない愛し方ができる分、縛られることが耐えられない'],
+   structure:{think:'「ここに自分の自由はあるか」を最初に確認する',feel:'感情は豊かだが、定着を恐れる',act:'自由を守るために動く',relation:'深まることと逃げることの間で揺れる'},
+   wingDetails:{
+     heart:{role:'ときめき志向が加わる',impact:'感情の豊かさが増し、恋愛に積極的になる',drift:'ときめきと自由を両立させようと無理をする'},
+     head:{role:'楽観性が加わる',impact:'「うまくいく」で自由への不安を管理する',drift:'問題の直視がさらに難しくなる'},
+   },
+   weakness:'自由を守るために、深い関係を手放してしまう。逃げることが習慣になると、本当に欲しいものが遠ざかる。',
+   growth:'「深まっても自分でいられる」を体験すること。自由と愛は、両立できる。',
+   compat:{resonance:[9],bipolar:[7,8],parallel:[6],stimulus:[4,5],mirror:[10,11],stillwater:[1,2,3]},
+   stressTypes:[8,9]},
+];
+
+const COMPAT_INFO = {
+  resonance:  {name:'共鳴',    simple:'最も深まりやすい', desc:'お互いの恋愛スタイルが自然に噛み合う関係。深く理解し合いやすく、無理なく絆が育まれる。', color:'#7655a8', bg:'#ece6f8'},
+  bipolar:    {name:'双極',    simple:'強烈に惹かれ合う', desc:'引き合う力が強い分、衝突しやすくもある関係。化学反応が激しく、強烈な印象を残し合う。', color:'#c4566e', bg:'#fae0e8'},
+  parallel:   {name:'並走',    simple:'同じ方向を向く',   desc:'価値観が近く、自然体でいられる関係。同じ方向を向いて一緒に歩きやすく、居心地がいい。', color:'#2e8b7a', bg:'#ddf2ee'},
+  stimulus:   {name:'刺激',    simple:'成長し合える',     desc:'互いに刺激を与え合い、成長できる関係。違いが摩擦ではなく、化学反応になりやすい。', color:'#c47830', bg:'#fdefd8'},
+  mirror:     {name:'鏡像',    simple:'自分の鏡のような', desc:'似ている部分が多く、共感しやすい関係。自分の姿を映す鏡のような存在になりやすい。', color:'#5b7fa6', bg:'#deeaf7'},
+  stillwater: {name:'静水',    simple:'穏やかに引き合う', desc:'大きな波はないが、静かに深まる関係。穏やかな安定感の中でゆっくりつながっていける。', color:'#8b7355', bg:'#f0e8dc'},
+};
+
+// ══════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════
+function getTypeId() {
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('type'));
+  return (id >= 1 && id <= 12) ? id : 1;
+}
+
+function getWingType(type, secondCenter) {
+  if (!secondCenter) return null;
+  return TYPES.find(t => t.style === type.style && t.center === secondCenter);
+}
+
+function render() {
+  const typeId = getTypeId();
+  const type = TYPES.find(t => t.id === typeId);
+  if (!type) return;
+
+  // page title
+  document.title = `Type ${type.id} ${type.name} ｜ Pola タイプ解説`;
+
+  // CSS vars
+  document.documentElement.style.setProperty('--tc', type.styleColor);
+  document.documentElement.style.setProperty('--tc-l', type.styleBg);
+
+  // ── Hero ──
+  const hero = document.getElementById('typeHero');
+  hero.innerHTML = `
+    <div class="hero-eyebrow">Your Pola Type</div>
+    <div class="hero-type-id">Type ${type.id}</div>
+    <h1 class="hero-name">${type.name.replace(/（/, '<em>（').replace(/）/, '）</em>')}</h1>
+    <div class="hero-catchcopy">"${type.oneline}"</div>
+    <div class="hero-badges">
+      <span class="hero-badge" style="border-color:${type.styleColor};color:${type.styleColor};background:${type.styleBg};">${type.styleLabel}</span>
+      <span class="hero-badge" style="border-color:${type.centerColor};color:${type.centerColor};background:${type.centerBg};">${type.centerLabel}</span>
+    </div>`;
+
+  const sections = document.getElementById('typeSections');
+  sections.innerHTML = '';
+
+  // ── Section 1: 基本性格 ──
+  sections.innerHTML += `
+    <div class="type-section">
+      <div class="ts-block">
+        <div class="ts-head"><span class="ts-icon">✦</span><span class="ts-title">このタイプの性格</span></div>
+        <div class="ts-body"><div class="ts-text">${type.core}</div></div>
+      </div>
+    </div>`;
+
+  // ── Section 2: 行動パターン ──
+  const featureItems = type.behaviors.map(b =>
+    `<li class="feature-item">${b}</li>`).join('');
+  sections.innerHTML += `
+    <div class="type-section">
+      <div class="ts-block">
+        <div class="ts-head"><span class="ts-icon">◈</span><span class="ts-title">このタイプに見られる行動パターン</span></div>
+        <ul class="feature-list">${featureItems}</ul>
+      </div>
+    </div>`;
+
+  // ── Section 3: 思考・感情・行動の構造 ──
+  const structureKeys = [
+    {key:'think', label:'思考の軸'},
+    {key:'feel',  label:'感情の動き'},
+    {key:'act',   label:'行動パターン'},
+    {key:'relation', label:'対人での特徴'},
+  ];
+  const structureHtml = structureKeys.map(s =>
+    `<div class="structure-item">
+      <span class="structure-label" style="color:${type.styleColor}">${s.label}</span>
+      <div class="structure-text">${type.structure[s.key]}</div>
+    </div>`).join('');
+  sections.innerHTML += `
+    <div class="type-section">
+      <div class="ts-block">
+        <div class="ts-head"><span class="ts-icon">◐</span><span class="ts-title">思考・感情・行動の構造</span></div>
+        <div class="structure-grid">${structureHtml}</div>
+      </div>
+    </div>`;
+
+  // ── Section 4: サブタイプ（両パターン） ──
+  const otherCenters = ['heart','head','guts'].filter(c => c !== type.center);
+  const subtypeBlocksHtml = otherCenters.map((center, idx) => {
+    const wt = getWingType(type, center);
+    const wd = type.wingDetails[center];
+    if (!wt || !wd) return '';
+    const mainNum = String(type.id).padStart(2,'0');
+    const wingNum = String(wt.id).padStart(2,'0');
+    const subtypeDesc = `${type.name}の基本性格に、${wt.centerLabel}の要素が加わった複合型。${wd.impact}傾向がある。`;
+    return `
+      <div class="subtype-block" ${idx > 0 ? 'style="border-top:1px solid var(--border);padding-top:18px;"' : ''}>
+        <div class="subtype-label">SUBTYPE ${idx + 1}</div>
+        <div class="subtype-combo">${type.name} × <span style="color:${type.styleColor}">${wt.name}</span></div>
+        <div class="subtype-id" style="color:${type.styleColor}">${mainNum}w${wingNum}</div>
+        <div class="subtype-desc">${subtypeDesc}</div>
+        <div class="subtype-divider"></div>
+        <div class="subtype-rows" style="padding:4px 0;">
+          <div class="subtype-row"><span class="subtype-key">役割</span><span class="subtype-val">${wd.role}</span></div>
+          <div class="subtype-row"><span class="subtype-key">影響</span><span class="subtype-val">${wd.impact}</span></div>
+          <div class="subtype-row"><span class="subtype-key">ブレ方</span><span class="subtype-val">${wd.drift}</span></div>
+        </div>
+      </div>`;
+  }).join('');
+  sections.innerHTML += `
+    <div class="type-section">
+      <div class="ts-block">
+        <div class="ts-head"><span class="ts-icon">◑</span><span class="ts-title">サブタイプ（ウィング）</span></div>
+        ${subtypeBlocksHtml}
+        <div style="height:18px;"></div>
+      </div>
+    </div>`;
+
+  // ── Section 5: 弱点・成長 ──
+  sections.innerHTML += `
+    <div class="type-section">
+      <div class="ts-block" style="margin-bottom:10px;">
+        <div class="ts-head"><span class="ts-icon">△</span><span class="ts-title">弱点・破滅パターン</span></div>
+        <div class="insight-text"><span class="insight-arrow">▲</span>${type.weakness}</div>
+      </div>
+      <div class="ts-block">
+        <div class="ts-head"><span class="ts-icon">↑</span><span class="ts-title">成長の方向</span></div>
+        <div class="insight-text"><span class="insight-arrow">↑</span>${type.growth}</div>
+      </div>
+    </div>`;
+
+  // ── Section 6: 相性タイプ ──
+  const compatHtml = Object.keys(COMPAT_INFO).map(relKey => {
+    const info = COMPAT_INFO[relKey];
+    const typeNums = type.compat[relKey] || [];
+    const badges = typeNums.map(n => {
+      const t = TYPES.find(t => t.id === n);
+      return t ? `<a class="compat-badge" href="?type=${n}">Type ${n}　${t.name}</a>` : '';
+    }).join('');
+    return `
+      <div class="compat-card" style="border-color:${info.color}20;background:${info.bg}88;">
+        <span class="compat-rel" style="color:${info.color};">— ${info.name}</span>
+        <span class="compat-rel-simple">${info.simple}</span>
+        <p class="compat-desc-text">${info.desc}</p>
+        <div class="compat-types">${badges}</div>
+      </div>`;
+  }).join('');
+  const stressBadges = type.stressTypes.map(n => {
+    const t = TYPES.find(t => t.id === n);
+    return t ? `<span class="stress-badge">Type ${n}</span>` : '';
+  }).join('');
+  sections.innerHTML += `
+    <div class="type-section">
+      <div class="ts-block">
+        <div class="ts-head"><span class="ts-icon">◇</span><span class="ts-title">相性タイプ</span></div>
+        <div class="compat-grid">${compatHtml}</div>
+        <div class="stress-note">⚡ ストレスを感じやすいタイプ：<span class="stress-badges">${stressBadges}</span></div>
+      </div>
+    </div>`;
+
+  // ── Section 7: 全タイプナビ ──
+  const allTypesHtml = TYPES.map(t => `
+    <a href="?type=${t.id}" class="type-nav-item${t.id === typeId ? ' active' : ''}">
+      <span class="tni-id">Type ${t.id}</span>
+      <span class="tni-name">${t.name}</span>
+    </a>`).join('');
+  sections.innerHTML += `
+    <div class="type-section">
+      <div class="ts-block">
+        <div class="ts-head"><span class="ts-icon">≡</span><span class="ts-title">全タイプ一覧</span></div>
+        <div class="all-types-grid">${allTypesHtml}</div>
+      </div>
+    </div>`;
+
+  // 現在のタイプをハイライト
+  document.querySelectorAll('.type-nav-item').forEach(el => {
+    const href = el.getAttribute('href');
+    if (href === `?type=${typeId}`) el.classList.add('active');
+  });
+}
+
+render();
+</script>
+</body>
+</html>

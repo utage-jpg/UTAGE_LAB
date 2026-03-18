@@ -30,193 +30,73 @@
   --amber:#c47830;
   --amber-l:#fdefd8;
   --gold:#b8963e;
+  --head-c:#5b7fa6;
+  --head-l:#deeaf7;
   --shadow:rgba(28,21,32,0.10);
   --font-d:'Cormorant Garamond',Georgia,serif;
   --font-s:'Noto Serif JP',serif;
   --font-m:'DM Mono',monospace;
-
-  /* 5段階カラー */
-  --c1:#c4566e; /* とてもそう思う */
-  --c2:#d4856a; /* そう思う */
-  --c3:#c9a84c; /* どちらともいえない */
-  --c4:#5b8ea6; /* あまり思わない */
-  --c5:#5b7fa6; /* 全く思わない */
+  --c1:#c4566e;
+  --c2:#d4856a;
+  --c3:#c9a84c;
+  --c4:#5b8ea6;
+  --c5:#5b7fa6;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
 
-/* ── NOISE ── */
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.4;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
 
-/* ── SCREENS ── */
 .screen{display:none;min-height:100vh;}
 .screen.active{display:flex;}
 
-/* ══════════════════════════
-   TOP SCREEN
-══════════════════════════ */
-#screen-top{
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:40px 24px 80px;
-  background:linear-gradient(160deg, #faf8f5 0%, #f0e8de 60%, #e8ddd0 100%);
-  position:relative;
-  overflow:hidden;
-}
-#screen-top::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 30%, rgba(196,86,110,0.06) 0%, transparent 70%),
-             radial-gradient(ellipse 60% 40% at 80% 70%, rgba(118,85,168,0.05) 0%, transparent 70%);
-}
-
-.top-ornament{
-  font-family:var(--font-m);font-size:.65rem;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--text-light);
-  margin-bottom:20px;opacity:.7;
-}
-.top-logo{
-  font-family:var(--font-d);
-  font-size:clamp(4rem,14vw,7.5rem);
-  font-weight:300;letter-spacing:-.02em;
-  color:var(--ink);line-height:.95;
-  margin-bottom:4px;
-  position:relative;z-index:1;
-}
+/* ══ TOP SCREEN ══ */
+#screen-top{flex-direction:column;align-items:center;justify-content:center;padding:40px 24px 80px;
+  background:linear-gradient(160deg,#faf8f5 0%,#f0e8de 60%,#e8ddd0 100%);position:relative;overflow:hidden;}
+#screen-top::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(196,86,110,.06) 0%,transparent 70%),
+             radial-gradient(ellipse 60% 40% at 80% 70%,rgba(118,85,168,.05) 0%,transparent 70%);}
+.top-ornament{font-family:var(--font-m);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px;opacity:.7;}
+.top-logo{font-family:var(--font-d);font-size:clamp(4rem,14vw,7.5rem);font-weight:300;letter-spacing:-.02em;color:var(--ink);line-height:.95;margin-bottom:4px;position:relative;z-index:1;}
 .top-logo span{font-style:italic;color:var(--rose);}
-.top-tagline{
-  font-family:var(--font-d);font-style:italic;
-  font-size:clamp(1rem,3vw,1.35rem);font-weight:300;
-  color:var(--text-mid);margin-bottom:40px;letter-spacing:.04em;
-  position:relative;z-index:1;
-}
-.top-copy{
-  font-size:.88rem;color:var(--text-mid);text-align:center;
-  max-width:400px;line-height:1.9;margin-bottom:48px;font-weight:300;
-  position:relative;z-index:1;
-}
+.top-tagline{font-family:var(--font-d);font-style:italic;font-size:clamp(1rem,3vw,1.35rem);font-weight:300;color:var(--text-mid);margin-bottom:40px;letter-spacing:.04em;position:relative;z-index:1;}
+.top-copy{font-size:.88rem;color:var(--text-mid);text-align:center;max-width:400px;line-height:1.9;margin-bottom:48px;font-weight:300;position:relative;z-index:1;}
 .top-copy strong{color:var(--ink);font-weight:500;}
-
-.btn-start{
-  position:relative;z-index:1;
-  display:inline-flex;align-items:center;gap:14px;
-  padding:18px 48px;
-  background:var(--ink);color:#faf8f5;
-  font-family:var(--font-d);font-size:1.2rem;font-weight:600;
-  letter-spacing:.06em;
-  border:none;border-radius:100px;cursor:pointer;
-  transition:all .3s;
-  box-shadow:0 8px 32px rgba(28,21,32,0.2);
-}
-.btn-start:hover{background:var(--rose);transform:translateY(-2px);box-shadow:0 12px 40px rgba(196,86,110,0.3);}
+.btn-start{position:relative;z-index:1;display:inline-flex;align-items:center;gap:14px;padding:18px 48px;background:var(--ink);color:#faf8f5;font-family:var(--font-d);font-size:1.2rem;font-weight:600;letter-spacing:.06em;border:none;border-radius:100px;cursor:pointer;transition:all .3s;box-shadow:0 8px 32px rgba(28,21,32,.2);}
+.btn-start:hover{background:var(--rose);transform:translateY(-2px);box-shadow:0 12px 40px rgba(196,86,110,.3);}
 .btn-start-arrow{font-size:1.4rem;transition:transform .3s;}
 .btn-start:hover .btn-start-arrow{transform:translateX(4px);}
-
-.top-info{
-  position:relative;z-index:1;
-  display:flex;gap:24px;margin-top:32px;flex-wrap:wrap;justify-content:center;
-}
-.top-info-item{
-  font-family:var(--font-m);font-size:.65rem;color:var(--text-light);
-  letter-spacing:.08em;display:flex;align-items:center;gap:6px;
-}
+.top-info{position:relative;z-index:1;display:flex;gap:24px;margin-top:32px;flex-wrap:wrap;justify-content:center;}
+.top-info-item{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);letter-spacing:.08em;display:flex;align-items:center;gap:6px;}
 .top-info-item::before{content:'○';font-size:.5rem;}
-
-.top-dec{
-  position:absolute;
-  font-family:var(--font-d);font-style:italic;
-  color:var(--border2);opacity:.35;pointer-events:none;
-  line-height:1;user-select:none;
-}
+.top-dec{position:absolute;font-family:var(--font-d);font-style:italic;color:var(--border2);opacity:.35;pointer-events:none;line-height:1;user-select:none;}
 .top-dec.d1{top:8%;left:5%;font-size:clamp(4rem,8vw,6rem);font-weight:300;}
 .top-dec.d2{bottom:15%;right:4%;font-size:clamp(3rem,6vw,5rem);font-weight:300;}
 
-/* ══════════════════════════
-   QUESTION SCREEN
-══════════════════════════ */
-#screen-quiz{
-  flex-direction:column;
-  align-items:center;
-  min-height:100vh;
-  padding:0;
-  background:var(--bg);
-}
-
-.quiz-header{
-  width:100%;padding:18px 24px 14px;
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid var(--border);
-  background:rgba(250,248,245,0.95);
-  backdrop-filter:blur(8px);
-  position:sticky;top:0;z-index:100;
-}
-.quiz-header-left{display:flex;align-items:center;gap:12px;}
+/* ══ QUIZ SCREEN ══ */
+#screen-quiz{flex-direction:column;align-items:center;min-height:100vh;padding:0;background:var(--bg);}
+.quiz-header{width:100%;padding:16px 24px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(250,248,245,.95);backdrop-filter:blur(8px);position:sticky;top:0;z-index:100;}
 .quiz-brand{font-family:var(--font-d);font-size:1.1rem;font-weight:600;color:var(--ink);letter-spacing:.02em;}
 .quiz-brand span{font-style:italic;color:var(--rose);}
 .quiz-counter{font-family:var(--font-m);font-size:.68rem;color:var(--text-light);letter-spacing:.08em;}
-.quiz-back{
-  border:1px solid var(--border);
-  background:var(--paper);
-  color:var(--text-mid);
-  border-radius:999px;
-  padding:8px 14px;
-  font-family:var(--font-s);
-  font-size:.8rem;
-  cursor:pointer;
-  transition:all .2s;
-}
+.quiz-back-wrap{margin-top:24px;display:flex;justify-content:center;}
+.quiz-back{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:var(--paper);color:var(--text-mid);border-radius:999px;padding:10px 24px;font-family:var(--font-s);font-size:.82rem;cursor:pointer;transition:all .2s;}
 .quiz-back:hover:not(:disabled){border-color:var(--rose);color:var(--rose);}
-.quiz-back:disabled{opacity:.45;cursor:not-allowed;}
-
+.quiz-back:disabled{opacity:.35;cursor:not-allowed;}
 .progress-wrap{width:100%;height:3px;background:var(--border);}
 .progress-bar{height:100%;background:linear-gradient(90deg,var(--rose),var(--violet));transition:width .5s cubic-bezier(.4,0,.2,1);}
-
-.quiz-body{
-  width:100%;max-width:620px;
-  padding:48px 24px 40px;
-  margin:0 auto;
-  flex:1;
-}
-
-.q-num{
-  font-family:var(--font-m);font-size:.65rem;letter-spacing:.18em;
-  color:var(--text-light);margin-bottom:20px;
-  display:flex;align-items:center;gap:10px;
-}
+.quiz-body{width:100%;max-width:620px;padding:48px 24px 40px;margin:0 auto;flex:1;}
+.q-num{font-family:var(--font-m);font-size:.65rem;letter-spacing:.18em;color:var(--text-light);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
 .q-num::after{content:'';flex:1;height:1px;background:var(--border);}
-
-.q-text{
-  font-family:var(--font-d);
-  font-size:clamp(1.25rem,4vw,1.65rem);
-  font-weight:400;line-height:1.5;
-  color:var(--ink);
-  margin-bottom:40px;
-  min-height:3em;
-}
-
-/* 5段階選択肢 */
+.q-text{font-family:var(--font-d);font-size:clamp(1.25rem,4vw,1.65rem);font-weight:400;line-height:1.5;color:var(--ink);margin-bottom:40px;min-height:3em;}
 .choices{display:flex;flex-direction:column;gap:10px;}
-.choice-btn{
-  width:100%;padding:16px 20px;
-  border:1.5px solid var(--border);
-  border-radius:14px;
-  background:var(--paper);
-  cursor:pointer;
-  display:flex;align-items:center;gap:14px;
-  transition:all .18s cubic-bezier(.4,0,.2,1);
-  text-align:left;
-  position:relative;overflow:hidden;
-}
-.choice-btn::before{
-  content:'';position:absolute;inset:0;
-  opacity:0;transition:opacity .18s;
-}
+.choice-btn{width:100%;padding:16px 20px;border:1.5px solid var(--border);border-radius:14px;background:var(--paper);cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .18s cubic-bezier(.4,0,.2,1);text-align:left;position:relative;overflow:hidden;}
+.choice-btn::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .18s;}
 .choice-btn:hover{border-color:currentColor;transform:translateX(4px);}
 .choice-btn:hover::before{opacity:.06;}
 .choice-btn:active{transform:translateX(6px) scale(.99);}
-
 .choice-btn[data-val="5"]{color:var(--c1);}
 .choice-btn[data-val="5"]::before{background:var(--c1);}
 .choice-btn[data-val="4"]{color:var(--c2);}
@@ -227,366 +107,157 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .choice-btn[data-val="2"]::before{background:var(--c4);}
 .choice-btn[data-val="1"]{color:var(--c5);}
 .choice-btn[data-val="1"]::before{background:var(--c5);}
-
-.choice-circle{
-  width:34px;height:34px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-family:var(--font-m);font-size:.68rem;font-weight:500;
-  border:1.5px solid currentColor;
-  background:transparent;
-  transition:background .18s,color .18s;
-}
+.choice-circle{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-m);font-size:.68rem;font-weight:500;border:1.5px solid currentColor;background:transparent;transition:background .18s,color .18s;}
 .choice-btn:hover .choice-circle{background:currentColor;color:white;}
 .choice-label{font-size:.9rem;color:var(--text);font-weight:400;line-height:1.4;}
 .choice-btn:hover .choice-label{color:var(--ink);}
-
-/* 選択済みアニメーション */
-@keyframes choiceSelect{
-  0%{transform:translateX(0);}
-  30%{transform:translateX(8px);}
-  100%{transform:translateX(0);opacity:0;}
-}
+@keyframes choiceSelect{0%{transform:translateX(0);}30%{transform:translateX(8px);}100%{transform:translateX(0);opacity:0;}}
 .choice-btn.selected{animation:choiceSelect .4s forwards;}
 
-/* ══════════════════════════
-   LOADING SCREEN
-══════════════════════════ */
-#screen-loading{
-  flex-direction:column;align-items:center;justify-content:center;
-  background:var(--bg);padding:40px 24px;
-  gap:32px;
-}
-.loading-title{
-  font-family:var(--font-d);font-size:clamp(1.4rem,4vw,2rem);
-  font-weight:300;font-style:italic;color:var(--ink);
-  text-align:center;line-height:1.4;
-}
+/* ══ LOADING SCREEN ══ */
+#screen-loading{flex-direction:column;align-items:center;justify-content:center;background:var(--bg);padding:40px 24px;gap:32px;}
+.loading-title{font-family:var(--font-d);font-size:clamp(1.4rem,4vw,2rem);font-weight:300;font-style:italic;color:var(--ink);text-align:center;line-height:1.4;}
 .loading-steps{display:flex;flex-direction:column;gap:12px;width:100%;max-width:320px;}
-.loading-step{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 16px;border-radius:10px;
-  background:var(--paper);border:1px solid var(--border);
-  font-size:.82rem;color:var(--text-mid);
-  opacity:0;transform:translateY(8px);
-  transition:all .5s;
-}
+.loading-step{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;background:var(--paper);border:1px solid var(--border);font-size:.82rem;color:var(--text-mid);opacity:0;transform:translateY(8px);transition:all .5s;}
 .loading-step.show{opacity:1;transform:translateY(0);}
 .loading-step.done{color:var(--teal);}
 .ls-icon{font-size:1rem;width:20px;text-align:center;}
 .loading-bar-wrap{width:100%;max-width:320px;height:2px;background:var(--border);border-radius:100px;overflow:hidden;}
 .loading-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--rose),var(--violet));border-radius:100px;transition:width .3s;}
 
-/* ══════════════════════════
-   RESULT SCREEN
-══════════════════════════ */
-#screen-result{
-  flex-direction:column;
-  align-items:center;
-  padding:0 0 80px;
-  background:var(--bg);
-}
+/* ══ RESULT SCREEN ══ */
+#screen-result{flex-direction:column;align-items:center;padding:0 0 80px;background:var(--bg);}
 
-.result-hero{
-  width:100%;
-  padding:60px 24px 48px;
-  text-align:center;
-  position:relative;overflow:hidden;
-}
-.result-hero::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 100% 80% at 50% 0%, var(--type-color-l,#fae0e8) 0%, transparent 70%);
-}
-.result-eyebrow{
-  font-family:var(--font-m);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--text-light);margin-bottom:12px;position:relative;z-index:1;
-}
-.result-type-id{
-  font-family:var(--font-m);font-size:.75rem;letter-spacing:.15em;
-  color:var(--type-color,var(--rose));margin-bottom:8px;
-  position:relative;z-index:1;
-}
-.result-type-name{
-  font-family:var(--font-d);font-size:clamp(2.2rem,8vw,3.8rem);
-  font-weight:600;color:var(--ink);line-height:1.1;
-  margin-bottom:10px;position:relative;z-index:1;
-}
+/* Hero */
+.result-hero{width:100%;padding:60px 24px 48px;text-align:center;position:relative;overflow:hidden;}
+.result-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 80% at 50% 0%,var(--type-color-l,#fae0e8) 0%,transparent 70%);}
+.result-eyebrow{font-family:var(--font-m);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;position:relative;z-index:1;}
+.result-type-id{font-family:var(--font-m);font-size:.75rem;letter-spacing:.15em;color:var(--type-color,var(--rose));margin-bottom:8px;position:relative;z-index:1;}
+.result-type-name{font-family:var(--font-d);font-size:clamp(2.2rem,8vw,3.8rem);font-weight:600;color:var(--ink);line-height:1.1;margin-bottom:12px;position:relative;z-index:1;}
 .result-type-name em{font-style:italic;color:var(--type-color,var(--rose));}
-.result-oneline{
-  font-family:var(--font-d);font-style:italic;font-size:clamp(1rem,3vw,1.25rem);
-  font-weight:300;color:var(--text-mid);margin-bottom:20px;
-  position:relative;z-index:1;
-}
+.result-catchcopy{font-family:var(--font-d);font-style:italic;font-size:clamp(1.1rem,3.5vw,1.45rem);font-weight:400;color:var(--ink);margin-bottom:20px;line-height:1.5;position:relative;z-index:1;letter-spacing:.02em;}
 .result-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
-.result-badge{
-  font-family:var(--font-m);font-size:.65rem;padding:4px 14px;
-  border-radius:100px;border:1px solid var(--type-color,var(--rose));
-  color:var(--type-color,var(--rose));background:var(--type-color-l,#fae0e8);
-  letter-spacing:.06em;
-}
+.result-badge{font-family:var(--font-m);font-size:.65rem;padding:4px 14px;border-radius:100px;border:1px solid var(--type-color,var(--rose));color:var(--type-color,var(--rose));background:var(--type-color-l,#fae0e8);letter-spacing:.06em;}
 
-.result-section{width:100%;max-width:660px;margin:0 auto;padding:0 20px;}
-.rs-block{
-  border:1px solid var(--border);border-radius:18px;
-  background:var(--paper);margin-bottom:16px;overflow:hidden;
-}
-.rs-head{
-  padding:16px 20px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:10px;
-}
-.rs-icon{font-size:1.1rem;}
+/* Sections */
+.result-sections{width:100%;max-width:660px;margin:0 auto;padding:0 16px;}
+.result-section{margin-bottom:12px;}
+.rs-block{border:1px solid var(--border);border-radius:18px;background:var(--paper);overflow:hidden;}
+.rs-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.rs-icon{font-size:1rem;opacity:.7;flex-shrink:0;}
 .rs-title{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--ink);}
 .rs-body{padding:18px 20px;}
 .rs-text{font-size:.85rem;color:var(--text-mid);line-height:1.9;}
 .rs-text strong{color:var(--ink);}
 
-/* スコアバー */
-.score-section{padding:18px 20px;}
-.score-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.score-lbl{font-family:var(--font-m);font-size:.62rem;width:60px;color:var(--text-light);flex-shrink:0;}
-.score-track{flex:1;height:8px;background:var(--border);border-radius:100px;overflow:hidden;}
-.score-fill{height:100%;border-radius:100px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
-.score-val{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);width:24px;text-align:right;}
+/* Section fade-in */
+.rs-fade{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
+.rs-fade.rs-visible{opacity:1;transform:translateY(0);}
+
+/* あるある */
+.araru-list{list-style:none;padding:12px 0 4px;}
+.araru-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 20px;
+  font-size:.88rem;color:var(--text-mid);line-height:1.75;
+  border-bottom:1px solid var(--border);
+  opacity:0;transform:translateX(-12px);
+  transition:opacity .45s ease,transform .45s ease;
+}
+.araru-item:last-child{border-bottom:none;}
+.araru-item.araru-visible{opacity:1;transform:translateX(0);}
+.araru-item::before{content:'✦';color:var(--type-color,var(--rose));font-size:.65rem;margin-top:4px;flex-shrink:0;opacity:.8;}
+
+/* タイプ基本説明 */
+.type-core-text{font-size:.88rem;color:var(--text-mid);line-height:1.95;padding:16px 20px 0;}
+.type-core-text strong{color:var(--ink);}
+
+/* Share buttons */
+.share-row{display:flex;gap:10px;padding:16px 20px 20px;flex-wrap:wrap;}
+.share-btn{
+  flex:1;min-width:120px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 16px;border-radius:10px;
+  font-family:var(--font-s);font-size:.8rem;font-weight:500;
+  cursor:pointer;transition:all .2s;border:1.5px solid var(--border);
+  background:var(--paper);color:var(--text-mid);
+}
+.share-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px var(--shadow);}
+.share-btn.x-btn:hover{border-color:#000;background:#000;color:#fff;}
+.share-btn.line-btn:hover{border-color:#06c755;background:#06c755;color:#fff;}
+
+/* タイプ構造 */
+.structure-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+@media(max-width:480px){.structure-grid{grid-template-columns:1fr;}}
+.structure-item{background:var(--paper);padding:16px 18px;}
+.structure-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--type-color,var(--rose));margin-bottom:6px;display:block;text-transform:uppercase;}
+.structure-text{font-size:.83rem;color:var(--text-mid);line-height:1.75;}
+
+/* ウィング */
+.wing-header{padding:18px 20px 14px;}
+.wing-main-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--text-light);margin-bottom:8px;}
+.wing-combination{font-family:var(--font-d);font-size:clamp(1rem,3vw,1.2rem);font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:4px;}
+.wing-id{font-family:var(--font-m);font-size:.7rem;color:var(--type-color,var(--rose));letter-spacing:.1em;}
+.wing-divider{height:1px;background:var(--border);margin:0 20px;}
+.wing-detail-card{padding:16px 20px;}
+.wing-detail-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.wing-detail-row:last-child{border-bottom:none;}
+.wing-detail-key{font-family:var(--font-m);font-size:.58rem;letter-spacing:.08em;color:var(--text-light);width:56px;flex-shrink:0;padding-top:2px;}
+.wing-detail-val{font-size:.83rem;color:var(--text-mid);line-height:1.75;flex:1;}
+
+/* レーダーチャート */
+.radar-wrap{padding:20px 16px 8px;display:flex;flex-direction:column;align-items:center;}
+.radar-svg-wrap{position:relative;width:100%;max-width:300px;}
+#radarSvg{width:100%;height:auto;}
+.top3-wrap{padding:0 20px 20px;}
+.top3-title{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--text-light);margin-bottom:10px;text-align:center;}
+.top3-list{display:flex;flex-direction:column;gap:6px;}
+.top3-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;background:var(--bg2);border:1px solid var(--border);}
+.top3-rank{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);width:20px;text-align:center;}
+.top3-name{font-size:.82rem;color:var(--ink);flex:1;}
+.top3-score{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);}
+.top3-item.top3-main{border-color:var(--type-color,var(--rose));background:var(--type-color-l,#fae0e8);}
+.top3-item.top3-main .top3-name{color:var(--type-color,var(--rose));font-weight:700;}
+
+/* 深掘り */
+.deep-content{padding:18px 20px;}
+.deep-text{font-size:.85rem;color:var(--text-mid);line-height:1.9;}
+.deep-arrow{color:var(--type-color,var(--rose));font-size:.9rem;margin-right:4px;}
 
 /* 相性 */
 .compat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 20px;}
 @media(max-width:480px){.compat-grid{grid-template-columns:1fr;}}
 .compat-card{border-radius:12px;padding:12px 14px;border:1px solid var(--border);}
 .compat-rel{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;margin-bottom:4px;display:block;font-weight:500;}
-.compat-rel-simple{font-size:.75rem;margin-bottom:6px;display:block;font-weight:700;color:var(--ink);}
+.compat-rel-simple{font-size:.75rem;margin-bottom:4px;display:block;font-weight:700;color:var(--ink);}
+.compat-desc{font-size:.72rem;color:var(--text-mid);line-height:1.65;margin-bottom:8px;}
 .compat-types{display:flex;flex-wrap:wrap;gap:4px;}
-.compat-type-badge{
-  font-size:.72rem;padding:2px 8px;border-radius:100px;
-  background:var(--bg2);border:1px solid var(--border);
-  color:var(--text-mid);font-family:var(--font-m);
-}
+.compat-type-badge{font-size:.72rem;padding:4px 10px;border-radius:100px;background:var(--bg2);border:1px solid var(--border);color:var(--text-mid);font-family:var(--font-m);text-decoration:none;display:inline-block;transition:all .2s;}
+.compat-type-badge:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
 
-/* 恋愛傾向リスト */
-.tendency-list{list-style:none;padding:0;}
-.tendency-list li{
-  font-size:.84rem;color:var(--text-mid);
-  padding:8px 0;border-bottom:1px solid var(--border);
-  display:flex;gap:10px;line-height:1.7;
-}
-.tendency-list li:last-child{border-bottom:none;}
-.tendency-list li::before{content:'—';color:var(--border2);flex-shrink:0;margin-top:1px;}
+/* ストレスタイプ注記 */
+.stress-note{padding:12px 20px;border-top:1px solid var(--border);font-size:.78rem;color:var(--text-light);line-height:1.75;}
+.stress-badges{display:inline-flex;gap:4px;flex-wrap:wrap;}
+.stress-badge{font-size:.7rem;padding:1px 8px;border-radius:100px;background:var(--bg2);border:1px solid var(--border);color:var(--text-mid);font-family:var(--font-m);}
 
-/* ── FOOTER / SITEMAP ── */
-.result-footer{
-  width:100%;max-width:660px;margin:32px auto 0;padding:0 20px;
-}
-.footer-block{
-  border:1px solid var(--border);border-radius:18px;
-  background:var(--bg2);overflow:hidden;
-}
-.footer-head{
-  padding:16px 20px;border-bottom:1px solid var(--border);
-  font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--ink);
-  display:flex;align-items:center;gap:8px;
-}
+/* Footer */
+.result-footer{width:100%;max-width:660px;margin:24px auto 0;padding:0 16px;}
+.footer-block{border:1px solid var(--border);border-radius:18px;background:var(--bg2);overflow:hidden;}
+.footer-head{padding:16px 20px;border-bottom:1px solid var(--border);font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;}
 .sitemap-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:16px 20px;}
 @media(max-width:480px){.sitemap-grid{grid-template-columns:1fr;}}
-.sitemap-item{
-  display:flex;flex-direction:column;gap:2px;
-  padding:12px 14px;border-radius:12px;
-  background:var(--paper);border:1px solid var(--border);
-  text-decoration:none;transition:all .2s;
-}
+.sitemap-item{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:12px;background:var(--paper);border:1px solid var(--border);text-decoration:none;transition:all .2s;}
 .sitemap-item:hover{border-color:var(--rose);background:var(--rose-l);}
 .si-label{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;color:var(--text-light);}
 .si-name{font-size:.84rem;font-weight:500;color:var(--ink);}
 .si-desc{font-size:.72rem;color:var(--text-light);line-height:1.5;margin-top:2px;}
-
-.retry-btn{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:calc(100% - 32px);margin:16px auto 0;
-  padding:14px;border-radius:12px;
-  border:1.5px solid var(--border);background:transparent;
-  font-family:var(--font-s);font-size:.85rem;color:var(--text-mid);
-  cursor:pointer;transition:all .2s;
-}
+.retry-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:calc(100% - 32px);margin:16px auto 0;padding:14px;border-radius:12px;border:1.5px solid var(--border);background:transparent;font-family:var(--font-s);font-size:.85rem;color:var(--text-mid);cursor:pointer;transition:all .2s;}
 .retry-btn:hover{border-color:var(--rose);color:var(--rose);}
 
-/* ══════════════════════════
-   MATRIX SECTION
-══════════════════════════ */
-.matrix-section{
-  background:var(--bg2);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:64px 24px 72px;
-}
-.matrix-inner{max-width:760px;margin:0 auto;}
-.matrix-eyebrow{
-  font-family:var(--font-m);font-size:.65rem;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--text-light);
-  margin-bottom:10px;text-align:center;
-}
-.matrix-title{
-  font-family:var(--font-d);font-size:clamp(1.8rem,5vw,2.6rem);
-  font-weight:400;text-align:center;color:var(--ink);
-  margin-bottom:10px;line-height:1.2;
-}
-.matrix-title em{font-style:italic;color:var(--rose);}
-.matrix-desc{
-  font-size:.85rem;color:var(--text-mid);text-align:center;
-  line-height:1.9;max-width:440px;margin:0 auto 28px;font-weight:300;
-}
-
-/* 凡例 */
-.matrix-legend{
-  display:flex;flex-wrap:wrap;gap:16px;
-  margin-bottom:28px;
-  background:var(--paper);border:1px solid var(--border);
-  border-radius:14px;padding:16px 18px;
-}
-.legend-group{flex:1;min-width:200px;}
-.legend-label{
-  font-family:var(--font-m);font-size:.62rem;letter-spacing:.08em;
-  color:var(--text-light);margin-bottom:8px;
-}
-.legend-items{display:flex;flex-wrap:wrap;gap:6px;}
-.legend-badge{
-  font-size:.72rem;padding:3px 10px;border-radius:100px;
-  border:1px solid;font-family:var(--font-m);
-  white-space:nowrap;
-}
-
-/* テーブル */
-/* ─── MATRIX TABLE：デスクトップ ─── */
-.matrix-table-wrap{
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:0 4px 20px var(--shadow);
-  overflow:hidden;
-}
-.matrix-tbl{
-  width:100%;
-  border-collapse:collapse;
-  background:var(--paper);
-  table-layout:fixed;
-}
-
-/* ヘッダーセル（センター軸） */
-.th-corner{
-  background:var(--bg2);
-  width:22%;
-  border-bottom:1px solid var(--border);
-  border-right:1px solid var(--border);
-}
-.th-center{
-  padding:12px 8px;
-  background:color-mix(in srgb, var(--cb) 60%, white);
-  border-bottom:2px solid var(--cc);
-  border-right:1px solid var(--border);
-  text-align:center;vertical-align:top;
-  width:26%;
-}
-.th-center:last-child{border-right:none;}
-.th-icon{display:flex;align-items:center;justify-content:center;margin-bottom:5px;}
-.th-name{
-  display:block;font-family:var(--font-d);font-size:clamp(.78rem,2vw,.95rem);
-  font-weight:600;color:var(--cc);margin-bottom:3px;
-}
-.th-desc{
-  display:block;font-size:clamp(.58rem,1.5vw,.68rem);color:var(--text-mid);
-  line-height:1.5;font-weight:300;
-}
-
-/* スタイル軸セル */
-.td-style{
-  padding:12px 10px;
-  background:color-mix(in srgb, var(--sb) 50%, white);
-  border-right:2px solid var(--sc);
-  border-bottom:1px solid var(--border);
-  vertical-align:middle;
-}
-tr:last-child .td-style{border-bottom:none;}
-.style-icon{display:flex;align-items:center;margin-bottom:5px;}
-.style-name{
-  display:block;font-family:var(--font-d);font-size:clamp(.82rem,2vw,.95rem);
-  font-weight:600;color:var(--sc);margin-bottom:3px;
-}
-.style-desc{
-  display:block;font-size:clamp(.58rem,1.5vw,.66rem);color:var(--text-mid);
-  line-height:1.5;font-weight:300;
-}
-
-/* タイプセル */
-.td-type{
-  padding:10px 8px;
-  border-right:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  vertical-align:top;
-  transition:background .2s;
-  cursor:default;
-  word-break:keep-all;
-  overflow-wrap:break-word;
-}
-.td-type:last-child{border-right:none;}
-tr:last-child .td-type{border-bottom:none;}
-.td-type:hover{background:color-mix(in srgb, var(--tc) 8%, white);}
-.type-num{
-  font-family:var(--font-m);font-size:.6rem;
-  color:var(--tc);letter-spacing:.08em;margin-bottom:3px;opacity:.7;
-}
-.type-name-m{
-  font-size:clamp(.75rem,2vw,.85rem);font-weight:700;color:var(--ink);
-  margin-bottom:3px;line-height:1.3;
-}
-.type-one{
-  font-size:clamp(.62rem,1.5vw,.7rem);color:var(--text-mid);line-height:1.6;
-  font-style:italic;font-family:var(--font-d);
-}
-
-/* ─── スマホ：縦カードレイアウトに切り替え ─── */
-@media(max-width:560px){
-  .matrix-table-wrap{border-radius:12px;}
-  .matrix-tbl,.matrix-tbl thead,.matrix-tbl tbody,
-  .matrix-tbl tr,.matrix-tbl th,.matrix-tbl td{
-    display:block;width:100%;
-  }
-  .matrix-tbl thead{display:none;} /* ヘッダー非表示、凡例で代替 */
-  .matrix-tbl tr{
-    border-bottom:2px solid var(--border);
-    padding:0;
-  }
-  .matrix-tbl tr:last-child{border-bottom:none;}
-
-  /* スタイル行ラベル */
-  .td-style{
-    display:flex;align-items:center;gap:10px;
-    padding:12px 14px;
-    border-right:none;
-    border-bottom:1px solid var(--border);
-  }
-  .style-desc{display:none;} /* スマホでは省略 */
-  .style-name{font-size:.9rem;margin-bottom:0;}
-
-  /* タイプカードを横並びグリッド */
-  .td-type{
-    display:inline-block;
-    width:calc(33.33% - 1px);
-    border-right:1px solid var(--border);
-    border-bottom:none;
-    vertical-align:top;
-    padding:10px 8px;
-    box-sizing:border-box;
-  }
-  .td-type:last-child{border-right:none;}
-  .type-one{display:none;} /* スマホでは省略 */
-}
-
-.matrix-cta{text-align:center;margin-top:32px;}
-
-/* ── TRANSITIONS ── */
-@keyframes fadeSlideIn{
-  from{opacity:0;transform:translateY(16px);}
-  to{opacity:1;transform:translateY(0);}
-}
+@keyframes fadeSlideIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 .q-text,.choices{animation:fadeSlideIn .3s ease;}
-
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-.result-hero,.rs-block,.compat-card{animation:fadeIn .5s ease both;}
+.result-hero{animation:fadeIn .5s ease both;}
 </style>
 </head>
 <body>
@@ -598,14 +269,8 @@ tr:last-child .td-type{border-bottom:none;}
   <div class="top-ornament">Love Polarity Diagnosis</div>
   <h1 class="top-logo">P<span>o</span>la</h1>
   <p class="top-tagline">— 恋愛極性診断 —</p>
-  <p class="top-copy">
-    あなたが恋愛で動くとき、その力の<strong>「極性」</strong>はどこに向いているか。<br>
-    12タイプの引力から、あなた自身の恋愛の本質を解き明かします。
-  </p>
-  <button class="btn-start" onclick="startQuiz()">
-    診断を始める
-    <span class="btn-start-arrow">→</span>
-  </button>
+  <p class="top-copy">あなたが恋愛で動くとき、その力の<strong>「極性」</strong>はどこに向いているか。<br>12タイプの引力から、あなた自身の恋愛の本質を解き明かします。</p>
+  <button class="btn-start" onclick="startQuiz()">診断を始める<span class="btn-start-arrow">→</span></button>
   <div class="top-info">
     <span class="top-info-item">全30問</span>
     <span class="top-info-item">約5〜7分</span>
@@ -617,19 +282,17 @@ tr:last-child .td-type{border-bottom:none;}
 <!-- ══ QUIZ ══ -->
 <div id="screen-quiz" class="screen">
   <div class="quiz-header">
-    <div class="quiz-header-left">
-      <button type="button" class="quiz-back" id="quizBackBtn" onclick="goBackQuestion()">戻る</button>
-      <div class="quiz-brand">P<span>o</span>la</div>
-    </div>
+    <div class="quiz-brand">P<span>o</span>la</div>
     <div class="quiz-counter" id="quizCounter">1 / 30</div>
   </div>
-  <div class="progress-wrap">
-    <div class="progress-bar" id="progressBar" style="width:0%"></div>
-  </div>
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
   <div class="quiz-body">
     <div class="q-num" id="qNum">Question 01</div>
     <div class="q-text" id="qText"></div>
     <div class="choices" id="choices"></div>
+    <div class="quiz-back-wrap">
+      <button type="button" class="quiz-back" id="quizBackBtn" onclick="goBackQuestion()">← 前の質問に戻る</button>
+    </div>
   </div>
 </div>
 
@@ -637,90 +300,106 @@ tr:last-child .td-type{border-bottom:none;}
 <div id="screen-loading" class="screen">
   <div class="loading-title">あなたの極性を<br>解析しています…</div>
   <div class="loading-steps">
-    <div class="loading-step" id="ls1"><span class="ls-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="4.5" stroke="#9b8faa" stroke-width="1.2"/></svg></span>回答データを収集中</div>
-    <div class="loading-step" id="ls2"><span class="ls-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="4.5" stroke="#9b8faa" stroke-width="1.2"/></svg></span>引力パターンを分析中</div>
-    <div class="loading-step" id="ls3"><span class="ls-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="4.5" stroke="#9b8faa" stroke-width="1.2"/></svg></span>センターを特定中</div>
-    <div class="loading-step" id="ls4"><span class="ls-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="4.5" stroke="#9b8faa" stroke-width="1.2"/></svg></span>タイプを確定中</div>
+    <div class="loading-step" id="ls1"><span class="ls-icon">◌</span>回答データを収集中</div>
+    <div class="loading-step" id="ls2"><span class="ls-icon">◌</span>引力パターンを分析中</div>
+    <div class="loading-step" id="ls3"><span class="ls-icon">◌</span>センターを特定中</div>
+    <div class="loading-step" id="ls4"><span class="ls-icon">◌</span>タイプを確定中</div>
   </div>
-  <div class="loading-bar-wrap">
-    <div class="loading-bar-fill" id="loadingBar"></div>
-  </div>
+  <div class="loading-bar-wrap"><div class="loading-bar-fill" id="loadingBar"></div></div>
 </div>
 
 <!-- ══ RESULT ══ -->
 <div id="screen-result" class="screen">
+
+  <!-- 1. ヒーロー -->
   <div class="result-hero" id="resultHero">
     <div class="result-eyebrow">Your Pola Type</div>
     <div class="result-type-id" id="resultTypeId"></div>
     <h2 class="result-type-name" id="resultTypeName"></h2>
-    <p class="result-oneline" id="resultOneline"></p>
+    <div class="result-catchcopy" id="resultCatchcopy"></div>
     <div class="result-badges" id="resultBadges"></div>
   </div>
 
-  <div class="result-section">
+  <div class="result-sections">
 
-    <!-- スコア -->
-    <div class="rs-block">
-      <div class="rs-head"><span class="rs-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="9" width="3" height="6" fill="#c4566e" opacity=".7"/><rect x="6" y="5" width="3" height="10" fill="#7655a8" opacity=".7"/><rect x="11" y="2" width="3" height="13" fill="#2e8b7a" opacity=".7"/></svg></span><span class="rs-title">あなたの極性スコア</span></div>
-      <div class="score-section" id="scoreSection"></div>
-    </div>
-
-    <!-- タイプ説明 -->
-    <div class="rs-block">
-      <div class="rs-head"><span class="rs-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="1.8" fill="#1c1520"/><line x1="7" y1="1" x2="7" y2="4" stroke="#1c1520" stroke-width="1.2"/><line x1="7" y1="10" x2="7" y2="13" stroke="#1c1520" stroke-width="1.2"/><line x1="1" y1="7" x2="4" y2="7" stroke="#1c1520" stroke-width="1.2"/><line x1="10" y1="7" x2="13" y2="7" stroke="#1c1520" stroke-width="1.2"/></svg></span><span class="rs-title">あなたの恋愛の核心</span></div>
-      <div class="rs-body"><div class="rs-text" id="resultCore"></div></div>
-    </div>
-
-    <!-- 恋愛行動傾向 -->
-    <div class="rs-block">
-      <div class="rs-head"><span class="rs-icon"><svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 7 Q4 3 7 7 Q10 11 13 7 Q14.5 5 16 7" stroke="#1c1520" stroke-width="1.2" fill="none"/></svg></span><span class="rs-title">あなたの恋愛行動パターン</span></div>
-      <div class="rs-body">
-        <ul class="tendency-list" id="resultTendency"></ul>
+    <!-- 2. タイプ基本説明 + あるある -->
+    <div class="result-section rs-fade" id="sec-araru">
+      <div class="rs-block">
+        <div class="rs-head"><span class="rs-icon">✦</span><span class="rs-title">このタイプの性格</span></div>
+        <div class="type-core-text" id="typeCoreText"></div>
+        <ul class="araru-list" id="araruList" style="border-top:1px solid var(--border);margin-top:12px;"></ul>
+        <div class="share-row">
+          <button class="share-btn x-btn" onclick="shareX()">𝕏 でシェア</button>
+          <button class="share-btn line-btn" onclick="shareLine()">LINE でシェア</button>
+        </div>
       </div>
     </div>
 
-    <!-- 相性 -->
-    <div class="rs-block">
-      <div class="rs-head"><span class="rs-icon"><svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="6,1 11,7 6,13 1,7" stroke="#1c1520" stroke-width="1.2" fill="none"/></svg></span><span class="rs-title">あなたと相性のいいタイプ</span></div>
-      <div class="compat-grid" id="compatGrid"></div>
+    <!-- 3. タイプ構造 -->
+    <div class="result-section rs-fade" id="sec-structure">
+      <div class="rs-block">
+        <div class="rs-head"><span class="rs-icon">◈</span><span class="rs-title">あなたの思考・感情・行動の構造</span></div>
+        <div class="structure-grid" id="typeStructure"></div>
+      </div>
     </div>
 
-  </div><!-- /result-section -->
+    <!-- 4. ウィング -->
+    <div class="result-section rs-fade" id="sec-wing">
+      <div class="rs-block">
+        <div class="rs-head"><span class="rs-icon">◐</span><span class="rs-title">サブタイプ（ウィング）</span></div>
+        <div id="wingSection"></div>
+      </div>
+    </div>
 
-  <!-- フッター：サイトマップ -->
+    <!-- 5. レーダーチャート -->
+    <div class="result-section rs-fade" id="sec-radar">
+      <div class="rs-block">
+        <div class="rs-head"><span class="rs-icon">◎</span><span class="rs-title">あなたの極性レーダー</span></div>
+        <div class="radar-wrap">
+          <div class="radar-svg-wrap">
+            <svg id="radarSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"></svg>
+          </div>
+        </div>
+        <div class="top3-wrap">
+          <div class="top3-title">— 可能性スコア上位3タイプ —</div>
+          <div class="top3-list" id="top3List"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 相性タイプ -->
+    <div class="result-section rs-fade" id="sec-deep">
+      <div class="rs-block">
+        <div class="rs-head"><span class="rs-icon">◇</span><span class="rs-title">相性タイプ</span></div>
+        <div class="compat-grid" id="compatGrid"></div>
+        <div class="stress-note" id="stressNote"></div>
+      </div>
+    </div>
+
+  </div><!-- /result-sections -->
+
+  <!-- Footer -->
   <div class="result-footer">
     <div class="footer-block">
       <div class="footer-head">— もっと深く知りたい方へ</div>
       <div class="sitemap-grid">
         <a href="../portal/" class="sitemap-item" target="_blank">
-          <span class="si-label">PORTAL</span>
-          <span class="si-name">Pola ポータル</span>
-          <span class="si-desc">理論解説・タイプ一覧表など</span>
+          <span class="si-label">PORTAL</span><span class="si-name">Pola ポータル</span><span class="si-desc">理論解説・タイプ一覧表など</span>
         </a>
         <a href="../portal/#theory" class="sitemap-item" target="_blank">
-          <span class="si-label">THEORY</span>
-          <span class="si-name">理論解説</span>
-          <span class="si-desc">恋愛極性理論の骨格</span>
+          <span class="si-label">THEORY</span><span class="si-name">理論解説</span><span class="si-desc">恋愛極性理論の骨格</span>
         </a>
-        <a href="../portal/#types" class="sitemap-item" target="_blank">
-          <span class="si-label">ALL TYPES</span>
-          <span class="si-name">12タイプ一覧</span>
-          <span class="si-desc">全タイプの詳細を見る</span>
+        <a href="../types/" class="sitemap-item">
+          <span class="si-label">ALL TYPES</span><span class="si-name">12タイプ詳細解説</span><span class="si-desc">各タイプの性格・相性を深読み</span>
         </a>
         <a href="../portal/#compat" class="sitemap-item" target="_blank">
-          <span class="si-label">COMPATIBILITY</span>
-          <span class="si-name">相性一覧</span>
-          <span class="si-desc">66通りの相性理論</span>
+          <span class="si-label">COMPATIBILITY</span><span class="si-name">相性一覧</span><span class="si-desc">66通りの相性理論</span>
         </a>
         <a href="https://utage-jpg.github.io/UTAGE_LAB/" class="sitemap-item" target="_blank">
-          <span class="si-label">UTAGE LAB</span>
-          <span class="si-name">総合心理診断</span>
-          <span class="si-desc">他の診断コンテンツへ</span>
+          <span class="si-label">UTAGE LAB</span><span class="si-name">総合心理診断</span><span class="si-desc">他の診断コンテンツへ</span>
         </a>
         <a href="https://utage-jpg.github.io/ruikei_portal/" class="sitemap-item" target="_blank">
-          <span class="si-label">DEEP DIVE</span>
-          <span class="si-name">類型ポータル</span>
-          <span class="si-desc">さらに深い理論へ</span>
+          <span class="si-label">DEEP DIVE</span><span class="si-name">類型ポータル</span><span class="si-desc">さらに深い理論へ</span>
         </a>
       </div>
       <button class="retry-btn" onclick="retryQuiz()">↺ もう一度診断する</button>
@@ -780,7 +459,7 @@ const TYPES = [
    styleLabel:'狩猟型',centerLabel:'愛情型',
    styleColor:'var(--rose)',styleBg:'var(--rose-l)',
    centerColor:'var(--rose)',centerBg:'var(--rose-l)',
-   core:'「愛されているか」を確認するために積極的に動く。アプローチの積極性は自信ではなく、愛されたいという強い欲求から来ている。求めることで愛の証明を得ようとするタイプ。',
+   core:'このタイプの根底には、<u>「自分は本当に愛されているのか」</u>という問いが常にあります。その答えを確かめるために積極的に動き、アプローチし、相手の反応を細かく観察し続けます。<br><br>積極性の本質は自信ではありません。その裏に潜むのは、<u>愛の証明を得ずにはいられない強い欲求</u>です。追いかけている間こそ最もエネルギーに満ちており、相手が自分を求めていると感じる瞬間に、生きている実感を最も鮮明に感じます。<br><br>関係が深まるほど、確認したい気持ちは強まっていきます。<u>返信の速さ、文章の長さ、特別扱いの有無</u>——これらすべてが愛情量を測るバロメーターとなり、それが少しでも揺らぐたびに不安が増幅されます。<br><br>そのため、関係が深まるほど逆に不安も大きくなるという逆説を抱えます。<u>愛の確信は、得るたびに次の確認を求める循環</u>に入り込みやすく、相手を疲弊させてしまうことも。<br><br>しかし、愛の確信が持てたとき、このタイプは<u>非常に献身的で情熱的なパートナー</u>になります。相手を中心に世界が動き、細やかな気遣いと強い独占欲が、深い絆を生み出します。<br><br>このタイプの愛は、<u>「求めることで守る」という独自の形</u>を持っています。それを受け入れてくれる相手との関係では、誰にも真似できない強さの愛を育てることができます。',
    behaviors:['自分からアプローチし、相手の反応を細かく観察する','返信の速さや文章量で愛情量を測ろうとする','独占欲が強く、他の異性との関係に過敏になりやすい','関係が深まるにつれ確認行動がエスカレートする傾向がある'],
    compat:{resonance:[4],bipolar:[5,6],parallel:[7],stimulus:[8,9],mirror:[2,3],stillwater:[10,11,12]}},
   {id:2,  style:'Se',center:'head', name:'ストラテジスト（戦略家）',
@@ -788,7 +467,7 @@ const TYPES = [
    styleLabel:'狩猟型',centerLabel:'安心型',
    styleColor:'var(--rose)',styleBg:'var(--rose-l)',
    centerColor:'var(--teal)',centerBg:'var(--teal-l)',
-   core:'「安心できるか」を確かめるために積極的にリードする。自分がコントロールしている状態でこそ安心できるタイプ。信頼の確証が揃うまで深く関わろうとしない。',
+   core:'このタイプは<u>「安心できるかどうか」を自分でコントロールすることで確保</u>しようとします。積極的にリードし、関係の主導権を握ることで、初めて心が落ち着く感覚を得られます。<br><br>外から見ると自信家で積極的に見えますが、内側では<u>「この関係は本当に安全か」</u>という問いが常に動いています。感情より論理で相手を評価し、信頼できると判断するまでは、深く関わることを意識的に抑制します。<br><br>相手を観察・分析し、<u>一貫性・誠実さ・予測可能性</u>が揃ったと確信できたとき、急速に関係を深めます。信頼の扉が開くと、それまでの慎重さが嘘のように、一気に深い関係へと進みます。<br><br>コントロールを手放すことが最大の恐怖で、<u>主導権を渡す＝不安の増幅</u>という回路が強く働いています。これが時として相手の自由を奪い、息苦しさを感じさせてしまう原因になります。<br><br>このタイプが輝くのは、<u>自分が設計した関係の中</u>。明確な役割分担と予測可能なルーティンがある関係では、安心感と愛情が最大限に発揮されます。<br><br>信頼できると確信した相手には、<u>計画的かつ戦略的な愛情表現</u>を惜しみなく注ぎます。一度信頼した相手への誠実さと、関係を守り続ける力は、12タイプの中でも際立っています。',
    behaviors:['関係の主導権を握ることで安心感を得る','相手を「観察・分析」して信頼できるか判定する','感情より論理で関係を判断する傾向がある','不確実な要素を嫌い、確証を求め続ける'],
    compat:{resonance:[5],bipolar:[4,6],parallel:[8],stimulus:[7,9],mirror:[1,3],stillwater:[10,11,12]}},
   {id:3,  style:'Se',center:'guts', name:'チャレンジャー（挑戦者）',
@@ -796,7 +475,7 @@ const TYPES = [
    styleLabel:'狩猟型',centerLabel:'本能型',
    styleColor:'var(--rose)',styleBg:'var(--rose-l)',
    centerColor:'var(--amber)',centerBg:'var(--amber-l)',
-   core:'「自分でいられるか」を保ちながら本能的に動く。欲求に忠実で、考える前に行動する。愛は「感じたものを取りに行く行為」。嘘がなく、裏表のない恋愛スタイル。',
+   core:'このタイプは<u>「自分でいられるか」を最優先に恋愛を動かします</u>。好意を持った瞬間には行動しており、考える前に体が動く——それがこのタイプの本質的なスタイルです。<br><br>感情に嘘がなく、喜びも怒りも直球で表現します。<u>裏表がなく、衝動に忠実</u>であることが最大の特徴で、計算や戦略より「今この瞬間の本音」を常に優先します。<br><br>束縛への抵抗感は本能的に強く、<u>自分の自由と独立性を守れる関係</u>にのみ安心して深く関われます。自由を侵害されると感じた瞬間、感情のスイッチが切れます。<br><br>一度信頼した相手には、驚くほど<u>強い保護本能と忠誠心</u>を示します。普段の自由奔放さとは正反対に、深まった関係では誰よりも相手を守ろうとする力が湧き上がります。<br><br>このタイプの課題は<u>衝動と継続性のバランス</u>。熱が入りきった後に「あれは本当に好きだったのか」と自分でも戸惑うことがありますが、それは感情が薄れたのではなく、次の本音を探しているサインです。<br><br>深まった関係での誠実さと強さは本物で、<u>「一緒にいることが自然体でいること」という関係</u>を築けた相手とは、他の誰も入り込めない強固な絆を育てます。',
    behaviors:['好意を持てばすぐ行動に移す。計画より衝動が先','感情が素直で、怒りや熱情が直接的に出る','独立性が高く、縛られることへの強い抵抗がある','一度深まると非常に強い保護本能が出る'],
    compat:{resonance:[6],bipolar:[4,5],parallel:[9],stimulus:[7,8],mirror:[1,2],stillwater:[10,11,12]}},
   {id:4,  style:'Ni',center:'heart',name:'エンパス（共感者）',
@@ -804,7 +483,7 @@ const TYPES = [
    styleLabel:'共鳴型',centerLabel:'愛情型',
    styleColor:'var(--violet)',styleBg:'var(--violet-l)',
    centerColor:'var(--rose)',centerBg:'var(--rose-l)',
-   core:'「愛されているか」を確認するために自分を差し出す。尽くすことで愛の確認をしようとする。献身は自己表現であると同時に、愛されるための手段でもある。',
+   core:'このタイプは<u>「愛することで自分の価値を証明する」</u>という深い信念を持っています。尽くすことが自己表現であると同時に、愛されるための手段でもあります。<br><br>相手のために自分を後回しにすることへの抵抗感が非常に薄く、むしろ<u>尽くすことに自然な喜びと充足感</u>を覚えます。委ねることが得意で、相手のリードに従うことで関係が深まると感じます。<br><br>ただし深層には、<u>「気づいてほしい」という静かな叫び</u>があります。見返りを求めているつもりはなくても、傷ついたとき「こんなに尽くしているのに」という感情が湧き上がることがあります。<br><br>傷ついても「気にしていない」と言ってしまう、相手が辛そうにしていると自分の問題より先に動いてしまう——この<u>献身の深さと傷つきやすさは、表裏一体</u>です。<br><br>「自分のために」より「相手のために」の方がずっと動きやすく、尽くすことをやめると自分の居場所が分からなくなる感覚があります。<u>尽くすことがアイデンティティの一部</u>になっています。<br><br>このタイプが最も輝くのは、<u>受け取ることと与えることが対等な関係</u>の中。尽くされることを当然と思わず、きちんと受け取って返してくれる相手との関係では、このタイプの愛情の深さが本当の意味で生きてきます。',
    behaviors:['相手のために自分を後回しにすることに喜びを感じる','委ねることが得意で、相手のリードに自然に従う','見返りを求めず尽くすが、深く「気づいてほしい」と思っている','傷ついても我慢することが多い'],
    compat:{resonance:[1],bipolar:[2,3],parallel:[10],stimulus:[11,12],mirror:[5,6],stillwater:[7,8,9]}},
   {id:5,  style:'Ni',center:'head', name:'オブザーバー（観察者）',
@@ -812,7 +491,7 @@ const TYPES = [
    styleLabel:'共鳴型',centerLabel:'安心型',
    styleColor:'var(--violet)',styleBg:'var(--violet-l)',
    centerColor:'var(--teal)',centerBg:'var(--teal-l)',
-   core:'「安心できるか」を確認しながら委ねていく。信頼の確証が揃うまでは深く関わらない。一度信頼すると非常に深く献身的になる。誠実さと忠誠心が突出して高い。',
+   core:'このタイプは<u>「確信が持てるまで全力で委ねることができない」</u>という慎重さを持ちます。関係が深まるまでの時間は非常に長いですが、一度信頼した相手には驚くほど深く誠実なパートナーになります。<br><br>相手を長期間観察し、<u>一貫性・誠実さ・安定性</u>が確認できたときだけ、心を開きます。このプロセスは相手を試しているのではなく、自分が傷つかないための本能的な防衛反応です。<br><br>「この人、本当は何を考えているんだろう」という問いが頭から離れず、<u>表面の言動と内面の一致</u>を長い時間をかけて確かめます。確証が得られないまま関係が進むことを、本能的に拒否します。<br><br>信頼した相手への忠誠心は突出して高く、<u>一度決めた関係への献身は非常に深い</u>ものになります。裏切らないし、裏切られることへの恐怖も非常に強い。<br><br>長期的な視点で関係を見ており、将来を具体的に考えながら動きます。<u>「この人と10年後も一緒にいられるか」</u>という問いが、常に関係の奥底で動いています。<br><br>このタイプの課題は<u>「確信を待つあまり関係が始まらない」</u>こと。完全な信頼は関係の外では得られず、踏み出すことでのみ育まれます。慎重さと踏み出す勇気のバランスを見つけることが、このタイプの鍵です。',
    behaviors:['関係が深まるまでに非常に時間がかかる','相手を長期観察して信頼できるか判断する','信頼した相手への忠誠心は非常に高い','関係の将来を長期で考える傾向がある'],
    compat:{resonance:[2],bipolar:[1,3],parallel:[11],stimulus:[10,12],mirror:[4,6],stillwater:[7,8,9]}},
   {id:6,  style:'Ni',center:'guts', name:'フェイタリスト（運命論者）',
@@ -820,7 +499,7 @@ const TYPES = [
    styleLabel:'共鳴型',centerLabel:'本能型',
    styleColor:'var(--violet)',styleBg:'var(--violet-l)',
    centerColor:'var(--amber)',centerBg:'var(--amber-l)',
-   core:'「自分でいられるか」を保ちながら流れに委ねる。状況に柔軟に適応するが、自分の核心的な意志は決して曲げない。委ねることと自分でいることを同時に実現する。',
+   core:'このタイプは<u>「流れに乗りながらも、芯だけは絶対に手放さない」</u>という独特のバランス感覚を持ちます。状況や相手に柔軟に適応するように見えて、核心的な意志は誰にも曲げられません。<br><br>「なんでもいい」と言いながら、<u>「これだけはダメ」という絶対的な境界線</u>を持っています。その線を踏まれない限り、驚くほど柔軟で穏やかな関係を築けます。<br><br>感情は深く、静かに湧き上がります。<u>表面に出すまでに時間がかかる</u>ため、相手から見ると読みにくい存在に映ることもありますが、深く関わった人間はその誠実さと芯の強さを必ず知ることになります。<br><br>「この人といると自分でいられる」という感覚が、このタイプにとって最高の愛情表現です。<u>自分の核を守れる関係</u>にのみ、本当の意味で深く関われます。<br><br>関係に無理が生じたとき、言葉にせず<u>静かに距離を置く</u>のがこのタイプの特徴。爆発するのではなく、静かに引いていく。それはすでに心が離れているのではなく、自分を守るための本能的な行動です。<br><br>委ねることと自分でいることを同時に実現し、<u>深まった関係では他に代えがたい安定感</u>をもたらします。このタイプと深く関われた人は、「この人の芯の強さ」に気づいたとき、より強く惹かれていきます。',
    behaviors:['相手や状況の流れに自然に合わせるが、芯の部分は譲らない','「なんでもいい」と言いながら実は「これだけはダメ」がある','深い部分を見せるまでに時間がかかる','関係に無理が生じたとき、静かに距離を置く'],
    compat:{resonance:[3],bipolar:[1,2],parallel:[12],stimulus:[10,11],mirror:[4,5],stillwater:[7,8,9]}},
   {id:7,  style:'Si',center:'heart',name:'ガーディアン（保護人）',
@@ -828,7 +507,7 @@ const TYPES = [
    styleLabel:'守護型',centerLabel:'愛情型',
    styleColor:'var(--teal)',styleBg:'var(--teal-l)',
    centerColor:'var(--rose)',centerBg:'var(--rose-l)',
-   core:'「愛されているか」を確認するために細やかに世話をする。行動で愛を示し、行動で愛を確認しようとする。尽くすことが愛の言語でありアイデンティティ。',
+   core:'このタイプは<u>行動で愛を表現し、行動で愛を確認する</u>ことを本質とします。言葉より先に体が動いており、相手の細かい変化に誰よりも早く気づいて、先回りして動くことで愛を示します。<br><br>相手のために動くことが喜びであり、<u>自分のことを後回しにすることへの抵抗感が非常に薄い</u>のが特徴です。尽くすことがアイデンティティの一部になっており、それを止められると自分の存在意義が揺らぐ感覚があります。<br><br>「何か食べたいものある？」と無意識に聞いている、相手の好きなものを覚えて日常に組み込む——<u>細やかで継続的なケア</u>がこのタイプの愛の言語です。大きな行動より、日々の積み重ねに愛が宿っています。<br><br>ただし深層では、<u>「気づいてもらえない」という痛み</u>を静かに抱えています。感謝を求めているわけではないのに、認められないと消耗が蓄積していきます。その痛みを言葉にできないまま、抱え込み続けることがあります。<br><br>このタイプが安心できるのは、<u>自分の存在が相手の日常にとって欠かせないものになっているとき</u>。「あなたがいてくれてよかった」という言葉が、このタイプの愛情タンクを満たします。<br><br>継続的な行動で非常に深い信頼を築き、<u>揺るがない絆を作り出す力</u>を持っています。派手さはなくても、長い時間をかけて育てる関係では、このタイプの右に出る存在はいません。',
    behaviors:['相手の細かい変化に気づき、先回りして対応する','言語より行動で愛を表現する','相手の好きなものを覚えて日常に組み込む','感謝されないことを内心辛く感じているが言えない'],
    compat:{resonance:[10],bipolar:[11,12],parallel:[1],stimulus:[2,3],mirror:[8,9],stillwater:[4,5,6]}},
   {id:8,  style:'Si',center:'head', name:'アーキテクト（構築者）',
@@ -836,7 +515,7 @@ const TYPES = [
    styleLabel:'守護型',centerLabel:'安心型',
    styleColor:'var(--teal)',styleBg:'var(--teal-l)',
    centerColor:'var(--teal)',centerBg:'var(--teal-l)',
-   core:'「安心できる関係」を構築・維持することに全力を注ぐ。変化を嫌い、安定した環境と関係を守ることが愛の表現。記念日・ルーティン・約束を大切にする。',
+   core:'このタイプの愛は<u>「設計し、構築し、守り続ける」</u>ことで表現されます。関係に安定した構造を作り、維持することが愛の言語であり、記念日・ルーティン・約束がふたりの絆の柱になります。<br><br>突発的な変化や予測できない出来事に強いストレスを感じます。<u>「この関係は安定して続くか」</u>という問いが常にあり、確証が持てるまで心から安心することができません。<br><br>感情より「安定した行動」で愛を示すのがこのタイプのスタイル。<u>5年後・10年後を今から具体的に考えており</u>、長期的な視点でパートナーシップを設計しようとします。「記念日を忘れる」ことは、自分的にはあり得ない。<br><br>一見すると融通が利かないように見えますが、その根底にあるのは<u>「守りたいという強い意志」</u>。ルーティンや約束を大切にするのは、それらが壊れると関係全体が揺らいだように感じるからです。<br><br>このタイプが最も輝くのは、<u>共に未来を描ける相手と腰を据えた関係</u>を築くとき。安定した関係の中での情熱は静かで深く、長い時間をかけて確かな絆へと変わっていきます。<br><br>一度信頼を築けば、<u>どんな困難でも揺らがない強固なパートナーシップ</u>を実現できます。変化を恐れず、成長と安定を両立できるかどうかがこのタイプの長期的な鍵です。',
    behaviors:['関係に「安定した構造」を作ろうとする','突発的な変化に強いストレスを感じる','感情より「安定した行動」で愛を示す','関係の将来を具体的に考え、設計しようとする'],
    compat:{resonance:[11],bipolar:[10,12],parallel:[2],stimulus:[1,3],mirror:[7,9],stillwater:[4,5,6]}},
   {id:9,  style:'Si',center:'guts', name:'ケアテイカー（世話役）',
@@ -844,7 +523,7 @@ const TYPES = [
    styleLabel:'守護型',centerLabel:'本能型',
    styleColor:'var(--teal)',styleBg:'var(--teal-l)',
    centerColor:'var(--amber)',centerBg:'var(--amber-l)',
-   core:'「自分でいられること」を保ちながら、変わらずそこに居続ける。愛を言葉で示すより「継続する存在であること」で示す。去らないことが最大の愛の表現。',
+   core:'このタイプの愛は<u>「ここにい続けること」</u>で表現されます。言葉にしなくても、去らないことが最大の愛情表現であり、継続する存在であることが関係の核心にあります。<br><br>感情を言語化することが非常に苦手で、<u>すべてを行動に変換して示そうとします</u>。嫉妬も不安も言わずに抱え、それでも離れないことを選び続ける——それがこのタイプの愛の形です。<br><br>一度決めた関係への<u>強いこだわりと忠誠心</u>があり、変化を拒む傾向があります。それは頑固さではなく、「ここに自分の居場所があるか」という根底にある問いへの答えを守ろうとする本能的な行動です。<br><br>何があっても離れないという強い確信を持っており、<u>嵐の中でも「ここにいる」と伝え続ける力</u>があります。言葉は少なくても、その存在感そのものが安心の源になります。<br><br>このタイプが深まると、<u>どんな状況にも動じない静かな強さ</u>を発揮します。派手な愛情表現はなくても、「この人は絶対に離れない」という確信が相手に伝わったとき、非常に深い信頼関係が生まれます。<br><br>「言わなくてもわかるはず」という信念が時に齟齬を生みますが、<u>言葉で伝える練習を積む</u>ことで、このタイプの愛はより豊かで深いものになっていきます。',
    behaviors:['感情を言葉にすることが非常に苦手。行動で全てを示そうとする','何があっても離れない強い忠誠心がある','嫉妬や不安を感じても言わずに抱える','一度決めたことへの強いこだわりがある'],
    compat:{resonance:[12],bipolar:[10,11],parallel:[3],stimulus:[1,2],mirror:[7,8],stillwater:[4,5,6]}},
   {id:10, style:'Ne',center:'heart',name:'トラベラー（旅人）',
@@ -852,7 +531,7 @@ const TYPES = [
    styleLabel:'冒険型',centerLabel:'愛情型',
    styleColor:'var(--amber)',styleBg:'var(--amber-l)',
    centerColor:'var(--rose)',centerBg:'var(--rose-l)',
-   core:'「愛されているか」を新鮮なときめきの中で確認し続ける。感情の鮮度が関係の温度計。ときめきが薄れることへの強い恐れを持ち、関係に感情的な豊かさをもたらす。',
+   core:'このタイプにとって、<u>恋愛はときめきの強度で測られます</u>。感情の鮮度が関係の温度計であり、ときめきが続く限りどこまでも行けますが、薄れた瞬間に関係全体が色褪せて見えます。<br><br>新しい体験、新しい会話、新しい発見が<u>関係の燃料</u>になります。「この人といると新しい世界が広がる」という感覚が愛の条件になっており、マンネリは関係の終わりを意味するシグナルとして受け取ってしまいます。<br><br>感情の起伏は大きく、<u>ときめきの波に乗る高揚感と、薄れるときの落差</u>の両方が激しく訪れます。自分の感情に振り回されることもありますが、その豊かな感情表現が関係に温度と彩りをもたらします。<br><br>「出会いの瞬間のあの感覚を、ずっと求め続けている」——この傾向は、<u>愛が変化しているのではなく「深まっている」</u>という感覚をつかみにくくしています。<br><br>特別扱いされていると感じるとき、相手から大切にされていると実感できるとき、このタイプは<u>最大の安心と愛情を感じます</u>。その特別感を絶えず更新し続けられる関係が、理想の形です。<br><br>このタイプが見落としがちなのは、<u>「深まる愛」の豊かさ</u>。ときめきの先にある、積み重ねて初めて生まれる感情の深みを体験することが、このタイプにとっての大きな成長となります。',
    behaviors:['感情の起伏が大きく、ときめきの強度で関係を測る','新しい体験・会話・発見が関係の燃料になる','日常化・マンネリに非常に敏感でストレスを感じる','感情的な表現が豊かで、関係に温度をもたらす'],
    compat:{resonance:[7],bipolar:[8,9],parallel:[4],stimulus:[5,6],mirror:[11,12],stillwater:[1,2,3]}},
   {id:11, style:'Ne',center:'head', name:'エクスプローラー（探検家）',
@@ -860,7 +539,7 @@ const TYPES = [
    styleLabel:'冒険型',centerLabel:'安心型',
    styleColor:'var(--amber)',styleBg:'var(--amber-l)',
    centerColor:'var(--teal)',centerBg:'var(--teal-l)',
-   core:'「安心できる関係」を楽観的なビジョンで確保しようとする。問題が起きても「大丈夫」と思い込むことで不安を管理する。可能性への信頼が生きる力になる。',
+   core:'このタイプは<u>「きっとうまくいく」という楽観性で不安を管理します</u>。問題が起きても可能性を見て、未来のビジョンと希望を力の源にして生きています。<br><br>関係において大切にするのは、<u>可能性・夢・一緒に描ける未来</u>。「この人と何ができるか」という問いが、関係継続の原動力になります。細かい問題より大きなビジョンを見ようとします。<br><br>悲観的な話や重い感情のやり取りに不快感を持ちやすく、<u>楽観的でいることで場を明るく保とうとします</u>。それは逃げているのではなく、不安との付き合い方として楽観を選んでいるのです。<br><br>「問題が起きても『なんとかなる』が先に来る」「つまらない現実より『面白い可能性』に生きている」——<u>この前向きさは、周囲の人に希望と活力</u>を与えます。暗い空気を明るく変える力があります。<br><br>楽観的すぎて、<u>相手の本音を聞き逃していることがあります</u>。相手が辛そうにしていても「きっと大丈夫」と思い込んでしまい、深刻なサインを見逃してしまう場合があります。<br><br>このタイプが持つ明るさと希望は、<u>深く付き合うほど本物の力</u>になっていきます。不快な感情を直視する勇気を持てると、楽観性は逃避ではなく、真の強さへと変わります。',
    behaviors:['関係の問題を「きっと解決する」と楽観視する','未来の可能性・夢・計画の話が大好き','悲観的な話や重い感情に不快感を持ちやすい','関係の細かい問題より大きなビジョンを見ようとする'],
    compat:{resonance:[8],bipolar:[7,9],parallel:[5],stimulus:[4,6],mirror:[10,12],stillwater:[1,2,3]}},
   {id:12, style:'Ne',center:'guts', name:'フリースピリット（自由人）',
@@ -868,18 +547,313 @@ const TYPES = [
    styleLabel:'冒険型',centerLabel:'本能型',
    styleColor:'var(--amber)',styleBg:'var(--amber-l)',
    centerColor:'var(--amber)',centerBg:'var(--amber-l)',
-   core:'「自分でいられるか」を保つために自由を守る。束縛を死ぬほど嫌い、自由が愛の前提条件。「自由でいながら愛されること」が理想。縛らない愛し方ができる。',
+   core:'このタイプにとって、<u>自由は愛の前提条件</u>です。束縛された瞬間に心が離れ始め、「自由でいながら愛されること」が理想の関係の形です。<br><br>深まりたいという気持ちは本物ですが、深まることを同時に恐れるという矛盾を抱えています。<u>「深まれば自由が失われる」という信念</u>が、関係の定着を無意識に妨げることがあります。<br><br>「あなたが好きだから一緒にいる、だから縛る必要はない」——これがこのタイプの愛の根幹にある考え方です。<u>縛らない愛し方ができる</u>分、縛られることが極めて苦手で、束縛された瞬間に関係への熱が急速に冷めていきます。<br><br>自由を守るためなら孤独も選べます。しかし孤独に耐えながらも、<u>深く愛したいという本音は消えない</u>。自由と愛の両立が、このタイプの永遠のテーマです。<br><br>「自由でいてくれる」が相手への最高の褒め言葉であり、<u>縛らず、でも離れない関係</u>を作れる相手が現れたとき、このタイプは驚くほど深く関われます。<br><br>このタイプが見出す答えは、<u>「深まっても自分でいられる」という体験</u>。自由と愛は両立できるという確信を持てたとき、縛らない関係を望む相手には最高のパートナーになれます。',
    behaviors:['自由を束縛する関係から本能的に逃げる','「自由でいてくれる」相手に信頼と感情を向ける','深まることを望みながら同時に恐れている','感情は豊かだが関係を固定することに強い抵抗がある'],
    compat:{resonance:[9],bipolar:[7,8],parallel:[6],stimulus:[4,5],mirror:[10,11],stillwater:[1,2,3]}},
 ];
 
 const COMPAT_INFO = {
-  resonance:  {name:'共鳴',    simple:'最も深まりやすい', color:'#7655a8', bg:'#ece6f8'},
-  bipolar:    {name:'双極',    simple:'強烈に惹かれ合う', color:'#c4566e', bg:'#fae0e8'},
-  parallel:   {name:'並走',    simple:'同じ方向を向く',   color:'#2e8b7a', bg:'#ddf2ee'},
-  stimulus:   {name:'刺激',    simple:'成長し合える',     color:'#c47830', bg:'#fdefd8'},
-  mirror:     {name:'鏡像',    simple:'自分の鏡のような', color:'#5b7fa6', bg:'#deeaf7'},
-  stillwater: {name:'静水',    simple:'穏やかに引き合う', color:'#8b7355', bg:'#f0e8dc'},
+  resonance:  {name:'共鳴',    simple:'最も深まりやすい', desc:'お互いの恋愛スタイルが自然に噛み合う関係。深く理解し合いやすく、無理なく絆が育まれやすい。', color:'#7655a8', bg:'#ece6f8'},
+  bipolar:    {name:'双極',    simple:'強烈に惹かれ合う', desc:'引き合う力が強い分、衝突しやすくもある関係。化学反応が激しく、強烈な印象を残し合う。',         color:'#c4566e', bg:'#fae0e8'},
+  parallel:   {name:'並走',    simple:'同じ方向を向く',   desc:'価値観が近く、自然体でいられる関係。同じ方向を向いて一緒に歩きやすく、居心地がいい。',           color:'#2e8b7a', bg:'#ddf2ee'},
+  stimulus:   {name:'刺激',    simple:'成長し合える',     desc:'互いに刺激を与え合い、成長できる関係。違いが摩擦ではなく、化学反応になりやすい。',               color:'#c47830', bg:'#fdefd8'},
+  mirror:     {name:'鏡像',    simple:'自分の鏡のような', desc:'似ている部分が多く、共感しやすい関係。自分の姿を映す鏡のような存在になりやすい。',               color:'#5b7fa6', bg:'#deeaf7'},
+  stillwater: {name:'静水',    simple:'穏やかに引き合う', desc:'大きな波はないが、静かに深まる関係。穏やかな安定感の中でゆっくりつながっていける。',             color:'#8b7355', bg:'#f0e8dc'},
+};
+
+// ══════════════════════════════════════
+// TYPE EXTRA DATA
+// ══════════════════════════════════════
+const TYPE_EXTRA = {
+  1: {
+    catchcopy: '愛されていると確信するまで、前進を止めない人',
+    araru: [
+      '既読スルーされると、文章に問題があったか読み返してしまう',
+      '返信が来るまで、スマホを手放せない',
+      '他の異性と仲よさそうにしているのを見ると、本能的に割り込みたくなる',
+      '「好き」と言われても、もっと証拠が欲しくなってしまう',
+      'アプローチは即決。好きと思ったらもう連絡している',
+      '関係が深まるほど逆に不安も大きくなる',
+      '追いかけている間が、一番燃えている気がする',
+    ],
+    structure: {
+      think: '「愛されているか・いないか」ですべてを判断する',
+      feel: '確認が取れると安心し、取れないと不安が止まらない',
+      act: '疑問を解消するために積極的に動く。待てない',
+      relation: '深く愛するが、確認行動がエスカレートしやすい',
+    },
+    wingDetails: {
+      head: { role: '分析眼が加わる', impact: 'より計算的・戦略的に確認行動をとるようになる', drift: '冷静に見えるが内側の不安は変わらない' },
+      guts: { role: '本能が加速する', impact: '感情表現が直球になり、衝動が強まる', drift: 'エネルギッシュだが感情爆発しやすくなる' },
+    },
+    weakness: '確認行動が止まらず、相手を追い詰めてしまう。「もっと愛を証明してほしい」という要求が、やがて相手の息の根を止める。',
+    growth: '「愛されていること」を出発点にできるようになること。証明を求める前に、今ここにある愛を受け取れるようになることが鍵。',
+    stressTypes: [11, 12],
+  },
+  2: {
+    catchcopy: '信頼を確証するまで、心を渡さない人',
+    araru: [
+      '好きな人の言動を無意識に分析して「信頼できるか」を判定している',
+      'リードしないと落ち着かない',
+      'デートの計画を相手に任せると何となく不安になる',
+      '感情より「この関係は安全か」という判断が先に来る',
+      '信頼できると決めたら、急に深くなる',
+      '「好き」より「信頼できる」が関係継続の絶対条件',
+    ],
+    structure: {
+      think: '「この関係はコントロールできているか」を常に確認する',
+      feel: '安心感は論理で作るもの。感情だけでは動けない',
+      act: '主導権を握ることで不安を管理する',
+      relation: '表面は積極的でも、心理的には非常に慎重',
+    },
+    wingDetails: {
+      heart: { role: '感情的な熱量が加わる', impact: '行動がより積極的かつ情熱的になる', drift: '情熱と分析が混在する複雑さが出る' },
+      guts: { role: '本能性が加わる', impact: 'より自分軸で動き、孤独を選びやすくなる', drift: '孤独な戦略家になりやすい' },
+    },
+    weakness: 'コントロールへの執着で相手を窒息させてしまう。「主導権を渡す＝不安」という回路が、相手の自由を奪い続ける。',
+    growth: '「予測できない相手」を信頼することを学ぶこと。コントロールを手放したとき、より深い安心が生まれる。',
+    stressTypes: [6, 12],
+  },
+  3: {
+    catchcopy: '欲しいと感じた瞬間、もう体が動いている人',
+    araru: [
+      '気持ちに気づいたら次の瞬間にはLINEを送っている',
+      '「考えてから動く」が一番苦手',
+      '怒るのも好きになるのも全部直球すぎて、自分でも驚く',
+      '束縛しないでほしい、が最初の条件になっている',
+      '一度好きになった相手への保護本能が異常に強い',
+      '嘘をつくのが下手で、感情がすぐ顔に出る',
+    ],
+    structure: {
+      think: '「これが自分の本音か」を唯一の判断基準にする',
+      feel: '感情はフルスロットル。抑制が苦手',
+      act: '衝動が先。後から理由を考える',
+      relation: '束縛を嫌うが、深まると保護本能が爆発する',
+    },
+    wingDetails: {
+      heart: { role: '愛情確認欲求が加わる', impact: '行動後に「受け入れられたか」を気にするようになる', drift: '衝動の後に強い不安が来る' },
+      head: { role: '分析力が加わる', impact: '少し計算高くなり、衝動の中に戦略が混じる', drift: '行動は速いが、後で後悔しやすくなる' },
+    },
+    weakness: '衝動性が高すぎて相手が追いつけなくなる。感情の強さは武器だが、コントロールできないと関係を壊す。',
+    growth: '「待つこと」「受け取ること」を恐れずに試すこと。衝動を手放したとき、より深い関係が始まる。',
+    stressTypes: [5, 8],
+  },
+  4: {
+    catchcopy: '愛することで、自分が誰かを証明する人',
+    araru: [
+      '気づいたら相手の望む自分に、自分を合わせていた',
+      '「自分のために」より「相手のために」の方が動きやすい',
+      '尽くしているのに「気づいてほしい」が消えない',
+      '傷ついても「気にしてない」と言ってしまう',
+      '相手が幸せそうだと、それだけで自分も満たされる感じがある',
+      '「私、使われてるのかな」と気づきつつも離れられない',
+    ],
+    structure: {
+      think: '「相手は今何を必要としているか」で思考が動く',
+      feel: '尽くすことで愛を確認する。気づかれたい',
+      act: '相手に合わせる形で動く。外から見えない能動性がある',
+      relation: '献身が深く、傷つきやすい',
+    },
+    wingDetails: {
+      head: { role: '観察眼が加わる', impact: 'より静かに・深く尽くすようになる', drift: '内向きになり、感情を表に出さなくなる' },
+      guts: { role: '芯の強さが加わる', impact: '少し主張できるようになる', drift: '尽くしながらも自分軸を持つ' },
+    },
+    weakness: '自分を消すことで愛を維持しようとし、自己を失う。「尽くせば愛される」という信念が、やがて自分を壊す。',
+    growth: '「尽くさなくても愛される」を体験すること。何もしていない自分でも、愛されていいと知ること。',
+    stressTypes: [2, 3],
+  },
+  5: {
+    catchcopy: '確信が持てるまで、全力で委ねることができない人',
+    araru: [
+      '信頼できるかどうか、長期観察しないと決断できない',
+      '一度信頼したらとことん深く関わるが、そこまでが長い',
+      '「この人、本当は何を考えているんだろう」が頭から離れない',
+      '関係の将来を深く考えすぎて、行動が遅れる',
+      '誰にでも心を開かない分、心を開いた相手への忠誠心が異常に高い',
+      '深く関わる前に、相手の一貫性を確かめている',
+    ],
+    structure: {
+      think: '「この人は信頼できるか」を長期的に分析する',
+      feel: '信頼と安心が揃って初めて感情を開く',
+      act: '慎重に、一歩ずつ。確証なしに動かない',
+      relation: '誠実さと忠誠心が突出して高い',
+    },
+    wingDetails: {
+      heart: { role: '感情の深さが加わる', impact: 'より感情的に関われるようになる', drift: '傷つきやすくなる' },
+      guts: { role: '流れへの信頼が加わる', impact: '委ねる力が少し増す', drift: '頑固さが和らぐ' },
+    },
+    weakness: '慎重すぎて、関係が始まる前に終わってしまう。「まだ信頼できない」が永遠に続く。',
+    growth: '「まだわからないけど進んでみる」を学ぶこと。完全な確信は、関係の中でしか生まれない。',
+    stressTypes: [1, 3],
+  },
+  6: {
+    catchcopy: '流れに乗りながら、芯だけは手放さない人',
+    araru: [
+      '「なんでもいい」と言いながら、「これだけはダメ」がある',
+      '感情は深いが、表に出すまでに時間がかかる',
+      '相手に合わせているようで、実は誰にも芯を譲っていない',
+      '無理が生じたとき、言葉にせず静かに距離を置く',
+      '流れに乗ることと自分でいることを、同時にやっている',
+      '「この人といると自分でいられる」が最高の褒め言葉',
+    ],
+    structure: {
+      think: '「今の流れは自分に合っているか」を感じ取る',
+      feel: '感情は深く、静かに湧き上がる',
+      act: '流れに乗るが、核心的な意志は動かない',
+      relation: '委ねながらも自分を失わない。唯一無二の安定感',
+    },
+    wingDetails: {
+      heart: { role: '感情的な深みが加わる', impact: 'より献身的になる', drift: '感情の波が大きくなる' },
+      head: { role: '分析眼が加わる', impact: 'より慎重に流れを見極める', drift: '内向きが強くなる' },
+    },
+    weakness: '「流れに任せる」が逃避になってしまう。言葉にしない芯は、相手には伝わらない。',
+    growth: '自分の意志を、言葉で伝えることを覚えること。委ねることと、伝えることは両立する。',
+    stressTypes: [1, 2],
+  },
+  7: {
+    catchcopy: '気づかれなくても、今日も誰かのために動いている人',
+    araru: [
+      '相手の体調の変化に、誰より先に気づいている',
+      '「何か食べたいものある？」を無意識に聞いている',
+      '自分のことは後回しにしても、相手のことは先回りしてしまう',
+      '感謝されないことを辛く思いながら、言えない',
+      '相手が喜んでくれるだけで「頑張った意味があった」と感じる',
+      '愛情は言葉より行動で示すものだと思っている',
+    ],
+    structure: {
+      think: '「相手のために今できることは何か」が常にある',
+      feel: '尽くすことで愛を確認する。感謝が力になる',
+      act: '先回りして動く。目立たない場所で細やかに',
+      relation: '継続的な行動で深い信頼を築く',
+    },
+    wingDetails: {
+      head: { role: '構造化する力が加わる', impact: 'より計画的に尽くすようになる', drift: '感情より実用性を優先することがある' },
+      guts: { role: '忠誠心が加わる', impact: 'より継続的に、粘り強く側にいる', drift: '変化への対応が遅くなる' },
+    },
+    weakness: '見返りを求めない尽くしが、やがて限界を迎える。誰も気づかない尽くしは、静かに自分を消耗させる。',
+    growth: '「助けを求める」「甘えてみる」を自分に許すこと。受け取ることも、愛のかたち。',
+    stressTypes: [10, 11],
+  },
+  8: {
+    catchcopy: '崩れない関係を、一つひとつ丁寧に積み上げる人',
+    araru: [
+      '記念日を忘れるとか、自分的にはあり得ない',
+      '関係に「予測できる安定」がないと不安になる',
+      '突然の予定変更が、地味に一番キツい',
+      '感情より「安定した行動」で愛を示す方が自然',
+      '5年後・10年後のことを、今から具体的に考えている',
+      'ルーティンが壊れると、関係全体が揺らいだように感じる',
+    ],
+    structure: {
+      think: '「この関係は安定して続くか」を設計する',
+      feel: '変化への不安は大きいが、外には出さない',
+      act: '継続と安定を基盤に動く',
+      relation: '記念日・ルーティン・約束が愛の言語',
+    },
+    wingDetails: {
+      heart: { role: '感情的な温かさが加わる', impact: 'より細やかなケアができるようになる', drift: '感情的な揺れが増す' },
+      guts: { role: '忠誠心が加わる', impact: 'より粘り強く関係を守る', drift: '変化への拒絶が強まる' },
+    },
+    weakness: '変化を拒みすぎて、関係の成長を止めてしまう。安定という名の「固定」が、相手の息を詰まらせる。',
+    growth: '「予測できない変化」も愛の一部だと受け入れること。揺れることが、関係が生きている証拠。',
+    stressTypes: [10, 12],
+  },
+  9: {
+    catchcopy: '言葉にしなくても、ここにいることが答えだという人',
+    araru: [
+      '感情を言葉にするのが一番苦手',
+      '何があっても離れないという強い確信がある',
+      '嫉妬や不安を感じても、言わずに抱えてしまう',
+      '「ずっとここにいる」が最大の愛情表現だと思っている',
+      '一度決めた関係を変えることへの強い抵抗がある',
+      '行動で全てを示そうとするから、言葉が少ない',
+    ],
+    structure: {
+      think: '「自分はここにいていいか」を根底で問い続ける',
+      feel: '感情は深く、外には出さない。行動に変換する',
+      act: '継続する存在であることが最大の表現',
+      relation: '去らないことが愛の証明。無言の忠誠心',
+    },
+    wingDetails: {
+      heart: { role: '愛情確認欲求が加わる', impact: 'より相手の気持ちを気にするようになる', drift: '感情的な不安が増す' },
+      head: { role: '構造化する力が加わる', impact: 'より計画的・安定的に関係を維持する', drift: '感情表現がさらに内向きになる' },
+    },
+    weakness: '感情を言葉にしないことで、相手との齟齬が広がる。「言わなくてもわかるはず」は、伝わらないことがほとんど。',
+    growth: '気持ちを言葉にする練習を積み重ねること。行動だけでなく、言葉も愛のかたち。',
+    stressTypes: [10, 11],
+  },
+  10: {
+    catchcopy: 'ときめきが続く限り、どこまでも行ける人',
+    araru: [
+      'マンネリが来た瞬間に、関係の温度が下がる',
+      '「この人といると新しい世界が広がる」が恋愛の条件',
+      'ときめきの強さで「愛しているか」を測ってしまう',
+      '日常化すると愛が薄れた気がして不安になる',
+      '感情の起伏が大きすぎて、自分でも振り回される',
+      '出会いの瞬間のあの感覚を、ずっと求め続けている',
+    ],
+    structure: {
+      think: '「この関係にまだときめきはあるか」を常に問う',
+      feel: '感情の鮮度が全て。薄れると関係全体が色褪せる',
+      act: '新鮮さを求めて動く',
+      relation: '感情が豊かで、関係に温度と彩りをもたらす',
+    },
+    wingDetails: {
+      head: { role: '楽観的なビジョンが加わる', impact: '「きっとうまくいく」でときめきの揺れを乗り越える', drift: '問題を直視しなくなる' },
+      guts: { role: '自由志向が加わる', impact: 'ときめきと自由を両方求めるようになる', drift: '定着がさらに難しくなる' },
+    },
+    weakness: 'ときめきが薄れた瞬間に関係を手放してしまう。「深まる愛」の豊かさに気づかないまま終わる。',
+    growth: '「深まる愛」の豊かさを知ること。ときめきの先に、もっと大きな感情がある。',
+    stressTypes: [7, 9],
+  },
+  11: {
+    catchcopy: '「きっとうまくいく」が、最強の処世術の人',
+    araru: [
+      '問題が起きても「なんとかなる」が先に来る',
+      '未来の可能性を語るのが一番テンションが上がる',
+      '重い感情の話になると、少し逃げたくなる',
+      '関係の細かい問題より「この人と何ができるか」を見る',
+      '楽観的すぎて、相手の本音を聞き逃していることがある',
+      '「つまらない現実」より「面白い可能性」に生きている',
+    ],
+    structure: {
+      think: '「この関係にどんな可能性があるか」を見ている',
+      feel: '楽観によって不安を管理する',
+      act: '可能性に向かって動く',
+      relation: '明るさと希望で場を照らす',
+    },
+    wingDetails: {
+      heart: { role: 'ときめき志向が加わる', impact: '感情的な豊かさが増す', drift: 'ときめきが薄れると関係に不安を感じやすくなる' },
+      guts: { role: '自由志向が加わる', impact: '「制約のない関係」をより強く求める', drift: 'コミットメントがさらに苦手になる' },
+    },
+    weakness: '楽観が現実否認になり、問題が積み重なる。「きっとうまくいく」が、「見ないことにする」に変わる。',
+    growth: '不快な感情も直視する勇気を持つこと。現実を見ることが、本当の楽観主義への道。',
+    stressTypes: [7, 9],
+  },
+  12: {
+    catchcopy: '縛られないことが、愛の前提条件だという人',
+    araru: [
+      '束縛された瞬間に、心が離れ始める',
+      '「自由でいてくれる」が相手への最高の褒め言葉',
+      '深まりたいのに、深まることを恐れている',
+      '「あなたが好きだから一緒にいる」であって「だから縛りたい」ではない',
+      '自由を守るためなら孤独も選べる',
+      '縛らない愛し方ができる分、縛られることが耐えられない',
+    ],
+    structure: {
+      think: '「ここに自分の自由はあるか」を最初に確認する',
+      feel: '感情は豊かだが、定着を恐れる',
+      act: '自由を守るために動く',
+      relation: '深まることと逃げることの間で揺れる',
+    },
+    wingDetails: {
+      heart: { role: 'ときめき志向が加わる', impact: '感情の豊かさが増し、恋愛に積極的になる', drift: 'ときめきと自由を両立させようと無理をする' },
+      head: { role: '楽観性が加わる', impact: '「うまくいく」で自由への不安を管理する', drift: '問題の直視がさらに難しくなる' },
+    },
+    weakness: '自由を守るために、深い関係を手放してしまう。逃げることが習慣になると、本当に欲しいものが遠ざかる。',
+    growth: '「深まっても自分でいられる」を体験すること。自由と愛は、両立できる。',
+    stressTypes: [8, 9],
+  },
 };
 
 // ══════════════════════════════════════
@@ -887,6 +861,7 @@ const COMPAT_INFO = {
 // ══════════════════════════════════════
 let currentQ = 0;
 let answers = [];
+let currentResult = null;
 
 // ══════════════════════════════════════
 // SCREENS
@@ -894,7 +869,7 @@ let answers = [];
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
 // ══════════════════════════════════════
@@ -911,52 +886,38 @@ function renderQuestion() {
   const q = QUESTIONS[currentQ];
   const total = QUESTIONS.length;
   const pct = (currentQ / total) * 100;
-
   document.getElementById('progressBar').style.width = pct + '%';
   document.getElementById('quizCounter').textContent = `${currentQ + 1} / ${total}`;
   document.getElementById('qNum').textContent = `Question ${currentQ + 1}`;
   document.getElementById('quizBackBtn').disabled = currentQ === 0;
-
-  // テキスト更新（アニメーションリセット）
   const qText = document.getElementById('qText');
   qText.style.animation = 'none';
-  qText.offsetHeight; // reflow
+  qText.offsetHeight;
   qText.style.animation = '';
   qText.textContent = q.text;
-
-  // 選択肢
   const choicesEl = document.getElementById('choices');
   choicesEl.style.animation = 'none';
   choicesEl.offsetHeight;
   choicesEl.style.animation = '';
   choicesEl.innerHTML = '';
-
   CHOICES.forEach(c => {
     const btn = document.createElement('button');
     btn.className = 'choice-btn';
     btn.setAttribute('data-val', c.val);
-    btn.innerHTML = `
-      <div class="choice-circle">${c.val}</div>
-      <span class="choice-label">${c.label}</span>`;
+    btn.innerHTML = `<div class="choice-circle">${c.val}</div><span class="choice-label">${c.label}</span>`;
     btn.addEventListener('click', () => selectAnswer(c.val, btn));
     choicesEl.appendChild(btn);
   });
 }
 
 function selectAnswer(val, btn) {
-  // ボタンを無効化
   document.querySelectorAll('.choice-btn').forEach(b => b.style.pointerEvents = 'none');
   btn.classList.add('selected');
-
   answers.push({qIndex: currentQ, val});
-
   setTimeout(() => {
     currentQ++;
-    if (currentQ >= QUESTIONS.length) {
-      showLoading();
-    } else {
-      renderQuestion();
-    }
+    if (currentQ >= QUESTIONS.length) showLoading();
+    else renderQuestion();
   }, 380);
 }
 
@@ -976,7 +937,6 @@ function showLoading() {
   const bar = document.getElementById('loadingBar');
   steps.forEach(id => document.getElementById(id).classList.remove('show','done'));
   bar.style.width = '0%';
-
   let i = 0;
   const interval = setInterval(() => {
     if (i < steps.length) {
@@ -993,7 +953,7 @@ function showLoading() {
 }
 
 // ══════════════════════════════════════
-// SCORING
+// SCORING（タイブレーク・ノイズ付き）
 // ══════════════════════════════════════
 function calcScores() {
   const style = {Se:0, Ni:0, Si:0, Ne:0};
@@ -1001,8 +961,7 @@ function calcScores() {
 
   answers.forEach(a => {
     const q = QUESTIONS[a.qIndex];
-    // 5段階: 5→+2倍, 4→+1倍, 3→0, 2→-1倍, 1→-2倍
-    const mult = (a.val - 3); // -2〜+2
+    const mult = (a.val - 3);
     if (q.axis === 'style') {
       Object.keys(q.scores).forEach(k => { style[k] += q.scores[k] * mult; });
     } else {
@@ -1010,24 +969,43 @@ function calcScores() {
     }
   });
 
-  // 最高スタイル・センターを特定
-  const topStyle  = Object.keys(style).reduce((a,b)  => style[a]  >= style[b]  ? a : b);
-  const topCenter = Object.keys(center).reduce((a,b) => center[a] >= center[b] ? a : b);
+  // ── タイブレーク：回答合計をシードに決定論的微差を付与 ──
+  const seed = answers.reduce((s, a) => s + a.val, 0) % 97;
+  const styleTb = {...style};
+  const centerTb = {...center};
+  Object.keys(styleTb).forEach((k, i) => { styleTb[k] += ((seed * (i * 13 + 7)) % 100) * 0.00001; });
+  Object.keys(centerTb).forEach((k, i) => { centerTb[k] += ((seed * (i * 17 + 11)) % 100) * 0.00001; });
 
-  // スコアを0〜100に正規化（表示用）
+  const topStyle  = Object.keys(styleTb).reduce((a,b)  => styleTb[a]  >= styleTb[b]  ? a : b);
+  const topCenter = Object.keys(centerTb).reduce((a,b) => centerTb[a] >= centerTb[b] ? a : b);
+
+  // 2位センター（ウィング判定用）
+  const centerSorted = Object.entries(centerTb).sort(([,a],[,b]) => b - a);
+  const secondCenter = centerSorted[1][0];
+
+  // 正規化（表示用）- ランダム微差でユニーク化
+  const styleN = {};
   const styleVals = Object.values(style);
   const sMin = Math.min(...styleVals), sMax = Math.max(...styleVals);
   const sRange = sMax - sMin || 1;
-  const styleNorm = {};
-  Object.keys(style).forEach(k => { styleNorm[k] = Math.round((style[k]-sMin)/sRange*100); });
+  Object.keys(style).forEach(k => {
+    styleN[k] = Math.round((style[k] - sMin) / sRange * 95) + Math.random() * 4 + 1;
+  });
+  // 最大値を100に補正
+  const styleNMax = Math.max(...Object.values(styleN));
+  Object.keys(styleN).forEach(k => { styleN[k] = Math.round(styleN[k] / styleNMax * 100); });
 
+  const centerN = {};
   const cVals = Object.values(center);
   const cMin = Math.min(...cVals), cMax = Math.max(...cVals);
   const cRange = cMax - cMin || 1;
-  const centerNorm = {};
-  Object.keys(center).forEach(k => { centerNorm[k] = Math.round((center[k]-cMin)/cRange*100); });
+  Object.keys(center).forEach(k => {
+    centerN[k] = Math.round((center[k] - cMin) / cRange * 95) + Math.random() * 4 + 1;
+  });
+  const centerNMax = Math.max(...Object.values(centerN));
+  Object.keys(centerN).forEach(k => { centerN[k] = Math.round(centerN[k] / centerNMax * 100); });
 
-  return {topStyle, topCenter, styleNorm, centerNorm};
+  return {topStyle, topCenter, secondCenter, styleNorm: styleN, centerNorm: centerN};
 }
 
 function getType(style, center) {
@@ -1038,62 +1016,104 @@ function getType(style, center) {
 // RESULT
 // ══════════════════════════════════════
 function showResult() {
-  const {topStyle, topCenter, styleNorm, centerNorm} = calcScores();
+  const {topStyle, topCenter, secondCenter, styleNorm, centerNorm} = calcScores();
   const type = getType(topStyle, topCenter);
+  const extra = TYPE_EXTRA[type.id];
+  const wingType = TYPES.find(t => t.style === type.style && t.center === secondCenter);
+  const wingDetail = extra.wingDetails[secondCenter];
+
+  currentResult = {type, extra, wingType, secondCenter, styleNorm, centerNorm};
 
   showScreen('screen-result');
 
-  // CSS変数でカラー設定
+  // ── 1. Hero ──
   const hero = document.getElementById('resultHero');
   hero.style.setProperty('--type-color', type.styleColor);
   hero.style.setProperty('--type-color-l', type.styleBg);
-
-  // ヘッダー
   document.getElementById('resultTypeId').textContent = `Type ${type.id}`;
-  document.getElementById('resultTypeName').innerHTML = type.name.replace(/([^\s]{3,})/,'<em>$1</em>');
-  document.getElementById('resultOneline').textContent = `"${type.oneline}"`;
+  document.getElementById('resultTypeName').innerHTML = type.name.replace(/（/, '<em>（').replace(/）/, '）</em>');
+  document.getElementById('resultCatchcopy').textContent = `"${extra.catchcopy}"`;
+  document.getElementById('resultBadges').innerHTML =
+    `<span class="result-badge" style="border-color:${type.styleColor};color:${type.styleColor};background:${type.styleBg};">${type.styleLabel}</span>` +
+    `<span class="result-badge" style="border-color:${type.centerColor};color:${type.centerColor};background:${type.centerBg};">${type.centerLabel}</span>`;
 
-  // バッジ
-  const badgesEl = document.getElementById('resultBadges');
-  badgesEl.innerHTML = `
-    <span class="result-badge" style="border-color:${type.styleColor};color:${type.styleColor};background:${type.styleBg};">${type.styleLabel}</span>
-    <span class="result-badge" style="border-color:${type.centerColor};color:${type.centerColor};background:${type.centerBg};">${type.centerLabel}</span>`;
+  // ── 2. タイプ基本説明 ──
+  document.getElementById('typeCoreText').innerHTML = type.core;
 
-  // スコアバー
-  const STYLE_COLORS = {Se:'var(--rose)',Ni:'var(--violet)',Si:'var(--teal)',Ne:'var(--amber)'};
-  const CENTER_COLORS = {heart:'var(--rose)',head:'var(--teal)',guts:'var(--amber)'};
-  const STYLE_LABELS = {Se:'狩猟型',Ni:'共鳴型',Si:'守護型',Ne:'冒険型'};
-  const CENTER_LABELS = {heart:'愛情確認',head:'安心追求',guts:'自己軸'};
+  // ── あるある ──
+  const araruList = document.getElementById('araruList');
+  araruList.innerHTML = extra.araru.map((item, i) =>
+    `<li class="araru-item" style="transition-delay:${i * 0.1}s">${item}</li>`
+  ).join('');
 
-  let scoreHTML = '';
-  Object.keys(styleNorm).forEach(k => {
-    scoreHTML += `<div class="score-row">
-      <span class="score-lbl">${STYLE_LABELS[k]}</span>
-      <div class="score-track"><div class="score-fill" style="width:0%;background:${STYLE_COLORS[k]};" data-target="${styleNorm[k]}"></div></div>
-      <span class="score-val">${styleNorm[k]}</span></div>`;
+  // ── 3. 構造 ──
+  const structureGrid = document.getElementById('typeStructure');
+  const structureKeys = [
+    {key:'think', label:'思考の軸'},
+    {key:'feel',  label:'感情の動き'},
+    {key:'act',   label:'行動パターン'},
+    {key:'relation', label:'対人での特徴'},
+  ];
+  structureGrid.innerHTML = structureKeys.map(s =>
+    `<div class="structure-item">
+      <span class="structure-label">${s.label}</span>
+      <div class="structure-text">${extra.structure[s.key]}</div>
+    </div>`
+  ).join('');
+  // CSS変数をstructure-labelに
+  structureGrid.querySelectorAll('.structure-label').forEach(el => {
+    el.style.color = type.styleColor;
   });
-  scoreHTML += '<div style="height:6px;"></div>';
-  Object.keys(centerNorm).forEach(k => {
-    scoreHTML += `<div class="score-row">
-      <span class="score-lbl">${CENTER_LABELS[k]}</span>
-      <div class="score-track"><div class="score-fill" style="width:0%;background:${CENTER_COLORS[k]};" data-target="${centerNorm[k]}"></div></div>
-      <span class="score-val">${centerNorm[k]}</span></div>`;
-  });
-  document.getElementById('scoreSection').innerHTML = scoreHTML;
 
-  // バーアニメーション
-  setTimeout(() => {
-    document.querySelectorAll('.score-fill[data-target]').forEach(el => {
-      el.style.width = el.dataset.target + '%';
-    });
-  }, 300);
+  // ── 4. ウィング ──
+  const mainId = String(type.id).padStart(2,'0');
+  const wingId = wingType ? String(wingType.id).padStart(2,'0') : '??';
+  const wingLabel = `${mainId}w${wingId}`;
+  const wingSection = document.getElementById('wingSection');
+  const subtypeDesc = wingDetail && wingType
+    ? `${type.name}の基本性格に、${wingType.centerLabel}の要素が加わった複合型。${wingDetail.impact}傾向がある。`
+    : '';
+  wingSection.innerHTML = `
+    <div class="wing-header">
+      <div class="wing-main-label">YOUR SUBTYPE</div>
+      <div class="wing-combination">${type.name} × <span style="color:${type.styleColor}">${wingType ? wingType.name : '—'}</span></div>
+      <div class="wing-id" style="color:${type.styleColor}">${wingLabel}</div>
+      ${subtypeDesc ? `<p style="font-size:.82rem;color:var(--text-mid);line-height:1.8;margin-top:10px;">${subtypeDesc}</p>` : ''}
+    </div>
+    <div class="wing-divider"></div>
+    <div class="wing-detail-card">
+      ${wingDetail ? `
+      <div class="wing-detail-row">
+        <span class="wing-detail-key">役割</span>
+        <span class="wing-detail-val">${wingDetail.role}</span>
+      </div>
+      <div class="wing-detail-row">
+        <span class="wing-detail-key">影響</span>
+        <span class="wing-detail-val">${wingDetail.impact}</span>
+      </div>
+      <div class="wing-detail-row">
+        <span class="wing-detail-key">ブレ方</span>
+        <span class="wing-detail-val">${wingDetail.drift}</span>
+      </div>` : '<div class="wing-detail-row"><span class="wing-detail-val">ウィング情報なし</span></div>'}
+    </div>`;
 
-  // 核心
-  document.getElementById('resultCore').innerHTML = type.core;
+  // ── 5. レーダー ──
+  const radarDataEl = drawRadar(styleNorm, centerNorm, type.style, type.center, type.styleColor);
 
-  // 行動傾向
-  const tendencyEl = document.getElementById('resultTendency');
-  tendencyEl.innerHTML = type.behaviors.map(b => `<li>${b}</li>`).join('');
+  // 上位3タイプ
+  const typeScores = TYPES.map(t => ({
+    type: t,
+    score: (styleNorm[t.style] || 0) + (centerNorm[t.center] || 0)
+  })).sort((a,b) => b.score - a.score);
+  const top3 = typeScores.slice(0, 3);
+  document.getElementById('top3List').innerHTML = top3.map((item, i) => {
+    const isMain = item.type.id === type.id;
+    return `<div class="top3-item${isMain ? ' top3-main' : ''}" style="${isMain ? `--type-color:${type.styleColor};--type-color-l:${type.styleBg};` : ''}">
+      <span class="top3-rank">${['①','②','③'][i]}</span>
+      <span class="top3-name">Type ${item.type.id}　${item.type.name}</span>
+      <span class="top3-score">${Math.round(item.score / 2)}pts</span>
+    </div>`;
+  }).join('');
 
   // 相性
   const compatEl = document.getElementById('compatGrid');
@@ -1102,16 +1122,201 @@ function showResult() {
     const info = COMPAT_INFO[relKey];
     const typeNums = type.compat[relKey] || [];
     const typeNames = typeNums.map(n => {
-      const t = TYPES.find(t=>t.id===n);
-      return t ? `<span class="compat-type-badge" title="${t.name}">Type ${n}</span>` : '';
+      const t = TYPES.find(t => t.id === n);
+      return t ? `<a class="compat-type-badge" href="../types/?type=${n}" title="${t.name}">Type ${n}　${t.name}</a>` : '';
     }).join('');
     compatEl.innerHTML += `
       <div class="compat-card" style="border-color:${info.color}20;background:${info.bg}88;">
         <span class="compat-rel" style="color:${info.color};">— ${info.name}</span>
         <span class="compat-rel-simple">${info.simple}</span>
+        ${info.desc ? `<p class="compat-desc">${info.desc}</p>` : ''}
         <div class="compat-types">${typeNames}</div>
       </div>`;
   });
+
+  // ストレスタイプ
+  const stressNames = extra.stressTypes.map(n => {
+    const t = TYPES.find(t => t.id === n);
+    return t ? `<span class="stress-badge">Type ${n}</span>` : '';
+  }).join('');
+  document.getElementById('stressNote').innerHTML =
+    `⚡ ストレスを感じやすいタイプ：<span class="stress-badges">${stressNames}</span>`;
+
+  // ── アニメーション設定 ──
+  setTimeout(setupObservers, 100);
+}
+
+// ══════════════════════════════════════
+// RADAR CHART
+// ══════════════════════════════════════
+function drawRadar(styleNorm, centerNorm, mainStyle, mainCenter, mainColor) {
+  const svg = document.getElementById('radarSvg');
+  svg.innerHTML = '';
+
+  const cx = 150, cy = 150, r = 100;
+  // 軸定義（交互配置：style→center→style…）
+  const axes = [
+    {key:'Se', label:'狩猟型', color:'#c4566e', score: styleNorm.Se || 0},
+    {key:'heart', label:'愛情',  color:'#c4566e', score: centerNorm.heart || 0},
+    {key:'Ni', label:'共鳴型', color:'#7655a8', score: styleNorm.Ni || 0},
+    {key:'head',  label:'安心',  color:'#5b7fa6', score: centerNorm.head || 0},
+    {key:'Si', label:'守護型', color:'#2e8b7a', score: styleNorm.Si || 0},
+    {key:'guts',  label:'本能',  color:'#c47830', score: centerNorm.guts || 0},
+    {key:'Ne', label:'冒険型', color:'#c47830', score: styleNorm.Ne || 0},
+  ];
+  const n = axes.length;
+  const angles = axes.map((_, i) => (2 * Math.PI * i / n) - Math.PI / 2);
+
+  function toXY(angle, val) {
+    return {
+      x: cx + r * (val / 100) * Math.cos(angle),
+      y: cy + r * (val / 100) * Math.sin(angle),
+    };
+  }
+
+  const ns = 'http://www.w3.org/2000/svg';
+
+  // グリッド
+  [0.25, 0.5, 0.75, 1.0].forEach((ratio, gi) => {
+    const pts = angles.map(a =>
+      `${cx + r * ratio * Math.cos(a)},${cy + r * ratio * Math.sin(a)}`
+    ).join(' ');
+    const poly = document.createElementNS(ns, 'polygon');
+    poly.setAttribute('points', pts);
+    poly.setAttribute('fill', gi === 3 ? 'rgba(226,213,200,0.1)' : 'none');
+    poly.setAttribute('stroke', '#e2d5c8');
+    poly.setAttribute('stroke-width', gi === 3 ? '1.5' : '0.8');
+    svg.appendChild(poly);
+  });
+
+  // 軸ライン
+  angles.forEach(a => {
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', cx);
+    line.setAttribute('y1', cy);
+    line.setAttribute('x2', cx + r * Math.cos(a));
+    line.setAttribute('y2', cy + r * Math.sin(a));
+    line.setAttribute('stroke', '#e2d5c8');
+    line.setAttribute('stroke-width', '0.8');
+    svg.appendChild(line);
+  });
+
+  // データポリゴン（アニメーション用グループ）
+  const dataGroup = document.createElementNS(ns, 'g');
+  dataGroup.setAttribute('class', 'radar-data-group');
+  dataGroup.style.transformOrigin = `${cx}px ${cy}px`;
+  dataGroup.style.transform = 'scale(0)';
+  dataGroup.style.transition = 'transform 0.9s cubic-bezier(.34,1.56,.64,1)';
+
+  const pts = axes.map((ax, i) => {
+    const p = toXY(angles[i], ax.score);
+    return `${p.x},${p.y}`;
+  }).join(' ');
+
+  const fillPoly = document.createElementNS(ns, 'polygon');
+  fillPoly.setAttribute('points', pts);
+  fillPoly.setAttribute('fill', mainColor.replace('var(--rose)','rgba(196,86,110,0.15)').replace('var(--violet)','rgba(118,85,168,0.15)').replace('var(--teal)','rgba(46,139,122,0.15)').replace('var(--amber)','rgba(196,120,48,0.15)'));
+  fillPoly.setAttribute('stroke', mainColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830'));
+  fillPoly.setAttribute('stroke-width', '1.8');
+  dataGroup.appendChild(fillPoly);
+
+  axes.forEach((ax, i) => {
+    const p = toXY(angles[i], ax.score);
+    const isMain = ax.key === mainStyle || ax.key === mainCenter;
+    const dot = document.createElementNS(ns, 'circle');
+    dot.setAttribute('cx', p.x);
+    dot.setAttribute('cy', p.y);
+    dot.setAttribute('r', isMain ? 5.5 : 3.5);
+    dot.setAttribute('fill', ax.color);
+    dot.setAttribute('stroke', '#fffdf9');
+    dot.setAttribute('stroke-width', '1.5');
+    dataGroup.appendChild(dot);
+  });
+
+  svg.appendChild(dataGroup);
+
+  // ラベル
+  axes.forEach((ax, i) => {
+    const a = angles[i];
+    const lr = r + 24;
+    const lx = cx + lr * Math.cos(a);
+    const ly = cy + lr * Math.sin(a);
+    const text = document.createElementNS(ns, 'text');
+    text.setAttribute('x', lx);
+    text.setAttribute('y', ly);
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('dominant-baseline', 'middle');
+    text.setAttribute('font-size', '8.5');
+    text.setAttribute('fill', ax.color);
+    text.setAttribute('font-family', 'DM Mono, monospace');
+    text.setAttribute('font-weight', ax.key === mainStyle || ax.key === mainCenter ? '500' : '400');
+    text.textContent = ax.label;
+    svg.appendChild(text);
+  });
+
+  // IntersectionObserverでアニメーション発火
+  const radarWrap = document.getElementById('sec-radar');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => { dataGroup.style.transform = 'scale(1)'; }, 150);
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.4});
+  obs.observe(radarWrap);
+
+  return dataGroup;
+}
+
+// ══════════════════════════════════════
+// INTERSECTION OBSERVER（フェードイン）
+// ══════════════════════════════════════
+function setupObservers() {
+  // セクションフェードイン
+  const fadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('rs-visible');
+        fadeObs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.08, rootMargin: '0px 0px -40px 0px'});
+
+  document.querySelectorAll('.rs-fade').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.05}s`;
+    fadeObs.observe(el);
+  });
+
+  // あるあるアイテム
+  const itemObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('araru-visible');
+        itemObs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.3});
+
+  document.querySelectorAll('.araru-item').forEach(el => itemObs.observe(el));
+}
+
+// ══════════════════════════════════════
+// SHARE
+// ══════════════════════════════════════
+function shareX() {
+  if (!currentResult) return;
+  const {type, extra} = currentResult;
+  const text = `私のPolaタイプは「${type.name}」\n"${extra.catchcopy}"\n#Pola診断 #恋愛極性診断 #UTAGELAB`;
+  const url = window.location.href;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+}
+
+function shareLine() {
+  if (!currentResult) return;
+  const {type, extra} = currentResult;
+  const text = `私のPolaタイプは「${type.name}」\n"${extra.catchcopy}"\nPola恋愛極性診断：${window.location.href}`;
+  window.open(`https://line.me/R/msg/text/?${encodeURIComponent(text)}`, '_blank');
 }
 
 function retryQuiz() {

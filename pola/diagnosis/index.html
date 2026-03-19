@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pola｜恋愛極性診断</title>
-<meta name="description" content="あなたの恋愛における「極性」を診断。12タイプの恋愛スタイルから、あなたの本質的な引力を明らかにします。">
+<meta name="description" content="なぜ私は同じ恋愛を繰り返すのか。12タイプの恋愛極性診断で、あなた自身の恋愛の本質を解き明かします。">
 <meta property="og:title" content="Pola｜恋愛極性診断">
-<meta property="og:description" content="恋愛における自分の「極性」を知る。12タイプ診断。">
+<meta property="og:description" content="なぜ私は同じ恋愛を繰り返すのか。12タイプから、あなた自身の恋愛の本質を解き明かします。">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -258,6 +258,83 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .q-text,.choices{animation:fadeSlideIn .3s ease;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 .result-hero{animation:fadeIn .5s ease both;}
+
+/* ══ MODE SELECT ══ */
+.top-hook{font-family:var(--font-d);font-style:italic;font-size:clamp(1rem,3.5vw,1.35rem);font-weight:300;color:var(--text-mid);text-align:center;margin-bottom:20px;line-height:1.6;position:relative;z-index:1;}
+.mode-select{display:flex;flex-direction:column;gap:10px;width:100%;max-width:340px;margin:0 auto;position:relative;z-index:1;}
+.btn-mode{display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:14px;border:1.5px solid var(--border);background:var(--paper);cursor:pointer;transition:all .22s;text-align:left;width:100%;}
+.btn-mode.is-primary{background:var(--ink);border-color:var(--ink);color:#faf8f5;}
+.btn-mode.is-primary:hover{background:var(--rose);border-color:var(--rose);}
+.btn-mode:not(.is-primary):hover{border-color:var(--rose);background:var(--rose-l);}
+.btn-mode-icon{font-size:1.3rem;flex-shrink:0;}
+.btn-mode-body{flex:1;}
+.btn-mode-title{font-family:var(--font-d);font-size:1rem;font-weight:600;display:block;margin-bottom:2px;}
+.btn-mode-sub{font-family:var(--font-m);font-size:.6rem;letter-spacing:.06em;opacity:.65;display:block;}
+.btn-mode.is-primary .btn-mode-sub{opacity:.75;}
+
+/* ══ CHARACTER PLACEHOLDER ══ */
+.character-placeholder{width:100px;height:100px;border-radius:50%;background:var(--type-color-l,#fae0e8);border:3px solid var(--type-color,var(--rose));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;z-index:1;font-size:2.2rem;transition:all .3s;}
+
+/* ══ SHARE CARD ══ */
+.share-card-block{border:1.5px solid var(--type-color,var(--rose));border-radius:18px;overflow:hidden;background:var(--paper);}
+.share-card-inner{padding:24px 20px;text-align:center;background:var(--type-color-l,#fae0e8);}
+.share-card-eyebrow{font-family:var(--font-m);font-size:.6rem;letter-spacing:.14em;color:var(--text-light);margin-bottom:12px;}
+.share-card-type{font-family:var(--font-d);font-size:clamp(1.3rem,4vw,1.7rem);font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.2;}
+.share-card-copy{font-family:var(--font-d);font-style:italic;font-size:clamp(.88rem,2.5vw,1.05rem);color:var(--text-mid);line-height:1.55;margin-bottom:10px;}
+.share-card-tag{font-family:var(--font-m);font-size:.6rem;color:var(--type-color,var(--rose));letter-spacing:.08em;}
+
+/* ══ DEEP DIVE DIVIDER ══ */
+.deep-dive-divider{text-align:center;padding:36px 24px 12px;}
+.deep-dive-label{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--text-mid);margin-bottom:6px;}
+.deep-dive-desc{font-size:.8rem;color:var(--text-light);line-height:1.7;}
+
+/* ══ STRENGTH SECTION ══ */
+.strength-body{padding:8px 0;}
+.strength-item{padding:16px 20px;}
+.strength-divider{height:1px;background:var(--border);margin:0 20px;}
+.strength-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;margin-bottom:10px;font-weight:500;display:block;}
+.strength-plus-label{color:var(--teal);}
+.strength-minus-label{color:var(--rose);}
+.strength-growth-label{color:var(--violet);}
+.strength-text{font-size:.85rem;color:var(--text-mid);line-height:1.95;}
+
+/* ══ SUBTYPE SECTION ══ */
+.subtype-intro{padding:18px 20px;}
+.subtype-text{font-size:.85rem;color:var(--text-mid);line-height:1.95;margin-bottom:12px;}
+.subtype-text:last-child{margin-bottom:0;}
+.subtype-note{font-style:italic;color:var(--text-light);}
+
+/* ══ COMPAT SIMPLE ══ */
+.compat-simple-group{padding:18px 20px;border-bottom:1px solid var(--border);}
+.compat-simple-group:last-child{border-bottom:none;}
+.compat-simple-label{font-family:var(--font-d);font-size:.95rem;font-weight:700;margin-bottom:6px;}
+.compat-simple-desc{font-size:.8rem;color:var(--text-mid);line-height:1.8;margin-bottom:12px;}
+.compat-simple-types{display:flex;flex-wrap:wrap;gap:6px;}
+.compat-simple-badge{font-size:.72rem;padding:4px 12px;border-radius:100px;border:1px solid;font-family:var(--font-m);cursor:default;}
+
+/* ══ RADAR INTRO ══ */
+.radar-intro{font-size:.78rem;color:var(--text-light);line-height:1.75;padding:10px 20px 0;text-align:center;}
+
+/* ══ QUICK TEASER ══ */
+.quick-teaser-block{border:1.5px solid var(--border);border-radius:18px;background:var(--paper);padding:28px 20px;text-align:center;}
+.quick-teaser-label{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:20px;}
+.quick-teaser-list{list-style:none;text-align:left;margin:0 auto 24px;max-width:280px;display:flex;flex-direction:column;gap:12px;}
+.quick-teaser-list li{font-size:.85rem;color:var(--text-mid);display:flex;align-items:center;gap:10px;line-height:1.5;}
+.qt-icon{color:var(--rose);font-size:.65rem;flex-shrink:0;}
+.btn-detail-diag{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--ink);color:#faf8f5;font-family:var(--font-d);font-size:1rem;font-weight:600;border:none;border-radius:100px;cursor:pointer;transition:all .25s;margin-bottom:12px;}
+.btn-detail-diag:hover{background:var(--rose);transform:translateY(-2px);}
+.quick-teaser-note{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);letter-spacing:.04em;}
+
+/* ══ PREMIUM CTA ══ */
+.premium-cta-block{border:1.5px solid var(--gold);border-radius:18px;background:linear-gradient(145deg,#fdf8ec,#faf0e0);padding:32px 20px;text-align:center;}
+.premium-cta-icon{font-size:1.8rem;margin-bottom:12px;}
+.premium-cta-title{font-family:var(--font-d);font-size:clamp(1.1rem,3.5vw,1.4rem);font-weight:700;color:var(--ink);margin-bottom:12px;line-height:1.3;}
+.premium-cta-desc{font-size:.83rem;color:var(--text-mid);line-height:1.9;margin-bottom:20px;max-width:380px;margin-left:auto;margin-right:auto;}
+.premium-cta-list{list-style:none;text-align:left;max-width:280px;margin:0 auto 24px;display:flex;flex-direction:column;gap:8px;}
+.premium-cta-list li{font-size:.82rem;color:var(--text-mid);padding-left:18px;position:relative;line-height:1.6;}
+.premium-cta-list li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:.6rem;top:4px;}
+.btn-premium{padding:14px 32px;background:var(--gold);color:#fff;font-family:var(--font-d);font-size:1rem;font-weight:600;border:none;border-radius:100px;cursor:not-allowed;opacity:.7;letter-spacing:.02em;}
+.premium-coming-soon{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);margin-top:10px;display:block;letter-spacing:.08em;}
 </style>
 </head>
 <body>
@@ -267,13 +344,27 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   <div class="top-dec d1">Pola</div>
   <div class="top-dec d2">極性</div>
   <div class="top-ornament">Love Polarity Diagnosis</div>
+  <p class="top-hook">なぜ私は、同じ恋愛を繰り返すのか。</p>
   <h1 class="top-logo">P<span>o</span>la</h1>
   <p class="top-tagline">— 恋愛極性診断 —</p>
-  <p class="top-copy">あなたが恋愛で動くとき、その力の<strong>「極性」</strong>はどこに向いているか。<br>12タイプの引力から、あなた自身の恋愛の本質を解き明かします。</p>
-  <button class="btn-start" onclick="startQuiz()">診断を始める<span class="btn-start-arrow">→</span></button>
-  <div class="top-info">
-    <span class="top-info-item">全30問</span>
-    <span class="top-info-item">約5〜7分</span>
+  <p class="top-copy">あなたが恋愛で動くとき、その「極性」はどこに向いているか。<br>12タイプから、あなた自身の恋愛の本質を解き明かします。</p>
+  <div class="mode-select">
+    <button class="btn-mode is-primary" onclick="startQuiz('quick')">
+      <span class="btn-mode-icon">⚡</span>
+      <span class="btn-mode-body">
+        <span class="btn-mode-title">簡易診断</span>
+        <span class="btn-mode-sub">15問 · 約3分 · まず試してみたい方に</span>
+      </span>
+    </button>
+    <button class="btn-mode" onclick="startQuiz('full')">
+      <span class="btn-mode-icon">◈</span>
+      <span class="btn-mode-body">
+        <span class="btn-mode-title">詳細診断</span>
+        <span class="btn-mode-sub">50問 · 約10〜15分 · 精度高く知りたい方に</span>
+      </span>
+    </button>
+  </div>
+  <div class="top-info" style="margin-top:20px;">
     <span class="top-info-item">12タイプ</span>
     <span class="top-info-item">無料</span>
   </div>
@@ -301,7 +392,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   <div class="loading-title">あなたの極性を<br>解析しています…</div>
   <div class="loading-steps">
     <div class="loading-step" id="ls1"><span class="ls-icon">◌</span>回答データを収集中</div>
-    <div class="loading-step" id="ls2"><span class="ls-icon">◌</span>引力パターンを分析中</div>
+    <div class="loading-step" id="ls2"><span class="ls-icon">◌</span>恋愛パターンを分析中</div>
     <div class="loading-step" id="ls3"><span class="ls-icon">◌</span>センターを特定中</div>
     <div class="loading-step" id="ls4"><span class="ls-icon">◌</span>タイプを確定中</div>
   </div>
@@ -311,8 +402,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 <!-- ══ RESULT ══ -->
 <div id="screen-result" class="screen">
 
-  <!-- 1. ヒーロー -->
+  <!-- 1. ヒーロー：感情的着地 -->
   <div class="result-hero" id="resultHero">
+    <div class="character-placeholder" id="characterPlaceholder"></div>
     <div class="result-eyebrow">Your Pola Type</div>
     <div class="result-type-id" id="resultTypeId"></div>
     <h2 class="result-type-name" id="resultTypeName"></h2>
@@ -322,12 +414,31 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 
   <div class="result-sections">
 
-    <!-- 2. タイプ基本説明 + あるある -->
+    <!-- 2. 共感ゾーン：あるある -->
     <div class="result-section rs-fade" id="sec-araru">
       <div class="rs-block">
-        <div class="rs-head"><span class="rs-icon">✦</span><span class="rs-title">このタイプの性格</span></div>
+        <div class="rs-head"><span class="rs-icon">✦</span><span class="rs-title">こんなこと、ありませんか？</span></div>
+        <ul class="araru-list" id="araruList"></ul>
+      </div>
+    </div>
+
+    <!-- 3. 物語ゾーン：タイプ説明 -->
+    <div class="result-section rs-fade" id="sec-core">
+      <div class="rs-block">
+        <div class="rs-head"><span class="rs-icon">◌</span><span class="rs-title">あなたの恋愛パターン</span></div>
         <div class="type-core-text" id="typeCoreText"></div>
-        <ul class="araru-list" id="araruList" style="border-top:1px solid var(--border);margin-top:12px;"></ul>
+      </div>
+    </div>
+
+    <!-- 4. シェアカード -->
+    <div class="result-section rs-fade" id="sec-share">
+      <div class="share-card-block" id="shareCardBlock">
+        <div class="share-card-inner">
+          <div class="share-card-eyebrow">— YOUR TYPE —</div>
+          <div class="share-card-type" id="shareCardType"></div>
+          <div class="share-card-copy" id="shareCardCopy"></div>
+          <div class="share-card-tag">#Pola診断</div>
+        </div>
         <div class="share-row">
           <button class="share-btn x-btn" onclick="shareX()">𝕏 でシェア</button>
           <button class="share-btn line-btn" onclick="shareLine()">LINE でシェア</button>
@@ -335,44 +446,69 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
       </div>
     </div>
 
-    <!-- 3. タイプ構造 -->
-    <div class="result-section rs-fade" id="sec-structure">
+    <!-- 簡易モード：ティーザー -->
+    <div id="sec-quick-teaser" class="result-section" style="display:none;"></div>
+
+    <!-- 詳細モード：仕切り -->
+    <div id="sec-divider" class="deep-dive-divider" style="display:none;">
+      <div class="deep-dive-label">— もっと深く知る —</div>
+      <p class="deep-dive-desc">ここからは、あなたのタイプをより詳しく解説します。</p>
+    </div>
+
+    <!-- 詳細モード：強みと課題 -->
+    <div id="sec-strength" class="result-section rs-fade" style="display:none;">
       <div class="rs-block">
-        <div class="rs-head"><span class="rs-icon">◈</span><span class="rs-title">あなたの思考・感情・行動の構造</span></div>
-        <div class="structure-grid" id="typeStructure"></div>
+        <div class="rs-head"><span class="rs-icon">✺</span><span class="rs-title">あなたの恋愛の強みと課題</span></div>
+        <div id="strengthBody" class="strength-body"></div>
       </div>
     </div>
 
-    <!-- 4. ウィング -->
-    <div class="result-section rs-fade" id="sec-wing">
+    <!-- 詳細モード：タイプの特色 -->
+    <div id="sec-subtype" class="result-section rs-fade" style="display:none;">
       <div class="rs-block">
-        <div class="rs-head"><span class="rs-icon">◐</span><span class="rs-title">サブタイプ（ウィング）</span></div>
-        <div id="wingSection"></div>
+        <div class="rs-head"><span class="rs-icon">◐</span><span class="rs-title">あなたのタイプの特色</span></div>
+        <div id="subtypeBody" class="subtype-intro"></div>
       </div>
     </div>
 
-    <!-- 5. レーダーチャート -->
-    <div class="result-section rs-fade" id="sec-radar">
+    <!-- 詳細モード：相性（簡略） -->
+    <div id="sec-compat-simple" class="result-section rs-fade" style="display:none;">
       <div class="rs-block">
-        <div class="rs-head"><span class="rs-icon">◎</span><span class="rs-title">あなたの極性レーダー</span></div>
+        <div class="rs-head"><span class="rs-icon">◇</span><span class="rs-title">相性について</span></div>
+        <div id="compatSimpleBody"></div>
+      </div>
+    </div>
+
+    <!-- 詳細モード：スコア分布（補足） -->
+    <div id="sec-radar" class="result-section rs-fade" style="display:none;">
+      <div class="rs-block">
+        <div class="rs-head"><span class="rs-icon">◎</span><span class="rs-title">参考：あなたの傾向スコア</span></div>
+        <p class="radar-intro">4つの恋愛スタイル（積極・共鳴・守護・冒険）と、3つのセンター（感情・思考・本能）のスコア分布です。</p>
         <div class="radar-wrap">
           <div class="radar-svg-wrap">
             <svg id="radarSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"></svg>
           </div>
         </div>
         <div class="top3-wrap">
-          <div class="top3-title">— 可能性スコア上位3タイプ —</div>
+          <div class="top3-title">— 近いタイプ上位3 —</div>
           <div class="top3-list" id="top3List"></div>
         </div>
       </div>
     </div>
 
-    <!-- 6. 相性タイプ -->
-    <div class="result-section rs-fade" id="sec-deep">
-      <div class="rs-block">
-        <div class="rs-head"><span class="rs-icon">◇</span><span class="rs-title">相性タイプ</span></div>
-        <div class="compat-grid" id="compatGrid"></div>
-        <div class="stress-note" id="stressNote"></div>
+    <!-- 詳細モード：有料レポートCTA -->
+    <div id="sec-premium" class="result-section" style="display:none;">
+      <div class="premium-cta-block">
+        <div class="premium-cta-icon">🔒</div>
+        <div class="premium-cta-title">より深い分析を、<br>レポートで受け取る</div>
+        <p class="premium-cta-desc">Pola有料レポートでは、あなたの回答パターンをもとに個別にパーソナライズされた詳細分析が届きます。タイプ説明にとどまらず、あなた自身の恋愛傾向を深く読み解いたレポートです。</p>
+        <ul class="premium-cta-list">
+          <li>あなただけの恋愛傾向の詳細分析</li>
+          <li>回答パターンから読み取れる深層心理</li>
+          <li>具体的な行動・関係改善のヒント</li>
+        </ul>
+        <button class="btn-premium" disabled>有料レポートを受け取る</button>
+        <span class="premium-coming-soon">COMING SOON</span>
       </div>
     </div>
 
@@ -443,6 +579,27 @@ const QUESTIONS = [
   {id:28, text:"感情より、「これが自分の本音だ」という感覚を大切にしている",   axis:"center",scores:{heart:-1,head:0,guts:2}},
   {id:29, text:"束縛や過干渉に対して、強い抵抗感がある",                       axis:"center",scores:{heart:-1,head:0,guts:2}},
   {id:30, text:"恋愛でつまずくとき、「自分を曲げすぎた」と感じることが多い",   axis:"center",scores:{heart:0,head:-1,guts:2}},
+  // ── 詳細診断 追加20問 ──
+  {id:31, text:"好きな人がいるとき、相手の出方を待つより自分から動く方が自然だ",                     axis:"style", scores:{Se:2,Ni:-2,Si:0,Ne:0}},
+  {id:32, text:"恋愛では、相手に急かされたり追い立てられると気持ちが冷めてしまう",                   axis:"style", scores:{Se:-1,Ni:2,Si:0,Ne:0}},
+  {id:33, text:"記念日や特別な日を大切にすることが、愛情表現の基本だと思う",                         axis:"style", scores:{Se:0,Ni:-1,Si:2,Ne:-1}},
+  {id:34, text:"好きな人との会話に、いつも新しい発見や刺激を求めている",                             axis:"style", scores:{Se:0,Ni:0,Si:-1,Ne:2}},
+  {id:35, text:"恋愛において「あと一歩」が踏み出せないまま終わることを一番もったいなく感じる",         axis:"style", scores:{Se:2,Ni:-1,Si:0,Ne:1}},
+  {id:36, text:"恋愛では、相手の言葉の裏にある気持ちを読み取ることを大切にしている",                 axis:"style", scores:{Se:-1,Ni:2,Si:0,Ne:0}},
+  {id:37, text:"相手の好きな食べ物や習慣を自然に覚えて、次に会うときに活かすことが多い",             axis:"style", scores:{Se:0,Ni:0,Si:2,Ne:-1}},
+  {id:38, text:"初めて行く場所や体験したことのない出来事を、好きな人と共有することが最も楽しい",     axis:"style", scores:{Se:1,Ni:-1,Si:-1,Ne:2}},
+  {id:39, text:"好きな人への気持ちは、態度や行動に自然と出てしまう方だ",                             axis:"style", scores:{Se:2,Ni:-1,Si:0,Ne:0}},
+  {id:40, text:"恋愛において「この先どうなるか分からない関係」より「安定した見通しのある関係」を求める", axis:"style", scores:{Se:-1,Ni:0,Si:2,Ne:-2}},
+  {id:41, text:"相手からの連絡や関わりが少しでも減ると、すぐに「何かあったのかな」と気になる",       axis:"center",scores:{heart:2,head:0,guts:-1}},
+  {id:42, text:"好きな人でも、信頼できると確信が持てるまで本音をなかなか話せない",                   axis:"center",scores:{heart:0,head:2,guts:-1}},
+  {id:43, text:"「なんとなく合わない」と直感で感じたとき、理由を考える前に距離を置きたくなる",       axis:"center",scores:{heart:-1,head:-1,guts:2}},
+  {id:44, text:"愛されているという実感が日々あることが、恋愛を続けるうえで欠かせない",               axis:"center",scores:{heart:2,head:0,guts:-1}},
+  {id:45, text:"恋愛でも、感情より「長期的にうまくいくか」という視点で判断することが多い",           axis:"center",scores:{heart:-1,head:2,guts:0}},
+  {id:46, text:"感情では好きでも、「自分らしくいられない関係」には長く留まれない",                   axis:"center",scores:{heart:-1,head:0,guts:2}},
+  {id:47, text:"相手から「特別扱いされている」と感じるとき、最もリラックスして関われる",             axis:"center",scores:{heart:2,head:0,guts:-1}},
+  {id:48, text:"恋愛においても、相手の行動パターンや一貫性を無意識にチェックしていることがある",     axis:"center",scores:{heart:0,head:2,guts:-1}},
+  {id:49, text:"恋愛において、「自分の直感」が一番信頼できる判断材料だ",                             axis:"center",scores:{heart:-1,head:-1,guts:2}},
+  {id:50, text:"どれだけ好きでも、自分の生き方を曲げてまで続ける関係には自然と限界が来る",           axis:"center",scores:{heart:-1,head:0,guts:2}},
 ];
 
 const CHOICES = [
@@ -567,6 +724,7 @@ const COMPAT_INFO = {
 const TYPE_EXTRA = {
   1: {
     catchcopy: '愛されていると確信するまで、前進を止めない人',
+    strength: '愛の確信が持てたとき、このタイプは非常に献身的で情熱的なパートナーになります。相手を中心に世界が動き、細やかな気遣いと強い絆への意志が、誰にも真似できない愛を育てます。',
     araru: [
       '既読スルーされると、文章に問題があったか読み返してしまう',
       '返信が来るまで、スマホを手放せない',
@@ -592,6 +750,7 @@ const TYPE_EXTRA = {
   },
   2: {
     catchcopy: '信頼を確証するまで、心を渡さない人',
+    strength: '信頼できると確信した相手への誠実さと、関係を守り続ける力は、12タイプの中でも際立っています。計画的かつ的確な愛情表現と、揺るがないパートナーシップへの献身が最大の強みです。',
     araru: [
       '好きな人の言動を無意識に分析して「信頼できるか」を判定している',
       'リードしないと落ち着かない',
@@ -616,6 +775,7 @@ const TYPE_EXTRA = {
   },
   3: {
     catchcopy: '欲しいと感じた瞬間、もう体が動いている人',
+    strength: '一度信頼した相手には、驚くほど強い保護本能と忠誠心を示します。感情に嘘がなく、裏表なく全力で関わるそのエネルギーは、関係に確かな熱量と誠実さをもたらします。',
     araru: [
       '気持ちに気づいたら次の瞬間にはLINEを送っている',
       '「考えてから動く」が一番苦手',
@@ -640,6 +800,7 @@ const TYPE_EXTRA = {
   },
   4: {
     catchcopy: '愛することで、自分が誰かを証明する人',
+    strength: '受け取ることと与えることが対等な関係では、このタイプの愛情の深さが本当の意味で生きてきます。誰よりも細やかに相手の感情に寄り添い、深く尽くせる力は唯一無二の強みです。',
     araru: [
       '気づいたら相手の望む自分に、自分を合わせていた',
       '「自分のために」より「相手のために」の方が動きやすい',
@@ -664,6 +825,7 @@ const TYPE_EXTRA = {
   },
   5: {
     catchcopy: '確信が持てるまで、全力で委ねることができない人',
+    strength: '一度信頼を築けば、誠実さと忠誠心は突出して高く、離れないという安心感を相手に与えます。長い時間をかけて育む関係の中で、このタイプの愛は最も深く花開きます。',
     araru: [
       '信頼できるかどうか、長期観察しないと決断できない',
       '一度信頼したらとことん深く関わるが、そこまでが長い',
@@ -688,6 +850,7 @@ const TYPE_EXTRA = {
   },
   6: {
     catchcopy: '流れに乗りながら、芯だけは手放さない人',
+    strength: '委ねることと自分でいることを同時に実現するバランス感覚が、深まった関係に他に代えがたい安定感をもたらします。芯の強さと柔軟性を兼ね備えた、稀有な存在です。',
     araru: [
       '「なんでもいい」と言いながら、「これだけはダメ」がある',
       '感情は深いが、表に出すまでに時間がかかる',
@@ -712,6 +875,7 @@ const TYPE_EXTRA = {
   },
   7: {
     catchcopy: '気づかれなくても、今日も誰かのために動いている人',
+    strength: '継続的な行動で非常に深い信頼を築き、揺るがない絆を作り出す力を持っています。目立たない場所での献身は、長い時間をかけて確かな安心感へと変わります。',
     araru: [
       '相手の体調の変化に、誰より先に気づいている',
       '「何か食べたいものある？」を無意識に聞いている',
@@ -736,6 +900,7 @@ const TYPE_EXTRA = {
   },
   8: {
     catchcopy: '崩れない関係を、一つひとつ丁寧に積み上げる人',
+    strength: '一度信頼を築けば、どんな困難でも揺らがない強固なパートナーシップを実現できます。安定した構造の中での情熱は静かで深く、長い時間をかけて確かな絆へと変わっていきます。',
     araru: [
       '記念日を忘れるとか、自分的にはあり得ない',
       '関係に「予測できる安定」がないと不安になる',
@@ -760,6 +925,7 @@ const TYPE_EXTRA = {
   },
   9: {
     catchcopy: '言葉にしなくても、ここにいることが答えだという人',
+    strength: '何があっても離れないという確信が相手に伝わったとき、非常に深い信頼関係が生まれます。去らないことで愛を示す、静かだが揺るぎない誠実さが最大の強みです。',
     araru: [
       '感情を言葉にするのが一番苦手',
       '何があっても離れないという強い確信がある',
@@ -784,6 +950,7 @@ const TYPE_EXTRA = {
   },
   10: {
     catchcopy: 'ときめきが続く限り、どこまでも行ける人',
+    strength: '感情表現が豊かで、関係に温度と彩りをもたらす力を持っています。ときめきが続く間のエネルギーと情熱は、他に代えがたい活力を関係にもたらします。',
     araru: [
       'マンネリが来た瞬間に、関係の温度が下がる',
       '「この人といると新しい世界が広がる」が恋愛の条件',
@@ -808,6 +975,7 @@ const TYPE_EXTRA = {
   },
   11: {
     catchcopy: '「きっとうまくいく」が、最強の処世術の人',
+    strength: '楽観性と未来への希望が、周囲の人に活力を与えます。「なんとかなる」という前向きさは、困難な局面でも関係を明るく照らし続ける力になります。',
     araru: [
       '問題が起きても「なんとかなる」が先に来る',
       '未来の可能性を語るのが一番テンションが上がる',
@@ -832,6 +1000,7 @@ const TYPE_EXTRA = {
   },
   12: {
     catchcopy: '縛られないことが、愛の前提条件だという人',
+    strength: '縛らずに深く愛することができる稀有な存在です。自由でいながら深く関わることを許してくれる相手との関係では、誰にも真似できない形の愛情を育てることができます。',
     araru: [
       '束縛された瞬間に、心が離れ始める',
       '「自由でいてくれる」が相手への最高の褒め言葉',
@@ -862,6 +1031,14 @@ const TYPE_EXTRA = {
 let currentQ = 0;
 let answers = [];
 let currentResult = null;
+let quizMode = 'full';
+
+// 簡易診断で使う質問インデックス（15問：style×8 + center×7）
+const QUICK_INDICES = [0, 2, 3, 5, 6, 8, 9, 11, 15, 18, 20, 22, 24, 25, 27];
+
+function getActiveIndices() {
+  return quizMode === 'quick' ? QUICK_INDICES : QUESTIONS.map((_,i) => i);
+}
 
 // ══════════════════════════════════════
 // SCREENS
@@ -875,7 +1052,8 @@ function showScreen(id) {
 // ══════════════════════════════════════
 // QUIZ
 // ══════════════════════════════════════
-function startQuiz() {
+function startQuiz(mode) {
+  quizMode = mode || 'full';
   currentQ = 0;
   answers = [];
   showScreen('screen-quiz');
@@ -883,8 +1061,9 @@ function startQuiz() {
 }
 
 function renderQuestion() {
-  const q = QUESTIONS[currentQ];
-  const total = QUESTIONS.length;
+  const activeIdx = getActiveIndices();
+  const q = QUESTIONS[activeIdx[currentQ]];
+  const total = activeIdx.length;
   const pct = (currentQ / total) * 100;
   document.getElementById('progressBar').style.width = pct + '%';
   document.getElementById('quizCounter').textContent = `${currentQ + 1} / ${total}`;
@@ -911,12 +1090,13 @@ function renderQuestion() {
 }
 
 function selectAnswer(val, btn) {
+  const activeIdx = getActiveIndices();
   document.querySelectorAll('.choice-btn').forEach(b => b.style.pointerEvents = 'none');
   btn.classList.add('selected');
-  answers.push({qIndex: currentQ, val});
+  answers.push({qIndex: activeIdx[currentQ], val});
   setTimeout(() => {
     currentQ++;
-    if (currentQ >= QUESTIONS.length) showLoading();
+    if (currentQ >= activeIdx.length) showLoading();
     else renderQuestion();
   }, 380);
 }
@@ -1028,122 +1208,163 @@ function showResult() {
 
   // ── 1. Hero ──
   const hero = document.getElementById('resultHero');
-  hero.style.setProperty('--type-color', type.styleColor);
-  hero.style.setProperty('--type-color-l', type.styleBg);
+  const resolvedColor = type.styleColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830');
+  const resolvedBg = type.styleBg.replace('var(--rose-l)','#fae0e8').replace('var(--violet-l)','#ece6f8').replace('var(--teal-l)','#ddf2ee').replace('var(--amber-l)','#fdefd8');
+  hero.style.setProperty('--type-color', resolvedColor);
+  hero.style.setProperty('--type-color-l', resolvedBg);
+
+  // キャラクタープレースホルダー
+  const charEl = document.getElementById('characterPlaceholder');
+  charEl.style.background = resolvedBg;
+  charEl.style.borderColor = resolvedColor;
+  charEl.style.color = resolvedColor;
+  charEl.innerHTML = `<span style="font-family:var(--font-d);font-size:1.8rem;font-weight:300;font-style:italic;">Type ${type.id}</span>`;
+
   document.getElementById('resultTypeId').textContent = `Type ${type.id}`;
-  document.getElementById('resultTypeName').innerHTML = type.name.replace(/（/, '<em>（').replace(/）/, '）</em>');
+  document.getElementById('resultTypeName').innerHTML = type.name.replace(/（/, '<br><em>（').replace(/）/, '）</em>');
   document.getElementById('resultCatchcopy').textContent = `"${extra.catchcopy}"`;
   document.getElementById('resultBadges').innerHTML =
-    `<span class="result-badge" style="border-color:${type.styleColor};color:${type.styleColor};background:${type.styleBg};">${type.styleLabel}</span>` +
-    `<span class="result-badge" style="border-color:${type.centerColor};color:${type.centerColor};background:${type.centerBg};">${type.centerLabel}</span>`;
+    `<span class="result-badge" style="border-color:${resolvedColor};color:${resolvedColor};background:${resolvedBg};">${type.styleLabel}</span>` +
+    `<span class="result-badge" style="border-color:${type.centerColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830')};color:${type.centerColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830')};background:${type.centerBg.replace('var(--rose-l)','#fae0e8').replace('var(--violet-l)','#ece6f8').replace('var(--teal-l)','#ddf2ee').replace('var(--amber-l)','#fdefd8')};">${type.centerLabel}</span>`;
 
-  // ── 2. タイプ基本説明 ──
-  document.getElementById('typeCoreText').innerHTML = type.core;
-
-  // ── あるある ──
+  // ── 2. あるある（共感ゾーン） ──
   const araruList = document.getElementById('araruList');
   araruList.innerHTML = extra.araru.map((item, i) =>
     `<li class="araru-item" style="transition-delay:${i * 0.1}s">${item}</li>`
   ).join('');
 
-  // ── 3. 構造 ──
-  const structureGrid = document.getElementById('typeStructure');
-  const structureKeys = [
-    {key:'think', label:'思考の軸'},
-    {key:'feel',  label:'感情の動き'},
-    {key:'act',   label:'行動パターン'},
-    {key:'relation', label:'対人での特徴'},
-  ];
-  structureGrid.innerHTML = structureKeys.map(s =>
-    `<div class="structure-item">
-      <span class="structure-label">${s.label}</span>
-      <div class="structure-text">${extra.structure[s.key]}</div>
-    </div>`
-  ).join('');
-  // CSS変数をstructure-labelに
-  structureGrid.querySelectorAll('.structure-label').forEach(el => {
-    el.style.color = type.styleColor;
-  });
+  // ── 3. タイプ説明（物語ゾーン） ──
+  document.getElementById('typeCoreText').innerHTML = type.core;
 
-  // ── 4. ウィング ──
-  const mainId = String(type.id).padStart(2,'0');
-  const wingId = wingType ? String(wingType.id).padStart(2,'0') : '??';
-  const wingLabel = `${mainId}w${wingId}`;
-  const wingSection = document.getElementById('wingSection');
-  const subtypeDesc = wingDetail && wingType
-    ? `${type.name}の基本性格に、${wingType.centerLabel}の要素が加わった複合型。${wingDetail.impact}傾向がある。`
-    : '';
-  wingSection.innerHTML = `
-    <div class="wing-header">
-      <div class="wing-main-label">YOUR SUBTYPE</div>
-      <div class="wing-combination">${type.name} × <span style="color:${type.styleColor}">${wingType ? wingType.name : '—'}</span></div>
-      <div class="wing-id" style="color:${type.styleColor}">${wingLabel}</div>
-      ${subtypeDesc ? `<p style="font-size:.82rem;color:var(--text-mid);line-height:1.8;margin-top:10px;">${subtypeDesc}</p>` : ''}
+  // ── 4. シェアカード ──
+  const shareCardBlock = document.getElementById('shareCardBlock');
+  shareCardBlock.style.borderColor = resolvedColor;
+  shareCardBlock.querySelector('.share-card-inner').style.background = resolvedBg;
+  document.getElementById('shareCardType').textContent = `${type.name}`;
+  document.getElementById('shareCardCopy').textContent = `"${extra.catchcopy}"`;
+
+  // ── モード別コンテンツ制御 ──
+  const fullIds = ['sec-divider','sec-strength','sec-subtype','sec-compat-simple','sec-radar','sec-premium'];
+  const quickIds = ['sec-quick-teaser'];
+
+  if (quizMode === 'quick') {
+    quickIds.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = ''; });
+    fullIds.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+    renderQuickTeaser(type);
+  } else {
+    quickIds.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+    fullIds.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = ''; });
+    renderFullDetail(type, extra, wingType, wingDetail, secondCenter, styleNorm, centerNorm, resolvedColor, resolvedBg);
+  }
+
+  setTimeout(setupObservers, 100);
+}
+
+// ══════════════════════════════════════
+// QUICK MODE TEASER
+// ══════════════════════════════════════
+function renderQuickTeaser(type) {
+  document.getElementById('sec-quick-teaser').innerHTML = `
+    <div class="quick-teaser-block">
+      <div class="quick-teaser-label">詳細診断（50問）でさらにわかること</div>
+      <ul class="quick-teaser-list">
+        <li><span class="qt-icon">✦</span>あなたの恋愛の強みと、気をつけたいパターン</li>
+        <li><span class="qt-icon">✦</span>あなたのタイプの特色（サブタイプ）</li>
+        <li><span class="qt-icon">✦</span>深まりやすいタイプ・刺激し合えるタイプ</li>
+        <li><span class="qt-icon">✦</span>あなたの傾向スコア分布</li>
+      </ul>
+      <button class="btn-detail-diag" onclick="startQuiz('full')">詳細診断を受ける（無料 · 50問）→</button>
+      <p class="quick-teaser-note">より精密な判定と、深い分析が表示されます</p>
+    </div>`;
+}
+
+// ══════════════════════════════════════
+// FULL MODE DETAIL RENDER
+// ══════════════════════════════════════
+function renderFullDetail(type, extra, wingType, wingDetail, secondCenter, styleNorm, centerNorm, resolvedColor, resolvedBg) {
+
+  // ── 強みと課題 ──
+  document.getElementById('strengthBody').innerHTML = `
+    <div class="strength-item">
+      <span class="strength-label strength-plus-label">あなたの恋愛が輝くとき</span>
+      <p class="strength-text">${extra.strength}</p>
     </div>
-    <div class="wing-divider"></div>
-    <div class="wing-detail-card">
-      ${wingDetail ? `
-      <div class="wing-detail-row">
-        <span class="wing-detail-key">役割</span>
-        <span class="wing-detail-val">${wingDetail.role}</span>
-      </div>
-      <div class="wing-detail-row">
-        <span class="wing-detail-key">影響</span>
-        <span class="wing-detail-val">${wingDetail.impact}</span>
-      </div>
-      <div class="wing-detail-row">
-        <span class="wing-detail-key">ブレ方</span>
-        <span class="wing-detail-val">${wingDetail.drift}</span>
-      </div>` : '<div class="wing-detail-row"><span class="wing-detail-val">ウィング情報なし</span></div>'}
+    <div class="strength-divider"></div>
+    <div class="strength-item">
+      <span class="strength-label strength-minus-label">気をつけたいパターン</span>
+      <p class="strength-text">${extra.weakness}</p>
+    </div>
+    <div class="strength-divider"></div>
+    <div class="strength-item">
+      <span class="strength-label strength-growth-label">成長のヒント</span>
+      <p class="strength-text">${extra.growth}</p>
     </div>`;
 
-  // ── 5. レーダー ──
-  const radarDataEl = drawRadar(styleNorm, centerNorm, type.style, type.center, type.styleColor);
+  // ── タイプの特色（サブタイプ） ──
+  const centerPlain = {
+    heart: '感情・愛情を大切にする傾向',
+    head: '思考・信頼を軸にする傾向',
+    guts: '本能・自分らしさを大切にする傾向',
+  };
+  const subtypeBody = document.getElementById('subtypeBody');
+  if (wingType && wingDetail) {
+    const wPlain = centerPlain[secondCenter] || wingType.centerLabel;
+    subtypeBody.innerHTML = `
+      <p class="subtype-text">あなたは<strong>${type.name}</strong>をベースに持ちながら、<strong>${wPlain}</strong>も合わせ持っています。</p>
+      <p class="subtype-text">具体的には、${wingDetail.impact}という形で現れます。</p>
+      <p class="subtype-text subtype-note">一方で、${wingDetail.drift}という面もあります。この傾向を意識することで、より豊かな関係を育てることができます。</p>`;
+  } else {
+    subtypeBody.innerHTML = `<p class="subtype-text">${type.name}の性質が非常に純粋に出ているタイプです。</p>`;
+  }
 
-  // 上位3タイプ
+  // ── 相性（3グループに整理） ──
+  const c = type.compat;
+  const compatGroups = [
+    {
+      label: '最も自然に深まりやすいタイプ',
+      desc: 'お互いの恋愛スタイルが自然に噛み合い、無理なく関係が育まれやすい組み合わせです。',
+      typeIds: [...(c.resonance||[]), ...(c.parallel||[])],
+      color: '#7655a8', bg: '#ece6f8',
+    },
+    {
+      label: '強く惹かれ合い、成長できるタイプ',
+      desc: '引き合う力が強く、互いに刺激し合えます。ぶつかることもありますが、それが成長につながります。',
+      typeIds: [...(c.bipolar||[]), ...(c.stimulus||[])],
+      color: '#c4566e', bg: '#fae0e8',
+    },
+    {
+      label: '自然体でいられるタイプ',
+      desc: '共感しやすく居心地の良い関係。穏やかな安定感の中で、ゆっくりつながることができます。',
+      typeIds: [...(c.mirror||[]), ...(c.stillwater||[])],
+      color: '#2e8b7a', bg: '#ddf2ee',
+    },
+  ];
+  document.getElementById('compatSimpleBody').innerHTML = compatGroups.map(g => {
+    const badges = g.typeIds.map(n => {
+      const t = TYPES.find(t => t.id === n);
+      return t ? `<span class="compat-simple-badge" style="background:${g.bg};color:${g.color};border-color:${g.color}40;">Type ${n}　${t.name}</span>` : '';
+    }).join('');
+    return `<div class="compat-simple-group">
+      <div class="compat-simple-label" style="color:${g.color};">— ${g.label}</div>
+      <p class="compat-simple-desc">${g.desc}</p>
+      <div class="compat-simple-types">${badges}</div>
+    </div>`;
+  }).join('');
+
+  // ── レーダー ──
+  drawRadar(styleNorm, centerNorm, type.style, type.center, type.styleColor);
   const typeScores = TYPES.map(t => ({
     type: t,
     score: (styleNorm[t.style] || 0) + (centerNorm[t.center] || 0)
   })).sort((a,b) => b.score - a.score);
-  const top3 = typeScores.slice(0, 3);
-  document.getElementById('top3List').innerHTML = top3.map((item, i) => {
+  document.getElementById('top3List').innerHTML = typeScores.slice(0,3).map((item, i) => {
     const isMain = item.type.id === type.id;
-    return `<div class="top3-item${isMain ? ' top3-main' : ''}" style="${isMain ? `--type-color:${type.styleColor};--type-color-l:${type.styleBg};` : ''}">
+    return `<div class="top3-item${isMain ? ' top3-main' : ''}" style="${isMain ? `--type-color:${resolvedColor};--type-color-l:${resolvedBg};` : ''}">
       <span class="top3-rank">${['①','②','③'][i]}</span>
       <span class="top3-name">Type ${item.type.id}　${item.type.name}</span>
       <span class="top3-score">${Math.round(item.score / 2)}pts</span>
     </div>`;
   }).join('');
-
-  // 相性
-  const compatEl = document.getElementById('compatGrid');
-  compatEl.innerHTML = '';
-  Object.keys(COMPAT_INFO).forEach(relKey => {
-    const info = COMPAT_INFO[relKey];
-    const typeNums = type.compat[relKey] || [];
-    const typeNames = typeNums.map(n => {
-      const t = TYPES.find(t => t.id === n);
-      return t ? `<a class="compat-type-badge" href="../types/?type=${n}" title="${t.name}">Type ${n}　${t.name}</a>` : '';
-    }).join('');
-    compatEl.innerHTML += `
-      <div class="compat-card" style="border-color:${info.color}20;background:${info.bg}88;">
-        <span class="compat-rel" style="color:${info.color};">— ${info.name}</span>
-        <span class="compat-rel-simple">${info.simple}</span>
-        ${info.desc ? `<p class="compat-desc">${info.desc}</p>` : ''}
-        <div class="compat-types">${typeNames}</div>
-      </div>`;
-  });
-
-  // ストレスタイプ
-  const stressNames = extra.stressTypes.map(n => {
-    const t = TYPES.find(t => t.id === n);
-    return t ? `<span class="stress-badge">Type ${n}</span>` : '';
-  }).join('');
-  document.getElementById('stressNote').innerHTML =
-    `⚡ ストレスを感じやすいタイプ：<span class="stress-badges">${stressNames}</span>`;
-
-  // ── アニメーション設定 ──
-  setTimeout(setupObservers, 100);
 }
 
 // ══════════════════════════════════════
@@ -1307,7 +1528,7 @@ function setupObservers() {
 function shareX() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
-  const text = `私のPolaタイプは「${type.name}」\n"${extra.catchcopy}"\n#Pola診断 #恋愛極性診断 #UTAGELAB`;
+  const text = `私のPolaタイプは「${type.name}」\n"${extra.catchcopy}"\n#Pola診断 #恋愛極性診断`;
   const url = window.location.href;
   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
 }

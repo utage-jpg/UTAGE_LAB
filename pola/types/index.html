@@ -34,7 +34,7 @@ body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height
 .nav-back:hover{border-color:var(--rose);color:var(--rose);}
 
 /* ── Hero ── */
-.type-hero{padding:56px 24px 48px;text-align:center;position:relative;overflow:hidden;}
+.type-hero{padding:64px 24px 60px;text-align:center;position:relative;overflow:hidden;}
 .type-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 50% 0%,var(--tc-l,#fae0e8) 0%,transparent 70%);}
 .hero-eyebrow{font-family:var(--font-m);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:10px;position:relative;z-index:1;}
 .hero-type-id{font-family:var(--font-m);font-size:.72rem;letter-spacing:.15em;color:var(--tc,var(--rose));margin-bottom:6px;position:relative;z-index:1;}
@@ -45,59 +45,64 @@ body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height
 .hero-badge{font-family:var(--font-m);font-size:.62rem;padding:4px 14px;border-radius:100px;border:1px solid var(--tc,var(--rose));color:var(--tc,var(--rose));background:var(--tc-l,#fae0e8);letter-spacing:.06em;}
 
 /* ── Sections ── */
-.type-sections{width:100%;max-width:680px;margin:0 auto;padding:0 16px 80px;}
-.type-section{margin-bottom:14px;}
+.type-sections{width:100%;max-width:680px;margin:0 auto;padding:0 16px 100px;}
+.type-section{margin-bottom:12px;}
 .ts-block{border:1px solid var(--border);border-radius:18px;background:var(--paper);overflow:hidden;}
-.ts-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
-.ts-icon{font-size:1rem;opacity:.7;flex-shrink:0;}
-.ts-title{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--ink);}
-.ts-body{padding:20px;}
-.ts-text{font-size:.88rem;color:var(--text-mid);line-height:2;}
+.ts-head{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.ts-icon{font-size:1.1rem;opacity:.8;flex-shrink:0;}
+.ts-title{font-family:var(--font-d);font-size:1.2rem;font-weight:600;color:var(--ink);}
+.ts-body{padding:28px 24px;}
+.ts-text{font-size:1rem;color:var(--text);line-height:2.05;}
+
+/* ── セクショングループ ── */
+.section-group{margin-bottom:44px;}
+.section-group-label{font-family:var(--font-m);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:14px;padding-left:4px;opacity:.85;}
+.section-group .type-section:last-child{margin-bottom:0;}
 .ts-text u{text-decoration:none;background:linear-gradient(transparent 55%,rgba(100,210,230,.42) 55%);padding:0 1px;font-weight:500;}
 .ts-text br{display:block;content:'';margin-top:.4em;}
 
 /* ── 特徴リスト ── */
 .feature-list{list-style:none;padding:12px 0 4px;}
-.feature-item{display:flex;align-items:flex-start;gap:12px;padding:12px 20px;font-size:.88rem;color:var(--text-mid);line-height:1.75;border-bottom:1px solid var(--border);}
+.feature-item{display:flex;align-items:flex-start;gap:12px;padding:14px 24px;font-size:1rem;color:var(--text);line-height:1.85;border-bottom:1px solid var(--border);}
 .feature-item:last-child{border-bottom:none;}
 .feature-item::before{content:'✦';color:var(--tc,var(--rose));font-size:.65rem;margin-top:4px;flex-shrink:0;opacity:.8;}
 
 /* ── 構造グリッド ── */
 .structure-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
 @media(max-width:480px){.structure-grid{grid-template-columns:1fr;}}
-.structure-item{background:var(--paper);padding:16px 18px;}
-.structure-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--tc,var(--rose));margin-bottom:6px;display:block;text-transform:uppercase;}
-.structure-text{font-size:.83rem;color:var(--text-mid);line-height:1.75;}
+.structure-item{background:var(--paper);padding:20px;}
+.structure-label{font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;color:var(--tc,var(--rose));margin-bottom:8px;display:block;text-transform:uppercase;}
+.structure-text{font-size:.95rem;color:var(--text);line-height:1.85;}
 
 /* ── サブタイプ ── */
-.subtype-block{padding:18px 20px 0;}
-.subtype-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--text-light);margin-bottom:8px;}
-.subtype-combo{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
-.subtype-id{font-family:var(--font-m);font-size:.68rem;color:var(--tc,var(--rose));letter-spacing:.08em;margin-bottom:12px;}
-.subtype-desc{font-size:.83rem;color:var(--text-mid);line-height:1.8;margin-bottom:16px;}
+.subtype-block{padding:24px 24px 0;}
+.subtype-label{font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;color:var(--text-light);margin-bottom:8px;}
+.subtype-combo{font-family:var(--font-d);font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.subtype-id{font-family:var(--font-m);font-size:.7rem;color:var(--tc,var(--rose));letter-spacing:.08em;margin-bottom:14px;}
+.subtype-desc{font-size:.95rem;color:var(--text);line-height:1.9;margin-bottom:16px;}
 .subtype-divider{height:1px;background:var(--border);margin:0 -20px;}
 .subtype-rows{padding:4px 0;}
 .subtype-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
 .subtype-row:last-child{border-bottom:none;}
 .subtype-key{font-family:var(--font-m);font-size:.58rem;letter-spacing:.08em;color:var(--text-light);width:52px;flex-shrink:0;padding-top:2px;}
-.subtype-val{font-size:.83rem;color:var(--text-mid);line-height:1.75;flex:1;}
+.subtype-val{font-size:.95rem;color:var(--text);line-height:1.85;flex:1;}
 .subtype-sep{height:1px;background:var(--border);margin:4px -20px 0;}
 
 /* ── 弱点・成長 ── */
-.insight-text{font-size:.88rem;color:var(--text-mid);line-height:1.95;padding:18px 20px;}
+.insight-text{font-size:1rem;color:var(--text);line-height:2.05;padding:24px;}
 .insight-arrow{color:var(--tc,var(--rose));margin-right:4px;}
 
 /* ── 相性 ── */
-.compat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 20px;}
+.compat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px 24px;}
 @media(max-width:480px){.compat-grid{grid-template-columns:1fr;}}
-.compat-card{border-radius:12px;padding:12px 14px;border:1px solid var(--border);}
-.compat-rel{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;margin-bottom:4px;display:block;font-weight:500;}
-.compat-rel-simple{font-size:.75rem;margin-bottom:4px;display:block;font-weight:700;color:var(--ink);}
-.compat-desc-text{font-size:.72rem;color:var(--text-mid);line-height:1.65;margin-bottom:8px;}
+.compat-card{border-radius:12px;padding:14px 16px;border:1px solid var(--border);}
+.compat-rel{font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;margin-bottom:4px;display:block;font-weight:500;}
+.compat-rel-simple{font-size:.82rem;margin-bottom:6px;display:block;font-weight:700;color:var(--ink);}
+.compat-desc-text{font-size:.85rem;color:var(--text-mid);line-height:1.75;margin-bottom:8px;}
 .compat-types{display:flex;flex-wrap:wrap;gap:4px;}
 .compat-badge{font-size:.72rem;padding:4px 10px;border-radius:100px;background:var(--bg2);border:1px solid var(--border);color:var(--text-mid);font-family:var(--font-m);text-decoration:none;display:inline-block;transition:all .2s;}
 .compat-badge:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
-.stress-note{padding:12px 20px;border-top:1px solid var(--border);font-size:.78rem;color:var(--text-light);line-height:1.75;}
+.stress-note{padding:16px 24px;border-top:1px solid var(--border);font-size:.85rem;color:var(--text-light);line-height:1.8;}
 .stress-badges{display:inline-flex;gap:4px;flex-wrap:wrap;}
 .stress-badge{font-size:.7rem;padding:1px 8px;border-radius:100px;background:var(--bg2);border:1px solid var(--border);color:var(--text-mid);font-family:var(--font-m);}
 
@@ -123,16 +128,16 @@ body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height
 .fl-desc{font-size:.72rem;color:var(--text-light);line-height:1.5;margin-top:2px;}
 
 /* ── 成長段階 ── */
-.level-stack{display:flex;flex-direction:column;gap:8px;padding:16px 20px;}
-.level-item{border-radius:10px;padding:10px 14px;border-left:3px solid;}
+.level-stack{display:flex;flex-direction:column;gap:12px;padding:20px 24px;}
+.level-item{border-radius:10px;padding:14px 18px;border-left:4px solid;}
 .level-item.healthy{border-color:#7a9c5b;background:#e4f0d8;}
 .level-item.average{border-color:#c9a84c;background:#fdf3d0;}
 .level-item.stress{border-color:var(--rose);background:var(--rose-l);}
-.level-lbl{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;margin-bottom:4px;font-weight:600;}
+.level-lbl{font-family:var(--font-m);font-size:.65rem;letter-spacing:.1em;margin-bottom:6px;font-weight:600;}
 .level-item.healthy .level-lbl{color:#3d6e2a;}
 .level-item.average .level-lbl{color:#8a6a20;}
 .level-item.stress .level-lbl{color:var(--rose);}
-.level-txt{font-size:.78rem;color:var(--text-mid);line-height:1.7;}
+.level-txt{font-size:.95rem;color:var(--text);line-height:1.85;}
 
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 .type-hero,.type-section{animation:fadeIn .45s ease both;}
@@ -450,27 +455,27 @@ function render() {
   const sections = document.getElementById('typeSections');
   sections.innerHTML = '';
 
-  // ── Section 1: 基本性格 ──
-  sections.innerHTML += `
-    <div class="type-section">
-      <div class="ts-block">
-        <div class="ts-head"><span class="ts-icon">✦</span><span class="ts-title">このタイプの性格</span></div>
-        <div class="ts-body"><div class="ts-text">${type.core}</div></div>
-      </div>
-    </div>`;
-
-  // ── Section 2: 行動パターン ──
+  // ── Group 1: このタイプを知る（性格 + 行動パターン） ──
   const featureItems = type.behaviors.map(b =>
     `<li class="feature-item">${b}</li>`).join('');
   sections.innerHTML += `
-    <div class="type-section">
-      <div class="ts-block">
-        <div class="ts-head"><span class="ts-icon">◈</span><span class="ts-title">このタイプに見られる行動パターン</span></div>
-        <ul class="feature-list">${featureItems}</ul>
+    <div class="section-group">
+      <div class="section-group-label">このタイプを知る</div>
+      <div class="type-section">
+        <div class="ts-block">
+          <div class="ts-head"><span class="ts-icon">✦</span><span class="ts-title">このタイプの性格</span></div>
+          <div class="ts-body"><div class="ts-text">${type.core}</div></div>
+        </div>
+      </div>
+      <div class="type-section">
+        <div class="ts-block">
+          <div class="ts-head"><span class="ts-icon">◈</span><span class="ts-title">このタイプに見られる行動パターン</span></div>
+          <ul class="feature-list">${featureItems}</ul>
+        </div>
       </div>
     </div>`;
 
-  // ── Section 3: 思考・感情・行動の構造 ──
+  // ── Group 2: 内面の仕組み（構造 + サブタイプ） ──
   const structureKeys = [
     {key:'think', label:'思考の軸'},
     {key:'feel',  label:'感情の動き'},
@@ -482,15 +487,7 @@ function render() {
       <span class="structure-label" style="color:${type.styleColor}">${s.label}</span>
       <div class="structure-text">${type.structure[s.key]}</div>
     </div>`).join('');
-  sections.innerHTML += `
-    <div class="type-section">
-      <div class="ts-block">
-        <div class="ts-head"><span class="ts-icon">◐</span><span class="ts-title">思考・感情・行動の構造</span></div>
-        <div class="structure-grid">${structureHtml}</div>
-      </div>
-    </div>`;
 
-  // ── Section 4: サブタイプ（両パターン） ──
   const otherCenters = ['heart','head','guts'].filter(c => c !== type.center);
   const subtypeBlocksHtml = otherCenters.map((center, idx) => {
     const wt = getWingType(type, center);
@@ -500,7 +497,7 @@ function render() {
     const wingNum = String(wt.id);
     const subtypeDesc = `${type.name}の基本性格に、${wt.centerLabel}の要素が加わった複合型。${wd.impact}傾向がある。`;
     return `
-      <div class="subtype-block" ${idx > 0 ? 'style="border-top:1px solid var(--border);padding-top:18px;"' : ''}>
+      <div class="subtype-block" ${idx > 0 ? 'style="border-top:1px solid var(--border);padding-top:24px;"' : ''}>
         <div class="subtype-label">SUBTYPE ${idx + 1}</div>
         <div class="subtype-combo">${type.name} × <span style="color:${type.styleColor}">${wt.name}</span></div>
         <div class="subtype-id" style="color:${type.styleColor}">${mainNum}w${wingNum}</div>
@@ -513,45 +510,58 @@ function render() {
         </div>
       </div>`;
   }).join('');
-  sections.innerHTML += `
-    <div class="type-section">
-      <div class="ts-block">
-        <div class="ts-head"><span class="ts-icon">◑</span><span class="ts-title">サブタイプ（ウィング）</span></div>
-        ${subtypeBlocksHtml}
-        <div style="height:18px;"></div>
-      </div>
-    </div>`;
 
-  // ── Section 5: 弱点・成長 ──
   sections.innerHTML += `
-    <div class="type-section">
-      <div class="ts-block" style="margin-bottom:10px;">
-        <div class="ts-head"><span class="ts-icon">△</span><span class="ts-title">弱点・破滅パターン</span></div>
-        <div class="insight-text"><span class="insight-arrow">▲</span>${type.weakness}</div>
+    <div class="section-group">
+      <div class="section-group-label">内面の仕組み</div>
+      <div class="type-section">
+        <div class="ts-block">
+          <div class="ts-head"><span class="ts-icon">◐</span><span class="ts-title">思考・感情・行動の構造</span></div>
+          <div class="structure-grid">${structureHtml}</div>
+        </div>
       </div>
-      <div class="ts-block">
-        <div class="ts-head"><span class="ts-icon">↑</span><span class="ts-title">成長の方向</span></div>
-        <div class="insight-text"><span class="insight-arrow">↑</span>${type.growth}</div>
-      </div>
-    </div>`;
-
-  // ── Section 5.5: 成長段階 ──
-  const lvl = LEVELS[typeId];
-  if (lvl) {
-    sections.innerHTML += `
-    <div class="type-section">
-      <div class="ts-block">
-        <div class="ts-head"><span class="ts-icon">◎</span><span class="ts-title">成長段階</span></div>
-        <div class="level-stack">
-          <div class="level-item healthy"><div class="level-lbl">HEALTHY — 健全状態</div><div class="level-txt">${lvl.healthy}</div></div>
-          <div class="level-item average"><div class="level-lbl">AVERAGE — 平均状態</div><div class="level-txt">${lvl.average}</div></div>
-          <div class="level-item stress"><div class="level-lbl">STRESS — ストレス状態</div><div class="level-txt">${lvl.stress}</div></div>
+      <div class="type-section">
+        <div class="ts-block">
+          <div class="ts-head"><span class="ts-icon">◑</span><span class="ts-title">サブタイプ（ウィング）</span></div>
+          ${subtypeBlocksHtml}
+          <div style="height:20px;"></div>
         </div>
       </div>
     </div>`;
-  }
 
-  // ── Section 6: 相性タイプ ──
+  // ── Group 3: 成長と課題（弱点 + 成長方向 + 成長段階） ──
+  const lvl = LEVELS[typeId];
+  const levelHtml = lvl ? `
+      <div class="type-section">
+        <div class="ts-block">
+          <div class="ts-head"><span class="ts-icon">◎</span><span class="ts-title">成長段階</span></div>
+          <div class="level-stack">
+            <div class="level-item healthy"><div class="level-lbl">HEALTHY — 健全状態</div><div class="level-txt">${lvl.healthy}</div></div>
+            <div class="level-item average"><div class="level-lbl">AVERAGE — 平均状態</div><div class="level-txt">${lvl.average}</div></div>
+            <div class="level-item stress"><div class="level-lbl">STRESS — ストレス状態</div><div class="level-txt">${lvl.stress}</div></div>
+          </div>
+        </div>
+      </div>` : '';
+
+  sections.innerHTML += `
+    <div class="section-group">
+      <div class="section-group-label">成長と課題</div>
+      <div class="type-section">
+        <div class="ts-block">
+          <div class="ts-head"><span class="ts-icon">△</span><span class="ts-title">弱点・破滅パターン</span></div>
+          <div class="insight-text"><span class="insight-arrow">▲</span>${type.weakness}</div>
+        </div>
+      </div>
+      <div class="type-section">
+        <div class="ts-block">
+          <div class="ts-head"><span class="ts-icon">↑</span><span class="ts-title">成長の方向</span></div>
+          <div class="insight-text"><span class="insight-arrow">↑</span>${type.growth}</div>
+        </div>
+      </div>
+      ${levelHtml}
+    </div>`;
+
+  // ── 相性タイプ（単独） ──
   const compatHtml = Object.keys(COMPAT_INFO).map(relKey => {
     const info = COMPAT_INFO[relKey];
     const typeNums = type.compat[relKey] || [];
@@ -580,7 +590,7 @@ function render() {
       </div>
     </div>`;
 
-  // ── Section 7: 全タイプナビ ──
+  // ── 全タイプ一覧（単独） ──
   const allTypesHtml = TYPES.map(t => `
     <a href="?type=${t.id}" class="type-nav-item${t.id === typeId ? ' active' : ''}">
       <span class="tni-id">Type ${t.id}</span>

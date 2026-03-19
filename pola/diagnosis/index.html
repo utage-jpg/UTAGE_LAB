@@ -150,7 +150,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   background:var(--bg2);
   border-left:4px solid var(--type-color,var(--rose));
 }
-.rs-icon{font-size:1.1rem;opacity:.85;flex-shrink:0;}
+.rs-icon{font-size:1.1rem;flex-shrink:0;opacity:0;transform:scale(.6);transition:opacity .3s ease,transform .3s cubic-bezier(.22,.68,0,1.2);transition-delay:.15s;}
 .rs-title{font-family:var(--font-d);font-size:1.25rem;font-weight:600;color:var(--ink);letter-spacing:.01em;}
 .rs-body{padding:28px 24px;}
 .rs-text{font-size:1rem;color:var(--text);line-height:2.05;}
@@ -159,6 +159,11 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 /* Section fade-in */
 .rs-fade{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
 .rs-fade.rs-visible{opacity:1;transform:translateY(0);}
+
+/* セクション見出しカットイン */
+.rs-title{opacity:0;transform:translateX(-22px);transition:opacity .38s ease,transform .38s cubic-bezier(.22,.68,0,1.2);transition-delay:.22s;}
+.rs-fade.rs-visible .rs-title{opacity:1;transform:translateX(0);}
+.rs-fade.rs-visible .rs-icon{opacity:.85;transform:scale(1);}
 
 /* あるある */
 .araru-list{list-style:none;padding:12px 0 4px;}
@@ -544,7 +549,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
         <a href="../portal/types.html" class="sitemap-item">
           <span class="si-label">ALL TYPES</span><span class="si-name">12タイプ一覧</span><span class="si-desc">各タイプの性格・相性を深読み</span>
         </a>
-        <a href="../portal/#compat" class="sitemap-item" target="_blank">
+        <a href="../specs/compatibility_full.html" class="sitemap-item" target="_blank">
           <span class="si-label">COMPATIBILITY</span><span class="si-name">相性一覧</span><span class="si-desc">66通りの相性理論</span>
         </a>
         <a href="https://utage-jpg.github.io/UTAGE_LAB/" class="sitemap-item" target="_blank">

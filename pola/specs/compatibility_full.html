@@ -43,26 +43,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .stat-label{font-size:.62rem;color:var(--text-light);font-family:var(--font-m);letter-spacing:.08em;display:block;margin-top:4px;}
 
 /* RELATION TYPES */
-.rel-section{max-width:900px;margin:0 auto;padding:48px 24px 32px;}
+.rel-section{max-width:900px;margin:0 auto;padding:48px 24px 36px;}
 .sec-tag{font-family:var(--font-m);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;display:block;}
-.sec-title{font-family:var(--font-d);font-size:clamp(1.3rem,3vw,1.75rem);font-weight:700;color:var(--ink);margin-bottom:20px;}
+.sec-title{font-family:var(--font-d);font-size:clamp(1.3rem,3vw,1.75rem);font-weight:700;color:var(--ink);margin-bottom:22px;}
 .sec-title em{font-style:italic;color:var(--heart);}
-.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 @media(max-width:640px){.rel-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:400px){.rel-grid{grid-template-columns:1fr;}}
-.rel-card{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:var(--paper);}
-.rel-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-.rel-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.rel-name{font-size:.92rem;font-weight:700;color:var(--ink);}
-.rel-count{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);margin-left:auto;}
-.rel-rule{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);letter-spacing:.04em;margin-bottom:6px;}
-.rel-desc{font-size:.78rem;color:var(--text-mid);line-height:1.65;}
+.rel-card{border:1px solid var(--border);border-radius:14px;padding:18px;background:var(--paper);}
+.rel-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.rel-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.rel-name{font-size:1rem;font-weight:700;color:var(--ink);}
+.rel-count{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);margin-left:auto;}
+.rel-rule{font-family:var(--font-m);font-size:.68rem;color:var(--text-light);letter-spacing:.04em;margin-bottom:8px;}
+.rel-desc{font-size:.88rem;color:var(--text-mid);line-height:1.75;}
 
 /* TABS */
 .tabs-wrap{max-width:900px;margin:0 auto;padding:0 24px 80px;}
-.tabs-nav{display:flex;gap:0;flex-wrap:nowrap;overflow-x:auto;margin-bottom:28px;border-bottom:2px solid var(--border);padding-bottom:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.tabs-nav{display:flex;gap:0;flex-wrap:nowrap;overflow-x:auto;margin-bottom:32px;border-bottom:2px solid var(--border);padding-bottom:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .tabs-nav::-webkit-scrollbar{display:none;}
-.tab-btn{font-family:var(--font-s);font-size:.8rem;font-weight:500;padding:10px 16px;border:none;background:none;cursor:pointer;color:var(--text-light);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.tab-btn{font-family:var(--font-s);font-size:.85rem;font-weight:500;padding:12px 18px;border:none;background:none;cursor:pointer;color:var(--text-light);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:7px;flex-shrink:0;}
 .tab-btn:hover{color:var(--ink);}
 .tab-btn.active{color:var(--ink);font-weight:700;}
 .tab-btn[data-rel="bipolar"].active{border-bottom-color:var(--bipolar);}
@@ -71,25 +71,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .tab-btn[data-rel="parallel"].active{border-bottom-color:var(--parallel);}
 .tab-btn[data-rel="mirror"].active{border-bottom-color:var(--mirror);}
 .tab-btn[data-rel="stillwater"].active{border-bottom-color:var(--stillwater);}
-.tab-count{font-family:var(--font-m);font-size:.6rem;padding:1px 6px;border-radius:100px;background:var(--parchment);}
+.tab-count{font-family:var(--font-m);font-size:.62rem;padding:2px 8px;border-radius:100px;background:var(--parchment);}
 .tab-content{display:none;}
 .tab-content.active{display:block;}
 
+/* TAB CONTENT HEADER */
+.tab-content-head{
+  display:flex;align-items:center;gap:14px;
+  padding:24px 0 20px;
+  margin-bottom:20px;
+  border-bottom:2px solid var(--border);
+}
+.tab-accent{width:5px;border-radius:3px;align-self:stretch;min-height:48px;flex-shrink:0;}
+.tab-head-body{}
+.tab-head-label{font-family:var(--font-m);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:4px;}
+.tab-head-title{font-family:var(--font-d);font-size:clamp(1.3rem,3.5vw,1.75rem);font-weight:700;color:var(--ink);line-height:1.2;}
+.tab-head-desc{font-size:.9rem;color:var(--text-mid);margin-top:5px;line-height:1.7;}
+
 /* COMPAT CARDS */
-.compat-list{display:grid;gap:14px;}
-.cc{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--paper);transition:box-shadow .22s,transform .22s;}
-.cc:hover{box-shadow:0 5px 20px var(--shadow);transform:translateY(-2px);}
-.cc-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px;}
-.cc-badge{font-family:var(--font-m);font-size:.6rem;letter-spacing:.08em;padding:3px 9px;border-radius:100px;font-weight:500;flex-shrink:0;margin-top:3px;}
+.compat-list{display:grid;gap:20px;}
+.cc{border:1px solid var(--border);border-radius:18px;overflow:hidden;background:var(--paper);transition:box-shadow .22s,transform .22s;}
+.cc:hover{box-shadow:0 6px 24px var(--shadow);transform:translateY(-2px);}
+.cc-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:14px;}
+.cc-badge{font-family:var(--font-m);font-size:.65rem;letter-spacing:.08em;padding:4px 12px;border-radius:100px;font-weight:600;flex-shrink:0;margin-top:4px;}
 .cc-types{flex:1;min-width:0;}
-.cc-names{font-size:.92rem;font-weight:700;color:var(--ink);margin-bottom:3px;line-height:1.5;flex-wrap:wrap;}
-.cc-codes{font-family:var(--font-m);font-size:.65rem;color:var(--text-light);letter-spacing:.04em;}
-.cc-body{padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(max-width:540px){.cc-body{grid-template-columns:1fr;gap:10px;}}
+.cc-names{font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:5px;line-height:1.5;flex-wrap:wrap;}
+.cc-codes{font-family:var(--font-m);font-size:.7rem;color:var(--text-light);letter-spacing:.04em;}
+.cc-body{padding:18px 22px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:540px){.cc-body{grid-template-columns:1fr;gap:14px;}}
 .cc-field{}
-.fl{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;display:block;}
-.ft{font-size:.79rem;color:var(--text-mid);line-height:1.7;}
-.ft.key{color:var(--ink);font-weight:500;}
+.fl{font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;display:block;}
+.ft{font-size:.92rem;color:var(--text-mid);line-height:1.8;}
+.ft.key{color:var(--ink);font-weight:600;font-size:.95rem;}
 
 footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;background:var(--parchment);}
 .footer-brand{font-family:var(--font-d);font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
@@ -182,12 +195,12 @@ const TYPES={
   12:{style:'Ne',center:'guts', name:'フリースピリット（自由人）'},
 };
 const REL={
-  bipolar:  {name:'双極',  color:'var(--bipolar)',   bg:'var(--bipolar-bg)'},
-  resonance:{name:'調和',  color:'var(--resonance)', bg:'var(--resonance-bg)'},
-  stimulus: {name:'刺激',  color:'var(--stimulus)',  bg:'var(--stimulus-bg)'},
-  parallel: {name:'並走',  color:'var(--parallel)',  bg:'var(--parallel-bg)'},
-  mirror:   {name:'鏡像',  color:'var(--mirror)',    bg:'var(--mirror-bg)'},
-  stillwater:{name:'静水', color:'var(--stillwater)',bg:'var(--stillwater-bg)'},
+  bipolar:  {name:'双極',  color:'var(--bipolar)',   bg:'var(--bipolar-bg)',   desc:'正反対のスタイルが引き合う、最強の引力と最大の衝突。12通り'},
+  resonance:{name:'調和',  color:'var(--resonance)', bg:'var(--resonance-bg)', desc:'共通のセンターが生む、深い共感と自然な息合わせ。12通り'},
+  stimulus: {name:'刺激',  color:'var(--stimulus)',  bg:'var(--stimulus-bg)',  desc:'異なるスタイルの摩擦が化学反応を生む、刺激的な組み合わせ。16通り'},
+  parallel: {name:'並走',  color:'var(--parallel)',  bg:'var(--parallel-bg)',  desc:'同じスタイルが並んで走る、安定感のあるパートナーシップ。6通り'},
+  mirror:   {name:'鏡像',  color:'var(--mirror)',    bg:'var(--mirror-bg)',    desc:'同グループ内の隣り合うスタイルが映し出す、近くて遠い関係。8通り'},
+  stillwater:{name:'静水', color:'var(--stillwater)',bg:'var(--stillwater-bg)',desc:'同スタイル・異センターの穏やかな共存、波風の立たない関係。12通り'},
 };
 const STYLE_COLOR={Se:'var(--se)',Ni:'var(--ni)',Si:'var(--si)',Ne:'var(--ne)'};
 const CENTER_JA={heart:'ハート',head:'ヘッド',guts:'ガッツ'};
@@ -573,6 +586,18 @@ function renderAll(){
 
   relOrder.forEach(rel=>{
     const container=document.getElementById(rel);
+    // inject tab section header
+    const r=REL[rel];
+    const head=document.createElement('div');
+    head.className='tab-content-head';
+    head.innerHTML=`
+      <div class="tab-accent" style="background:${r.color};"></div>
+      <div class="tab-head-body">
+        <span class="tab-head-label" style="color:${r.color};">${rel.toUpperCase()}</span>
+        <div class="tab-head-title">${r.name}タイプ相性</div>
+        <div class="tab-head-desc">${r.desc}</div>
+      </div>`;
+    container.appendChild(head);
     const list=document.createElement('div');
     list.className='compat-list';
     groups[rel].forEach(p=>{

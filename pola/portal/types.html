@@ -97,6 +97,28 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
 }
 .type-card:hover .type-link-arrow{background:var(--rose-l);color:var(--rose);border-color:var(--rose);transform:translateX(3px);}
 
+/* STYLE GROUP HEADER */
+.style-group-head{
+  display:flex;align-items:center;gap:16px;
+  padding:28px 0 20px;
+  margin-bottom:12px;
+  border-bottom:2px solid var(--border);
+}
+.style-group-head[data-visible="true"]{
+  animation:groupHeadIn .45s cubic-bezier(.22,.68,0,1.2) both;
+}
+@keyframes groupHeadIn{
+  from{opacity:0;transform:translateX(-18px);}
+  to{opacity:1;transform:translateX(0);}
+}
+.group-accent{width:5px;border-radius:3px;align-self:stretch;flex-shrink:0;min-height:52px;}
+.group-head-body{flex:1;min-width:0;}
+.group-style-tag{font-family:var(--font-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:5px;display:block;}
+.group-title{font-family:var(--font-d);font-size:clamp(1.4rem,4vw,1.9rem);font-weight:700;color:var(--ink);line-height:1.15;}
+.group-title em{font-style:italic;}
+.group-sub{font-size:.82rem;color:var(--text-mid);margin-top:5px;line-height:1.6;}
+.group-count{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);letter-spacing:.06em;margin-top:4px;display:block;}
+
 /* CTA */
 .bottom-cta{text-align:center;padding:40px 24px;background:#f5f0e8;border-top:1px solid var(--border);}
 .bottom-cta h3{font-family:var(--font-d);font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:10px;}
@@ -256,6 +278,29 @@ const COMPAT_COLORS = {
 const STYLE_LABELS = {Se:'狩猟型',Ni:'共鳴型',Si:'守護型',Ne:'冒険型'};
 const CENTER_ICONS = {heart:'❤',head:'▲',guts:'◆'};
 
+const STYLE_GROUPS = {
+  Se:{color:'#c4566e',bg:'#fae0e8',title:'狩猟型',tag:'Se — Seeking Style',desc:'積極的に動き、アプローチで愛の証明を求める3タイプ'},
+  Ni:{color:'#7655a8',bg:'#ece6f8',title:'共鳴型',tag:'Ni — Resonance Style',desc:'相手の流れに委ねながら、深く繋がろうとする3タイプ'},
+  Si:{color:'#2e8b7a',bg:'#ddf2ee',title:'守護型',tag:'Si — Stability Style',desc:'継続と安定した行動で、愛を示し続ける3タイプ'},
+  Ne:{color:'#c47830',bg:'#fdefd8',title:'冒険型',tag:'Ne — Explorer Style',desc:'自由と新鮮さを求めながら、関係を広げていく3タイプ'},
+};
+
+function buildGroupHead(style) {
+  const g = STYLE_GROUPS[style];
+  const el = document.createElement('div');
+  el.className = 'style-group-head';
+  el.dataset.style = style;
+  el.innerHTML = `
+    <div class="group-accent" style="background:${g.color};"></div>
+    <div class="group-head-body">
+      <span class="group-style-tag" style="color:${g.color};">${g.tag}</span>
+      <div class="group-title"><em>${g.title}</em></div>
+      <div class="group-sub">${g.desc}</div>
+      <span class="group-count">Type ${TYPES.filter(t=>t.style===style).map(t=>t.id).join(' / ')}</span>
+    </div>`;
+  return el;
+}
+
 function buildCard(t) {
   const card = document.createElement('a');
   card.className='type-card';
@@ -279,7 +324,16 @@ function buildCard(t) {
 }
 
 const container = document.getElementById('typesContainer');
-TYPES.forEach(t => container.appendChild(buildCard(t)));
+let prevStyle = null;
+TYPES.forEach(t => {
+  if (t.style !== prevStyle) {
+    prevStyle = t.style;
+    const head = buildGroupHead(t.style);
+    head.dataset.visible = 'true';
+    container.appendChild(head);
+  }
+  container.appendChild(buildCard(t));
+});
 
 function filterTypes(style) {
   document.querySelectorAll('.filter-btn').forEach(b => {
@@ -295,6 +349,15 @@ function filterTypes(style) {
 
   document.querySelectorAll('.type-card').forEach(card => {
     card.style.display = (style === 'all' || card.dataset.style === style) ? '' : 'none';
+  });
+  document.querySelectorAll('.style-group-head').forEach(head => {
+    const show = style === 'all' || head.dataset.style === style;
+    head.style.display = show ? '' : 'none';
+    if (show) {
+      // アニメーション再トリガー
+      head.dataset.visible = 'false';
+      requestAnimationFrame(() => { head.dataset.visible = 'true'; });
+    }
   });
 }
 </script>

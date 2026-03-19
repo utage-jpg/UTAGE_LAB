@@ -56,7 +56,10 @@ body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height
 
 /* ── セクショングループ ── */
 .section-group{margin-bottom:44px;}
-.section-group-label{font-family:var(--font-m);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:14px;padding-left:4px;opacity:.85;}
+.section-group-label{display:flex;align-items:center;gap:12px;font-family:var(--font-m);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text);margin-bottom:22px;padding-left:0;font-weight:600;opacity:0;transform:translateX(-16px);transition:opacity .4s ease,transform .4s cubic-bezier(.22,.68,0,1.2);}
+.section-group-label.sgl-visible{opacity:1;transform:translateX(0);}
+.section-group-label::before{content:'';display:block;width:4px;min-height:1.4em;align-self:stretch;border-radius:2px;background:var(--tc,var(--rose));flex-shrink:0;}
+.section-group-label::after{content:'';flex:1;height:1px;background:var(--border);opacity:.6;}
 .section-group .type-section:last-child{margin-bottom:0;}
 .ts-text u{text-decoration:none;background:linear-gradient(transparent 55%,rgba(100,210,230,.42) 55%);padding:0 1px;font-weight:500;}
 .ts-text br{display:block;content:'';margin-top:.4em;}
@@ -77,7 +80,8 @@ body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height
 /* ── サブタイプ ── */
 .subtype-block{padding:24px 24px 0;}
 .subtype-label{font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;color:var(--text-light);margin-bottom:8px;}
-.subtype-combo{font-family:var(--font-d);font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.subtype-combo{font-family:var(--font-d);font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;}
+.subtype-wing-tag{font-family:var(--font-s);font-size:.78rem;font-weight:700;padding:2px 10px;border-radius:6px;letter-spacing:.04em;}
 .subtype-id{font-family:var(--font-m);font-size:.7rem;color:var(--tc,var(--rose));letter-spacing:.08em;margin-bottom:14px;}
 .subtype-desc{font-size:.95rem;color:var(--text);line-height:1.9;margin-bottom:16px;}
 .subtype-divider{height:1px;background:var(--border);margin:0 -20px;}
@@ -488,6 +492,7 @@ function render() {
       <div class="structure-text">${type.structure[s.key]}</div>
     </div>`).join('');
 
+  const SUB_LABELS = {heart:'愛情サブ', head:'安心サブ', guts:'本能サブ'};
   const otherCenters = ['heart','head','guts'].filter(c => c !== type.center);
   const subtypeBlocksHtml = otherCenters.map((center, idx) => {
     const wt = getWingType(type, center);
@@ -495,11 +500,12 @@ function render() {
     if (!wt || !wd) return '';
     const mainNum = String(type.id);
     const wingNum = String(wt.id);
+    const subLabel = SUB_LABELS[center] || wt.centerLabel;
     const subtypeDesc = `${type.name}の基本性格に、${wt.centerLabel}の要素が加わった複合型。${wd.impact}傾向がある。`;
     return `
       <div class="subtype-block" ${idx > 0 ? 'style="border-top:1px solid var(--border);padding-top:24px;"' : ''}>
         <div class="subtype-label">SUBTYPE ${idx + 1}</div>
-        <div class="subtype-combo">${type.name} × <span style="color:${type.styleColor}">${wt.name}</span></div>
+        <div class="subtype-combo">${type.name}<span class="subtype-wing-tag" style="color:${type.styleColor};background:${type.styleBg};">【${subLabel}】</span></div>
         <div class="subtype-id" style="color:${type.styleColor}">${mainNum}w${wingNum}</div>
         <div class="subtype-desc">${subtypeDesc}</div>
         <div class="subtype-divider"></div>
@@ -612,6 +618,22 @@ function render() {
 }
 
 render();
+
+// グループラベル スライドイン
+(function(){
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('sgl-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.3,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.section-group-label').forEach((el,i)=>{
+    el.style.transitionDelay = `${i*0.06}s`;
+    obs.observe(el);
+  });
+})();
 </script>
 </body>
 </html>

@@ -324,19 +324,22 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 }
 .compat-simple-badge:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08);opacity:.85;}
 
-/* ══ PREMIUM HINT BAR ══ */
-.premium-hint-bar{
-  border-top:1px solid rgba(184,150,62,.25);
-  padding:11px 20px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  background:linear-gradient(135deg,rgba(184,150,62,.05),rgba(184,150,62,.10));
+/* ══ DEEP ANALYSIS SECTION ══ */
+.deep-sub-head{
+  display:flex;align-items:center;gap:8px;
+  padding:14px 20px 12px;
+  border-top:1px solid var(--border);
+  background:rgba(0,0,0,.02);
 }
-.premium-hint-text{font-size:.76rem;color:var(--text-mid);line-height:1.5;}
-.premium-hint-lock{
-  font-family:var(--font-m);font-size:.6rem;color:var(--gold);
-  letter-spacing:.06em;display:flex;align-items:center;gap:4px;
-  white-space:nowrap;border:1px solid rgba(184,150,62,.35);
-  padding:3px 10px;border-radius:100px;flex-shrink:0;
+.deep-sub-icon{font-size:.9rem;opacity:.7;flex-shrink:0;}
+.deep-sub-title{font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--text-mid);letter-spacing:.01em;}
+
+/* ══ PREMIUM CTA INNER ══ */
+.premium-cta-inner{
+  border-top:1px solid rgba(184,150,62,.3);
+  padding:24px 20px;
+  text-align:center;
+  background:linear-gradient(145deg,rgba(253,248,236,.9),rgba(250,240,224,.9));
 }
 
 /* ══ RADAR INTRO ══ */
@@ -498,19 +501,14 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
       </div>
     </div>
 
-    <!-- 詳細モード：タイプの特色 -->
-    <div id="sec-subtype" class="result-section rs-fade" style="display:none;">
+    <!-- 詳細モード：より深い個人分析（特色＋スコア＋有料CTA統合） -->
+    <div id="sec-deep-analysis" class="result-section rs-fade" style="display:none;">
       <div class="rs-block">
-        <div class="rs-head"><span class="rs-icon">◐</span><span class="rs-title">あなたのタイプの特色</span></div>
+        <div class="rs-head"><span class="rs-icon">◈</span><span class="rs-title">より深い個人分析</span></div>
+        <div class="deep-sub-head"><span class="deep-sub-icon">◐</span><span class="deep-sub-title">あなたのタイプの特色</span></div>
         <div id="subtypeBody" class="subtype-intro"></div>
-      </div>
-    </div>
-
-    <!-- 詳細モード：スコア分布（補足） -->
-    <div id="sec-radar" class="result-section rs-fade" style="display:none;">
-      <div class="rs-block">
-        <div class="rs-head"><span class="rs-icon">◎</span><span class="rs-title">あなたの傾向スコア</span></div>
-        <p class="radar-intro">4つの恋愛スタイル（積極・共鳴・守護・冒険）と、3つのセンター（感情・思考・本能）のスコア分布です。</p>
+        <div class="deep-sub-head"><span class="deep-sub-icon">◎</span><span class="deep-sub-title">あなたの傾向スコア</span></div>
+        <p class="radar-intro">4つの恋愛スタイルと、3つのセンターのスコア分布です。</p>
         <div class="radar-wrap">
           <div class="radar-svg-wrap">
             <svg id="radarSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -520,26 +518,13 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
           <div class="top3-title">— 近いタイプ上位3 —</div>
           <div class="top3-list" id="top3List"></div>
         </div>
-        <div class="premium-hint-bar">
-          <span class="premium-hint-text">スコア傾向からわかる、あなただけの深層分析</span>
-          <span class="premium-hint-lock">🔒 個人分析レポート</span>
+        <div class="premium-cta-inner">
+          <div class="premium-cta-icon">🔒</div>
+          <div class="premium-cta-title">より深い分析を、レポートで受け取る</div>
+          <p class="premium-cta-desc">あなたの回答パターンをもとに個別にパーソナライズされた詳細分析が届きます。タイプ説明にとどまらず、あなた自身の恋愛傾向を深く読み解いたレポートです。</p>
+          <button class="btn-premium" disabled>有料レポートを受け取る</button>
+          <span class="premium-coming-soon">COMING SOON</span>
         </div>
-      </div>
-    </div>
-
-    <!-- 詳細モード：有料レポートCTA -->
-    <div id="sec-premium" class="result-section" style="display:none;">
-      <div class="premium-cta-block">
-        <div class="premium-cta-icon">🔒</div>
-        <div class="premium-cta-title">より深い分析を、<br>レポートで受け取る</div>
-        <p class="premium-cta-desc">Pola有料レポートでは、あなたの回答パターンをもとに個別にパーソナライズされた詳細分析が届きます。タイプ説明にとどまらず、あなた自身の恋愛傾向を深く読み解いたレポートです。</p>
-        <ul class="premium-cta-list">
-          <li>あなただけの恋愛傾向の詳細分析</li>
-          <li>回答パターンから読み取れる深層心理</li>
-          <li>具体的な行動・関係改善のヒント</li>
-        </ul>
-        <button class="btn-premium" disabled>有料レポートを受け取る</button>
-        <span class="premium-coming-soon">COMING SOON</span>
       </div>
     </div>
 
@@ -556,8 +541,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
         <a href="../portal/#theory" class="sitemap-item" target="_blank">
           <span class="si-label">THEORY</span><span class="si-name">理論解説</span><span class="si-desc">恋愛極性理論の骨格</span>
         </a>
-        <a href="../types/" class="sitemap-item">
-          <span class="si-label">ALL TYPES</span><span class="si-name">12タイプ詳細解説</span><span class="si-desc">各タイプの性格・相性を深読み</span>
+        <a href="../portal/types.html" class="sitemap-item">
+          <span class="si-label">ALL TYPES</span><span class="si-name">12タイプ一覧</span><span class="si-desc">各タイプの性格・相性を深読み</span>
         </a>
         <a href="../portal/#compat" class="sitemap-item" target="_blank">
           <span class="si-label">COMPATIBILITY</span><span class="si-name">相性一覧</span><span class="si-desc">66通りの相性理論</span>
@@ -1279,7 +1264,7 @@ function showResult() {
   document.getElementById('shareCardCopy').textContent = `"${extra.catchcopy}"`;
 
   // ── モード別コンテンツ制御 ──
-  const fullIds = ['sec-divider','sec-strength','sec-subtype','sec-compat-simple','sec-radar','sec-premium'];
+  const fullIds = ['sec-divider','sec-strength','sec-compat-simple','sec-deep-analysis'];
   const quickIds = ['sec-quick-teaser'];
 
   if (quizMode === 'quick') {
@@ -1335,32 +1320,50 @@ function renderFullDetail(type, extra, wingType, wingDetail, secondCenter, style
       <p class="strength-text">${extra.growth}</p>
     </div>`;
 
-  // ── 相性（3グループに整理） ──
+  // ── 相性（6関係タイプ別） ──
   const c = type.compat;
   const compatGroups = [
     {
-      label: '最も自然に深まりやすいタイプ',
-      desc: 'お互いの恋愛スタイルが自然に噛み合い、無理なく関係が育まれやすい組み合わせです。',
-      typeIds: [...(c.resonance||[]), ...(c.parallel||[])],
+      label: '共鳴 — 最も深まりやすいタイプ',
+      desc: 'お互いの恋愛スタイルが自然に噛み合い、無理なく絆が育まれやすい。このタイプとの関係が最も伸びやすい。',
+      typeIds: c.resonance||[],
       color: '#7655a8', bg: '#ece6f8',
     },
     {
-      label: '強く惹かれ合い、成長できるタイプ',
-      desc: '引き合う力が強く、互いに刺激し合えます。ぶつかることもありますが、それが成長につながります。',
-      typeIds: [...(c.bipolar||[]), ...(c.stimulus||[])],
+      label: '双極 — 強烈に惹かれ合うタイプ',
+      desc: '引き合う力は強烈だが、衝突しやすく消耗しやすい関係。化学反応は激しいが、安定しないことが多い。',
+      typeIds: c.bipolar||[],
       color: '#c4566e', bg: '#fae0e8',
     },
     {
-      label: '自然体でいられるタイプ',
-      desc: '共感しやすく居心地の良い関係。穏やかな安定感の中で、ゆっくりつながることができます。',
-      typeIds: [...(c.mirror||[]), ...(c.stillwater||[])],
+      label: '並走 — 同じ方向を向くタイプ',
+      desc: '価値観が近く、自然体でいられる関係。同じ方向を向いて一緒に歩きやすく、居心地がいい。',
+      typeIds: c.parallel||[],
       color: '#2e8b7a', bg: '#ddf2ee',
+    },
+    {
+      label: '刺激 — 成長し合えるタイプ',
+      desc: '互いに刺激を与え合い、成長できる関係。摩擦が成長に変わることもあるが、違いが負担になることもある。',
+      typeIds: c.stimulus||[],
+      color: '#c47830', bg: '#fdefd8',
+    },
+    {
+      label: '鏡像 — 自分の鏡のようなタイプ',
+      desc: '似ている部分が多く共感しやすい反面、お互いの弱点を鏡のように映し合うため、傷つけ合うことがある。',
+      typeIds: c.mirror||[],
+      color: '#5b7fa6', bg: '#deeaf7',
+    },
+    {
+      label: '静水 — 穏やかにつながるタイプ',
+      desc: '大きな波はないが、刺激も少ない関係。穏やかに安定はするが、関係の深まりが遅く物足りなさを感じることもある。',
+      typeIds: c.stillwater||[],
+      color: '#8b7355', bg: '#f0e8dc',
     },
   ];
   document.getElementById('compatSimpleBody').innerHTML = compatGroups.map(g => {
     const badges = g.typeIds.map(n => {
       const t = TYPES.find(t => t.id === n);
-      return t ? `<a class="compat-simple-badge" href="../types/?type=${n}" target="_blank" style="background:${g.bg};color:${g.color};border-color:${g.color}40;">Type ${n}　${t.name}</a>` : '';
+      return t ? `<a class="compat-simple-badge" href="../portal/compat.html" target="_blank" style="background:${g.bg};color:${g.color};border-color:${g.color}40;">Type ${n}　${t.name}</a>` : '';
     }).join('');
     return `<div class="compat-simple-group">
       <div class="compat-simple-label" style="color:${g.color};">— ${g.label}</div>
@@ -1381,17 +1384,9 @@ function renderFullDetail(type, extra, wingType, wingDetail, secondCenter, style
     subtypeBody.innerHTML = `
       <p class="subtype-text">あなたは<strong>「${type.name}」</strong>の中でも、さらに<strong>「${wPlain}」</strong>の傾向を持つタイプです。</p>
       <p class="subtype-text">具体的には——${wingDetail.impact}という形で、あなたの恋愛に現れています。</p>
-      <p class="subtype-text subtype-note">またこの傾向が強まると、${wingDetail.drift}という側面もあります。この微妙なずれが、あなたの恋愛パターンの核心に関わっています。</p>
-      <div class="premium-hint-bar">
-        <span class="premium-hint-text">この傾向があなたの恋愛にどう影響するか、個人分析レポートで詳しく解説します</span>
-        <span class="premium-hint-lock">🔒 個人分析レポート</span>
-      </div>`;
+      <p class="subtype-text subtype-note">またこの傾向が強まると、${wingDetail.drift}という側面もあります。この微妙なずれが、あなたの恋愛パターンの核心に関わっています。</p>`;
   } else {
-    subtypeBody.innerHTML = `<p class="subtype-text">あなたは<strong>「${type.name}」</strong>の性質が非常に純粋に出ているタイプです。この純粋さがあなたの恋愛の強みでもあり、課題でもあります。</p>
-      <div class="premium-hint-bar">
-        <span class="premium-hint-text">この傾向があなたの恋愛にどう影響するか、個人分析レポートで詳しく解説します</span>
-        <span class="premium-hint-lock">🔒 個人分析レポート</span>
-      </div>`;
+    subtypeBody.innerHTML = `<p class="subtype-text">あなたは<strong>「${type.name}」</strong>の性質が非常に純粋に出ているタイプです。この純粋さがあなたの恋愛の強みでもあり、課題でもあります。</p>`;
   }
 
   // ── レーダー ──
@@ -1519,7 +1514,7 @@ function drawRadar(styleNorm, centerNorm, mainStyle, mainCenter, mainColor) {
   });
 
   // IntersectionObserverでアニメーション発火
-  const radarWrap = document.getElementById('sec-radar');
+  const radarWrap = document.getElementById('sec-deep-analysis');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {

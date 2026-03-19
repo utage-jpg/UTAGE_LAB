@@ -345,7 +345,7 @@ footer{
         <div class="portal-card-icon" style="background:var(--violet-l);">📐</div>
         <div class="portal-card-title">理論解説</div>
         <div class="portal-card-sub">THEORY · 2 AXES · ACADEMIC</div>
-        <div class="portal-card-desc">ロマンススタイル（Se/Ni/Si/Ne）とセンター（愛情型/安心型/本能型）の2軸理論を詳しく解説。ソシオニクスとエニアグラムを起源とする独自モデル。</div>
+        <div class="portal-card-desc">ソシオニクスとエニアグラムを起源とする独自モデルを詳しく解説。「狩猟」「共鳴」「守護」「冒険」と「愛情」「安心」「本能」——2つの本能軸が交わるとき、あなたの恋愛の核心が見えてくる。</div>
       </div>
       <div class="portal-card-foot">
         <span class="portal-card-cta" style="color:var(--violet);">理論を読む</span>
@@ -545,13 +545,14 @@ const TYPES = [
   {id:12,style:'Ne', center:'guts',  name:'フリースピリット（自由人）', styleColor:'#c47830', styleBg:'#fdefd8'},
 ];
 
+const STYLE_LABELS = {Se:'狩猟型', Ni:'共鳴型', Si:'守護型', Ne:'冒険型'};
 const grid = document.getElementById('typeGrid');
 TYPES.forEach(t => {
   const el = document.createElement('a');
   el.href = `types.html#type-${t.id}`;
   el.className = 'type-chip';
   el.innerHTML = `
-    <span class="type-chip-style" style="background:${t.styleBg};color:${t.styleColor};">${t.style}</span>
+    <span class="type-chip-style" style="background:${t.styleBg};color:${t.styleColor};">${STYLE_LABELS[t.style]}</span>
     <span class="type-chip-name">${t.name}</span>
     <span class="type-chip-num">Type ${String(t.id).padStart(2,'0')}</span>
   `;

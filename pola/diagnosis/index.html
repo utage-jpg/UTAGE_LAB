@@ -726,7 +726,7 @@ const TYPES = [
 ];
 
 const COMPAT_INFO = {
-  resonance:  {name:'共鳴',    simple:'最も深まりやすい', desc:'お互いの恋愛スタイルが自然に噛み合う関係。深く理解し合いやすく、無理なく絆が育まれやすい。', color:'#7655a8', bg:'#ece6f8'},
+  resonance:  {name:'調和',    simple:'最も深まりやすい', desc:'お互いの恋愛スタイルが自然に噛み合う関係。深く理解し合いやすく、無理なく絆が育まれやすい。', color:'#7655a8', bg:'#ece6f8'},
   bipolar:    {name:'双極',    simple:'強烈に惹かれ合う', desc:'引き合う力が強い分、衝突しやすくもある関係。化学反応が激しく、強烈な印象を残し合う。',         color:'#c4566e', bg:'#fae0e8'},
   parallel:   {name:'並走',    simple:'同じ方向を向く',   desc:'価値観が近く、自然体でいられる関係。同じ方向を向いて一緒に歩きやすく、居心地がいい。',           color:'#2e8b7a', bg:'#ddf2ee'},
   stimulus:   {name:'刺激',    simple:'成長し合える',     desc:'互いに刺激を与え合い、成長できる関係。違いが摩擦ではなく、化学反応になりやすい。',               color:'#c47830', bg:'#fdefd8'},
@@ -1324,7 +1324,7 @@ function renderFullDetail(type, extra, wingType, wingDetail, secondCenter, style
   const c = type.compat;
   const compatGroups = [
     {
-      label: '共鳴 — 最も深まりやすいタイプ',
+      label: '調和 — 最も深まりやすいタイプ',
       desc: 'お互いの恋愛スタイルが自然に噛み合い、無理なく絆が育まれやすい。このタイプとの関係が最も伸びやすい。',
       typeIds: c.resonance||[],
       color: '#7655a8', bg: '#ece6f8',
@@ -1363,7 +1363,7 @@ function renderFullDetail(type, extra, wingType, wingDetail, secondCenter, style
   document.getElementById('compatSimpleBody').innerHTML = compatGroups.map(g => {
     const badges = g.typeIds.map(n => {
       const t = TYPES.find(t => t.id === n);
-      return t ? `<a class="compat-simple-badge" href="../portal/compat.html" target="_blank" style="background:${g.bg};color:${g.color};border-color:${g.color}40;">Type ${n}　${t.name}</a>` : '';
+      return t ? `<a class="compat-simple-badge" href="https://utage-jpg.github.io/UTAGE_LAB/pola/portal/compat.html" target="_blank" style="background:${g.bg};color:${g.color};border-color:${g.color}40;">Type ${n}　${t.name}</a>` : '';
     }).join('');
     return `<div class="compat-simple-group">
       <div class="compat-simple-label" style="color:${g.color};">— ${g.label}</div>

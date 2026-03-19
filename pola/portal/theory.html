@@ -91,13 +91,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
 
 /* MATRIX */
 .matrix-section{margin-bottom:40px;}
-.matrix-overflow{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.matrix-table{width:100%;min-width:560px;border-collapse:collapse;font-size:.78rem;}
-.matrix-table th{padding:10px 14px;text-align:left;font-family:var(--font-m);font-size:.62rem;letter-spacing:.08em;color:var(--text-light);border:1px solid var(--border);background:var(--bg2);}
-.matrix-table td{padding:10px 14px;border:1px solid var(--border);vertical-align:top;background:var(--paper);}
-.mt-style{font-size:.75rem;font-weight:700;}
-.mt-name{font-weight:600;color:var(--ink);font-size:.85rem;}
-.mt-center{font-size:.72rem;font-weight:500;}
+.mx-table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.mx-table th,.mx-table td{border:1px solid var(--border);padding:10px 10px;vertical-align:middle;}
+.mx-table thead th{background:var(--bg2);font-family:var(--font-m);font-size:.6rem;letter-spacing:.06em;text-align:center;font-weight:600;}
+.mx-style-th{background:var(--bg2);vertical-align:middle;}
+.mx-style-label{font-family:var(--font-m);font-size:.65rem;font-weight:700;display:block;line-height:1.5;}
+.mx-cell{text-align:center;background:var(--paper);padding:12px 8px;}
+.mx-type-num{font-family:var(--font-m);font-size:.58rem;color:var(--text-light);display:block;margin-bottom:5px;letter-spacing:.06em;}
+.mx-type-name{font-size:.78rem;font-weight:600;color:var(--ink);display:block;line-height:1.4;}
+@media(max-width:480px){.mx-type-name{font-size:.72rem;}.mx-cell{padding:10px 6px;}}
 .mt-core{font-size:.78rem;color:var(--text-mid);line-height:1.6;}
 
 /* WING EXPLAIN */
@@ -319,29 +321,42 @@ footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;ba
   <p class="lead">2軸の組み合わせで生まれる12のコアタイプ一覧です。各タイプの詳細は<a href="types.html" style="color:var(--rose);">タイプ一覧ページ</a>をご覧ください。</p>
 
   <div class="matrix-section">
-    <div class="matrix-overflow">
-      <table class="matrix-table">
-        <thead>
-          <tr>
-            <th>ID</th><th>スタイル</th><th>センター</th><th>タイプ名</th><th>核心動機</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">01</span></td><td><span class="mt-style" style="color:#c4566e;">Se 狩猟型</span></td><td><span class="mt-center" style="color:#c4566e;">❤ 愛情型</span></td><td><span class="mt-name">ロマンハンター（狩人）</span></td><td class="mt-core">愛されていると確信するまで、前進を止めない。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">02</span></td><td><span class="mt-style" style="color:#c4566e;">Se 狩猟型</span></td><td><span class="mt-center" style="color:#5b7fa6;">▲ 安心型</span></td><td><span class="mt-name">ストラテジスト（戦略家）</span></td><td class="mt-core">安心できる関係を、自分の手で設計しようとする。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">03</span></td><td><span class="mt-style" style="color:#c4566e;">Se 狩猟型</span></td><td><span class="mt-center" style="color:#7a9c5b;">◆ 本能型</span></td><td><span class="mt-name">チャレンジャー（挑戦者）</span></td><td class="mt-core">欲しいと感じた瞬間に、もう動いている。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">04</span></td><td><span class="mt-style" style="color:#7655a8;">Ni 共鳴型</span></td><td><span class="mt-center" style="color:#c4566e;">❤ 愛情型</span></td><td><span class="mt-name">エンパス（共感者）</span></td><td class="mt-core">愛することが、自分でいることだと信じている。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">05</span></td><td><span class="mt-style" style="color:#7655a8;">Ni 共鳴型</span></td><td><span class="mt-center" style="color:#5b7fa6;">▲ 安心型</span></td><td><span class="mt-name">オブザーバー（観察者）</span></td><td class="mt-core">確信が持てるまで、全力で委ねることができない。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">06</span></td><td><span class="mt-style" style="color:#7655a8;">Ni 共鳴型</span></td><td><span class="mt-center" style="color:#7a9c5b;">◆ 本能型</span></td><td><span class="mt-name">フェイタリスト（運命論者）</span></td><td class="mt-core">流れに乗りながら、芯だけは手放さない。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">07</span></td><td><span class="mt-style" style="color:#2e8b7a;">Si 守護型</span></td><td><span class="mt-center" style="color:#c4566e;">❤ 愛情型</span></td><td><span class="mt-name">ガーディアン（保護人）</span></td><td class="mt-core">気づかれなくても、今日も誰かのために動いている。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">08</span></td><td><span class="mt-style" style="color:#2e8b7a;">Si 守護型</span></td><td><span class="mt-center" style="color:#5b7fa6;">▲ 安心型</span></td><td><span class="mt-name">アーキテクト（構築者）</span></td><td class="mt-core">崩れない関係を、一つひとつ丁寧に積み上げる。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">09</span></td><td><span class="mt-style" style="color:#2e8b7a;">Si 守護型</span></td><td><span class="mt-center" style="color:#7a9c5b;">◆ 本能型</span></td><td><span class="mt-name">ケアテイカー（世話役）</span></td><td class="mt-core">言葉にしなくても、ここにいることが答えだ。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">10</span></td><td><span class="mt-style" style="color:#c47830;">Ne 冒険型</span></td><td><span class="mt-center" style="color:#c4566e;">❤ 愛情型</span></td><td><span class="mt-name">トラベラー（旅人）</span></td><td class="mt-core">ときめきが続く限り、どこまでも行ける。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">11</span></td><td><span class="mt-style" style="color:#c47830;">Ne 冒険型</span></td><td><span class="mt-center" style="color:#5b7fa6;">▲ 安心型</span></td><td><span class="mt-name">エクスプローラー（探検家）</span></td><td class="mt-core">「きっとうまくいく」が、最強の処世術。</td></tr>
-          <tr><td><span style="font-family:var(--font-m);color:var(--text-light);">12</span></td><td><span class="mt-style" style="color:#c47830;">Ne 冒険型</span></td><td><span class="mt-center" style="color:#7a9c5b;">◆ 本能型</span></td><td><span class="mt-name">フリースピリット（自由人）</span></td><td class="mt-core">縛られないことが、愛の前提条件だ。</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:22%;"></th>
+          <th style="color:#c4566e;">❤ 愛情型</th>
+          <th style="color:#5b7fa6;">▲ 安心型</th>
+          <th style="color:#7a9c5b;">◆ 本能型</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mx-style-th"><span class="mx-style-label" style="color:#c4566e;">Se<br>狩猟型</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 1</span><span class="mx-type-name">ロマンハンター<br>（狩人）</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 2</span><span class="mx-type-name">ストラテジスト<br>（戦略家）</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 3</span><span class="mx-type-name">チャレンジャー<br>（挑戦者）</span></td>
+        </tr>
+        <tr>
+          <td class="mx-style-th"><span class="mx-style-label" style="color:#7655a8;">Ni<br>共鳴型</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 4</span><span class="mx-type-name">エンパス<br>（共感者）</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 5</span><span class="mx-type-name">オブザーバー<br>（観察者）</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 6</span><span class="mx-type-name">フェイタリスト<br>（運命論者）</span></td>
+        </tr>
+        <tr>
+          <td class="mx-style-th"><span class="mx-style-label" style="color:#2e8b7a;">Si<br>守護型</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 7</span><span class="mx-type-name">ガーディアン<br>（保護人）</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 8</span><span class="mx-type-name">アーキテクト<br>（構築者）</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 9</span><span class="mx-type-name">ケアテイカー<br>（世話役）</span></td>
+        </tr>
+        <tr>
+          <td class="mx-style-th"><span class="mx-style-label" style="color:#c47830;">Ne<br>冒険型</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 10</span><span class="mx-type-name">トラベラー<br>（旅人）</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 11</span><span class="mx-type-name">エクスプローラー<br>（探検家）</span></td>
+          <td class="mx-cell"><span class="mx-type-num">Type 12</span><span class="mx-type-name">フリースピリット<br>（自由人）</span></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -356,7 +371,7 @@ footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;ba
   <div class="wing-explain">
     <h3>ウィングの設計原則</h3>
     <p><strong style="color:var(--ink);">方向：</strong>同じロマンススタイル内で、センターが隣に「滲み出る」概念。センターはハート → ヘッド → ガッツ → ハートという円環構造なので、全タイプが均等に両側のウィングを持てます。</p>
-    <p><strong style="color:var(--ink);">命名法：</strong>コアタイプ番号 + w + ウィング番号。例：02w01（ストラテジストの愛情型ウィング）、02w03（ストラテジストの本能型ウィング）</p>
+    <p><strong style="color:var(--ink);">命名法：</strong>コアタイプ番号 + w + ウィング番号。例：2w1（ストラテジストの愛情型ウィング）、2w3（ストラテジストの本能型ウィング）</p>
     <p><strong style="color:var(--ink);">意味：</strong>ウィングはコアタイプを「色づける」補助特性。コアの動機は変わらないが、ウィングの影響で行動パターンや感情表現のスタイルが変化します。</p>
     <p style="margin-bottom:0;"><strong style="color:var(--ink);">診断活用：</strong>コアタイプを先に確定させ、ウィングは「どちらの色が強いか」という補助診断として使います。</p>
   </div>

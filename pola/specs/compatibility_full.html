@@ -124,7 +124,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;ba
       <div class="rel-desc">最強の引力と最大の摩擦が同居。強く惹かれるほど深くぶつかる。</div>
     </div>
     <div class="rel-card">
-      <div class="rel-head"><div class="rel-dot" style="background:var(--resonance)"></div><div class="rel-name">共鳴</div><div class="rel-count">6通り</div></div>
+      <div class="rel-head"><div class="rel-dot" style="background:var(--resonance)"></div><div class="rel-name">調和</div><div class="rel-count">6通り</div></div>
       <div class="rel-rule">補完 × 同センター</div>
       <div class="rel-desc">引力が補完し動機も一致する。最も深まりやすく安定した関係。</div>
     </div>
@@ -183,7 +183,7 @@ const TYPES={
 };
 const REL={
   bipolar:  {name:'双極',  color:'var(--bipolar)',   bg:'var(--bipolar-bg)'},
-  resonance:{name:'共鳴',  color:'var(--resonance)', bg:'var(--resonance-bg)'},
+  resonance:{name:'調和',  color:'var(--resonance)', bg:'var(--resonance-bg)'},
   stimulus: {name:'刺激',  color:'var(--stimulus)',  bg:'var(--stimulus-bg)'},
   parallel: {name:'並走',  color:'var(--parallel)',  bg:'var(--parallel-bg)'},
   mirror:   {name:'鏡像',  color:'var(--mirror)',    bg:'var(--mirror-bg)'},
@@ -256,7 +256,7 @@ const PAIRS=[
  c:'09は感情を内に抱える、11は問題を楽観で塗り替えようとする。深刻な局面で「重く受け止めてほしい」と「大丈夫だよ」がぶつかる。',
  k:'09が溜めた感情を少しずつ言葉にし、11が楽観でなく正面から向き合う場面を作れたとき。'},
 
-// ━━━ 共鳴 6通り ━━━
+// ━━━ 調和 6通り ━━━
 {t1:1,t2:4,rel:'resonance',
  a:'Se×Ni補完＋ハート同士。求める者と委ねる者が、同じ「愛されたい」という根本で繋がる。深い直感的な理解が生まれる。',
  r:'01が求め04が応える、04が尽くし01が受け取る。どちらも「愛を感じること」最優先なので愛情サイクルが自然に回る。',
@@ -587,9 +587,9 @@ function renderAll(){
           <span class="cc-badge" style="background:${r.bg};color:${r.color};">${r.name}</span>
           <div class="cc-types">
             <div class="cc-names">
-              <span style="color:${sc(t1.style)};">Type ${String(p.t1).padStart(2,'0')} ${t1.name}</span>
+              <span style="color:${sc(t1.style)};">Type ${p.t1} ${t1.name}</span>
               <span style="color:var(--text-light);font-weight:400;margin:0 6px;">×</span>
-              <span style="color:${sc(t2.style)};">Type ${String(p.t2).padStart(2,'0')} ${t2.name}</span>
+              <span style="color:${sc(t2.style)};">Type ${p.t2} ${t2.name}</span>
             </div>
             <div class="cc-codes">${t1.style} × ${cj(t1.center)} &nbsp;／&nbsp; ${t2.style} × ${cj(t2.center)}</div>
           </div>

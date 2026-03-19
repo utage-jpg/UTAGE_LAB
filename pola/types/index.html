@@ -386,7 +386,7 @@ const TYPES = [
 ];
 
 const COMPAT_INFO = {
-  resonance:  {name:'共鳴',    simple:'最も深まりやすい', desc:'お互いの恋愛スタイルが自然に噛み合う関係。深く理解し合いやすく、無理なく絆が育まれる。', color:'#7655a8', bg:'#ece6f8'},
+  resonance:  {name:'調和',    simple:'最も深まりやすい', desc:'お互いの恋愛スタイルが自然に噛み合う関係。深く理解し合いやすく、無理なく絆が育まれる。', color:'#7655a8', bg:'#ece6f8'},
   bipolar:    {name:'双極',    simple:'強烈に惹かれ合う', desc:'引き合う力が強い分、衝突しやすくもある関係。化学反応が激しく、強烈な印象を残し合う。', color:'#c4566e', bg:'#fae0e8'},
   parallel:   {name:'並走',    simple:'同じ方向を向く',   desc:'価値観が近く、自然体でいられる関係。同じ方向を向いて一緒に歩きやすく、居心地がいい。', color:'#2e8b7a', bg:'#ddf2ee'},
   stimulus:   {name:'刺激',    simple:'成長し合える',     desc:'互いに刺激を与え合い、成長できる関係。違いが摩擦ではなく、化学反応になりやすい。', color:'#c47830', bg:'#fdefd8'},
@@ -496,8 +496,8 @@ function render() {
     const wt = getWingType(type, center);
     const wd = type.wingDetails[center];
     if (!wt || !wd) return '';
-    const mainNum = String(type.id).padStart(2,'0');
-    const wingNum = String(wt.id).padStart(2,'0');
+    const mainNum = String(type.id);
+    const wingNum = String(wt.id);
     const subtypeDesc = `${type.name}の基本性格に、${wt.centerLabel}の要素が加わった複合型。${wd.impact}傾向がある。`;
     return `
       <div class="subtype-block" ${idx > 0 ? 'style="border-top:1px solid var(--border);padding-top:18px;"' : ''}>

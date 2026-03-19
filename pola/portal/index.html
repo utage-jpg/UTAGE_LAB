@@ -296,25 +296,6 @@ footer{
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stat-item">
-    <span class="stat-num">12</span>
-    <span class="stat-label">Core Types</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">24</span>
-    <span class="stat-label">Wing Subtypes</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">66</span>
-    <span class="stat-label">Compatibility Patterns</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">2</span>
-    <span class="stat-label">Axes: Style × Center</span>
-  </div>
-</div>
 
 <!-- PORTAL NAVIGATION -->
 <div class="bg-paper">
@@ -371,7 +352,7 @@ footer{
         <div class="portal-card-icon" style="background:var(--amber-l);">💞</div>
         <div class="portal-card-title">相性一覧</div>
         <div class="portal-card-sub">COMPAT · 66 PATTERNS · FULL</div>
-        <div class="portal-card-desc">12タイプ間の全66通りの相性パターンを収録。双極・共鳴・刺激・並行・鏡・静水の6関係タイプで解説。</div>
+        <div class="portal-card-desc">12タイプ間の全66通りの相性パターンを収録。双極・調和・刺激・並走・鏡像・静水の6関係タイプで解説。</div>
       </div>
       <div class="portal-card-foot">
         <span class="portal-card-cta" style="color:var(--amber);">相性を調べる</span>
@@ -471,7 +452,7 @@ footer{
         <div class="compat-type-rule">Se ↔ Ni / Si ↔ Ne</div>
       </div>
       <div class="compat-type-card" style="background:#ece6f8;">
-        <span class="compat-type-badge" style="background:#7655a8;color:white;">共鳴</span>
+        <span class="compat-type-badge" style="background:#7655a8;color:white;">調和</span>
         <div class="compat-type-name">Resonance</div>
         <div class="compat-type-rule">同スタイル × 異センター</div>
       </div>
@@ -554,7 +535,7 @@ TYPES.forEach(t => {
   el.innerHTML = `
     <span class="type-chip-style" style="background:${t.styleBg};color:${t.styleColor};">${STYLE_LABELS[t.style]}</span>
     <span class="type-chip-name">${t.name}</span>
-    <span class="type-chip-num">Type ${String(t.id).padStart(2,'0')}</span>
+    <span class="type-chip-num">Type ${t.id}</span>
   `;
   grid.appendChild(el);
 });

@@ -274,7 +274,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;ba
   <div style="border:1px solid var(--border);border-radius:16px;padding:20px 22px;background:var(--paper);margin-bottom:16px;">
     <div style="font-size:.85rem;color:var(--text-mid);line-height:1.9;">
       <p style="margin-bottom:12px;"><strong style="color:var(--ink);">方向：</strong>同じロマンススタイル内で、センターが隣に「滲み出る」概念。センターは円環構造（愛情型→安心型→本能型→愛情型）なので、全タイプが均等に両側のウィングを持てる。</p>
-      <p style="margin-bottom:12px;"><strong style="color:var(--ink);">命名法：</strong>コアタイプ番号 + w + ウィング番号。例：02w01（ストラテジストの愛情型ウィング）、02w03（ストラテジストの本能型ウィング）</p>
+      <p style="margin-bottom:12px;"><strong style="color:var(--ink);">命名法：</strong>コアタイプ番号 + w + ウィング番号。例：2w1（ストラテジストの愛情型ウィング）、2w3（ストラテジストの本能型ウィング）</p>
       <p style="margin-bottom:12px;"><strong style="color:var(--ink);">意味：</strong>ウィングはコアタイプを「色づける」補助特性。コアの動機は変わらないが、ウィングの影響で行動パターンや感情表現のスタイルが変化する。</p>
       <p><strong style="color:var(--ink);">診断活用：</strong>コアタイプを先に確定させ、ウィングは「どちらの色が強いか」という補助診断として使う。24サブタイプが完成することで相性診断の精度も上がる。</p>
     </div>
@@ -328,12 +328,12 @@ const TYPES = [
       prev_center: 'guts',
       next_center: 'head',
       w_prev: {
-        label: '01w12（本能型ウィング）',
+        label: '1w12（本能型ウィング）',
         subname: '本能で求める攻め手',
         desc: 'ハートの確認欲求にガッツの衝動が加わる。感情的な確認行動が本能的なアグレッシブさを帯びる。アプローチはより直接的・即物的になり、「感じたままに動く」要素が強まる。ガッツの影響で意地っ張りな面が出やすい。',
       },
       w_next: {
-        label: '01w02（安心型ウィング）',
+        label: '1w2（安心型ウィング）',
         subname: '分析する攻め手',
         desc: 'ハートの確認欲求にヘッドの分析が加わる。相手の行動を論理的に解析しながら愛情量を測ろうとする。アプローチは計画的になり、「どうすれば振り向いてもらえるか」を考えてから動く。分析が増えることで行動に躊躇が生まれることも。',
       },
@@ -371,12 +371,12 @@ const TYPES = [
       prev_center: 'heart',
       next_center: 'guts',
       w_prev: {
-        label: '02w01（愛情型ウィング）',
+        label: '2w1（愛情型ウィング）',
         subname: '感情で確かめる先手',
         desc: 'ヘッドの分析的な安全確認にハートの感情が加わる。「安心できるか」と「愛されているか」が混在する。論理的にリードしながらも感情的な承認を求める場面がある。ハートの影響で感情表現が豊かになり、近づきやすくなる。',
       },
       w_next: {
-        label: '02w03（本能型ウィング）',
+        label: '2w3（本能型ウィング）',
         subname: '本能で制御するストラテジスト',
         desc: 'ヘッドの分析的な安全確認にガッツの意志が加わる。「確かめながら動く」から「確かめながら意地を張る」要素が出る。論理的なリードが本能的な強さを帯び、より硬派な印象になる。譲れない一線を持つ。',
       },
@@ -414,12 +414,12 @@ const TYPES = [
       prev_center: 'head',
       next_center: 'heart',
       w_prev: {
-        label: '03w02（安心型ウィング）',
+        label: '3w2（安心型ウィング）',
         subname: '計算する狩人',
         desc: 'ガッツの本能的衝動にヘッドの分析が加わる。「感じたから動く」に「でも少し考える」が入る。衝動に知性の制動がかかり、より戦略的なアプローチをとれる。不安ベースの慎重さではなく、計算された行動の慎重さ。',
       },
       w_next: {
-        label: '03w01（愛情型ウィング）',
+        label: '3w1（愛情型ウィング）',
         subname: '感情で燃える狩人',
         desc: 'ガッツの本能的衝動にハートの感情が加わる。「感じたから動く」に「感情の豊かさ」が加わる。愛情表現が豊かになり、傷つきやすさも出る。本能と感情が合わさることで非常に情熱的な恋愛スタイルになる。',
       },
@@ -457,12 +457,12 @@ const TYPES = [
       prev_center: 'guts',
       next_center: 'head',
       w_prev: {
-        label: '04w06（本能型ウィング）',
+        label: '4w6（本能型ウィング）',
         subname: '芯を持つ献身者',
         desc: 'ハートの献身にガッツの意志が加わる。尽くしながらも「自分の一線」を持つ。感情的に消えるのではなく、意志を持って委ねる。傷ついたとき感情で爆発するのではなく、静かに意志で対処できる。',
       },
       w_next: {
-        label: '04w05（安心型ウィング）',
+        label: '4w5（安心型ウィング）',
         subname: '考えながら捧げる者',
         desc: 'ハートの献身にヘッドの分析が加わる。「どう尽くせばより喜んでもらえるか」を考える。感情的な献身が知的に洗練される。一方で「こんなに尽くしているのになぜ」という思考ループに入りやすい。',
       },
@@ -500,12 +500,12 @@ const TYPES = [
       prev_center: 'heart',
       next_center: 'guts',
       w_prev: {
-        label: '05w04（愛情型ウィング）',
+        label: '5w4（愛情型ウィング）',
         subname: '感情で慎重なオブザーバー',
         desc: 'ヘッドの慎重な信頼確認にハートの感情が加わる。「安心できるか」と「愛されているか」が混在する。感情的な確認欲求が慎重さと組み合わさり、より複雑な内面になる。感情が動く場面と論理で判断する場面が交互に来る。',
       },
       w_next: {
-        label: '05w06（本能型ウィング）',
+        label: '5w6（本能型ウィング）',
         subname: '芯のある慎重なオブザーバー',
         desc: 'ヘッドの慎重な信頼確認にガッツの意志が加わる。「確かめること」に芯の強さが加わる。信頼するまでの壁が非常に高くなるが、一度信頼したらガッツの忠誠心が発動し非常に強い絆になる。',
       },
@@ -543,12 +543,12 @@ const TYPES = [
       prev_center: 'head',
       next_center: 'heart',
       w_prev: {
-        label: '06w05（安心型ウィング）',
+        label: '6w5（安心型ウィング）',
         subname: '分析する漂流者',
         desc: 'ガッツの芯ある委ねにヘッドの分析が加わる。流れに乗りながら「この状況を分析・判断」する要素が出る。本能的な「感じたら動く」に知的な確認が加わり、より慎重で見通しのある行動スタイルになる。',
       },
       w_next: {
-        label: '06w04（愛情型ウィング）',
+        label: '6w4（愛情型ウィング）',
         subname: '感情を持つ漂流者',
         desc: 'ガッツの芯ある委ねにハートの感情が加わる。感情を抑える傾向に感情豊かさが加わる。自分の芯を守りながらも感情的な繋がりを求める。深い感情表現が出る場面が増え、関係に温かさが加わる。',
       },
@@ -586,12 +586,12 @@ const TYPES = [
       prev_center: 'guts',
       next_center: 'head',
       w_prev: {
-        label: '07w09（本能型ウィング）',
+        label: '7w9（本能型ウィング）',
         subname: '意志ある世話人',
         desc: 'ハートの世話行動にガッツの意志が加わる。「見返りを求めず尽くす」に「自分の一線を持つ」が加わる。燃え尽きにくくなり、尽くしながらも自分の軸を保てる。感情的な爆発より静かな意志で境界線を引ける。',
       },
       w_next: {
-        label: '07w08（安心型ウィング）',
+        label: '7w8（安心型ウィング）',
         subname: '計画する世話人',
         desc: 'ハートの世話行動にヘッドの分析が加わる。より戦略的に「どう支えるか」を考える。感情と思考のバランスが取れた支援スタイルになる。自分の行動の効果を考えながら動くため、空回りが減る。',
       },
@@ -629,12 +629,12 @@ const TYPES = [
       prev_center: 'heart',
       next_center: 'guts',
       w_prev: {
-        label: '08w07（愛情型ウィング）',
+        label: '8w7（愛情型ウィング）',
         subname: '温かみのある建築家',
         desc: 'ヘッドの安定構築にハートの感情が加わる。安定した関係を作りながら感情的な温かさも示せる。「変わらない安心」に「愛されたい」感情が混ざることで、より人間的な温かさが関係に生まれる。',
       },
       w_next: {
-        label: '08w09（本能型ウィング）',
+        label: '8w9（本能型ウィング）',
         subname: '意志ある建築家',
         desc: 'ヘッドの安定構築にガッツの意志が加わる。安定を守ることへの強い意志が出る。「変えさせない」という方向性が強まり、関係の安定を守るためなら強く出られる。ただし変化への抵抗が頑固さになりやすい。',
       },
@@ -672,12 +672,12 @@ const TYPES = [
       prev_center: 'head',
       next_center: 'heart',
       w_prev: {
-        label: '09w08（安心型ウィング）',
+        label: '9w8（安心型ウィング）',
         subname: '考える番人',
         desc: 'ガッツの継続する意志にヘッドの分析が加わる。「ただいる」に「なぜいるかを考える」が加わる。行動の意味を言語化できるようになり、相手への説明能力が上がる。頑固さが知性的な頑固さに変わる。',
       },
       w_next: {
-        label: '09w07（愛情型ウィング）',
+        label: '9w7（愛情型ウィング）',
         subname: '感情ある番人',
         desc: 'ガッツの継続する意志にハートの感情が加わる。「ただいる」に「感情を少し見せる」が加わる。感情表現が増え、相手に温かみとして伝わるようになる。「いるのに伝わらない」の解決策になる。',
       },
@@ -883,7 +883,7 @@ function renderTypes() {
       <div class="type-header" style="background:linear-gradient(135deg,${sl} 0%,var(--paper) 100%);">
         <div class="type-num" style="color:${sc};">${formatTypeId(t.id)}</div>
         <div class="type-head-body">
-          <div class="type-id">Type ${String(t.id).padStart(2,'0')} — Love Polarity Theory</div>
+          <div class="type-id">Type ${t.id} — Love Polarity Theory</div>
           <div class="type-name">${t.name}</div>
           <div class="type-badges">
             <span class="badge" style="background:${sl};color:${sc};">${t.style} ${sname}</span>
@@ -984,7 +984,7 @@ function renderTypes() {
           <span class="ts-label">Compatibility Hint — 相性早見</span>
           <div class="compat-hint-grid">
             <div class="ch-card" style="background:var(--resonance-bg,#ede9f8);">
-              <span class="ch-label" style="color:var(--resonance,#7b5ea7);">共鳴</span>
+              <span class="ch-label" style="color:var(--resonance,#7b5ea7);">調和</span>
               <div class="ch-types">${buildCompatTypeLinks(t.compat_hint.resonance)}</div>
             </div>
             <div class="ch-card" style="background:var(--bipolar-bg,#fae0e6);">

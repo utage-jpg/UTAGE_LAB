@@ -53,7 +53,7 @@ body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height
 .ts-title{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--ink);}
 .ts-body{padding:20px;}
 .ts-text{font-size:.88rem;color:var(--text-mid);line-height:2;}
-.ts-text u{text-underline-offset:3px;color:var(--ink);font-weight:500;}
+.ts-text u{text-decoration:none;background:linear-gradient(transparent 55%,rgba(100,210,230,.42) 55%);padding:0 1px;font-weight:500;}
 .ts-text br{display:block;content:'';margin-top:.4em;}
 
 /* ── 特徴リスト ── */
@@ -121,6 +121,18 @@ body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height
 .fl-label{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;color:var(--text-light);}
 .fl-name{font-size:.84rem;font-weight:500;color:var(--ink);}
 .fl-desc{font-size:.72rem;color:var(--text-light);line-height:1.5;margin-top:2px;}
+
+/* ── 成長段階 ── */
+.level-stack{display:flex;flex-direction:column;gap:8px;padding:16px 20px;}
+.level-item{border-radius:10px;padding:10px 14px;border-left:3px solid;}
+.level-item.healthy{border-color:#7a9c5b;background:#e4f0d8;}
+.level-item.average{border-color:#c9a84c;background:#fdf3d0;}
+.level-item.stress{border-color:var(--rose);background:var(--rose-l);}
+.level-lbl{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;margin-bottom:4px;font-weight:600;}
+.level-item.healthy .level-lbl{color:#3d6e2a;}
+.level-item.average .level-lbl{color:#8a6a20;}
+.level-item.stress .level-lbl{color:var(--rose);}
+.level-txt{font-size:.78rem;color:var(--text-mid);line-height:1.7;}
 
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 .type-hero,.type-section{animation:fadeIn .45s ease both;}
@@ -382,6 +394,21 @@ const COMPAT_INFO = {
   stillwater: {name:'静水',    simple:'穏やかに引き合う', desc:'大きな波はないが、静かに深まる関係。穏やかな安定感の中でゆっくりつながっていける。', color:'#8b7355', bg:'#f0e8dc'},
 };
 
+const LEVELS = {
+  1: {healthy:'相手への愛情を行動で表現しながら、確認への欲求をコントロールできている。自信ある積極性が魅力になる。',average:'確認行動が増えて相手を疲弊させやすい。返信が遅いと不安が高まり、感情が不安定になる。',stress:'確認欲求が暴走。束縛・詰め・試し行動が出る。関係が崩壊する前に傷つけてしまう。'},
+  2: {healthy:'戦略的にアプローチしながら相手への誠実さも持ち合わせている。信頼関係を丁寧に構築できる。',average:'コントロール欲求が強まり、相手に息苦しさを与えやすい。感情的な繋がりが薄くなる。',stress:'相手の行動を監視・管理しようとする。信頼ではなく支配になってしまう。'},
+  3: {healthy:'衝動的だが裏表がなく、パワフルで魅力的。深い信頼関係では強い守護者になる。',average:'衝動が先走り、後から後悔するパターンが多くなる。感情の波が激しく関係が不安定になる。',stress:'怒りと衝動が制御不能に。関係を壊す言動が出やすい。'},
+  4: {healthy:'自然な献身が深い信頼と感謝を生む。相手を高め合える関係を作れる。',average:'尽くしすぎて疲弊。気づいてもらえないと深く傷つくが言えない。',stress:'犠牲意識が高まり、被害者意識と自己放棄が強まる。感情の爆発か、完全な関係放棄かの二択になる。'},
+  5: {healthy:'慎重さが深い信頼関係につながる。一度心を開いた相手への誠実さは比類ない。',average:'疑念が続き、深い関係に踏み込めない。相手を試し続けることで関係が進まない。',stress:'疑心暗鬼が止まらず、孤立する。最後まで踏み込めなかった後悔を繰り返す。'},
+  6: {healthy:'柔軟さと芯の強さが共存。相手を包みながら自分も守れる。深い信頼関係を静かに構築できる。',average:'本音を隠しすぎて相手が困惑する。我慢が限界に達すると突然の離脱になりやすい。',stress:'無言の離反。何も言わず消える。相手を傷つけているとは思っていないが、実際は深く傷つけている。'},
+  7: {healthy:'細やかな気遣いが相手の日常を豊かにする。愛のある安定した環境を作れる。',average:'尽くしすぎて消耗。「なんでこんなに頑張っているのに」という不満が溜まる。',stress:'尽くすことが義務化し、愛情がなくなっても動き続ける。最終的に燃え尽きか関係の崩壊。'},
+  8: {healthy:'安定と信頼を着実に積み上げる。長期的な関係において最も信頼できるパートナーになれる。',average:'変化への恐れが強まり、成長を阻む。型にはまった関係が息苦しくなる。',stress:'変化や新しさを全て「脅威」と見なす。関係が硬直し、相手も自分も苦しくなる。'},
+  9: {healthy:'言葉にせずとも深い安心感を与える存在。どんなときも離れない信頼が唯一無二の価値になる。',average:'感情の言語化ができず、相手が不安になる。「どう思ってるの？」に答えられない。',stress:'頑固さが暴走。相手の気持ちを見えなくなり、ただ「居続ける」だけになる。'},
+  10: {healthy:'感情の豊かさで関係を活性化。常に新鮮な気持ちで相手と向き合える。日常を非日常に変える力がある。',average:'ときめきへの執着が強まり、安定を「退屈」と感じる。浮気や多重関係のリスクが上がる。',stress:'感情の暴走。ときめきを求めて関係を壊してしまう。'},
+  11: {healthy:'前向きなエネルギーで関係を活性化。問題を乗り越える希望と力を与えられる。',average:'楽観が現実逃避になる。問題を直視せず悪化させる。相手の深刻な気持ちを軽く扱ってしまう。',stress:'現実否認が完全になる。逃げ続けることで関係が崩壊する。'},
+  12: {healthy:'自由を愛しながら相手も解放できる。束縛しない愛が相手にとっての安らぎになる。',average:'自由への執着が逃避になる。深まることを恐れて関係が浅いまま終わる。',stress:'衝動的な逃避。関係を突然切り捨て、後悔も前に進む力もなくなる。'},
+};
+
 // ══════════════════════════════════════
 // RENDER
 // ══════════════════════════════════════
@@ -507,6 +534,22 @@ function render() {
         <div class="insight-text"><span class="insight-arrow">↑</span>${type.growth}</div>
       </div>
     </div>`;
+
+  // ── Section 5.5: 成長段階 ──
+  const lvl = LEVELS[typeId];
+  if (lvl) {
+    sections.innerHTML += `
+    <div class="type-section">
+      <div class="ts-block">
+        <div class="ts-head"><span class="ts-icon">◎</span><span class="ts-title">成長段階</span></div>
+        <div class="level-stack">
+          <div class="level-item healthy"><div class="level-lbl">HEALTHY — 健全状態</div><div class="level-txt">${lvl.healthy}</div></div>
+          <div class="level-item average"><div class="level-lbl">AVERAGE — 平均状態</div><div class="level-txt">${lvl.average}</div></div>
+          <div class="level-item stress"><div class="level-lbl">STRESS — ストレス状態</div><div class="level-txt">${lvl.stress}</div></div>
+        </div>
+      </div>
+    </div>`;
+  }
 
   // ── Section 6: 相性タイプ ──
   const compatHtml = Object.keys(COMPAT_INFO).map(relKey => {

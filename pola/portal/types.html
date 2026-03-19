@@ -70,13 +70,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
 /* TYPE CARD */
 .type-card{
   border:1px solid var(--border);border-radius:20px;overflow:hidden;
-  background:var(--paper);margin-bottom:20px;
-  transition:box-shadow .3s;
+  background:var(--paper);margin-bottom:16px;
+  transition:box-shadow .3s,border-color .2s;
+  text-decoration:none;display:block;
 }
-.type-card:hover{box-shadow:0 8px 32px var(--shadow);}
+.type-card:hover{box-shadow:0 8px 32px var(--shadow);border-color:var(--rose);}
 .type-header{
-  padding:22px 24px;border-bottom:1px solid var(--border);
-  display:flex;align-items:flex-start;gap:16px;cursor:pointer;
+  padding:20px 24px;
+  display:flex;align-items:center;gap:16px;
 }
 .type-num{
   font-family:var(--font-d);font-size:2.5rem;font-weight:700;
@@ -88,63 +89,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
 .type-center-badge{font-family:var(--font-m);font-size:.6rem;letter-spacing:.06em;padding:2px 10px;border-radius:100px;font-weight:500;}
 .type-name{font-family:var(--font-d);font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
 .type-oneline{font-family:var(--font-d);font-size:.88rem;font-style:italic;color:var(--text-mid);}
-.type-expand-btn{
+.type-link-arrow{
   margin-left:auto;flex-shrink:0;width:32px;height:32px;border-radius:50%;
   border:1px solid var(--border);background:var(--bg2);
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all .25s;font-size:.9rem;color:var(--text-light);
-  align-self:center;
+  font-size:.9rem;color:var(--text-light);transition:all .25s;
 }
-.type-card.expanded .type-expand-btn{transform:rotate(180deg);background:var(--rose-l);color:var(--rose);}
-
-/* TYPE BODY */
-.type-body{display:none;animation:slideDown .3s ease;}
-@keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:none;}}
-
-.type-sections{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-@media(max-width:580px){.type-sections{grid-template-columns:1fr;}}
-.type-section{padding:18px 22px;border-bottom:1px solid var(--border);}
-.type-section.full{grid-column:1/-1;}
-.ts-label{font-family:var(--font-m);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;display:block;}
-.ts-text{font-size:.82rem;color:var(--text-mid);line-height:1.85;}
-.ts-text strong{color:var(--ink);}
-
-/* BEHAVIOR LIST */
-.beh-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
-.beh-list li{font-size:.8rem;color:var(--text-mid);padding-left:16px;position:relative;line-height:1.7;}
-.beh-list li::before{content:'—';position:absolute;left:0;color:var(--text-light);}
-
-/* LEVEL BARS */
-.level-stack{display:flex;flex-direction:column;gap:8px;}
-.level-item{border-radius:10px;padding:10px 14px;border-left:3px solid;}
-.level-item.healthy{border-color:var(--guts);background:var(--guts-l);}
-.level-item.average{border-color:#c9a84c;background:#fdf3d0;}
-.level-item.stress{border-color:var(--rose);background:var(--rose-l);}
-.level-lbl{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;margin-bottom:4px;font-weight:600;}
-.level-item.healthy .level-lbl{color:#3d6e2a;}
-.level-item.average .level-lbl{color:#8a6a20;}
-.level-item.stress .level-lbl{color:var(--rose-d);}
-.level-txt{font-size:.78rem;color:var(--text-mid);line-height:1.7;}
-
-/* COMPAT HINT */
-.compat-groups{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
-.compat-group{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;}
-.compat-group-label{font-family:var(--font-m);font-size:.6rem;padding:3px 10px;border-radius:100px;border:1px solid var(--border);font-weight:700;min-width:54px;text-align:center;}
-.compat-buttons{display:flex;flex-wrap:wrap;gap:6px;flex:1;}
-.compat-type-link{font-family:var(--font-m);font-size:.62rem;padding:5px 10px;border-radius:100px;border:1px solid var(--border);background:var(--paper);color:var(--text-mid);text-decoration:none;transition:all .2s;}
-.compat-type-link:hover{transform:translateY(-1px);color:var(--ink);}
-
-/* QUOTE */
-.type-quote{
-  font-family:var(--font-d);font-size:.95rem;font-style:italic;
-  color:var(--text-mid);text-align:center;padding:16px 28px;
-  border-top:1px solid var(--border);line-height:1.7;background:var(--bg2);
-}
-
-/* WING PILLS */
-.wing-pills{display:flex;gap:8px;flex-wrap:wrap;}
-.wing-pill{font-family:var(--font-m);font-size:.62rem;padding:4px 12px;border-radius:8px;border:1px solid var(--border);color:var(--text-mid);}
-.wing-pill span{font-weight:700;color:var(--ink);}
+.type-card:hover .type-link-arrow{background:var(--rose-l);color:var(--rose);border-color:var(--rose);transform:translateX(3px);}
 
 /* CTA */
 .bottom-cta{text-align:center;padding:40px 24px;background:#f5f0e8;border-top:1px solid var(--border);}
@@ -305,29 +256,14 @@ const COMPAT_COLORS = {
 const STYLE_LABELS = {Se:'狩猟型',Ni:'共鳴型',Si:'守護型',Ne:'冒険型'};
 const CENTER_ICONS = {heart:'❤',head:'▲',guts:'◆'};
 
-function buildCompatButtons(ids, color) {
-  return ids.map(i => {
-    const target = TYPES.find(type => type.id === i);
-    const label = target ? `${i} ${target.name}` : `${i}`;
-    return `<a class="compat-type-link" href="#type-${i}" style="border-color:${color}44;color:${color};">${label}</a>`;
-  }).join('');
-}
-
 function buildCard(t) {
-  const compatHTML = Object.entries(t.compat).map(([rel,ids]) => `
-    <div class="compat-group">
-      <span class="compat-group-label" style="border-color:${COMPAT_COLORS[rel]};color:${COMPAT_COLORS[rel]};background:${COMPAT_COLORS[rel]}18;">${COMPAT_LABELS[rel]}</span>
-      <div class="compat-buttons">${buildCompatButtons(ids, COMPAT_COLORS[rel])}</div>
-    </div>`).join('');
-
-  const wingsHTML = t.wings.map(w=>`<span class="wing-pill"><span>${w}</span></span>`).join('');
-
-  const card = document.createElement('div');
+  const card = document.createElement('a');
   card.className='type-card';
+  card.href=`../types/?type=${t.id}`;
   card.id=`type-${t.id}`;
   card.dataset.style=t.style;
   card.innerHTML=`
-    <div class="type-header" onclick="toggleCard(${t.id})">
+    <div class="type-header">
       <div class="type-num">${t.id}</div>
       <div class="type-head-body">
         <div class="type-id-row">
@@ -337,66 +273,13 @@ function buildCard(t) {
         <div class="type-name">${t.name}</div>
         <div class="type-oneline">${t.oneline}</div>
       </div>
-      <div class="type-expand-btn">▼</div>
-    </div>
-    <div class="type-body" id="body-${t.id}">
-      <div class="type-sections">
-        <div class="type-section full">
-          <span class="ts-label">Core — 核心動機</span>
-          <div class="ts-text">${t.core}</div>
-        </div>
-        <div class="type-section">
-          <span class="ts-label">Behaviors — 恋愛行動パターン</span>
-          <ul class="beh-list">${t.behaviors.map(b=>`<li>${b}</li>`).join('')}</ul>
-        </div>
-        <div class="type-section">
-          <span class="ts-label">Growth Levels — 成長段階</span>
-          <div class="level-stack">
-            <div class="level-item healthy"><div class="level-lbl">HEALTHY — 健全状態</div><div class="level-txt">${t.levels.healthy}</div></div>
-            <div class="level-item average"><div class="level-lbl">AVERAGE — 平均状態</div><div class="level-txt">${t.levels.average}</div></div>
-            <div class="level-item stress"><div class="level-lbl">STRESS — ストレス状態</div><div class="level-txt">${t.levels.stress}</div></div>
-          </div>
-        </div>
-        <div class="type-section">
-          <span class="ts-label">Compatibility — 相性ヒント</span>
-          <div class="compat-groups">${compatHTML}</div>
-        </div>
-        <div class="type-section full">
-          <span class="ts-label">Wing Subtypes — ウィングサブタイプ</span>
-          <div class="wing-pills">${wingsHTML}</div>
-        </div>
-      </div>
-      <div class="type-quote">"${t.oneline}"</div>
+      <div class="type-link-arrow">→</div>
     </div>`;
   return card;
 }
 
 const container = document.getElementById('typesContainer');
 TYPES.forEach(t => container.appendChild(buildCard(t)));
-
-function toggleCard(id) {
-  const card = document.getElementById(`type-${id}`);
-  const body = document.getElementById(`body-${id}`);
-  const isOpen = card.classList.contains('expanded');
-  card.classList.toggle('expanded');
-  body.style.display = isOpen ? 'none' : 'block';
-}
-
-function openCardFromHash() {
-  if(!location.hash) return;
-  const el = document.querySelector(location.hash);
-  if(!el) return;
-  const id = parseInt(el.id.replace('type-',''));
-  if(isNaN(id)) return;
-  if(el.dataset.style) {
-    filterTypes('all');
-  }
-  if(!el.classList.contains('expanded')) toggleCard(id);
-  setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),100);
-}
-
-openCardFromHash();
-window.addEventListener('hashchange', openCardFromHash);
 
 function filterTypes(style) {
   document.querySelectorAll('.filter-btn').forEach(b => {

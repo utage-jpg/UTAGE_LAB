@@ -641,6 +641,31 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .rft-btn.line-btn:hover{border-color:#06c755;background:#06c755;color:#fff;}
 .rft-btn.back-btn:hover{border-color:var(--rose);color:var(--rose);}
 
+/* ══ REPORT CLOSING SECTION ══ */
+.report-closing{max-width:680px;margin:0 auto 24px;width:calc(100% - 28px);}
+.report-closing-inner{border:1.5px solid var(--type-color,var(--rose));border-radius:20px;
+  overflow:hidden;background:var(--paper);position:relative;}
+.report-closing-hero{padding:36px 24px 28px;text-align:center;
+  background:linear-gradient(160deg,var(--type-color-l,#fae0e8) 0%,var(--bg) 100%);
+  border-bottom:1px solid var(--border);position:relative;}
+.report-closing-hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(255,255,255,.5) 0%,transparent 70%);}
+.report-closing-ornament{font-family:var(--font-m);font-size:.58rem;letter-spacing:.26em;
+  color:var(--type-color,var(--rose));display:block;margin-bottom:14px;position:relative;z-index:1;text-transform:uppercase;}
+.report-closing-insight{font-family:var(--font-d);font-size:clamp(1.05rem,3.8vw,1.35rem);
+  font-style:italic;font-weight:600;color:var(--ink);line-height:1.6;
+  position:relative;z-index:1;margin-bottom:0;}
+.report-closing-body{padding:24px 22px 28px;display:flex;flex-direction:column;gap:16px;}
+.report-closing-text{font-size:.95rem;color:var(--text);line-height:2.1;margin:0;}
+.report-closing-text strong{color:var(--ink);}
+.report-closing-divider{height:1px;background:var(--border);margin:4px 0;}
+.report-closing-sign{font-family:var(--font-d);font-style:italic;font-size:.95rem;
+  color:var(--text-light);text-align:right;}
+
+/* ══ RADAR DESCRIPTION ══ */
+.rpt-radar-desc{margin-top:16px;padding:14px 16px;background:var(--bg2);border-radius:12px;border-left:3px solid var(--type-color,var(--rose));display:flex;flex-direction:column;gap:8px;}
+.rpt-radar-desc p{font-size:.82rem;color:var(--text-mid);line-height:1.85;margin:0;}
+
 /* ══ PREMIUM CTA MAIN (大型・強調CTA) ══ */
 .premium-cta-main{margin:0;padding:28px 20px 24px;text-align:center;
   background:linear-gradient(155deg,#fdf8ec 0%,#f0e0b0 100%);
@@ -1014,7 +1039,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
       <div class="sti-section-label">意中の相手のPolaタイプ <span class="sti-optional">任意</span></div>
       <p class="sti-section-note">相手もPola診断を受けたことがある場合、入力すると相性分析がレポートに追加されます</p>
       <div class="sti-partner-grid" id="stiPartnerGrid"><!-- JS生成 --></div>
-      <button class="sti-partner-skip" onclick="clearPartnerType()">スキップ（相手のタイプは分からない）</button>
+      <p class="sti-section-note" style="margin-top:8px;font-size:.78rem;color:var(--text-light);">※ 相手のタイプが分からない場合は選択しなくて構いません。未選択のままレポートを生成できます。</p>
     </div>
     <button class="btn-sti-submit" id="btnStiSubmit" onclick="submitStatusAndGenerate()" disabled>レポートを生成する →</button>
     <button class="sti-back" onclick="showScreen('screen-report-teaser')">← 戻る</button>
@@ -2574,6 +2599,66 @@ function buildSubtypeChapterHTML() {
           <svg id="reportRadarSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
       </div>
+      <div class="rpt-radar-desc">
+        <p>このレーダーチャートは、あなたの恋愛傾向を7つの軸で表したものです。</p>
+        <p>外側の4軸（Se・Ni・Si・Ne）は恋愛スタイルを、内側の3軸（Heart・Head・Guts）は意思決定の中心をあらわしています。</p>
+        <p>実線があなた個人のスコア、点線がそのタイプの平均値です。平均から大きく外れている軸ほど、あなたの恋愛パターンを強く色づけている要素と言えます。</p>
+        <p>グラフ全体の形が歪であるほど、あなたの恋愛には個性的な強みと、対となる課題が潜んでいます。</p>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ══════════════════════════════════════
+// CLOSING SECTION (有料レポート末尾)
+// ══════════════════════════════════════
+const CLOSING_INSIGHTS = {
+  1:  { insight: '「追いかける情熱」こそがあなたの愛。その熱を、確認の連鎖ではなく、相手を喜ばせることに向けたとき、あなたの恋愛は別次元の深さに達します。', advice: '愛されているか不安になったとき、まず自分が「与えた」かを振り返ってみてください。' },
+  2:  { insight: '安心は、コントロールから生まれるのではなく、信頼から生まれます。あなたが設計した関係ではなく、二人で育てた関係の中にこそ、本当の安らぎがあります。', advice: '相手に主導権を渡す練習を、小さなことから始めてみましょう。' },
+  3:  { insight: '衝動の純粋さがあなたの最大の魅力です。ただ、熱が冷めたあとにも残るものを育てる意識が、長く続く恋愛への扉を開きます。', advice: '「今好き」だけでなく、「なぜ好きか」を言葉にする習慣が関係を深めます。' },
+  4:  { insight: '与え続けることで愛を証明しようとするあなたへ——本当の愛は、受け取ることも含めて完成します。自分が満たされていることが、最高の愛情表現になります。', advice: '相手に「何かしてほしいこと」を一つ正直に伝えることから始めてみてください。' },
+  5:  { insight: '確信を待ち続けると、人生は過ぎていきます。あなたの慎重さは美徳ですが、信頼は踏み出した先にしか育ちません。一歩だけ、先に進んでみてください。', advice: '「完全に確信できたら」ではなく、「少し信じてみよう」を合言葉にしてみましょう。' },
+  6:  { insight: 'あなたの芯の強さは、本物です。その芯を守りながら相手と共存できたとき、誰にも真似できない深い関係が生まれます。静かな主張が、関係を育てます。', advice: '心が離れる前に、小さな違和感を一つ言葉にしてみてください。沈黙より、声の方が関係を守ります。' },
+  7:  { insight: '気づかれなくても動き続けるあなたの愛は、間違いなく本物です。ただ、伝えることも愛の一部。あなたの献身を、相手が知る機会を作ってください。', advice: '「してあげたこと」より「してほしいこと」を一言だけ伝える習慣が、関係のバランスを整えます。' },
+  8:  { insight: '丁寧に積み上げたものは、簡単には崩れません。あなたの誠実さと構築力は、長い時間をかけて相手の心に深く刻まれていきます。焦らず、続けることがあなたの強みです。', advice: '完璧な関係を求めすぎず、「今日も一緒にいる」という事実を大切にしてください。' },
+  9:  { insight: '境界線を持つことは、冷たさではありません。あなたが守る線の内側には、誰にも見せない温かさがあります。その温かさを見せられる相手を、大切にしてください。', advice: '「入ってきていい領域」を少しずつ広げることが、深い関係への鍵になります。' },
+  10: { insight: '可能性を広げ続けることがあなたの本質ですが、選んだ場所に深く根を下ろす経験が、あなたの恋愛を豊かにします。探し続けることと、留まることの両方に価値があります。', advice: '「もっといい出会いがあるかも」ではなく、「今ここにいる人をもっと知りたい」という問いを持ってみてください。' },
+  11: { insight: 'あなたのビジョンと熱量は、確かに相手を引き寄せます。ただ、引き寄せた後に「今、目の前にいる相手」を見る時間を作ることが、関係を育てます。', advice: '会話の中で、自分の話の半分を相手の話に使うことを意識してみてください。' },
+  12: { insight: '深く繋がれる相手を探し続けるあなたへ——深さは、出会いの質ではなく、関わり続ける意志から生まれます。今いる相手との深みを、もう少し掘ってみてください。', advice: '「この人とは分かり合えない」と感じたとき、もう一度だけ自分の言葉で伝え直してみることをお勧めします。' },
+};
+
+function buildClosingSection(typeId, personalBars) {
+  const type = TYPES.find(t => t.id === typeId);
+  if (!type) return '';
+  const ci = CLOSING_INSIGHTS[typeId] || { insight: 'あなたの恋愛には、あなただけの形があります。', advice: 'そのパターンを知ることが、変化の第一歩です。' };
+
+  // personalBars を使って強みの軸を特定
+  const axisLabels = ['情熱軸','共鳴軸','安定軸','探索軸','核心軸'];
+  let topAxis = '';
+  if (personalBars && personalBars.length) {
+    const maxBar = personalBars.reduce((a, b) => a.val > b.val ? a : b, personalBars[0]);
+    if (maxBar && maxBar.label) topAxis = maxBar.label;
+  }
+  const axisNote = topAxis
+    ? `<p class="report-closing-text">あなたのスコアで特に際立っていたのは<strong>「${topAxis}」</strong>の傾向です。この軸があなたの恋愛を動かす最大のエンジンであり、同時に最も意識すべき焦点でもあります。</p><div class="report-closing-divider"></div>`
+    : '';
+
+  return `
+  <div class="report-closing">
+    <div class="report-closing-inner">
+      <div class="report-closing-hero">
+        <span class="report-closing-ornament">— Final Message —</span>
+        <p class="report-closing-insight">「${ci.insight}」</p>
+      </div>
+      <div class="report-closing-body">
+        ${axisNote}
+        <p class="report-closing-text">このレポートを読み終えた今、あなたは自分の恋愛パターンの輪郭を、かなりはっきり掴めているはずです。パターンを知ることは、それを変える力を持つことと同じです。</p>
+        <p class="report-closing-text">ただし、パターンは<strong>「悪いもの」ではありません</strong>。それはあなたが長年かけて築いてきた、自分を守るための知恵です。大切なのは、そのパターンがもたらす結果を意識しながら、自分で選ぶことです。</p>
+        <div class="report-closing-divider"></div>
+        <p class="report-closing-text"><strong>あなたへの一つのアドバイス——</strong><br>${ci.advice}</p>
+        <p class="report-closing-text">恋愛は、自分を知るための最も鮮明な鏡です。あなたがこの診断と向き合ったことは、すでに変化の始まりです。</p>
+        <p class="report-closing-sign">— Pola Research Lab</p>
+      </div>
     </div>
   </div>`;
 }
@@ -2655,7 +2740,10 @@ function buildReport(typeId) {
   // サブタイプ+レーダーチャプター（PROFILE）を最初に追加
   const subtypeChapter = buildSubtypeChapterHTML();
 
-  return subtypeChapter + matrixSection + chaptersHTML;
+  // 締めセクション
+  const closingSection = buildClosingSection(typeId, personalBars);
+
+  return subtypeChapter + matrixSection + chaptersHTML + closingSection;
 }
 
 function calcBarAdjustment(dim) {

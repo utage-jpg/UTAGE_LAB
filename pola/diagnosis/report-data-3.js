@@ -24,7 +24,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:95%"></div></div><span class="rpt-bar-val">95</span></div>
 </div>
 
-<p class="rpt-text"><strong>長期安定志向95という最高値</strong>は、このタイプの核心を象徴しています。あなたは一時的な熱情より、永続する絆を求めます。関係の初期より後半に価値を置き、「5年後も一緒にいること」が愛のゴールです。感情表現度30という数字は感情が薄いのではなく、感情が<u>行動に変換されているだけ</u>です。</p>
+<p class="rpt-text"><strong>長期安定志向が非常に高い</strong>のは、このタイプの核心を象徴しています。あなたは一時的な熱情より、永続する絆を求めます。関係の初期より後半に価値を置き、「5年後も一緒にいること」が愛のゴールです。感情の表現度が低めなのは感情が薄いのではなく、感情が<u>行動に変換されているだけ</u>です。</p>
 
 <div class="rpt-note"><span class="rpt-note-icon">✦</span><p class="rpt-note-text">あなたの恋愛は「語らず証明する」スタイル。そのスタイルの強さと、気をつけるべきポイントをこのレポートで丁寧に解析していきます。</p></div>
 `,
@@ -125,18 +125,13 @@ trigger: `
 compatibility: `
 <p class="rpt-text">ケアテイカータイプは<strong>安定を提供できる相手</strong>に最も深く安心します。同時に、あなたの「言わなくても伝わる」スタイルを理解してくれる相手が必要です。</p>
 
-<div class="rpt-table-wrap">
-  <table class="rpt-table">
-    <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-    <tbody>
-      <tr><td>Type 12</td><td>フリースピリット</td><td>調和：深く補い合える</td><td>★★★★★</td></tr>
-      <tr><td>Type 10</td><td>トラベラー</td><td>双極：引き合うが衝突も</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 11</td><td>エクスプローラー</td><td>双極：刺激と摩擦が共存</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 3</td><td>パイオニア</td><td>並走：同じ方向を向ける</td><td>★★★★☆</td></tr>
-      <tr><td>Type 1</td><td>センチネル</td><td>刺激：成長し合える</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 4</td><td>リフレクター</td><td>静水：穏やかに共存</td><td>★★★☆☆</td></tr>
-    </tbody>
-  </table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 12</span><span class="rpt-compat-card-name">フリースピリット</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：束縛を求めずそこにいるあなたのスタイルが、フリースピリットの自由を守りながら深まれる稀有な関係をつくる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 10</span><span class="rpt-compat-card-name">トラベラー</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">双極：感情の豊かさがあなたに温度をもたらす。変化への要求があなたの安定志向と摩擦を生む場面も。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 11</span><span class="rpt-compat-card-name">エクスプローラー</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">双極：楽観性があなたの日常に軽さをもたらす。あなたのケアをしっかり受け取れると関係が安定する。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 3</span><span class="rpt-compat-card-name">チャレンジャー</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">並走：芯を持ちながら縛り合わないスタイルが共鳴。あなたの存在感が相手の行動力を静かに支える。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 1</span><span class="rpt-compat-card-name">ロマンハンター</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">刺激：情熱を受け取ることでお互いが成長できる。確認行動が強まると消耗するので距離感の調整が鍵。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 4</span><span class="rpt-compat-card-name">エンパス</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">静水：深い感情を共有できる穏やかな関係。言語化が少なくても通じ合えるが、互いの感情確認は意識的に行うと良い。</p></div>
 </div>
 
 <p class="rpt-text"><strong>最も深まりやすいのはフリースピリット（Type 12）</strong>との組み合わせです。フリースピリットは束縛を嫌い自由を求めますが、ケアテイカーの「求めずそこにいる」スタイルは、フリースピリットが最も安心できる愛の形に合致します。</p>
@@ -251,7 +246,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:30%"></div></div><span class="rpt-bar-val">30</span></div>
 </div>
 
-<p class="rpt-text"><strong>感情の表現度95という最高値</strong>は、このタイプを象徴しています。感情は隠さず、むしろ豊かに表現することで関係に温度と彩りを与えます。行動の積極性75も高く、「いい」と思ったら迷わず動ける。長期安定志向が30と低いのは、「長続きしたくない」ではなく——<u>安定した状態より動きのある状態に生命力を感じる</u>からです。</p>
+<p class="rpt-text"><strong>感情の表現度が非常に高い</strong>のは、このタイプを象徴しています。感情は隠さず、むしろ豊かに表現することで関係に温度と彩りを与えます。行動の積極性も高く、「いい」と思ったら迷わず動ける。長期安定志向が低めなのは、「長続きしたくない」ではなく——<u>安定した状態より動きのある状態に生命力を感じる</u>からです。</p>
 `,
 
 attraction: `
@@ -348,18 +343,13 @@ trigger: `
 compatibility: `
 <p class="rpt-text">トラベラータイプは<strong>感情を受け取り返してくれる相手</strong>に深く惹かれます。あなたの豊かな感情表現を「重い」と感じず、それを喜びとして受け取れる相手が、最も深まりやすい存在です。</p>
 
-<div class="rpt-table-wrap">
-  <table class="rpt-table">
-    <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-    <tbody>
-      <tr><td>Type 7</td><td>ガーディアン</td><td>調和：感情と安定の理想的な補完</td><td>★★★★★</td></tr>
-      <tr><td>Type 8</td><td>アーキテクト</td><td>双極：強烈な引力と摩擦</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 9</td><td>ケアテイカー</td><td>双極：あなたの感情を受け止める安定</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 4</td><td>リフレクター</td><td>並走：感情の深さを共有できる</td><td>★★★★☆</td></tr>
-      <tr><td>Type 5</td><td>オブザーバー</td><td>刺激：見えない部分への好奇心</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 1</td><td>センチネル</td><td>静水：穏やかな共存</td><td>★★☆☆☆</td></tr>
-    </tbody>
-  </table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 7</span><span class="rpt-compat-card-name">ガーディアン</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：あなたの感情表現をガーディアンが喜んで受け止める理想の補完。互いに持っていないものを見出せる関係。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 8</span><span class="rpt-compat-card-name">アーキテクト</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">双極：強烈な引力があるが、構造への執着があなたの感情の流れと摩擦を生む場面も。理解が深まれば大きな安定が生まれる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 9</span><span class="rpt-compat-card-name">ケアテイカー</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">双極：安定した受け止め方があなたの感情の波を支える。感謝を言語化する習慣があるとより深まる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 4</span><span class="rpt-compat-card-name">エンパス</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">並走：感情の深さを共有でき、互いの感情を言語化できる稀少なペア。共感の連鎖が関係を豊かにする。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 5</span><span class="rpt-compat-card-name">オブザーバー</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">刺激：見えない部分への好奇心が引力を生む。信頼関係が築かれると互いの違いが豊かさに変わる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 1</span><span class="rpt-compat-card-name">ロマンハンター</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">静水：最初の引力は強いが、確認行動の強さがあなたの感情のペースと合わないことがある。距離感の調整が重要。</p></div>
 </div>
 
 <p class="rpt-text"><strong>最も深まりやすいのはガーディアン（Type 7）</strong>との組み合わせです。ガーディアンはあなたの感情表現を喜び、安定した形で受け止めることができます。あなたが感情を豊かに出すことで、ガーディアンはより深い感情の世界へ引き出されます。お互いが相手の中に「持っていないもの」を見出す、理想的な補完関係です。</p>
@@ -472,7 +462,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:40%"></div></div><span class="rpt-bar-val">40</span></div>
 </div>
 
-<p class="rpt-text"><strong>独立性・自由欲求70と行動の積極性70が並んでいる</strong>のは、このタイプの行動スタイルをよく表しています。自分のペースで動き、やりたいと思ったら積極的に動ける——しかし束縛されることには強い抵抗を感じます。確認・安心欲求45という数字は、<u>不安はあるがそれを「きっとうまくいく」で処理している</u>ことを示しています。</p>
+<p class="rpt-text"><strong>独立性・自由欲求と行動の積極性がともに高め</strong>なのは、このタイプの行動スタイルをよく表しています。自分のペースで動き、やりたいと思ったら積極的に動ける——しかし束縛されることには強い抵抗を感じます。確認・安心欲求が中程度なのは、<u>不安はあるがそれを「きっとうまくいく」で処理している</u>ことを示しています。</p>
 `,
 
 attraction: `
@@ -565,18 +555,13 @@ trigger: `
 compatibility: `
 <p class="rpt-text">エクスプローラータイプは<strong>共に可能性を探索できる相手</strong>に最も深く惹かれます。一緒にいることで自分が広がっていく感覚が、関係継続の最大のモチベーションです。</p>
 
-<div class="rpt-table-wrap">
-  <table class="rpt-table">
-    <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-    <tbody>
-      <tr><td>Type 8</td><td>アーキテクト</td><td>調和：ビジョンと構造の理想的な組み合わせ</td><td>★★★★★</td></tr>
-      <tr><td>Type 7</td><td>ガーディアン</td><td>双極：楽観と感情の深い緊張</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 9</td><td>ケアテイカー</td><td>双極：自由と安定の引力</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 5</td><td>オブザーバー</td><td>並走：深い思考を共有できる</td><td>★★★★☆</td></tr>
-      <tr><td>Type 4</td><td>リフレクター</td><td>刺激：感情の深みへ誘われる</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 1</td><td>センチネル</td><td>静水：安定した共存</td><td>★★☆☆☆</td></tr>
-    </tbody>
-  </table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 8</span><span class="rpt-compat-card-name">アーキテクト</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：あなたのビジョンにアーキテクトが構造と実現性を与える理想の組み合わせ。互いが持っていないものを補い合える。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 7</span><span class="rpt-compat-card-name">ガーディアン</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">双極：あなたの楽観性とガーディアンの感情の深さが緊張と引力を生む。理解が深まれば豊かな関係に。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 9</span><span class="rpt-compat-card-name">ケアテイカー</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">双極：自由と安定の引力が働く。ケアテイカーの存在感があなたに安心をもたらすが、安定を求める傾向が息苦しさになる場合も。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 5</span><span class="rpt-compat-card-name">オブザーバー</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">並走：深い思考と独自の視点を共有できる。互いの観察力が噛み合うと、知的で豊かな関係が生まれる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 4</span><span class="rpt-compat-card-name">エンパス</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">刺激：深い感情の世界に誘われ、あなたの楽観性が相手の重さを軽くする。感情の言語化を意識すると良い。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 1</span><span class="rpt-compat-card-name">ロマンハンター</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">静水：引力はあるが、確認行動の強さがあなたの自由なペースに合わないことが多い。距離感の設定が関係の鍵。</p></div>
 </div>
 
 <p class="rpt-text"><strong>最も深まりやすいのはアーキテクト（Type 8）</strong>との組み合わせです。アーキテクトはあなたの広がるビジョンに構造と実現性を与え、あなたはアーキテクトに可能性の広さを見せます。互いが持っていないものを補い合える関係です。</p>
@@ -689,7 +674,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:25%"></div></div><span class="rpt-bar-val">25</span></div>
 </div>
 
-<p class="rpt-text"><strong>独立性・自由欲求95という最高値</strong>は、このタイプにとって自由が酸素と同じであることを示しています。なければ生きられない。確認・安心欲求30は、あなたが感情的な確認を必要としていないのではなく——<u>確認のために自由が制限されることを本能的に恐れている</u>ということです。感情表現度70は、自由な環境では豊かに感情を出せる能力があることを示しています。</p>
+<p class="rpt-text"><strong>独立性・自由欲求が非常に高い</strong>のは、このタイプにとって自由が酸素と同じであることを示しています。なければ生きられない。確認・安心欲求が低めなのは、あなたが感情的な確認を必要としていないのではなく——<u>確認のために自由が制限されることを本能的に恐れている</u>ということです。感情の表現度が高めなのは、自由な環境では豊かに感情を出せる能力があることを示しています。</p>
 `,
 
 attraction: `
@@ -784,18 +769,13 @@ trigger: `
 compatibility: `
 <p class="rpt-text">フリースピリットタイプは<strong>「縛らない愛し方」を本能的に理解している相手</strong>に最も深く安心します。「一緒にいたいから一緒にいる」という選択を、毎回尊重してくれる相手が必要です。</p>
 
-<div class="rpt-table-wrap">
-  <table class="rpt-table">
-    <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-    <tbody>
-      <tr><td>Type 9</td><td>ケアテイカー</td><td>調和：求めずそこにいる安心感</td><td>★★★★★</td></tr>
-      <tr><td>Type 7</td><td>ガーディアン</td><td>双極：感情の深さへの引力と摩擦</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 8</td><td>アーキテクト</td><td>双極：自律性同士の強烈な惹き合い</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 6</td><td>フェイタリスト</td><td>並走：自由な価値観の共鳴</td><td>★★★★☆</td></tr>
-      <tr><td>Type 4</td><td>リフレクター</td><td>刺激：感情の深みへの誘い</td><td>★★★☆☆</td></tr>
-      <tr><td>Type 1</td><td>センチネル</td><td>静水：安定した穏やかな共存</td><td>★★☆☆☆</td></tr>
-    </tbody>
-  </table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 9</span><span class="rpt-compat-card-name">ケアテイカー</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：求めずそこにいるケアテイカーのスタイルが、あなたの自由を守りながら深まれる稀有な安心感をもたらす。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 7</span><span class="rpt-compat-card-name">ガーディアン</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">双極：感情の深さへの引力がある。ガーディアンの安定感とあなたの自由志向の間のバランスが関係の質を決める。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 8</span><span class="rpt-compat-card-name">アーキテクト</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">双極：自律性同士の強烈な引力がある。お互いの「縛らない」姿勢が合えば深まるが、価値観の摩擦には早めの対話が重要。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 6</span><span class="rpt-compat-card-name">フェイタリスト</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">並走：自由を大切にする価値観が共鳴。芯を持ちながら縛り合わないスタイルがあなたにとって最も息苦しくない関係をつくる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 4</span><span class="rpt-compat-card-name">エンパス</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">刺激：深い感情の世界へ誘われ、あなたが得意でない感情の表現を引き出してもらえる。確認欲求が強まると息苦しさも。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 1</span><span class="rpt-compat-card-name">ロマンハンター</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">静水：穏やかに共存できるが、確認行動の積み重ねがあなたの自由感覚を徐々に侵食しやすい。意識的な距離感の設定が必須。</p></div>
 </div>
 
 <p class="rpt-text"><strong>最も深まりやすいのはケアテイカー（Type 9）</strong>との組み合わせです。ケアテイカーは「求めずそこにいる」スタイルを持ち、追いかけずに静かに存在し続けます。この在り方は、フリースピリットにとって「自由を守りながら深められる稀有な関係」として機能します。</p>

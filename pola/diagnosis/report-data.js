@@ -24,7 +24,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:50%"></div></div><span class="rpt-bar-val">50</span></div>
 </div>
 
-<p class="rpt-text">確認欲求が<strong>95</strong>という非常に高いスコアであることに注目してください。これはあなたが「重い」「依存的」であるということではなく、<u>愛を行動で確かめようとする傾向が極めて強い</u>ことを示しています。このスコアが高ければ高いほど、パートナーへの反応の解釈が精密で、微細な変化に敏感になります。その鋭さは才能でもあり、消耗の源でもあります。</p>
+<p class="rpt-text">確認・安心欲求が<strong>非常に高い傾向</strong>にあることに注目してください。これはあなたが「重い」「依存的」であるということではなく、<u>愛を行動で確かめようとする傾向が極めて強い</u>ことを示しています。この傾向が強ければ強いほど、パートナーへの反応の解釈が精密で、微細な変化に敏感になります。その鋭さは才能でもあり、消耗の源でもあります。</p>
 
 <div class="rpt-note"><span class="rpt-note-icon">◌</span><p class="rpt-note-text">このレポートはあなたの「傾向」を分析したものです。傾向は変えられます。ただし変えるためには、まず自分の傾向を精確に理解することが最初のステップです。</p></div>
 `,
@@ -96,18 +96,13 @@ trigger: `
 compatibility: `
 <p class="rpt-text">あなたとの相性は、<strong>「あなたの強度と確認欲求をどう受け取れるか」</strong>で大きく変わります。以下の相性表は、各タイプとの関係性の傾向を示しています。ただし、すべての関係は個人によって異なります。これはあくまで傾向の参考です。</p>
 
-<div class="rpt-table-wrap">
-<table class="rpt-table">
-  <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-  <tbody>
-    <tr><td>Type 4</td><td>エンパス</td><td>調和：「追う×受容」の極性が完璧に噛み合う。あなたの熱量を喜んで受け取るタイプ。</td><td>★★★★★</td></tr>
-    <tr><td>Type 5</td><td>オブザーバー</td><td>刺激：信頼に時間をかける慎重さが引力を持続させる。深まった後の安定感は最高クラス。</td><td>★★★★☆</td></tr>
-    <tr><td>Type 6</td><td>フェイタリスト</td><td>刺激：芯のある穏やかさがあなたを落ち着かせる。束縛しすぎると静かに引いていく点に注意。</td><td>★★★☆☆</td></tr>
-    <tr><td>Type 7</td><td>ガーディアン</td><td>摩擦：行動で愛を示すType 7と言葉で確認したいあなたの間に愛情言語のズレが生じやすい。</td><td>★★☆☆☆</td></tr>
-    <tr><td>Type 2</td><td>ストラテジスト</td><td>摩擦：同じ積極性スタイル同士の主導権争いで消耗しやすい。</td><td>★★☆☆☆</td></tr>
-    <tr><td>Type 10-12</td><td>冒険型</td><td>困難：あなたの確認行動が「束縛」として感じられ、冒険型が離れていくパターンになりやすい。</td><td>★☆☆☆☆</td></tr>
-  </tbody>
-</table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 4</span><span class="rpt-compat-card-name">エンパス</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：「追う×受容」の極性が完璧に噛み合う。あなたの熱量を喜んで受け取るタイプ。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 5</span><span class="rpt-compat-card-name">オブザーバー</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">刺激：信頼に時間をかける慎重さが引力を持続させる。深まった後の安定感は最高クラス。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 6</span><span class="rpt-compat-card-name">フェイタリスト</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">刺激：芯のある穏やかさがあなたを落ち着かせる。束縛しすぎると静かに引いていく点に注意。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 7</span><span class="rpt-compat-card-name">ガーディアン</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">摩擦：行動で愛を示すType 7と言葉で確認したいあなたの間に愛情言語のズレが生じやすい。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 2</span><span class="rpt-compat-card-name">ストラテジスト</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">摩擦：同じ積極性スタイル同士の主導権争いで消耗しやすい。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 10-12</span><span class="rpt-compat-card-name">冒険型</span><span class="rpt-compat-card-stars">★☆☆☆☆</span></div><p class="rpt-compat-card-desc">困難：あなたの確認行動が「束縛」として感じられ、冒険型が離れていくパターンになりやすい。</p></div>
 </div>
 
 <p class="rpt-text">あなたにとって理想的なパートナーの条件は、<strong>「受け取り上手で、あなたの強度を圧力でなく愛情として感じられる人」</strong>です。あなたの確認を「重い」と感じずに「この人は私のことが本当に好きなんだ」と感じられる人——そのような人との関係では、あなたは本来の魅力を最大限に発揮できます。</p>
@@ -180,7 +175,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:85%"></div></div><span class="rpt-bar-val">85</span></div>
 </div>
 
-<p class="rpt-text"><strong>感情表現度が40</strong>であることに注目してください。これはあなたが感情を持っていないのではありません。感情を「表現すること」に慎重であるということです。なぜなら感情を見せることは、あなたにとって<u>コントロールを手放すこと</u>と直結しているからです。感情的になることで判断が歪むことへの、本能的な恐怖があります。</p>
+<p class="rpt-text"><strong>感情の表現度が低め</strong>であることに注目してください。これはあなたが感情を持っていないのではありません。感情を「表現すること」に慎重であるということです。なぜなら感情を見せることは、あなたにとって<u>コントロールを手放すこと</u>と直結しているからです。感情的になることで判断が歪むことへの、本能的な恐怖があります。</p>
 `,
 
 attraction: `
@@ -241,17 +236,12 @@ trigger: `
 compatibility: `
 <p class="rpt-text">あなたとの相性は<strong>「どれだけ一貫性と予測可能性を持った人か」</strong>で大きく変わります。あなたのコントロール傾向を「設計への参加」として楽しめる人が、最もうまくいきます。</p>
 
-<div class="rpt-table-wrap">
-<table class="rpt-table">
-  <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-  <tbody>
-    <tr><td>Type 5</td><td>オブザーバー</td><td>調和：同じ「信頼の言語」を持つ者同士。深まった後の安定感は12タイプ最高クラス。</td><td>★★★★★</td></tr>
-    <tr><td>Type 8</td><td>アーキテクト</td><td>補完：安定構造への価値観が共鳴。Type 8の行動的愛情をあなたが受け取る形に。</td><td>★★★★☆</td></tr>
-    <tr><td>Type 4</td><td>エンパス</td><td>刺激：Type 4の委ねるスタイルがあなたの主導権欲求に応える。感情を受け取る練習の場にもなる。</td><td>★★★☆☆</td></tr>
-    <tr><td>Type 3</td><td>チャレンジャー</td><td>摩擦：衝動性があなたの設計を常に崩す。しかし引力は強い。高摩擦・高報酬型。</td><td>★★☆☆☆</td></tr>
-    <tr><td>Type 10-12</td><td>冒険型</td><td>困難：予測不能さがあなたの安心システムを常に刺激し続ける。長期では消耗が積み重なる。</td><td>★☆☆☆☆</td></tr>
-  </tbody>
-</table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 5</span><span class="rpt-compat-card-name">オブザーバー</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：同じ「信頼の言語」を持つ者同士。深まった後の安定感は12タイプ最高クラス。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 8</span><span class="rpt-compat-card-name">アーキテクト</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">補完：安定構造への価値観が共鳴。Type 8の行動的愛情をあなたが受け取る形に。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 4</span><span class="rpt-compat-card-name">エンパス</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">刺激：Type 4の委ねるスタイルがあなたの主導権欲求に応える。感情を受け取る練習の場にもなる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 3</span><span class="rpt-compat-card-name">チャレンジャー</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">摩擦：衝動性があなたの設計を常に崩す。しかし引力は強い。高摩擦・高報酬型。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 10-12</span><span class="rpt-compat-card-name">冒険型</span><span class="rpt-compat-card-stars">★☆☆☆☆</span></div><p class="rpt-compat-card-desc">困難：予測不能さがあなたの安心システムを常に刺激し続ける。長期では消耗が積み重なる。</p></div>
 </div>
 
 <p class="rpt-text">あなたに最も必要なパートナーの条件は、<strong>「一貫性があり、あなたの設計に全参加はしないが頭ごなしに否定もしない人」</strong>です。あなたの構造を理解しつつ、それに縛られない余地を保てる人との関係は、あなたに安心と自由の両方をもたらします。</p>
@@ -314,7 +304,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:35%"></div></div><span class="rpt-bar-val">35</span></div>
 </div>
 
-<p class="rpt-text"><strong>確認・安心欲求が20</strong>という非常に低いスコアは、あなたがそもそも「誰かから確認をもらうことで安心する」タイプではないことを示しています。あなたの安心は外からではなく、<u>「自分でいられているかどうか」</u>というただ一点から来ます。自分を曲げていない、本音で生きている——この感覚こそが、あなたにとっての最大の安心なのです。</p>
+<p class="rpt-text"><strong>確認・安心欲求が非常に低い</strong>のは、あなたがそもそも「誰かから確認をもらうことで安心する」タイプではないことを示しています。あなたの安心は外からではなく、<u>「自分でいられているかどうか」</u>というただ一点から来ます。自分を曲げていない、本音で生きている——この感覚こそが、あなたにとっての最大の安心なのです。</p>
 `,
 
 attraction: `
@@ -375,18 +365,13 @@ trigger: `
 compatibility: `
 <p class="rpt-text">あなたとの相性は<strong>「あなたの自由を侵食せずに、深い関係を築けるか」</strong>という一点で大きく変わります。あなたの自由と自律性を尊重しながら、それでも確かな絆を育てられる相手が理想です。</p>
 
-<div class="rpt-table-wrap">
-<table class="rpt-table">
-  <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-  <tbody>
-    <tr><td>Type 6</td><td>フェイタリスト</td><td>調和：芯を持ちながら縛り合わないスタイルが完璧に共鳴。「深まっても自由でいられる」体験がしやすい。</td><td>★★★★★</td></tr>
-    <tr><td>Type 9</td><td>ケアテイカー</td><td>刺激：「求めずそこにいる」存在感があなたに安心と余白を与える。言葉で縛らない関係が自然に成立。</td><td>★★★★☆</td></tr>
-    <tr><td>Type 12</td><td>フリースピリット</td><td>補完：自由の価値観が共鳴。ただしどちらも「深まる怖さ」を持つため、踏み出す勇気が必要。</td><td>★★★☆☆</td></tr>
-    <tr><td>Type 4</td><td>エンパス</td><td>摩擦：深い共感力に引き寄せられるが、確認欲求と「察して」傾向があなたの自由感覚と衝突しやすい。</td><td>★★☆☆☆</td></tr>
-    <tr><td>Type 1</td><td>ロマンハンター</td><td>困難：確認行動が最も強烈なトリガー。最初の引力は強いが、確認の積み重ねで急速に息苦しくなる。</td><td>★☆☆☆☆</td></tr>
-    <tr><td>Type 2</td><td>ストラテジスト</td><td>困難：管理・設計の傾向があなたの自由欲求と根本的に衝突。長期維持は大きな努力を要する。</td><td>★☆☆☆☆</td></tr>
-  </tbody>
-</table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 6</span><span class="rpt-compat-card-name">フェイタリスト</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：芯を持ちながら縛り合わないスタイルが完璧に共鳴。「深まっても自由でいられる」体験がしやすい。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 9</span><span class="rpt-compat-card-name">ケアテイカー</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">刺激：「求めずそこにいる」存在感があなたに安心と余白を与える。言葉で縛らない関係が自然に成立。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 12</span><span class="rpt-compat-card-name">フリースピリット</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">補完：自由の価値観が共鳴。ただしどちらも「深まる怖さ」を持つため、踏み出す勇気が必要。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 4</span><span class="rpt-compat-card-name">エンパス</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">摩擦：深い共感力に引き寄せられるが、確認欲求と「察して」傾向があなたの自由感覚と衝突しやすい。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 1</span><span class="rpt-compat-card-name">ロマンハンター</span><span class="rpt-compat-card-stars">★☆☆☆☆</span></div><p class="rpt-compat-card-desc">困難：確認行動が最も強烈なトリガー。最初の引力は強いが、確認の積み重ねで急速に息苦しくなる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 2</span><span class="rpt-compat-card-name">ストラテジスト</span><span class="rpt-compat-card-stars">★☆☆☆☆</span></div><p class="rpt-compat-card-desc">困難：管理・設計の傾向があなたの自由欲求と根本的に衝突。長期維持は大きな努力を要する。</p></div>
 </div>
 `,
 
@@ -450,7 +435,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:65%"></div></div><span class="rpt-bar-val">65</span></div>
 </div>
 
-<p class="rpt-text"><strong>独立性が20</strong>というスコアは、あなたが他者との関係を通じて自分の位置を確認する傾向が強いことを示しています。誰かのために動いているとき、誰かに必要とされているとき、関係の中にいるとき——この状態があなたに「ここにいていい」という感覚をもたらします。逆に、誰かを必要としていない状態では、どこか手持ち無沙汰な、居場所のない感覚になりやすい。</p>
+<p class="rpt-text"><strong>独立性・自由欲求が非常に低い</strong>のは、あなたが他者との関係を通じて自分の位置を確認する傾向が強いことを示しています。誰かのために動いているとき、誰かに必要とされているとき、関係の中にいるとき——この状態があなたに「ここにいていい」という感覚をもたらします。逆に、誰かを必要としていない状態では、どこか手持ち無沙汰な、居場所のない感覚になりやすい。</p>
 `,
 
 attraction: `
@@ -511,16 +496,11 @@ trigger: `
 compatibility: `
 <p class="rpt-text">あなたとの相性は<strong>「あなたが尽くすだけの関係にならず、対等に受け取り合えるか」</strong>という点で大きく変わります。あなたの共感力を「圧」として感じない人、あなたが尽くすことに罪悪感を感じない人が最も合います。</p>
 
-<div class="rpt-table-wrap">
-<table class="rpt-table">
-  <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-  <tbody>
-    <tr><td>Type 1</td><td>ロマンハンター</td><td>調和：「追う×受容」の極性が完璧に噛み合う。Type 1の熱量をあなたが喜んで受け取れる。</td><td>★★★★★</td></tr>
-    <tr><td>Type 10</td><td>トラベラー</td><td>補完：感情の豊かさ同士が共鳴。ただしType 10の特別感要求があなたに「もっと尽くさねば」の圧をかけることも。</td><td>★★★★☆</td></tr>
-    <tr><td>Type 11</td><td>エクスプローラー</td><td>成長型：楽観性があなたの深い感情を「重い」と感じる場合も。相互理解が深まると豊かな関係に。</td><td>★★★☆☆</td></tr>
-    <tr><td>Type 7-9</td><td>守護型</td><td>摩擦：互いに相手のために動く者同士で空転しやすい。「受け取られていない」と感じやすいので言語化が必須。</td><td>★★☆☆☆</td></tr>
-  </tbody>
-</table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 1</span><span class="rpt-compat-card-name">ロマンハンター</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：「追う×受容」の極性が完璧に噛み合う。Type 1の熱量をあなたが喜んで受け取れる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 10</span><span class="rpt-compat-card-name">トラベラー</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">補完：感情の豊かさ同士が共鳴。ただしType 10の特別感要求があなたに「もっと尽くさねば」の圧をかけることも。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 11</span><span class="rpt-compat-card-name">エクスプローラー</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">成長型：楽観性があなたの深い感情を「重い」と感じる場合も。相互理解が深まると豊かな関係に。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 7-9</span><span class="rpt-compat-card-name">守護型</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">摩擦：互いに相手のために動く者同士で空転しやすい。「受け取られていない」と感じやすいので言語化が必須。</p></div>
 </div>
 
 <p class="rpt-text">あなたにとって理想的なパートナーの条件は、<strong>「あなたが尽くしてくれることを当然と思わず、きちんと受け取って表現できる人」</strong>です。感謝を言葉にできる人、あなたの努力を見える形で認めてくれる人——それだけで、あなたの恋愛の質は劇的に変わります。</p>

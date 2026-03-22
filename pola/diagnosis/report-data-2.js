@@ -24,7 +24,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:80%"></div></div><span class="rpt-bar-val">80</span></div>
 </div>
 
-<p class="rpt-text"><strong>行動の積極性が25</strong>というスコアは、あなたが受け身だということではありません。動く前に確認が必要なのです。信頼の証拠が揃う前に動くことに、強い抵抗を感じます。この慎重さは、<u>一度深く傷ついた経験が源にあることが多い</u>です。信じたのに裏切られた、開いたのに拒絶された——その経験が、この慎重なプロセスを作り上げてきました。</p>
+<p class="rpt-text"><strong>行動の積極性が低め</strong>なのは、あなたが受け身だということではありません。動く前に確認が必要なのです。信頼の証拠が揃う前に動くことに、強い抵抗を感じます。この慎重さは、<u>一度深く傷ついた経験が源にあることが多い</u>です。信じたのに裏切られた、開いたのに拒絶された——その経験が、この慎重なプロセスを作り上げてきました。</p>
 `,
 
 attraction: `
@@ -82,17 +82,12 @@ trigger: `
 compatibility: `
 <p class="rpt-text">あなたとの相性は<strong>「あなたの観察期間を辛抱強く待てるか、そして一貫性を持って行動し続けられるか」</strong>という点で決まります。</p>
 
-<div class="rpt-table-wrap">
-<table class="rpt-table">
-  <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-  <tbody>
-    <tr><td>Type 2</td><td>ストラテジスト</td><td>調和：同じ「信頼の言語」同士。深まった後の安定感は12タイプ最高クラス。</td><td>★★★★★</td></tr>
-    <tr><td>Type 8</td><td>アーキテクト</td><td>補完：一貫した行動が評価プロセスを通過しやすく、安定志向の価値観も共鳴。</td><td>★★★★☆</td></tr>
-    <tr><td>Type 6</td><td>フェイタリスト</td><td>刺激：静かな芯の強さが「信頼できる」確信を与える。ゆっくり深まるスタイルが共鳴。</td><td>★★★☆☆</td></tr>
-    <tr><td>Type 1</td><td>ロマンハンター</td><td>摩擦：確認行動が評価中のあなたを刺激しやすく、信頼評価に影響することも。</td><td>★★☆☆☆</td></tr>
-    <tr><td>Type 10-12</td><td>冒険型</td><td>困難：行動の一貫性のなさが「信頼できない」シグナルとして評価プロセスで積み重なる。</td><td>★☆☆☆☆</td></tr>
-  </tbody>
-</table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 2</span><span class="rpt-compat-card-name">ストラテジスト</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：同じ「信頼の言語」同士。深まった後の安定感は12タイプ最高クラス。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 8</span><span class="rpt-compat-card-name">アーキテクト</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">補完：一貫した行動が評価プロセスを通過しやすく、安定志向の価値観も共鳴。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 6</span><span class="rpt-compat-card-name">フェイタリスト</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">刺激：静かな芯の強さが「信頼できる」確信を与える。ゆっくり深まるスタイルが共鳴。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 1</span><span class="rpt-compat-card-name">ロマンハンター</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">摩擦：確認行動が評価中のあなたを刺激しやすく、信頼評価に影響することも。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 10-12</span><span class="rpt-compat-card-name">冒険型</span><span class="rpt-compat-card-stars">★☆☆☆☆</span></div><p class="rpt-compat-card-desc">困難：行動の一貫性のなさが「信頼できない」シグナルとして評価プロセスで積み重なる。</p></div>
 </div>
 `,
 
@@ -147,7 +142,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:55%"></div></div><span class="rpt-bar-val">55</span></div>
 </div>
 
-<p class="rpt-text">独立性が75と高いにもかかわらず、確認欲求が35と低い——この組み合わせが示しているのは、<u>あなたの安心の源が「外からの確認」ではなく「自分の内側の感覚」から来ている</u>ということです。「自分でいられている感覚」があれば安心できる。その感覚が揺らいだとき、不安が生まれます。</p>
+<p class="rpt-text">独立性・自由欲求が高いにもかかわらず、確認・安心欲求が低め——この組み合わせが示しているのは、<u>あなたの安心の源が「外からの確認」ではなく「自分の内側の感覚」から来ている</u>ということです。「自分でいられている感覚」があれば安心できる。その感覚が揺らいだとき、不安が生まれます。</p>
 `,
 
 attraction: `
@@ -201,17 +196,12 @@ trigger: `
 `,
 
 compatibility: `
-<div class="rpt-table-wrap">
-<table class="rpt-table">
-  <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-  <tbody>
-    <tr><td>Type 3</td><td>チャレンジャー</td><td>調和：芯を持ちながら縛り合わないスタイルが完璧に共鳴。互いに「深まっても自分でいられる」体験をもたらし合える。</td><td>★★★★★</td></tr>
-    <tr><td>Type 9</td><td>ケアテイカー</td><td>補完：静かな存在感があなたの「自分でいられる」感覚を支える。言葉が少なくても通じ合える関係が自然に成立。</td><td>★★★★☆</td></tr>
-    <tr><td>Type 12</td><td>フリースピリット</td><td>刺激：自由への価値観が共鳴。両者とも言語化が少ない傾向があるため、意識的なコミュニケーションが関係の鍵。</td><td>★★★☆☆</td></tr>
-    <tr><td>Type 4-5</td><td>共鳴型</td><td>摩擦：あなたの「読みにくさ」が確認欲求を刺激しやすい。少し多めの言語化が関係を安定させる。</td><td>★★☆☆☆</td></tr>
-    <tr><td>Type 1-2</td><td>積極型</td><td>困難：コントロールや確認行動があなたの「自分でいる感覚」を侵食しやすい。長期では摩擦が増す。</td><td>★☆☆☆☆</td></tr>
-  </tbody>
-</table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 3</span><span class="rpt-compat-card-name">チャレンジャー</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：芯を持ちながら縛り合わないスタイルが完璧に共鳴。互いに「深まっても自分でいられる」体験をもたらし合える。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 9</span><span class="rpt-compat-card-name">ケアテイカー</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">補完：静かな存在感があなたの「自分でいられる」感覚を支える。言葉が少なくても通じ合える関係が自然に成立。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 12</span><span class="rpt-compat-card-name">フリースピリット</span><span class="rpt-compat-card-stars">★★★☆☆</span></div><p class="rpt-compat-card-desc">刺激：自由への価値観が共鳴。両者とも言語化が少ない傾向があるため、意識的なコミュニケーションが関係の鍵。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 4-5</span><span class="rpt-compat-card-name">共鳴型</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">摩擦：あなたの「読みにくさ」が確認欲求を刺激しやすい。少し多めの言語化が関係を安定させる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 1-2</span><span class="rpt-compat-card-name">積極型</span><span class="rpt-compat-card-stars">★☆☆☆☆</span></div><p class="rpt-compat-card-desc">困難：コントロールや確認行動があなたの「自分でいる感覚」を侵食しやすい。長期では摩擦が増す。</p></div>
 </div>
 `,
 
@@ -262,7 +252,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:85%"></div></div><span class="rpt-bar-val">85</span></div>
 </div>
 
-<p class="rpt-text"><strong>感情表現度が35</strong>というスコアは、感情を「行動に変換する」傾向の強さを示しています。喜びも不安も感謝も、言葉より行動で表現するのがあなたのデフォルトです。これは文化的・育ちの影響もありますが、<u>感情を言語化することへの苦手意識</u>が多くの場合あります。</p>
+<p class="rpt-text"><strong>感情の表現度が低め</strong>なのは、感情を「行動に変換する」傾向の強さを示しています。喜びも不安も感謝も、言葉より行動で表現するのがあなたのデフォルトです。これは文化的・育ちの影響もありますが、<u>感情を言語化することへの苦手意識</u>が多くの場合あります。</p>
 `,
 
 attraction: `
@@ -316,16 +306,11 @@ trigger: `
 `,
 
 compatibility: `
-<div class="rpt-table-wrap">
-<table class="rpt-table">
-  <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-  <tbody>
-    <tr><td>Type 10</td><td>トラベラー</td><td>調和：感情の豊かさと感謝の言語化能力があなたの「見えてほしい」欲求に応える。あなたの安定感がときめきを支える。</td><td>★★★★★</td></tr>
-    <tr><td>Type 11</td><td>エクスプローラー</td><td>補完：楽観性があなたの日常に軽さをもたらし、あなたのケアがType 11に地に足をつけさせる。</td><td>★★★★☆</td></tr>
-    <tr><td>Type 2-3</td><td>積極型</td><td>摩擦：主導権を取ろうとする傾向があなたのケアと衝突しやすい。役割の明確化が必須。</td><td>★★☆☆☆</td></tr>
-    <tr><td>Type 8-9</td><td>守護型</td><td>困難：互いに尽くし合う者同士で動きが重複・空転しやすい。役割が不明確になりやすい。</td><td>★☆☆☆☆</td></tr>
-  </tbody>
-</table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 10</span><span class="rpt-compat-card-name">トラベラー</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：感情の豊かさと感謝の言語化能力があなたの「見えてほしい」欲求に応える。あなたの安定感がときめきを支える。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 11</span><span class="rpt-compat-card-name">エクスプローラー</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">補完：楽観性があなたの日常に軽さをもたらし、あなたのケアがType 11に地に足をつけさせる。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 2-3</span><span class="rpt-compat-card-name">積極型</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">摩擦：主導権を取ろうとする傾向があなたのケアと衝突しやすい。役割の明確化が必須。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 8-9</span><span class="rpt-compat-card-name">守護型</span><span class="rpt-compat-card-stars">★☆☆☆☆</span></div><p class="rpt-compat-card-desc">困難：互いに尽くし合う者同士で動きが重複・空転しやすい。役割が不明確になりやすい。</p></div>
 </div>
 `,
 
@@ -382,7 +367,7 @@ scenario: `
   <div class="rpt-bar-row"><span class="rpt-bar-label">長期安定志向</span><div class="rpt-bar-track"><div class="rpt-bar-fill" style="--bar-w:95%"></div></div><span class="rpt-bar-val">95</span></div>
 </div>
 
-<p class="rpt-text"><strong>長期安定志向が95</strong>という際立ったスコアは、あなたが恋愛において「今」より「先」を見ている時間が非常に長いことを示します。今日のデートを楽しみながら同時に「この人と5年後も一緒にいるか」を評価している——このマルチタスクがあなたの恋愛の特徴です。</p>
+<p class="rpt-text"><strong>長期安定志向が非常に高い</strong>のは、あなたが恋愛において「今」より「先」を見ている時間が非常に長いことを示します。今日のデートを楽しみながら同時に「この人と5年後も一緒にいるか」を評価している——このマルチタスクがあなたの恋愛の特徴です。</p>
 `,
 
 attraction: `
@@ -432,16 +417,11 @@ trigger: `
 `,
 
 compatibility: `
-<div class="rpt-table-wrap">
-<table class="rpt-table">
-  <thead><tr><th>相性タイプ</th><th>タイプ名</th><th>関係性</th><th>深まりやすさ</th></tr></thead>
-  <tbody>
-    <tr><td>Type 11</td><td>エクスプローラー</td><td>調和：あなたが構造を、Type 11がビジョンを提供する理想の補完関係。長期視点が自然に一致する。</td><td>★★★★★</td></tr>
-    <tr><td>Type 5</td><td>オブザーバー</td><td>安定：互いに慎重で長期視点のスタイルが共鳴。深まるまで時間がかかるが、深まった後の安定性は最高クラス。</td><td>★★★★☆</td></tr>
-    <tr><td>Type 10</td><td>トラベラー</td><td>摩擦：新鮮さへの欲求があなたの構造を頻繁に揺るがす。最初の引力は大きいが長期で消耗しやすい。</td><td>★★☆☆☆</td></tr>
-    <tr><td>Type 12</td><td>フリースピリット</td><td>困難：自由欲求と予測不能さがあなたの設計を根本的に阻む。欲求の方向性が正反対に近い。</td><td>★☆☆☆☆</td></tr>
-  </tbody>
-</table>
+<div class="rpt-compat-cards">
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 11</span><span class="rpt-compat-card-name">エクスプローラー</span><span class="rpt-compat-card-stars">★★★★★</span></div><p class="rpt-compat-card-desc">調和：あなたが構造を、Type 11がビジョンを提供する理想の補完関係。長期視点が自然に一致する。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 5</span><span class="rpt-compat-card-name">オブザーバー</span><span class="rpt-compat-card-stars">★★★★☆</span></div><p class="rpt-compat-card-desc">安定：互いに慎重で長期視点のスタイルが共鳴。深まるまで時間がかかるが、深まった後の安定性は最高クラス。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 10</span><span class="rpt-compat-card-name">トラベラー</span><span class="rpt-compat-card-stars">★★☆☆☆</span></div><p class="rpt-compat-card-desc">摩擦：新鮮さへの欲求があなたの構造を頻繁に揺るがす。最初の引力は大きいが長期で消耗しやすい。</p></div>
+  <div class="rpt-compat-card"><div class="rpt-compat-card-head"><span class="rpt-compat-card-type">Type 12</span><span class="rpt-compat-card-name">フリースピリット</span><span class="rpt-compat-card-stars">★☆☆☆☆</span></div><p class="rpt-compat-card-desc">困難：自由欲求と予測不能さがあなたの設計を根本的に阻む。欲求の方向性が正反対に近い。</p></div>
 </div>
 `,
 

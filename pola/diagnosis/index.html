@@ -458,7 +458,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .rpt-bar-fill{height:100%;background:linear-gradient(90deg,var(--type-color,var(--rose)),var(--violet));border-radius:100px;animation:barGrow 1.3s cubic-bezier(.22,.68,0,1.2) forwards;animation-delay:.5s;}
 .rpt-bar-val{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);width:30px;flex-shrink:0;}
 
-/* 相性テーブル */
+/* 相性テーブル（後方互換） */
 .rpt-table-wrap{overflow-x:auto;margin:20px 0;border-radius:14px;border:1px solid var(--border);}
 .rpt-table{width:100%;border-collapse:collapse;font-size:.83rem;}
 .rpt-table th{background:var(--bg2);padding:10px 14px;text-align:left;font-family:var(--font-m);font-size:.58rem;letter-spacing:.08em;color:var(--text-light);border-bottom:1px solid var(--border);white-space:nowrap;}
@@ -467,6 +467,14 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .rpt-table td:first-child{font-family:var(--font-m);font-size:.62rem;color:var(--type-color,var(--rose));font-weight:500;white-space:nowrap;}
 .rpt-table td:nth-child(2){font-size:.78rem;color:var(--ink);font-weight:600;white-space:nowrap;}
 .rpt-table td:last-child{white-space:nowrap;font-size:.75rem;letter-spacing:.05em;color:var(--amber,#c47830);}
+/* 相性カード */
+.rpt-compat-cards{display:flex;flex-direction:column;gap:10px;margin:18px 0;}
+.rpt-compat-card{background:var(--bg2);border-radius:12px;padding:14px 16px;border:1px solid var(--border);}
+.rpt-compat-card-head{display:flex;align-items:baseline;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
+.rpt-compat-card-type{font-family:var(--font-m);font-size:.58rem;letter-spacing:.06em;color:var(--type-color,var(--rose));font-weight:600;white-space:nowrap;}
+.rpt-compat-card-name{font-size:.88rem;font-weight:700;color:var(--ink);}
+.rpt-compat-card-stars{margin-left:auto;font-size:.78rem;color:var(--amber,#c47830);letter-spacing:.04em;white-space:nowrap;}
+.rpt-compat-card-desc{font-size:.85rem;color:var(--text);line-height:1.85;margin:0;}
 
 /* プルクオート */
 .rpt-pullquote{text-align:center;padding:28px 40px;margin:22px 0;position:relative;}
@@ -1489,13 +1497,6 @@ const LABEL_TO_DIM = {
   '確認・安心欲求':'confirmation','独立性・自由欲求':'independence','長期安定志向':'stability'
 };
 
-// 12タイプ マトリクス座標 [x比率, y比率]（x=感情表現度 right, y=能動性 top）
-const TYPE_MATRIX_POS = {
-  1:[0.88,0.10], 2:[0.50,0.10], 3:[0.12,0.10],  // Se (最上段)
-  10:[0.88,0.37],11:[0.50,0.37],12:[0.12,0.37],  // Ne
-  7:[0.88,0.65], 8:[0.50,0.65], 9:[0.12,0.65],   // Si
-  4:[0.88,0.90], 5:[0.50,0.90], 6:[0.12,0.90],   // Ni (最下段)
-};
 
 // ステータス別 戦略章バナー
 const STATUS_STRATEGY_PREFIX = {
@@ -2180,7 +2181,7 @@ function showReportScreen() {
       if (val)  val.textContent = personalBars[dim];
     });
     const matrixCanvas = document.getElementById('matrixCanvas');
-    if (matrixCanvas) drawTypeMatrix(matrixCanvas, type.id);
+    if (matrixCanvas) drawRadarChart(matrixCanvas, type.id, personalBars);
   }, 50);
 
   showScreen('screen-report');
@@ -2202,15 +2203,15 @@ function buildReport(typeId) {
     <div class="report-chapter-head">
       <span class="report-chapter-num">PROLOGUE</span>
       <div>
-        <div class="report-chapter-title">12タイプの中でのあなたの座標</div>
-        <div class="report-chapter-sub">スタイル軸×感情軸でプロットした、あなたの恋愛ポジション</div>
+        <div class="report-chapter-title">あなたのPolaプロファイル</div>
+        <div class="report-chapter-sub">50問の回答から算出した、5軸の恋愛傾向マップ</div>
       </div>
     </div>
     <div class="report-chapter-body">
       <div class="rpt-matrix-section">
         <div class="rpt-matrix-header">
-          <span class="rpt-matrix-eyebrow">Type Matrix — Your Position</span>
-          <div class="rpt-matrix-title">12タイプの中でのあなたの座標</div>
+          <span class="rpt-matrix-eyebrow">Pola Profile — 5 Axes</span>
+          <div class="rpt-matrix-title">5軸の恋愛傾向マップ</div>
         </div>
         <div class="rpt-matrix-canvas-wrap">
           <canvas id="matrixCanvas"></canvas>
@@ -2303,111 +2304,134 @@ function buildPersonalizedIntro(typeId, bars) {
 }
 
 // ══════════════════════════════════════
-// MATRIX CANVAS
+// RADAR CHART CANVAS
 // ══════════════════════════════════════
-function drawTypeMatrix(canvas, typeId) {
+function drawRadarChart(canvas, typeId, personalBars) {
   const dpr = Math.min(window.devicePixelRatio || 1, 3);
-  const W = 400, H = 358;
+  const W = 400, H = 390;
   canvas.width  = W * dpr;
   canvas.height = H * dpr;
   const ctx = canvas.getContext('2d');
   ctx.scale(dpr, dpr);
-
-  const mTop = 52, mRight = 12, mBottom = 46, mLeft = 44;
-  const pw = W - mLeft - mRight;
-  const ph = H - mTop - mBottom;
-  const px = mLeft, py = mTop;
 
   // Background
   const bg = ctx.createLinearGradient(0, 0, W, H);
   bg.addColorStop(0, '#faf8f5'); bg.addColorStop(1, '#f3f0f8');
   ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
 
-  // Zone backgrounds (4 style bands)
-  const ZONE_COLORS = { Se:'rgba(196,86,110,.08)', Ne:'rgba(196,120,48,.08)', Si:'rgba(46,139,122,.08)', Ni:'rgba(118,85,168,.08)' };
-  const ZONE_BANDS = [
-    { y1:0, y2:0.245, style:'Se' }, { y1:0.245, y2:0.51, style:'Ne' },
-    { y1:0.51, y2:0.775, style:'Si' }, { y1:0.775, y2:1.0, style:'Ni' },
-  ];
-  ZONE_BANDS.forEach(z => {
-    ctx.fillStyle = ZONE_COLORS[z.style];
-    ctx.fillRect(px, py + z.y1 * ph, pw, (z.y2 - z.y1) * ph);
-  });
-
-  // Grid lines (zone separators)
-  ctx.strokeStyle = 'rgba(0,0,0,0.07)'; ctx.lineWidth = 1;
-  [0.245, 0.51, 0.775].forEach(fy => {
-    ctx.beginPath(); ctx.moveTo(px, py + fy * ph); ctx.lineTo(px + pw, py + fy * ph); ctx.stroke();
-  });
-  // Dashed center vertical
-  ctx.setLineDash([3, 4]); ctx.strokeStyle = 'rgba(0,0,0,0.09)';
-  ctx.beginPath(); ctx.moveTo(px + pw * 0.5, py); ctx.lineTo(px + pw * 0.5, py + ph); ctx.stroke();
-  ctx.setLineDash([]);
-
   const STYLE_COL = { Se:'#c4566e', Ne:'#c47830', Si:'#2e8b7a', Ni:'#7655a8' };
+  const typeObj = TYPES.find(t => t.id === typeId);
+  const typeColor = typeObj ? (STYLE_COL[typeObj.style] || '#7655a8') : '#7655a8';
 
-  // Draw all non-user types
-  TYPES.forEach(t => {
-    if (t.id === typeId) return;
-    const pos = TYPE_MATRIX_POS[t.id]; if (!pos) return;
-    const x = px + pos[0] * pw, y = py + pos[1] * ph;
-    const col = STYLE_COL[t.style];
-    ctx.fillStyle = col + 'cc';
-    ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = '#fff';
-    ctx.font = 'bold 7px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText(t.id, x, y);
-    const sn = t.name.replace(/（[^）]*）/, '');
-    ctx.font = '7px sans-serif'; ctx.fillStyle = 'rgba(0,0,0,0.4)'; ctx.textBaseline = 'top';
-    ctx.fillText(sn.length > 5 ? sn.slice(0, 5) + '…' : sn, x, y + 9);
+  // 5 axes (pentagon), starting from top going clockwise
+  const axes = [
+    { key:'proactive',    label:['行動の', '積極性'] },
+    { key:'emotional',    label:['感情の', '表現度'] },
+    { key:'confirmation', label:['確認・', '安心欲求'] },
+    { key:'stability',    label:['長期', '安定志向'] },
+    { key:'independence', label:['独立性・', '自由欲求'] },
+  ];
+  const N = axes.length;
+  const cx = W / 2;
+  const cy = 205;
+  const R = 115;
+
+  const angle = (i) => (Math.PI * 2 * i / N) - Math.PI / 2;
+  const pt = (i, r) => ({ x: cx + r * Math.cos(angle(i)), y: cy + r * Math.sin(angle(i)) });
+
+  // Draw concentric grid pentagons
+  [0.25, 0.5, 0.75, 1.0].forEach((pct, gi) => {
+    const r = R * pct;
+    ctx.beginPath();
+    for (let i = 0; i < N; i++) {
+      const p = pt(i, r);
+      i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = gi === 3 ? 'rgba(255,255,255,0.5)' : 'transparent';
+    if (gi === 3) ctx.fill();
+    ctx.strokeStyle = gi === 3 ? 'rgba(0,0,0,0.13)' : 'rgba(0,0,0,0.07)';
+    ctx.lineWidth = gi === 3 ? 1.5 : 1;
+    ctx.stroke();
   });
 
-  // Draw user type (on top with glow)
-  const userType = TYPES.find(t => t.id === typeId);
-  const userPos  = TYPE_MATRIX_POS[typeId];
-  if (userType && userPos) {
-    const x = px + userPos[0] * pw, y = py + userPos[1] * ph;
-    const col = STYLE_COL[userType.style];
-    const glow = ctx.createRadialGradient(x, y, 0, x, y, 32);
-    glow.addColorStop(0, col + '66'); glow.addColorStop(1, col + '00');
-    ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(x, y, 32, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = col; ctx.lineWidth = 2.5;
-    ctx.beginPath(); ctx.arc(x, y, 16, 0, Math.PI * 2); ctx.stroke();
-    ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y, 12, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = '#fff'; ctx.font = 'bold 9px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText(typeId, x, y);
-    ctx.font = 'bold 10px sans-serif'; ctx.fillStyle = col; ctx.textBaseline = 'bottom';
-    ctx.fillText('▲ あなた', x, y - 20);
-    const sn = userType.name.replace(/（[^）]*）/, '');
-    ctx.font = 'bold 10px sans-serif'; ctx.textBaseline = 'top';
-    ctx.fillText(sn, x, y + 20);
+  // Draw axis lines
+  for (let i = 0; i < N; i++) {
+    const p = pt(i, R);
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.x, p.y);
+    ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 1; ctx.stroke();
   }
 
-  // Style axis labels (left margin)
-  ZONE_BANDS.forEach(z => {
-    const midY = py + ((z.y1 + z.y2) / 2) * ph;
-    ctx.save(); ctx.translate(px - 6, midY); ctx.rotate(-Math.PI / 2);
-    ctx.fillStyle = STYLE_COL[z.style] + 'dd';
-    ctx.font = 'bold 8px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText(z.style, 0, 0); ctx.restore();
+  // Draw archetype polygon (dashed)
+  const arch = TYPE_BAR_DEFAULTS[typeId] || TYPE_BAR_DEFAULTS[1];
+  ctx.beginPath();
+  axes.forEach((ax, i) => {
+    const v = arch[ax.key] || 50;
+    const p = pt(i, R * v / 100);
+    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = typeColor + '1a'; ctx.fill();
+  ctx.setLineDash([5, 4]); ctx.strokeStyle = typeColor + '70'; ctx.lineWidth = 1.5; ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Draw personal polygon (solid)
+  const bars = personalBars || arch;
+  ctx.beginPath();
+  axes.forEach((ax, i) => {
+    const v = bars[ax.key] || 50;
+    const p = pt(i, R * v / 100);
+    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = typeColor + '30'; ctx.fill();
+  ctx.strokeStyle = typeColor; ctx.lineWidth = 2.5; ctx.stroke();
+
+  // Dots on personal polygon
+  axes.forEach((ax, i) => {
+    const v = bars[ax.key] || 50;
+    const p = pt(i, R * v / 100);
+    ctx.beginPath(); ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
+    ctx.fillStyle = typeColor; ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
   });
 
-  // X-axis labels
-  ctx.fillStyle = 'rgba(0,0,0,0.36)'; ctx.font = '9px sans-serif'; ctx.textBaseline = 'top';
-  ctx.textAlign = 'left';  ctx.fillText('← 内向き', px, py + ph + 10);
-  ctx.textAlign = 'center'; ctx.fillText('感情表現の方向', px + pw / 2, py + ph + 10);
-  ctx.textAlign = 'right';  ctx.fillText('外向き →', px + pw, py + ph + 10);
+  // Axis labels
+  axes.forEach((ax, i) => {
+    const labelR = R + 26;
+    const p = pt(i, labelR);
+    ctx.fillStyle = '#2a2038';
+    ctx.font = 'bold 10px sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ax.label.forEach((line, li) => {
+      const lineY = p.y + (li - (ax.label.length - 1) / 2) * 13;
+      ctx.fillText(line, p.x, lineY);
+    });
+  });
 
-  // Y-axis label
-  ctx.save(); ctx.translate(12, py + ph / 2); ctx.rotate(-Math.PI / 2);
-  ctx.fillStyle = 'rgba(0,0,0,0.36)'; ctx.font = '9px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillText('能動 ↑ ─── ↓ 受容', 0, 0); ctx.restore();
+  // Legend
+  const legY = H - 22;
+  const legX = W / 2 - 82;
+  ctx.setLineDash([5, 4]);
+  ctx.strokeStyle = typeColor + '70'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(legX, legY); ctx.lineTo(legX + 18, legY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(0,0,0,0.45)'; ctx.font = '10px sans-serif';
+  ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  ctx.fillText('タイプ平均', legX + 22, legY);
+
+  const legX2 = legX + 98;
+  ctx.strokeStyle = typeColor; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(legX2, legY); ctx.lineTo(legX2 + 18, legY); ctx.stroke();
+  ctx.fillStyle = 'rgba(0,0,0,0.45)';
+  ctx.fillText('あなた', legX2 + 22, legY);
 
   // Title
-  ctx.fillStyle = '#2a2038'; ctx.font = 'bold 13px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillText('12タイプの中でのあなたの座標', W / 2, 20);
-  ctx.fillStyle = 'rgba(0,0,0,0.22)'; ctx.font = '8px monospace';
-  ctx.fillText('POLA — 恋愛極性診断', W / 2, 36);
+  ctx.fillStyle = '#2a2038'; ctx.font = 'bold 13px sans-serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('あなたのPolaプロファイル', W / 2, 22);
+  ctx.fillStyle = 'rgba(0,0,0,0.25)'; ctx.font = '8px monospace';
+  ctx.fillText('POLA — 恋愛極性診断', W / 2, 38);
 
   // Border
   ctx.strokeStyle = 'rgba(0,0,0,0.07)'; ctx.lineWidth = 1;

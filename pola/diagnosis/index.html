@@ -892,9 +892,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
             <div class="deep-sub-head" style="padding-left:20px;padding-top:16px;"><span class="deep-sub-icon">◐</span><span class="deep-sub-title">あなたのタイプの特色</span></div>
             <div id="subtypeBody" class="subtype-intro" style="padding:0 20px 12px;"></div>
             <div class="deep-sub-head" style="padding-left:20px;"><span class="deep-sub-icon">◎</span><span class="deep-sub-title">あなたの傾向スコア</span></div>
-            <p class="radar-intro">恋愛スタイル（4軸）とセンタースコア（3項目）の分布です。</p>
-            <p style="font-size:.72rem;color:var(--text-light);text-align:center;letter-spacing:.08em;font-family:'DM Mono',monospace;margin:4px 0 2px;">— 恋愛スタイル —</p>
-            <div class="radar-wrap" style="padding-top:4px;">
+            <p class="radar-intro">4つの恋愛スタイルと、3つのセンターのスコア分布です。</p>
+            <div class="radar-wrap">
               <div class="radar-svg-wrap">
                 <svg id="radarStyleSvg" viewBox="0 0 260 250" xmlns="http://www.w3.org/2000/svg"></svg>
               </div>
@@ -2696,19 +2695,21 @@ function buildChapterPersonalNote(chapterIdx, typeId, personalBars) {
   if (!text) return '';
 
   // タイプ平均との比較文
-  const diff = val - typeAvgVal;
+  // クリッピング後の値ではなく生の調整量で判定することで正確なパーソナライズを実現
+  const rawAdj = (personalBars._rawAdj || {})[bestDim];
+  const diff = rawAdj !== undefined ? rawAdj : (val - typeAvgVal);
   const typeName = (TYPES.find(t => t.id === typeId) || {}).name || 'このタイプ';
   let compText = '';
   if (Math.abs(diff) <= 8) {
     compText = `これは<strong>${typeName}</strong>の典型的なスコアです。`;
   } else if (diff > 28) {
-    compText = `これは<strong>${typeName}</strong>の中でも特に高い傾向で、タイプ平均（${typeAvgVal}）を大きく上回っています。`;
+    compText = `これは<strong>${typeName}</strong>の中でも特に高い傾向で、タイプ平均を大きく上回っています。`;
   } else if (diff > 8) {
-    compText = `これは<strong>${typeName}</strong>の平均（${typeAvgVal}）より少し高めの傾向です。`;
+    compText = `これは<strong>${typeName}</strong>の平均より高めの傾向です。`;
   } else if (diff < -28) {
-    compText = `これは<strong>${typeName}</strong>の中でも特に低い傾向で、タイプ平均（${typeAvgVal}）を大きく下回っています。`;
+    compText = `これは<strong>${typeName}</strong>の中でも特に低い傾向で、タイプ平均を大きく下回っています。`;
   } else {
-    compText = `これは<strong>${typeName}</strong>の平均（${typeAvgVal}）より少し低めの傾向です。`;
+    compText = `これは<strong>${typeName}</strong>の平均より低めの傾向です。`;
   }
 
   return `<div class="rpt-personal-note">
@@ -2722,7 +2723,7 @@ function buildChapterPersonalNote(chapterIdx, typeId, personalBars) {
 // ══════════════════════════════════════
 function buildSubtypeChapterHTML() {
   if (!currentResult) return '';
-  const {type, wingType, wingDetail, secondCenter} = currentResult;
+  const {type, wingType, wingDetail, secondCenter, styleNorm, centerNorm} = currentResult;
   const centerPlain = {
     heart: '愛情サブ',
     head:  '安心サブ',
@@ -2732,12 +2733,31 @@ function buildSubtypeChapterHTML() {
   if (wingType && wingDetail) {
     const wPlain = centerPlain[secondCenter] || wingType.centerLabel;
     subtypeHTML = `
-      <p class="rpt-text">あなたは<strong>「${type.name}」</strong>の中でも、さらに<strong>「${wPlain}」</strong>の傾向を持つタイプです。</p>
+      <p class="rpt-text">例)あなたは<strong>「${type.name}」</strong>の中でも、さらに<strong>「${wPlain}」</strong>の傾向を持つタイプです。</p>
       <p class="rpt-text">具体的には——${wingDetail.impact}という形で、あなたの恋愛に現れています。</p>
-      <p class="rpt-text">またこの傾向が強まると、${wingDetail.drift}という側面もあります。この微妙なずれが、あなたの恋愛パターンの核心に関わっています。</p>`;
+      <p class="rpt-text">またこの傾向が強まると、${wingDetail.drift}という側面もあります。この微妙なずれが、あなたの恋愛パターンの核心に関わっています。</p>
+      <p class="rpt-text" style="font-size:.8rem;color:var(--text-light);border-top:1px solid var(--border);margin-top:12px;padding-top:12px;">※ サブタイプの概念は「polaポータル」→「タイプ一覧」から詳細を確認してください。</p>`;
   } else {
-    subtypeHTML = `<p class="rpt-text">あなたは<strong>「${type.name}」</strong>の性質が非常に純粋に出ているタイプです。この純粋さがあなたの恋愛の強みでもあり、課題でもあります。</p>`;
+    subtypeHTML = `<p class="rpt-text">あなたは<strong>「${type.name}」</strong>の性質が非常に純粋に出ているタイプです。この純粋さがあなたの恋愛の強みでもあり、課題でもあります。</p>
+      <p class="rpt-text" style="font-size:.8rem;color:var(--text-light);border-top:1px solid var(--border);margin-top:12px;padding-top:12px;">※ サブタイプの概念は「polaポータル」→「タイプ一覧」から詳細を確認してください。</p>`;
   }
+
+  // トップ3タイプを計算
+  const typeScores = TYPES.map(t => ({
+    type: t,
+    score: (styleNorm[t.style] || 0) + (centerNorm[t.center] || 0)
+  })).sort((a, b) => b.score - a.score);
+  const resolvedColor = type.styleColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830');
+  const resolvedBg = type.styleBg.replace('var(--rose-l)','#fae0e8').replace('var(--violet-l)','#ece6f8').replace('var(--teal-l)','#ddf2ee').replace('var(--amber-l)','#fdefd8');
+  const top3HTML = typeScores.slice(0, 3).map((item, i) => {
+    const isMain = item.type.id === type.id;
+    return `<div class="top3-item${isMain ? ' top3-main' : ''}" style="${isMain ? `--type-color:${resolvedColor};--type-color-l:${resolvedBg};` : ''}">
+      <span class="top3-rank">${['①','②','③'][i]}</span>
+      <span class="top3-name">Type ${item.type.id}　${item.type.name}</span>
+      <span class="top3-score">${Math.round(item.score / 2)}pts</span>
+    </div>`;
+  }).join('');
+
   return `
   <div class="report-chapter">
     <div class="report-chapter-head">
@@ -2751,9 +2771,9 @@ function buildSubtypeChapterHTML() {
       <span class="rpt-label">あなたのタイプ特色</span>
       ${subtypeHTML}
       <div class="rpt-divider"></div>
-      <span class="rpt-label">恋愛スタイル分布</span>
-      <p class="rpt-text" style="font-size:.85rem;color:var(--text-light);margin-bottom:8px;">4つの恋愛スタイル（Se・Ni・Si・Ne）のスコア分布です。あなたが最も強く発揮している恋愛スタイルがひと目でわかります。</p>
-      <div class="radar-wrap" style="max-width:320px;margin:0 auto;">
+      <span class="rpt-label">恋愛傾向スコア分布</span>
+      <p class="rpt-text" style="font-size:.85rem;color:var(--text-light);margin-bottom:12px;">4つの恋愛スタイルと3つのセンターのスコア分布です。</p>
+      <div class="radar-wrap" style="max-width:360px;margin:0 auto;">
         <div class="radar-svg-wrap">
           <svg id="reportStyleRadarSvg" viewBox="0 0 260 250" xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
@@ -2768,7 +2788,10 @@ function buildSubtypeChapterHTML() {
         <svg id="reportCenterSvg" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg"></svg>
       </div>
       <div class="rpt-radar-desc">
-        <p>スコアが高いセンターほど、あなたの恋愛の判断軸に強く影響します。最も高いセンターがあなたの「恋愛の核心」であり、タイプ診断の中心軸になっています。</p>
+        <p>このレーダーチャートは、あなたの恋愛傾向を7つの軸で表したものです。</p>
+        <p>外側の4軸（Se・Ni・Si・Ne）は恋愛スタイルを、内側の3軸（Heart・Head・Guts）は意思決定の中心をあらわしています。</p>
+        <p>実線があなた個人のスコア、点線がそのタイプの平均値です。平均から大きく外れている軸ほど、あなたの恋愛パターンを強く色づけている要素と言えます。</p>
+        <p>グラフ全体の形が歪であるほど、あなたの恋愛には個性的な強みと、対となる課題が潜んでいます。</p>
       </div>
     </div>
   </div>`;
@@ -2798,11 +2821,15 @@ function buildClosingSection(typeId, personalBars) {
   const ci = CLOSING_INSIGHTS[typeId] || { insight: 'あなたの恋愛には、あなただけの形があります。', advice: 'そのパターンを知ることが、変化の第一歩です。' };
 
   // personalBars を使って強みの軸を特定
-  const axisLabels = ['情熱軸','共鳴軸','安定軸','探索軸','核心軸'];
+  const dimLabelMap = {
+    proactive: '行動の積極性', emotional: '感情の表現度',
+    confirmation: '確認・安心欲求', independence: '独立性・自由欲求', stability: '長期安定志向',
+  };
   let topAxis = '';
-  if (personalBars && personalBars.length) {
-    const maxBar = personalBars.reduce((a, b) => a.val > b.val ? a : b, personalBars[0]);
-    if (maxBar && maxBar.label) topAxis = maxBar.label;
+  if (personalBars && typeof personalBars === 'object') {
+    const dims = Object.keys(dimLabelMap);
+    const maxDim = dims.reduce((a, b) => (personalBars[a] || 0) >= (personalBars[b] || 0) ? a : b);
+    topAxis = dimLabelMap[maxDim] || '';
   }
   const axisNote = topAxis
     ? `<p class="report-closing-text">あなたのスコアで特に際立っていたのは<strong>「${topAxis}」</strong>の傾向です。この軸があなたの恋愛を動かす最大のエンジンであり、同時に最も意識すべき焦点でもあります。</p><div class="report-closing-divider"></div>`
@@ -2917,16 +2944,21 @@ function calcBarAdjustment(dim) {
   pos.forEach(idx => { const a = answers.find(a => a.qIndex === idx); if(a){sum+=(a.val-3);count++;} });
   neg.forEach(idx => { const a = answers.find(a => a.qIndex === idx); if(a){sum-=(a.val-3);count++;} });
   if(!count) return 0;
-  return Math.round((sum/count)*8);
+  // 乗数を20に設定（最大±40）。これにより回答パターンがグラフに十分反映される
+  return Math.round((sum/count)*20);
 }
 
 function calcPersonalizedBars(typeId) {
   const base = TYPE_BAR_DEFAULTS[typeId] || TYPE_BAR_DEFAULTS[1];
   const result = {};
+  const rawAdj = {};
   ['proactive','emotional','confirmation','independence','stability'].forEach(dim => {
     const adj = answers.length > 0 ? calcBarAdjustment(dim) : 0;
+    rawAdj[dim] = adj;
     result[dim] = Math.min(97, Math.max(8, base[dim] + adj));
   });
+  // 生の調整量をチャプターノートの比較判定に使用するため格納
+  result._rawAdj = rawAdj;
   return result;
 }
 

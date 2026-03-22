@@ -672,7 +672,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 
 /* ══ DEEP BLUR SECTION (プレビューblur) ══ */
 .deep-blur-wrap{position:relative;padding-bottom:48px;}
-.deep-blur-content{filter:blur(1.8px);pointer-events:none;user-select:none;opacity:.85;}
+.deep-blur-content{filter:blur(2.6px);pointer-events:none;user-select:none;opacity:.8;}
 .deep-blur-overlay{position:absolute;bottom:0;left:0;right:0;z-index:2;pointer-events:none;
   display:flex;align-items:center;justify-content:center;padding:12px 0 16px;}
 .deep-blur-badge{font-family:var(--font-m);font-size:.62rem;letter-spacing:.12em;
@@ -902,12 +902,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
         </a>
         <a href="../specs/compatibility_full.html" class="sitemap-item" target="_blank">
           <span class="si-label">COMPATIBILITY</span><span class="si-name">相性一覧</span><span class="si-desc">66通りの相性理論</span>
-        </a>
-        <a href="https://utage-jpg.github.io/UTAGE_LAB/" class="sitemap-item" target="_blank">
-          <span class="si-label">UTAGE LAB</span><span class="si-name">総合心理診断</span><span class="si-desc">他の診断コンテンツへ</span>
-        </a>
-        <a href="https://utage-jpg.github.io/ruikei_portal/" class="sitemap-item" target="_blank">
-          <span class="si-label">DEEP DIVE</span><span class="si-name">類型ポータル</span><span class="si-desc">さらに深い理論へ</span>
         </a>
       </div>
       <button class="retry-btn" onclick="retryQuiz()">↺ もう一度診断する</button>
@@ -1957,9 +1951,9 @@ function renderFullDetail(type, extra, wingType, wingDetail, secondCenter, style
 
   // ── タイプの特色（サブタイプ） ──
   const centerPlain = {
-    heart: '感情・愛情センター',
-    head: '思考・安心センター',
-    guts: '本能・自分軸センター',
+    heart: '愛情サブ',
+    head: '安心サブ',
+    guts: '本能サブ',
   };
   const subtypeBody = document.getElementById('subtypeBody');
   if (wingType && wingDetail) {
@@ -2546,9 +2540,9 @@ function buildSubtypeChapterHTML() {
   if (!currentResult) return '';
   const {type, wingType, wingDetail, secondCenter} = currentResult;
   const centerPlain = {
-    heart: '感情・愛情センター',
-    head:  '思考・安心センター',
-    guts:  '本能・自分軸センター',
+    heart: '愛情サブ',
+    head:  '安心サブ',
+    guts:  '本能サブ',
   };
   let subtypeHTML = '';
   if (wingType && wingDetail) {

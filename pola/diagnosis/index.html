@@ -643,15 +643,16 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 
 /* ══ REPORT CLOSING SECTION ══ */
 .report-closing{max-width:680px;margin:0 auto 24px;width:calc(100% - 28px);}
-.report-closing-inner{border:1.5px solid var(--type-color,var(--rose));border-radius:20px;
-  overflow:hidden;background:var(--paper);position:relative;}
+.report-closing-inner{border:2px solid var(--gold);border-radius:20px;
+  overflow:hidden;background:var(--paper);position:relative;
+  box-shadow:0 4px 24px rgba(184,150,62,.15);}
 .report-closing-hero{padding:36px 24px 28px;text-align:center;
-  background:linear-gradient(160deg,var(--type-color-l,#fae0e8) 0%,var(--bg) 100%);
-  border-bottom:1px solid var(--border);position:relative;}
+  background:linear-gradient(160deg,#fdf8ec 0%,#f5e8c8 50%,var(--bg) 100%);
+  border-bottom:1px solid rgba(184,150,62,.3);position:relative;}
 .report-closing-hero::before{content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(255,255,255,.5) 0%,transparent 70%);}
+  background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(255,255,255,.6) 0%,transparent 70%);}
 .report-closing-ornament{font-family:var(--font-m);font-size:.58rem;letter-spacing:.26em;
-  color:var(--type-color,var(--rose));display:block;margin-bottom:14px;position:relative;z-index:1;text-transform:uppercase;}
+  color:var(--gold);display:block;margin-bottom:14px;position:relative;z-index:1;text-transform:uppercase;}
 .report-closing-insight{font-family:var(--font-d);font-size:clamp(1.05rem,3.8vw,1.35rem);
   font-style:italic;font-weight:600;color:var(--ink);line-height:1.6;
   position:relative;z-index:1;margin-bottom:0;}
@@ -891,11 +892,16 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
             <div class="deep-sub-head" style="padding-left:20px;padding-top:16px;"><span class="deep-sub-icon">◐</span><span class="deep-sub-title">あなたのタイプの特色</span></div>
             <div id="subtypeBody" class="subtype-intro" style="padding:0 20px 12px;"></div>
             <div class="deep-sub-head" style="padding-left:20px;"><span class="deep-sub-icon">◎</span><span class="deep-sub-title">あなたの傾向スコア</span></div>
-            <p class="radar-intro">4つの恋愛スタイルと、3つのセンターのスコア分布です。</p>
-            <div class="radar-wrap">
+            <p class="radar-intro">恋愛スタイル（4軸）とセンタースコア（3項目）の分布です。</p>
+            <p style="font-size:.72rem;color:var(--text-light);text-align:center;letter-spacing:.08em;font-family:'DM Mono',monospace;margin:4px 0 2px;">— 恋愛スタイル —</p>
+            <div class="radar-wrap" style="padding-top:4px;">
               <div class="radar-svg-wrap">
-                <svg id="radarSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"></svg>
+                <svg id="radarStyleSvg" viewBox="0 0 260 250" xmlns="http://www.w3.org/2000/svg"></svg>
               </div>
+            </div>
+            <p style="font-size:.72rem;color:var(--text-light);text-align:center;letter-spacing:.08em;font-family:'DM Mono',monospace;margin:12px 0 4px;">— センタースコア —</p>
+            <div style="max-width:300px;margin:0 auto 4px;padding:0 16px;">
+              <svg id="radarCenterSvg" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg"></svg>
             </div>
             <div class="top3-wrap">
               <div class="top3-title">— 近いタイプ上位3 —</div>
@@ -1991,8 +1997,9 @@ function renderFullDetail(type, extra, wingType, wingDetail, secondCenter, style
     subtypeBody.innerHTML = `<p class="subtype-text">あなたは<strong>「${type.name}」</strong>の性質が非常に純粋に出ているタイプです。この純粋さがあなたの恋愛の強みでもあり、課題でもあります。</p>`;
   }
 
-  // ── レーダー ──
-  drawRadar(styleNorm, centerNorm, type.style, type.center, type.styleColor);
+  // ── レーダー（2分割）──
+  drawStyleRadar(styleNorm, type.style, type.styleColor);
+  drawCenterChart(centerNorm, type.center);
   const typeScores = TYPES.map(t => ({
     type: t,
     score: (styleNorm[t.style] || 0) + (centerNorm[t.center] || 0)
@@ -2137,6 +2144,156 @@ function drawRadar(styleNorm, centerNorm, mainStyle, mainCenter, mainColor, svgE
   }
 
   return dataGroup;
+}
+
+// ══════════════════════════════════════
+// STYLE RADAR (4軸: Se・Ni・Si・Ne のみ)
+// ══════════════════════════════════════
+function drawStyleRadar(styleNorm, mainStyle, mainColor, svgEl) {
+  const svg = svgEl || document.getElementById('radarStyleSvg');
+  if (!svg) return;
+  svg.innerHTML = '';
+
+  const cx = 130, cy = 125, r = 88;
+  const STYLE_COL = { Se:'#c4566e', Ne:'#c47830', Si:'#2e8b7a', Ni:'#7655a8' };
+  const axes = [
+    {key:'Se', label:'狩猟型', color:'#c4566e', score: styleNorm.Se || 0},
+    {key:'Ni', label:'共鳴型', color:'#7655a8', score: styleNorm.Ni || 0},
+    {key:'Si', label:'守護型', color:'#2e8b7a', score: styleNorm.Si || 0},
+    {key:'Ne', label:'冒険型', color:'#c47830', score: styleNorm.Ne || 0},
+  ];
+  const n = axes.length;
+  const angles = axes.map((_, i) => (2 * Math.PI * i / n) - Math.PI / 2);
+  const ns = 'http://www.w3.org/2000/svg';
+
+  function toXY(angle, val) {
+    return { x: cx + r * (val / 100) * Math.cos(angle), y: cy + r * (val / 100) * Math.sin(angle) };
+  }
+
+  // グリッド
+  [0.25, 0.5, 0.75, 1.0].forEach((ratio, gi) => {
+    const pts = angles.map(a => `${cx + r * ratio * Math.cos(a)},${cy + r * ratio * Math.sin(a)}`).join(' ');
+    const poly = document.createElementNS(ns, 'polygon');
+    poly.setAttribute('points', pts);
+    poly.setAttribute('fill', gi === 3 ? 'rgba(226,213,200,0.1)' : 'none');
+    poly.setAttribute('stroke', '#e2d5c8');
+    poly.setAttribute('stroke-width', gi === 3 ? '1.5' : '0.8');
+    svg.appendChild(poly);
+  });
+
+  // 軸ライン
+  angles.forEach(a => {
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+    line.setAttribute('x2', cx + r * Math.cos(a)); line.setAttribute('y2', cy + r * Math.sin(a));
+    line.setAttribute('stroke', '#e2d5c8'); line.setAttribute('stroke-width', '0.8');
+    svg.appendChild(line);
+  });
+
+  // データポリゴン
+  const dataGroup = document.createElementNS(ns, 'g');
+  dataGroup.style.transformOrigin = `${cx}px ${cy}px`;
+  dataGroup.style.transform = 'scale(0)';
+  dataGroup.style.transition = 'transform 0.9s cubic-bezier(.34,1.56,.64,1)';
+
+  const resolvedColor = mainColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830');
+  const pts = axes.map((ax, i) => { const p = toXY(angles[i], ax.score); return `${p.x},${p.y}`; }).join(' ');
+  const fillPoly = document.createElementNS(ns, 'polygon');
+  fillPoly.setAttribute('points', pts);
+  fillPoly.setAttribute('fill', resolvedColor + '26');
+  fillPoly.setAttribute('stroke', resolvedColor);
+  fillPoly.setAttribute('stroke-width', '1.8');
+  dataGroup.appendChild(fillPoly);
+
+  axes.forEach((ax, i) => {
+    const p = toXY(angles[i], ax.score);
+    const isMain = ax.key === mainStyle;
+    const dot = document.createElementNS(ns, 'circle');
+    dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y);
+    dot.setAttribute('r', isMain ? 5.5 : 3.5);
+    dot.setAttribute('fill', ax.color); dot.setAttribute('stroke', '#fffdf9'); dot.setAttribute('stroke-width', '1.5');
+    dataGroup.appendChild(dot);
+  });
+  svg.appendChild(dataGroup);
+
+  // ラベル
+  axes.forEach((ax, i) => {
+    const a = angles[i];
+    const lr = r + 26;
+    const lx = cx + lr * Math.cos(a);
+    const ly = cy + lr * Math.sin(a);
+    const text = document.createElementNS(ns, 'text');
+    text.setAttribute('x', lx); text.setAttribute('y', ly);
+    text.setAttribute('text-anchor', 'middle'); text.setAttribute('dominant-baseline', 'middle');
+    text.setAttribute('font-size', '9'); text.setAttribute('fill', ax.color);
+    text.setAttribute('font-family', 'DM Mono, monospace');
+    text.setAttribute('font-weight', ax.key === mainStyle ? '600' : '400');
+    text.textContent = ax.label;
+    svg.appendChild(text);
+  });
+
+  setTimeout(() => { dataGroup.style.transform = 'scale(1)'; }, 200);
+  return dataGroup;
+}
+
+// ══════════════════════════════════════
+// CENTER CHART (3バー: 愛情・安心・本能)
+// ══════════════════════════════════════
+function drawCenterChart(centerNorm, mainCenter, svgEl) {
+  const svg = svgEl || document.getElementById('radarCenterSvg');
+  if (!svg) return;
+  svg.innerHTML = '';
+
+  const centers = [
+    {key:'heart', label:'愛情', color:'#c4566e', score: centerNorm.heart || 0},
+    {key:'head',  label:'安心', color:'#5b7fa6', score: centerNorm.head || 0},
+    {key:'guts',  label:'本能', color:'#c47830', score: centerNorm.guts || 0},
+  ];
+  const ns = 'http://www.w3.org/2000/svg';
+  const labelW = 40, padL = 8, padR = 46, barH = 20, gap = 18, startY = 14;
+  const svgW = 260;
+
+  centers.forEach((c, i) => {
+    const y = startY + i * (barH + gap);
+    const isMain = c.key === mainCenter;
+    const trackW = svgW - labelW - padL - padR;
+
+    // ラベル
+    const label = document.createElementNS(ns, 'text');
+    label.setAttribute('x', labelW - 4); label.setAttribute('y', y + barH / 2 + 4);
+    label.setAttribute('text-anchor', 'end'); label.setAttribute('font-size', '9.5');
+    label.setAttribute('fill', isMain ? c.color : '#9a8a98');
+    label.setAttribute('font-family', 'DM Mono, monospace');
+    label.setAttribute('font-weight', isMain ? '600' : '400');
+    label.textContent = c.label;
+    svg.appendChild(label);
+
+    // トラック背景
+    const track = document.createElementNS(ns, 'rect');
+    track.setAttribute('x', labelW + padL); track.setAttribute('y', y);
+    track.setAttribute('width', trackW); track.setAttribute('height', barH);
+    track.setAttribute('rx', barH / 2); track.setAttribute('fill', '#ede8e3');
+    svg.appendChild(track);
+
+    // フィル
+    const fillW = Math.max(barH, (c.score / 100) * trackW);
+    const fillRect = document.createElementNS(ns, 'rect');
+    fillRect.setAttribute('x', labelW + padL); fillRect.setAttribute('y', y);
+    fillRect.setAttribute('width', fillW); fillRect.setAttribute('height', barH);
+    fillRect.setAttribute('rx', barH / 2);
+    fillRect.setAttribute('fill', c.color);
+    fillRect.setAttribute('opacity', isMain ? '0.9' : '0.45');
+    svg.appendChild(fillRect);
+
+    // スコアテキスト
+    const scoreText = document.createElementNS(ns, 'text');
+    scoreText.setAttribute('x', labelW + padL + trackW + 6); scoreText.setAttribute('y', y + barH / 2 + 4);
+    scoreText.setAttribute('font-size', '9.5'); scoreText.setAttribute('fill', isMain ? c.color : '#9a8a98');
+    scoreText.setAttribute('font-family', 'DM Mono, monospace');
+    scoreText.setAttribute('font-weight', isMain ? '600' : '400');
+    scoreText.textContent = Math.round(c.score);
+    svg.appendChild(scoreText);
+  });
 }
 
 // ══════════════════════════════════════
@@ -2408,11 +2565,13 @@ function showReportScreen() {
     });
     const matrixCanvas = document.getElementById('matrixCanvas');
     if (matrixCanvas) drawRadarChart(matrixCanvas, type.id, personalBars);
-    // PROFILEチャプター内のレーダーチャートを描画
-    const reportRadarSvg = document.getElementById('reportRadarSvg');
-    if (reportRadarSvg && currentResult) {
+    // PROFILEチャプター内のレーダーチャートを描画（2分割）
+    if (currentResult) {
       const {styleNorm, centerNorm} = currentResult;
-      drawRadar(styleNorm, centerNorm, type.style, type.center, type.styleColor, reportRadarSvg);
+      const reportStyleSvg = document.getElementById('reportStyleRadarSvg');
+      const reportCenterSvg = document.getElementById('reportCenterSvg');
+      if (reportStyleSvg) drawStyleRadar(styleNorm, type.style, type.styleColor, reportStyleSvg);
+      if (reportCenterSvg) drawCenterChart(centerNorm, type.center, reportCenterSvg);
     }
   }, 50);
 
@@ -2592,18 +2751,24 @@ function buildSubtypeChapterHTML() {
       <span class="rpt-label">あなたのタイプ特色</span>
       ${subtypeHTML}
       <div class="rpt-divider"></div>
-      <span class="rpt-label">恋愛傾向スコア分布</span>
-      <p class="rpt-text" style="font-size:.85rem;color:var(--text-light);margin-bottom:12px;">4つの恋愛スタイルと3つのセンターのスコア分布です。</p>
-      <div class="radar-wrap" style="max-width:360px;margin:0 auto;">
+      <span class="rpt-label">恋愛スタイル分布</span>
+      <p class="rpt-text" style="font-size:.85rem;color:var(--text-light);margin-bottom:8px;">4つの恋愛スタイル（Se・Ni・Si・Ne）のスコア分布です。あなたが最も強く発揮している恋愛スタイルがひと目でわかります。</p>
+      <div class="radar-wrap" style="max-width:320px;margin:0 auto;">
         <div class="radar-svg-wrap">
-          <svg id="reportRadarSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"></svg>
+          <svg id="reportStyleRadarSvg" viewBox="0 0 260 250" xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
       </div>
+      <div class="rpt-radar-desc" style="margin-bottom:8px;">
+        <p>4軸（Se狩猟型・Ni共鳴型・Si守護型・Ne冒険型）のうち、最も高いスコアがあなたのメインスタイルです。形が大きく偏っているほど、あなたの恋愛スタイルの個性が際立っています。</p>
+      </div>
+      <div class="rpt-divider"></div>
+      <span class="rpt-label">センタースコア（意思決定の中心）</span>
+      <p class="rpt-text" style="font-size:.85rem;color:var(--text-light);margin-bottom:8px;">愛情・安心・本能の3センターのスコア分布です。あなたが恋愛においてどの軸で意思決定しているかを示しています。</p>
+      <div style="max-width:320px;margin:0 auto 4px;padding:8px 16px;">
+        <svg id="reportCenterSvg" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
       <div class="rpt-radar-desc">
-        <p>このレーダーチャートは、あなたの恋愛傾向を7つの軸で表したものです。</p>
-        <p>外側の4軸（Se・Ni・Si・Ne）は恋愛スタイルを、内側の3軸（Heart・Head・Guts）は意思決定の中心をあらわしています。</p>
-        <p>実線があなた個人のスコア、点線がそのタイプの平均値です。平均から大きく外れている軸ほど、あなたの恋愛パターンを強く色づけている要素と言えます。</p>
-        <p>グラフ全体の形が歪であるほど、あなたの恋愛には個性的な強みと、対となる課題が潜んでいます。</p>
+        <p>スコアが高いセンターほど、あなたの恋愛の判断軸に強く影響します。最も高いセンターがあなたの「恋愛の核心」であり、タイプ診断の中心軸になっています。</p>
       </div>
     </div>
   </div>`;
@@ -2785,7 +2950,7 @@ function buildPersonalizedIntro(typeId, bars) {
     const isHigh = bars[d.key] >= 50;
     return `<div class="rpt-personal-dim"><span class="rpt-personal-dim-label">${d.label}</span><span class="rpt-personal-dim-badge">${levelLabel(bars[d.key])}</span><span class="rpt-personal-dim-desc">${isHigh ? d.hi : d.lo}</span></div>`;
   }).join('');
-  return `<div class="rpt-personal-intro"><span class="rpt-personal-intro-eyebrow">50問診断 ／ Personal Profile</span><p class="rpt-personal-intro-lead">あなたは<strong>${type ? type.name : ''}</strong>の中でも、特に<strong>「${top.label}」が${levelLabel(bars[top.key])}</strong>なプロフィールです。</p><div class="rpt-personal-dims">${dimsHTML}</div><p class="rpt-personal-intro-note">このスコアは50問の回答から算出したあなた個人の数値です。同じタイプでも数値の強さには個人差があり、以下の7章はこのプロフィールを前提に分析しています。</p></div>`;
+  return `<div class="rpt-personal-intro"><span class="rpt-personal-intro-eyebrow">50問診断 ／ Personal Profile</span><p class="rpt-personal-intro-lead">あなたは<strong>${type ? type.name : ''}</strong>の中でも、特に<strong>「${top.label}」が${levelLabel(bars[top.key])}</strong>プロフィールです。</p><div class="rpt-personal-dims">${dimsHTML}</div><p class="rpt-personal-intro-note">このスコアは50問の回答から算出したあなた個人の数値です。同じタイプでも数値の強さには個人差があり、以下の7章はこのプロフィールを前提に分析しています。</p></div>`;
 }
 
 // ══════════════════════════════════════

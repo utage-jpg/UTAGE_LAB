@@ -671,11 +671,10 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   color:var(--text-light);margin-top:10px;display:block;position:relative;z-index:1;}
 
 /* ══ DEEP BLUR SECTION (プレビューblur) ══ */
-.deep-blur-wrap{position:relative;padding-bottom:8px;}
-.deep-blur-content{filter:blur(3.5px);pointer-events:none;user-select:none;opacity:.75;}
-.deep-blur-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(transparent 0%,rgba(250,248,245,.75) 45%,rgba(250,248,245,.97) 75%,#faf8f5 100%);
-  display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px;}
+.deep-blur-wrap{position:relative;padding-bottom:48px;}
+.deep-blur-content{filter:blur(1.8px);pointer-events:none;user-select:none;opacity:.85;}
+.deep-blur-overlay{position:absolute;bottom:0;left:0;right:0;z-index:2;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;padding:12px 0 16px;}
 .deep-blur-badge{font-family:var(--font-m);font-size:.62rem;letter-spacing:.12em;
   color:var(--gold);background:linear-gradient(145deg,#fdf8ec,#f5e4b8);
   border:1px solid var(--gold);border-radius:100px;padding:7px 20px;
@@ -1802,7 +1801,7 @@ function showResult() {
   const wingType = TYPES.find(t => t.style === type.style && t.center === secondCenter);
   const wingDetail = extra.wingDetails[secondCenter];
 
-  currentResult = {type, extra, wingType, secondCenter, styleNorm, centerNorm};
+  currentResult = {type, extra, wingType, wingDetail, secondCenter, styleNorm, centerNorm};
 
   showScreen('screen-result');
 
@@ -2097,17 +2096,26 @@ function drawRadar(styleNorm, centerNorm, mainStyle, mainCenter, mainColor, svgE
     svg.appendChild(text);
   });
 
-  // IntersectionObserverでアニメーション発火
-  const radarWrap = document.getElementById('sec-deep-analysis');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        setTimeout(() => { dataGroup.style.transform = 'scale(1)'; }, 150);
-        obs.unobserve(e.target);
-      }
-    });
-  }, {threshold: 0.4});
-  obs.observe(radarWrap);
+  // svgElが指定されている場合（レポート内）は直接アニメーション発火
+  if (svgEl) {
+    setTimeout(() => { dataGroup.style.transform = 'scale(1)'; }, 200);
+  } else {
+    // 結果画面：IntersectionObserverでアニメーション発火
+    const radarWrap = document.getElementById('sec-deep-analysis');
+    if (radarWrap) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            setTimeout(() => { dataGroup.style.transform = 'scale(1)'; }, 150);
+            obs.unobserve(e.target);
+          }
+        });
+      }, {threshold: 0.4});
+      obs.observe(radarWrap);
+    } else {
+      setTimeout(() => { dataGroup.style.transform = 'scale(1)'; }, 200);
+    }
+  }
 
   return dataGroup;
 }
@@ -2281,12 +2289,24 @@ function showReportTeaser() {
 
   document.getElementById('teaserTypeBadge').textContent = 'Type ' + type.id + '　' + type.name;
 
+  // プレミアム演出：ダークフラッシュ後にリビール
+  const overlay = document.createElement('div');
+  overlay.style.cssText = [
+    'position:fixed', 'inset:0', 'background:#1c1520',
+    'z-index:9998', 'opacity:1', 'pointer-events:none',
+    'transition:opacity 0.9s cubic-bezier(.4,0,.2,1)',
+  ].join(';');
+  document.body.appendChild(overlay);
+
   showScreen('screen-report-teaser');
-  // プレミアム演出：画面全体のリビールアニメーション
-  const teaserScreen = document.getElementById('screen-report-teaser');
-  teaserScreen.classList.remove('teaser-premium-enter');
-  void teaserScreen.offsetWidth; // reflow
-  teaserScreen.classList.add('teaser-premium-enter');
+
+  // 2フレーム後にフェードアウト（初期状態が確実に描画されてから）
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      overlay.style.opacity = '0';
+      setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 1000);
+    });
+  });
 }
 
 // ══════════════════════════════════════
@@ -2490,15 +2510,32 @@ function buildChapterPersonalNote(chapterIdx, typeId, personalBars) {
 
   if (!bestDim) return '';
   const val = Math.round(personalBars[bestDim] || 50);
+  const typeAvgVal = Math.round(typeDefaults[bestDim] || 50);
   const isHigh = val >= 60;
   const textVariants = chapterTexts[bestDim];
   if (!textVariants) return '';
   const text = (isHigh ? textVariants.hi : textVariants.lo).replace(/\{val\}/g, val);
   if (!text) return '';
 
+  // タイプ平均との比較文
+  const diff = val - typeAvgVal;
+  const typeName = (TYPES.find(t => t.id === typeId) || {}).name || 'このタイプ';
+  let compText = '';
+  if (Math.abs(diff) <= 8) {
+    compText = `これは<strong>${typeName}</strong>の典型的なスコアです。`;
+  } else if (diff > 28) {
+    compText = `これは<strong>${typeName}</strong>の中でも特に高い傾向で、タイプ平均（${typeAvgVal}）を大きく上回っています。`;
+  } else if (diff > 8) {
+    compText = `これは<strong>${typeName}</strong>の平均（${typeAvgVal}）より少し高めの傾向です。`;
+  } else if (diff < -28) {
+    compText = `これは<strong>${typeName}</strong>の中でも特に低い傾向で、タイプ平均（${typeAvgVal}）を大きく下回っています。`;
+  } else {
+    compText = `これは<strong>${typeName}</strong>の平均（${typeAvgVal}）より少し低めの傾向です。`;
+  }
+
   return `<div class="rpt-personal-note">
     <span class="rpt-personal-note-eyebrow">あなたのスコアから</span>
-    <p class="rpt-personal-note-text">${text}</p>
+    <p class="rpt-personal-note-text">${text} <span style="color:var(--text-light);font-size:.85em;">${compText}</span></p>
   </div>`;
 }
 

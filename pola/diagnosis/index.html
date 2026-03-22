@@ -640,6 +640,69 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .rft-btn.x-btn:hover{border-color:#000;background:#000;color:#fff;}
 .rft-btn.line-btn:hover{border-color:#06c755;background:#06c755;color:#fff;}
 .rft-btn.back-btn:hover{border-color:var(--rose);color:var(--rose);}
+
+/* ══ PREMIUM CTA MAIN (大型・強調CTA) ══ */
+.premium-cta-main{margin:0;padding:28px 20px 24px;text-align:center;
+  background:linear-gradient(155deg,#fdf8ec 0%,#f0e0b0 100%);
+  border-bottom:1px solid rgba(184,150,62,.25);
+  position:relative;overflow:hidden;}
+.premium-cta-main::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 90% 70% at 50% 0%,rgba(184,150,62,.18) 0%,transparent 70%);
+  pointer-events:none;}
+.premium-cta-main-eyebrow{font-family:var(--font-m);font-size:.58rem;letter-spacing:.26em;
+  color:var(--gold);display:block;margin-bottom:10px;text-transform:uppercase;position:relative;z-index:1;}
+.premium-cta-main-icon{font-size:2.2rem;margin-bottom:8px;display:block;position:relative;z-index:1;}
+.premium-cta-main-title{font-family:var(--font-d);font-size:clamp(1.1rem,4vw,1.45rem);font-weight:700;
+  color:var(--ink);line-height:1.35;margin-bottom:10px;position:relative;z-index:1;}
+.premium-cta-main-desc{font-size:.9rem;color:var(--text-mid);line-height:1.9;margin-bottom:16px;
+  max-width:340px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
+.premium-cta-main-list{list-style:none;text-align:left;max-width:270px;margin:0 auto 18px;
+  display:flex;flex-direction:column;gap:7px;position:relative;z-index:1;}
+.premium-cta-main-list li{font-size:.88rem;color:var(--text-mid);padding-left:18px;position:relative;line-height:1.65;}
+.premium-cta-main-list li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:.55rem;top:5px;}
+.btn-premium-main{display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 32px;background:var(--ink);color:#faf8f5;
+  font-family:var(--font-d);font-size:1.05rem;font-weight:700;
+  border:none;border-radius:100px;cursor:pointer;
+  transition:all .3s;box-shadow:0 8px 28px rgba(28,21,32,.22);
+  position:relative;z-index:1;letter-spacing:.02em;width:100%;max-width:320px;margin:0 auto;}
+.btn-premium-main:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 12px 36px rgba(184,150,62,.38);}
+.premium-cta-main-note{font-family:var(--font-m);font-size:.6rem;letter-spacing:.06em;
+  color:var(--text-light);margin-top:10px;display:block;position:relative;z-index:1;}
+
+/* ══ DEEP BLUR SECTION (プレビューblur) ══ */
+.deep-blur-wrap{position:relative;padding-bottom:8px;}
+.deep-blur-content{filter:blur(3.5px);pointer-events:none;user-select:none;opacity:.75;}
+.deep-blur-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(transparent 0%,rgba(250,248,245,.75) 45%,rgba(250,248,245,.97) 75%,#faf8f5 100%);
+  display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px;}
+.deep-blur-badge{font-family:var(--font-m);font-size:.62rem;letter-spacing:.12em;
+  color:var(--gold);background:linear-gradient(145deg,#fdf8ec,#f5e4b8);
+  border:1px solid var(--gold);border-radius:100px;padding:7px 20px;
+  box-shadow:0 2px 12px rgba(184,150,62,.2);}
+
+/* ══ TEASER PREMIUM TRANSITION ══ */
+@keyframes teaserReveal{
+  from{opacity:0;transform:scale(.96) translateY(14px);}
+  to{opacity:1;transform:scale(1) translateY(0);}}
+.teaser-premium-enter{animation:teaserReveal .55s cubic-bezier(.22,.68,0,1.05) both;}
+
+/* ══ SHARE CARD SAVE BUTTON ══ */
+.share-card-actions{display:flex;flex-direction:column;gap:8px;padding:12px 14px;
+  border-top:1px solid var(--border);background:var(--bg2);}
+.share-save-btn{display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px;background:var(--ink);color:#fff;border:none;border-radius:10px;
+  font-family:var(--font-s);font-size:.85rem;font-weight:600;cursor:pointer;transition:opacity .2s;width:100%;}
+.share-save-btn:hover{opacity:.82;}
+
+/* ══ REPORT PERSONAL NOTE (動的パーソナライズ) ══ */
+.rpt-personal-note{background:linear-gradient(135deg,var(--type-color-l,#fae0e8),var(--bg));
+  border-left:3px solid var(--type-color,var(--rose));border-radius:0 12px 12px 0;
+  padding:14px 18px;margin-bottom:20px;}
+.rpt-personal-note-eyebrow{font-family:var(--font-m);font-size:.55rem;letter-spacing:.18em;
+  color:var(--type-color,var(--rose));display:block;margin-bottom:8px;text-transform:uppercase;}
+.rpt-personal-note-text{font-size:.9rem;color:var(--text);line-height:1.9;margin:0;}
+.rpt-personal-note-text strong{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -735,22 +798,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
       </div>
     </div>
 
-    <!-- 4. シェアカード -->
-    <div class="result-section rs-fade" id="sec-share">
-      <div class="share-card-block" id="shareCardBlock">
-        <div class="share-card-inner">
-          <div class="share-card-eyebrow">— YOUR TYPE —</div>
-          <div class="share-card-type" id="shareCardType"></div>
-          <div class="share-card-copy" id="shareCardCopy"></div>
-          <div class="share-card-tag">#Pola診断</div>
-        </div>
-        <div class="share-row">
-          <button class="share-btn x-btn" onclick="shareX()">𝕏 でシェア</button>
-          <button class="share-btn line-btn" onclick="shareLine()">LINE でシェア</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 簡易モード：ティーザー -->
     <div id="sec-quick-teaser" class="result-section" style="display:none;"></div>
 
@@ -776,28 +823,64 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
       </div>
     </div>
 
-    <!-- 詳細モード：より深い個人分析（特色＋スコア＋有料CTA統合） -->
+    <!-- 4. シェアカード（相性直下） -->
+    <div class="result-section rs-fade" id="sec-share">
+      <div class="share-card-block" id="shareCardBlock">
+        <div class="share-card-inner">
+          <div class="share-card-eyebrow">— YOUR TYPE —</div>
+          <div class="share-card-type" id="shareCardType"></div>
+          <div class="share-card-copy" id="shareCardCopy"></div>
+          <div class="share-card-tag">#Pola診断</div>
+        </div>
+        <div class="share-card-actions">
+          <button class="share-save-btn" onclick="saveShareCardImage()">📲 カードを画像保存・シェア</button>
+        </div>
+        <div class="share-row">
+          <button class="share-btn x-btn" onclick="shareX()">𝕏 でシェア</button>
+          <button class="share-btn line-btn" onclick="shareLine()">LINE でシェア</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 詳細モード：より深い個人分析（有料CTA最上位＋blur preview） -->
     <div id="sec-deep-analysis" class="result-section rs-fade" style="display:none;">
-      <div class="rs-block">
+      <div class="rs-block" style="overflow:hidden;">
         <div class="rs-head"><span class="rs-icon">◈</span><span class="rs-title">より深い個人分析</span></div>
-        <div class="deep-sub-head"><span class="deep-sub-icon">◐</span><span class="deep-sub-title">あなたのタイプの特色</span></div>
-        <div id="subtypeBody" class="subtype-intro"></div>
-        <div class="deep-sub-head"><span class="deep-sub-icon">◎</span><span class="deep-sub-title">あなたの傾向スコア</span></div>
-        <p class="radar-intro">4つの恋愛スタイルと、3つのセンターのスコア分布です。</p>
-        <div class="radar-wrap">
-          <div class="radar-svg-wrap">
-            <svg id="radarSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"></svg>
+        <!-- 有料CTA：最上位に大きく表示 -->
+        <div class="premium-cta-main">
+          <span class="premium-cta-main-eyebrow">Personal Report</span>
+          <span class="premium-cta-main-icon">✦</span>
+          <div class="premium-cta-main-title">あなただけの恋愛パターンを、<br>詳細レポートで受け取る</div>
+          <p class="premium-cta-main-desc">50問の回答から算出したあなた固有のスコアをもとに、7章にわたる詳細分析レポートが届きます。</p>
+          <ul class="premium-cta-main-list">
+            <li>なぜ同じ恋愛を繰り返すのか</li>
+            <li>好かれる瞬間・嫌われる瞬間</li>
+            <li>恋愛が崩れる"決定的なトリガー"</li>
+            <li>今日から使える具体的な行動戦略</li>
+          </ul>
+          <button class="btn-premium-main" onclick="showReportTeaser()">有料レポートを受け取る →</button>
+          <span class="premium-cta-main-note">※ 確認用プレビュー（課金処理は後日実装）</span>
+        </div>
+        <!-- blur preview：以下は有料レポートで確認できる内容 -->
+        <div class="deep-blur-wrap">
+          <div class="deep-blur-content">
+            <div class="deep-sub-head" style="padding-left:20px;padding-top:16px;"><span class="deep-sub-icon">◐</span><span class="deep-sub-title">あなたのタイプの特色</span></div>
+            <div id="subtypeBody" class="subtype-intro" style="padding:0 20px 12px;"></div>
+            <div class="deep-sub-head" style="padding-left:20px;"><span class="deep-sub-icon">◎</span><span class="deep-sub-title">あなたの傾向スコア</span></div>
+            <p class="radar-intro">4つの恋愛スタイルと、3つのセンターのスコア分布です。</p>
+            <div class="radar-wrap">
+              <div class="radar-svg-wrap">
+                <svg id="radarSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"></svg>
+              </div>
+            </div>
+            <div class="top3-wrap">
+              <div class="top3-title">— 近いタイプ上位3 —</div>
+              <div class="top3-list" id="top3List"></div>
+            </div>
           </div>
-        </div>
-        <div class="top3-wrap">
-          <div class="top3-title">— 近いタイプ上位3 —</div>
-          <div class="top3-list" id="top3List"></div>
-        </div>
-        <div class="premium-cta-inner">
-          <div class="premium-cta-icon">🔒</div>
-          <div class="premium-cta-title">より深い分析を、レポートで受け取る</div>
-          <p class="premium-cta-desc">あなたの回答パターンをもとに個別にパーソナライズされた詳細分析が届きます。タイプ説明にとどまらず、あなた自身の恋愛傾向を深く読み解いたレポートです。</p>
-          <button class="btn-premium" onclick="showReportTeaser()" style="cursor:pointer;opacity:1;">有料レポートを受け取る →</button>
+          <div class="deep-blur-overlay">
+            <span class="deep-blur-badge">↑ 有料レポートで確認できます</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1909,8 +1992,8 @@ function renderFullDetail(type, extra, wingType, wingDetail, secondCenter, style
 // ══════════════════════════════════════
 // RADAR CHART
 // ══════════════════════════════════════
-function drawRadar(styleNorm, centerNorm, mainStyle, mainCenter, mainColor) {
-  const svg = document.getElementById('radarSvg');
+function drawRadar(styleNorm, centerNorm, mainStyle, mainCenter, mainColor, svgEl) {
+  const svg = svgEl || document.getElementById('radarSvg');
   svg.innerHTML = '';
 
   const cx = 150, cy = 150, r = 100;
@@ -2064,6 +2147,105 @@ function setupObservers() {
 // ══════════════════════════════════════
 // SHARE
 // ══════════════════════════════════════
+function saveShareCardImage() {
+  if (!currentResult) return;
+  const {type, extra} = currentResult;
+  const resolvedColor = type.styleColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830');
+  const resolvedBg    = type.styleBg.replace('var(--rose-l)','#fae0e8').replace('var(--violet-l)','#ece6f8').replace('var(--teal-l)','#ddf2ee').replace('var(--amber-l)','#fdefd8');
+
+  const dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const W = 420, H = 420;
+  const canvas = document.createElement('canvas');
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // 背景
+  ctx.fillStyle = resolvedBg;
+  ctx.fillRect(0, 0, W, H);
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, 'rgba(255,255,255,0.45)');
+  grad.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
+
+  // 装飾フレーム
+  ctx.strokeStyle = resolvedColor + '50'; ctx.lineWidth = 1.2;
+  ctx.strokeRect(18, 18, W - 36, H - 36);
+  ctx.strokeStyle = resolvedColor + '20'; ctx.lineWidth = 0.8;
+  ctx.strokeRect(24, 24, W - 48, H - 48);
+
+  // ノイズテクスチャ（軽い粒感）
+  ctx.fillStyle = 'rgba(0,0,0,0.018)';
+  for (let x = 0; x < W; x += 4) for (let y = 0; y < H; y += 4) {
+    if (Math.random() > 0.65) ctx.fillRect(x, y, 2, 2);
+  }
+
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+
+  // eyebrow
+  ctx.fillStyle = resolvedColor + 'bb';
+  ctx.font = '500 11px monospace';
+  ctx.fillText('— YOUR TYPE —', W / 2, 90);
+
+  // Type ID
+  ctx.fillStyle = resolvedColor;
+  ctx.font = '600 12px monospace';
+  ctx.fillText('Type ' + type.id, W / 2, 116);
+
+  // Type name（大）
+  ctx.fillStyle = '#1c1520';
+  ctx.font = 'bold 28px serif';
+  const typeParts = type.name.split('（');
+  if (typeParts.length > 1) {
+    ctx.fillText(typeParts[0], W / 2, 168);
+    ctx.font = 'italic 16px serif';
+    ctx.fillStyle = resolvedColor;
+    ctx.fillText('（' + typeParts[1], W / 2, 198);
+  } else {
+    ctx.fillText(type.name, W / 2, 178);
+  }
+
+  // 区切り線
+  ctx.strokeStyle = resolvedColor + '60'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(W / 2 - 50, 218); ctx.lineTo(W / 2 + 50, 218); ctx.stroke();
+
+  // キャッチコピー
+  ctx.fillStyle = '#2e2440';
+  ctx.font = 'italic 14px serif';
+  const catchcopy = '"' + extra.catchcopy + '"';
+  const maxW = 320;
+  if (ctx.measureText(catchcopy).width <= maxW) {
+    ctx.fillText(catchcopy, W / 2, 248);
+  } else {
+    const mid = Math.floor(catchcopy.length / 2);
+    let br = catchcopy.lastIndexOf('、', mid) || catchcopy.lastIndexOf('。', mid) || mid;
+    if (br <= 0) br = mid;
+    ctx.fillText(catchcopy.substring(0, br), W / 2, 235);
+    ctx.fillText(catchcopy.substring(br), W / 2, 258);
+  }
+
+  // ハッシュタグ
+  ctx.fillStyle = resolvedColor + 'aa';
+  ctx.font = '12px monospace';
+  ctx.fillText('#Pola診断', W / 2, 304);
+
+  // ブランド
+  ctx.fillStyle = 'rgba(28,21,32,0.28)';
+  ctx.font = '11px monospace';
+  ctx.fillText('Pola — 恋愛極性診断', W / 2, 356);
+
+  canvas.toBlob(async (blob) => {
+    const file = new File([blob], 'pola-type.png', { type: 'image/png' });
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], title: 'Pola タイプ診断', text: `私のPolaタイプ：${type.name}` });
+        return;
+      } catch (e) { if (e.name === 'AbortError') return; }
+    }
+    showImageSaveModal(canvas.toDataURL('image/png'));
+  }, 'image/png');
+}
+
 function shareX() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
@@ -2100,6 +2282,11 @@ function showReportTeaser() {
   document.getElementById('teaserTypeBadge').textContent = 'Type ' + type.id + '　' + type.name;
 
   showScreen('screen-report-teaser');
+  // プレミアム演出：画面全体のリビールアニメーション
+  const teaserScreen = document.getElementById('screen-report-teaser');
+  teaserScreen.classList.remove('teaser-premium-enter');
+  void teaserScreen.offsetWidth; // reflow
+  teaserScreen.classList.add('teaser-premium-enter');
 }
 
 // ══════════════════════════════════════
@@ -2182,6 +2369,12 @@ function showReportScreen() {
     });
     const matrixCanvas = document.getElementById('matrixCanvas');
     if (matrixCanvas) drawRadarChart(matrixCanvas, type.id, personalBars);
+    // PROFILEチャプター内のレーダーチャートを描画
+    const reportRadarSvg = document.getElementById('reportRadarSvg');
+    if (reportRadarSvg && currentResult) {
+      const {styleNorm, centerNorm} = currentResult;
+      drawRadar(styleNorm, centerNorm, type.style, type.center, type.styleColor, reportRadarSvg);
+    }
   }, 50);
 
   showScreen('screen-report');
@@ -2189,6 +2382,169 @@ function showReportScreen() {
 
 function goBackToResult() {
   showScreen('screen-result');
+}
+
+// ══════════════════════════════════════
+// PERSONALIZATION ENGINE
+// ══════════════════════════════════════
+// 各チャプターで最も関連する軸 [primary, secondary]
+const CHAPTER_PRIMARY_DIMS = [
+  ['confirmation', 'proactive'],       // 0: scenario
+  ['proactive', 'emotional'],          // 1: attraction
+  ['confirmation', 'stability'],       // 2: deepening
+  ['confirmation', 'proactive'],       // 3: trigger
+  ['independence', 'confirmation'],    // 4: compatibility
+  ['confirmation', 'independence'],    // 5: deeper_need
+  ['proactive', 'emotional'],          // 6: strategy
+];
+
+// 軸 × チャプター × high/low のテキストテンプレート（{val}を実数値に置換）
+const DIM_CHAPTER_TEXTS = {
+  0: { // シナリオ
+    confirmation: {
+      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>と高いあなたにとって、以下に描かれる「確認の衝動」は特に鮮明に感じられるはずです。同タイプの中でも、このパターンが日常的に強く動いている可能性があります。',
+      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低めのあなたは、このシナリオの一部が「自分ほど強くない」と感じるかもしれません。ただし根底のパターンは、表れ方が違うだけで共通しています。',
+    },
+    proactive: {
+      hi: '「行動の積極性」スコアが<strong>{val}</strong>と高いあなたは、不安を感じたとき「すぐ動いてしまう」傾向が強く、以下のシナリオが加速して起きやすい状況にあります。',
+      lo: '「行動の積極性」スコアが<strong>{val}</strong>と低めのあなたは、内側で同じパターンを感じながらも行動として出にくく、「ぐるぐる考え続ける」形で体験している可能性があります。',
+    },
+  },
+  1: { // 引き寄せ
+    proactive: {
+      hi: '「行動の積極性」スコアが<strong>{val}</strong>と高いあなたは、惹かれた感情がそのまま行動に直結します。そのスピードは大きな強みですが、相手に圧力として伝わる瞬間もあります。',
+      lo: '「行動の積極性」スコアが<strong>{val}</strong>と低めのあなたは、内側で強く惹かれていても行動に出にくい傾向があります。「伝わっていないのでは」と感じる場面が多いかもしれません。',
+    },
+    emotional: {
+      hi: '「感情の表現度」スコアが<strong>{val}</strong>と高いあなたは、感情が豊かに伝わりやすい一方で、相手の感情の変化にも敏感に反応しやすい傾向があります。',
+      lo: '「感情の表現度」スコアが<strong>{val}</strong>と低めのあなたは、内側での感情と外に見える態度のギャップが大きく、「どう思っているか分からない」と相手に感じさせる場面があるかもしれません。',
+    },
+  },
+  2: { // 深まり
+    confirmation: {
+      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>と高いあなたにとって、関係が深まるフェーズは内面の揺れが最も大きくなる時期です。このパターンは平均より強く当てはまる可能性があります。',
+      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低めのあなたは、同タイプの中でも比較的落ち着いて関係を深めていける基盤があります。ただしゼロではありません。',
+    },
+    stability: {
+      hi: '「長期安定志向」スコアが<strong>{val}</strong>と高いあなたは、関係の深まりとともに「この安定を失いたくない」という感覚が特に強くなります。その感覚がどんな行動を引き出すかを丁寧に見ていきましょう。',
+      lo: '「長期安定志向」スコアが<strong>{val}</strong>と低めのあなたは、安定より変化や刺激を重視する面があり、関係が「マンネリになった」と感じるタイミングが早い可能性があります。',
+    },
+  },
+  3: { // トリガー
+    confirmation: {
+      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>のあなたは、以下の崩壊メカニズムが特に動きやすい状態にあります。5つのステップを、過去の恋愛と照らし合わせながら読んでみてください。',
+      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低いあなたは、崩壊トリガーがやや異なる形で表れている可能性があります。ただし「どこかで見覚えがある」感覚があれば、それが核心です。',
+    },
+    proactive: {
+      hi: '「行動の積極性」スコアが<strong>{val}</strong>と高いあなたは、不安を感じた瞬間の確認行動が速く強くなります。そのスピードが関係を壊す前に、意識的に立ち止まるタイミングを知ることが重要です。',
+      lo: '「行動の積極性」スコアが<strong>{val}</strong>と低めのあなたは、確認行動が「外に出る」より「内側でぐるぐる回る」形で起きている可能性があります。それが蓄積して関係にひびを入れます。',
+    },
+  },
+  4: { // 相性
+    independence: {
+      hi: '「独立性・自由欲求」スコアが<strong>{val}</strong>と高いあなたには、「自分のペースを尊重してくれる」という要素が相性の重要条件です。以下の評価にはこの視点が含まれています。',
+      lo: '「独立性・自由欲求」スコアが<strong>{val}</strong>と低めのあなたは、深く一体感を持てる関係に安心を感じやすい傾向があります。その欲求を満たせる相手との相性が特に重要です。',
+    },
+    confirmation: {
+      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>と高いあなたにとって、安心感を自然に与えてくれる相手との相性は特に重要です。以下の相性評価を、その観点で読んでみてください。',
+      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低いあなたは、確認を頻繁に求めてくる相手に少し疲れを感じやすいかもしれません。相手への期待値の設定として参考にしてください。',
+    },
+  },
+  5: { // 深層ニーズ
+    confirmation: {
+      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>と高いあなたにとって、この章は最も重要な部分かもしれません。高い確認欲求の根底にある「本当の欲求」を、丁寧に読み解いてみてください。',
+      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低いあなたは、安心を外から確認しなくても保てる基盤がある傾向にあります。あなたの深層ニーズは別の形で動いているかもしれません。',
+    },
+    independence: {
+      hi: '「独立性・自由欲求」スコアが<strong>{val}</strong>と高いあなたは、「自分らしくいられること」への深い欲求を持っています。この欲求が恋愛でどう表れているかを探っていきましょう。',
+      lo: '「独立性・自由欲求」スコアが<strong>{val}</strong>と低めのあなたは、誰かと深く繋がる一体感に深層の安心を求めています。この傾向を知ることが、恋愛パターンを理解する鍵になります。',
+    },
+  },
+  6: { // 戦略
+    proactive: {
+      hi: '「行動の積極性」スコアが<strong>{val}</strong>と高いあなたには、以下の戦略の中でも特に「衝動的な確認行動を一時停止する練習」が最も重要な実践課題になるでしょう。',
+      lo: '「行動の積極性」スコアが<strong>{val}</strong>と低めのあなたには、感情を「内側で処理し続ける」ことへの対策として、以下の戦略の「言語化」アプローチが特に有効です。',
+    },
+    emotional: {
+      hi: '「感情の表現度」スコアが<strong>{val}</strong>と高いあなたには、感情の表現タイミングと方法を工夫することで、以下の戦略がより効果的に機能します。',
+      lo: '「感情の表現度」スコアが<strong>{val}</strong>と低めのあなたには、以下の「感情を言葉にする」戦略が特に重要な課題です。感情を外に出すことへの慣れを積み重ねることが、恋愛を変える最初のステップです。',
+    },
+  },
+};
+
+function buildChapterPersonalNote(chapterIdx, typeId, personalBars) {
+  const typeDefaults = TYPE_BAR_DEFAULTS[typeId] || {};
+  const dims = CHAPTER_PRIMARY_DIMS[chapterIdx] || [];
+  const chapterTexts = DIM_CHAPTER_TEXTS[chapterIdx];
+  if (!chapterTexts) return '';
+
+  // 最もスコアが極端（タイプ平均からの乖離 × 絶対的な極端さ）な軸を選択
+  let bestDim = null, bestScore = -1;
+  dims.forEach(dim => {
+    if (!chapterTexts[dim]) return;
+    const val = personalBars[dim] || 50;
+    const def = typeDefaults[dim] || 50;
+    const devScore = Math.abs(val - def) * 0.6 + Math.abs(val - 50) * 0.4;
+    if (devScore > bestScore) { bestScore = devScore; bestDim = dim; }
+  });
+
+  if (!bestDim) return '';
+  const val = Math.round(personalBars[bestDim] || 50);
+  const isHigh = val >= 60;
+  const textVariants = chapterTexts[bestDim];
+  if (!textVariants) return '';
+  const text = (isHigh ? textVariants.hi : textVariants.lo).replace(/\{val\}/g, val);
+  if (!text) return '';
+
+  return `<div class="rpt-personal-note">
+    <span class="rpt-personal-note-eyebrow">あなたのスコアから</span>
+    <p class="rpt-personal-note-text">${text}</p>
+  </div>`;
+}
+
+// ══════════════════════════════════════
+// SUBTYPE CHAPTER (有料レポート冒頭)
+// ══════════════════════════════════════
+function buildSubtypeChapterHTML() {
+  if (!currentResult) return '';
+  const {type, wingType, wingDetail, secondCenter} = currentResult;
+  const centerPlain = {
+    heart: '感情・愛情センター',
+    head:  '思考・安心センター',
+    guts:  '本能・自分軸センター',
+  };
+  let subtypeHTML = '';
+  if (wingType && wingDetail) {
+    const wPlain = centerPlain[secondCenter] || wingType.centerLabel;
+    subtypeHTML = `
+      <p class="rpt-text">あなたは<strong>「${type.name}」</strong>の中でも、さらに<strong>「${wPlain}」</strong>の傾向を持つタイプです。</p>
+      <p class="rpt-text">具体的には——${wingDetail.impact}という形で、あなたの恋愛に現れています。</p>
+      <p class="rpt-text">またこの傾向が強まると、${wingDetail.drift}という側面もあります。この微妙なずれが、あなたの恋愛パターンの核心に関わっています。</p>`;
+  } else {
+    subtypeHTML = `<p class="rpt-text">あなたは<strong>「${type.name}」</strong>の性質が非常に純粋に出ているタイプです。この純粋さがあなたの恋愛の強みでもあり、課題でもあります。</p>`;
+  }
+  return `
+  <div class="report-chapter">
+    <div class="report-chapter-head">
+      <span class="report-chapter-num">PROFILE</span>
+      <div>
+        <div class="report-chapter-title">あなたのタイプ特性と傾向スコア</div>
+        <div class="report-chapter-sub">詳細診断から読み解く、あなた固有のプロファイル</div>
+      </div>
+    </div>
+    <div class="report-chapter-body">
+      <span class="rpt-label">あなたのタイプ特色</span>
+      ${subtypeHTML}
+      <div class="rpt-divider"></div>
+      <span class="rpt-label">恋愛傾向スコア分布</span>
+      <p class="rpt-text" style="font-size:.85rem;color:var(--text-light);margin-bottom:12px;">4つの恋愛スタイルと3つのセンターのスコア分布です。</p>
+      <div class="radar-wrap" style="max-width:360px;margin:0 auto;">
+        <div class="radar-svg-wrap">
+          <svg id="reportRadarSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+      </div>
+    </div>
+  </div>`;
 }
 
 // ══════════════════════════════════════
@@ -2234,6 +2590,9 @@ function buildReport(typeId) {
     { num:'CHAPTER 07', title:'関係を長く続けるための行動戦略', sub:'今日から使える、具体的なアクションプラン', content: data.strategy },
   ];
 
+  // パーソナライズバーを取得（global answers から算出）
+  const personalBars = calcPersonalizedBars(typeId);
+
   const chaptersHTML = chapters.map((ch, i) => {
     let content = ch.content;
     // Chapter 05 (index 4): compatibility — append partner callout if set
@@ -2244,6 +2603,10 @@ function buildReport(typeId) {
     if (i === 6 && currentLoveStatus && STATUS_STRATEGY_PREFIX[currentLoveStatus]) {
       content = STATUS_STRATEGY_PREFIX[currentLoveStatus] + content;
     }
+    // 動的パーソナルノートを各章の先頭に挿入
+    const personalNote = buildChapterPersonalNote(i, typeId, personalBars);
+    content = personalNote + content;
+
     return `
     <div class="report-chapter">
       <div class="report-chapter-head">
@@ -2258,7 +2621,10 @@ function buildReport(typeId) {
   `;
   }).join('');
 
-  return matrixSection + chaptersHTML;
+  // サブタイプ+レーダーチャプター（PROFILE）を最初に追加
+  const subtypeChapter = buildSubtypeChapterHTML();
+
+  return subtypeChapter + matrixSection + chaptersHTML;
 }
 
 function calcBarAdjustment(dim) {
@@ -2362,8 +2728,9 @@ function drawRadarChart(canvas, typeId, personalBars) {
     ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 1; ctx.stroke();
   }
 
-  // Draw archetype polygon (dashed)
+  // Draw archetype polygon (dashed, gray-blue for contrast)
   const arch = TYPE_BAR_DEFAULTS[typeId] || TYPE_BAR_DEFAULTS[1];
+  const ARCH_COLOR = '#6b7fa0';
   ctx.beginPath();
   axes.forEach((ax, i) => {
     const v = arch[ax.key] || 50;
@@ -2371,11 +2738,11 @@ function drawRadarChart(canvas, typeId, personalBars) {
     i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
   });
   ctx.closePath();
-  ctx.fillStyle = typeColor + '1a'; ctx.fill();
-  ctx.setLineDash([5, 4]); ctx.strokeStyle = typeColor + '70'; ctx.lineWidth = 1.5; ctx.stroke();
+  ctx.fillStyle = 'rgba(107,127,160,0.10)'; ctx.fill();
+  ctx.setLineDash([6, 4]); ctx.strokeStyle = ARCH_COLOR; ctx.lineWidth = 2; ctx.stroke();
   ctx.setLineDash([]);
 
-  // Draw personal polygon (solid)
+  // Draw personal polygon (solid, type color)
   const bars = personalBars || arch;
   ctx.beginPath();
   axes.forEach((ax, i) => {
@@ -2384,7 +2751,7 @@ function drawRadarChart(canvas, typeId, personalBars) {
     i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
   });
   ctx.closePath();
-  ctx.fillStyle = typeColor + '30'; ctx.fill();
+  ctx.fillStyle = typeColor + '38'; ctx.fill();
   ctx.strokeStyle = typeColor; ctx.lineWidth = 2.5; ctx.stroke();
 
   // Dots on personal polygon
@@ -2409,22 +2776,29 @@ function drawRadarChart(canvas, typeId, personalBars) {
     });
   });
 
-  // Legend
-  const legY = H - 22;
-  const legX = W / 2 - 82;
-  ctx.setLineDash([5, 4]);
-  ctx.strokeStyle = typeColor + '70'; ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.moveTo(legX, legY); ctx.lineTo(legX + 18, legY); ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.fillStyle = 'rgba(0,0,0,0.45)'; ctx.font = '10px sans-serif';
-  ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-  ctx.fillText('タイプ平均', legX + 22, legY);
+  // Legend (2行: タイプ名付きアーキタイプ + あなた)
+  const typeLegName = typeObj ? typeObj.name : '';
+  const archLegText = typeLegName ? typeLegName + 'の平均' : 'タイプ平均';
+  ctx.font = '10px sans-serif';
+  ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+  const archTextW = ctx.measureText(archLegText).width;
+  const myTextW   = ctx.measureText('あなた').width;
+  const legY1 = H - 32;
+  const legY2 = H - 14;
+  const startX1 = W / 2 - (18 + 4 + archTextW) / 2;
+  const startX2 = W / 2 - (18 + 4 + myTextW) / 2;
 
-  const legX2 = legX + 98;
-  ctx.strokeStyle = typeColor; ctx.lineWidth = 2.5;
-  ctx.beginPath(); ctx.moveTo(legX2, legY); ctx.lineTo(legX2 + 18, legY); ctx.stroke();
+  ctx.setLineDash([6, 4]);
+  ctx.strokeStyle = ARCH_COLOR; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(startX1, legY1); ctx.lineTo(startX1 + 18, legY1); ctx.stroke();
+  ctx.setLineDash([]);
   ctx.fillStyle = 'rgba(0,0,0,0.45)';
-  ctx.fillText('あなた', legX2 + 22, legY);
+  ctx.fillText(archLegText, startX1 + 22, legY1);
+
+  ctx.strokeStyle = typeColor; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(startX2, legY2); ctx.lineTo(startX2 + 18, legY2); ctx.stroke();
+  ctx.fillStyle = 'rgba(0,0,0,0.45)';
+  ctx.fillText('あなた', startX2 + 22, legY2);
 
   // Title
   ctx.fillStyle = '#2a2038'; ctx.font = 'bold 13px sans-serif';

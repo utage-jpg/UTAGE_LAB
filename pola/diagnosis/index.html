@@ -3708,9 +3708,8 @@ async function restoreReportFromUrl() {
 
     showReportScreen();
 
-    // 共有リンクからのアクセス時：診断結果に戻るボタンとメール送信欄を非表示
-    const backBtn = document.querySelector('#screen-report .report-back-btn');
-    if (backBtn) backBtn.style.display = 'none';
+    // 共有リンクからのアクセス時：診断結果に戻るボタン（全箇所）とメール送信欄を非表示
+    document.querySelectorAll('#screen-report .report-back-btn, #screen-report .rft-btn.back-btn').forEach(el => el.style.display = 'none');
     const emailForm = document.getElementById('reportEmailForm');
     if (emailForm) emailForm.style.display = 'none';
   } catch(e) {

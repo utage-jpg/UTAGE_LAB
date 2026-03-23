@@ -3161,6 +3161,9 @@ function buildReport(typeId) {
     </div>
   </div>`;
 
+  // パーソナライズバーを取得（global answers から算出）
+  const personalBars = calcPersonalizedBars(typeId);
+
   const chapters = [
     { num:'CHAPTER 01', title:'あなたの恋愛が"どう進み、どこで崩れるか"', sub:'出会いから崩壊までの、あなただけのシナリオ', content: data.scenario },
     { num:'CHAPTER 02', title:'好かれる瞬間と、嫌われる瞬間', sub:'あなたの魅力と、距離を遠ざけてしまうポイント', content: data.attraction },
@@ -3170,9 +3173,6 @@ function buildReport(typeId) {
     { num:'CHAPTER 06', title:'あなたが本当に求めているもの', sub:'表層の欲求の奥にある、深層のニーズ', content: data.deeper_need },
     { num:'CHAPTER 07', title:'関係を長く続けるための行動戦略', sub:'今日から使える、具体的なアクションプラン', content: data.strategy },
   ];
-
-  // パーソナライズバーを取得（global answers から算出）
-  const personalBars = calcPersonalizedBars(typeId);
 
   const chaptersHTML = chapters.map((ch, i) => {
     let content = ch.content;

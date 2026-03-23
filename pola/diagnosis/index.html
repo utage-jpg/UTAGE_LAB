@@ -900,7 +900,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
             </div>
             <p style="font-size:.72rem;color:var(--text-light);text-align:center;letter-spacing:.08em;font-family:'DM Mono',monospace;margin:12px 0 4px;">— センタースコア —</p>
             <div style="max-width:300px;margin:0 auto 4px;padding:0 16px;">
-              <svg id="radarCenterSvg" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg"></svg>
+              <svg id="radarCenterSvg" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg"></svg>
             </div>
             <div class="top3-wrap">
               <div class="top3-title">— 近いタイプ上位3 —</div>
@@ -1896,9 +1896,9 @@ function renderQuickTeaser(type) {
       <div class="quick-teaser-label">詳細診断（50問）でさらにわかること</div>
       <ul class="quick-teaser-list">
         <li><span class="qt-icon">✦</span>あなたの恋愛の強みと、気をつけたいパターン</li>
-        <li><span class="qt-icon">✦</span>あなたのタイプの特色（サブタイプ）</li>
-        <li><span class="qt-icon">✦</span>深まりやすいタイプ・刺激し合えるタイプ</li>
-        <li><span class="qt-icon">✦</span>あなたの傾向スコア分布</li>
+        <li><span class="qt-icon">✦</span>成長のヒント（恋愛パターンを変えるための視点）</li>
+        <li><span class="qt-icon">✦</span>深まりやすいタイプ・刺激し合えるタイプなど相性6パターン</li>
+        <li><span class="qt-icon">✦</span>消耗しやすいタイプ・距離感を保つべきタイプ</li>
       </ul>
       <button class="btn-detail-diag" onclick="startQuiz('full')">詳細診断を受ける（無料 · 50問）→</button>
       <p class="quick-teaser-note">より精密な判定と、深い分析が表示されます</p>
@@ -2733,7 +2733,7 @@ function buildSubtypeChapterHTML() {
   if (wingType && wingDetail) {
     const wPlain = centerPlain[secondCenter] || wingType.centerLabel;
     subtypeHTML = `
-      <p class="rpt-text">例)あなたは<strong>「${type.name}」</strong>の中でも、さらに<strong>「${wPlain}」</strong>の傾向を持つタイプです。</p>
+      <p class="rpt-text">あなたは<strong>「${type.name}」</strong>の中でも、さらに<strong>「${wPlain}」</strong>の傾向を持つタイプです。</p>
       <p class="rpt-text">具体的には——${wingDetail.impact}という形で、あなたの恋愛に現れています。</p>
       <p class="rpt-text">またこの傾向が強まると、${wingDetail.drift}という側面もあります。この微妙なずれが、あなたの恋愛パターンの核心に関わっています。</p>
       <p class="rpt-text" style="font-size:.8rem;color:var(--text-light);border-top:1px solid var(--border);margin-top:12px;padding-top:12px;">※ サブタイプの概念は「polaポータル」→「タイプ一覧」から詳細を確認してください。</p>`;
@@ -2779,19 +2779,17 @@ function buildSubtypeChapterHTML() {
         </div>
       </div>
       <div class="rpt-radar-desc" style="margin-bottom:8px;">
-        <p>4軸（Se狩猟型・Ni共鳴型・Si守護型・Ne冒険型）のうち、最も高いスコアがあなたのメインスタイルです。形が大きく偏っているほど、あなたの恋愛スタイルの個性が際立っています。</p>
+        <p>4つの恋愛スタイル（狩猟型・共鳴型・守護型・冒険型）のうち、最も高いスコアがあなたのメインスタイルです。形が大きく偏っているほど、あなたの恋愛スタイルの個性が際立っています。</p>
       </div>
       <div class="rpt-divider"></div>
       <span class="rpt-label">センタースコア（意思決定の中心）</span>
-      <p class="rpt-text" style="font-size:.85rem;color:var(--text-light);margin-bottom:8px;">愛情・安心・本能の3センターのスコア分布です。あなたが恋愛においてどの軸で意思決定しているかを示しています。</p>
+      <p class="rpt-text" style="font-size:.85rem;color:var(--text-light);margin-bottom:8px;">愛情・安心・本能の3軸のスコア分布です。</p>
       <div style="max-width:320px;margin:0 auto 4px;padding:8px 16px;">
-        <svg id="reportCenterSvg" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg"></svg>
+        <svg id="reportCenterSvg" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg"></svg>
       </div>
       <div class="rpt-radar-desc">
-        <p>このレーダーチャートは、あなたの恋愛傾向を7つの軸で表したものです。</p>
-        <p>外側の4軸（Se・Ni・Si・Ne）は恋愛スタイルを、内側の3軸（Heart・Head・Guts）は意思決定の中心をあらわしています。</p>
-        <p>実線があなた個人のスコア、点線がそのタイプの平均値です。平均から大きく外れている軸ほど、あなたの恋愛パターンを強く色づけている要素と言えます。</p>
-        <p>グラフ全体の形が歪であるほど、あなたの恋愛には個性的な強みと、対となる課題が潜んでいます。</p>
+        <p>「愛情」は感情や共感を軸に動くタイプ、「安心」は信頼や安定を重視するタイプ、「本能」は直感や衝動で動くタイプです。</p>
+        <p>最もスコアが高い軸が、あなたが恋愛で大切にしている価値観の核心です。複数の軸が拮抗しているほど、状況に応じて柔軟に対応できる傾向があります。</p>
       </div>
     </div>
   </div>`;

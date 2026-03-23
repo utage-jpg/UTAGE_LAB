@@ -75,7 +75,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .top-logo{font-family:var(--font-d);font-size:clamp(4rem,14vw,7.5rem);font-weight:300;letter-spacing:-.02em;color:var(--ink);line-height:.95;margin-bottom:4px;position:relative;z-index:1;}
 .top-logo span{font-style:italic;color:var(--rose);}
 .top-tagline{font-family:var(--font-d);font-style:italic;font-size:clamp(1rem,3vw,1.35rem);font-weight:300;color:var(--text-mid);margin-bottom:40px;letter-spacing:.04em;position:relative;z-index:1;}
-.top-copy{font-size:.88rem;color:var(--text-mid);text-align:center;max-width:400px;line-height:1.9;margin-bottom:48px;font-weight:300;position:relative;z-index:1;}
+.top-copy{font-size:.88rem;color:var(--text-mid);text-align:center;max-width:400px;line-height:1.9;margin-bottom:48px;font-weight:300;position:relative;z-index:1;text-wrap:pretty;}
 .top-copy strong{color:var(--ink);font-weight:500;}
 .btn-start{position:relative;z-index:1;display:inline-flex;align-items:center;gap:14px;padding:18px 48px;background:var(--ink);color:#faf8f5;font-family:var(--font-d);font-size:1.2rem;font-weight:600;letter-spacing:.06em;border:none;border-radius:100px;cursor:pointer;transition:all .3s;box-shadow:0 8px 32px rgba(28,21,32,.2);}
 .btn-start:hover{background:var(--rose);transform:translateY(-2px);box-shadow:0 12px 40px rgba(196,86,110,.3);}
@@ -286,16 +286,19 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 
 /* ══ MODE SELECT ══ */
 .top-hook{font-family:var(--font-d);font-style:italic;font-size:clamp(1rem,3.5vw,1.35rem);font-weight:300;color:var(--text-mid);text-align:center;margin-bottom:20px;line-height:1.6;position:relative;z-index:1;}
-.mode-select{display:flex;flex-direction:column;gap:10px;width:100%;max-width:340px;margin:0 auto;position:relative;z-index:1;}
-.btn-mode{display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:14px;border:1.5px solid var(--border);background:var(--paper);cursor:pointer;transition:all .22s;text-align:left;width:100%;}
-.btn-mode.is-primary{background:var(--ink);border-color:var(--ink);color:#faf8f5;}
-.btn-mode.is-primary:hover{background:var(--rose);border-color:var(--rose);}
-.btn-mode:not(.is-primary):hover{border-color:var(--rose);background:var(--rose-l);}
-.btn-mode-icon{font-size:1.3rem;flex-shrink:0;}
+.mode-select{display:flex;flex-direction:column;gap:12px;width:100%;max-width:360px;margin:0 auto;position:relative;z-index:1;}
+.btn-mode{display:flex;align-items:center;gap:18px;padding:17px 24px;border-radius:16px;border:1.5px solid var(--border);background:var(--paper);cursor:pointer;transition:all .22s;text-align:left;width:100%;box-shadow:0 2px 12px rgba(28,21,32,.07);}
+.btn-mode.is-primary{background:#fff;border-color:var(--border2);color:var(--ink);}
+.btn-mode.is-primary:hover{border-color:var(--rose);background:var(--rose-l);}
+.btn-mode.is-gold{background:#fff;border:2px solid var(--gold);color:var(--ink);box-shadow:0 4px 20px rgba(184,150,62,.18);}
+.btn-mode.is-gold:hover{border-color:var(--amber);background:var(--amber-l);box-shadow:0 6px 28px rgba(184,150,62,.28);}
+.btn-mode:not(.is-primary):not(.is-gold):hover{border-color:var(--rose);background:var(--rose-l);}
+.btn-mode-icon{font-size:1.56rem;flex-shrink:0;width:2rem;text-align:center;}
 .btn-mode-body{flex:1;}
-.btn-mode-title{font-family:var(--font-d);font-size:1rem;font-weight:600;display:block;margin-bottom:2px;}
-.btn-mode-sub{font-family:var(--font-m);font-size:.6rem;letter-spacing:.06em;opacity:.65;display:block;}
-.btn-mode.is-primary .btn-mode-sub{opacity:.75;}
+.btn-mode-title{font-family:var(--font-d);font-size:1.2rem;font-weight:600;display:block;margin-bottom:3px;}
+.btn-mode.is-gold .btn-mode-title{color:var(--ink);}
+.btn-mode-sub{font-family:var(--font-m);font-size:.63rem;letter-spacing:.06em;opacity:.65;display:block;}
+.btn-mode-badge{display:inline-block;font-family:var(--font-m);font-size:.52rem;letter-spacing:.1em;background:var(--gold);color:#fff;border-radius:100px;padding:2px 8px;margin-left:8px;vertical-align:middle;opacity:.95;}
 
 /* ══ CHARACTER PLACEHOLDER ══ */
 .character-placeholder{width:100px;height:100px;border-radius:50%;background:var(--type-color-l,#fae0e8);border:3px solid var(--type-color,var(--rose));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;z-index:1;font-size:2.2rem;transition:all .3s;}
@@ -813,7 +816,18 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   <p class="top-hook">なぜ私は、同じ恋愛を繰り返すのか。</p>
   <h1 class="top-logo">P<span>o</span>la</h1>
   <p class="top-tagline">— 恋愛極性診断 —</p>
-  <p class="top-copy">あなたが恋愛で動くとき、その「極性」はどこに向いているか。<br>12タイプから、あなた自身の恋愛の本質を解き明かします。</p>
+  <p class="top-copy">あなたが恋愛で動くとき、「極性」はどこを向いているか。<br>12タイプから、あなた自身の恋愛の本質を解き明かします。</p>
+
+  <div style="position:relative;z-index:1;width:100%;max-width:360px;margin:0 auto 20px;background:rgba(255,255,255,.6);border:1px solid var(--border);border-radius:14px;padding:14px 18px;">
+    <p style="font-family:var(--font-m);font-size:.58rem;letter-spacing:.18em;color:var(--text-light);margin-bottom:8px;">POLA でわかること</p>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+      <li style="font-size:.82rem;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--rose);font-size:.7rem;margin-top:2px;">✦</span>あなたの恋愛タイプと、根底にある心理パターン</li>
+      <li style="font-size:.82rem;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--rose);font-size:.7rem;margin-top:2px;">✦</span>好かれる瞬間・関係が崩れる決定的なトリガー</li>
+      <li style="font-size:.82rem;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--rose);font-size:.7rem;margin-top:2px;">✦</span>12タイプとの<strong style="color:var(--ink);">恋愛相性</strong>（星評価＋詳細解説）</li>
+      <li style="font-size:.82rem;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--gold);font-size:.7rem;margin-top:2px;">✦</span><span>詳細診断で<strong style="color:var(--ink);">約2万字</strong>の個人分析レポートを取得可能</span></li>
+    </ul>
+  </div>
+
   <div class="mode-select">
     <button class="btn-mode is-primary" onclick="startQuiz('quick')">
       <span class="btn-mode-icon">⚡</span>
@@ -822,17 +836,18 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
         <span class="btn-mode-sub">15問 · 約3分 · まず試してみたい方に</span>
       </span>
     </button>
-    <button class="btn-mode" onclick="startQuiz('full')">
+    <button class="btn-mode is-gold" onclick="startQuiz('full')">
       <span class="btn-mode-icon">◈</span>
       <span class="btn-mode-body">
         <span class="btn-mode-title">詳細診断</span>
-        <span class="btn-mode-sub">50問 · 約10〜15分 · 精度高く知りたい方に</span>
+        <span class="btn-mode-sub">50問 · 約10〜15分 · 詳細レポート取得可能</span>
       </span>
     </button>
   </div>
   <div class="top-info" style="margin-top:20px;">
     <span class="top-info-item">12タイプ</span>
     <span class="top-info-item">無料</span>
+    <span class="top-info-item">恋愛相性診断</span>
   </div>
 </div>
 
@@ -949,11 +964,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
           <span class="premium-cta-main-eyebrow">Personal Report</span>
           <span class="premium-cta-main-icon">✦</span>
           <div class="premium-cta-main-title">あなただけの恋愛パターンを、<br>詳細レポートで受け取る</div>
-          <p class="premium-cta-main-desc">50問の回答から算出したあなた固有のスコアをもとに、7章にわたる詳細分析レポートが届きます。</p>
+          <p class="premium-cta-main-desc">50問の回答から算出したあなた固有のスコアをもとに、<strong>7章・約2万字</strong>にわたる詳細分析レポートが届きます。</p>
           <ul class="premium-cta-main-list">
             <li>なぜ同じ恋愛を繰り返すのか</li>
             <li>好かれる瞬間・嫌われる瞬間</li>
             <li>恋愛が崩れる"決定的なトリガー"</li>
+            <li>12タイプとの恋愛相性・深層解説</li>
             <li>今日から使える具体的な行動戦略</li>
           </ul>
           <button class="btn-premium-main" onclick="showReportTeaser()">有料レポートを受け取る →</button>

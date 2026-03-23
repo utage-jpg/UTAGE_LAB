@@ -788,6 +788,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .report-email-status{margin-top:16px;padding:12px 16px;border-radius:10px;font-size:.88rem;line-height:1.7;}
 .report-email-status.success{background:#ddf2ee;color:#2e8b7a;border:1px solid #2e8b7a40;}
 .report-email-status.error{background:#fae0e8;color:#c4566e;border:1px solid #c4566e40;}
+.report-email-resend-btn{margin-top:10px;display:inline-block;background:none;border:1px solid #2e8b7a;color:#2e8b7a;border-radius:999px;padding:6px 18px;font-size:.82rem;cursor:pointer;font-family:var(--font-s);transition:all .2s;}
+.report-email-resend-btn:hover{background:#2e8b7a;color:#fff;}
 </style>
 </head>
 <body>
@@ -3652,7 +3654,7 @@ async function submitReportEmail() {
 
     status.style.display = '';
     status.className = 'report-email-status success';
-    status.innerHTML = 'メールを送信しました。受信ボックスをご確認ください。<br><small>迷惑メールフォルダに入っている場合があります。</small>';
+    status.innerHTML = 'メールを送信しました。受信ボックスをご確認ください。<br><small>迷惑メールフォルダに入っている場合があります。</small><br><button class="report-email-resend-btn" onclick="resetReportEmailForm()">別のアドレスに送り直す</button>';
     btn.textContent = '送信済み ✓';
   } catch(e) {
     console.error(e);
@@ -3662,6 +3664,20 @@ async function submitReportEmail() {
     btn.disabled = false;
     btn.textContent = 'レポートを保存してメールで受け取る →';
   }
+}
+
+function resetReportEmailForm() {
+  const emailInput = document.getElementById('reportEmailAddr');
+  const nameInput  = document.getElementById('reportEmailName');
+  const btn    = document.querySelector('#reportEmailForm .report-email-btn');
+  const status = document.getElementById('reportEmailStatus');
+  emailInput.value = '';
+  nameInput.value  = '';
+  btn.disabled = false;
+  btn.textContent = 'レポートを保存してメールで受け取る →';
+  status.style.display = 'none';
+  status.className = 'report-email-status';
+  emailInput.focus();
 }
 
 async function restoreReportFromUrl() {
@@ -3691,6 +3707,12 @@ async function restoreReportFromUrl() {
     };
 
     showReportScreen();
+
+    // 共有リンクからのアクセス時：診断結果に戻るボタンとメール送信欄を非表示
+    const backBtn = document.querySelector('#screen-report .report-back-btn');
+    if (backBtn) backBtn.style.display = 'none';
+    const emailForm = document.getElementById('reportEmailForm');
+    if (emailForm) emailForm.style.display = 'none';
   } catch(e) {
     console.error('レポート復元エラー:', e);
   }

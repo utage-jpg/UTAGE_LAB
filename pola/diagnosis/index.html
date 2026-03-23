@@ -3134,6 +3134,9 @@ function buildReport(typeId) {
   const data = REPORT_DATA[typeId];
   if (!data) return '';
 
+  // personalBars は matrixSection テンプレート内で使うため最初に宣言
+  const personalBars = calcPersonalizedBars(typeId);
+
   const matrixSection = `
   <div class="report-chapter">
     <div class="report-chapter-head">
@@ -3160,9 +3163,6 @@ function buildReport(typeId) {
       ${buildProfileScoreCommentary(typeId, personalBars)}
     </div>
   </div>`;
-
-  // パーソナライズバーを取得（global answers から算出）
-  const personalBars = calcPersonalizedBars(typeId);
 
   const chapters = [
     { num:'CHAPTER 01', title:'あなたの恋愛が"どう進み、どこで崩れるか"', sub:'出会いから崩壊までの、あなただけのシナリオ', content: data.scenario },

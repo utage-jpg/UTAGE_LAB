@@ -11,6 +11,11 @@
 <script src="report-data.js"></script>
 <script src="report-data-2.js"></script>
 <script src="report-data-3.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -728,6 +733,20 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   color:var(--type-color,var(--rose));display:block;margin-bottom:8px;text-transform:uppercase;}
 .rpt-personal-note-text{font-size:.9rem;color:var(--text);line-height:1.9;margin:0;}
 .rpt-personal-note-text strong{color:var(--ink);}
+/* ══ REPORT EMAIL FORM ══ */
+.report-email-form{max-width:680px;margin:0 auto 40px;width:calc(100% - 28px);background:var(--paper);border:1.5px solid var(--border);border-radius:20px;padding:28px 24px;text-align:center;}
+.report-email-eyebrow{font-family:var(--font-m);font-size:.58rem;letter-spacing:.2em;color:var(--text-light);margin-bottom:12px;}
+.report-email-desc{font-family:var(--font-d);font-size:.93rem;color:var(--text-mid);margin-bottom:20px;line-height:1.8;}
+.report-email-inputs{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.report-email-input{width:100%;box-sizing:border-box;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-d);font-size:.95rem;background:var(--bg);color:var(--ink);outline:none;}
+.report-email-input:focus{border-color:var(--type-color,var(--rose));}
+.report-email-btn{display:inline-block;padding:14px 28px;background:var(--ink);color:#fff;border:none;border-radius:100px;font-family:var(--font-d);font-size:.95rem;font-weight:600;cursor:pointer;transition:background .2s,transform .2s;width:100%;}
+.report-email-btn:hover{background:var(--type-color,var(--rose));transform:translateY(-2px);}
+.report-email-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.report-email-note{font-family:var(--font-m);font-size:.6rem;letter-spacing:.06em;color:var(--text-light);margin-top:12px;}
+.report-email-status{margin-top:16px;padding:12px 16px;border-radius:10px;font-size:.88rem;line-height:1.7;}
+.report-email-status.success{background:#ddf2ee;color:#2e8b7a;border:1px solid #2e8b7a40;}
+.report-email-status.error{background:#fae0e8;color:#c4566e;border:1px solid #c4566e40;}
 </style>
 </head>
 <body>
@@ -2850,6 +2869,17 @@ function buildClosingSection(typeId, personalBars) {
         <p class="report-closing-sign">— Pola Research Lab</p>
       </div>
     </div>
+  </div>
+  <div class="report-email-form" id="reportEmailForm">
+    <div class="report-email-eyebrow">— このレポートを保存する —</div>
+    <p class="report-email-desc">メールアドレスを入力すると、いつでも見返せる<br>専用リンクが届きます。</p>
+    <div class="report-email-inputs">
+      <input type="text" id="reportEmailName" class="report-email-input" placeholder="お名前（任意）">
+      <input type="email" id="reportEmailAddr" class="report-email-input" placeholder="メールアドレス（必須）">
+    </div>
+    <button class="report-email-btn" onclick="submitReportEmail()">レポートを保存してメールで受け取る →</button>
+    <p class="report-email-note">※ 入力されたメールアドレスはレポートリンクの送信のみに使用します。</p>
+    <div id="reportEmailStatus" class="report-email-status" style="display:none;"></div>
   </div>`;
 }
 
@@ -3251,6 +3281,113 @@ function shareReportLine() {
   const text = `Polaパーソナルレポート：${type.name}\n"${extra.catchcopy}"\n${window.location.href}`;
   window.open('https://line.me/R/msg/text/?' + encodeURIComponent(text), '_blank');
 }
+
+// ══════════════════════════════════════
+// FIREBASE + EMAILJS
+// ══════════════════════════════════════
+const firebaseConfig = {
+  apiKey: "AIzaSyC6mBuTM3yrKkva5NjdbACZ8Z7TZO4mPw0",
+  authDomain: "utagelab-pola.firebaseapp.com",
+  projectId: "utagelab-pola",
+  storageBucket: "utagelab-pola.firebasestorage.app",
+  messagingSenderId: "580782060768",
+  appId: "1:580782060768:web:e44ed1af9f185135354c85"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+emailjs.init('93Olyd2yQWfADRIUP');
+
+async function saveReportToFirestore() {
+  const {type, styleNorm, centerNorm, secondCenter} = currentResult;
+  const docRef = await db.collection('reports').add({
+    typeId: type.id,
+    styleNorm,
+    centerNorm,
+    secondCenter,
+    answers: answers.map(a => ({qIndex: a.qIndex, val: a.val})),
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+  return docRef.id;
+}
+
+async function submitReportEmail() {
+  const emailInput = document.getElementById('reportEmailAddr');
+  const nameInput  = document.getElementById('reportEmailName');
+  const btn    = document.querySelector('#reportEmailForm .report-email-btn');
+  const status = document.getElementById('reportEmailStatus');
+
+  const email = emailInput.value.trim();
+  const name  = nameInput.value.trim() || 'あなた';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    status.style.display = '';
+    status.className = 'report-email-status error';
+    status.textContent = 'メールアドレスを正しく入力してください。';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '送信中...';
+  status.style.display = 'none';
+
+  try {
+    const docId = await saveReportToFirestore();
+    const reportUrl = window.location.origin + window.location.pathname + '?id=' + docId;
+
+    await emailjs.send('service_6rjjivn', 'zu0sw79', {
+      to_email: email,
+      to_name:  name,
+      report_url: reportUrl
+    });
+
+    status.style.display = '';
+    status.className = 'report-email-status success';
+    status.innerHTML = 'メールを送信しました。受信ボックスをご確認ください。<br><small>迷惑メールフォルダに入っている場合があります。</small>';
+    btn.textContent = '送信済み ✓';
+  } catch(e) {
+    console.error(e);
+    status.style.display = '';
+    status.className = 'report-email-status error';
+    status.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+    btn.disabled = false;
+    btn.textContent = 'レポートを保存してメールで受け取る →';
+  }
+}
+
+async function restoreReportFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  if (!id) return;
+
+  try {
+    const doc = await db.collection('reports').doc(id).get();
+    if (!doc.exists) return;
+
+    const data = doc.data();
+    answers  = data.answers || [];
+    quizMode = 'full';
+
+    const type = TYPES.find(t => t.id === data.typeId);
+    if (!type) return;
+    const extra      = TYPE_EXTRA[type.id];
+    const wingType   = TYPES.find(t => t.style === type.style && t.center === data.secondCenter);
+    const wingDetail = extra ? extra.wingDetails[data.secondCenter] : null;
+
+    currentResult = {
+      type, extra, wingType, wingDetail,
+      secondCenter: data.secondCenter,
+      styleNorm:    data.styleNorm,
+      centerNorm:   data.centerNorm
+    };
+
+    showReportScreen();
+  } catch(e) {
+    console.error('レポート復元エラー:', e);
+  }
+}
+
+// ページ読み込み時にURLパラメータを確認
+restoreReportFromUrl();
 </script>
 </body>
 </html>

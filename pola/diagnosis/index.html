@@ -717,6 +717,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 /* ══ RADAR DESCRIPTION ══ */
 .rpt-radar-desc{margin-top:16px;padding:14px 16px;background:var(--bg2);border-radius:12px;border-left:3px solid var(--type-color,var(--rose));display:flex;flex-direction:column;gap:8px;}
 .rpt-radar-desc p{font-size:.82rem;color:var(--text-mid);line-height:1.85;margin:0;}
+.rpt-style-legend{display:flex;flex-direction:column;gap:7px;margin:10px 0 14px;}
+.rpt-style-legend-item{display:flex;align-items:baseline;gap:8px;font-size:.8rem;line-height:1.6;}
+.rpt-style-legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:inline-block;margin-top:2px;}
+.rpt-style-legend-name{font-family:var(--font-m);font-size:.7rem;letter-spacing:.06em;font-weight:500;white-space:nowrap;color:var(--ink);}
+.rpt-style-legend-sep{color:var(--border2);margin:0 2px;}
+.rpt-style-legend-desc{color:var(--text-mid);}
 
 /* ══ PREMIUM CTA MAIN (大型・強調CTA) ══ */
 .premium-cta-main{margin:0;padding:28px 20px 24px;text-align:center;
@@ -2859,7 +2865,7 @@ const CHAPTER_PRIMARY_DIMS = [
   ['confirmation', 'proactive'],       // 0: scenario
   ['proactive', 'emotional'],          // 1: attraction
   ['confirmation', 'stability'],       // 2: deepening
-  ['confirmation', 'proactive'],       // 3: trigger
+  ['confirmation', 'independence'],    // 3: trigger  ← proactive→independence に変更
   ['independence', 'confirmation'],    // 4: compatibility
   ['confirmation', 'independence'],    // 5: deeper_need
   ['proactive', 'emotional'],          // 6: strategy
@@ -2906,6 +2912,10 @@ const DIM_CHAPTER_TEXTS = {
       hi: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたは、不安を感じたとき確認行動へのスピードが非常に速く、「考える前に動いてしまった」という経験が多い可能性があります。ステップ3「確認行動の開始」があなたの場合、非常に短時間で・無意識に起きることを意識してみてください。衝動的な確認行動がどれだけ早く起きているかを知るだけで、次回は立ち止まる瞬間を作ることができます。',
       lo: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたは、確認行動が「外に出る」より「内側でぐるぐる回る」という形で起きている可能性があります。メッセージを送らずに何度も読み返す、相手のSNSを確認し続ける、考えすぎて眠れなくなる——これらも「内側の確認行動」です。外に出ていないからパターンがないとは限りません。内側で起きていることに注目してみてください。',
     },
+    independence: {
+      hi: '「独立性・自由欲求」のスコアが<strong>{val}</strong>のあなたは、恋愛関係に「縛られる感覚」が生じたとき、それが崩壊トリガーになりやすいパターンを持っています。「自分でいられなくなる恐怖」が不安として現れたとき、それが相手への反発・距離置き・突然の冷却という形で崩壊が始まっていないか、過去の関係と照らし合わせながら読んでみてください。',
+      lo: '「独立性・自由欲求」のスコアが<strong>{val}</strong>のあなたは、一体感や繋がりへの欲求が強い分、それが「失われる予感」がトリガーになる可能性があります。「見捨てられそう」「遠ざかっている」という感覚が、崩壊プロセスの起点になっていないか。以下のステップを「自分の場合の深層にある恐れ」という視点で読んでみてください。',
+    },
   },
   4: { // 相性
     independence: {
@@ -2939,16 +2949,17 @@ const DIM_CHAPTER_TEXTS = {
   },
 };
 
-function buildChapterPersonalNote(chapterIdx, typeId, personalBars) {
+function buildChapterPersonalNote(chapterIdx, typeId, personalBars, usedDims) {
   const typeDefaults = TYPE_BAR_DEFAULTS[typeId] || {};
   const dims = CHAPTER_PRIMARY_DIMS[chapterIdx] || [];
   const chapterTexts = DIM_CHAPTER_TEXTS[chapterIdx];
   if (!chapterTexts) return '';
 
-  // 最もスコアが極端（タイプ平均からの乖離 × 絶対的な極端さ）な軸を選択
+  // 最もスコアが極端な軸を選択（同一軸の重複を防ぐため usedDims に含まれる軸はスキップ）
   let bestDim = null, bestScore = -1;
   dims.forEach(dim => {
     if (!chapterTexts[dim]) return;
+    if (usedDims && usedDims.has(dim)) return;  // 既出の軸はスキップ
     const val = personalBars[dim] || 50;
     const def = typeDefaults[dim] || 50;
     const devScore = Math.abs(val - def) * 0.6 + Math.abs(val - 50) * 0.4;
@@ -2956,6 +2967,7 @@ function buildChapterPersonalNote(chapterIdx, typeId, personalBars) {
   });
 
   if (!bestDim) return '';
+  if (usedDims) usedDims.add(bestDim);  // 使用済みとして記録
   const val = Math.round(personalBars[bestDim] || 50);
   const typeAvgVal = Math.round(typeDefaults[bestDim] || 50);
   const isHigh = val >= 60;
@@ -3048,8 +3060,14 @@ function buildSubtypeChapterHTML() {
           <svg id="reportStyleRadarSvg" viewBox="0 0 260 250" xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
       </div>
+      <div class="rpt-style-legend">
+        <div class="rpt-style-legend-item"><span class="rpt-style-legend-dot" style="background:#c4566e;"></span><span class="rpt-style-legend-name">狩猟型</span><span class="rpt-style-legend-sep">—</span><span class="rpt-style-legend-desc">感じたら即行動。情熱と刺激で恋愛に向かう</span></div>
+        <div class="rpt-style-legend-item"><span class="rpt-style-legend-dot" style="background:#7655a8;"></span><span class="rpt-style-legend-name">共鳴型</span><span class="rpt-style-legend-sep">—</span><span class="rpt-style-legend-desc">感情の共鳴と深い一体感を求める。共感が恋愛の言語</span></div>
+        <div class="rpt-style-legend-item"><span class="rpt-style-legend-dot" style="background:#2e8b7a;"></span><span class="rpt-style-legend-name">守護型</span><span class="rpt-style-legend-sep">—</span><span class="rpt-style-legend-desc">安心と信頼を積み重ねる。ゆっくり、でも深く関わる</span></div>
+        <div class="rpt-style-legend-item"><span class="rpt-style-legend-dot" style="background:#c47830;"></span><span class="rpt-style-legend-name">冒険型</span><span class="rpt-style-legend-sep">—</span><span class="rpt-style-legend-desc">可能性と自由を愛する。新鮮さが関係のエネルギー源</span></div>
+      </div>
       <div class="rpt-radar-desc" style="margin-bottom:8px;">
-        <p>4つの恋愛スタイル（狩猟型・共鳴型・守護型・冒険型）のうち、最も高いスコアがあなたのメインスタイルです。形が大きく偏っているほど、あなたの恋愛スタイルの個性が際立っています。</p>
+        <p>最も高いスコアがあなたのメインスタイルです。形が大きく偏っているほど、あなたの恋愛スタイルの個性が際立っています。</p>
       </div>
       <div class="rpt-divider"></div>
       <span class="rpt-label">センタースコア（意思決定の中心）</span>
@@ -3181,6 +3199,9 @@ function buildReport(typeId) {
     { num:'CHAPTER 07', title:'関係を長く続けるための行動戦略', sub:'今日から使える、具体的なアクションプラン', content: data.strategy },
   ];
 
+  // 同一軸の重複表示を防ぐため、使用済み軸をトラッキング
+  const usedDims = new Set();
+
   const chaptersHTML = chapters.map((ch, i) => {
     let content = ch.content;
     // Chapter 05 (index 4): compatibility — append partner callout if set
@@ -3191,8 +3212,8 @@ function buildReport(typeId) {
     if (i === 6 && currentLoveStatus && STATUS_STRATEGY_PREFIX[currentLoveStatus]) {
       content = STATUS_STRATEGY_PREFIX[currentLoveStatus] + content;
     }
-    // 動的パーソナルノートを各章の先頭に挿入
-    const personalNote = buildChapterPersonalNote(i, typeId, personalBars);
+    // 動的パーソナルノートを各章の先頭に挿入（usedDims で重複軸を回避）
+    const personalNote = buildChapterPersonalNote(i, typeId, personalBars, usedDims);
     content = personalNote + content;
 
     return `

@@ -8,6 +8,12 @@
 <meta property="og:title" content="Pola｜恋愛極性診断">
 <meta property="og:description" content="なぜ私は同じ恋愛を繰り返すのか。12タイプから、あなた自身の恋愛の本質を解き明かします。">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/">
+<meta property="og:image" content="https://utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/img/ogp-default.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/img/ogp-default.jpg">
 <script src="report-data.js"></script>
 <script src="report-data-2.js"></script>
 <script src="report-data-3.js"></script>
@@ -3085,14 +3091,16 @@ function generatePartnerInsight(myTypeId, partnerTypeId) {
 function shareReportX() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
+  const premiumUrl = 'https://utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/premium-share.html';
   const text = `私のPolaパーソナルレポートを受け取りました。\nタイプ：${type.name}\n"${extra.catchcopy}"\n#Pola診断 #恋愛極性診断`;
-  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(premiumUrl), '_blank');
 }
 
 function shareReportLine() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
-  const text = `Polaパーソナルレポート：${type.name}\n"${extra.catchcopy}"\n${window.location.href}`;
+  const premiumUrl = 'https://utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/premium-share.html';
+  const text = `Polaパーソナルレポート：${type.name}\n"${extra.catchcopy}"\n${premiumUrl}`;
   window.open('https://line.me/R/msg/text/?' + encodeURIComponent(text), '_blank');
 }
 </script>

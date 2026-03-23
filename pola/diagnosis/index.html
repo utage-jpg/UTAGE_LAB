@@ -3334,7 +3334,7 @@ async function submitReportEmail() {
     const docId = await saveReportToFirestore();
     const reportUrl = window.location.origin + window.location.pathname + '?id=' + docId;
 
-    await emailjs.send('service_6rjjivn', 'zu0sw79', {
+    await emailjs.send('service_6rjjivn', 'template_gh25w93', {
       to_email: email,
       to_name:  name,
       report_url: reportUrl

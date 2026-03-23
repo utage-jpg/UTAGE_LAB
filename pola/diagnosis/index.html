@@ -481,6 +481,20 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .rpt-compat-card-stars{margin-left:auto;font-size:.78rem;color:var(--amber,#c47830);letter-spacing:.04em;white-space:nowrap;}
 .rpt-compat-card-desc{font-size:.85rem;color:var(--text);line-height:1.85;margin:0;}
 
+/* 相性グループ分け */
+.rpt-compat-group{margin-bottom:18px;}
+.rpt-compat-group-head{display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:8px;margin-bottom:10px;}
+.rpt-compat-group-head.is-good{background:var(--teal-l,#ddf2ee);border-left:3px solid var(--teal,#2e8b7a);}
+.rpt-compat-group-head.is-mid{background:var(--bg2);border-left:3px solid var(--border);}
+.rpt-compat-group-head.is-bad{background:var(--rose-l,#fae0e8);border-left:3px solid var(--rose,#c4566e);}
+.rpt-compat-group-head.is-good .rpt-compat-group-icon{color:var(--teal,#2e8b7a);font-size:.8rem;font-weight:800;}
+.rpt-compat-group-head.is-bad .rpt-compat-group-icon{color:var(--rose,#c4566e);font-size:.8rem;font-weight:800;}
+.rpt-compat-group-head.is-mid .rpt-compat-group-icon{color:var(--text-light);font-size:.8rem;font-weight:800;}
+.rpt-compat-group-lbl{font-family:var(--font-m);font-size:.63rem;letter-spacing:.1em;font-weight:700;}
+.rpt-compat-group-head.is-good .rpt-compat-group-lbl{color:var(--teal,#2e8b7a);}
+.rpt-compat-group-head.is-bad .rpt-compat-group-lbl{color:var(--rose,#c4566e);}
+.rpt-compat-group-head.is-mid .rpt-compat-group-lbl{color:var(--text-mid);}
+
 /* プルクオート */
 .rpt-pullquote{text-align:center;padding:28px 40px;margin:22px 0;position:relative;}
 .rpt-pullquote::before,.rpt-pullquote::after{font-family:var(--font-d);font-size:3.5rem;color:var(--border2);position:absolute;line-height:1;opacity:.55;}
@@ -2591,6 +2605,8 @@ function showReportScreen() {
       if (reportStyleSvg) drawStyleRadar(styleNorm, type.style, type.styleColor, reportStyleSvg);
       if (reportCenterSvg) drawCenterChart(centerNorm, type.center, reportCenterSvg);
     }
+    // 相性カードをグループ分け（GOOD/要注意/BAD）
+    groupCompatCards();
   }, 50);
 
   showScreen('screen-report');
@@ -2598,6 +2614,35 @@ function showReportScreen() {
 
 function goBackToResult() {
   showScreen('screen-result');
+}
+
+// 相性カードを GOOD／要注意／BAD の3グループに自動分類して再描画
+function groupCompatCards() {
+  document.querySelectorAll('#reportContent .rpt-compat-cards').forEach(container => {
+    const cards = [...container.querySelectorAll('.rpt-compat-card')];
+    if (!cards.length) return;
+    const good = [], mid = [], bad = [];
+    cards.forEach(card => {
+      const stars = (card.querySelector('.rpt-compat-card-stars')?.textContent.match(/★/g) || []).length;
+      if (stars >= 4) good.push(card.outerHTML);
+      else if (stars === 3) mid.push(card.outerHTML);
+      else bad.push(card.outerHTML);
+    });
+    const makeGroup = (cls, icon, label, items) => items.length ? `
+      <div class="rpt-compat-group">
+        <div class="rpt-compat-group-head ${cls}">
+          <span class="rpt-compat-group-icon">${icon}</span>
+          <span class="rpt-compat-group-lbl">${label}</span>
+        </div>
+        <div class="rpt-compat-cards">${items.join('')}</div>
+      </div>` : '';
+    const html =
+      makeGroup('is-good', '✓', 'あなたに合う相手',     good) +
+      makeGroup('is-mid',  '△', '関係次第の相手',       mid)  +
+      makeGroup('is-bad',  '✕', 'あなたに合いにくい相手', bad);
+    const frag = document.createRange().createContextualFragment(html);
+    container.replaceWith(frag);
+  });
 }
 
 // ══════════════════════════════════════

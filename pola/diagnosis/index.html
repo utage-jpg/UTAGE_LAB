@@ -564,6 +564,33 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .rpt-partner-callout-axes strong{color:var(--text-mid);}
 .rpt-partner-callout-advice{font-size:.88rem;color:var(--text);line-height:1.85;margin:0;}
 
+/* ══ PARTNER DEEP DIVE（相手タイプ別 攻略マップ） ══ */
+.rpt-partner-deep{border:1.5px solid var(--type-color,var(--rose));border-radius:16px;overflow:hidden;margin-top:24px;}
+.rpt-partner-deep-header{padding:16px 20px 14px;background:linear-gradient(135deg,var(--type-color-l,#fae0e8),var(--bg2));border-bottom:1px solid var(--border);}
+.rpt-partner-deep-eyebrow{font-family:var(--font-m);font-size:.56rem;letter-spacing:.18em;color:var(--type-color,var(--rose));display:block;margin-bottom:8px;text-transform:uppercase;}
+.rpt-partner-deep-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.rpt-partner-deep-badge{font-family:var(--font-m);font-size:.6rem;background:var(--type-color,var(--rose));color:#fff;padding:3px 10px;border-radius:100px;}
+.rpt-partner-deep-name{font-size:.92rem;font-weight:600;color:var(--ink);}
+.rpt-partner-deep-stars{font-size:.88rem;color:var(--amber,#c47830);letter-spacing:.06em;}
+.rpt-partner-deep-block{padding:16px 20px;border-bottom:1px solid var(--border);}
+.rpt-partner-deep-block:last-child{border-bottom:none;}
+.rpt-partner-deep-block-label{font-family:var(--font-m);font-size:.57rem;letter-spacing:.1em;color:var(--text-light);display:block;margin-bottom:10px;text-transform:uppercase;}
+.rpt-partner-deep-text{font-size:.89rem;color:var(--text);line-height:1.95;margin:0;}
+.rpt-partner-deep-text strong{color:var(--ink);}
+.rpt-partner-approach-list,.rpt-partner-ng-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin:0;}
+.rpt-partner-approach-item{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:var(--bg2);border-radius:10px;font-size:.87rem;color:var(--text);line-height:1.8;}
+.rpt-partner-approach-num{font-family:var(--font-m);font-size:.62rem;color:var(--type-color,var(--rose));flex-shrink:0;padding-top:3px;width:18px;font-weight:600;}
+.rpt-partner-ng-item{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(196,86,110,.06);border-radius:10px;border-left:3px solid var(--rose);font-size:.87rem;color:var(--text);line-height:1.8;}
+.rpt-partner-ng-mark{color:var(--rose);flex-shrink:0;font-size:.75rem;padding-top:3px;font-family:var(--font-m);}
+.rpt-partner-mytype-note{padding:14px 20px;background:linear-gradient(135deg,var(--bg2),var(--bg));border-top:1px solid var(--border);font-size:.84rem;color:var(--text-mid);line-height:1.95;}
+.rpt-partner-mytype-note strong{color:var(--ink);}
+
+/* ══ SCORE COMMENTARY（プロローグ章 スコア解説） ══ */
+.rpt-score-commentary{background:var(--paper);border:1px solid var(--border);border-radius:14px;padding:18px 22px;margin-top:16px;}
+.rpt-score-commentary-eyebrow{font-family:var(--font-m);font-size:.57rem;letter-spacing:.14em;color:var(--text-light);display:block;margin-bottom:10px;text-transform:uppercase;}
+.rpt-score-commentary-text{font-size:.89rem;color:var(--text);line-height:2.05;margin:0;}
+.rpt-score-commentary-text strong{color:var(--type-color,var(--rose));}
+
 /* ══ MATRIX SECTION ══ */
 .rpt-matrix-section{background:var(--paper);border:1px solid var(--border);border-radius:18px;overflow:hidden;margin-bottom:0;}
 .rpt-matrix-header{padding:22px 20px 14px;text-align:center;}
@@ -1680,6 +1707,178 @@ const COMPAT_CATEGORY_INFO = {
 };
 
 // ══════════════════════════════════════
+// PARTNER DEEP DATA（相手タイプ別 攻略データ）
+// ══════════════════════════════════════
+const PARTNER_DEEP_DATA = {
+  1: {
+    essence: '情熱的に追いかけ、あなたを「世界で一番特別な人」として扱うことに喜びを見出すタイプです。愛されているかを常に確かめようとしており、関係の温度変化に非常に敏感です。',
+    dynamic: '積極的に動き、相手の反応を丁寧に読み取るスタイルです。あなたへの熱量は本物ですが、「確認されること」が当たり前になると少しずつ重荷に感じる可能性があります。',
+    approaches: [
+      '返信はできるだけ早く・明確に。長時間放置するだけで不安モードに入ります',
+      '「あなたのことを特別だと思っている」という気持ちを、言葉と行動の両方で定期的に示す',
+      '相手が積極的にアプローチしてきたとき、少しでも確実に受け取る姿勢を見せると関係が深まります'
+    ],
+    ngs: [
+      '意図的に焦らす・反応を遅らせるテクニックは逆効果。確認の連鎖を激しくするだけです',
+      '他の異性との仲のよさを無神経に話すこと。嫉妬と確認行動を不必要に引き出します'
+    ]
+  },
+  2: {
+    essence: '関係を自分でコントロールできているときに安心するタイプです。一貫性・誠実さ・予測可能性を時間をかけて確認し、信頼と判断してから一気に深まります。',
+    dynamic: '観察・分析を経てから動くため、初期は慎重に見えます。しかし一度信頼の扉が開くと、誠実で深いパートナーになります。焦らず長期戦で関係を育てる姿勢が求められます。',
+    approaches: [
+      '約束は必ず守る。小さな約束ほど大切に。言動の一貫性がこのタイプの唯一の信頼基準です',
+      '相手がリードしやすい余裕を持つ。先回りしてすべて決めようとすると安心感が失われます',
+      '将来的なビジョンを具体的に話せると、長期投資の価値があるとこのタイプは判断します'
+    ],
+    ngs: [
+      '予告なく計画を変えること。「予測できない＝信頼できない」という回路が動き出します',
+      '感情的な訴えやけんかを繰り返すこと。論理より感情を優先する場面で評価が下がります'
+    ]
+  },
+  3: {
+    essence: '衝動に忠実で、自由でいられることを最優先するタイプです。束縛のない関係でこそ、驚くほど深い忠誠心と保護本能を発揮します。',
+    dynamic: '自分の本音に正直で、感情も行動も直球です。束縛されない安心感を感じたとき、このタイプは急速に心を開きます。計算より誠実さが届く相手です。',
+    approaches: [
+      '一緒にいる理由を「好きだから」以外の義務・責任にしない。自由に選んでいる感覚が愛情の源です',
+      '自発的な行動を尊重し「なぜ？」と問い詰めない。直感で動くことを認める姿勢が信頼を生みます',
+      '定期的に「初めてのこと」を一緒に体験する。新鮮な体験に感情が開きやすいタイプです'
+    ],
+    ngs: [
+      '「どこにいたの」「なぜ連絡しなかった」式の問いつめ。自由への侵害として反応されます',
+      '将来の計画や関係の定義を早急に求めること。縛られる予感がした瞬間に距離を置きます'
+    ]
+  },
+  4: {
+    essence: '与えることに喜びを見出し、相手の感情に深く共鳴するタイプです。尽くすことが愛の表現であり、深く気づいてほしいという静かな欲求を持っています。',
+    dynamic: '受け取ることより与えることが得意で、相手の感情の変化に誰よりも敏感です。この相手と深まるには、受け取るだけでなくこちらからも与えていく姿勢が必須です。',
+    approaches: [
+      'してもらったことを具体的に言葉にして感謝する。「〇〇してくれたから助かった」という具体性が特に届きます',
+      'あなたからも積極的に気遣う姿勢を見せる。与えるだけの関係には疲弊します',
+      '相手の感情の変化に気づいたとき「大丈夫？」と一声かける。気づいてもらえることが最大の喜びです'
+    ],
+    ngs: [
+      '「してもらって当然」の態度。静かに傷を積み上げ、ある日突然気持ちが尽きます',
+      '感情を相手の話ではなく自分の話にすり替えること。まず聞く姿勢がないと信頼を失います'
+    ]
+  },
+  5: {
+    essence: '長期間の観察で一貫性を確認してから信頼するタイプです。一度信頼の扉が開くと驚くほど誠実で深いパートナーになりますが、そこに至る時間は平均より長くかかります。',
+    dynamic: '観察期間中は「興味がない」ように見えることがあります。しかしそれは無関心ではなく、深い信頼を準備しているプロセスです。焦らず積み重ねることが唯一の方法です。',
+    approaches: [
+      'ペースは相手に合わせる。「早く深めたい」という焦りを見せると逆に距離が開きます',
+      '小さな約束を毎回確実に守る。「また連絡する」「〇日に会おう」という言葉の積み重ねが信頼です',
+      '興味を示し続けていること。「興味がないのかも」と諦める前に、一歩踏み込んで声をかけてみてください'
+    ],
+    ngs: [
+      '「なんで進展しないの」という焦りの表明。プレッシャーに非常に敏感で、一気に心を閉じます',
+      '約束した連絡や予定を「なんとなく」流すこと。それだけで信頼カウンターがリセットされます'
+    ]
+  },
+  6: {
+    essence: '流れに乗りながらも、芯の部分だけは誰にも譲らないタイプです。表面の柔軟さに惑わされず、その静かな核心に触れることができたとき、深い信頼が生まれます。',
+    dynamic: '穏やかで流れに乗るように見えますが、「これだけは譲れない」という核心があります。その核心を侵害しないことが、関係を長く続ける唯一の条件です。',
+    approaches: [
+      '相手が「これは嫌だ」と言ったことを二度と繰り返さない。核心への尊重が最大の愛情表現になります',
+      '答えを急かさない。このタイプは流れの中で答えを出す。「早く決めて」は逆効果です',
+      '静かにそこにいる安定感を示す。派手なアプローチより、じわじわと存在感を積み上げる方が届きます'
+    ],
+    ngs: [
+      '「なんでそんなに引くの」と追いかけること。距離を置くのは考えたいからで、追われると余計に引きます',
+      '相手の価値観・生き方を否定・矯正しようとすること。それが最も関係を終わらせる行動です'
+    ]
+  },
+  7: {
+    essence: '行動で愛を示し、行動で愛を確かめるタイプです。言葉より先に体が動き、細やかなケアと日常の積み重ねで関係を深めます。',
+    dynamic: '気づかれなくても動き続ける姿に深い愛情があります。この相手への最大の返礼は「気づくこと」です。行動への無反応が、静かな疲弊を積み重ねていきます。',
+    approaches: [
+      '「昨日〇〇してくれたね、ありがとう」という具体的な感謝の言葉を。行動への気づきが愛情タンクを満たします',
+      'あなたからも具体的な行動で返す。言葉だけでなく「あなたのことを考えて動いた」という行動が特に刺さります',
+      '弱みや困っていることを少し見せる。このタイプは「助けたい」という本能が愛情の引き金。頼られると関係が深まります'
+    ],
+    ngs: [
+      '気遣いに無反応でいること。「どうせ気づいてもらえない」という積み重ねが最終的に関係を終わらせます',
+      '感情を言語化せず、何を考えているかも行動も読めない状態を続けること'
+    ]
+  },
+  8: {
+    essence: '安定した構造の中で関係を丁寧に積み上げるタイプです。記念日・ルーティン・約束がふたりの絆の柱であり、長期的な視点でパートナーシップを設計しようとします。',
+    dynamic: '突発的な変化や予測できない出来事に強いストレスを感じます。「先のことを一緒に考えてくれる人」という印象を与えることが、このタイプの信頼を獲得する鍵です。',
+    approaches: [
+      '「3ヶ月後」「来年の春」という長期的な話を自然に会話に入れる。将来を見据えていることへの最高のシグナルです',
+      '約束・記念日・ルーティンを大切にする。小さな約束を軽視しないこと',
+      '変化は予告して、理由を説明する。「前もって伝えてくれた」という信頼が積み重なります'
+    ],
+    ngs: [
+      '「なんとかなるよ」という楽観的な無計画の態度。先の見通しのない関係には安心できません',
+      '記念日や特別な約束を忘れること。単なる物忘れでなく「関係を軽視している証拠」として受け取られます'
+    ]
+  },
+  9: {
+    essence: 'ここにい続けることが最大の愛情表現であるタイプです。言葉より行動、感情の言語化より継続する存在感が愛の言語。静かで深い忠誠心を持っています。',
+    dynamic: '感情は行動で表現するため、言葉は少なめです。このタイプと深まるには、こちらも「言葉より存在」で関係を示す時間が大切になります。',
+    approaches: [
+      '「また連絡する」ではなく「次は〇日に会おう」という具体的な継続の意志を示す',
+      '感情的な場面でも落ち着いて関係に戻れることを見せる。感情の安定感がこのタイプの安心の条件です',
+      '行動でどれだけ気にかけているかを示す。このタイプは行動の一致を敏感に読み取ります'
+    ],
+    ngs: [
+      '感情的な爆発や感情の乱高下。予測不能な感情の波が最も苦手で、静かに引いていきます',
+      '「なぜ言葉にしないの」と言語化を強制すること。行動が愛情言語であるこのタイプへの圧力になります'
+    ]
+  },
+  10: {
+    essence: 'ときめきと特別感が関係の燃料であるタイプです。マンネリへの感度が非常に高く、新しい体験・感情の鮮度・特別扱いを絶え間なく求めます。',
+    dynamic: '感情の起伏が大きく、「この人といると毎回新しい発見がある」という体験が関係を維持する燃料です。感情の表現が豊かなため、受け取る側のキャパシティも大切です。',
+    approaches: [
+      'デートや会話のパターンを意識的に変える。定期的に「新しい体験」を作る',
+      '「あなただからこそ」という特別性を言語化する。特別扱いされているという感覚が愛情の確信になります',
+      '感情を豊かに表現する。感情の響き合いに最も深く反応するタイプです'
+    ],
+    ngs: [
+      '「また同じパターン」という予測可能なループ。ときめきの鮮度を守る意識がないと関係が冷えます',
+      '感情の表現を「大げさ」と冷めた目で見ること。感情表現を抑制させてしまいます'
+    ]
+  },
+  11: {
+    essence: '可能性・夢・ビジョンを共有できる相手に最も強く惹かれるタイプです。楽観的で未来志向であり、一緒に「どこまで行けるか」を考えられる関係に燃料を感じます。',
+    dynamic: '問題があっても「なんとかなる」と前向きにとらえます。一緒に可能性を広げていける関係を求めており、重くなりすぎず、明るいエネルギーを持ち込める相手に惹かれます。',
+    approaches: [
+      '「〇〇してみたい」「いつか一緒に〇〇できたら」という未来の可能性を話す',
+      '楽しいことやポジティブなエネルギーを持ち込む。暗い雰囲気より明るい雰囲気に引き寄せられます',
+      '相手の夢や可能性を否定せず、一緒に広げていく姿勢を見せる'
+    ],
+    ngs: [
+      '重い感情や悩みをぶつけ続けること。深刻な重さを処理するのが苦手で、逃げたくなります',
+      '「それは無理じゃない？」という可能性を潰す言葉。夢を笑われた経験は最も深く傷つけます'
+    ]
+  },
+  12: {
+    essence: '自由でいることが愛の前提条件であるタイプです。縛らない関係でこそ、驚くほど深く関われます。束縛した瞬間に離れていくのは冷めたのではなく、本能的な防衛反応です。',
+    dynamic: '深まりたいという気持ちは本物ですが、深まることを同時に恐れるという矛盾を抱えています。焦らず自由を守りながら待ち続けられる人が、このタイプと最も深くなれます。',
+    approaches: [
+      '「好きだから一緒にいたい、だから縛らない」という姿勢を言葉と態度で示す',
+      '連絡が途絶えても追い詰めない。「自分の時間を尊重している」という伝わり方が信頼を生みます',
+      '自分自身も自由で豊かな個人でいること。「この人といると自分が窮屈にならない」が最重要条件です'
+    ],
+    ngs: [
+      '「なんで連絡しないの」「どこにいたの」式の所在確認。束縛として瞬時に処理されます',
+      '「付き合っているんだから〇〇すべき」という関係の義務化。義務感が生まれた瞬間に熱が冷えます'
+    ]
+  }
+};
+
+// compat category ごとの関係ダイナミクス補足（my-type perspective）
+const COMPAT_DYNAMIC_NOTE = {
+  resonance:  'あなたの自然なスタイルが、この相手には最も届きやすい組み合わせです。気負わず、あなたらしく動くことが最善策です。',
+  parallel:   '感情の動き方が似ているため、言わなくても伝わる感覚を得やすい相手です。ただし似た弱点も持つため、互いの盲点に気をつけましょう。',
+  mirror:     '同じ行動スタイルを持つ分、あなたが相手に感じる摩擦は、相手もあなたに感じている摩擦と同じです。鏡として向き合い、互いから学べる関係です。',
+  bipolar:    '行動スタイルでは惹かれ合いますが、感情の動かし方が根本的に違います。「当然こう感じるはず」という前提が通じない場面が多く、確認と対話が特に重要です。',
+  stimulus:   'あなたの持っていない視点を相手が持っています。相手の行動や反応が理解できないと感じたとき、それがあなたの盲点を照らすサインです。',
+  stillwater: '最も違いが大きい組み合わせです。「なぜそう考えるのか」を理解しようとする姿勢が、関係を築く唯一の鍵になります。'
+};
+
+// ══════════════════════════════════════
 // STATE
 // ══════════════════════════════════════
 let currentQ = 0;
@@ -2014,15 +2213,15 @@ function renderFullDetail(type, extra, wingType, wingDetail, secondCenter, style
 
   // ── タイプの特色（サブタイプ） ──
   const centerPlain = {
-    heart: '愛情サブ',
-    head: '安心サブ',
-    guts: '本能サブ',
+    heart: '感情・愛情を特に重視する',
+    head:  '慎重さ・分析力が特に強い',
+    guts:  '直感・本能がより色濃く出る',
   };
   const subtypeBody = document.getElementById('subtypeBody');
   if (wingType && wingDetail) {
     const wPlain = centerPlain[secondCenter] || wingType.centerLabel;
     subtypeBody.innerHTML = `
-      <p class="subtype-text">あなたは<strong>「${type.name}」</strong>の中でも、さらに<strong>「${wPlain}」</strong>の傾向を持つタイプです。</p>
+      <p class="subtype-text">あなたは<strong>「${type.name}」</strong>の中でも、特に<strong>「${wPlain}」</strong>という特色が加わっているタイプです。</p>
       <p class="subtype-text">具体的には——${wingDetail.impact}という形で、あなたの恋愛に現れています。</p>
       <p class="subtype-text subtype-note">またこの傾向が強まると、${wingDetail.drift}という側面もあります。この微妙なずれが、あなたの恋愛パターンの核心に関わっています。</p>`;
   } else {
@@ -2663,72 +2862,72 @@ const CHAPTER_PRIMARY_DIMS = [
 const DIM_CHAPTER_TEXTS = {
   0: { // シナリオ
     confirmation: {
-      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>と高いあなたにとって、以下に描かれる「確認の衝動」は特に鮮明に感じられるはずです。同タイプの中でも、このパターンが日常的に強く動いている可能性があります。',
-      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低めのあなたは、このシナリオの一部が「自分ほど強くない」と感じるかもしれません。ただし根底のパターンは、表れ方が違うだけで共通しています。',
+      hi: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたは、このタイプの中でも確認の衝動が特に強く動いている可能性があります。「返信が来ない＝冷めた」「少し素っ気ない＝問題がある」という解釈が、意識する前に浮かぶ経験はないでしょうか。以下のシナリオが他の人より鮮明に「自分のこと」として響くとすれば、それはこのスコアが高いことの自然な表れです。特に「確認行動→相手の防衛→確認エスカレート」という循環が起きやすい状況にあります。',
+      lo: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたは、このタイプの平均よりも確認衝動が抑えられている傾向にあります。以下のシナリオが「少し大げさ」に感じる部分があるとすれば、それはこのスコアの低さによる自然な反応です。ただし同じパターンが静かな形で動いている可能性はあります。「ぐるぐる考えているが行動に出ない」「内側は不安だが表に出さない」という形で体験していないか、照らし合わせながら読んでみてください。',
     },
     proactive: {
-      hi: '「行動の積極性」スコアが<strong>{val}</strong>と高いあなたは、不安を感じたとき「すぐ動いてしまう」傾向が強く、以下のシナリオが加速して起きやすい状況にあります。',
-      lo: '「行動の積極性」スコアが<strong>{val}</strong>と低めのあなたは、内側で同じパターンを感じながらも行動として出にくく、「ぐるぐる考え続ける」形で体験している可能性があります。',
+      hi: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたは、不安や感情が動いたとき、それを行動に変えるまでのスピードが非常に速い傾向にあります。「気になったらすぐ連絡している」「考える前に動いてしまった」という経験が思い当たるなら、そのとおりです。このシナリオに描かれる展開が、あなたの場合はより速く・強く起きる可能性があります。その素早さが恋愛の武器でもあり、関係を複雑にする原因でもあることを、ここで一度確認しておきましょう。',
+      lo: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたは、内側で同じパターンを感じながら、それが外に出にくい傾向があります。「行動する前に考えすぎて動けなかった」「ぐるぐる考え続けているうちに機会が過ぎた」という体験が多い場合、それがこのスコアの現れ方です。以下のシナリオを「行動は少ないが、内側でまったく同じことが起きている」という視点で読んでみてください。',
     },
   },
   1: { // 引き寄せ
     proactive: {
-      hi: '「行動の積極性」スコアが<strong>{val}</strong>と高いあなたは、惹かれた感情がそのまま行動に直結します。そのスピードは大きな強みですが、相手に圧力として伝わる瞬間もあります。',
-      lo: '「行動の積極性」スコアが<strong>{val}</strong>と低めのあなたは、内側で強く惹かれていても行動に出にくい傾向があります。「伝わっていないのでは」と感じる場面が多いかもしれません。',
+      hi: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたは、「この人だ」と感じた瞬間に、感情がそのまま行動に変換されます。そのスピードと情熱は「自分のことが本当に好きなんだ」と相手に伝わる最大の魅力です。ただし同時に、まだ準備のできていない相手には「早い」「強い」と感じさせてしまうことがあります。自分のペースと相手のペースのギャップを意識することが、この章を読む上での鍵になります。',
+      lo: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたは、内側で強く惹かれていても行動に出にくい傾向があります。相手からは「どう思っているか分からない」「興味がないのかも」と見えていることがあります。あなたの魅力は積極性ではなく、観察力・誠実さ・深みにあります。ただしその魅力が届くには、もう少しだけ外に伝える工夫が必要かもしれません。',
     },
     emotional: {
-      hi: '「感情の表現度」スコアが<strong>{val}</strong>と高いあなたは、感情が豊かに伝わりやすい一方で、相手の感情の変化にも敏感に反応しやすい傾向があります。',
-      lo: '「感情の表現度」スコアが<strong>{val}</strong>と低めのあなたは、内側での感情と外に見える態度のギャップが大きく、「どう思っているか分からない」と相手に感じさせる場面があるかもしれません。',
+      hi: '「感情の表現度」のスコアが<strong>{val}</strong>のあなたは、感情が豊かに外に出やすく、関係に温度と熱量を自然ともたらします。相手の感情の変化にも鋭く反応し、微細なニュアンスを読み取れる繊細さがあります。「好かれる瞬間」として描かれているポイントが、あなたの自然な言動と重なる部分が多いはずです。ただし感情の豊かさは、距離感を誤るとオーバーに見えることもあります。',
+      lo: '「感情の表現度」のスコアが<strong>{val}</strong>のあなたは、内側の感情と外に見える態度のギャップが大きい傾向にあります。「何を考えているか分からない」「好きなのかどうか不明」と相手が感じやすい状態です。あなたの内側には確かな感情がありますが、それを表現するチャンネルが細くなっている可能性があります。表現を少し増やすだけで、関係の温度が大きく変わることがあります。',
     },
   },
   2: { // 深まり
     confirmation: {
-      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>と高いあなたにとって、関係が深まるフェーズは内面の揺れが最も大きくなる時期です。このパターンは平均より強く当てはまる可能性があります。',
-      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低めのあなたは、同タイプの中でも比較的落ち着いて関係を深めていける基盤があります。ただしゼロではありません。',
+      hi: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたにとって、関係が深まるフェーズは実は不安が最も大きくなる時期でもあります。「愛されているという確信が得られるほど、次の確認が必要になる」という逆説的な循環に入りやすい状態にあります。以下に描かれる深化フェーズのプロセスは、あなたの場合、他のタイプより強く・頻繁に体験される可能性が高いです。自分がそのサイクルの中にいることを知ることが、最初の一歩です。',
+      lo: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたは、関係が深まるフェーズでは比較的落ち着いて関係を深めていける傾向にあります。ただし「確認欲求が低いから大丈夫」と過信すると、気づかないうちに同じパターンに引き込まれていることがあります。この章は「自分には関係ない」ではなく、「自分の場合はどう現れているか」という視点で読んでみてください。',
     },
     stability: {
-      hi: '「長期安定志向」スコアが<strong>{val}</strong>と高いあなたは、関係の深まりとともに「この安定を失いたくない」という感覚が特に強くなります。その感覚がどんな行動を引き出すかを丁寧に見ていきましょう。',
-      lo: '「長期安定志向」スコアが<strong>{val}</strong>と低めのあなたは、安定より変化や刺激を重視する面があり、関係が「マンネリになった」と感じるタイミングが早い可能性があります。',
+      hi: '「長期安定志向」のスコアが<strong>{val}</strong>のあなたにとって、関係が深まるほど「この安定を失いたくない」という感覚が特に強く動きます。その安定への欲求は関係を守ろうとする力にもなりますが、相手の微細な変化を「安定が崩れるサイン」として必要以上に受け取ってしまうことがあります。深化フェーズで描かれる変化への敏感さが、あなたの場合どう現れているかに注目しながら読んでみてください。',
+      lo: '「長期安定志向」のスコアが<strong>{val}</strong>のあなたは、安定より変化や刺激を関係に求める面があります。「マンネリになってきたかも」と感じるタイミングが平均より早い可能性があります。その感覚が「関係の終わり」のサインなのか、「変化を求める自分の欲求」なのかを区別して読んでいくことが、この章での重要なポイントです。',
     },
   },
   3: { // トリガー
     confirmation: {
-      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>のあなたは、以下の崩壊メカニズムが特に動きやすい状態にあります。5つのステップを、過去の恋愛と照らし合わせながら読んでみてください。',
-      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低いあなたは、崩壊トリガーがやや異なる形で表れている可能性があります。ただし「どこかで見覚えがある」感覚があれば、それが核心です。',
+      hi: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたは、この章で描かれる崩壊メカニズムが特に動きやすい状態にあります。過去の恋愛で似たパターンがあった場合、それはこのスコアの高さと深く関連している可能性があります。特に「ステップ2：最悪シナリオへの飛躍」がどれほど素早く起きていたか、そして「ステップ5：恐怖の現実化」でどれだけ苦しんだかを、5つのステップを読みながら振り返ってみてください。',
+      lo: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたは、確認衝動が強くない分、崩壊トリガーが異なる形で動いている可能性があります。「不安になっても行動に出ない→蓄積→突然の爆発または冷却」という形で崩壊が起きていないか、過去の関係を振り返りながら読んでみてください。表れ方は違っても、根底のメカニズムは共通していることが多いです。',
     },
     proactive: {
-      hi: '「行動の積極性」スコアが<strong>{val}</strong>と高いあなたは、不安を感じた瞬間の確認行動が速く強くなります。そのスピードが関係を壊す前に、意識的に立ち止まるタイミングを知ることが重要です。',
-      lo: '「行動の積極性」スコアが<strong>{val}</strong>と低めのあなたは、確認行動が「外に出る」より「内側でぐるぐる回る」形で起きている可能性があります。それが蓄積して関係にひびを入れます。',
+      hi: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたは、不安を感じたとき確認行動へのスピードが非常に速く、「考える前に動いてしまった」という経験が多い可能性があります。ステップ3「確認行動の開始」があなたの場合、非常に短時間で・無意識に起きることを意識してみてください。衝動的な確認行動がどれだけ早く起きているかを知るだけで、次回は立ち止まる瞬間を作ることができます。',
+      lo: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたは、確認行動が「外に出る」より「内側でぐるぐる回る」という形で起きている可能性があります。メッセージを送らずに何度も読み返す、相手のSNSを確認し続ける、考えすぎて眠れなくなる——これらも「内側の確認行動」です。外に出ていないからパターンがないとは限りません。内側で起きていることに注目してみてください。',
     },
   },
   4: { // 相性
     independence: {
-      hi: '「独立性・自由欲求」スコアが<strong>{val}</strong>と高いあなたには、「自分のペースを尊重してくれる」という要素が相性の重要条件です。以下の評価にはこの視点が含まれています。',
-      lo: '「独立性・自由欲求」スコアが<strong>{val}</strong>と低めのあなたは、深く一体感を持てる関係に安心を感じやすい傾向があります。その欲求を満たせる相手との相性が特に重要です。',
+      hi: '「独立性・自由欲求」のスコアが<strong>{val}</strong>のあなたには、自分のペース・自分の時間・自分らしさを尊重してくれる相手かどうかが相性の最重要条件です。以下の相性評価を「この相手は自分の自由を侵害しないか」という視点で読んでみると、どのタイプが本当に合うかがより明確に見えてきます。相性の良し悪しを「好きかどうか」より「自分でいられるかどうか」で判断することが、このスコアを持つあなたに特に重要です。',
+      lo: '「独立性・自由欲求」のスコアが<strong>{val}</strong>のあなたは、深く委ねることに安心を感じ、一体感を大切にする傾向があります。その深さに呼応できる相手との相性が特に重要です。相性評価を「この相手との一体感はどれほどか」という視点で読むと、自分が求めているものとのマッチが見えてきます。独立性が低い分、相手の言動に自分の感情が影響されやすいことも念頭に置いておきましょう。',
     },
     confirmation: {
-      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>と高いあなたにとって、安心感を自然に与えてくれる相手との相性は特に重要です。以下の相性評価を、その観点で読んでみてください。',
-      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低いあなたは、確認を頻繁に求めてくる相手に少し疲れを感じやすいかもしれません。相手への期待値の設定として参考にしてください。',
+      hi: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたにとって、あなたの確認欲求を圧力でなく愛情として受け取れる相手かどうかが相性の決定的な条件になります。同じ5つ星の相手でも、「確認行動に慣れている相手」と「確認行動に疲弊する相手」では長期的な結果がまったく異なります。以下の相性評価を「この相手はあなたの確認欲求を受け入れられるか」という問いと照らし合わせながら読んでみてください。',
+      lo: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたは、確認を頻繁に求める相手に少し消耗を感じやすいかもしれません。以下の相性評価を「この相手はどのくらい確認欲求が高そうか」という視点で読むと、長期的に維持できる関係かどうかが見えてきます。低確認型のあなたが高確認型の相手と関わるときの心構えも、この章から読み取ってみてください。',
     },
   },
   5: { // 深層ニーズ
     confirmation: {
-      hi: '「確認・安心欲求」スコアが<strong>{val}</strong>と高いあなたにとって、この章は最も重要な部分かもしれません。高い確認欲求の根底にある「本当の欲求」を、丁寧に読み解いてみてください。',
-      lo: '「確認・安心欲求」スコアが<strong>{val}</strong>と低いあなたは、安心を外から確認しなくても保てる基盤がある傾向にあります。あなたの深層ニーズは別の形で動いているかもしれません。',
+      hi: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたにとって、この章は最も核心に触れる部分かもしれません。このスコアの高さは確認行動が多いということを意味するだけでなく、それほど深く「愛されているかどうか」という問いと生きていることを意味します。以下に書かれている「外からの確認では根本の不安は解消されない」という指摘が、もし心当たりがあるとすれば——それがこのレポートで最も大切な気づきになるかもしれません。',
+      lo: '「確認・安心欲求」のスコアが<strong>{val}</strong>のあなたは、外から確認しなくても比較的保てる安定感があります。ただし同タイプの根底にある深層ニーズは、確認欲求の高低に関わらず存在します。この章で描かれる「あなたが本当に求めているもの」は、表現の仕方が違うだけで、あなたの中にも静かに流れている可能性があります。「自分には関係ない」と読むより「自分の場合はどんな形で現れているか」と問いながら読んでみてください。',
     },
     independence: {
-      hi: '「独立性・自由欲求」スコアが<strong>{val}</strong>と高いあなたは、「自分らしくいられること」への深い欲求を持っています。この欲求が恋愛でどう表れているかを探っていきましょう。',
-      lo: '「独立性・自由欲求」スコアが<strong>{val}</strong>と低めのあなたは、誰かと深く繋がる一体感に深層の安心を求めています。この傾向を知ることが、恋愛パターンを理解する鍵になります。',
+      hi: '「独立性・自由欲求」のスコアが<strong>{val}</strong>のあなたは、「自分らしくいられること」への根本的な欲求を持っています。恋愛においてこの欲求が脅かされると、どんなに相手が好きでも関係を続けることが難しくなります。この章を読む上での問いは「なぜ自分はこれほど自由を必要とするのか」——その答えが、あなたの恋愛パターンを変える鍵を持っている可能性があります。',
+      lo: '「独立性・自由欲求」のスコアが<strong>{val}</strong>のあなたは、誰かと深く繋がる一体感の中に深層の安心を求めています。その欲求は美しいものですが、時に「相手なしでは存在できない」という方向に向かうことがあります。この章で探ってみてほしいのは——「あなたが求めているのは、相手と一体になることですか、それとも自分自身がひとりでも十分だと感じながら誰かと共にいることですか」という問いです。',
     },
   },
   6: { // 戦略
     proactive: {
-      hi: '「行動の積極性」スコアが<strong>{val}</strong>と高いあなたには、以下の戦略の中でも特に「衝動的な確認行動を一時停止する練習」が最も重要な実践課題になるでしょう。',
-      lo: '「行動の積極性」スコアが<strong>{val}</strong>と低めのあなたには、感情を「内側で処理し続ける」ことへの対策として、以下の戦略の「言語化」アプローチが特に有効です。',
+      hi: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたには、以下の戦略の中でも「衝動的な確認行動の一時停止」が最も重要かつ最も難しい実践課題になるでしょう。不安を感じた瞬間に動きたくなる衝動は、このスコアが高い分だけ強力です。だからこそ「1時間後にまだ不安なら動く」という小さなルールが、あなたにとって最初の関係変容のポイントになります。戦略を「知識として読む」ではなく「今週実際に試す」を目標に読んでみてください。',
+      lo: '「行動の積極性」のスコアが<strong>{val}</strong>のあなたには、「感情を言葉にする」アプローチが特に重要です。行動が出にくい分、内側で感情を処理し続けてしまい、それが相手には「何も感じていない」または「距離を置かれている」と映ることがあります。まず感情を紙に書き出すことから始めてみてください。相手に伝えなくても、書くことで内側の整理ができ、次のステップが見えやすくなります。',
     },
     emotional: {
-      hi: '「感情の表現度」スコアが<strong>{val}</strong>と高いあなたには、感情の表現タイミングと方法を工夫することで、以下の戦略がより効果的に機能します。',
-      lo: '「感情の表現度」スコアが<strong>{val}</strong>と低めのあなたには、以下の「感情を言葉にする」戦略が特に重要な課題です。感情を外に出すことへの慣れを積み重ねることが、恋愛を変える最初のステップです。',
+      hi: '「感情の表現度」のスコアが<strong>{val}</strong>のあなたは、感情の豊かさが自然な魅力になっています。以下の戦略は「感情を抑える」ためではなく「感情の表現のタイミングと形を工夫する」ためのものです。感情を消す必要はありません。ただ、相手が受け取れる形・量・タイミングで届けることができると、あなたの感情の豊かさが最大の武器に変わります。',
+      lo: '「感情の表現度」のスコアが<strong>{val}</strong>のあなたには、「感情を言葉にする練習」が最も重要な実践課題です。感情が薄いのではなく、表現が苦手なだけです。まず小さなことから——「今日は楽しかった」「一緒にいると安心する」という短い言語化を一日一回試してみてください。感情を言葉にすることは相手への贈り物であり、同時に自分の感情をより深く理解するための作業でもあります。',
     },
   },
 };
@@ -2789,18 +2988,18 @@ function buildSubtypeChapterHTML() {
   if (!currentResult) return '';
   const {type, wingType, wingDetail, secondCenter, styleNorm, centerNorm} = currentResult;
   const centerPlain = {
-    heart: '愛情サブ',
-    head:  '安心サブ',
-    guts:  '本能サブ',
+    heart: '感情・愛情を特に重視する',
+    head:  '慎重さ・分析力が特に強い',
+    guts:  '直感・本能がより色濃く出る',
   };
   let subtypeHTML = '';
   if (wingType && wingDetail) {
     const wPlain = centerPlain[secondCenter] || wingType.centerLabel;
     subtypeHTML = `
-      <p class="rpt-text">あなたは<strong>「${type.name}」</strong>の中でも、さらに<strong>「${wPlain}」</strong>の傾向を持つタイプです。</p>
+      <p class="rpt-text">あなたは<strong>「${type.name}」</strong>の中でも、特に<strong>「${wPlain}」</strong>特色が加わっているタイプです。</p>
       <p class="rpt-text">具体的には——${wingDetail.impact}という形で、あなたの恋愛に現れています。</p>
       <p class="rpt-text">またこの傾向が強まると、${wingDetail.drift}という側面もあります。この微妙なずれが、あなたの恋愛パターンの核心に関わっています。</p>
-      <p class="rpt-text" style="font-size:.8rem;color:var(--text-light);border-top:1px solid var(--border);margin-top:12px;padding-top:12px;">※ サブタイプの概念は「polaポータル」→「タイプ一覧」から詳細を確認してください。</p>`;
+      <p class="rpt-text" style="font-size:.8rem;color:var(--text-light);border-top:1px solid var(--border);margin-top:12px;padding-top:12px;">※ 上記はあなたの回答パターンから読み取れる「タイプの個人差」です。同じタイプでも、この傾向の強さによって体験の仕方が異なります。</p>`;
   } else {
     subtypeHTML = `<p class="rpt-text">あなたは<strong>「${type.name}」</strong>の性質が非常に純粋に出ているタイプです。この純粋さがあなたの恋愛の強みでもあり、課題でもあります。</p>
       <p class="rpt-text" style="font-size:.8rem;color:var(--text-light);border-top:1px solid var(--border);margin-top:12px;padding-top:12px;">※ サブタイプの概念は「polaポータル」→「タイプ一覧」から詳細を確認してください。</p>`;
@@ -2958,6 +3157,7 @@ function buildReport(typeId) {
           <p class="rpt-matrix-note">iPhoneは「写真に追加」、Androidは「画像を保存」でカメラロールに直接保存できます</p>
         </div>
       </div>
+      ${buildProfileScoreCommentary(typeId, personalBars)}
     </div>
   </div>`;
 
@@ -3033,6 +3233,35 @@ function calcPersonalizedBars(typeId) {
   // 生の調整量をチャプターノートの比較判定に使用するため格納
   result._rawAdj = rawAdj;
   return result;
+}
+
+function buildProfileScoreCommentary(typeId, personalBars) {
+  const type = TYPES.find(t => t.id === typeId);
+  if (!type) return '';
+  const dims = [
+    {key:'proactive',    label:'行動の積極性',   hi:'感情が動いたとき、考える前に体が動いてしまう積極さがあります',     lo:'内側で感じることが多くても、外に出すまでに時間がかかる慎重さがあります'},
+    {key:'emotional',   label:'感情の表現度',   hi:'感情が豊かに表に出やすく、関係に温度と熱量を自然にもたらします',    lo:'感情を内側に深く抱え、行動で示すスタイルが強く出ています'},
+    {key:'confirmation',label:'確認・安心欲求', hi:'「愛されているか」という問いが常に動いており、相手の反応に非常に敏感です', lo:'外からの確認がなくても比較的安定していられる傾向があります'},
+    {key:'independence',label:'独立性・自由欲求',hi:'自分らしくいられることを本能的に最優先し、縛られることへの強い抵抗があります', lo:'深く委ねることに安心を感じ、一体感を大切にする傾向があります'},
+    {key:'stability',   label:'長期安定志向',   hi:'関係の継続と安定を強く求め、日々の積み重ねを深く大切にします',     lo:'変化や刺激にエネルギーを感じ、安定より鮮度を重視する傾向があります'},
+  ];
+  const sorted = [...dims].sort((a,b) => Math.abs(personalBars[b.key]-50) - Math.abs(personalBars[a.key]-50));
+  const top    = sorted[0];
+  const second = sorted[1];
+  const notable = sorted.filter(d => personalBars[d.key] >= 68 || personalBars[d.key] <= 32);
+  const levelWord = v => v>=85?'非常に強く':v>=70?'強く':v>=55?'やや強めに':v<=15?'非常に低く':v<=30?'低く':'やや低めに';
+  const topIsHigh = personalBars[top.key] >= 50;
+  const topLv = levelWord(personalBars[top.key]);
+  let text = `あなたは<strong>「${type.name}」</strong>の中でも、<strong>「${top.label}」が${topLv}</strong>現れているプロフィールです。具体的には、${topIsHigh ? top.hi : top.lo}。`;
+  const secIsHigh = personalBars[second.key] >= 50;
+  text += `また<strong>「${second.label}」</strong>も${secIsHigh ? levelWord(personalBars[second.key]) + '出ており' : levelWord(personalBars[second.key]) + '傾向があり'}、${secIsHigh ? second.hi : second.lo}。`;
+  const third = notable.find(d => d.key !== top.key && d.key !== second.key);
+  if (third) {
+    const tIsHigh = personalBars[third.key] >= 50;
+    text += `さらに<strong>「${third.label}」</strong>も${tIsHigh ? '特に高く' : '低めで'}、${tIsHigh ? third.hi : third.lo}という特徴があります。`;
+  }
+  text += `このプロフィールを前提として、以下の7章があなた個人の分析として書かれています。`;
+  return `<div class="rpt-score-commentary"><span class="rpt-score-commentary-eyebrow">Your Personal Profile — スコアが示すもの</span><p class="rpt-score-commentary-text">${text}</p></div>`;
 }
 
 function buildPersonalizedIntro(typeId, bars) {
@@ -3297,20 +3526,56 @@ function generatePartnerInsight(myTypeId, partnerTypeId) {
   const partner = TYPES.find(t => t.id === partnerTypeId);
   if (!me || !partner || !me.compat) return '';
 
-  // Find compatibility category from existing compat data
   let category = null;
   for (const [cat, ids] of Object.entries(me.compat)) {
     if (ids.includes(partnerTypeId)) { category = cat; break; }
   }
   if (!category) category = 'stimulus';
 
-  const info = COMPAT_CATEGORY_INFO[category] || COMPAT_CATEGORY_INFO.stimulus;
+  const info    = COMPAT_CATEGORY_INFO[category] || COMPAT_CATEGORY_INFO.stimulus;
   const starStr = '★'.repeat(info.stars) + '☆'.repeat(5 - info.stars);
+  const deep    = PARTNER_DEEP_DATA[partnerTypeId];
+  const dynNote = COMPAT_DYNAMIC_NOTE[category] || '';
 
-  const STYLE_DESC  = { Se:'積極行動型', Ni:'受容待機型', Si:'安定持続型', Ne:'刺激探求型' };
-  const CENTER_DESC = { heart:'感情確認型', head:'安全分析型', guts:'自立本能型' };
+  if (!deep) return `<div class="rpt-partner-callout"><span class="rpt-partner-callout-eyebrow">意中の相手 ／ Partner Analysis</span><div class="rpt-partner-callout-meta"><span class="rpt-partner-callout-badge">Type ${partnerTypeId}</span><span class="rpt-partner-callout-name">${partner.name}</span><span class="rpt-partner-callout-stars">${starStr}</span></div><p class="rpt-partner-callout-advice">${info.advice}</p></div>`;
 
-  return `<div class="rpt-partner-callout"><span class="rpt-partner-callout-eyebrow">意中の相手 ／ Partner Type Analysis</span><div class="rpt-partner-callout-meta"><span class="rpt-partner-callout-badge">Type ${partnerTypeId}</span><span class="rpt-partner-callout-name">${partner.name}</span><span class="rpt-partner-callout-stars">${starStr}</span></div><p class="rpt-partner-callout-dynamics">${info.desc}</p><div class="rpt-partner-callout-axes"><span>相手のスタイル：<strong>${STYLE_DESC[partner.style]}</strong></span><span>相手のセンター：<strong>${CENTER_DESC[partner.center]}</strong></span></div><p class="rpt-partner-callout-advice">${info.advice}</p></div>`;
+  const approachItems = deep.approaches.map((tip, i) =>
+    `<li class="rpt-partner-approach-item"><span class="rpt-partner-approach-num">0${i+1}</span>${tip}</li>`
+  ).join('');
+  const ngItems = deep.ngs.map(ng =>
+    `<li class="rpt-partner-ng-item"><span class="rpt-partner-ng-mark">✕</span>${ng}</li>`
+  ).join('');
+
+  return `
+<div class="rpt-partner-deep">
+  <div class="rpt-partner-deep-header">
+    <span class="rpt-partner-deep-eyebrow">意中の相手 ／ 恋愛攻略マップ</span>
+    <div class="rpt-partner-deep-meta">
+      <span class="rpt-partner-deep-badge">Type ${partnerTypeId}</span>
+      <span class="rpt-partner-deep-name">${partner.name}</span>
+      <span class="rpt-partner-deep-stars">${starStr}</span>
+    </div>
+  </div>
+  <div class="rpt-partner-deep-block">
+    <span class="rpt-partner-deep-block-label">この相手との関係の本質</span>
+    <p class="rpt-partner-deep-text">${deep.dynamic}</p>
+  </div>
+  <div class="rpt-partner-deep-block">
+    <span class="rpt-partner-deep-block-label">この相手が恋愛に求めているもの</span>
+    <p class="rpt-partner-deep-text">${deep.essence}</p>
+  </div>
+  <div class="rpt-partner-deep-block">
+    <span class="rpt-partner-deep-block-label">距離を縮める3つのアプローチ</span>
+    <ul class="rpt-partner-approach-list">${approachItems}</ul>
+  </div>
+  <div class="rpt-partner-deep-block">
+    <span class="rpt-partner-deep-block-label">絶対にやってはいけないNG行動</span>
+    <ul class="rpt-partner-ng-list">${ngItems}</ul>
+  </div>
+  <div class="rpt-partner-mytype-note">
+    <strong>あなたのタイプから見た視点 ——</strong> ${dynNote}
+  </div>
+</div>`;
 }
 
 function shareReportX() {

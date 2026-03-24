@@ -183,7 +183,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
   font-family:var(--font-m);font-size:.6rem;letter-spacing:.04em;
   padding:2px 8px;border-radius:100px;font-weight:500;
 }
-.type-chip-name{font-size:.78rem;font-weight:700;color:var(--ink);line-height:1.3;text-align:center;}
+.type-chip-name{font-size:.78rem;font-weight:700;color:var(--ink);line-height:1.35;text-align:center;}
+.type-chip-name.long{font-size:.7rem;}
+.type-chip-sub{font-size:.7rem;font-weight:400;color:var(--text-mid);display:block;}
+.type-chip-name.long .type-chip-sub{font-size:.65rem;}
 .type-chip-num{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);}
 
 /* THEORY INTRO */
@@ -234,6 +237,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
 }
 .compat-type-name{font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
 .compat-type-rule{font-size:.72rem;color:var(--text-light);}
+.compat-type-desc{font-size:.72rem;color:var(--text-mid);margin-top:6px;line-height:1.55;}
 .compat-preview-foot{padding:16px 28px;border-top:1px solid var(--border);}
 /* COMPAT CHECKER */
 .compat-checker{background:var(--bg2);border-radius:14px;padding:16px 20px;margin:16px 28px;border:1px solid var(--border);}
@@ -464,31 +468,37 @@ footer{
         <span class="compat-type-badge" style="background:#c4566e;color:white;">双極</span>
         <div class="compat-type-name">Bipolar</div>
         <div class="compat-type-rule">Se ↔ Ni / Si ↔ Ne</div>
+        <div class="compat-type-desc">強烈に惹かれ合う補完関係。Se×NiまたはSi×Neの組み合わせ。</div>
       </div>
       <div class="compat-type-card" style="background:#ece6f8;">
         <span class="compat-type-badge" style="background:#7655a8;color:white;">調和</span>
         <div class="compat-type-name">Resonance</div>
-        <div class="compat-type-rule">同スタイル × 異センター</div>
+        <div class="compat-type-rule">補完スタイル × 同センター</div>
+        <div class="compat-type-desc">最も深まりやすい。補完スタイル＋同センターの組み合わせ。</div>
       </div>
       <div class="compat-type-card" style="background:#fdefd8;">
         <span class="compat-type-badge" style="background:#c47830;color:white;">刺激</span>
         <div class="compat-type-name">Stimulus</div>
-        <div class="compat-type-rule">対角スタイル</div>
+        <div class="compat-type-rule">同スタイル群 × 異センター</div>
+        <div class="compat-type-desc">成長し合える関係。同スタイル群の対角センターの組み合わせ。</div>
       </div>
       <div class="compat-type-card" style="background:#ddf2ee;">
-        <span class="compat-type-badge" style="background:#2e8b7a;color:white;">並行</span>
+        <span class="compat-type-badge" style="background:#2e8b7a;color:white;">並走</span>
         <div class="compat-type-name">Parallel</div>
-        <div class="compat-type-rule">同スタイル × 同センター</div>
+        <div class="compat-type-rule">同スタイル群 × 同センター</div>
+        <div class="compat-type-desc">同じ方向を向く。同スタイル群＋同センターの組み合わせ。</div>
       </div>
       <div class="compat-type-card" style="background:#f0e8dc;">
-        <span class="compat-type-badge" style="background:#8b6e4e;color:white;">鏡</span>
+        <span class="compat-type-badge" style="background:#8b6e4e;color:white;">鏡像</span>
         <div class="compat-type-name">Mirror</div>
-        <div class="compat-type-rule">異スタイル × 同センター</div>
+        <div class="compat-type-rule">同スタイル × 異センター</div>
+        <div class="compat-type-desc">自分の鏡のような関係。同スタイル×異センターの組み合わせ。</div>
       </div>
       <div class="compat-type-card" style="background:#e8f0f8;">
         <span class="compat-type-badge" style="background:#5b7fa6;color:white;">静水</span>
         <div class="compat-type-name">Still Water</div>
-        <div class="compat-type-rule">同スタイル群 × 全センター</div>
+        <div class="compat-type-rule">Se×Ne / Ni×Si の交差</div>
+        <div class="compat-type-desc">穏やかに引き合う。Se×NeまたはNi×Siの交差グループ。</div>
       </div>
     </div>
     <div class="compat-checker">
@@ -594,9 +604,13 @@ TYPES.forEach(t => {
   const el = document.createElement('a');
   el.href = `types.html#type-${t.id}`;
   el.className = 'type-chip';
+  const parts = t.name.split('（');
+  const mainName = parts[0];
+  const subName = parts.length > 1 ? '（' + parts[1] : '';
+  const isLong = mainName.length >= 7;
   el.innerHTML = `
     <span class="type-chip-style" style="background:${t.styleBg};color:${t.styleColor};">${STYLE_LABELS[t.style]}</span>
-    <span class="type-chip-name">${t.name}</span>
+    <span class="type-chip-name${isLong ? ' long' : ''}">${mainName}${subName ? `<span class="type-chip-sub">${subName}</span>` : ''}</span>
     <span class="type-chip-num">Type ${t.id}</span>
   `;
   grid.appendChild(el);

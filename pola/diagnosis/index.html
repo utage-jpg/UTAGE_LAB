@@ -3063,16 +3063,26 @@ function buildSubtypeChapterHTML() {
     head:  '慎重さ・分析力が特に強い',
     guts:  '直感・本能がより色濃く出る',
   };
+  // サブタイプラベル（本能サブ / 愛情サブ / 安心サブ）
+  const subtypeLabel = {heart:'愛情サブ', head:'安心サブ', guts:'本能サブ'};
+  const subLabel = secondCenter ? (subtypeLabel[secondCenter] || '') : '';
+  const subBadgeHTML = subLabel
+    ? `<div style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px;background:var(--amber-l);border-radius:100px;margin-bottom:14px;">
+        <span style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.08em;color:var(--amber);">SUBTYPE</span>
+        <span style="font-size:.82rem;color:var(--ink);font-weight:600;">${subLabel}</span>
+       </div>`
+    : '';
   let subtypeHTML = '';
   if (wingType && wingDetail) {
     const wPlain = centerPlain[secondCenter] || wingType.centerLabel;
     subtypeHTML = `
+      ${subBadgeHTML}
       <p class="rpt-text">あなたは<strong>「${type.name}」</strong>の中でも、特に<strong>「${wPlain}」</strong>特色が加わっているタイプです。</p>
       <p class="rpt-text">具体的には——${wingDetail.impact}という形で、あなたの恋愛に現れています。</p>
       <p class="rpt-text">またこの傾向が強まると、${wingDetail.drift}という側面もあります。この微妙なずれが、あなたの恋愛パターンの核心に関わっています。</p>
       <p class="rpt-text" style="font-size:.8rem;color:var(--text-light);border-top:1px solid var(--border);margin-top:12px;padding-top:12px;">※ 上記はあなたの回答パターンから読み取れる「タイプの個人差」です。同じタイプでも、この傾向の強さによって体験の仕方が異なります。</p>`;
   } else {
-    subtypeHTML = `<p class="rpt-text">あなたは<strong>「${type.name}」</strong>の性質が非常に純粋に出ているタイプです。この純粋さがあなたの恋愛の強みでもあり、課題でもあります。</p>
+    subtypeHTML = `${subBadgeHTML}<p class="rpt-text">あなたは<strong>「${type.name}」</strong>の性質が非常に純粋に出ているタイプです。この純粋さがあなたの恋愛の強みでもあり、課題でもあります。</p>
       <p class="rpt-text" style="font-size:.8rem;color:var(--text-light);border-top:1px solid var(--border);margin-top:12px;padding-top:12px;">※ サブタイプの概念は「polaポータル」→「タイプ一覧」から詳細を確認してください。</p>`;
   }
 

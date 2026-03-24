@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>相性一覧 66通り｜恋愛極性理論 — Pola Portal</title>
-<meta name="description" content="恋愛極性理論（Pola）・12タイプ間の全66通りの相性パターンを解説。双極・調和・刺激・並走・鏡像・静水の6関係タイプで分類。">
-<meta property="og:title" content="相性一覧 66通り｜恋愛極性理論 — Pola Portal">
-<meta property="og:description" content="12タイプ間の全66通りの相性パターンを解説。6関係タイプで分類。">
+<title>相性一覧 78通り｜恋愛極性理論 — Pola Portal</title>
+<meta name="description" content="恋愛極性理論（Pola）・12タイプ間の全78通りの相性パターンを解説。双極・調和・刺激・並走・鏡像・静水・同一型の7関係タイプで分類。">
+<meta property="og:title" content="相性一覧 78通り｜恋愛極性理論 — Pola Portal">
+<meta property="og:description" content="12タイプ間の全78通りの相性パターンを解説。7関係タイプで分類。">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://utage-jpg.github.io/UTAGE_LAB/pola/images/pola_preview.png">
 <meta property="og:image:width" content="1280">
@@ -142,9 +142,9 @@ footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;ba
 </nav>
 
 <div class="hero">
-  <span class="hero-tag">66 Compatibility Patterns</span>
+  <span class="hero-tag">78 Compatibility Patterns</span>
   <h1>相性<em>一覧</em></h1>
-  <p>12タイプ間の全66通りの相性パターンを収録。引力の質・共鳴ポイント・すれ違いの核・関係の鍵で解説します。</p>
+  <p>12タイプ間の全78通りの相性パターンを収録。同一型を含む7関係タイプで、引力の質・共鳴ポイント・すれ違いの核・関係の鍵を解説します。</p>
 </div>
 
 <!-- REL TYPE OVERVIEW -->
@@ -178,6 +178,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;ba
   <div id="parallel" class="tab-content"></div>
   <div id="mirror" class="tab-content"></div>
   <div id="stillwater" class="tab-content"></div>
+  <div id="same" class="tab-content"></div>
 </div>
 
 <footer>
@@ -216,6 +217,7 @@ const REL={
   parallel:  {name:'並走',   en:'Parallel',  color:'#2e8b7a',bg:'#ddf2ee', desc:'同じ方向を向く。同スタイル群＋同センターの組み合わせ。',rule:'同スタイル群 × 同センター'},
   mirror:    {name:'鏡像',   en:'Mirror',    color:'#5b7fa6',bg:'#deeaf7', desc:'自分の鏡のような関係。同スタイル×異センターの組み合わせ。',rule:'同スタイル × 異センター'},
   stillwater:{name:'静水',   en:'Still Water',color:'#8b7355',bg:'#f0e8dc', desc:'穏やかに引き合う。Se×NeまたはNi×Siの交差グループ。',rule:'Se×Ne / Ni×Si の交差'},
+  same:      {name:'同一型', en:'Same Type',  color:'#6e6080',bg:'#f0edf5', desc:'同じタイプ同士。深い共鳴が生まれる一方、盲点も共有される。',rule:'完全一致'},
 };
 
 const PAIRS = [
@@ -285,21 +287,52 @@ const PAIRS = [
   {t1:6,t2:7,rel:'stillwater',a:'Ni×Siの内向交差＋本能型（06）とハート（07）のズレ。06の静かな芯と07の温かな包容力が引き合う。',r:'07の気遣いが06の「自分でいられる」感覚を強化する。06の揺るがない意志が07に「この人は離れない」という安心感を与える。',c:'06は「芯を保ちながら委ねたい」、07は「尽くすことで愛されたい」。どちらも与えることが得意で、愛の循環が止まりやすい。',k:'どちらかが「受け取る」という行為を意識的に選ぶこと。与え合うだけでなく受け取り合うことが関係を動かす。'},
   {t1:6,t2:8,rel:'stillwater',a:'Ni×Siの内向交差＋本能型（06）とヘッド（08）のズレ。06の静かな本能的意志と08の思考的安定が引き合う。',r:'06の揺るがない芯と08の安定した構造が組み合わさると、非常に信頼性が高く安定した関係になる。',c:'06は感覚と意志で動く、08は思考と計画で動く。「感じたから動く」と「考えたから動く」の判断プロセスの根本的なズレ。',k:'どちらも「慎重」という共通点がある。その慎重さを活かして一緒に判断することで最良の関係になる。'},
   {t1:6,t2:9,rel:'stillwater',a:'Ni×Siの内向交差＋本能型同士。静かな芯で流れる者と静かな意志で守る者。最も穏やかな引力。',r:'共に本能センターで内向きの機能を持つ。感情より意志、言葉より行動という共通の価値観が深い安心感を生む。',c:'06の「流れに乗りながら芯を保つ」と09の「その場に留まり守り続ける」のズレ。',k:'流れることと留まることは矛盾しない。どちらも「芯がある」という共通点から関係を育てること。'},
+  // ── 同一型（12ペア）──
+  {t1:1,t2:1,rel:'same',a:'「次の獲物」への共鳴がそのまま引力になる。会った瞬間にお互いの熱量を直感する。',r:'アクション優先の価値観が一致し、関係が即座に動き出す。二人でいると何かが始まる感覚が続く。',c:'どちらも「先手を打ちたい」性質があり、リードする側が定まらないと空回りしやすい。',k:'「誰が仕掛けるか」ではなく、共同で冒険を設計できると関係に深みが生まれる。'},
+  {t1:2,t2:2,rel:'same',a:'互いの計算力と読みの鋭さが刺激になる。「この人はわかっている」という確信が生まれやすい。',r:'感情より論理で関係を設計することへの共通理解があり、摩擦が少ない。',c:'両者とも心の内を見せない傾向があり、深まる前に打算で関係が止まりやすい。',k:'分析を止めて、たまに非合理な選択を一緒にする勇気が関係の温度を上げる。'},
+  {t1:3,t2:3,rel:'same',a:'同じ熱量で燃える相手に、本能的な高揚感を感じる。',r:'互いの野心を笑わず、背中を押し合える数少ない関係。',c:'勝ち負けへの意識が両者にあり、協力より競争に向かいやすい。',k:'「ライバル」ではなく「共同戦線を張る仲間」として認識できると一気に絆が深まる。'},
+  {t1:4,t2:4,rel:'same',a:'深い感情的共鳴。「この人だけが私をわかる」という感覚が生まれやすい。',r:'互いの感情の波を言語化せずとも受け取り合える。',c:'両者とも感情の処理に時間が必要で、傷ついた時に互いの回復を待てず溺れることがある。',k:'「わかる」だけで終わらず、互いに外の世界へ引き出す役割も担い合うと関係が安定する。'},
+  {t1:5,t2:5,rel:'same',a:'沈黙が心地よい、希少な関係。探究への情熱が自然にシンクロする。',r:'互いの思考スペースを侵さないことへの暗黙の合意がある。',c:'距離を置くことが得意な二人が、大事な瞬間にも近づけないことがある。',k:'観察するだけでなく、共に「何かを作る・動く」経験を積むと絆が生まれる。'},
+  {t1:6,t2:6,rel:'same',a:'見えない糸への信頼が一致し、「出会うべくして会った」という感覚が生まれやすい。',r:'不安と直感を両方持つ同士として、深い納得感で関係が進む。',c:'両者ともリスクへの感度が高く、些細な不安が増幅しやすい。',k:'「大丈夫」と言い合うより、不安を共有しながらも前に進む姿勢を互いに見せると安定する。'},
+  {t1:7,t2:7,rel:'same',a:'「この人を守りたい」という感情が、相手にも同様に向けられているという安心感がある。',r:'関係の安定を優先する価値観が一致し、穏やかな空気が続きやすい。',c:'どちらも相手を気遣うあまり、本音を言い出せない時間が続くことがある。',k:'「守る」だけでなく、時には甘えを見せ合う関係にすることで感情的な距離が縮まる。'},
+  {t1:8,t2:8,rel:'same',a:'「この人は本気だ」という相互認識が、自然な信頼感を生む。',r:'設計思考と着実な行動力が共鳴し、物事を一緒に積み上げやすい。',c:'完璧主義同士のすり合わせで、細かい違いが積もると関係が重くなることがある。',k:'「完成形」を求めるより、未完のまま共にいることを楽しむ余白を作ると関係が軽くなる。'},
+  {t1:9,t2:9,rel:'same',a:'相手を気にかける姿勢が自然に伝わり、温かい空気が最初から漂う。',r:'相手のペースに合わせることが両者ともできるため、関係がなだらかに育つ。',c:'どちらも「自分が引かなければ」と思いやすく、関係の方向が定まらないことがある。',k:'相手に合わせるだけでなく、自分の望みも声に出せる関係を作ることが長続きの鍵。'},
+  {t1:10,t2:10,rel:'same',a:'「新しいことをしたい」という感覚が即座にシンクロし、会話が弾む。',r:'感情とロマンへの感性が似ていて、旅や体験を通じて強い接続が生まれる。',c:'刺激を求める二人が、日常の中で関係の熱量を維持しにくくなることがある。',k:'非日常の体験を意識的に設計し続けることで、関係のモメンタムが保たれる。'},
+  {t1:11,t2:11,rel:'same',a:'知的好奇心が一致し、「話が尽きない」という高揚感が最初から生まれる。',r:'互いの世界観の広さを喜べる関係。テーマが多いほど盛り上がる。',c:'「理解したい」欲求が強い二人が、感情より論理で関係を扱いすぎることがある。',k:'知識の交換だけでなく、感じること・受け取ることにも時間を割くと関係に温もりが増す。'},
+  {t1:12,t2:12,rel:'same',a:'縛られたくないという感覚が一致し、距離感の心地よさが即座に伝わる。',r:'自由への価値観が同じで、相手を「縛らない」ことが自然にできる。',c:'関係を深める場面で両者とも引いてしまい、なかなか本音の場所へ行けないことがある。',k:'自由でいながらも、あえて「ここにいたい」と選び合う瞬間を持つことが鍵になる。'},
 ];
 
 // Populate selects
 const typeOptions = Object.entries(TYPES_MAP).map(([id,t])=>
-  `<option value="${id}">Type ${id} ${t.name}</option>`).join('');
+  `<option value="${id}">${t.name}</option>`).join('');
 document.getElementById('filterType1').innerHTML += typeOptions;
 document.getElementById('filterType2').innerHTML += typeOptions;
 
 function replaceTerminology(text) {
-  return String(text)
+  let result = String(text);
+  // タイプ番号をタイプ名に置き換え（12→1の順で処理し部分マッチを防ぐ）
+  const typeNames = {
+    1:'ロマンハンター（狩人）',2:'ストラテジスト（戦略家）',3:'チャレンジャー（挑戦者）',
+    4:'エンパス（共感者）',5:'オブザーバー（観察者）',6:'フェイタリスト（運命論者）',
+    7:'ガーディアン（保護人）',8:'アーキテクト（構築者）',9:'ケアテイカー（世話役）',
+    10:'トラベラー（旅人）',11:'エクスプローラー（探検家）',12:'フリースピリット（自由人）',
+  };
+  [12,11,10,9,8,7,6,5,4,3,2,1].forEach(id => {
+    const tname = typeNames[id];
+    const patterns = id < 10 ? [`0${id}`, `${id}`] : [`${id}`];
+    patterns.forEach(np => {
+      ['の','は','が','と','を','に'].forEach(p => {
+        result = result.replace(new RegExp(np + p, 'g'), tname + p);
+      });
+      result = result.replace(new RegExp('（' + np + '）', 'g'), '（' + tname + '）');
+    });
+  });
+  result = result
     .replace(/Se/g, STYLE_JA.Se)
     .replace(/Ni/g, STYLE_JA.Ni)
     .replace(/Si/g, STYLE_JA.Si)
-    .replace(/Ne/g, STYLE_JA.Ne)
-    .replace(/\b0([1-9])\b/g, '$1');
+    .replace(/Ne/g, STYLE_JA.Ne);
+  return result;
 }
 
 // Render rel overview
@@ -323,7 +356,7 @@ Object.entries(REL).forEach(([key,r])=>{
 
 // Render tabs
 const tabsNav = document.getElementById('tabsNav');
-const relOrder = ['bipolar','resonance','stimulus','parallel','mirror','stillwater'];
+const relOrder = ['bipolar','resonance','stimulus','parallel','mirror','stillwater','same'];
 relOrder.forEach((rel,i)=>{
   const cnt = PAIRS.filter(p=>p.rel===rel).length;
   const btn = document.createElement('button');
@@ -370,9 +403,9 @@ function renderPairs(pairs, container){
         <span class="cc-badge" style="background:${r.bg};color:${r.color};">${r.name}</span>
         <div class="cc-types">
           <div class="cc-names">
-            <a class="type-jump-btn" href="types.html#type-${p.t1}" style="color:${t1.sc};">Type ${p.t1} ${t1.name}</a>
+            <a class="type-jump-btn" href="types.html#type-${p.t1}" style="color:${t1.sc};">${t1.name}</a>
             <span style="color:var(--text-light);font-weight:400;margin:0 6px;">×</span>
-            <a class="type-jump-btn" href="types.html#type-${p.t2}" style="color:${t2.sc};">Type ${p.t2} ${t2.name}</a>
+            <a class="type-jump-btn" href="types.html#type-${p.t2}" style="color:${t2.sc};">${p.t1===p.t2?'（同一型）':t2.name}</a>
           </div>
           <div class="cc-codes">${STYLE_JA[t1.style]} × ${CENTER_JA[t1.center]} &nbsp;／&nbsp; ${STYLE_JA[t2.style]} × ${CENTER_JA[t2.center]}</div>
         </div>
@@ -424,6 +457,15 @@ function filterByType(){
   const firstRel=relOrder.find(rel=>filtered.some(p=>p.rel===rel));
   if(firstRel) switchTab(firstRel);
 }
+
+// URLパラメータで自動絞り込み（ポータルの相性チェッカーから遷移した場合）
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const t1 = params.get('t1'), t2 = params.get('t2');
+  if(t1) document.getElementById('filterType1').value = t1;
+  if(t2) document.getElementById('filterType2').value = t2;
+  if(t1 || t2) filterByType();
+})();
 </script>
 </body>
 </html>

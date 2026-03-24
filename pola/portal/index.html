@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pola Portal｜恋愛極性理論 — 診断・理論・相性の総合ポータル</title>
-<meta name="description" content="恋愛極性診断「Pola」の総合ポータル。12タイプ診断・理論解説・66通りの相性一覧を収録。あなたの恋愛の本質を知る。">
+<meta name="description" content="恋愛極性診断「Pola」の総合ポータル。12タイプ診断・理論解説・78通りの相性一覧を収録。あなたの恋愛の本質を知る。">
 <meta property="og:title" content="Pola Portal｜恋愛極性理論">
 <meta property="og:description" content="恋愛における「極性」から自分を知る。12タイプ診断・理論解説・相性分析の総合ポータル。">
 <meta property="og:type" content="website">
@@ -235,6 +235,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
 .compat-type-name{font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
 .compat-type-rule{font-size:.72rem;color:var(--text-light);}
 .compat-preview-foot{padding:16px 28px;border-top:1px solid var(--border);}
+/* COMPAT CHECKER */
+.compat-checker{background:var(--bg2);border-radius:14px;padding:16px 20px;margin:16px 28px;border:1px solid var(--border);}
+.compat-checker-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--text-light);text-transform:uppercase;margin-bottom:10px;}
+.compat-checker-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.compat-checker select{flex:1;min-width:0;font-family:var(--font-s);font-size:.78rem;color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:8px 10px;appearance:none;-webkit-appearance:none;cursor:pointer;}
+.compat-checker-sep{font-size:.85rem;color:var(--text-light);flex-shrink:0;}
+.compat-checker-btn{flex-shrink:0;font-family:var(--font-m);font-size:.68rem;letter-spacing:.06em;color:white;background:var(--rose);border:none;border-radius:100px;padding:9px 18px;cursor:pointer;transition:opacity .2s;white-space:nowrap;}
+.compat-checker-btn:hover{opacity:.85;}
+@media(max-width:480px){.compat-checker-row{gap:6px;}.compat-checker select{font-size:.72rem;padding:7px 8px;}.compat-checker-btn{padding:8px 14px;font-size:.64rem;}}
 .compat-link{
   display:inline-flex;align-items:center;gap:8px;
   font-family:var(--font-m);font-size:.68rem;letter-spacing:.06em;
@@ -356,8 +365,8 @@ footer{
       <div class="portal-card-head">
         <div class="portal-card-icon" style="background:var(--amber-l);">💞</div>
         <div class="portal-card-title">相性一覧</div>
-        <div class="portal-card-sub">COMPAT · 66 PATTERNS · FULL</div>
-        <div class="portal-card-desc">12タイプ間の全66通りの相性パターンを収録。双極・調和・刺激・並走・鏡像・静水の6関係タイプで解説。</div>
+        <div class="portal-card-sub">COMPAT · 78 PATTERNS · FULL</div>
+        <div class="portal-card-desc">12タイプ間の全78通りの相性パターンを収録。双極・調和・刺激・並走・鏡像・静水・同一型の7関係タイプで解説。</div>
       </div>
       <div class="portal-card-foot">
         <span class="portal-card-cta" style="color:var(--amber);">相性を調べる</span>
@@ -482,12 +491,60 @@ footer{
         <div class="compat-type-rule">同スタイル群 × 全センター</div>
       </div>
     </div>
+    <div class="compat-checker">
+      <div class="compat-checker-label">Quick Compat Check — 2つのタイプを選んで相性を確認</div>
+      <div class="compat-checker-row">
+        <select id="checkerT1">
+          <option value="">タイプを選ぶ</option>
+          <option value="1">ロマンハンター（狩人）</option>
+          <option value="2">ストラテジスト（戦略家）</option>
+          <option value="3">チャレンジャー（挑戦者）</option>
+          <option value="4">エンパス（共感者）</option>
+          <option value="5">オブザーバー（観察者）</option>
+          <option value="6">フェイタリスト（運命論者）</option>
+          <option value="7">ガーディアン（保護人）</option>
+          <option value="8">アーキテクト（構築者）</option>
+          <option value="9">ケアテイカー（世話役）</option>
+          <option value="10">トラベラー（旅人）</option>
+          <option value="11">エクスプローラー（探検家）</option>
+          <option value="12">フリースピリット（自由人）</option>
+        </select>
+        <span class="compat-checker-sep">×</span>
+        <select id="checkerT2">
+          <option value="">タイプを選ぶ</option>
+          <option value="1">ロマンハンター（狩人）</option>
+          <option value="2">ストラテジスト（戦略家）</option>
+          <option value="3">チャレンジャー（挑戦者）</option>
+          <option value="4">エンパス（共感者）</option>
+          <option value="5">オブザーバー（観察者）</option>
+          <option value="6">フェイタリスト（運命論者）</option>
+          <option value="7">ガーディアン（保護人）</option>
+          <option value="8">アーキテクト（構築者）</option>
+          <option value="9">ケアテイカー（世話役）</option>
+          <option value="10">トラベラー（旅人）</option>
+          <option value="11">エクスプローラー（探検家）</option>
+          <option value="12">フリースピリット（自由人）</option>
+        </select>
+        <button class="compat-checker-btn" onclick="goToCompat()">相性を見る →</button>
+      </div>
+    </div>
     <div class="compat-preview-foot">
-      <a href="compat.html" class="compat-link">66通りの相性を全て見る →</a>
+      <a href="compat.html" class="compat-link">78通りの相性を全て見る →</a>
     </div>
   </div>
 </div>
 </div>
+
+<script>
+function goToCompat(){
+  const t1=document.getElementById('checkerT1').value;
+  const t2=document.getElementById('checkerT2').value;
+  const params=new URLSearchParams();
+  if(t1) params.set('t1',t1);
+  if(t2) params.set('t2',t2);
+  window.location.href='compat.html'+(params.toString()?'?'+params.toString():'');
+}
+</script>
 
 <!-- DIAGNOSIS CTA -->
 <div class="bg-paper">

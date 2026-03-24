@@ -1024,6 +1024,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
         </a>
       </div>
       <button class="retry-btn" onclick="retryQuiz()">↺ もう一度診断する</button>
+      <button id="btnBackToReport" class="retry-btn" onclick="showScreen('screen-report')" style="display:none;margin-top:8px;background:var(--gold);color:#fff;border-color:var(--gold);">レポートを再表示する →</button>
     </div>
   </div>
 
@@ -1095,7 +1096,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
       <p class="teaser-closing-sub">その構造を知ることで、恋愛は変えられます。</p>
       <a class="btn-teaser-cta" href="https://buy.stripe.com/5kQ28r0L98le2Ry6I5aAw00" onclick="saveQuizStateForPayment()" style="display:inline-block;text-decoration:none;">¥980 でレポートを購入する →</a>
       <p class="teaser-price-note" style="margin-top:8px;font-size:.8rem;">クレジットカード決済 · Stripe による安全な決済</p>
-      <button class="btn-teaser-cta" onclick="proceedIfPaid()" style="margin-top:10px;background:transparent;color:var(--text-mid);border:1.5px solid var(--border);font-size:.85rem;padding:10px 24px;">購入済みの方はこちら →</button>
+      <button id="btnPurchased" class="btn-teaser-cta" onclick="proceedIfPaid()" style="display:none;margin-top:10px;background:transparent;color:var(--text-mid);border:1.5px solid var(--border);font-size:.85rem;padding:10px 24px;">購入済みの方はこちら →</button>
       <button class="teaser-back" onclick="goBackToResult()">← 診断結果に戻る</button>
     </div>
   </div>
@@ -2792,6 +2793,9 @@ function startReportGeneration() {
 
 function showReportScreen() {
   if (!currentResult) return;
+  // 生成済みフラグをセット→結果画面の再表示ボタンを出す
+  const btnBack = document.getElementById('btnBackToReport');
+  if (btnBack) btnBack.style.display = '';
   const {type, extra} = currentResult;
 
   const resolvedColor = type.styleColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830');
@@ -3809,6 +3813,9 @@ async function restoreReportFromUrl() {
 // ページ読み込み時にURLパラメータを確認
 restoreReportFromUrl();
 
+// 支払い済みの場合はテスター画面のボタンを表示
+if (localStorage.getItem('pola_paid') === '1') showPurchasedButton();
+
 // ══════════════════════════════════════
 // STRIPE 支払い連携
 // ══════════════════════════════════════
@@ -3825,6 +3832,12 @@ function saveQuizStateForPayment() {
       centerNorm
     }));
   } catch(e) {}
+}
+
+// 支払い済みボタンの表示を切り替える
+function showPurchasedButton() {
+  const btn = document.getElementById('btnPurchased');
+  if (btn) btn.style.display = '';
 }
 
 // 支払い済みの方専用：ローカルフラグ確認後にレポートへ進む
@@ -3845,8 +3858,9 @@ function proceedIfPaid() {
 (function restoreAfterPayment() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('paid') !== '1') return;
-  // 支払い済みフラグを保存
+  // 支払い済みフラグを保存・ボタン表示
   try { localStorage.setItem('pola_paid', '1'); } catch(e) {}
+  showPurchasedButton();
   // クイズ状態を復元
   try {
     const saved = localStorage.getItem('pola_quiz_state');

@@ -2692,19 +2692,97 @@ function saveShareCardImage() {
   }, 'image/png');
 }
 
+function _buildShareCard() {
+  if (!currentResult) return null;
+  const {type, extra} = currentResult;
+  const resolvedColor = type.styleColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830');
+  const resolvedBg    = type.styleBg.replace('var(--rose-l)','#fae0e8').replace('var(--violet-l)','#ece6f8').replace('var(--teal-l)','#ddf2ee').replace('var(--amber-l)','#fdefd8');
+  const dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const W = 420, H = 420;
+  const canvas = document.createElement('canvas');
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.fillStyle = resolvedBg; ctx.fillRect(0, 0, W, H);
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, 'rgba(255,255,255,0.45)'); grad.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = resolvedColor + '50'; ctx.lineWidth = 1.2; ctx.strokeRect(18, 18, W - 36, H - 36);
+  ctx.strokeStyle = resolvedColor + '20'; ctx.lineWidth = 0.8; ctx.strokeRect(24, 24, W - 48, H - 48);
+  ctx.fillStyle = 'rgba(0,0,0,0.018)';
+  for (let x = 0; x < W; x += 4) for (let y = 0; y < H; y += 4) { if (Math.random() > 0.65) ctx.fillRect(x, y, 2, 2); }
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = resolvedColor + 'bb'; ctx.font = '500 11px monospace'; ctx.fillText('— YOUR TYPE —', W / 2, 90);
+  ctx.fillStyle = resolvedColor; ctx.font = '600 12px monospace'; ctx.fillText('Type ' + type.id, W / 2, 116);
+  ctx.fillStyle = '#1c1520'; ctx.font = 'bold 28px serif';
+  const typeParts = type.name.split('（');
+  if (typeParts.length > 1) {
+    ctx.fillText(typeParts[0], W / 2, 168);
+    ctx.font = 'italic 16px serif'; ctx.fillStyle = resolvedColor; ctx.fillText('（' + typeParts[1], W / 2, 198);
+  } else { ctx.fillText(type.name, W / 2, 178); }
+  ctx.strokeStyle = resolvedColor + '60'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(W / 2 - 50, 218); ctx.lineTo(W / 2 + 50, 218); ctx.stroke();
+  ctx.fillStyle = '#2e2440'; ctx.font = 'italic 14px serif';
+  const catchcopy = '"' + extra.catchcopy + '"';
+  const maxW = 320;
+  if (ctx.measureText(catchcopy).width <= maxW) {
+    ctx.fillText(catchcopy, W / 2, 248);
+  } else {
+    const mid = Math.floor(catchcopy.length / 2);
+    let br = catchcopy.lastIndexOf('、', mid) || catchcopy.lastIndexOf('。', mid) || mid;
+    if (br <= 0) br = mid;
+    ctx.fillText(catchcopy.substring(0, br), W / 2, 235); ctx.fillText(catchcopy.substring(br), W / 2, 258);
+  }
+  ctx.fillStyle = resolvedColor + 'aa'; ctx.font = '12px monospace'; ctx.fillText('#Pola診断', W / 2, 304);
+  ctx.fillStyle = 'rgba(28,21,32,0.28)'; ctx.font = '11px monospace'; ctx.fillText('Pola — 恋愛極性診断', W / 2, 356);
+  return { canvas, type, extra };
+}
+
+function saveShareCardImage() {
+  const built = _buildShareCard();
+  if (!built) return;
+  const {canvas, type} = built;
+  canvas.toBlob(async (blob) => {
+    const file = new File([blob], 'pola-type.png', { type: 'image/png' });
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: 'Pola タイプ診断', text: `私のPolaタイプ：${type.name}` }); return; }
+      catch (e) { if (e.name === 'AbortError') return; }
+    }
+    showImageSaveModal(canvas.toDataURL('image/png'));
+  }, 'image/png');
+}
+
 function shareX() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
   const text = `私のPolaタイプは「${type.name}」\n"${extra.catchcopy}"\n#Pola診断 #恋愛極性診断`;
   const url = window.location.href;
-  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  const built = _buildShareCard();
+  if (!built) { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank'); return; }
+  built.canvas.toBlob(async (blob) => {
+    const file = new File([blob], 'pola-type.png', { type: 'image/png' });
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: 'Pola タイプ診断', text: text }); return; }
+      catch (e) { if (e.name === 'AbortError') return; }
+    }
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  }, 'image/png');
 }
 
 function shareLine() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
   const text = `私のPolaタイプは「${type.name}」\n"${extra.catchcopy}"\nPola恋愛極性診断：${window.location.href}`;
-  window.open(`https://line.me/R/msg/text/?${encodeURIComponent(text)}`, '_blank');
+  const built = _buildShareCard();
+  if (!built) { window.open(`https://line.me/R/msg/text/?${encodeURIComponent(text)}`, '_blank'); return; }
+  built.canvas.toBlob(async (blob) => {
+    const file = new File([blob], 'pola-type.png', { type: 'image/png' });
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: 'Pola タイプ診断', text: text }); return; }
+      catch (e) { if (e.name === 'AbortError') return; }
+    }
+    window.open(`https://line.me/R/msg/text/?${encodeURIComponent(text)}`, '_blank');
+  }, 'image/png');
 }
 
 function retryQuiz() {
@@ -3679,14 +3757,32 @@ function shareReportX() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
   const text = `私のPolaパーソナルレポートを受け取りました。\nタイプ：${type.name}\n"${extra.catchcopy}"\n#Pola診断 #恋愛極性診断`;
-  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+  const built = _buildShareCard();
+  if (!built) { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank'); return; }
+  built.canvas.toBlob(async (blob) => {
+    const file = new File([blob], 'pola-type.png', { type: 'image/png' });
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: 'Pola パーソナルレポート', text: text }); return; }
+      catch (e) { if (e.name === 'AbortError') return; }
+    }
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+  }, 'image/png');
 }
 
 function shareReportLine() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
   const text = `Polaパーソナルレポート：${type.name}\n"${extra.catchcopy}"\n${window.location.href}`;
-  window.open('https://line.me/R/msg/text/?' + encodeURIComponent(text), '_blank');
+  const built = _buildShareCard();
+  if (!built) { window.open('https://line.me/R/msg/text/?' + encodeURIComponent(text), '_blank'); return; }
+  built.canvas.toBlob(async (blob) => {
+    const file = new File([blob], 'pola-type.png', { type: 'image/png' });
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: 'Pola パーソナルレポート', text: text }); return; }
+      catch (e) { if (e.name === 'AbortError') return; }
+    }
+    window.open('https://line.me/R/msg/text/?' + encodeURIComponent(text), '_blank');
+  }, 'image/png');
 }
 
 // ══════════════════════════════════════

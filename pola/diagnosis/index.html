@@ -1019,8 +1019,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
         <a href="../portal/types.html" class="sitemap-item">
           <span class="si-label">ALL TYPES</span><span class="si-name">12タイプ一覧</span><span class="si-desc">各タイプの性格・相性を深読み</span>
         </a>
-        <a href="../specs/compatibility_full.html" class="sitemap-item" target="_blank">
-          <span class="si-label">COMPATIBILITY</span><span class="si-name">相性一覧</span><span class="si-desc">66通りの相性理論</span>
+        <a href="../portal/compat.html" class="sitemap-item" target="_blank">
+          <span class="si-label">COMPATIBILITY</span><span class="si-name">相性一覧</span><span class="si-desc">78通りの相性パターン</span>
         </a>
       </div>
       <button class="retry-btn" onclick="retryQuiz()">↺ もう一度診断する</button>
@@ -1093,9 +1093,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
     <div class="teaser-closing">
       <p class="teaser-closing-text">あなたの恋愛は、"なんとなく"ではなく、<br>理由があってそうなっています。</p>
       <p class="teaser-closing-sub">その構造を知ることで、恋愛は変えられます。</p>
-      <a class="btn-teaser-cta" href="https://buy.stripe.com/5kQ28r0L98le2Ry6I5aAw00" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">¥980 でレポートを購入する →</a>
+      <a class="btn-teaser-cta" href="https://buy.stripe.com/5kQ28r0L98le2Ry6I5aAw00" onclick="saveQuizStateForPayment()" style="display:inline-block;text-decoration:none;">¥980 でレポートを購入する →</a>
       <p class="teaser-price-note" style="margin-top:8px;font-size:.8rem;">クレジットカード決済 · Stripe による安全な決済</p>
-      <button class="btn-teaser-cta" onclick="showStatusInput()" style="margin-top:10px;background:transparent;color:var(--text-mid);border:1.5px solid var(--border);font-size:.85rem;padding:10px 24px;">購入済みの方はこちら →</button>
+      <button class="btn-teaser-cta" onclick="proceedIfPaid()" style="margin-top:10px;background:transparent;color:var(--text-mid);border:1.5px solid var(--border);font-size:.85rem;padding:10px 24px;">購入済みの方はこちら →</button>
       <button class="teaser-back" onclick="goBackToResult()">← 診断結果に戻る</button>
     </div>
   </div>
@@ -3808,6 +3808,72 @@ async function restoreReportFromUrl() {
 
 // ページ読み込み時にURLパラメータを確認
 restoreReportFromUrl();
+
+// ══════════════════════════════════════
+// STRIPE 支払い連携
+// ══════════════════════════════════════
+
+// 支払いページへ遷移する前にクイズ状態を保存
+function saveQuizStateForPayment() {
+  if (!currentResult) return;
+  const {type, secondCenter, styleNorm, centerNorm} = currentResult;
+  try {
+    localStorage.setItem('pola_quiz_state', JSON.stringify({
+      typeId: type.id,
+      secondCenter: secondCenter || null,
+      styleNorm,
+      centerNorm
+    }));
+  } catch(e) {}
+}
+
+// 支払い済みの方専用：ローカルフラグ確認後にレポートへ進む
+function proceedIfPaid() {
+  const paid = localStorage.getItem('pola_paid') === '1';
+  if (!paid) {
+    alert('先にお支払いを完了してください。\n支払い後、自動的にこの画面に戻ります。');
+    return;
+  }
+  if (!currentResult) {
+    alert('診断データが見つかりません。\nお手数ですが、もう一度診断を最初から行ってください。');
+    return;
+  }
+  showStatusInput();
+}
+
+// 支払い完了後（?paid=1）の状態復元
+(function restoreAfterPayment() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('paid') !== '1') return;
+  // 支払い済みフラグを保存
+  try { localStorage.setItem('pola_paid', '1'); } catch(e) {}
+  // クイズ状態を復元
+  try {
+    const saved = localStorage.getItem('pola_quiz_state');
+    if (!saved) return;
+    const data = JSON.parse(saved);
+    const type = TYPES.find(t => t.id === data.typeId);
+    if (!type) return;
+    const extra = TYPE_EXTRA[data.typeId];
+    const wingType = (data.secondCenter)
+      ? TYPES.find(t => t.style === type.style && t.center === data.secondCenter)
+      : null;
+    const wingDetail = (extra && data.secondCenter)
+      ? (extra.wingDetails || {})[data.secondCenter] || null
+      : null;
+    currentResult = {
+      type, extra, wingType, wingDetail,
+      secondCenter: data.secondCenter,
+      styleNorm: data.styleNorm,
+      centerNorm: data.centerNorm
+    };
+    // テスター画面を一瞬経由してステータス入力へ
+    showReportTeaser();
+    setTimeout(() => showStatusInput(), 700);
+  } catch(e) {
+    console.error('支払い後の状態復元エラー:', e);
+  }
+})();
 </script>
 </body>
 </html>

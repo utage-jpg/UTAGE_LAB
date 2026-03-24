@@ -2793,7 +2793,9 @@ function startReportGeneration() {
 
 function showReportScreen() {
   if (!currentResult) return;
-  // 生成済みフラグをセット→結果画面の再表示ボタンを出す
+  // 生成済みフラグをセット
+  reportAlreadyGenerated = true;
+  // 結果画面の再表示ボタンを出す
   const btnBack = document.getElementById('btnBackToReport');
   if (btnBack) btnBack.style.display = '';
   const {type, extra} = currentResult;
@@ -3834,13 +3836,16 @@ function saveQuizStateForPayment() {
   } catch(e) {}
 }
 
+// レポート生成済みフラグ
+let reportAlreadyGenerated = false;
+
 // 支払い済みボタンの表示を切り替える
 function showPurchasedButton() {
   const btn = document.getElementById('btnPurchased');
   if (btn) btn.style.display = '';
 }
 
-// 支払い済みの方専用：ローカルフラグ確認後にレポートへ進む
+// 支払い済みの方専用：レポート生成済みなら直接表示、未生成ならstatus入力へ
 function proceedIfPaid() {
   const paid = localStorage.getItem('pola_paid') === '1';
   if (!paid) {
@@ -3849,6 +3854,11 @@ function proceedIfPaid() {
   }
   if (!currentResult) {
     alert('診断データが見つかりません。\nお手数ですが、もう一度診断を最初から行ってください。');
+    return;
+  }
+  // 生成済みならロード画面をスキップして直接レポートへ
+  if (reportAlreadyGenerated) {
+    showScreen('screen-report');
     return;
   }
   showStatusInput();
@@ -3883,6 +3893,8 @@ function proceedIfPaid() {
     };
     // テスター画面を一瞬経由してステータス入力へ
     showReportTeaser();
+    // リダイレクト後は結果画面が未生成のため「診断結果に戻る」ボタンを非表示
+    document.querySelectorAll('.report-back-btn, .rft-btn.back-btn, .teaser-back').forEach(el => el.style.display = 'none');
     setTimeout(() => showStatusInput(), 700);
   } catch(e) {
     console.error('支払い後の状態復元エラー:', e);

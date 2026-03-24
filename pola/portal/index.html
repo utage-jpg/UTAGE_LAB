@@ -179,6 +179,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
   transition:all .25s;display:flex;flex-direction:column;align-items:center;gap:6px;
 }
 .type-chip:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--shadow);}
+.type-chip-emblem{display:block;line-height:0;}
 .type-chip-style{
   font-family:var(--font-m);font-size:.6rem;letter-spacing:.04em;
   padding:2px 8px;border-radius:100px;font-weight:500;
@@ -583,6 +584,32 @@ function goToCompat(){
 </footer>
 
 <script>
+// ── Emblem system ──
+let _emblemCount = 0;
+function getEmblemSVG(typeId, color, bgColor, w, h) {
+  if (!w) w = 400; if (!h) h = 400;
+  const u = ++_emblemCount;
+  const bg = bgColor ? `<circle cx="200" cy="200" r="169" fill="${bgColor}"/>` : '';
+  const c = color;
+  const f = `<circle cx="200" cy="200" r="168" fill="none" stroke="${c}" stroke-width="1.4"/><circle cx="200" cy="200" r="158" fill="none" stroke="${c}" stroke-width="0.5"/><line x1="200" y1="32" x2="200" y2="47" stroke="${c}" stroke-width="2.5"/><line x1="368" y1="200" x2="353" y2="200" stroke="${c}" stroke-width="2.5"/><line x1="200" y1="368" x2="200" y2="353" stroke="${c}" stroke-width="2.5"/><line x1="32" y1="200" x2="47" y2="200" stroke="${c}" stroke-width="2.5"/><line x1="319" y1="81" x2="313" y2="87" stroke="${c}" stroke-width="1.2"/><line x1="319" y1="319" x2="313" y2="313" stroke="${c}" stroke-width="1.2"/><line x1="81" y1="319" x2="87" y2="313" stroke="${c}" stroke-width="1.2"/><line x1="81" y1="81" x2="87" y2="87" stroke="${c}" stroke-width="1.2"/>`;
+  const lb = bgColor || '#faf8f5';
+  const sym = {
+    1:`<polygon points="200,82 184,138 200,124 216,138" fill="${c}"/><line x1="200" y1="124" x2="200" y2="298" stroke="${c}" stroke-width="3"/><line x1="200" y1="298" x2="184" y2="322" stroke="${c}" stroke-width="3" stroke-linecap="round"/><line x1="200" y1="298" x2="216" y2="322" stroke="${c}" stroke-width="3" stroke-linecap="round"/><line x1="172" y1="200" x2="228" y2="200" stroke="${c}" stroke-width="2"/><circle cx="172" cy="200" r="4" fill="${c}"/><circle cx="228" cy="200" r="4" fill="${c}"/>`,
+    2:`<circle cx="200" cy="200" r="80" fill="none" stroke="${c}" stroke-width="2.2"/><circle cx="200" cy="200" r="40" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.5"/><line x1="200" y1="90" x2="200" y2="120" stroke="${c}" stroke-width="2.5"/><line x1="200" y1="280" x2="200" y2="310" stroke="${c}" stroke-width="2.5"/><line x1="90" y1="200" x2="120" y2="200" stroke="${c}" stroke-width="2.5"/><line x1="280" y1="200" x2="310" y2="200" stroke="${c}" stroke-width="2.5"/><circle cx="200" cy="200" r="9" fill="${c}"/>`,
+    3:`<defs><clipPath id="ecp${u}a"><circle cx="200" cy="200" r="136"/></clipPath></defs><g clip-path="url(#ecp${u}a)" transform="rotate(-35,200,200)"><line x1="162" y1="64" x2="162" y2="336" stroke="${c}" stroke-width="18" stroke-linecap="round"/><line x1="200" y1="64" x2="200" y2="336" stroke="${c}" stroke-width="18" stroke-linecap="round"/><line x1="238" y1="64" x2="238" y2="336" stroke="${c}" stroke-width="18" stroke-linecap="round"/></g>`,
+    4:`<circle cx="162" cy="200" r="78" fill="none" stroke="${c}" stroke-width="2.5"/><circle cx="238" cy="200" r="78" fill="none" stroke="${c}" stroke-width="2.5"/>`,
+    5:`<path d="M 94,200 C 148,112 252,112 306,200 C 252,288 148,288 94,200 Z" fill="none" stroke="${c}" stroke-width="2.5"/><circle cx="200" cy="200" r="48" fill="none" stroke="${c}" stroke-width="2"/><circle cx="200" cy="200" r="18" fill="${c}"/><circle cx="211" cy="191" r="6" fill="${lb}"/>`,
+    6:`<circle cx="200" cy="200" r="108" fill="none" stroke="${c}" stroke-width="2.2"/><path d="M 200,92 C 254,92 254,200 200,200 C 146,200 146,308 200,308" fill="none" stroke="${c}" stroke-width="2.5"/><circle cx="200" cy="146" r="20" fill="${c}"/><circle cx="200" cy="254" r="20" fill="none" stroke="${c}" stroke-width="2.5"/><circle cx="200" cy="254" r="5" fill="${c}"/>`,
+    7:`<path d="M 200,88 L 298,132 L 298,240 C 298,284 254,316 200,330 C 146,316 102,284 102,240 L 102,132 Z" fill="none" stroke="${c}" stroke-width="2.8"/><path d="M 200,112 L 278,148 L 278,238 C 278,272 248,296 200,308 C 152,296 122,272 122,238 L 122,148 Z" fill="none" stroke="${c}" stroke-width="1" opacity="0.4"/><circle cx="200" cy="210" r="7" fill="${c}" opacity="0.6"/>`,
+    8:`<rect x="108" y="108" width="184" height="184" rx="3" fill="none" stroke="${c}" stroke-width="2.5"/><rect x="144" y="144" width="112" height="112" rx="2" fill="none" stroke="${c}" stroke-width="1.8"/><rect x="174" y="174" width="52" height="52" rx="1.5" fill="none" stroke="${c}" stroke-width="1.2"/><circle cx="200" cy="200" r="7" fill="${c}"/>`,
+    9:`<circle cx="200" cy="108" r="24" fill="none" stroke="${c}" stroke-width="2.8"/><line x1="134" y1="148" x2="266" y2="148" stroke="${c}" stroke-width="2.8"/><circle cx="134" cy="148" r="6" fill="${c}"/><circle cx="266" cy="148" r="6" fill="${c}"/><line x1="200" y1="132" x2="200" y2="294" stroke="${c}" stroke-width="2.8"/><line x1="148" y1="294" x2="252" y2="294" stroke="${c}" stroke-width="2.2"/><path d="M 148,294 C 130,294 116,276 126,258" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round"/><path d="M 252,294 C 270,294 284,276 274,258" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round"/>`,
+    10:`<path d="M 200,86 L 191,174 L 200,160 L 209,174 Z" fill="${c}"/><path d="M 200,86 L 191,174 L 200,160 L 209,174 Z" fill="${c}" transform="rotate(90,200,200)"/><path d="M 200,86 L 191,174 L 200,160 L 209,174 Z" fill="${c}" transform="rotate(180,200,200)"/><path d="M 200,86 L 191,174 L 200,160 L 209,174 Z" fill="${c}" transform="rotate(270,200,200)"/><path d="M 200,106 L 195,168 L 200,158 L 205,168 Z" fill="${c}" opacity="0.5" transform="rotate(45,200,200)"/><path d="M 200,106 L 195,168 L 200,158 L 205,168 Z" fill="${c}" opacity="0.5" transform="rotate(135,200,200)"/><path d="M 200,106 L 195,168 L 200,158 L 205,168 Z" fill="${c}" opacity="0.5" transform="rotate(225,200,200)"/><path d="M 200,106 L 195,168 L 200,158 L 205,168 Z" fill="${c}" opacity="0.5" transform="rotate(315,200,200)"/><circle cx="200" cy="200" r="18" fill="none" stroke="${c}" stroke-width="2.2"/><circle cx="200" cy="200" r="6" fill="${c}"/>`,
+    11:`<defs><clipPath id="ecp${u}b"><circle cx="200" cy="200" r="140"/></clipPath></defs><g clip-path="url(#ecp${u}b)"><line x1="200" y1="60" x2="200" y2="340" stroke="${c}" stroke-width="2.5"/><line x1="60" y1="200" x2="340" y2="200" stroke="${c}" stroke-width="2.5"/><line x1="101" y1="101" x2="299" y2="299" stroke="${c}" stroke-width="2.5"/><line x1="299" y1="101" x2="101" y2="299" stroke="${c}" stroke-width="2.5"/></g><circle cx="200" cy="60" r="6" fill="${c}"/><circle cx="200" cy="340" r="6" fill="${c}"/><circle cx="60" cy="200" r="6" fill="${c}"/><circle cx="340" cy="200" r="6" fill="${c}"/><circle cx="101" cy="101" r="5" fill="${c}"/><circle cx="299" cy="299" r="5" fill="${c}"/><circle cx="299" cy="101" r="5" fill="${c}"/><circle cx="101" cy="299" r="5" fill="${c}"/><circle cx="200" cy="200" r="34" fill="${lb}"/><circle cx="200" cy="200" r="34" fill="none" stroke="${c}" stroke-width="2"/><circle cx="200" cy="200" r="9" fill="${c}"/>`,
+    12:`<path d="M 200,258 C 158,234 106,186 84,124" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round"/><path d="M 200,252 C 155,224 110,178 96,114" fill="none" stroke="${c}" stroke-width="1.8" opacity="0.5" stroke-linecap="round"/><path d="M 200,246 C 162,218 124,180 114,128" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.28" stroke-linecap="round"/><path d="M 200,258 C 242,234 294,186 316,124" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round"/><path d="M 200,252 C 245,224 290,178 304,114" fill="none" stroke="${c}" stroke-width="1.8" opacity="0.5" stroke-linecap="round"/><path d="M 200,246 C 238,218 276,180 286,128" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.28" stroke-linecap="round"/><circle cx="200" cy="258" r="8" fill="${c}"/><line x1="200" y1="258" x2="200" y2="232" stroke="${c}" stroke-width="2" opacity="0.5"/>`
+  };
+  return `<svg width="${w}" height="${h}" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">${bg}${f}${sym[typeId]||''}</svg>`;
+}
+
 const TYPES = [
   {id:1, style:'Se', center:'heart', name:'ロマンハンター（狩人）',     styleColor:'#c4566e', styleBg:'#fae0e8'},
   {id:2, style:'Se', center:'head',  name:'ストラテジスト（戦略家）',   styleColor:'#c4566e', styleBg:'#fae0e8'},
@@ -609,6 +636,7 @@ TYPES.forEach(t => {
   const subName = parts.length > 1 ? '（' + parts[1] : '';
   const isLong = mainName.length >= 7;
   el.innerHTML = `
+    <span class="type-chip-emblem">${getEmblemSVG(t.id, t.styleColor, t.styleBg, 48, 48)}</span>
     <span class="type-chip-style" style="background:${t.styleBg};color:${t.styleColor};">${STYLE_LABELS[t.style]}</span>
     <span class="type-chip-name${isLong ? ' long' : ''}">${mainName}${subName ? `<span class="type-chip-sub">${subName}</span>` : ''}</span>
     <span class="type-chip-num">Type ${t.id}</span>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- メインポータル -->
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Pola 診断 -->
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Pola ポータル -->
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pola/portal/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Pola 相性一覧 -->
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pola/portal/compat.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Pola タイプ一覧 -->
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pola/portal/types.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Pola 理論解説 -->
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pola/portal/theory.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Pola タイプ詳細 -->
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pola/types/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 診断ページ群 -->
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/16type.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/love-type.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/attachment.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/stress.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/thinktype.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/movedtype.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/career.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/deep.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/uniquetype.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/pages/suuhijutu.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- コラム -->
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/pola/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/se.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/si.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/ne.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/ni.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/te.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/ti.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/fe.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/fi.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

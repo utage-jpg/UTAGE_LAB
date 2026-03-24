@@ -972,8 +972,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
             <li>12タイプとの恋愛相性・深層解説</li>
             <li>今日から使える具体的な行動戦略</li>
           </ul>
-          <button class="btn-premium-main" onclick="showReportTeaser()">有料レポートを受け取る →</button>
-          <span class="premium-cta-main-note">※ 確認用プレビュー（課金処理は後日実装）</span>
+          <button class="btn-premium-main" onclick="showReportTeaser()">レポートの内容を確認する →</button>
+          <span class="premium-cta-main-note">内容を確認してから購入できます</span>
         </div>
         <!-- blur preview：以下は有料レポートで確認できる内容 -->
         <div class="deep-blur-wrap">
@@ -1093,8 +1093,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
     <div class="teaser-closing">
       <p class="teaser-closing-text">あなたの恋愛は、"なんとなく"ではなく、<br>理由があってそうなっています。</p>
       <p class="teaser-closing-sub">その構造を知ることで、恋愛は変えられます。</p>
-      <button class="btn-teaser-cta" onclick="showStatusInput()">自分の恋愛パターンを確認する →</button>
-      <p class="teaser-price-note">※ 確認用プレビュー（課金処理は後日実装）</p>
+      <a class="btn-teaser-cta" href="https://buy.stripe.com/5kQ28r0L98le2Ry6I5aAw00" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">¥980 でレポートを購入する →</a>
+      <p class="teaser-price-note" style="margin-top:8px;font-size:.8rem;">クレジットカード決済 · Stripe による安全な決済</p>
+      <button class="btn-teaser-cta" onclick="showStatusInput()" style="margin-top:10px;background:transparent;color:var(--text-mid);border:1.5px solid var(--border);font-size:.85rem;padding:10px 24px;">購入済みの方はこちら →</button>
       <button class="teaser-back" onclick="goBackToResult()">← 診断結果に戻る</button>
     </div>
   </div>

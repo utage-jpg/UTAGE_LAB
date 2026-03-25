@@ -97,79 +97,76 @@ function drawOGP(canvasId, type) {
   img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(embSvg);
 }
 
+function fitText(ctx, text, x, y, maxWidth, maxSize) {
+  // フォントを変えずにサイズだけ調整して1行に収める
+  let size = maxSize;
+  while (size > 10) {
+    ctx.font = `italic ${size}px "Noto Serif JP", serif`;
+    if (ctx.measureText(text).width <= maxWidth) break;
+    size -= 1;
+  }
+  ctx.fillText(text, x, y);
+}
+
 function drawText(ctx, type, W, H) {
   ctx.textBaseline = 'middle';
 
-  // ── ブランドロゴ（左上） ──
+  // ── ブランドロゴ（左上） ── ①1.5倍サイズ
   ctx.textAlign = 'left';
   ctx.fillStyle = type.color + 'aa';
-  ctx.font = '500 22px "DM Mono", monospace';
-  ctx.fillText('Pola', 60, 68);
+  ctx.font = '500 33px "DM Mono", monospace';
+  ctx.fillText('Pola', 60, 72);
   ctx.fillStyle = 'rgba(28,21,32,0.4)';
-  ctx.font = '400 16px "DM Mono", monospace';
-  ctx.fillText('恋愛極性診断', 112, 68);
+  ctx.font = '400 24px "DM Mono", monospace';
+  ctx.fillText('恋愛極性診断', 158, 72);
 
-  // 区切り
+  // 区切り ①線を1.5倍に
   ctx.strokeStyle = type.color + '50';
-  ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(60, 90); ctx.lineTo(260, 90); ctx.stroke();
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(60, 100); ctx.lineTo(340, 100); ctx.stroke();
 
-  // ── TYPE ラベル ──
+  // ── TYPE ラベル（Se×heartは除外） ──
   ctx.fillStyle = type.color + 'cc';
-  ctx.font = '500 18px "DM Mono", monospace';
-  ctx.fillText('Type ' + type.id + '  ·  ' + type.label, 60, 128);
+  ctx.font = '500 20px "DM Mono", monospace';
+  ctx.fillText('Type ' + type.id, 60, 138);
 
   // ── タイプ名（大） ──
   ctx.fillStyle = '#1c1520';
   ctx.font = 'bold 64px "Noto Serif JP", serif';
-  ctx.fillText(type.name, 60, 222);
+  ctx.fillText(type.name, 60, 230);
 
-  // ── サブタイトル ──
+  // ── ③サブタイトル：括弧なし・0.7倍(45px)・太字 ──
   ctx.fillStyle = type.color;
-  ctx.font = 'italic 28px "Noto Serif JP", serif';
-  ctx.fillText('（' + type.nameKana + '）', 60, 282);
+  ctx.font = 'bold 45px "Noto Serif JP", serif';
+  ctx.fillText(type.nameKana, 60, 296);
 
-  // 横線
+  // 横線 ①1.5倍
   ctx.strokeStyle = type.color + '40';
-  ctx.lineWidth = 1.2;
-  ctx.beginPath(); ctx.moveTo(60, 316); ctx.lineTo(480, 316); ctx.stroke();
+  ctx.lineWidth = 1.8;
+  ctx.beginPath(); ctx.moveTo(60, 334); ctx.lineTo(520, 334); ctx.stroke();
 
-  // ── キャッチコピー ──
+  // ── ②キャッチコピー：必ず1行・引用符なし・句点なし ──
   ctx.fillStyle = '#2e2440cc';
-  ctx.font = 'italic 22px "Noto Serif JP", serif';
-  const maxLineW = 480;
-  wrapText(ctx, '"' + type.oneline + '"', 60, 356, maxLineW, 36);
+  const oneline = type.oneline.replace(/[。""]$/g, '');
+  fitText(ctx, oneline, 60, 378, 560, 22);
 
   // ── ハッシュタグ ──
   ctx.fillStyle = type.color + '99';
   ctx.font = '400 17px "DM Mono", monospace';
-  ctx.fillText('#Pola診断  #恋愛極性診断', 60, 460);
+  ctx.fillText('#Pola診断  #恋愛極性診断', 60, 466);
 
   // ── URL風 ──
   ctx.fillStyle = 'rgba(28,21,32,0.28)';
   ctx.font = '400 16px "DM Mono", monospace';
-  ctx.fillText('utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/', 60, 510);
+  ctx.fillText('utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/', 60, 516);
 
   // ── 右下：結果確認CTA ──
   ctx.textAlign = 'right';
   ctx.fillStyle = 'rgba(28,21,32,0.35)';
   ctx.font = '400 18px "Noto Serif JP", serif';
-  ctx.fillText('あなたのタイプを診断する →', W - 100, H - 60);
+  ctx.fillText('あなたのタイプを診断する →', W - 100, H - 52);
 }
 
-function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-  const words = text.split('');
-  let line = '';
-  let lines = [];
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n];
-    if (ctx.measureText(testLine).width > maxWidth && line !== '') {
-      lines.push(line); line = words[n];
-    } else { line = testLine; }
-  }
-  lines.push(line);
-  lines.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight));
-}
 
 drawOGP('c1', TYPE);
 </script>

@@ -3816,15 +3816,20 @@ function saveReportCard() {
 
 function shareReportX() {
   if (!currentResult) return;
-  const {type, extra} = currentResult;
-  const text = `私のPolaパーソナルレポートを受け取りました。\nタイプ：${type.name}\n"${extra.catchcopy}"\n#Pola診断 #恋愛極性診断`;
-  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+  const {type} = currentResult;
+  const shortName = type.name.split('（')[0];
+  const oneline = type.oneline.replace(/。$/, '');
+  const resultUrl = `https://utage-jpg.github.io/UTAGE_LAB/pola/premium/type${type.id}/`;
+  const text = `Polaパーソナルレポート「${shortName}」を受け取りました\n"${oneline}"\n#Pola診断 #恋愛極性診断`;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(resultUrl)}`, '_blank');
 }
 
 function shareReportLine() {
   if (!currentResult) return;
-  const {type, extra} = currentResult;
-  const text = `Polaパーソナルレポート：${type.name}\n"${extra.catchcopy}"\n${window.location.href}`;
+  const {type} = currentResult;
+  const shortName = type.name.split('（')[0];
+  const resultUrl = `https://utage-jpg.github.io/UTAGE_LAB/pola/premium/type${type.id}/`;
+  const text = `Polaパーソナルレポート「${shortName}」を受け取りました\n${resultUrl}`;
   window.open('https://line.me/R/msg/text/?' + encodeURIComponent(text), '_blank');
 }
 

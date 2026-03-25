@@ -2,26 +2,40 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>OGP Card Preview — Pola</title>
+<title>OGP Card Preview — Pola 全12タイプ</title>
 <style>
-  body { background: #2a2030; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; gap: 24px; }
-  h2 { color: #fff; margin: 0; font-size: 1rem; opacity: .6; }
-  canvas { border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,.6); max-width: 100%; }
-  p { color: rgba(255,255,255,.5); font-size: .8rem; margin: 0; }
+  body { background: #1c1520; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; gap: 32px; }
+  h1 { color: #fff; margin: 0; font-size: 1.1rem; opacity: .5; letter-spacing:.1em; }
+  .card-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .card-label { color: rgba(255,255,255,.35); font-size: .75rem; letter-spacing:.08em; }
+  canvas { border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,.7); max-width: 100%; }
 </style>
 </head>
 <body>
-<h2>OGP Card Preview — Type 1 ロマンハンター（通常版）</h2>
-<canvas id="c1" width="1200" height="630"></canvas>
-<p>※ 実際のX共有時にリンクカードとして表示されるサイズ（1200×630px）</p>
+<h1>OGP Card Preview — Pola 全12タイプ（1200×630px）</h1>
 
 <script>
-// ── エンブレムSVG生成（diagnosis/index.htmlより転載） ──
+// ── 全タイプデータ ──
+const TYPES = [
+  { id:1,  name:'ロマンハンター', kana:'狩人',    oneline:'愛されていると確信するまで、前進を止めない',   color:'#c4566e', bg:'#fae0e8', base1:'#fdf5f7', base2:'#f5eef4' },
+  { id:2,  name:'ストラテジスト', kana:'戦略家',  oneline:'安心できる関係を、自分の手で設計しようとする', color:'#c4566e', bg:'#fae0e8', base1:'#fdf5f7', base2:'#f5eef4' },
+  { id:3,  name:'チャレンジャー', kana:'挑戦者',  oneline:'欲しいと感じた瞬間に、もう動いている',         color:'#c4566e', bg:'#fae0e8', base1:'#fdf5f7', base2:'#f5eef4' },
+  { id:4,  name:'エンパス',       kana:'共感者',  oneline:'愛することが、自分でいることだと信じている',   color:'#7655a8', bg:'#ece6f8', base1:'#f8f5fd', base2:'#f0ecf8' },
+  { id:5,  name:'オブザーバー',   kana:'観察者',  oneline:'確信が持てるまで、全力で委ねることができない', color:'#7655a8', bg:'#ece6f8', base1:'#f8f5fd', base2:'#f0ecf8' },
+  { id:6,  name:'フェイタリスト', kana:'運命論者', oneline:'流れに乗りながら、芯だけは手放さない',         color:'#7655a8', bg:'#ece6f8', base1:'#f8f5fd', base2:'#f0ecf8' },
+  { id:7,  name:'ガーディアン',   kana:'保護人',  oneline:'気づかれなくても、今日も誰かのために動いている', color:'#2e8b7a', bg:'#ddf2ee', base1:'#f2fbf9', base2:'#eaf7f4' },
+  { id:8,  name:'アーキテクト',   kana:'構築者',  oneline:'崩れない関係を、一つひとつ丁寧に積み上げる',   color:'#2e8b7a', bg:'#ddf2ee', base1:'#f2fbf9', base2:'#eaf7f4' },
+  { id:9,  name:'ケアテイカー',   kana:'世話役',  oneline:'言葉にしなくても、ここにいることが答えだ',     color:'#2e8b7a', bg:'#ddf2ee', base1:'#f2fbf9', base2:'#eaf7f4' },
+  { id:10, name:'トラベラー',     kana:'旅人',    oneline:'ときめきが続く限り、どこまでも行ける',         color:'#c47830', bg:'#fdefd8', base1:'#fdf9f2', base2:'#f8f2e6' },
+  { id:11, name:'エクスプローラー', kana:'探検家', oneline:'きっとうまくいく、が最強の処世術',             color:'#c47830', bg:'#fdefd8', base1:'#fdf9f2', base2:'#f8f2e6' },
+  { id:12, name:'フリースピリット', kana:'自由人', oneline:'縛られないことが、愛の前提条件だ',             color:'#c47830', bg:'#fdefd8', base1:'#fdf9f2', base2:'#f8f2e6' },
+];
+
+// ── エンブレムSVG ──
 let _ec = 0;
-function getEmblemSVG(typeId, color, bgColor, w, h) {
-  if (!w) w = 400; if (!h) h = 400;
+function getEmblemSVG(typeId, color, bgColor) {
   const u = ++_ec;
-  const bg = bgColor ? `<circle cx="200" cy="200" r="169" fill="${bgColor}"/>` : '';
+  const bg = `<circle cx="200" cy="200" r="169" fill="${bgColor}"/>`;
   const c = color;
   const f = `<circle cx="200" cy="200" r="168" fill="none" stroke="${c}" stroke-width="1.4"/>` +
     `<circle cx="200" cy="200" r="158" fill="none" stroke="${c}" stroke-width="0.5"/>` +
@@ -33,59 +47,71 @@ function getEmblemSVG(typeId, color, bgColor, w, h) {
     `<line x1="319" y1="319" x2="313" y2="313" stroke="${c}" stroke-width="1.2"/>` +
     `<line x1="81" y1="319" x2="87" y2="313" stroke="${c}" stroke-width="1.2"/>` +
     `<line x1="81" y1="81" x2="87" y2="87" stroke="${c}" stroke-width="1.2"/>`;
-  const lb = bgColor || '#faf8f5';
+  const lb = bgColor;
   const sym = {
     1:`<polygon points="200,82 184,138 200,124 216,138" fill="${c}"/><line x1="200" y1="124" x2="200" y2="298" stroke="${c}" stroke-width="3"/><line x1="200" y1="298" x2="184" y2="322" stroke="${c}" stroke-width="3" stroke-linecap="round"/><line x1="200" y1="298" x2="216" y2="322" stroke="${c}" stroke-width="3" stroke-linecap="round"/><line x1="172" y1="200" x2="228" y2="200" stroke="${c}" stroke-width="2"/><circle cx="172" cy="200" r="4" fill="${c}"/><circle cx="228" cy="200" r="4" fill="${c}"/>`,
+    2:`<circle cx="200" cy="200" r="80" fill="none" stroke="${c}" stroke-width="2.2"/><circle cx="200" cy="200" r="40" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.5"/><line x1="200" y1="90" x2="200" y2="120" stroke="${c}" stroke-width="2.5"/><line x1="200" y1="280" x2="200" y2="310" stroke="${c}" stroke-width="2.5"/><line x1="90" y1="200" x2="120" y2="200" stroke="${c}" stroke-width="2.5"/><line x1="280" y1="200" x2="310" y2="200" stroke="${c}" stroke-width="2.5"/><circle cx="200" cy="200" r="9" fill="${c}"/>`,
+    3:`<defs><clipPath id="ecp${u}a"><circle cx="200" cy="200" r="136"/></clipPath></defs><g clip-path="url(#ecp${u}a)" transform="rotate(-35,200,200)"><line x1="162" y1="64" x2="162" y2="336" stroke="${c}" stroke-width="18" stroke-linecap="round"/><line x1="200" y1="64" x2="200" y2="336" stroke="${c}" stroke-width="18" stroke-linecap="round"/><line x1="238" y1="64" x2="238" y2="336" stroke="${c}" stroke-width="18" stroke-linecap="round"/></g>`,
+    4:`<circle cx="162" cy="200" r="78" fill="none" stroke="${c}" stroke-width="2.5"/><circle cx="238" cy="200" r="78" fill="none" stroke="${c}" stroke-width="2.5"/>`,
+    5:`<path d="M 94,200 C 148,112 252,112 306,200 C 252,288 148,288 94,200 Z" fill="none" stroke="${c}" stroke-width="2.5"/><circle cx="200" cy="200" r="48" fill="none" stroke="${c}" stroke-width="2"/><circle cx="200" cy="200" r="18" fill="${c}"/><circle cx="211" cy="191" r="6" fill="${lb}"/>`,
+    6:`<circle cx="200" cy="200" r="108" fill="none" stroke="${c}" stroke-width="2.2"/><path d="M 200,92 C 254,92 254,200 200,200 C 146,200 146,308 200,308" fill="none" stroke="${c}" stroke-width="2.5"/><circle cx="200" cy="146" r="20" fill="${c}"/><circle cx="200" cy="254" r="20" fill="none" stroke="${c}" stroke-width="2.5"/><circle cx="200" cy="254" r="5" fill="${c}"/>`,
+    7:`<path d="M 200,88 L 298,132 L 298,240 C 298,284 254,316 200,330 C 146,316 102,284 102,240 L 102,132 Z" fill="none" stroke="${c}" stroke-width="2.8"/><path d="M 200,112 L 278,148 L 278,238 C 278,272 248,296 200,308 C 152,296 122,272 122,238 L 122,148 Z" fill="none" stroke="${c}" stroke-width="1" opacity="0.4"/><circle cx="200" cy="210" r="7" fill="${c}" opacity="0.6"/>`,
+    8:`<rect x="108" y="108" width="184" height="184" rx="3" fill="none" stroke="${c}" stroke-width="2.5"/><rect x="144" y="144" width="112" height="112" rx="2" fill="none" stroke="${c}" stroke-width="1.8"/><rect x="174" y="174" width="52" height="52" rx="1.5" fill="none" stroke="${c}" stroke-width="1.2"/><circle cx="200" cy="200" r="7" fill="${c}"/>`,
+    9:`<circle cx="200" cy="108" r="24" fill="none" stroke="${c}" stroke-width="2.8"/><line x1="134" y1="148" x2="266" y2="148" stroke="${c}" stroke-width="2.8"/><circle cx="134" cy="148" r="6" fill="${c}"/><circle cx="266" cy="148" r="6" fill="${c}"/><line x1="200" y1="132" x2="200" y2="294" stroke="${c}" stroke-width="2.8"/><line x1="148" y1="294" x2="252" y2="294" stroke="${c}" stroke-width="2.2"/><path d="M 148,294 C 130,294 116,276 126,258" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round"/><path d="M 252,294 C 270,294 284,276 274,258" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round"/>`,
+    10:`<path d="M 200,86 L 191,174 L 200,160 L 209,174 Z" fill="${c}"/><path d="M 200,86 L 191,174 L 200,160 L 209,174 Z" fill="${c}" transform="rotate(90,200,200)"/><path d="M 200,86 L 191,174 L 200,160 L 209,174 Z" fill="${c}" transform="rotate(180,200,200)"/><path d="M 200,86 L 191,174 L 200,160 L 209,174 Z" fill="${c}" transform="rotate(270,200,200)"/><path d="M 200,106 L 195,168 L 200,158 L 205,168 Z" fill="${c}" opacity="0.5" transform="rotate(45,200,200)"/><path d="M 200,106 L 195,168 L 200,158 L 205,168 Z" fill="${c}" opacity="0.5" transform="rotate(135,200,200)"/><path d="M 200,106 L 195,168 L 200,158 L 205,168 Z" fill="${c}" opacity="0.5" transform="rotate(225,200,200)"/><path d="M 200,106 L 195,168 L 200,158 L 205,168 Z" fill="${c}" opacity="0.5" transform="rotate(315,200,200)"/><circle cx="200" cy="200" r="18" fill="none" stroke="${c}" stroke-width="2.2"/><circle cx="200" cy="200" r="6" fill="${c}"/>`,
+    11:`<defs><clipPath id="ecp${u}b"><circle cx="200" cy="200" r="140"/></clipPath></defs><g clip-path="url(#ecp${u}b)"><line x1="200" y1="60" x2="200" y2="340" stroke="${c}" stroke-width="2.5"/><line x1="60" y1="200" x2="340" y2="200" stroke="${c}" stroke-width="2.5"/><line x1="101" y1="101" x2="299" y2="299" stroke="${c}" stroke-width="2.5"/><line x1="299" y1="101" x2="101" y2="299" stroke="${c}" stroke-width="2.5"/></g><circle cx="200" cy="60" r="6" fill="${c}"/><circle cx="200" cy="340" r="6" fill="${c}"/><circle cx="60" cy="200" r="6" fill="${c}"/><circle cx="340" cy="200" r="6" fill="${c}"/><circle cx="101" cy="101" r="5" fill="${c}"/><circle cx="299" cy="299" r="5" fill="${c}"/><circle cx="299" cy="101" r="5" fill="${c}"/><circle cx="101" cy="299" r="5" fill="${c}"/><circle cx="200" cy="200" r="34" fill="${lb}"/><circle cx="200" cy="200" r="34" fill="none" stroke="${c}" stroke-width="2"/><circle cx="200" cy="200" r="9" fill="${c}"/>`,
+    12:`<path d="M 200,258 C 158,234 106,186 84,124" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round"/><path d="M 200,252 C 155,224 110,178 96,114" fill="none" stroke="${c}" stroke-width="1.8" opacity="0.5" stroke-linecap="round"/><path d="M 200,246 C 162,218 124,180 114,128" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.28" stroke-linecap="round"/><path d="M 200,258 C 242,234 294,186 316,124" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round"/><path d="M 200,252 C 245,224 290,178 304,114" fill="none" stroke="${c}" stroke-width="1.8" opacity="0.5" stroke-linecap="round"/><path d="M 200,246 C 238,218 276,180 286,128" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.28" stroke-linecap="round"/><circle cx="200" cy="258" r="8" fill="${c}"/><line x1="200" y1="258" x2="200" y2="232" stroke="${c}" stroke-width="2" opacity="0.5"/>`,
   };
-  return `<svg width="${w}" height="${h}" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">${bg}${f}${sym[typeId]||''}</svg>`;
+  return `<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">${bg}${f}${sym[typeId]||''}</svg>`;
 }
 
-// ── タイプ1データ ──
-const TYPE = {
-  id: 1,
-  name: 'ロマンハンター',
-  nameKana: '狩人',
-  oneline: '愛されていると確信するまで、前進を止めない。',
-  color: '#c4566e',
-  bg: '#fae0e8',
-  label: 'Se × heart',
-};
+// ── テキスト1行フィット ──
+function fitText(ctx, text, x, y, maxWidth, maxSize, weight, family) {
+  let size = maxSize;
+  const w = weight || 'normal';
+  const f = family || '"Noto Serif JP", serif';
+  while (size > 10) {
+    ctx.font = `italic ${w} ${size}px ${f}`;
+    if (ctx.measureText(text).width <= maxWidth) break;
+    size -= 1;
+  }
+  ctx.fillText(text, x, y);
+}
 
-// ── 通常版OGP描画 ──
-function drawOGP(canvasId, type) {
-  const canvas = document.getElementById(canvasId);
+// ── OGP描画 ──
+function drawOGP(canvas, type) {
   const W = 1200, H = 630;
   const ctx = canvas.getContext('2d');
 
-  // ── 背景 ──
+  // 背景
   const bgGrad = ctx.createLinearGradient(0, 0, W, H);
-  bgGrad.addColorStop(0, '#fdf5f7');
-  bgGrad.addColorStop(1, '#f5eef4');
+  bgGrad.addColorStop(0, type.base1);
+  bgGrad.addColorStop(1, type.base2);
   ctx.fillStyle = bgGrad;
   ctx.fillRect(0, 0, W, H);
 
-  // 右サイドカラーブロック
-  const accent = ctx.createLinearGradient(W * 0.58, 0, W, 0);
+  // 右サイドカラーオーバーレイ
+  const accent = ctx.createLinearGradient(W * 0.55, 0, W, 0);
   accent.addColorStop(0, type.bg + '00');
-  accent.addColorStop(0.3, type.bg + 'cc');
+  accent.addColorStop(0.25, type.bg + 'bb');
   accent.addColorStop(1, type.bg);
   ctx.fillStyle = accent;
   ctx.fillRect(0, 0, W, H);
 
-  // ノイズテクスチャ
+  // ノイズ
   ctx.fillStyle = 'rgba(0,0,0,0.012)';
   for (let x = 0; x < W; x += 4) for (let y = 0; y < H; y += 4) {
     if (Math.random() > 0.68) ctx.fillRect(x, y, 2, 2);
   }
 
-  // ── 左側ボーダー装飾 ──
+  // 左ボーダー
   ctx.fillStyle = type.color;
   ctx.fillRect(0, 0, 6, H);
   ctx.fillStyle = type.color + '30';
   ctx.fillRect(6, 0, 2, H);
 
-  // ── エンブレム（右寄り） ──
-  const embSvg = getEmblemSVG(type.id, type.color, type.bg, 400, 400);
+  // エンブレム（右）
+  const embSvg = getEmblemSVG(type.id, type.color, type.bg);
   const img = new Image();
   img.onload = () => {
     const ES = 320;
@@ -97,22 +123,11 @@ function drawOGP(canvasId, type) {
   img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(embSvg);
 }
 
-function fitText(ctx, text, x, y, maxWidth, maxSize) {
-  // フォントを変えずにサイズだけ調整して1行に収める
-  let size = maxSize;
-  while (size > 10) {
-    ctx.font = `italic ${size}px "Noto Serif JP", serif`;
-    if (ctx.measureText(text).width <= maxWidth) break;
-    size -= 1;
-  }
-  ctx.fillText(text, x, y);
-}
-
 function drawText(ctx, type, W, H) {
   ctx.textBaseline = 'middle';
   ctx.textAlign = 'left';
 
-  // ── ブランドロゴ（左上）44px ──
+  // ── Polaロゴ ──
   ctx.fillStyle = type.color;
   ctx.font = '600 44px "DM Mono", monospace';
   ctx.fillText('Pola', 60, 82);
@@ -121,67 +136,81 @@ function drawText(ctx, type, W, H) {
   ctx.font = '400 28px "DM Mono", monospace';
   ctx.fillText('恋愛極性診断', 60 + polaW + 20, 82);
 
-  // 区切り線（長め・太め）
+  // 区切り線
   ctx.strokeStyle = type.color + '60';
   ctx.lineWidth = 2;
   ctx.beginPath(); ctx.moveTo(60, 116); ctx.lineTo(580, 116); ctx.stroke();
 
-  // ── Type N ──
+  // Type N
   ctx.fillStyle = type.color + 'bb';
   ctx.font = '500 22px "DM Mono", monospace';
   ctx.fillText('Type ' + type.id, 60, 152);
 
-  // ── タイプ名（大）＋ — 狩人 — を同じy・縦中央揃え ──
-  // タイプ名
+  // ── タイプ名 ＋ — 役割名 — （同じy=248で縦中央揃え）──
   ctx.fillStyle = '#1c1520';
   ctx.font = 'bold 68px "Noto Serif JP", serif';
   ctx.fillText(type.name, 60, 248);
   const nameW = ctx.measureText(type.name).width;
 
-  // — 狩人 — (同じy=248で縦中央を揃える)
   ctx.fillStyle = type.color;
   ctx.font = 'bold 47px "Noto Serif JP", serif';
-  ctx.fillText('— ' + type.nameKana + ' —', 60 + nameW + 22, 248);
+  ctx.fillText('— ' + type.kana + ' —', 60 + nameW + 22, 248);
 
   // 横線
   ctx.strokeStyle = type.color + '40';
   ctx.lineWidth = 1.8;
   ctx.beginPath(); ctx.moveTo(60, 296); ctx.lineTo(620, 296); ctx.stroke();
 
-  // ── キャッチコピー（1行）──
+  // キャッチコピー（1行）
   ctx.fillStyle = '#2e2440dd';
-  const oneline = type.oneline.replace(/[。""]$/g, '');
-  fitText(ctx, oneline, 60, 348, 600, 26);
+  fitText(ctx, type.oneline, 60, 348, 600, 26);
 
-  // ── 区切り・タグ行 ──
-  ctx.fillStyle = type.color + '30';
-  ctx.font = '400 14px "DM Mono", monospace';
+  // 区切り装飾
+  ctx.fillStyle = type.color + '40';
+  ctx.font = '400 13px "DM Mono", monospace';
   ctx.fillText('─────────────────────', 60, 406);
 
-  // ── ハッシュタグ ──
+  // ハッシュタグ
   ctx.fillStyle = type.color + 'aa';
   ctx.font = '500 20px "DM Mono", monospace';
   ctx.fillText('#Pola診断   #恋愛極性診断', 60, 450);
 
-  // ── サイト紹介文 ──
+  // サイト紹介
   ctx.fillStyle = 'rgba(28,21,32,0.35)';
   ctx.font = 'italic 20px "Noto Serif JP", serif';
   ctx.fillText('恋愛の「なぜ」を、タイプで解く。', 60, 500);
 
-  // ── URL ──
+  // URL
   ctx.fillStyle = 'rgba(28,21,32,0.25)';
   ctx.font = '400 16px "DM Mono", monospace';
   ctx.fillText('utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/', 60, 548);
 
-  // ── 右下CTA ──
+  // 右下CTA
   ctx.textAlign = 'right';
   ctx.fillStyle = type.color + 'cc';
   ctx.font = '500 20px "Noto Serif JP", serif';
   ctx.fillText('あなたのタイプを診断する →', W - 90, H - 48);
 }
 
+// ── 全タイプ生成 ──
+TYPES.forEach(type => {
+  const wrap = document.createElement('div');
+  wrap.className = 'card-wrap';
 
-drawOGP('c1', TYPE);
+  const label = document.createElement('div');
+  label.className = 'card-label';
+  label.textContent = `Type ${type.id} — ${type.name}（${type.kana}）`;
+  wrap.appendChild(label);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 1200;
+  canvas.height = 630;
+  canvas.id = 'c' + type.id;
+  wrap.appendChild(canvas);
+
+  document.body.appendChild(wrap);
+  drawOGP(canvas, type);
+});
 </script>
 </body>
 </html>

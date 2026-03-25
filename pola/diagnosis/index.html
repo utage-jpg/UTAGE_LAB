@@ -2684,14 +2684,19 @@ function _buildShareCard() {
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   ctx.fillStyle = resolvedColor + 'bb'; ctx.font = '500 11px monospace'; ctx.fillText('— YOUR TYPE —', W / 2, 186);
   ctx.fillStyle = resolvedColor; ctx.font = '600 12px monospace'; ctx.fillText('Type ' + type.id, W / 2, 208);
+  // タイプ名（1行目・中央揃え）
   ctx.fillStyle = '#1c1520'; ctx.font = 'bold 26px serif';
   const typeParts = type.name.split('（');
-  if (typeParts.length > 1) {
-    ctx.fillText(typeParts[0], W / 2, 250);
-    ctx.font = 'italic 15px serif'; ctx.fillStyle = resolvedColor; ctx.fillText('（' + typeParts[1], W / 2, 272);
-  } else { ctx.fillText(type.name, W / 2, 261); }
+  const mainName = typeParts[0];
+  const subName = typeParts.length > 1 ? typeParts[1].replace('）', '') : '';
+  ctx.fillText(mainName, W / 2, 246);
+  // 役割名（2行目・mainName中心軸に揃える）
+  if (subName) {
+    ctx.font = 'bold 18px serif'; ctx.fillStyle = resolvedColor;
+    ctx.fillText('— ' + subName + ' —', W / 2, 272);
+  }
   ctx.strokeStyle = resolvedColor + '60'; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(W / 2 - 50, 293); ctx.lineTo(W / 2 + 50, 293); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W / 2 - 50, 296); ctx.lineTo(W / 2 + 50, 296); ctx.stroke();
   ctx.fillStyle = '#2e2440'; ctx.font = 'italic 14px serif';
   const catchcopy = '"' + extra.catchcopy + '"';
   const maxW = 320;

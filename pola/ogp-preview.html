@@ -146,39 +146,44 @@ function drawText(ctx, type, W, H) {
   ctx.font = '500 22px "DM Mono", monospace';
   ctx.fillText('Type ' + type.id, 60, 152);
 
-  // ── タイプ名 ＋ — 役割名 — （同じy=248で縦中央揃え）──
+  // ── タイプ名（1行目・左揃え）──
+  ctx.textAlign = 'left';
   ctx.fillStyle = '#1c1520';
   ctx.font = 'bold 68px "Noto Serif JP", serif';
-  ctx.fillText(type.name, 60, 248);
+  ctx.fillText(type.name, 60, 215);
   const nameW = ctx.measureText(type.name).width;
+  const nameCX = 60 + nameW / 2; // タイプ名の中心x
 
+  // ── 役割名（2行目・タイプ名中央軸に揃える）──
+  ctx.textAlign = 'center';
   ctx.fillStyle = type.color;
   ctx.font = 'bold 47px "Noto Serif JP", serif';
-  ctx.fillText('— ' + type.kana + ' —', 60 + nameW + 22, 248);
+  ctx.fillText('— ' + type.kana + ' —', nameCX, 280);
 
   // 横線
+  ctx.textAlign = 'left';
   ctx.strokeStyle = type.color + '40';
   ctx.lineWidth = 1.8;
-  ctx.beginPath(); ctx.moveTo(60, 296); ctx.lineTo(620, 296); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(60, 318); ctx.lineTo(620, 318); ctx.stroke();
 
   // キャッチコピー（1行）
   ctx.fillStyle = '#2e2440dd';
-  fitText(ctx, type.oneline, 60, 348, 600, 26);
+  fitText(ctx, type.oneline, 60, 358, 600, 26);
 
   // 区切り装飾
   ctx.fillStyle = type.color + '40';
   ctx.font = '400 13px "DM Mono", monospace';
-  ctx.fillText('─────────────────────', 60, 406);
+  ctx.fillText('─────────────────────', 60, 412);
 
   // ハッシュタグ
   ctx.fillStyle = type.color + 'aa';
   ctx.font = '500 20px "DM Mono", monospace';
-  ctx.fillText('#Pola診断   #恋愛極性診断', 60, 450);
+  ctx.fillText('#Pola診断   #恋愛極性診断', 60, 454);
 
   // サイト紹介
   ctx.fillStyle = 'rgba(28,21,32,0.35)';
   ctx.font = 'italic 20px "Noto Serif JP", serif';
-  ctx.fillText('恋愛の「なぜ」を、タイプで解く。', 60, 500);
+  ctx.fillText('恋愛の「なぜ」を、タイプで解く。', 60, 502);
 
   // URL
   ctx.fillStyle = 'rgba(28,21,32,0.25)';

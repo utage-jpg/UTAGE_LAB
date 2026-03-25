@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>OGP Card Preview — Pola</title>
+<style>
+  body { background: #2a2030; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; gap: 24px; }
+  h2 { color: #fff; margin: 0; font-size: 1rem; opacity: .6; }
+  canvas { border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,.6); max-width: 100%; }
+  p { color: rgba(255,255,255,.5); font-size: .8rem; margin: 0; }
+</style>
+</head>
+<body>
+<h2>OGP Card Preview — Type 1 ロマンハンター（通常版）</h2>
+<canvas id="c1" width="1200" height="630"></canvas>
+<p>※ 実際のX共有時にリンクカードとして表示されるサイズ（1200×630px）</p>
+
+<script>
+// ── エンブレムSVG生成（diagnosis/index.htmlより転載） ──
+let _ec = 0;
+function getEmblemSVG(typeId, color, bgColor, w, h) {
+  if (!w) w = 400; if (!h) h = 400;
+  const u = ++_ec;
+  const bg = bgColor ? `<circle cx="200" cy="200" r="169" fill="${bgColor}"/>` : '';
+  const c = color;
+  const f = `<circle cx="200" cy="200" r="168" fill="none" stroke="${c}" stroke-width="1.4"/>` +
+    `<circle cx="200" cy="200" r="158" fill="none" stroke="${c}" stroke-width="0.5"/>` +
+    `<line x1="200" y1="32" x2="200" y2="47" stroke="${c}" stroke-width="2.5"/>` +
+    `<line x1="368" y1="200" x2="353" y2="200" stroke="${c}" stroke-width="2.5"/>` +
+    `<line x1="200" y1="368" x2="200" y2="353" stroke="${c}" stroke-width="2.5"/>` +
+    `<line x1="32" y1="200" x2="47" y2="200" stroke="${c}" stroke-width="2.5"/>` +
+    `<line x1="319" y1="81" x2="313" y2="87" stroke="${c}" stroke-width="1.2"/>` +
+    `<line x1="319" y1="319" x2="313" y2="313" stroke="${c}" stroke-width="1.2"/>` +
+    `<line x1="81" y1="319" x2="87" y2="313" stroke="${c}" stroke-width="1.2"/>` +
+    `<line x1="81" y1="81" x2="87" y2="87" stroke="${c}" stroke-width="1.2"/>`;
+  const lb = bgColor || '#faf8f5';
+  const sym = {
+    1:`<polygon points="200,82 184,138 200,124 216,138" fill="${c}"/><line x1="200" y1="124" x2="200" y2="298" stroke="${c}" stroke-width="3"/><line x1="200" y1="298" x2="184" y2="322" stroke="${c}" stroke-width="3" stroke-linecap="round"/><line x1="200" y1="298" x2="216" y2="322" stroke="${c}" stroke-width="3" stroke-linecap="round"/><line x1="172" y1="200" x2="228" y2="200" stroke="${c}" stroke-width="2"/><circle cx="172" cy="200" r="4" fill="${c}"/><circle cx="228" cy="200" r="4" fill="${c}"/>`,
+  };
+  return `<svg width="${w}" height="${h}" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">${bg}${f}${sym[typeId]||''}</svg>`;
+}
+
+// ── タイプ1データ ──
+const TYPE = {
+  id: 1,
+  name: 'ロマンハンター',
+  nameKana: '狩人',
+  oneline: '愛されていると確信するまで、前進を止めない。',
+  color: '#c4566e',
+  bg: '#fae0e8',
+  label: 'Se × heart',
+};
+
+// ── 通常版OGP描画 ──
+function drawOGP(canvasId, type) {
+  const canvas = document.getElementById(canvasId);
+  const W = 1200, H = 630;
+  const ctx = canvas.getContext('2d');
+
+  // ── 背景 ──
+  const bgGrad = ctx.createLinearGradient(0, 0, W, H);
+  bgGrad.addColorStop(0, '#fdf5f7');
+  bgGrad.addColorStop(1, '#f5eef4');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  // 右サイドカラーブロック
+  const accent = ctx.createLinearGradient(W * 0.58, 0, W, 0);
+  accent.addColorStop(0, type.bg + '00');
+  accent.addColorStop(0.3, type.bg + 'cc');
+  accent.addColorStop(1, type.bg);
+  ctx.fillStyle = accent;
+  ctx.fillRect(0, 0, W, H);
+
+  // ノイズテクスチャ
+  ctx.fillStyle = 'rgba(0,0,0,0.012)';
+  for (let x = 0; x < W; x += 4) for (let y = 0; y < H; y += 4) {
+    if (Math.random() > 0.68) ctx.fillRect(x, y, 2, 2);
+  }
+
+  // ── 左側ボーダー装飾 ──
+  ctx.fillStyle = type.color;
+  ctx.fillRect(0, 0, 6, H);
+  ctx.fillStyle = type.color + '30';
+  ctx.fillRect(6, 0, 2, H);
+
+  // ── エンブレム（右寄り） ──
+  const embSvg = getEmblemSVG(type.id, type.color, type.bg, 400, 400);
+  const img = new Image();
+  img.onload = () => {
+    const ES = 320;
+    ctx.globalAlpha = 0.85;
+    ctx.drawImage(img, W - ES - 80, (H - ES) / 2, ES, ES);
+    ctx.globalAlpha = 1;
+    drawText(ctx, type, W, H);
+  };
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(embSvg);
+}
+
+function drawText(ctx, type, W, H) {
+  ctx.textBaseline = 'middle';
+
+  // ── ブランドロゴ（左上） ──
+  ctx.textAlign = 'left';
+  ctx.fillStyle = type.color + 'aa';
+  ctx.font = '500 22px "DM Mono", monospace';
+  ctx.fillText('Pola', 60, 68);
+  ctx.fillStyle = 'rgba(28,21,32,0.4)';
+  ctx.font = '400 16px "DM Mono", monospace';
+  ctx.fillText('恋愛極性診断', 112, 68);
+
+  // 区切り
+  ctx.strokeStyle = type.color + '50';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(60, 90); ctx.lineTo(260, 90); ctx.stroke();
+
+  // ── TYPE ラベル ──
+  ctx.fillStyle = type.color + 'cc';
+  ctx.font = '500 18px "DM Mono", monospace';
+  ctx.fillText('Type ' + type.id + '  ·  ' + type.label, 60, 128);
+
+  // ── タイプ名（大） ──
+  ctx.fillStyle = '#1c1520';
+  ctx.font = 'bold 64px "Noto Serif JP", serif';
+  ctx.fillText(type.name, 60, 222);
+
+  // ── サブタイトル ──
+  ctx.fillStyle = type.color;
+  ctx.font = 'italic 28px "Noto Serif JP", serif';
+  ctx.fillText('（' + type.nameKana + '）', 60, 282);
+
+  // 横線
+  ctx.strokeStyle = type.color + '40';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.moveTo(60, 316); ctx.lineTo(480, 316); ctx.stroke();
+
+  // ── キャッチコピー ──
+  ctx.fillStyle = '#2e2440cc';
+  ctx.font = 'italic 22px "Noto Serif JP", serif';
+  const maxLineW = 480;
+  wrapText(ctx, '"' + type.oneline + '"', 60, 356, maxLineW, 36);
+
+  // ── ハッシュタグ ──
+  ctx.fillStyle = type.color + '99';
+  ctx.font = '400 17px "DM Mono", monospace';
+  ctx.fillText('#Pola診断  #恋愛極性診断', 60, 460);
+
+  // ── URL風 ──
+  ctx.fillStyle = 'rgba(28,21,32,0.28)';
+  ctx.font = '400 16px "DM Mono", monospace';
+  ctx.fillText('utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/', 60, 510);
+
+  // ── 右下：結果確認CTA ──
+  ctx.textAlign = 'right';
+  ctx.fillStyle = 'rgba(28,21,32,0.35)';
+  ctx.font = '400 18px "Noto Serif JP", serif';
+  ctx.fillText('あなたのタイプを診断する →', W - 100, H - 60);
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split('');
+  let line = '';
+  let lines = [];
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n];
+    if (ctx.measureText(testLine).width > maxWidth && line !== '') {
+      lines.push(line); line = words[n];
+    } else { line = testLine; }
+  }
+  lines.push(line);
+  lines.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight));
+}
+
+drawOGP('c1', TYPE);
+</script>
+</body>
+</html>

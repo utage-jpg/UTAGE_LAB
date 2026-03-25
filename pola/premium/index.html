@@ -472,74 +472,112 @@
       border-radius: 20px;
     }
 
-    /* ========== VOICES ========== */
-    .voices-section {
-      background: var(--dark);
-    }
-
-    .voices-grid {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .voice-card {
-      background: var(--dark2);
+    /* ========== CHARTS ========== */
+    .chart-card {
+      margin-top: 28px;
+      background: var(--dark3);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
     }
 
-    .voice-quote {
-      font-size: 36px;
-      font-family: 'Playfair Display', serif;
-      color: var(--gold);
-      opacity: 0.4;
-      line-height: 1;
-      margin-bottom: 12px;
+    .chart-card + .chart-card {
+      margin-top: 20px;
     }
 
-    .voice-text {
-      font-size: 14px;
-      color: var(--ink-mid);
-      line-height: 1.85;
-      margin-bottom: 16px;
-      font-style: italic;
-    }
-
-    .voice-meta {
+    .chart-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .voice-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-light), rgba(120, 80, 160, 0.2));
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-
-    .voice-name {
+    .chart-header-label {
       font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--ink-low);
-      letter-spacing: 0.06em;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.12em;
     }
 
-    .voice-stars {
-      font-size: 12px;
+    .chart-header-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-low);
+      background: rgba(250, 248, 245, 0.05);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .chart-body {
+      padding: 20px;
+    }
+
+    .chart-type-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
       color: var(--gold);
-      letter-spacing: 2px;
-      margin-top: 2px;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+
+    .chart-type-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    /* Bar chart */
+    .bar-chart { display: flex; flex-direction: column; gap: 14px; }
+    .bar-row { display: grid; grid-template-columns: 80px 1fr 36px; align-items: center; gap: 10px; }
+    .bar-axis { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink-low); letter-spacing: 0.06em; }
+    .bar-track { height: 8px; background: rgba(250,248,245,.06); border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width .6s ease; }
+    .bar-val { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); text-align: right; }
+
+    /* Compat grid */
+    .compat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .compat-chip {
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+      border: 1px solid;
+    }
+
+    .compat-chip-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      opacity: 0.6;
+      margin-bottom: 2px;
+    }
+
+    .compat-chip-name {
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .compat-chip-stars {
+      font-size: 9px;
+      letter-spacing: 1px;
+    }
+
+    .compat-chip-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      margin-top: 3px;
+      opacity: 0.7;
     }
 
     /* ========== CTA SECTION ========== */
@@ -660,14 +698,8 @@
         grid-template-columns: 80px 1fr;
       }
 
-      .voices-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-
-      .voices-grid .voice-card:last-child {
-        grid-column: 1 / -1;
+      .compat-grid {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   </style>
@@ -835,99 +867,133 @@
     </div>
   </section>
 
-  <!-- SAMPLE PREVIEW -->
+  <!-- SAMPLE PREVIEW (Charts) -->
   <section class="sample-section">
     <div class="container">
       <div class="section-label">Sample Preview</div>
-      <h2 class="section-title">レポートの中身を<br>少しだけご覧ください</h2>
+      <h2 class="section-title">レポートに含まれる<br>チャートの例</h2>
       <div class="divider"></div>
-      <p class="section-body">以下はType 11「エクスプローラー - 探検家」向けレポートのCh.1 冒頭サンプルです。</p>
+      <p class="section-body">以下はType 11「エクスプローラー」のサンプルです。実際のレポートでは、あなたのタイプに合わせた数値・解説が記載されます。</p>
 
-      <div class="sample-card">
-        <div class="sample-card-header">
-          <span class="sample-card-label">Ch.1 — あなたの恋愛極性タイプ：深層解析</span>
-          <span class="sample-card-tag">SAMPLE</span>
+      <!-- Chart 1: 恋愛極性スペクトル -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-header-label">Ch.1 — 恋愛極性スペクトル分析</span>
+          <span class="chart-header-tag">SAMPLE</span>
         </div>
-        <div class="sample-card-body">
-          <div class="sample-title">Type 11 — エクスプローラー</div>
-          <div class="sample-type">The Explorer ／ 探検家</div>
-          <div class="sample-text">
-            <p>
-              あなたの恋愛極性の核心には、「未知への磁力」が存在しています。
-              エクスプローラータイプが恋愛に感じる最初の引力は、
-              相手の「まだ見えていない部分」です。
-              わかりきった関係性に安住することへの本能的な抵抗感が、
-              あなたの恋愛行動全体の根底に流れています。
-            </p>
-            <p class="sample-blur">
-              この特性は、表面上は「飽き性」や「自由を求める性格」として映ることがありますが、
-              心理学的に見ると、これは「新奇性探索傾向（Novelty Seeking）」と
-              「自律性への深い欲求」が組み合わさった、非常に複雑な恋愛構造です。
-              ドーパミン系報酬回路の活性化パターンが——
-            </p>
+        <div class="chart-body">
+          <div class="chart-type-label">TYPE 11 · Ne × HEAD</div>
+          <div class="chart-type-name">エクスプローラー — 探検家</div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <div class="bar-axis">Ne 冒険・可能性</div>
+              <div class="bar-track"><div class="bar-fill" style="width:82%;background:linear-gradient(90deg,#c8a84b,#e0c06a)"></div></div>
+              <div class="bar-val">82</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-axis">Ni 直感・未来</div>
+              <div class="bar-track"><div class="bar-fill" style="width:44%;background:linear-gradient(90deg,#7655a8,#9a7dcc)"></div></div>
+              <div class="bar-val">44</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-axis">Se 感覚・体験</div>
+              <div class="bar-track"><div class="bar-fill" style="width:38%;background:linear-gradient(90deg,#2e8b7a,#4db3a0)"></div></div>
+              <div class="bar-val">38</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-axis">Si 安定・記憶</div>
+              <div class="bar-track"><div class="bar-fill" style="width:16%;background:linear-gradient(90deg,#8b7355,#b09070)"></div></div>
+              <div class="bar-val">16</div>
+            </div>
           </div>
-          <div class="sample-overlay">
-            <span class="sample-unlock">続きはレポートでご覧いただけます</span>
-          </div>
+          <p style="margin-top:16px;font-size:12px;color:rgba(250,248,245,.3);font-family:'DM Mono',monospace;">※ スコアは診断回答をもとに算出されます</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- VOICES -->
-  <section class="voices-section">
-    <div class="container">
-      <div class="section-label">Voices</div>
-      <h2 class="section-title">読んだ方の声</h2>
-      <div class="divider"></div>
-
-      <div class="voices-grid">
-
-        <div class="voice-card">
-          <div class="voice-quote">"</div>
-          <div class="voice-text">
-            なぜ毎回同じような人に惹かれてしまうのか、ずっと謎だったんですが、Ch.3を読んで「あ、そういうことか」と腑に落ちました。
-            分析が深くて、怖いくらい当たってました。
-          </div>
-          <div class="voice-meta">
-            <div class="voice-avatar">🌙</div>
-            <div>
-              <div class="voice-name">あゆみ・29歳</div>
-              <div class="voice-stars">★★★★★</div>
+      <!-- Chart 2: 12タイプ相性マップ -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-header-label">Ch.4 — 12タイプ恋愛相性マップ</span>
+          <span class="chart-header-tag">SAMPLE</span>
+        </div>
+        <div class="chart-body">
+          <div class="chart-type-label">TYPE 11 · エクスプローラーの相性評価</div>
+          <div class="compat-grid" style="margin-top:12px;">
+            <div class="compat-chip" style="background:rgba(118,85,168,.15);border-color:rgba(118,85,168,.4);color:#b89fe0;">
+              <div class="compat-chip-num">Type 8</div>
+              <div class="compat-chip-name">アーキテクト</div>
+              <div class="compat-chip-stars">★★★★★</div>
+              <div class="compat-chip-label">調和</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(196,86,110,.12);border-color:rgba(196,86,110,.35);color:#e8919e;">
+              <div class="compat-chip-num">Type 7</div>
+              <div class="compat-chip-name">ガーディアン</div>
+              <div class="compat-chip-stars">★★★★</div>
+              <div class="compat-chip-label">双極</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(196,86,110,.12);border-color:rgba(196,86,110,.35);color:#e8919e;">
+              <div class="compat-chip-num">Type 9</div>
+              <div class="compat-chip-name">ケアテイカー</div>
+              <div class="compat-chip-stars">★★★★</div>
+              <div class="compat-chip-label">双極</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(46,139,122,.12);border-color:rgba(46,139,122,.35);color:#7dd5c8;">
+              <div class="compat-chip-num">Type 5</div>
+              <div class="compat-chip-name">オブザーバー</div>
+              <div class="compat-chip-stars">★★★★</div>
+              <div class="compat-chip-label">並走</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(196,120,48,.12);border-color:rgba(196,120,48,.35);color:#e8b068;">
+              <div class="compat-chip-num">Type 4</div>
+              <div class="compat-chip-name">エンパス</div>
+              <div class="compat-chip-stars">★★★</div>
+              <div class="compat-chip-label">刺激</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(196,120,48,.12);border-color:rgba(196,120,48,.35);color:#e8b068;">
+              <div class="compat-chip-num">Type 6</div>
+              <div class="compat-chip-name">フェイタリスト</div>
+              <div class="compat-chip-stars">★★★</div>
+              <div class="compat-chip-label">刺激</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(91,127,166,.12);border-color:rgba(91,127,166,.35);color:#90b8d8;">
+              <div class="compat-chip-num">Type 10</div>
+              <div class="compat-chip-name">トラベラー</div>
+              <div class="compat-chip-stars">★★★</div>
+              <div class="compat-chip-label">鏡像</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(91,127,166,.12);border-color:rgba(91,127,166,.35);color:#90b8d8;">
+              <div class="compat-chip-num">Type 12</div>
+              <div class="compat-chip-name">フリースピリット</div>
+              <div class="compat-chip-stars">★★★</div>
+              <div class="compat-chip-label">鏡像</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(139,115,85,.1);border-color:rgba(139,115,85,.3);color:#c0a880;">
+              <div class="compat-chip-num">Type 1</div>
+              <div class="compat-chip-name">ロマンハンター</div>
+              <div class="compat-chip-stars">★★</div>
+              <div class="compat-chip-label">静水</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(139,115,85,.1);border-color:rgba(139,115,85,.3);color:#c0a880;">
+              <div class="compat-chip-num">Type 2</div>
+              <div class="compat-chip-name">ストラテジスト</div>
+              <div class="compat-chip-stars">★★</div>
+              <div class="compat-chip-label">静水</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(139,115,85,.1);border-color:rgba(139,115,85,.3);color:#c0a880;">
+              <div class="compat-chip-num">Type 3</div>
+              <div class="compat-chip-name">チャレンジャー</div>
+              <div class="compat-chip-stars">★★</div>
+              <div class="compat-chip-label">静水</div>
+            </div>
+            <div class="compat-chip" style="background:rgba(200,168,75,.08);border-color:rgba(200,168,75,.25);color:#c8a84b;">
+              <div class="compat-chip-num">Type 11</div>
+              <div class="compat-chip-name">エクスプローラー</div>
+              <div class="compat-chip-stars">★★★</div>
+              <div class="compat-chip-label">同型</div>
             </div>
           </div>
+          <p style="margin-top:16px;font-size:12px;color:rgba(250,248,245,.3);font-family:'DM Mono',monospace;">※ 実際のレポートでは各相性に詳細な解説が付きます</p>
         </div>
-
-        <div class="voice-card">
-          <div class="voice-quote">"</div>
-          <div class="voice-text">
-            心理学ベースでちゃんと説明してくれるのが良かった。
-            Ch.6の愛着スタイルの分析は、自分のことなのに気づいていなかった部分で、読んでいて少し泣きました。
-          </div>
-          <div class="voice-meta">
-            <div class="voice-avatar">🌿</div>
-            <div>
-              <div class="voice-name">たかし・34歳</div>
-              <div class="voice-stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="voice-card">
-          <div class="voice-quote">"</div>
-          <div class="voice-text">
-            相性チャプターが特に役立ちました。職場に気になる人がいて、そのタイプとの相性解説が思ってた以上に具体的で。
-            Ch.7の処方箋も、すぐ実践できる内容で良かったです。
-          </div>
-          <div class="voice-meta">
-            <div class="voice-avatar">✨</div>
-            <div>
-              <div class="voice-name">みずき・26歳</div>
-              <div class="voice-stars">★★★★☆</div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>

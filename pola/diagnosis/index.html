@@ -2790,6 +2790,7 @@ function showReportTeaser() {
 // REPORT GENERATION
 // ══════════════════════════════════════
 function startReportGeneration() {
+  if (!_paidThisSession) { alert('先にお支払いを完了してください。'); return; }
   if (!currentResult) return;
   showScreen('screen-report-gen');
 
@@ -3617,6 +3618,7 @@ function showImageSaveModal(dataUrl) {
 // STATUS INPUT
 // ══════════════════════════════════════
 function showStatusInput() {
+  if (!_paidThisSession) { alert('先にお支払いを完了してください。'); return; }
   if (!currentResult) return;
   const {type} = currentResult;
   const resolvedColor = type.styleColor.replace('var(--rose)','#c4566e').replace('var(--violet)','#7655a8').replace('var(--teal)','#2e8b7a').replace('var(--amber)','#c47830');
@@ -3959,8 +3961,8 @@ async function restoreReportFromUrl() {
 // ページ読み込み時にURLパラメータを確認
 restoreReportFromUrl();
 
-// 支払い済みの場合はテスター画面のボタンを表示
-if (localStorage.getItem('pola_paid') === '1') showPurchasedButton();
+// 注: 支払い済みボタンは ?paid=1 URLパラメータ経由でのみ表示される
+// localStorage による自動表示は廃止（セキュリティ強化）
 
 // ══════════════════════════════════════
 // STRIPE 支払い連携
@@ -3983,16 +3985,22 @@ function saveQuizStateForPayment() {
 // レポート生成済みフラグ
 let reportAlreadyGenerated = false;
 
-// 支払い済みボタンの表示を切り替える
+// ──────────────────────────────────────────
+// 支払い確認フラグ（セッション変数。localStorage非使用）
+// Stripe リダイレクト経由でのみ true になる
+// ──────────────────────────────────────────
+let _paidThisSession = false;
+
+// 支払い済みボタンの表示を切り替える（_paidThisSession が true のときのみ有効）
 function showPurchasedButton() {
+  if (!_paidThisSession) return; // 支払い未確認なら表示しない
   const btn = document.getElementById('btnPurchased');
   if (btn) btn.style.display = '';
 }
 
 // 支払い済みの方専用：レポート生成済みなら直接表示、未生成ならstatus入力へ
 function proceedIfPaid() {
-  const paid = localStorage.getItem('pola_paid') === '1';
-  if (!paid) {
+  if (!_paidThisSession) {
     alert('先にお支払いを完了してください。\n支払い後、自動的にこの画面に戻ります。');
     return;
   }
@@ -4009,17 +4017,20 @@ function proceedIfPaid() {
 }
 
 // 支払い完了後（?paid=1）の状態復元
+// ※ pola_quiz_state が存在しない場合は復元不可（?paid=1 URL手動入力対策）
 (function restoreAfterPayment() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('paid') !== '1') return;
-  // 支払い済みフラグを保存・ボタン表示
-  try { localStorage.setItem('pola_paid', '1'); } catch(e) {}
-  showPurchasedButton();
-  // クイズ状態を復元
+
+  // クイズ状態が保存されていない場合は不正アクセスとして処理しない
+  let saved;
+  try { saved = localStorage.getItem('pola_quiz_state'); } catch(e) {}
+  if (!saved) return; // 診断を経由していない場合は無効
+
+  // クイズ状態を復元できた場合のみ支払い済みフラグをセット
   try {
-    const saved = localStorage.getItem('pola_quiz_state');
-    if (!saved) return;
     const data = JSON.parse(saved);
+    if (!data || !data.typeId) return;
     const type = TYPES.find(t => t.id === data.typeId);
     if (!type) return;
     const extra = TYPE_EXTRA[data.typeId];
@@ -4035,6 +4046,12 @@ function proceedIfPaid() {
       styleNorm: data.styleNorm,
       centerNorm: data.centerNorm
     };
+
+    // ここで初めて支払い済みフラグを立てる（localStorage には保存しない）
+    _paidThisSession = true;
+    // クイズ状態は消費済みにする（再利用防止）
+    try { localStorage.removeItem('pola_quiz_state'); } catch(e) {}
+
     // テスター画面を一瞬経由してステータス入力へ
     showReportTeaser();
     // リダイレクト後は結果画面が未生成のため「診断結果に戻る」ボタンを非表示

@@ -110,61 +110,74 @@ function fitText(ctx, text, x, y, maxWidth, maxSize) {
 
 function drawText(ctx, type, W, H) {
   ctx.textBaseline = 'middle';
-
-  // ── ブランドロゴ（左上） ── ①1.5倍サイズ
   ctx.textAlign = 'left';
-  ctx.fillStyle = type.color + 'aa';
-  ctx.font = '500 33px "DM Mono", monospace';
-  ctx.fillText('Pola', 60, 72);
-  ctx.fillStyle = 'rgba(28,21,32,0.4)';
-  ctx.font = '400 24px "DM Mono", monospace';
-  ctx.fillText('恋愛極性診断', 158, 72);
 
-  // 区切り ①線を1.5倍に
-  ctx.strokeStyle = type.color + '50';
-  ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.moveTo(60, 100); ctx.lineTo(340, 100); ctx.stroke();
-
-  // ── TYPE ラベル（Se×heartは除外） ──
-  ctx.fillStyle = type.color + 'cc';
-  ctx.font = '500 20px "DM Mono", monospace';
-  ctx.fillText('Type ' + type.id, 60, 138);
-
-  // ── タイプ名（大） ──
-  ctx.fillStyle = '#1c1520';
-  ctx.font = 'bold 64px "Noto Serif JP", serif';
-  ctx.fillText(type.name, 60, 230);
-
-  // ── ③サブタイトル：括弧なし・0.7倍(45px)・太字 ──
+  // ── ブランドロゴ（左上）44px ──
   ctx.fillStyle = type.color;
-  ctx.font = 'bold 45px "Noto Serif JP", serif';
-  ctx.fillText(type.nameKana, 60, 296);
+  ctx.font = '600 44px "DM Mono", monospace';
+  ctx.fillText('Pola', 60, 82);
+  const polaW = ctx.measureText('Pola').width;
+  ctx.fillStyle = 'rgba(28,21,32,0.45)';
+  ctx.font = '400 28px "DM Mono", monospace';
+  ctx.fillText('恋愛極性診断', 60 + polaW + 20, 82);
 
-  // 横線 ①1.5倍
+  // 区切り線（長め・太め）
+  ctx.strokeStyle = type.color + '60';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(60, 116); ctx.lineTo(580, 116); ctx.stroke();
+
+  // ── Type N ──
+  ctx.fillStyle = type.color + 'bb';
+  ctx.font = '500 22px "DM Mono", monospace';
+  ctx.fillText('Type ' + type.id, 60, 152);
+
+  // ── タイプ名（大）＋ — 狩人 — を同じy・縦中央揃え ──
+  // タイプ名
+  ctx.fillStyle = '#1c1520';
+  ctx.font = 'bold 68px "Noto Serif JP", serif';
+  ctx.fillText(type.name, 60, 248);
+  const nameW = ctx.measureText(type.name).width;
+
+  // — 狩人 — (同じy=248で縦中央を揃える)
+  ctx.fillStyle = type.color;
+  ctx.font = 'bold 47px "Noto Serif JP", serif';
+  ctx.fillText('— ' + type.nameKana + ' —', 60 + nameW + 22, 248);
+
+  // 横線
   ctx.strokeStyle = type.color + '40';
   ctx.lineWidth = 1.8;
-  ctx.beginPath(); ctx.moveTo(60, 334); ctx.lineTo(520, 334); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(60, 296); ctx.lineTo(620, 296); ctx.stroke();
 
-  // ── ②キャッチコピー：必ず1行・引用符なし・句点なし ──
-  ctx.fillStyle = '#2e2440cc';
+  // ── キャッチコピー（1行）──
+  ctx.fillStyle = '#2e2440dd';
   const oneline = type.oneline.replace(/[。""]$/g, '');
-  fitText(ctx, oneline, 60, 378, 560, 22);
+  fitText(ctx, oneline, 60, 348, 600, 26);
+
+  // ── 区切り・タグ行 ──
+  ctx.fillStyle = type.color + '30';
+  ctx.font = '400 14px "DM Mono", monospace';
+  ctx.fillText('─────────────────────', 60, 406);
 
   // ── ハッシュタグ ──
-  ctx.fillStyle = type.color + '99';
-  ctx.font = '400 17px "DM Mono", monospace';
-  ctx.fillText('#Pola診断  #恋愛極性診断', 60, 466);
+  ctx.fillStyle = type.color + 'aa';
+  ctx.font = '500 20px "DM Mono", monospace';
+  ctx.fillText('#Pola診断   #恋愛極性診断', 60, 450);
 
-  // ── URL風 ──
-  ctx.fillStyle = 'rgba(28,21,32,0.28)';
-  ctx.font = '400 16px "DM Mono", monospace';
-  ctx.fillText('utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/', 60, 516);
-
-  // ── 右下：結果確認CTA ──
-  ctx.textAlign = 'right';
+  // ── サイト紹介文 ──
   ctx.fillStyle = 'rgba(28,21,32,0.35)';
-  ctx.font = '400 18px "Noto Serif JP", serif';
-  ctx.fillText('あなたのタイプを診断する →', W - 100, H - 52);
+  ctx.font = 'italic 20px "Noto Serif JP", serif';
+  ctx.fillText('恋愛の「なぜ」を、タイプで解く。', 60, 500);
+
+  // ── URL ──
+  ctx.fillStyle = 'rgba(28,21,32,0.25)';
+  ctx.font = '400 16px "DM Mono", monospace';
+  ctx.fillText('utage-jpg.github.io/UTAGE_LAB/pola/diagnosis/', 60, 548);
+
+  // ── 右下CTA ──
+  ctx.textAlign = 'right';
+  ctx.fillStyle = type.color + 'cc';
+  ctx.font = '500 20px "Noto Serif JP", serif';
+  ctx.fillText('あなたのタイプを診断する →', W - 90, H - 48);
 }
 
 

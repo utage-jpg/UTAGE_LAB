@@ -252,7 +252,7 @@ function _activateDl(canvas, typeId) {
 const _origDrawOGP = drawOGP;
 // (already called; activation triggered inside img.onload via patch below)
 
-// ── 一括ダウンロード ──
+// ── 一括ダウンロード（通常版） ──
 function downloadAll() {
   TYPES.forEach((type, i) => {
     const canvas = _canvases[type.id];
@@ -262,9 +262,193 @@ function downloadAll() {
       a.download = `type${type.id}.png`;
       a.href = canvas.toDataURL('image/png');
       a.click();
-    }, i * 300); // 300ms ずつずらして連続ダウンロード
+    }, i * 300);
   });
 }
+
+// ══════════════════════════════════════
+// PREMIUM OGP カード（金×黒）
+// ══════════════════════════════════════
+const GOLD = '#c8a84b';
+const _premiumCanvases = {};
+
+function drawPremiumOGP(canvas, type) {
+  const W = 1200, H = 630;
+  const ctx = canvas.getContext('2d');
+
+  // ── 背景：ダークグラデーション ──
+  const bgGrad = ctx.createLinearGradient(0, 0, W, H);
+  bgGrad.addColorStop(0, '#1a1520');
+  bgGrad.addColorStop(0.5, '#221830');
+  bgGrad.addColorStop(1, '#1a1822');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  // タイプカラーの薄いオーバーレイ（右側）
+  const typeOver = ctx.createLinearGradient(W * 0.6, 0, W, 0);
+  typeOver.addColorStop(0, type.color + '00');
+  typeOver.addColorStop(1, type.color + '18');
+  ctx.fillStyle = typeOver;
+  ctx.fillRect(0, 0, W, H);
+
+  // ノイズ
+  ctx.fillStyle = 'rgba(255,255,255,0.01)';
+  for (let x = 0; x < W; x += 4) for (let y = 0; y < H; y += 4) {
+    if (Math.random() > 0.68) ctx.fillRect(x, y, 2, 2);
+  }
+
+  // ゴールド左バー
+  ctx.fillStyle = GOLD;
+  ctx.fillRect(0, 0, 6, H);
+  ctx.fillStyle = GOLD + '30';
+  ctx.fillRect(6, 0, 2, H);
+
+  // エンブレム（右・ゴールド色で描画）
+  const embSvg = getEmblemSVG(type.id, GOLD, type.color + '22');
+  const img = new Image();
+  img.onload = () => {
+    const ES = 300;
+    ctx.globalAlpha = 0.55;
+    ctx.drawImage(img, W - ES - 90, (H - ES) / 2, ES, ES);
+    ctx.globalAlpha = 1;
+
+    // ゴールドグロー
+    const glow = ctx.createRadialGradient(W - 240, H / 2, 20, W - 240, H / 2, 220);
+    glow.addColorStop(0, GOLD + '18');
+    glow.addColorStop(1, 'transparent');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
+
+    drawPremiumText(ctx, type, W, H);
+    setTimeout(() => {
+      const dl = canvas._dlLink;
+      if (dl) dl.href = canvas.toDataURL('image/png');
+    }, 100);
+  };
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(embSvg);
+}
+
+function drawPremiumText(ctx, type, W, H) {
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'left';
+
+  // ── Pola ロゴ ──
+  ctx.fillStyle = GOLD;
+  ctx.font = '600 44px "DM Mono", monospace';
+  ctx.fillText('Pola', 60, 82);
+  const polaW = ctx.measureText('Pola').width;
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.font = '400 26px "DM Mono", monospace';
+  ctx.fillText('パーソナルレポート', 60 + polaW + 20, 82);
+
+  // 区切り線（ゴールド）
+  ctx.strokeStyle = GOLD + '50';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(60, 116); ctx.lineTo(580, 116); ctx.stroke();
+
+  // PREMIUM バッジ
+  ctx.fillStyle = GOLD + 'cc';
+  ctx.font = '500 14px "DM Mono", monospace';
+  ctx.fillText('— PREMIUM REPORT —   Type ' + type.id, 60, 148);
+
+  // タイプ名（白）
+  ctx.fillStyle = 'rgba(255,255,255,0.92)';
+  ctx.font = 'bold 68px "Noto Serif JP", serif';
+  ctx.fillText(type.name, 60, 230);
+  const nameW = ctx.measureText(type.name).width;
+
+  // 役割名（ゴールド・2行目・中央軸）
+  ctx.textAlign = 'center';
+  ctx.fillStyle = GOLD;
+  ctx.font = 'bold 47px "Noto Serif JP", serif';
+  ctx.fillText('— ' + type.kana + ' —', 60 + nameW / 2, 295);
+
+  // 横線
+  ctx.textAlign = 'left';
+  ctx.strokeStyle = GOLD + '30';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(60, 333); ctx.lineTo(620, 333); ctx.stroke();
+
+  // キャッチコピー
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  fitText(ctx, type.oneline, 60, 373, 600, 24);
+
+  // レポート内容
+  ctx.fillStyle = GOLD + '60';
+  ctx.font = '400 13px "DM Mono", monospace';
+  ctx.fillText('─────────────────────', 60, 420);
+  ctx.fillStyle = 'rgba(255,255,255,0.3)';
+  ctx.font = '400 18px "Noto Serif JP", serif';
+  ctx.fillText('7章 · 約2万字 · パーソナライズドレポート', 60, 455);
+
+  // ハッシュタグ
+  ctx.fillStyle = GOLD + '99';
+  ctx.font = '500 18px "DM Mono", monospace';
+  ctx.fillText('#Pola診断   #恋愛極性診断', 60, 500);
+
+  // URL
+  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.font = '400 15px "DM Mono", monospace';
+  ctx.fillText('utage-jpg.github.io/UTAGE_LAB/pola/premium/', 60, 548);
+
+  // 右下CTA
+  ctx.textAlign = 'right';
+  ctx.fillStyle = GOLD + 'cc';
+  ctx.font = '500 19px "Noto Serif JP", serif';
+  ctx.fillText('レポートの詳細を見る →', W - 90, H - 48);
+}
+
+// ── プレミアム全タイプ生成 ──
+const premiumSection = document.createElement('div');
+premiumSection.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;';
+const premiumH1 = document.createElement('h1');
+premiumH1.textContent = '— PREMIUM OGP Cards（1200×630px）—';
+premiumH1.style.marginTop = '40px';
+premiumSection.appendChild(premiumH1);
+
+const dlAllPremBtn = document.createElement('button');
+dlAllPremBtn.className = 'dl-all-btn';
+dlAllPremBtn.textContent = '⬇ プレミアム全12枚を一括ダウンロード';
+dlAllPremBtn.onclick = () => {
+  TYPES.forEach((type, i) => {
+    const c = _premiumCanvases[type.id];
+    if (!c) return;
+    setTimeout(() => {
+      const a = document.createElement('a');
+      a.download = `premium-type${type.id}.png`;
+      a.href = c.toDataURL('image/png');
+      a.click();
+    }, i * 300);
+  });
+};
+premiumSection.appendChild(dlAllPremBtn);
+document.body.appendChild(premiumSection);
+
+TYPES.forEach(type => {
+  const wrap = document.createElement('div');
+  wrap.className = 'card-wrap';
+
+  const label = document.createElement('div');
+  label.className = 'card-label';
+  label.textContent = `[PREMIUM] Type ${type.id} — ${type.name}（${type.kana}）`;
+  wrap.appendChild(label);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 1200; canvas.height = 630;
+  canvas.id = 'pc' + type.id;
+  _premiumCanvases[type.id] = canvas;
+  wrap.appendChild(canvas);
+
+  const dl = document.createElement('a');
+  dl.className = 'dl-btn';
+  dl.textContent = `⬇ premium-type${type.id}.png`;
+  dl.download = `premium-type${type.id}.png`;
+  wrap.appendChild(dl);
+  canvas._dlLink = dl;
+
+  document.body.appendChild(wrap);
+  drawPremiumOGP(canvas, type);
+});
 </script>
 </body>
 </html>

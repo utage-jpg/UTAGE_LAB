@@ -6,13 +6,22 @@
 <style>
   body { background: #1c1520; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; gap: 32px; }
   h1 { color: #fff; margin: 0; font-size: 1.1rem; opacity: .5; letter-spacing:.1em; }
+  .top-note { color: rgba(255,255,255,.45); font-size: .8rem; text-align:center; line-height:1.7; max-width:600px; }
+  .dl-all-btn { background:#fff; color:#1c1520; border:none; padding:12px 28px; border-radius:50px; font-size:.85rem; font-family:monospace; cursor:pointer; letter-spacing:.05em; }
+  .dl-all-btn:hover { background:#eee; }
   .card-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
   .card-label { color: rgba(255,255,255,.35); font-size: .75rem; letter-spacing:.08em; }
   canvas { border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,.7); max-width: 100%; }
+  .dl-btn { display:inline-block; margin-top:4px; background:rgba(255,255,255,.1); color:rgba(255,255,255,.6); padding:6px 18px; border-radius:20px; font-size:.72rem; font-family:monospace; text-decoration:none; cursor:pointer; }
 </style>
 </head>
 <body>
 <h1>OGP Card Preview — Pola 全12タイプ（1200×630px）</h1>
+<p class="top-note">
+  ① 各カードの「⬇ ダウンロード」ボタンで PNG を保存<br>
+  ② 保存した <code>type1.png〜type12.png</code> を <code>pola/ogp/</code> フォルダに置いてコミット
+</p>
+<button class="dl-all-btn" onclick="downloadAll()">⬇ 全12枚を一括ダウンロード</button>
 
 <script>
 // ── 全タイプデータ ──
@@ -119,6 +128,10 @@ function drawOGP(canvas, type) {
     ctx.drawImage(img, W - ES - 80, (H - ES) / 2, ES, ES);
     ctx.globalAlpha = 1;
     drawText(ctx, type, W, H);
+    // ダウンロードリンクを有効化
+    setTimeout(() => {
+      if (canvas._dlLink) canvas._dlLink.href = canvas.toDataURL('image/png');
+    }, 100);
   };
   img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(embSvg);
 }
@@ -198,6 +211,7 @@ function drawText(ctx, type, W, H) {
 }
 
 // ── 全タイプ生成 ──
+const _canvases = {};
 TYPES.forEach(type => {
   const wrap = document.createElement('div');
   wrap.className = 'card-wrap';
@@ -211,11 +225,46 @@ TYPES.forEach(type => {
   canvas.width = 1200;
   canvas.height = 630;
   canvas.id = 'c' + type.id;
+  _canvases[type.id] = canvas;
   wrap.appendChild(canvas);
+
+  // ダウンロードボタン（描画完了後に href を設定）
+  const dl = document.createElement('a');
+  dl.className = 'dl-btn';
+  dl.textContent = `⬇ type${type.id}.png`;
+  dl.download = `type${type.id}.png`;
+  wrap.appendChild(dl);
+  canvas._dlLink = dl;
 
   document.body.appendChild(wrap);
   drawOGP(canvas, type);
 });
+
+// ── 描画後にダウンロードリンクを有効化 ──
+function _activateDl(canvas, typeId) {
+  setTimeout(() => {
+    const dl = canvas._dlLink;
+    if (dl) dl.href = canvas.toDataURL('image/png');
+  }, 200);
+}
+
+// drawText の末尾で呼ぶために drawOGP を上書き
+const _origDrawOGP = drawOGP;
+// (already called; activation triggered inside img.onload via patch below)
+
+// ── 一括ダウンロード ──
+function downloadAll() {
+  TYPES.forEach((type, i) => {
+    const canvas = _canvases[type.id];
+    if (!canvas) return;
+    setTimeout(() => {
+      const a = document.createElement('a');
+      a.download = `type${type.id}.png`;
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    }, i * 300); // 300ms ずつずらして連続ダウンロード
+  });
+}
 </script>
 </body>
 </html>

@@ -2730,9 +2730,9 @@ function saveShareCardImage() {
 function shareX() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
-  const text = `私のPolaタイプは「${type.name}」\n"${extra.catchcopy}"\n#Pola診断 #恋愛極性診断`;
-  const url = window.location.href;
-  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  const text = `私のPolaタイプは「${type.name}」\n${extra.catchcopy}\n#Pola診断 #恋愛極性診断`;
+  const resultUrl = `https://utage-jpg.github.io/UTAGE_LAB/pola/result/type${type.id}/`;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(resultUrl)}`, '_blank');
 }
 
 function shareLine() {

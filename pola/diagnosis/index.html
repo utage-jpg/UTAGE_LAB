@@ -809,6 +809,15 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .report-email-status.error{background:#fae0e8;color:#c4566e;border:1px solid #c4566e40;}
 .report-email-resend-btn{margin-top:10px;display:inline-block;background:none;border:1px solid #2e8b7a;color:#2e8b7a;border-radius:999px;padding:6px 18px;font-size:.82rem;cursor:pointer;font-family:var(--font-s);transition:all .2s;}
 .report-email-resend-btn:hover{background:#2e8b7a;color:#fff;}
+/* ── 上部保存警告バナー ── */
+.report-save-warning{max-width:680px;margin:0 auto 28px;width:calc(100% - 28px);background:#fffbf0;border:1.5px solid #e6c84a;border-radius:16px;padding:20px 20px 24px;text-align:center;}
+.report-save-warning-icon{font-size:1.4rem;margin-bottom:6px;}
+.report-save-warning-title{font-family:var(--font-d);font-size:.88rem;font-weight:600;color:#7a5c00;margin-bottom:4px;}
+.report-save-warning-text{font-family:var(--font-d);font-size:.8rem;color:#9a7820;margin-bottom:16px;line-height:1.7;}
+.report-save-warning .report-email-inputs{margin-bottom:12px;}
+.report-save-warning .report-email-btn{background:#c8910a;font-size:.88rem;padding:12px 20px;}
+.report-save-warning .report-email-btn:hover{background:#a57508;}
+.report-save-warning .report-email-note{font-family:var(--font-m);font-size:.58rem;letter-spacing:.05em;color:#9a7820;margin-top:10px;}
 </style>
 </head>
 <body>
@@ -1177,6 +1186,18 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
       <span class="report-meta-item">全10章構成</span>
       <span class="report-meta-item">パーソナライズドレポート</span>
     </div>
+  </div>
+  <div class="report-save-warning" id="reportSaveWarning">
+    <div class="report-save-warning-icon">⚠️</div>
+    <div class="report-save-warning-title">このレポートはブラウザを閉じると消える可能性があります</div>
+    <p class="report-save-warning-text">スクロールする前に、メールアドレスを入力してレポートを保存することを強くおすすめします。<br>タブを閉じた・別のアプリに切り替えた場合の結果消失は自己責任となります。</p>
+    <div class="report-email-inputs">
+      <input type="text" id="reportEmailNameTop" class="report-email-input" placeholder="お名前（任意）">
+      <input type="email" id="reportEmailAddrTop" class="report-email-input" placeholder="メールアドレス（必須）">
+    </div>
+    <button class="report-email-btn" onclick="submitReportEmailTop()">レポートをメールで保存する →</button>
+    <p class="report-email-note">※ 入力されたメールアドレスはレポートリンクの送信のみに使用します。</p>
+    <div id="reportEmailStatusTop" class="report-email-status" style="display:none;"></div>
   </div>
   <div class="report-body" id="reportContent"></div>
   <div class="report-footer-inner">
@@ -3904,6 +3925,57 @@ async function submitReportEmail() {
     status.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
     btn.disabled = false;
     btn.textContent = 'レポートを保存してメールで受け取る →';
+  }
+}
+
+async function submitReportEmailTop() {
+  const emailInput = document.getElementById('reportEmailAddrTop');
+  const nameInput  = document.getElementById('reportEmailNameTop');
+  const btn    = document.querySelector('#reportSaveWarning .report-email-btn');
+  const status = document.getElementById('reportEmailStatusTop');
+
+  const email = emailInput.value.trim();
+  const name  = nameInput.value.trim() || 'あなた';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    status.style.display = '';
+    status.className = 'report-email-status error';
+    status.textContent = 'メールアドレスを正しく入力してください。';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '送信中...';
+  status.style.display = 'none';
+
+  try {
+    const docId = await saveReportToFirestore();
+    const reportUrl = window.location.origin + window.location.pathname + '?id=' + docId;
+
+    await emailjs.send('service_6rjjivn', 'template_gh25w93', {
+      to_email: email,
+      to_name:  name,
+      report_url: reportUrl
+    });
+
+    status.style.display = '';
+    status.className = 'report-email-status success';
+    status.innerHTML = 'メールを送信しました。受信ボックスをご確認ください。<br><small>迷惑メールフォルダに入っている場合があります。</small>';
+    btn.textContent = '送信済み ✓';
+    // 下部フォームにも反映して二重送信を防ぐ
+    const bottomEmailInput = document.getElementById('reportEmailAddr');
+    const bottomNameInput  = document.getElementById('reportEmailName');
+    const bottomBtn = document.querySelector('#reportEmailForm .report-email-btn');
+    if (bottomEmailInput) bottomEmailInput.value = email;
+    if (bottomNameInput)  bottomNameInput.value  = nameInput.value.trim();
+    if (bottomBtn) { bottomBtn.disabled = true; bottomBtn.textContent = '送信済み ✓'; }
+  } catch(e) {
+    console.error(e);
+    status.style.display = '';
+    status.className = 'report-email-status error';
+    status.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+    btn.disabled = false;
+    btn.textContent = 'レポートをメールで保存する →';
   }
 }
 

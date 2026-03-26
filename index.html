@@ -1348,12 +1348,89 @@ body::before {
   flex-shrink: 0;
 }
 
+/* ── POLA CARD INNER GRID ── */
+.pola-card-inner {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 28px;
+  align-items: start;
+}
+.pola-type-thumbs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.pola-type-thumb {
+  border-radius: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.07);
+  aspect-ratio: 16 / 9;
+  background: var(--bg2);
+}
+.pola-type-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s;
+}
+.pola-main-card:hover .pola-type-thumb img { transform: scale(1.05); }
+.pola-thumb-note {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--text-light);
+  text-align: center;
+  padding-top: 4px;
+}
+.pola-mode-row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+.pola-mode-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(250,248,245,0.75);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 13px;
+}
+.pola-mode-icon { font-size: 14px; flex-shrink: 0; }
+.pola-mode-label {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.pola-mode-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+  margin-left: auto;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .pola-main-card {
     padding: 28px 24px;
   }
   .pola-bg-text { font-size: 120px; right: -10px; bottom: -20px; }
+}
+@media (max-width: 600px) {
+  .pola-card-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .pola-type-thumbs {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .pola-thumb-note { display: none; }
 }
 
 /* ── FEATURE BANNER (warm light) ── */
@@ -2670,29 +2747,54 @@ body::before {
 
     <!-- Main featured card -->
     <div class="pola-main-card reveal">
+      <div class="pola-card-inner">
 
-      <!-- Left content -->
-      <div class="pola-main-left">
-        <div class="pola-badge">
-          <span class="pola-badge-dot"></span>
-          NEW — UTAGE LABの代表作
+        <!-- Left content -->
+        <div class="pola-main-left">
+          <div class="pola-badge">
+            <span class="pola-badge-dot"></span>
+            FLAGSHIP — UTAGE LABの代表作
+          </div>
+
+          <div class="pola-logo-lockup">
+            <span class="pola-logo-p">P</span><span class="pola-logo-rest">ola</span>
+          </div>
+
+          <p class="pola-subtitle">— 恋愛極性診断 —</p>
+
+          <p class="pola-desc">
+            「どう動くか」と「なぜ動くか」。2つの軸が交差するところに、あなたの恋愛の本質がある。12タイプ・5次元スコア分析の本格恋愛診断。
+          </p>
+
+          <div class="pola-mode-row">
+            <div class="pola-mode-item">
+              <span class="pola-mode-icon">⚡</span>
+              <span class="pola-mode-label">簡易診断</span>
+              <span class="pola-mode-sub">15問 · 約3分</span>
+            </div>
+            <div class="pola-mode-item">
+              <span class="pola-mode-icon">📋</span>
+              <span class="pola-mode-label">詳細診断</span>
+              <span class="pola-mode-sub">50問 · 約10〜15分</span>
+            </div>
+          </div>
+
+          <div class="pola-tags">
+            <span class="pola-tag">💡 12タイプ</span>
+            <span class="pola-tag">📊 5次元分析</span>
+            <span class="pola-tag">✦ 有料レポートあり</span>
+          </div>
         </div>
 
-        <div class="pola-logo-lockup">
-          <span class="pola-logo-p">P</span><span class="pola-logo-rest">ola</span>
+        <!-- Right: type thumbnails -->
+        <div class="pola-type-thumbs">
+          <div class="pola-type-thumb"><img src="pola/ogp/type1.png" alt="Type 1" loading="lazy"></div>
+          <div class="pola-type-thumb"><img src="pola/ogp/type4.png" alt="Type 4" loading="lazy"></div>
+          <div class="pola-type-thumb"><img src="pola/ogp/type7.png" alt="Type 7" loading="lazy"></div>
+          <div class="pola-type-thumb"><img src="pola/ogp/type10.png" alt="Type 10" loading="lazy"></div>
+          <div class="pola-thumb-note">全 12 タイプ</div>
         </div>
 
-        <p class="pola-subtitle">— 恋愛極性診断 —</p>
-
-        <p class="pola-desc">
-          「どう動くか」と「なぜ動くか」。2つの軸が交差するところに、あなたの恋愛の本質がある。全30問・12タイプ・深層まで分析する本格恋愛診断。
-        </p>
-
-        <div class="pola-tags">
-          <span class="pola-tag">💡 12タイプ</span>
-          <span class="pola-tag">📝 全30問</span>
-          <span class="pola-tag">⏱ 約5〜7分</span>
-        </div>
       </div>
     </div>
 

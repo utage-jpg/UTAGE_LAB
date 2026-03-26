@@ -1375,10 +1375,10 @@ body {
    ============================================================ */
 const TYPES = [
   {id:1,  style:'Se',center:'heart',name:'ロマンハンター', sub:'狩人',      line:'愛されていると確信するまで、前進を止めない。',      sL:'狩猟型',cL:'愛情型',c:'#c4566e'},
-  {id:2,  style:'Se',center:'head', name:'ストラテジスト', sub:'戦略家',    line:'安心できる関係を、自分の手で設計しようとする。',    sL:'狩猟型',cL:'安心型',c:'#5b7fa6'},
-  {id:3,  style:'Se',center:'guts', name:'チャレンジャー', sub:'挑戦者',    line:'欲しいと感じた瞬間に、もう動いている。',            sL:'狩猟型',cL:'本能型',c:'#c47830'},
+  {id:2,  style:'Se',center:'head', name:'ストラテジスト', sub:'戦略家',    line:'安心できる関係を、自分の手で設計しようとする。',    sL:'狩猟型',cL:'安心型',c:'#c4566e'},
+  {id:3,  style:'Se',center:'guts', name:'チャレンジャー', sub:'挑戦者',    line:'欲しいと感じた瞬間に、もう動いている。',            sL:'狩猟型',cL:'本能型',c:'#c4566e'},
   {id:4,  style:'Ni',center:'heart',name:'エンパス',       sub:'共感者',    line:'愛することが、自分でいることだと信じている。',      sL:'共鳴型',cL:'愛情型',c:'#7655a8'},
-  {id:5,  style:'Ni',center:'head', name:'オブザーバー',   sub:'観察者',    line:'確信が持てるまで、全力で委ねることができない。',    sL:'共鳴型',cL:'安心型',c:'#5b7fa6'},
+  {id:5,  style:'Ni',center:'head', name:'オブザーバー',   sub:'観察者',    line:'確信が持てるまで、全力で委ねることができない。',    sL:'共鳴型',cL:'安心型',c:'#7655a8'},
   {id:6,  style:'Ni',center:'guts', name:'フェイタリスト', sub:'運命論者',  line:'流れに乗りながら、芯だけは手放さない。',            sL:'共鳴型',cL:'本能型',c:'#7655a8'},
   {id:7,  style:'Si',center:'heart',name:'ガーディアン',   sub:'保護人',    line:'気づかれなくても、今日も誰かのために動いている。',  sL:'守護型',cL:'愛情型',c:'#2e8b7a'},
   {id:8,  style:'Si',center:'head', name:'アーキテクト',   sub:'構築者',    line:'崩れない関係を、一つひとつ丁寧に積み上げる。',      sL:'守護型',cL:'安心型',c:'#2e8b7a'},
@@ -1435,7 +1435,7 @@ function buildCards() {
     const num = String(t.id).padStart(2, '0');
     const a = document.createElement('a');
     a.className = 'type-card';
-    a.href = 'diagnosis/';
+    a.href = `types/?type=${t.id}`;
     const cDark = hexRgba(t.c, 0.97);
     a.innerHTML = `
       <div class="tc-bg" style="background:${t.c}"></div>
@@ -1641,6 +1641,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial hidden states — prevents flash before section animations fire
   gsap.set('#s1Scroll', { opacity: 0 });
   gsap.set(['#s2L','#s2R'], { opacity: 0, y: 32 });
+  gsap.set('.type-card', { opacity: 0, x: 60 });
   gsap.set(['#s5L','#s5R'], { opacity: 0, y: 44 });
 });
 </script>

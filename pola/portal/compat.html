@@ -211,13 +211,13 @@ const TYPES_MAP = {
 const CENTER_JA={heart:'愛情型',head:'安心型',guts:'本能型'};
 const STYLE_JA={Se:'狩猟型',Ni:'共鳴型',Si:'守護型',Ne:'冒険型'};
 const REL={
-  bipolar:   {name:'双極',   en:'Bipolar',   color:'#c4566e',bg:'#fae0e8', stars:3, desc:'強烈に惹かれ合う補完関係。Se×NiまたはSi×Neの組み合わせ。',rule:'Se ↔ Ni / Si ↔ Ne'},
   resonance: {name:'調和',   en:'Resonance', color:'#7655a8',bg:'#ece6f8', stars:5, desc:'最も深まりやすい。補完スタイル＋同センターの組み合わせ。',rule:'補完スタイル × 同センター'},
-  stimulus:  {name:'刺激',   en:'Stimulus',  color:'#c47830',bg:'#fdefd8', stars:3, desc:'成長し合える関係。同スタイル群の対角センターの組み合わせ。',rule:'同スタイル群 × 異センター'},
   parallel:  {name:'並走',   en:'Parallel',  color:'#2e8b7a',bg:'#ddf2ee', stars:4, desc:'同じ方向を向く。同スタイル群＋同センターの組み合わせ。',rule:'同スタイル群 × 同センター'},
-  mirror:    {name:'鏡像',   en:'Mirror',    color:'#5b7fa6',bg:'#deeaf7', stars:3, desc:'自分の鏡のような関係。同スタイル×異センターの組み合わせ。',rule:'同スタイル × 異センター'},
-  stillwater:{name:'静水',   en:'Still Water',color:'#8b7355',bg:'#f0e8dc', stars:2, desc:'穏やかに引き合う。Se×NeまたはNi×Siの交差グループ。',rule:'Se×Ne / Ni×Si の交差'},
   same:      {name:'同一型', en:'Same Type',  color:'#6e6080',bg:'#f0edf5', stars:4, desc:'同じタイプ同士。深い共鳴が生まれる一方、盲点も共有される。',rule:'完全一致'},
+  bipolar:   {name:'双極',   en:'Bipolar',   color:'#c4566e',bg:'#fae0e8', stars:3, desc:'強烈に惹かれ合う補完関係。Se×NiまたはSi×Neの組み合わせ。',rule:'Se ↔ Ni / Si ↔ Ne'},
+  mirror:    {name:'鏡像',   en:'Mirror',    color:'#5b7fa6',bg:'#deeaf7', stars:3, desc:'自分の鏡のような関係。同スタイル×異センターの組み合わせ。',rule:'同スタイル × 異センター'},
+  stimulus:  {name:'刺激',   en:'Stimulus',  color:'#c47830',bg:'#fdefd8', stars:3, desc:'成長し合える関係。同スタイル群の対角センターの組み合わせ。',rule:'同スタイル群 × 異センター'},
+  stillwater:{name:'静水',   en:'Still Water',color:'#8b7355',bg:'#f0e8dc', stars:2, desc:'穏やかに引き合う。Se×NeまたはNi×Siの交差グループ。',rule:'Se×Ne / Ni×Si の交差'},
 };
 function starsHTML(n, color) {
   const filled = '<span style="color:'+color+'">★</span>';
@@ -362,7 +362,7 @@ Object.entries(REL).forEach(([key,r])=>{
 
 // Render tabs
 const tabsNav = document.getElementById('tabsNav');
-const relOrder = ['bipolar','resonance','stimulus','parallel','mirror','stillwater','same'];
+const relOrder = ['resonance','parallel','same','bipolar','mirror','stimulus','stillwater'];
 relOrder.forEach((rel,i)=>{
   const cnt = PAIRS.filter(p=>p.rel===rel).length;
   const btn = document.createElement('button');

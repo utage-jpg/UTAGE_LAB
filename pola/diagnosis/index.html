@@ -2756,14 +2756,15 @@ function shareX() {
   const shortName = type.name.split('（')[0];
   const oneline = type.oneline.replace(/。$/, '');
   const text = `私のPolaタイプは「${shortName}」\n"${oneline}"\n#Pola診断 #恋愛極性診断`;
-  const resultUrl = `https://utage-jpg.github.io/UTAGE_LAB/pola/result/type${type.id}/`;
+  const resultUrl = `https://utage-jpg.github.io/UTAGE_LAB/pola/types/?type=${type.id}`;
   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(resultUrl)}`, '_blank');
 }
 
 function shareLine() {
   if (!currentResult) return;
   const {type, extra} = currentResult;
-  const text = `私のPolaタイプは「${type.name}」\n"${extra.catchcopy}"\nPola恋愛極性診断：${window.location.href}`;
+  const typeUrl = `https://utage-jpg.github.io/UTAGE_LAB/pola/types/?type=${type.id}`;
+  const text = `私のPolaタイプは「${type.name}」\n"${extra.catchcopy}"\nPola恋愛極性診断：${typeUrl}`;
   window.open(`https://line.me/R/msg/text/?${encodeURIComponent(text)}`, '_blank');
 }
 

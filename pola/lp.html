@@ -1135,7 +1135,17 @@ body {
   .s2-inner { grid-template-columns: 1fr; overflow-y: auto; }
   .s2-left { border-right: none; border-bottom: 1px solid var(--border); padding: 56px 24px 32px; }
   .s2-right { display: none; }
-  .s4-steps { grid-template-columns: 1fr; gap: 14px; overflow-y: auto; max-height: 60vh; }
+  /* S3: カードを上寄せにして大きな空白を解消 */
+  .s3-head { padding: 68px 24px 10px; }
+  .s3-carousel { align-items: flex-start; padding-top: 14px; }
+  .type-card { height: clamp(260px, 42vh, 340px); }
+  /* S4: 内側ごとスクロール可能にしてコンテンツ見切れを防止 */
+  .s4-inner { overflow-y: auto; max-height: 92dvh; padding-top: 12px; }
+  .s4-title { margin-bottom: 22px; }
+  .s4-steps { grid-template-columns: 1fr; gap: 10px; max-height: none; overflow-y: visible; }
+  .s4-step { padding: 16px 18px 14px; }
+  .s4-step-n { font-size: 2.2rem; margin-bottom: 6px; }
+  .s4-step-sym { font-size: 1.3rem; margin-bottom: 8px; }
   .s4-step:not(:last-child)::after { display: none; }
   .s5-inner { grid-template-columns: 1fr; overflow-y: auto; padding: 24px 24px 36px; }
   #s5R { display: none; }
@@ -1145,7 +1155,8 @@ body {
 @media (max-width: 520px) {
   .s1-btns, .s6-btns { flex-direction: column; align-items: center; }
   .lp-nav-cta { display: none; }
-  .s3-head { padding-top: 72px; }
+  .s3-head { padding: 62px 20px 8px; }
+  .type-card { height: clamp(240px, 38vh, 300px); }
 }
 </style>
 </head>

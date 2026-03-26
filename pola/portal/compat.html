@@ -211,14 +211,19 @@ const TYPES_MAP = {
 const CENTER_JA={heart:'愛情型',head:'安心型',guts:'本能型'};
 const STYLE_JA={Se:'狩猟型',Ni:'共鳴型',Si:'守護型',Ne:'冒険型'};
 const REL={
-  bipolar:   {name:'双極',   en:'Bipolar',   color:'#c4566e',bg:'#fae0e8', desc:'強烈に惹かれ合う補完関係。Se×NiまたはSi×Neの組み合わせ。',rule:'Se ↔ Ni / Si ↔ Ne'},
-  resonance: {name:'調和',   en:'Resonance', color:'#7655a8',bg:'#ece6f8', desc:'最も深まりやすい。補完スタイル＋同センターの組み合わせ。',rule:'補完スタイル × 同センター'},
-  stimulus:  {name:'刺激',   en:'Stimulus',  color:'#c47830',bg:'#fdefd8', desc:'成長し合える関係。同スタイル群の対角センターの組み合わせ。',rule:'同スタイル群 × 異センター'},
-  parallel:  {name:'並走',   en:'Parallel',  color:'#2e8b7a',bg:'#ddf2ee', desc:'同じ方向を向く。同スタイル群＋同センターの組み合わせ。',rule:'同スタイル群 × 同センター'},
-  mirror:    {name:'鏡像',   en:'Mirror',    color:'#5b7fa6',bg:'#deeaf7', desc:'自分の鏡のような関係。同スタイル×異センターの組み合わせ。',rule:'同スタイル × 異センター'},
-  stillwater:{name:'静水',   en:'Still Water',color:'#8b7355',bg:'#f0e8dc', desc:'穏やかに引き合う。Se×NeまたはNi×Siの交差グループ。',rule:'Se×Ne / Ni×Si の交差'},
-  same:      {name:'同一型', en:'Same Type',  color:'#6e6080',bg:'#f0edf5', desc:'同じタイプ同士。深い共鳴が生まれる一方、盲点も共有される。',rule:'完全一致'},
+  bipolar:   {name:'双極',   en:'Bipolar',   color:'#c4566e',bg:'#fae0e8', stars:3, desc:'強烈に惹かれ合う補完関係。Se×NiまたはSi×Neの組み合わせ。',rule:'Se ↔ Ni / Si ↔ Ne'},
+  resonance: {name:'調和',   en:'Resonance', color:'#7655a8',bg:'#ece6f8', stars:5, desc:'最も深まりやすい。補完スタイル＋同センターの組み合わせ。',rule:'補完スタイル × 同センター'},
+  stimulus:  {name:'刺激',   en:'Stimulus',  color:'#c47830',bg:'#fdefd8', stars:3, desc:'成長し合える関係。同スタイル群の対角センターの組み合わせ。',rule:'同スタイル群 × 異センター'},
+  parallel:  {name:'並走',   en:'Parallel',  color:'#2e8b7a',bg:'#ddf2ee', stars:4, desc:'同じ方向を向く。同スタイル群＋同センターの組み合わせ。',rule:'同スタイル群 × 同センター'},
+  mirror:    {name:'鏡像',   en:'Mirror',    color:'#5b7fa6',bg:'#deeaf7', stars:3, desc:'自分の鏡のような関係。同スタイル×異センターの組み合わせ。',rule:'同スタイル × 異センター'},
+  stillwater:{name:'静水',   en:'Still Water',color:'#8b7355',bg:'#f0e8dc', stars:2, desc:'穏やかに引き合う。Se×NeまたはNi×Siの交差グループ。',rule:'Se×Ne / Ni×Si の交差'},
+  same:      {name:'同一型', en:'Same Type',  color:'#6e6080',bg:'#f0edf5', stars:4, desc:'同じタイプ同士。深い共鳴が生まれる一方、盲点も共有される。',rule:'完全一致'},
 };
+function starsHTML(n, color) {
+  const filled = '<span style="color:'+color+'">★</span>';
+  const empty  = '<span style="color:#d4c8be">☆</span>';
+  return filled.repeat(n) + empty.repeat(5-n);
+}
 
 const PAIRS = [
   {t1:1,t2:5,rel:'bipolar',a:'01の積極性が05の一歩を作る。05が信頼を決めた後の深い献身が、01の「愛されたい」をこれ以上なく満たす。',r:'01が待つことを覚え、05が不完全な信頼でも一歩踏み出せたとき、この関係は最も深くなる。',c:'01は「今すぐ愛を確認したい」、05は「まだ確証が持てない」。求めるほど相手が慎重になる悪循環にはまりやすい。',k:'01が待つことを覚え、05が不完全な信頼でも一歩踏み出せたとき、この関係は最も深くなる。'},
@@ -348,6 +353,7 @@ Object.entries(REL).forEach(([key,r])=>{
       <div class="rel-name">${r.name}</div>
       <div class="rel-en">${r.en} · ${cnt}</div>
     </div>
+    <div class="rel-stars" style="margin-bottom:6px;font-size:.9rem;letter-spacing:.06em;">${starsHTML(r.stars, r.color)}</div>
     <div class="rel-rule" style="color:${r.color};">${replaceTerminology(r.rule)}</div>
     <div class="rel-desc">${replaceTerminology(r.desc)}</div>
   `;
@@ -408,6 +414,7 @@ function renderPairs(pairs, container){
             <a class="type-jump-btn" href="types.html#type-${p.t2}" style="color:${t2.sc};">${p.t1===p.t2?'（同一型）':t2.name}</a>
           </div>
           <div class="cc-codes">${STYLE_JA[t1.style]} × ${CENTER_JA[t1.center]} &nbsp;／&nbsp; ${STYLE_JA[t2.style]} × ${CENTER_JA[t2.center]}</div>
+          <div class="cc-stars" style="margin-top:5px;font-size:.88rem;letter-spacing:.05em;">相性：${starsHTML(r.stars, r.color)}</div>
         </div>
       </div>
       <div class="cc-body">

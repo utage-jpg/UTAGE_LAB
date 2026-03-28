@@ -1135,17 +1135,22 @@ body {
   .s2-inner { grid-template-columns: 1fr; overflow-y: auto; }
   .s2-left { border-right: none; border-bottom: 1px solid var(--border); padding: 56px 24px 32px; }
   .s2-right { display: none; }
-  /* S3: カードを上寄せにして大きな空白を解消 */
-  .s3-head { padding: 68px 24px 10px; }
-  .s3-carousel { align-items: flex-start; padding-top: 14px; }
-  .type-card { height: clamp(260px, 42vh, 340px); }
-  /* S4: 内側ごとスクロール可能にしてコンテンツ見切れを防止 */
-  .s4-inner { overflow-y: auto; max-height: 92dvh; padding-top: 12px; }
-  .s4-title { margin-bottom: 22px; }
-  .s4-steps { grid-template-columns: 1fr; gap: 10px; max-height: none; overflow-y: visible; }
-  .s4-step { padding: 16px 18px 14px; }
-  .s4-step-n { font-size: 2.2rem; margin-bottom: 6px; }
-  .s4-step-sym { font-size: 1.3rem; margin-bottom: 8px; }
+  /* S3: セクション全体を縦中央に（nav分54px確保） */
+  #s3 { justify-content: center; padding-top: 54px; }
+  .s3-head { padding: 0 24px 14px; }
+  .s3-carousel { flex: none; height: clamp(260px, 40vh, 320px); align-items: center; padding: 0 clamp(16px,4vw,40px) 0; }
+  .type-card { height: clamp(240px, 38vh, 300px); }
+  /* S4: スクロールなし・コンパクト表示 */
+  .s4-inner { overflow: visible; max-height: none; padding: 0 20px; }
+  .s4-eyebrow { margin-bottom: 8px; }
+  .s4-title { margin-bottom: 16px; font-size: clamp(1.5rem, 4vw, 2rem); }
+  .s4-steps { grid-template-columns: 1fr; gap: 8px; max-height: none; overflow-y: visible; }
+  .s4-step { padding: 12px 16px 10px; }
+  .s4-step-n { display: none; }
+  .s4-step-sym { font-size: 1.1rem; margin-bottom: 5px; }
+  .s4-step-title { font-size: 1rem; margin-bottom: 6px; }
+  .s4-step-body { font-size: 0.78rem; line-height: 1.7; }
+  .s4-step-tag { margin-top: 8px; }
   .s4-step:not(:last-child)::after { display: none; }
   .s5-inner { grid-template-columns: 1fr; overflow-y: auto; padding: 24px 24px 36px; }
   #s5R { display: none; }
@@ -1155,8 +1160,9 @@ body {
 @media (max-width: 520px) {
   .s1-btns, .s6-btns { flex-direction: column; align-items: center; }
   .lp-nav-cta { display: none; }
-  .s3-head { padding: 62px 20px 8px; }
-  .type-card { height: clamp(240px, 38vh, 300px); }
+  .s3-head { padding: 0 18px 10px; }
+  .s3-carousel { height: clamp(220px, 36vh, 280px); }
+  .type-card { height: clamp(210px, 34vh, 265px); }
 }
 </style>
 </head>
@@ -1197,8 +1203,8 @@ body {
       <div class="s1-tagline">「どう動くか」と「なぜ動くか」。</div>
       <p class="s1-sub">2 axes &nbsp;—&nbsp; 12 types &nbsp;—&nbsp; 5-dimension score analysis</p>
       <div class="s1-btns">
-        <a href="diagnosis/" class="btn-s1-main"><span>簡易診断を始める &nbsp;—&nbsp; 15問 · 3分</span></a>
-        <a href="diagnosis/" class="btn-s1-sub">詳細診断 50問 · 15分</a>
+        <a href="diagnosis/?mode=quick" class="btn-s1-main"><span>簡易診断を始める &nbsp;—&nbsp; 15問 · 3分</span></a>
+        <a href="diagnosis/?mode=full" class="btn-s1-sub">詳細診断 50問 · 15分</a>
       </div>
       <div class="s1-meta">
         <span class="s1-meta-item">12 Types</span>
@@ -1359,8 +1365,8 @@ body {
       <h2 class="s6-title">あなたの<em>恋愛極性</em>を、<br>今日、知る。</h2>
       <p class="s6-body">「なぜ同じ恋愛を繰り返すのか」に答えが出る。<br>2軸・12タイプ・5次元分析。あなたの恋愛の本質は、ここにある。</p>
       <div class="s6-btns">
-        <a href="diagnosis/" class="btn-s6-main"><span>簡易診断を始める — 15問 · 無料</span></a>
-        <a href="diagnosis/" class="btn-s6-sub">詳細診断 50問 →</a>
+        <a href="diagnosis/?mode=quick" class="btn-s6-main"><span>簡易診断を始める — 15問 · 無料</span></a>
+        <a href="diagnosis/?mode=full" class="btn-s6-sub">詳細診断 50問 →</a>
       </div>
       <div class="s6-byline">UTAGE LAB &nbsp;·&nbsp; Pola &nbsp;·&nbsp; Love Polarity Diagnosis</div>
     </div>

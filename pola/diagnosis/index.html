@@ -4134,6 +4134,13 @@ function proceedIfPaid() {
     console.error('支払い後の状態復元エラー:', e);
   }
 })();
+
+// ?mode=quick または ?mode=full でページを開いた場合にクイズを自動開始
+(function autoStartFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get('mode');
+  if (mode === 'quick' || mode === 'full') startQuiz(mode);
+})();
 </script>
 </body>
 </html>

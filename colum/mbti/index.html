@@ -96,6 +96,18 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .type-cell-name{font-family:var(--font-mono);font-size:14px;font-weight:700;margin-bottom:6px;}
 .type-cell-funcs{font-size:10px;color:var(--text-light);line-height:1.6;}
 
+/* ARTICLE CARDS */
+.articles-list{display:flex;flex-direction:column;gap:16px;margin-bottom:48px;}
+.art-card{display:flex;text-decoration:none;color:var(--text);background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;}
+.art-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px var(--shadow);border-color:transparent;}
+.art-card-accent{width:5px;flex-shrink:0;}
+.art-card-inner{padding:24px 28px;flex:1;}
+.art-card-meta{font-family:var(--font-mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;margin-bottom:8px;}
+.art-card-title{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:8px;}
+.art-card-desc{font-size:13px;color:var(--text-light);line-height:1.85;margin-bottom:0;}
+.art-card-read{font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;margin-top:12px;display:inline-flex;align-items:center;gap:6px;transition:gap 0.2s;}
+.art-card:hover .art-card-read{gap:10px;}
+
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-delay-1{transition-delay:0.08s;}
@@ -118,6 +130,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .funcs-wrap{padding:0 24px 80px;}
   .funcs-grid{grid-template-columns:1fr;}
   .type-map-grid{grid-template-columns:repeat(2,1fr);}
+  .art-card-title{font-size:16px;}
   .footer{padding:48px 24px 28px;}
 }
 </style>
@@ -306,6 +319,42 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </div>
       <div class="func-read">記事を読む →</div>
     </a>
+  </div>
+
+  <div class="funcs-section-title">コラム記事 — Column Articles</div>
+
+  <div class="articles-list">
+
+    <a href="./articles/tj-type-love-language.html" class="art-card reveal">
+      <div class="art-card-accent" style="background:#c9607a;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#c9607a;">TJタイプ · 感情表現 · 愛情</div>
+        <div class="art-card-title">「冷たい」と言われがちなTJタイプが、実は愛情深い理由</div>
+        <p class="art-card-desc">論理的で感情表現が少ないTJタイプは、「行動と責任」という独自の言語で愛情を伝えています。そのギャップを知るだけで、関係は大きく変わります。</p>
+        <div class="art-card-read" style="color:#c9607a;">記事を読む →</div>
+      </div>
+    </a>
+
+    <a href="./articles/dominant-function-guide.html" class="art-card reveal">
+      <div class="art-card-accent" style="background:#7b5ea7;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#7b5ea7;">認知機能 · 主機能 · 入門</div>
+        <div class="art-card-title">あなたの「主機能」はどれ？ 簡単な見分け方</div>
+        <p class="art-card-desc">8つの認知機能から自分の主機能を見分けるための3つの質問。一番生き生きする場面、一番つらいストレス、他人からの印象——この3点で主機能がわかります。</p>
+        <div class="art-card-read" style="color:#7b5ea7;">記事を読む →</div>
+      </div>
+    </a>
+
+    <a href="./articles/inf-type-burnout-and-recovery.html" class="art-card reveal">
+      <div class="art-card-accent" style="background:#3d8b8b;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#3d8b8b;">INFJ · INFP · 燃え尽き · 回復</div>
+        <div class="art-card-title">INFタイプが燃え尽きやすい理由と、回復のサイクル</div>
+        <p class="art-card-desc">INFJやINFPが燃え尽きやすいのは弱さではなく構造的な理由があります。消耗の初期サインを知り、自分に合った回復の方法を見つけましょう。</p>
+        <div class="art-card-read" style="color:#3d8b8b;">記事を読む →</div>
+      </div>
+    </a>
+
   </div>
 
   <!-- TYPE MAP -->

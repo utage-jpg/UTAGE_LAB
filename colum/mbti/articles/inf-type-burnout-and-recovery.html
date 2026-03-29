@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INFタイプが燃え尽きやすい理由と、回復のサイクル | UTAGE LAB</title>
+<meta name="description" content="INFJやINFPなどINFタイプは、なぜ燃え尽きやすいのか。その構造的な理由と、自分に合った回復のサイクルをわかりやすく解説します。">
+<meta property="og:title" content="INFタイプが燃え尽きやすい理由と、回復のサイクル | UTAGE LAB">
+<meta property="og:description" content="INFJやINFPなどINFタイプはなぜ燃え尽きやすいのか。構造的な理由と自分に合った回復方法を解説します。">
+<meta property="og:url" content="https://utage-jpg.github.io/colum/mbti/articles/inf-type-burnout-and-recovery.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1025; --cream:#faf7f2; --parchment:#f5f0e8; --paper:#fff9f5;
+  --rose:#c9607a; --rose-light:#fae0e6;
+  --violet:#7b5ea7; --violet-light:#ede9f8;
+  --teal:#3d8b8b; --teal-light:#e2f4f4;
+  --amber:#c47d2a; --amber-light:#fef3e0;
+  --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
+  --shadow:rgba(26,16,37,0.12);
+  --func-color: #3d8b8b; --func-light: #e2f4f4;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-serif:'Noto Serif JP',serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-serif);background:var(--cream);color:var(--text);overflow-x:hidden;font-size:17px;line-height:1.9;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,242,0.95);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border);}
+.nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
+.nav-back{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-back:hover{color:var(--func-color);}
+.hero{padding:120px 40px 80px;background:linear-gradient(135deg,var(--func-light) 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+.hero::before{content:'INF';position:absolute;right:-10px;top:10px;font-family:var(--font-display);font-size:clamp(120px,18vw,240px);font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(61,139,139,0.07);pointer-events:none;line-height:1;}
+.hero-inner{max-width:860px;margin:0 auto;position:relative;}
+.breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--text-light);margin-bottom:20px;}
+.breadcrumb a{color:var(--text-light);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--func-color);}
+.breadcrumb-sep{opacity:0.4;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
+.hero-badge::before{content:'';width:28px;height:1px;background:var(--func-color);}
+.hero-title{font-family:var(--font-display);font-size:clamp(26px,4vw,44px);font-weight:700;color:var(--ink);margin-bottom:18px;line-height:1.3;}
+.hero-title em{font-style:italic;color:var(--func-color);}
+.hero-desc{font-size:17px;color:var(--text-light);line-height:2;max-width:620px;}
+.article{max-width:800px;margin:0 auto;padding:60px 40px 100px;}
+.article h2{font-family:var(--font-display);font-size:clamp(20px,3vw,30px);font-weight:700;color:var(--ink);margin:64px 0 24px;line-height:1.35;padding-bottom:12px;border-bottom:2px solid var(--func-light);}
+.article h3{font-family:var(--font-display);font-size:clamp(17px,2.5vw,22px);font-weight:700;color:var(--ink);margin:40px 0 16px;line-height:1.4;}
+.article p{font-size:17px;line-height:2;margin-bottom:20px;color:var(--text);}
+.article strong{color:var(--ink);}
+.func-card{background:white;border:2px solid var(--func-color);border-radius:20px;padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
+.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#6db8b8);}
+.func-card-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
+.func-card-text{font-size:19px;font-weight:700;color:var(--ink);line-height:1.7;}
+.scene{background:var(--parchment);border-left:4px solid var(--func-color);border-radius:0 16px 16px 0;padding:28px 32px;margin:32px 0;font-size:16px;line-height:2;}
+.scene-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.type-pair{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0;}
+.type-box{border-radius:16px;padding:28px;}
+.type-box-j{background:linear-gradient(135deg,#e8e0f4,#f4f0fb);}
+.type-box-p{background:linear-gradient(135deg,var(--func-light),#eef8f8);}
+.type-box-title{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;}
+.type-box-j .type-box-title{color:#4a3570;}
+.type-box-p .type-box-title{color:var(--func-color);}
+.type-box-content{font-size:14px;color:var(--text);line-height:1.85;}
+.traits{background:white;border-radius:20px;border:1px solid var(--border);padding:36px 40px;margin:32px 0;}
+.trait-item{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);}
+.trait-item:last-child{border-bottom:none;}
+.trait-num{font-family:var(--font-mono);font-size:18px;font-weight:700;color:var(--func-color);flex-shrink:0;min-width:32px;padding-top:2px;}
+.trait-text{font-size:16px;line-height:1.9;}
+.trait-text strong{color:var(--ink);display:block;margin-bottom:4px;font-size:17px;}
+.recovery-box{background:white;border-radius:16px;border:2px solid var(--func-light);padding:28px 32px;margin:24px 0;}
+.recovery-box-title{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:16px;}
+.recovery-list{list-style:none;padding:0;margin:0;}
+.recovery-list li{font-size:16px;padding:8px 0;border-bottom:1px solid var(--border);line-height:1.85;display:flex;align-items:baseline;gap:10px;}
+.recovery-list li:last-child{border-bottom:none;}
+.recovery-list li::before{content:'◆';color:var(--func-color);font-size:8px;flex-shrink:0;}
+.warning-box{background:linear-gradient(135deg,#fff8f0,#fef6ea);border:1px solid var(--amber);border-radius:16px;padding:28px 32px;margin:32px 0;}
+.warning-box-title{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px;}
+.warning-list{list-style:none;padding:0;margin:0;}
+.warning-list li{font-size:16px;padding:7px 0;border-bottom:1px solid rgba(196,125,42,0.12);line-height:1.8;display:flex;align-items:baseline;gap:10px;}
+.warning-list li:last-child{border-bottom:none;}
+.warning-list li::before{content:'!';color:var(--amber);font-weight:700;font-family:var(--font-mono);flex-shrink:0;font-size:12px;}
+.pull-quote{border:none;margin:48px 0;padding:0;text-align:center;}
+.pull-quote-text{font-family:var(--font-display);font-size:clamp(18px,3vw,26px);font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:16px;}
+.pull-quote-text::before{content:'\201C';}
+.pull-quote-text::after{content:'\201D';}
+.pull-quote-line{width:60px;height:2px;background:var(--func-color);margin:0 auto;}
+.article-nav{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border);gap:16px;}
+.article-nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;transition:color 0.25s;}
+.article-nav a:hover{color:var(--func-color);}
+.footer{background:var(--ink);color:rgba(247,243,237,0.5);padding:56px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-logo{font-family:var(--font-display);font-size:22px;color:var(--parchment);margin-bottom:12px;}
+.footer-desc{font-size:12px;line-height:1.8;margin-bottom:32px;}
+.footer-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,237,0.4);text-decoration:none;border:1px solid rgba(247,243,237,0.12);padding:10px 22px;border-radius:2px;transition:all 0.25s;}
+.footer-back:hover{color:var(--parchment);border-color:rgba(247,243,237,0.3);}
+.footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .nav{padding:0 24px;}
+  .hero{padding:100px 24px 60px;}
+  .hero::before{font-size:100px;opacity:0.6;}
+  .article{padding:40px 24px 80px;}
+  .type-pair{grid-template-columns:1fr;}
+  .footer{padding:48px 24px 28px;}
+  .func-card{padding:28px 24px;}
+  .traits{padding:24px 20px;}
+  .scene{padding:24px 20px;}
+  .recovery-box{padding:24px 20px;}
+  .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back">← MBTI コラム</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">ホーム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../../index.html">コラム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../index.html">MBTI</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>INFタイプの燃え尽き</span>
+    </div>
+    <div class="hero-badge">MBTI · INFJ・INFP · 2026.03.29</div>
+    <h1 class="hero-title">INFタイプが<em>燃え尽きやすい</em>理由と、<br>回復のサイクル</h1>
+    <p class="hero-desc">INFJやINFPが燃え尽きやすいのは、弱さではなく構造的な理由があります。そのメカニズムと、自分に合った回復の方法を解説します。</p>
+  </div>
+</div>
+
+<article class="article">
+
+  <div class="func-card reveal">
+    <div class="func-card-label">この記事のキーコンセプト</div>
+    <div class="func-card-text">INFタイプの燃え尽きは「弱さ」ではなく「構造」から来る。他者に深く関わり、高い理想を持ち、感情の処理を内側で行うことで、気づかないうちに消耗が積み重なる。</div>
+  </div>
+
+  <p class="reveal">「また何もできない日が続いている」「人の役に立ちたいのに、気づいたら空っぽになっていた」「頑張っている自覚はないのに、なぜか疲れ果てている」</p>
+  <p class="reveal">こんな経験に心当たりがある人、特にINFJやINFPのINFタイプには多いのではないでしょうか。INFタイプは燃え尽きやすい傾向があります。これは、「弱いから」でも「努力が足りないから」でもありません。</p>
+
+  <h2 class="reveal">INFタイプの「燃え尽き」が起きるまでの流れ</h2>
+
+  <h3 class="reveal">INFJの場合</h3>
+
+  <p class="reveal">INFJの主機能は<strong>Ni（内向的直観）</strong>、補助機能は<strong>Fe（外向的感情）</strong>です。NiとFeの組み合わせは、「深い未来を見通す洞察力」と「他者の感情を受け取り続けるアンテナ」を同時に持つことを意味します。</p>
+
+  <div class="scene reveal">
+    <div class="scene-label">⚡ INFJの燃え尽きパターン</div>
+    1. 誰かが傷ついているのを感じる（Feが自動的に反応）<br>
+    2. その人のためにできることを考え続ける（Niが起動）<br>
+    3. 「もっとできるはずだ」というやめられない声が止まらない<br>
+    4. 自分のエネルギーが出力につかわれ続けても止め方がわからない<br>
+    5. あるとき突然、何もできなくなる
+  </div>
+
+  <p class="reveal">特徴的なのは、<strong>燃え尽きる直前まで「頑張っている」という自覚がない</strong>ことです。INFJにとって他者の感情を受け取り助けようとすることは、努力ではなく「ただ当然のこと」として行われます。だから限界に気づきにくい。</p>
+
+  <h3 class="reveal">INFPの場合</h3>
+
+  <p class="reveal">INFPの主機能は<strong>Fi（内向的感情）</strong>、補助機能は<strong>Ne（外向的直観）</strong>です。Fiは、自分の価値観に忠実であることを何より重視します。INFPは、自分が信じる正しいもののために感情的にも深くコミットします。</p>
+
+  <div class="scene reveal">
+    <div class="scene-label">⚡ INFPの燃え尽きパターン</div>
+    1. 自分の価値観に沿って、誰かのために全力を注ぐ<br>
+    2. 「もっと自分がやれるはずだ」という理想の基準が高い<br>
+    3. 理想と現実のギャップに深く傷つく<br>
+    4. 「自分は本当に役に立てているのか」という自問が止まらなくなる<br>
+    5. 感情的に疲弊し、何もできる気がしない時間が来る
+  </div>
+
+  <div class="type-pair reveal">
+    <div class="type-box type-box-j">
+      <div class="type-box-title">INFJ の特徴</div>
+      <div class="type-box-content">他者の感情を「受け取り続ける」ことで消耗。境界線を引くのが難しく、気づいたときにはもう空になっている。</div>
+    </div>
+    <div class="type-box type-box-p">
+      <div class="type-box-title">INFP の特徴</div>
+      <div class="type-box-content">高い理想と現実のギャップで消耗。感情の過負荷と自己評価の低下がセットで燃え尽きを引き起こす。</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">共通する3つの構造的な理由</h2>
+
+  <div class="traits reveal">
+    <div class="trait-item">
+      <div class="trait-num">01</div>
+      <div class="trait-text"><strong>「境界線」を引くのが苦手</strong>Feを持つINFJは他者の感情が自分の中に流れ込む感覚があります。Fiを持つINFPは他者の苦しみを「自分のこと」として感じてしまいます。どちらも「どこまでは他者のこと、どこからは自分のこと」という境界線が引きにくい。他者のエネルギーを取り込み続けた結果、自分のエネルギーが残っていない——これがINFタイプの燃え尽しの根本です。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">02</div>
+      <div class="trait-text"><strong>高い理想から「休む」ことを許せない</strong>INFタイプは内側の基準が高い傾向があります。Niによる長期ビジョン（INFJ）やFiによる価値観への誠実さ（INFP）は、「まだできるはずだ」という声として常に存在します。この声は成長の原動力でもありますが、同時に<strong>休息を罪悪感と結びつける</strong>仕組みにもなりえます。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">03</div>
+      <div class="trait-text"><strong>「SOS」を出すのが遅い</strong>INFタイプは感情の処理を内部で行います。どれほど疲弊していても、言葉にする前にまず自分の中で消化しようとします。この消化が追いつかなくなったとき、突然ガス欠になります。外から見ると突然崩れたように見えますが、本人の中では長い時間かけて疲弊していたのです。</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">回復のサイクルを知る</h2>
+
+  <p class="reveal">INFタイプの回復には、一般的な「休憩」では足りないことがあります。ただ休むだけでなく、<strong>自分が再充填される活動</strong>が必要です。</p>
+
+  <div class="recovery-box reveal">
+    <div class="recovery-box-title">INFJの回復に効くもの</div>
+    <ul class="recovery-list">
+      <li>安全なひとり時間（誰とも繋がらない時間）</li>
+      <li>自分のための創作・表現（日記、音楽、絵など「誰かのため」ではない活動）</li>
+      <li>自然の中での散歩や、静かな環境での読書</li>
+      <li>「今日は何もしなくていい」と自分に許可を与えること</li>
+    </ul>
+  </div>
+
+  <p class="reveal">INFJにとって、他者の感情から完全に離れる時間は贅沢ではなく、<strong>生存に近い必要な充電</strong>です。</p>
+
+  <div class="recovery-box reveal">
+    <div class="recovery-box-title">INFPの回復に効くもの</div>
+    <ul class="recovery-list">
+      <li>自分の感情を言語化する（日記、詩、誰かに話す）</li>
+      <li>「自分が本当に好きなこと」だけをやる時間</li>
+      <li>義務感のない人付き合い（気心の知れた1〜2人との時間）</li>
+      <li>自然・動物・音楽など、評価や判断のない環境に身を置く</li>
+    </ul>
+  </div>
+
+  <p class="reveal">INFPにとって、「自分が何を感じているか」を確認する時間が、回復の核心にあります。</p>
+
+  <h2 class="reveal">燃え尽きないための習慣</h2>
+
+  <p class="reveal">完全に燃え尽きてから回復するより、<strong>消耗の初期サインを知って対処する</strong>方が楽です。INFタイプに多い消耗の初期サインはこれです。</p>
+
+  <div class="warning-box reveal">
+    <div class="warning-box-title">消耗の初期サイン — 注意して</div>
+    <ul class="warning-list">
+      <li>人と話すことが急に億劫になる</li>
+      <li>「どうせ自分だけ」という感情が浮かぶ頻度が増える</li>
+      <li>好きなことに興味がなくなる</li>
+      <li>些細なことで傷つきやすくなる</li>
+    </ul>
+  </div>
+
+  <p class="reveal">これらを感じたら、「燃え尽きの前兆」のサインです。この段階で、少し立ち止まる許可を自分に与えてみてください。</p>
+
+  <blockquote class="pull-quote reveal">
+    <div class="pull-quote-text">あなたの感受性は、消耗が生じる原因でもあり、あなたの最大の強みでもある。</div>
+    <div class="pull-quote-line"></div>
+  </blockquote>
+
+  <p class="reveal">INFタイプが燃え尽きやすいのは、弱さではありません。<strong>他者に深く関わり、高い理想を持ち、感情の処理を内側で行う</strong>というINFタイプの本質的な特性から来ています。</p>
+  <p class="reveal">大切なのは、自分の回復パターンを知っておくこと、そして疲れる前に休むという発想を少しずつ自分の中に育てていくことです。</p>
+
+  <div class="article-nav reveal">
+    <a href="./dominant-function-guide.html">← 主機能の見つけ方</a>
+    <a href="../index.html">MBTI コラム一覧 →</a>
+  </div>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">MBTIコラム — タイプと機能で自分を読み解く</p>
+    <a href="../index.html" class="footer-back">← MBTI コラム一覧に戻る</a>
+    <div class="footer-bottom">© 2025 UTAGE LAB · Psychology Column</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pola × 他タイプ論 対応早見表 | UTAGE LAB</title>
+<meta name="description" content="恋愛極性理論（Pola）12タイプと、MBTI・エニアグラム・ソシオニクス・サイコソフィアとの理論横断的な対応傾向をまとめた早見表。">
+<meta property="og:title" content="Pola × 他タイプ論 対応早見表 | UTAGE LAB">
+<meta property="og:description" content="Pola 12タイプとMBTI・エニア・ソシオニクス・サイコソフィアの対応傾向表">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#faf7f2; --parchment:#f5f0e8; --paper:#fffcf8;
+  --ink:#1a1025; --text:#2d2140; --text-light:#7a6e88; --text-mid:#4a3f5c;
+  --border:#e5d8cc; --shadow:rgba(26,16,37,0.10);
+  --rose:#c9607a; --rose-l:#fae0e6; --rose-d:#9e3a52;
+  --violet:#7b5ea7; --violet-l:#ede9f8;
+  --teal:#3d8b8b; --teal-l:#e2f4f4;
+  --amber:#c47d2a; --amber-l:#fef3e0;
+  --gold:#c9a84c; --gold-l:#f5edd4;
+  --heart:#c9607a; --heart-l:#fae0e6;
+  --head:#5b7fa6; --head-l:#deeaf7;
+  --guts:#7a9c5b; --guts-l:#e4f0d8;
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-s:'Noto Serif JP',serif;
+  --font-m:'DM Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-s);background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.5;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(250,247,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:var(--font-d);font-size:.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.nav-brand em{font-style:italic;color:var(--rose);}
+.nav-back{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);text-decoration:none;letter-spacing:.08em;padding:4px 10px;border:1px solid var(--border);border-radius:100px;transition:all .2s;}
+.nav-back:hover{color:var(--ink);border-color:var(--text-mid);}
+
+/* HERO */
+.hero{padding:72px 24px 40px;text-align:center;background:linear-gradient(155deg,#fffcf8 0%,#f0e8dc 100%);border-bottom:1px solid var(--border);}
+.hero-tag{font-family:var(--font-m);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);padding:3px 14px;border:1px solid var(--border);border-radius:100px;display:inline-block;margin-bottom:14px;}
+.hero h1{font-family:var(--font-d);font-size:clamp(1.6rem,4.5vw,2.6rem);font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:10px;}
+.hero h1 em{font-style:italic;color:var(--rose);}
+.hero-sub{font-size:.84rem;color:var(--text-mid);max-width:540px;margin:0 auto 22px;line-height:1.9;}
+.hero-sys{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.sys-badge{font-family:var(--font-m);font-size:.6rem;letter-spacing:.06em;padding:4px 12px;border:1px solid var(--border);border-radius:100px;background:var(--parchment);color:var(--text-mid);}
+
+/* DISCLAIMER */
+.disclaimer{max-width:860px;margin:28px auto 0;padding:0 20px;}
+.disc-inner{background:#fdf8ee;border:1px solid #e8c99a;border-radius:14px;padding:16px 20px;display:flex;gap:12px;align-items:flex-start;}
+.disc-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px;}
+.disc-title{font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;color:#a07030;margin-bottom:4px;}
+.disc-text{font-size:.78rem;color:var(--text-mid);line-height:1.85;}
+.disc-text strong{color:var(--ink);}
+
+/* LEGEND */
+.legend-wrap{max-width:860px;margin:28px auto 0;padding:0 20px;}
+.legend-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(max-width:540px){.legend-grid{grid-template-columns:1fr;}}
+.legend-card{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:var(--paper);}
+.leg-title{font-family:var(--font-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;}
+.leg-items{display:flex;flex-direction:column;gap:4px;}
+.leg-item{font-size:.76rem;color:var(--text-mid);line-height:1.6;}
+.leg-item b{font-weight:600;color:var(--ink);}
+
+/* SECTION */
+.section{max-width:1100px;margin:32px auto 0;padding:0 20px;}
+.sec-title{font-family:var(--font-d);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--ink);margin-bottom:6px;}
+.sec-title em{font-style:italic;color:var(--rose);}
+.sec-sub{font-size:.78rem;color:var(--text-light);font-family:var(--font-m);letter-spacing:.06em;margin-bottom:18px;}
+
+/* TABLE */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;border:1px solid var(--border);background:var(--paper);}
+.cross-table{width:100%;border-collapse:collapse;min-width:880px;}
+.cross-table thead th{padding:10px 12px;font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);border-bottom:2px solid var(--border);background:var(--parchment);text-align:left;white-space:nowrap;}
+.cross-table thead th:first-child{min-width:160px;}
+.cross-table tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+.cross-table tbody tr:last-child{border-bottom:none;}
+.cross-table tbody tr:hover{background:rgba(201,96,122,0.03);}
+.cross-table td{padding:10px 12px;vertical-align:top;}
+
+/* TYPE CELL */
+.type-cell{min-width:160px;}
+.type-num{font-family:var(--font-m);font-size:.58rem;color:var(--text-light);letter-spacing:.08em;display:block;margin-bottom:3px;}
+.type-name{font-family:var(--font-d);font-size:.9rem;font-weight:700;color:var(--ink);display:block;line-height:1.3;}
+.type-en{font-family:var(--font-m);font-size:.58rem;color:var(--text-light);display:block;margin-top:2px;}
+.type-axes{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
+.ax-badge{display:inline-flex;align-items:center;gap:3px;font-family:var(--font-m);font-size:.58rem;font-weight:600;padding:2px 8px;border-radius:100px;color:white;letter-spacing:.04em;}
+.center-badge{display:inline-flex;align-items:center;gap:3px;font-family:var(--font-m);font-size:.58rem;padding:2px 8px;border-radius:100px;letter-spacing:.04em;}
+
+/* DATA CELL */
+.data-cell{vertical-align:top;}
+.cell-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:5px;}
+.tag{display:inline-block;font-family:var(--font-m);font-size:.6rem;padding:2px 8px;border-radius:100px;border:1px solid var(--border);background:var(--parchment);color:var(--text);white-space:nowrap;}
+.tag.primary{font-weight:600;background:var(--paper);border-color:var(--text-mid);color:var(--ink);}
+.tag.soft{opacity:.75;}
+.cell-note{font-size:.7rem;color:var(--text-light);line-height:1.6;font-style:italic;}
+
+/* INSTINCT BADGE */
+.inst{display:inline-block;font-family:var(--font-m);font-size:.6rem;padding:2px 7px;border-radius:100px;border:1px solid;white-space:nowrap;}
+.inst.sx{background:#fde8f0;border-color:#e8a0b8;color:#9e3a52;}
+.inst.sp{background:#e8f4e8;border-color:#88bb88;color:#3a6a30;}
+.inst.so{background:#e8eef8;border-color:#8888cc;color:#3a3a9e;}
+
+/* POLA style colors by row */
+.row-se .type-cell{border-left:3px solid var(--rose);}
+.row-ni .type-cell{border-left:3px solid var(--violet);}
+.row-si .type-cell{border-left:3px solid var(--teal);}
+.row-ne .type-cell{border-left:3px solid var(--gold);}
+
+/* STYLE GROUP HEADER */
+.group-header td{background:var(--parchment);padding:8px 14px;border-bottom:1px solid var(--border);}
+.group-header-inner{display:flex;align-items:center;gap:10px;}
+.group-dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:.65rem;font-weight:700;color:white;flex-shrink:0;}
+.group-label{font-family:var(--font-d);font-size:.88rem;font-weight:700;color:var(--ink);}
+.group-desc{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);letter-spacing:.06em;}
+
+/* SNS SHARE NOTE */
+.share-box{max-width:860px;margin:28px auto 0;padding:0 20px;}
+.share-inner{border:1px solid var(--border);border-radius:14px;padding:18px 20px;background:var(--paper);text-align:center;}
+.share-title{font-family:var(--font-d);font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.share-text{font-size:.78rem;color:var(--text-mid);line-height:1.8;margin-bottom:14px;}
+.share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.share-btn{font-family:var(--font-m);font-size:.65rem;padding:8px 20px;border-radius:100px;border:1px solid;text-decoration:none;letter-spacing:.06em;transition:all .2s;cursor:pointer;display:inline-block;}
+.share-btn.x{background:#000;border-color:#000;color:white;}
+.share-btn.x:hover{background:#333;}
+.share-btn.copy{background:var(--paper);border-color:var(--border);color:var(--text-mid);}
+.share-btn.copy:hover{border-color:var(--text-mid);color:var(--ink);}
+
+/* FOOTNOTE */
+.footnote{max-width:860px;margin:28px auto 48px;padding:0 20px;}
+.fn-inner{border-top:1px solid var(--border);padding-top:20px;}
+.fn-title{font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--text-light);margin-bottom:10px;}
+.fn-list{list-style:none;display:flex;flex-direction:column;gap:4px;}
+.fn-list li{font-size:.75rem;color:var(--text-light);line-height:1.7;}
+.fn-list li::before{content:'* ';color:var(--border);}
+
+footer{border-top:1px solid var(--border);padding:24px 20px;text-align:center;background:var(--parchment);}
+.footer-brand{font-family:var(--font-d);font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.footer-brand em{font-style:italic;color:var(--rose);}
+.footer-note{font-family:var(--font-m);font-size:.58rem;color:var(--text-light);margin-top:4px;}
+
+@media(max-width:600px){
+  .hero{padding:64px 16px 32px;}
+  .section{padding:0 12px;}
+  .disclaimer,.legend-wrap,.share-box,.footnote{padding:0 12px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../portal/index.html" class="nav-brand"><em>Pola</em> Portal</a>
+  <a href="types_spec.html" class="nav-back">← Types Spec</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-tag">Cross-System Reference</span>
+  <h1>Pola × <em>他タイプ論</em><br>対応早見表</h1>
+  <p class="hero-sub">恋愛極性理論（Pola）12タイプと、MBTI・エニアグラム（生得本能）・ソシオニクス・サイコソフィアとの理論横断的な対応傾向をまとめた参照資料です。</p>
+  <div class="hero-sys">
+    <span class="sys-badge">MBTI</span>
+    <span class="sys-badge">Enneagram + Instinct</span>
+    <span class="sys-badge">Socionics</span>
+    <span class="sys-badge">Psychosophy</span>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <div class="disc-inner">
+    <div class="disc-icon">⚠</div>
+    <div>
+      <div class="disc-title">重要な前提 — このリストの読み方</div>
+      <div class="disc-text">
+        この表は各タイプ論の「1対1の厳密な変換表」ではありません。<strong>「行動パターン・動機の構造・恋愛心理」の類似性から導いた、あくまでも参考的な傾向対応</strong>です。<br>
+        同じPolaタイプの人が異なるMBTIやエニアグラムに分類されることは多々あります。各タイプ論はそれぞれ独立した軸を持ち、Polaとは測定対象が異なります。この表は「複数の可能性のうち、特に共鳴しやすいもの」として参照してください。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend-wrap" style="margin-top:20px;">
+  <div class="legend-grid">
+    <div class="legend-card">
+      <div class="leg-title">Pola 軸の凡例</div>
+      <div class="leg-items">
+        <div class="leg-item"><b style="color:#c9607a;">Se 狩猟型</b> — 自ら求め前に出る。愛は「取りに行くもの」</div>
+        <div class="leg-item"><b style="color:#7b5ea7;">Ni 共鳴型</b> — 委ねる・受け止める。流れの中で深まる</div>
+        <div class="leg-item"><b style="color:#3d8b8b;">Si 守護型</b> — 包む・守る。日常の積み重ねで示す</div>
+        <div class="leg-item"><b style="color:#c9a84c;">Ne 冒険型</b> — ときめく・可能性で動く</div>
+        <div class="leg-item" style="margin-top:4px;"><b style="color:#c9607a;">❤ 愛情</b> — 「愛されているか」で動く &nbsp; <b style="color:#5b7fa6;">▲ 安心</b> — 「安心できるか」で動く &nbsp; <b style="color:#7a9c5b;">◆ 本能</b> — 「自分でいられるか」で動く</div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="leg-title">生得本能（Instinctual Variant）の凡例</div>
+      <div class="leg-items">
+        <div class="leg-item"><b>sx（Sexual）</b> — 強烈な一対一の結びつきを求める。磁場・引き合い重視</div>
+        <div class="leg-item"><b>sp（Self-Pres）</b> — 安全・快適・資源の確保を優先する</div>
+        <div class="leg-item"><b>so（Social）</b> — 集団内での役割・帰属意識・影響力を重視する</div>
+        <div class="leg-item" style="margin-top:4px;font-style:italic;color:var(--text-light);">「sx/sp」等の表記は優勢な順を示す（個人差あり）</div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="leg-title">ソシオニクス タイプコードの凡例（一部）</div>
+      <div class="leg-items">
+        <div class="leg-item"><b>SLE</b> Se-Ti（ESTp相当） &nbsp; <b>SEE</b> Se-Fi（ESFp相当）</div>
+        <div class="leg-item"><b>IEI</b> Ni-Fe（INFj相当） &nbsp; <b>ILI</b> Ni-Te（INTj相当）</div>
+        <div class="leg-item"><b>SEI</b> Si-Fe（ISFp相当） &nbsp; <b>ESI</b> Fi-Se（ISFj相当）</div>
+        <div class="leg-item"><b>LSI</b> Ti-Se（ISTj相当） &nbsp; <b>SLI</b> Si-Te（ISTp相当）</div>
+        <div class="leg-item"><b>IEE</b> Ne-Fi（ENFp相当） &nbsp; <b>ILE</b> Ne-Ti（ENTp相当）</div>
+        <div class="leg-item" style="font-style:italic;color:var(--text-light);">※MBTIとソシオニクスは別体系。コードは参考値</div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="leg-title">サイコソフィア（PTYP）4側面の凡例</div>
+      <div class="leg-items">
+        <div class="leg-item"><b>E（Emotion）感情</b> — 感情表現・共感・内的体験</div>
+        <div class="leg-item"><b>P（Physics）身体</b> — 実践的行動・感覚・物質世界</div>
+        <div class="leg-item"><b>L（Logic）論理</b> — 分析・思考・体系化</div>
+        <div class="leg-item"><b>V（Will）意志</b> — 意志力・主張・自律性</div>
+        <div class="leg-item" style="margin-top:4px;">「E&gt;P」等の表記は側面の優位順の傾向を示す</div>
+        <div class="leg-item" style="font-style:italic;color:var(--text-light);">（Afanasyev理論。24タイプ全パターン存在）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="section" style="margin-top:28px;">
+  <div class="sec-title">12タイプ × 4理論 <em>対応傾向表</em></div>
+  <div class="sec-sub">Primary = 特に共鳴しやすい / Secondary = 次点として見られることがある</div>
+
+  <div class="table-scroll">
+    <table class="cross-table">
+      <thead>
+        <tr>
+          <th>Polaタイプ</th>
+          <th>MBTI傾向</th>
+          <th>エニアグラム傾向</th>
+          <th>生得本能傾向</th>
+          <th>ソシオニクス傾向</th>
+          <th>サイコソフィア傾向</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ===== Se GROUP ===== -->
+        <tr class="group-header">
+          <td colspan="6">
+            <div class="group-header-inner">
+              <div class="group-dot" style="background:#c9607a;">Se</div>
+              <div>
+                <div class="group-label">狩猟型（Se）— 自ら求め、前に出る</div>
+                <div class="group-desc">Type 1・2・3 — アプローチに迷いがなく、愛は「取りに行くもの」</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Type 1 -->
+        <tr class="row-se">
+          <td class="type-cell">
+            <span class="type-num">TYPE 01</span>
+            <span class="type-name">ロマンハンター</span>
+            <span class="type-en">The Hunter</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#c9607a;">Se</span>
+              <span class="center-badge" style="background:var(--heart-l);color:var(--heart);border:1px solid #f0b0c0;">❤ 愛情</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ESFP</span>
+              <span class="tag primary">ENFJ</span>
+              <span class="tag soft">ESTP</span>
+              <span class="tag soft">ISFP</span>
+            </div>
+            <div class="cell-note">Se行動力 + 愛情確認欲求が強い型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E2w3</span>
+              <span class="tag primary">E3w2</span>
+              <span class="tag soft">E4w3</span>
+              <span class="tag soft">E6w7</span>
+            </div>
+            <div class="cell-note">愛を「与え/確認」する動機が核心にある場合に共鳴しやすい</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sx">sx 優位</span>
+            <div style="margin-top:5px;"><span class="inst sp">sp 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">一対一の結びつきへの強い渇望が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">SEE</span>
+              <span class="tag primary">SLE</span>
+              <span class="tag soft">EIE</span>
+            </div>
+            <div class="cell-note">Se先導 × 感情重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E &gt; P</span>
+              <span class="tag soft">P &gt; E</span>
+            </div>
+            <div class="cell-note">感情(E)・身体行動(P)が上位に来やすい傾向</div>
+          </td>
+        </tr>
+
+        <!-- Type 2 -->
+        <tr class="row-se">
+          <td class="type-cell">
+            <span class="type-num">TYPE 02</span>
+            <span class="type-name">ストラテジスト</span>
+            <span class="type-en">The Strategist</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#c9607a;">Se</span>
+              <span class="center-badge" style="background:var(--head-l);color:var(--head);border:1px solid #a0b8d8;">▲ 安心</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ESTP</span>
+              <span class="tag primary">ENTJ</span>
+              <span class="tag soft">ESTJ</span>
+              <span class="tag soft">INTJ</span>
+            </div>
+            <div class="cell-note">行動主導 + 安全確認のため関係をコントロールする傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E3w2</span>
+              <span class="tag primary">E6w5</span>
+              <span class="tag soft">E8w7</span>
+              <span class="tag soft">E3w4</span>
+            </div>
+            <div class="cell-note">安全を「設計・管理」する動機が核心の場合に共鳴</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sp">sp 優位</span>
+            <div style="margin-top:5px;"><span class="inst sx">sx 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">安全・資源の確保を優先する傾向が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">SLE</span>
+              <span class="tag primary">LSE</span>
+              <span class="tag soft">LIE</span>
+            </div>
+            <div class="cell-note">Se/Te先導 × 論理重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">L &gt; P</span>
+              <span class="tag soft">P &gt; L</span>
+            </div>
+            <div class="cell-note">論理(L)と行動(P)が高位に来やすい傾向</div>
+          </td>
+        </tr>
+
+        <!-- Type 3 -->
+        <tr class="row-se">
+          <td class="type-cell">
+            <span class="type-num">TYPE 03</span>
+            <span class="type-name">チャレンジャー</span>
+            <span class="type-en">The Challenger</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#c9607a;">Se</span>
+              <span class="center-badge" style="background:var(--guts-l);color:#5a7a3a;border:1px solid #a8c888;">◆ 本能</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ESTP</span>
+              <span class="tag primary">ESFP</span>
+              <span class="tag soft">ISTP</span>
+              <span class="tag soft">ENTJ</span>
+            </div>
+            <div class="cell-note">衝動的行動力 + 本能的独立性が強い型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E8w7</span>
+              <span class="tag primary">E3w4</span>
+              <span class="tag soft">E7w8</span>
+              <span class="tag soft">E1w9</span>
+            </div>
+            <div class="cell-note">本能的衝動 + 自己表現の強さが核心の場合に共鳴</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sp">sp 優位</span>
+            <div style="margin-top:5px;"><span class="inst sx">sx 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">独立性・自己同一性の確保が優先される傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">SLE</span>
+              <span class="tag primary">SEE</span>
+              <span class="tag soft">LSI</span>
+            </div>
+            <div class="cell-note">Se先導 × 意志・本能重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">V &gt; P</span>
+              <span class="tag soft">P &gt; V</span>
+            </div>
+            <div class="cell-note">意志(V)と行動(P)が上位に来やすい傾向</div>
+          </td>
+        </tr>
+
+        <!-- ===== Ni GROUP ===== -->
+        <tr class="group-header">
+          <td colspan="6">
+            <div class="group-header-inner">
+              <div class="group-dot" style="background:#7b5ea7;">Ni</div>
+              <div>
+                <div class="group-label">共鳴型（Ni）— 委ねる・受け止める</div>
+                <div class="group-desc">Type 4・5・6 — 愛は「流れの中で深まるもの」。受け入れることで関係が深まる</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Type 4 -->
+        <tr class="row-ni">
+          <td class="type-cell">
+            <span class="type-num">TYPE 04</span>
+            <span class="type-name">エンパス</span>
+            <span class="type-en">The Empath</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#7b5ea7;">Ni</span>
+              <span class="center-badge" style="background:var(--heart-l);color:var(--heart);border:1px solid #f0b0c0;">❤ 愛情</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">INFJ</span>
+              <span class="tag primary">ISFJ</span>
+              <span class="tag soft">INFP</span>
+              <span class="tag soft">ENFJ</span>
+            </div>
+            <div class="cell-note">深い共感力 + 献身的な愛情表現が強い型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E2w1</span>
+              <span class="tag primary">E4w3</span>
+              <span class="tag soft">E2w3</span>
+              <span class="tag soft">E9w1</span>
+            </div>
+            <div class="cell-note">「尽くすことで愛を確認する」動機が核心の場合に共鳴</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sx">sx 優位</span>
+            <div style="margin-top:5px;"><span class="inst sp">sp 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">深い一対一の感情的繋がりを渇望する傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">IEI</span>
+              <span class="tag primary">EII</span>
+              <span class="tag soft">ESI</span>
+            </div>
+            <div class="cell-note">Ni/Fi先導 × 感情・共感重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E &gt; L</span>
+              <span class="tag soft">E &gt; P</span>
+            </div>
+            <div class="cell-note">感情(E)が最上位、論理(L)や意志(V)が下位になりやすい</div>
+          </td>
+        </tr>
+
+        <!-- Type 5 -->
+        <tr class="row-ni">
+          <td class="type-cell">
+            <span class="type-num">TYPE 05</span>
+            <span class="type-name">オブザーバー</span>
+            <span class="type-en">The Observer</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#7b5ea7;">Ni</span>
+              <span class="center-badge" style="background:var(--head-l);color:var(--head);border:1px solid #a0b8d8;">▲ 安心</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">INFJ</span>
+              <span class="tag primary">INTJ</span>
+              <span class="tag soft">INTP</span>
+              <span class="tag soft">ISFJ</span>
+            </div>
+            <div class="cell-note">慎重な信頼構築 + 内向的観察力が強い型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E5w6</span>
+              <span class="tag primary">E6w5</span>
+              <span class="tag soft">E1w9</span>
+              <span class="tag soft">E4w5</span>
+            </div>
+            <div class="cell-note">「信頼の証明が揃うまで動かない」慎重な安全確認が核心の場合</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sp">sp 優位</span>
+            <div style="margin-top:5px;"><span class="inst so">so 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">安全確保・リスク回避の優先度が高い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ILI</span>
+              <span class="tag primary">IEI</span>
+              <span class="tag soft">LII</span>
+            </div>
+            <div class="cell-note">Ni先導 × 分析・慎重さ重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">L &gt; E</span>
+              <span class="tag soft">L &gt; V</span>
+            </div>
+            <div class="cell-note">論理(L)が上位で感情(E)が抑制される傾向が多い</div>
+          </td>
+        </tr>
+
+        <!-- Type 6 -->
+        <tr class="row-ni">
+          <td class="type-cell">
+            <span class="type-num">TYPE 06</span>
+            <span class="type-name">フェイタリスト</span>
+            <span class="type-en">The Fatalist</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#7b5ea7;">Ni</span>
+              <span class="center-badge" style="background:var(--guts-l);color:#5a7a3a;border:1px solid #a8c888;">◆ 本能</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ISTP</span>
+              <span class="tag primary">INFJ</span>
+              <span class="tag soft">INTJ</span>
+              <span class="tag soft">ISFP</span>
+            </div>
+            <div class="cell-note">流れに乗りながら内なる芯を持つ型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E9w8</span>
+              <span class="tag primary">E5w4</span>
+              <span class="tag soft">E8w9</span>
+              <span class="tag soft">E4w5</span>
+            </div>
+            <div class="cell-note">「流れには乗るが、核心的な一線は決して譲らない」構造が核心の場合</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sp">sp 優位</span>
+            <div style="margin-top:5px;"><span class="inst so">so 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">自己同一性の保護を根幹に持つ傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ILI</span>
+              <span class="tag primary">SLI</span>
+              <span class="tag soft">IEI</span>
+            </div>
+            <div class="cell-note">Ni/Si先導 × 意志的な内向性に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">V &gt; E</span>
+              <span class="tag soft">V &gt; L</span>
+            </div>
+            <div class="cell-note">意志(V)が上位で感情(E)が表に出にくい傾向</div>
+          </td>
+        </tr>
+
+        <!-- ===== Si GROUP ===== -->
+        <tr class="group-header">
+          <td colspan="6">
+            <div class="group-header-inner">
+              <div class="group-dot" style="background:#3d8b8b;">Si</div>
+              <div>
+                <div class="group-label">守護型（Si）— 包む・守り続ける</div>
+                <div class="group-desc">Type 7・8・9 — 愛は「日常の積み重ね」。継続的な世話と安定で示す</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Type 7 -->
+        <tr class="row-si">
+          <td class="type-cell">
+            <span class="type-num">TYPE 07</span>
+            <span class="type-name">ガーディアン</span>
+            <span class="type-en">The Guardian</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#3d8b8b;">Si</span>
+              <span class="center-badge" style="background:var(--heart-l);color:var(--heart);border:1px solid #f0b0c0;">❤ 愛情</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ISFJ</span>
+              <span class="tag primary">ESFJ</span>
+              <span class="tag soft">INFP</span>
+              <span class="tag soft">ENFJ</span>
+            </div>
+            <div class="cell-note">行動で愛を示すケア型 + 承認・感謝を求める傾向に多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E2w1</span>
+              <span class="tag primary">E6w7</span>
+              <span class="tag soft">E1w2</span>
+              <span class="tag soft">E9w1</span>
+            </div>
+            <div class="cell-note">「行動で愛し、愛されたい」という献身ベースの動機が核心の場合</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst so">so 優位</span>
+            <div style="margin-top:5px;"><span class="inst sp">sp 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">役割・貢献を通じた帰属感を大切にする傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">SEI</span>
+              <span class="tag primary">ESI</span>
+              <span class="tag soft">ESE</span>
+            </div>
+            <div class="cell-note">Si/Fi先導 × 感情的ケア重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E &gt; P</span>
+              <span class="tag soft">P &gt; L</span>
+            </div>
+            <div class="cell-note">感情(E)が上位で行動(P)と連動する傾向</div>
+          </td>
+        </tr>
+
+        <!-- Type 8 -->
+        <tr class="row-si">
+          <td class="type-cell">
+            <span class="type-num">TYPE 08</span>
+            <span class="type-name">アーキテクト</span>
+            <span class="type-en">The Architect</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#3d8b8b;">Si</span>
+              <span class="center-badge" style="background:var(--head-l);color:var(--head);border:1px solid #a0b8d8;">▲ 安心</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ISTJ</span>
+              <span class="tag primary">ISFJ</span>
+              <span class="tag soft">ESTJ</span>
+              <span class="tag soft">INTJ</span>
+            </div>
+            <div class="cell-note">安定構築 + 変化回避 + ルーティン重視の型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E1w9</span>
+              <span class="tag primary">E6w5</span>
+              <span class="tag soft">E3w4</span>
+              <span class="tag soft">E5w6</span>
+            </div>
+            <div class="cell-note">「崩れない構造を作ることで安心を得る」動機が核心の場合</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sp">sp 優位</span>
+            <div style="margin-top:5px;"><span class="inst so">so 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">長期的な安定・安全確保を最優先とする傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">LSI</span>
+              <span class="tag primary">SLI</span>
+              <span class="tag soft">LSE</span>
+            </div>
+            <div class="cell-note">Si/Ti先導 × 体系・安定重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">L &gt; P</span>
+              <span class="tag soft">P &gt; V</span>
+            </div>
+            <div class="cell-note">論理(L)と行動(P)で安定を設計する傾向</div>
+          </td>
+        </tr>
+
+        <!-- Type 9 -->
+        <tr class="row-si">
+          <td class="type-cell">
+            <span class="type-num">TYPE 09</span>
+            <span class="type-name">ケアテイカー</span>
+            <span class="type-en">The Caretaker</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#3d8b8b;">Si</span>
+              <span class="center-badge" style="background:var(--guts-l);color:#5a7a3a;border:1px solid #a8c888;">◆ 本能</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ISFP</span>
+              <span class="tag primary">ISTP</span>
+              <span class="tag soft">ISTJ</span>
+              <span class="tag soft">INFP</span>
+            </div>
+            <div class="cell-note">言葉より行動 + 不動の忠誠心を持つ型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E9w8</span>
+              <span class="tag primary">E8w9</span>
+              <span class="tag soft">E1w9</span>
+              <span class="tag soft">E5w4</span>
+            </div>
+            <div class="cell-note">「去らないことが愛」という存在ベースの動機が核心の場合</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sp">sp 優位</span>
+            <div style="margin-top:5px;"><span class="inst so">so 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">継続的な存在感・安心提供を愛の形とする傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">SLI</span>
+              <span class="tag primary">SEI</span>
+              <span class="tag soft">LSI</span>
+            </div>
+            <div class="cell-note">Si先導 × 実践的忠誠心重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">V &gt; P</span>
+              <span class="tag soft">P &gt; V</span>
+            </div>
+            <div class="cell-note">意志(V)と行動(P)が上位で感情(E)が内側に収まる傾向</div>
+          </td>
+        </tr>
+
+        <!-- ===== Ne GROUP ===== -->
+        <tr class="group-header">
+          <td colspan="6">
+            <div class="group-header-inner">
+              <div class="group-dot" style="background:#c9a84c;">Ne</div>
+              <div>
+                <div class="group-label">冒険型（Ne）— ときめく・可能性で動く</div>
+                <div class="group-desc">Type 10・11・12 — 愛は「一緒にいると世界が広がる感覚」</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Type 10 -->
+        <tr class="row-ne">
+          <td class="type-cell">
+            <span class="type-num">TYPE 10</span>
+            <span class="type-name">トラベラー</span>
+            <span class="type-en">The Traveler</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#c9a84c;">Ne</span>
+              <span class="center-badge" style="background:var(--heart-l);color:var(--heart);border:1px solid #f0b0c0;">❤ 愛情</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ENFP</span>
+              <span class="tag primary">ESFP</span>
+              <span class="tag soft">ENFJ</span>
+              <span class="tag soft">INFP</span>
+            </div>
+            <div class="cell-note">ときめき重視の感情表現豊かなロマンティスト型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E4w3</span>
+              <span class="tag primary">E7w6</span>
+              <span class="tag soft">E2w3</span>
+              <span class="tag soft">E3w4</span>
+            </div>
+            <div class="cell-note">「ときめきの鮮度 = 愛の温度計」という感情的確認が核心の場合</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sx">sx 優位</span>
+            <div style="margin-top:5px;"><span class="inst so">so 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">強烈な感情的共鳴・特別感の体験を求める傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">IEE</span>
+              <span class="tag primary">ESE</span>
+              <span class="tag soft">EIE</span>
+            </div>
+            <div class="cell-note">Ne/Fe先導 × 感情的ときめき重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E &gt; P</span>
+              <span class="tag soft">E &gt; V</span>
+            </div>
+            <div class="cell-note">感情(E)が最上位で、可能性(=L)との複合も見られる</div>
+          </td>
+        </tr>
+
+        <!-- Type 11 -->
+        <tr class="row-ne">
+          <td class="type-cell">
+            <span class="type-num">TYPE 11</span>
+            <span class="type-name">エクスプローラー</span>
+            <span class="type-en">The Explorer</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#c9a84c;">Ne</span>
+              <span class="center-badge" style="background:var(--head-l);color:var(--head);border:1px solid #a0b8d8;">▲ 安心</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ENFP</span>
+              <span class="tag primary">ENTP</span>
+              <span class="tag soft">INTP</span>
+              <span class="tag soft">ENTJ</span>
+            </div>
+            <div class="cell-note">楽観的ビジョン + 可能性重視のポジティブ思考型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E7w6</span>
+              <span class="tag primary">E7w8</span>
+              <span class="tag soft">E3w2</span>
+              <span class="tag soft">E5w4</span>
+            </div>
+            <div class="cell-note">「きっとうまくいく」という楽観で不安を管理する動機が核心の場合</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst so">so 優位</span>
+            <div style="margin-top:5px;"><span class="inst sx">sx 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">可能性・未来・広い繋がりへの関心が強い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">IEE</span>
+              <span class="tag primary">ILE</span>
+              <span class="tag soft">LIE</span>
+            </div>
+            <div class="cell-note">Ne先導 × 可能性・楽観的思考重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">L &gt; E</span>
+              <span class="tag soft">E &gt; L</span>
+            </div>
+            <div class="cell-note">論理(L)と感情(E)が混在し、楽観的思考が両者を橋渡しする傾向</div>
+          </td>
+        </tr>
+
+        <!-- Type 12 -->
+        <tr class="row-ne">
+          <td class="type-cell">
+            <span class="type-num">TYPE 12</span>
+            <span class="type-name">フリースピリット</span>
+            <span class="type-en">The Free Spirit</span>
+            <div class="type-axes">
+              <span class="ax-badge" style="background:#c9a84c;">Ne</span>
+              <span class="center-badge" style="background:var(--guts-l);color:#5a7a3a;border:1px solid #a8c888;">◆ 本能</span>
+            </div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ENFP</span>
+              <span class="tag primary">ENTP</span>
+              <span class="tag soft">INFP</span>
+              <span class="tag soft">INTP</span>
+            </div>
+            <div class="cell-note">自由・独立性・束縛への本能的抵抗が際立つ型に多い傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">E7w8</span>
+              <span class="tag primary">E4w5</span>
+              <span class="tag soft">E9w8</span>
+              <span class="tag soft">E8w7</span>
+            </div>
+            <div class="cell-note">「自由でいながら愛されたい」という矛盾的動機が核心の場合</div>
+          </td>
+          <td class="data-cell">
+            <span class="inst sx">sx 優位</span>
+            <div style="margin-top:5px;"><span class="inst sp">sp 次点</span></div>
+            <div class="cell-note" style="margin-top:5px;">自由という名の自己保護と、深い繋がりへの欲求が共存する傾向</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">ILE</span>
+              <span class="tag primary">IEE</span>
+              <span class="tag soft">EIE</span>
+            </div>
+            <div class="cell-note">Ne先導 × 自律性・独自性重視に共鳴が多い</div>
+          </td>
+          <td class="data-cell">
+            <div class="cell-tags">
+              <span class="tag primary">V &gt; E</span>
+              <span class="tag soft">V &gt; L</span>
+            </div>
+            <div class="cell-note">意志(V)が上位で、自由への衝動が感情(E)を上回る傾向</div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SNS CARDS LINK -->
+<div class="share-box" style="margin-top:32px;">
+  <div class="share-inner">
+    <div class="share-title">SNS投稿用カードはこちら</div>
+    <div class="share-text">各タイプを<strong>1:1の正方形カード</strong>でまとめたページを用意しています。<br>スマホでスクリーンショットしてそのままInstagram・Xに投稿できます。</div>
+    <div class="share-btns">
+      <a href="cross_systems_cards.html" class="share-btn x" style="background:var(--rose-d);border-color:var(--rose-d);">📱 SNSカードページを開く</a>
+      <button class="share-btn copy" onclick="copyURL()">URLをコピー</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTNOTE -->
+<div class="footnote">
+  <div class="fn-inner">
+    <div class="fn-title">参考・注釈</div>
+    <ul class="fn-list">
+      <li>MBTI（Myers-Briggs Type Indicator）は MBTI® の登録商標です。この表は非公式の比較参考であり、MBTIの公式解釈を代表するものではありません。</li>
+      <li>エニアグラムは古典的な性格類型論を参照しています。「E2w3」等の表記は「タイプ2のウィング3」を指します。生得本能（sx/sp/so）はinstinctual stackの優勢順を示します。</li>
+      <li>ソシオニクスのタイプコード（SEE, ILI等）は旧ソ連発祥の16タイプ理論に基づき、MBTIと異なる体系です。各コードの意味は凡例を参照してください。</li>
+      <li>サイコソフィア（Psychosophy/PTYP）はA.Afanasyevが提唱した4側面論（感情・身体・論理・意志）です。この表では優勢側面の傾向のみを示しています。</li>
+      <li>この対応表はPola理論に基づく行動・動機パターンの類似性から分析したものです。異なる理論間の「変換」ではなく「対話」として読んでください。</li>
+      <li>同じPolaタイプの人が複数の異なるMBTI・エニア等に分類されることは非常に一般的です。表中の記載は「特に共鳴しやすいもの」であり、それ以外が「間違い」ではありません。</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">UTAGE <em>LAB</em></div>
+  <div class="footer-note">Pola Cross-System Reference | 恋愛極性理論 × 他タイプ論 対応傾向表</div>
+</footer>
+
+<script>
+function copyURL() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.querySelector('.share-btn.copy');
+    const orig = btn.textContent;
+    btn.textContent = 'コピーしました！';
+    setTimeout(() => btn.textContent = orig, 2000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = window.location.href;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const btn = document.querySelector('.share-btn.copy');
+    const orig = btn.textContent;
+    btn.textContent = 'コピーしました！';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+</script>
+</body>
+</html>

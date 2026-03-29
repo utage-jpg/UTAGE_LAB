@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pola × 心理類型 対応早見表｜MBTI・エニアグラム・ソシオニクス・サイコソフィア</title>
+<meta name="description" content="Pola恋愛極性12タイプと、MBTI・エニアグラム（生得本能）・ソシオニクス・サイコソフィアとの理論的対応早見表。">
+<meta property="og:title" content="Pola × 心理類型 対応早見表">
+<meta property="og:description" content="恋愛極性12タイプ × MBTI・エニアグラム・ソシオニクス・サイコソフィア の理論対応表">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://utage-jpg.github.io/UTAGE_LAB/pola/images/pola_preview2.png?v=1">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://utage-jpg.github.io/UTAGE_LAB/pola/images/pola_preview2.png?v=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#faf8f5; --bg2:#f4f0e8; --paper:#fffdf9;
+  --ink:#1c1520; --text:#2e2440; --text-mid:#5a4f6e; --text-light:#9b8faa;
+  --border:#e2d5c8; --border2:#cfc0b0;
+  --rose:#c4566e; --rose-l:#fae0e8; --rose-d:#9c3a53;
+  --violet:#7655a8; --violet-l:#ece6f8;
+  --teal:#2e8b7a; --teal-l:#ddf2ee;
+  --amber:#c47830; --amber-l:#fdefd8;
+  --gold:#b8963e; --gold-l:#fdf4dc;
+  --head:#5b7fa6; --head-l:#deeaf7;
+  --guts:#7a9c5b; --guts-l:#e4f0d8;
+  --shadow:rgba(28,21,32,0.10);
+  --font-d:'Cormorant Garamond',Georgia,serif;
+  --font-s:'Noto Serif JP',serif;
+  --font-m:'DM Mono',monospace;
+
+  /* per-axis colors */
+  --se: #c4566e; --se-l: #fae0e8;
+  --ni: #7655a8; --ni-l: #ece6f8;
+  --si: #2e8b7a; --si-l: #ddf2ee;
+  --ne: #c47830; --ne-l: #fdefd8;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-s);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.75;}
+
+/* noise texture */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 20px;
+  background:rgba(250,248,245,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:var(--font-d);font-size:.95rem;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:.02em;}
+.nav-brand span{font-style:italic;color:var(--rose);}
+.nav-back{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);text-decoration:none;letter-spacing:.06em;
+  padding:5px 12px;border:1px solid var(--border);border-radius:6px;transition:all .2s;}
+.nav-back:hover{color:var(--rose);border-color:var(--rose);}
+
+/* ── HERO ── */
+.hero{padding:88px 24px 52px;text-align:center;
+  background:linear-gradient(150deg,#faf8f5 0%,#f0e6d8 55%,#e8ddd0 100%);
+  border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(118,85,168,.07) 0%,transparent 70%),
+             radial-gradient(ellipse 60% 40% at 80% 80%,rgba(196,86,110,.05) 0%,transparent 70%);}
+.hero-tag{font-family:var(--font-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-light);padding:4px 16px;border:1px solid var(--border);
+  border-radius:100px;display:inline-block;margin-bottom:18px;position:relative;z-index:1;}
+.hero-title{font-family:var(--font-d);font-size:clamp(1.8rem,6vw,3rem);font-weight:700;
+  color:var(--ink);line-height:1.15;margin-bottom:12px;position:relative;z-index:1;}
+.hero-title em{font-style:italic;color:var(--rose);}
+.hero-sub{font-size:.82rem;color:var(--text-mid);max-width:560px;margin:0 auto 24px;
+  font-weight:300;line-height:1.95;position:relative;z-index:1;}
+.hero-systems{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.hero-sys-badge{font-family:var(--font-m);font-size:.6rem;padding:4px 14px;border-radius:100px;
+  border:1px solid var(--border2);color:var(--text-mid);background:var(--paper);letter-spacing:.05em;}
+
+/* ── THEORY INTRO ── */
+.wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+.theory-sec{padding:48px 0 0;}
+.theory-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:640px){.theory-grid{grid-template-columns:1fr;}}
+
+.theory-card{border:1px solid var(--border);border-radius:16px;background:var(--paper);overflow:hidden;}
+.tc-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.tc-badge{font-family:var(--font-m);font-size:.68rem;font-weight:500;padding:4px 10px;border-radius:8px;letter-spacing:.06em;}
+.tc-name{font-family:var(--font-d);font-size:.95rem;font-weight:700;color:var(--ink);}
+.tc-body{padding:14px 18px;font-size:.78rem;color:var(--text-mid);line-height:1.85;}
+.tc-key{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);margin-top:8px;letter-spacing:.05em;}
+.tc-key b{color:var(--ink);}
+
+/* ── AXIS LEGEND ── */
+.axis-legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+.al-item{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;
+  border:1px solid var(--border);background:var(--paper);}
+.al-dot{width:10px;height:10px;border-radius:50%;}
+.al-label{font-family:var(--font-m);font-size:.6rem;color:var(--text-mid);letter-spacing:.06em;}
+.al-desc{font-size:.72rem;color:var(--text-light);}
+
+/* center legend */
+.center-legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;}
+.cl-item{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--text-mid);}
+.cl-icon{font-size:.9rem;}
+
+/* ── SECTION HEADER ── */
+.sec-header{margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+.sec-tag{font-family:var(--font-m);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--text-light);margin-bottom:6px;display:block;}
+.sec-title{font-family:var(--font-d);font-size:clamp(1.4rem,3.5vw,1.9rem);font-weight:700;color:var(--ink);}
+.sec-title em{font-style:italic;color:var(--rose);}
+.sec-note{font-size:.76rem;color:var(--text-light);margin-top:6px;line-height:1.7;}
+
+/* ── MAIN TABLE — Desktop ── */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:48px;}
+.cross-table{width:100%;min-width:860px;border-collapse:collapse;font-size:.78rem;}
+.cross-table th{
+  font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-light);padding:10px 12px;background:var(--bg2);
+  border-bottom:2px solid var(--border2);text-align:left;white-space:nowrap;}
+.cross-table th.th-center{text-align:center;}
+.cross-table td{padding:12px;border-bottom:1px solid var(--border);vertical-align:top;}
+.cross-table tr:last-child td{border-bottom:none;}
+.cross-table tr:hover td{background:rgba(196,86,110,.03);}
+
+/* group rows */
+.cross-table tr.group-se td{border-left:3px solid var(--se);}
+.cross-table tr.group-ni td{border-left:3px solid var(--ni);}
+.cross-table tr.group-si td{border-left:3px solid var(--si);}
+.cross-table tr.group-ne td{border-left:3px solid var(--ne);}
+
+/* type id cell */
+.td-id{white-space:nowrap;}
+.type-num{font-family:var(--font-m);font-size:.6rem;color:var(--text-light);display:block;margin-bottom:3px;}
+.type-name{font-family:var(--font-d);font-size:.92rem;font-weight:700;color:var(--ink);display:block;line-height:1.2;}
+.type-sub{font-size:.68rem;color:var(--text-light);display:block;margin-top:1px;}
+
+/* axis cell */
+.td-axis{white-space:nowrap;text-align:center;}
+.axis-tag{display:inline-block;font-family:var(--font-m);font-size:.62rem;font-weight:600;
+  padding:3px 8px;border-radius:6px;letter-spacing:.04em;margin-bottom:3px;}
+.center-tag{display:inline-block;font-family:var(--font-m);font-size:.58rem;
+  padding:2px 7px;border-radius:5px;background:var(--bg2);color:var(--text-mid);letter-spacing:.04em;}
+
+/* mbti cell */
+.mbti-main{font-family:var(--font-m);font-size:.78rem;font-weight:500;color:var(--ink);display:block;}
+.mbti-alt{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);display:block;margin-top:2px;}
+.mbti-note{font-size:.68rem;color:var(--text-mid);display:block;margin-top:3px;line-height:1.5;}
+
+/* enneagram cell */
+.enn-main{font-family:var(--font-m);font-size:.78rem;font-weight:600;color:var(--ink);display:block;}
+.enn-alt{font-family:var(--font-m);font-size:.62rem;color:var(--text-light);display:block;margin-top:2px;}
+.instinct-badges{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap;}
+.inst-badge{font-family:var(--font-m);font-size:.55rem;padding:2px 7px;border-radius:4px;
+  background:var(--bg2);border:1px solid var(--border);color:var(--text-mid);letter-spacing:.04em;}
+.inst-badge.primary{background:var(--ink);color:#faf8f5;border-color:var(--ink);}
+
+/* socionics cell */
+.soc-code{font-family:var(--font-m);font-size:.75rem;font-weight:500;color:var(--ink);display:block;}
+.soc-name{font-size:.67rem;color:var(--text-mid);display:block;margin-top:2px;}
+.soc-funcs{font-family:var(--font-m);font-size:.58rem;color:var(--text-light);display:block;margin-top:2px;letter-spacing:.04em;}
+
+/* psychosophy cell */
+.psy-code{font-family:var(--font-m);font-size:.8rem;font-weight:600;color:var(--ink);display:block;letter-spacing:.08em;}
+.psy-breakdown{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap;}
+.psy-aspect{font-family:var(--font-m);font-size:.55rem;padding:2px 6px;border-radius:4px;letter-spacing:.04em;}
+.psy-1{background:#1c1520;color:#faf8f5;}
+.psy-2{background:#3a3040;color:#faf8f5;}
+.psy-3{background:var(--bg2);color:var(--text-mid);border:1px solid var(--border);}
+.psy-4{background:var(--bg);color:var(--text-light);border:1px solid var(--border);}
+.psy-note{font-size:.65rem;color:var(--text-light);display:block;margin-top:4px;line-height:1.55;}
+
+/* ── CARD VIEW — Mobile ── */
+.cards-view{display:none;}
+@media(max-width:720px){
+  .table-wrap{display:none;}
+  .cards-view{display:flex;flex-direction:column;gap:14px;margin-bottom:48px;}
+}
+.type-card{border:1px solid var(--border);border-radius:16px;background:var(--paper);overflow:hidden;}
+.tc2-head{padding:14px 18px 12px;display:flex;align-items:flex-start;gap:12px;}
+.tc2-head-left{flex:1;}
+.tc2-num{font-family:var(--font-m);font-size:.58rem;color:var(--text-light);margin-bottom:3px;}
+.tc2-name{font-family:var(--font-d);font-size:1.1rem;font-weight:700;color:var(--ink);line-height:1.2;}
+.tc2-name-sub{font-size:.72rem;color:var(--text-mid);margin-top:2px;}
+.tc2-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;}
+.tc2-axis{font-family:var(--font-m);font-size:.6rem;font-weight:600;
+  padding:3px 9px;border-radius:6px;letter-spacing:.04em;}
+.tc2-center{font-family:var(--font-m);font-size:.58rem;
+  padding:3px 9px;border-radius:6px;background:var(--bg2);color:var(--text-mid);}
+.tc2-body{padding:0 18px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:400px){.tc2-body{grid-template-columns:1fr;}}
+.tc2-item{padding:10px 12px;border-radius:10px;background:var(--bg);border:1px solid var(--border);}
+.tc2-item-label{font-family:var(--font-m);font-size:.55rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-light);margin-bottom:5px;display:block;}
+.tc2-item-val{font-family:var(--font-m);font-size:.78rem;font-weight:500;color:var(--ink);line-height:1.4;}
+.tc2-item-sub{font-size:.68rem;color:var(--text-mid);margin-top:2px;line-height:1.5;}
+.tc2-item-note{font-size:.65rem;color:var(--text-light);margin-top:3px;line-height:1.5;}
+.tc2-item-badges{display:flex;gap:3px;flex-wrap:wrap;margin-top:4px;}
+
+/* ── THEORY NOTES ── */
+.notes-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px;}
+@media(max-width:640px){.notes-grid{grid-template-columns:1fr;}}
+.note-card{border:1px solid var(--border);border-radius:14px;background:var(--paper);padding:18px 20px;}
+.note-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.note-badge{font-family:var(--font-m);font-size:.62rem;font-weight:500;
+  padding:3px 10px;border-radius:6px;letter-spacing:.05em;}
+.note-title{font-family:var(--font-d);font-size:.95rem;font-weight:700;color:var(--ink);}
+.note-body{font-size:.78rem;color:var(--text-mid);line-height:1.85;}
+.note-body li{margin-left:1em;margin-bottom:4px;}
+.note-body strong{color:var(--ink);}
+
+/* ── DISCLAIMER ── */
+.disclaimer{border:1px solid var(--border);border-radius:12px;padding:16px 20px;
+  background:var(--bg2);margin-bottom:48px;}
+.disclaimer p{font-size:.75rem;color:var(--text-light);line-height:1.85;}
+.disclaimer strong{color:var(--text-mid);}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 20px;text-align:center;}
+.footer-brand{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.footer-brand span{font-style:italic;color:var(--rose);}
+.footer-copy{font-family:var(--font-m);font-size:.58rem;color:var(--text-light);letter-spacing:.08em;}
+
+/* share */
+.share-block{text-align:center;padding:32px 0 40px;}
+.share-label{font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-light);margin-bottom:12px;}
+.share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.share-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;
+  border-radius:10px;border:1.5px solid var(--border);background:var(--paper);
+  font-family:var(--font-s);font-size:.78rem;color:var(--text-mid);
+  cursor:pointer;text-decoration:none;transition:all .2s;}
+.share-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px var(--shadow);}
+.share-btn.x-btn:hover{border-color:#000;background:#000;color:#fff;}
+.share-btn.line-btn:hover{border-color:#06c755;background:#06c755;color:#fff;}
+.share-btn.copy-btn:hover{border-color:var(--violet);background:var(--violet-l);color:var(--violet);}
+
+/* group header rows */
+.group-header-row td{
+  padding:8px 12px;background:var(--bg2);
+  font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:600;border-bottom:1px solid var(--border2);
+}
+.gh-se{color:var(--se);}
+.gh-ni{color:var(--ni);}
+.gh-si{color:var(--si);}
+.gh-ne{color:var(--ne);}
+
+/* ── spacing ── */
+.pt-40{padding-top:40px;}
+.pb-8{padding-bottom:8px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="../portal/index.html"><span>Pola</span> Portal</a>
+  <a class="nav-back" href="../portal/theory.html">← 理論解説</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-tag">Theory Reference</span>
+  <h1 class="hero-title"><em>Pola</em> × 心理類型<br>対応早見表</h1>
+  <p class="hero-sub">恋愛極性12タイプと、MBTI・エニアグラム・ソシオニクス・サイコソフィアの理論的対応を一覧化。各システムの交差点から、あなたの恋愛心理の構造を多角的に読む。</p>
+  <div class="hero-systems">
+    <span class="hero-sys-badge">Pola 12 Types</span>
+    <span class="hero-sys-badge">MBTI</span>
+    <span class="hero-sys-badge">Enneagram + Instinct</span>
+    <span class="hero-sys-badge">Socionics</span>
+    <span class="hero-sys-badge">Psychosophy</span>
+  </div>
+</section>
+
+<!-- THEORY INTRO -->
+<div class="wrap">
+  <section class="theory-sec">
+
+    <div class="sec-header pt-40">
+      <span class="sec-tag">Framework</span>
+      <h2 class="sec-title">Pola の2軸と<em>各理論の接続点</em></h2>
+      <p class="sec-note">Pola は「知覚スタイル（Se / Ni / Si / Ne）」と「センター（Heart / Head / Guts）」の2軸で構成されます。<br>この2軸はそれぞれ、ユング心理学・エニアグラムの理論基盤と直接対応しています。</p>
+    </div>
+
+    <div class="theory-grid">
+      <div class="theory-card">
+        <div class="tc-head">
+          <span class="tc-badge" style="background:var(--violet-l);color:var(--violet);">軸 1</span>
+          <span class="tc-name">知覚スタイル（ロマンスモード）</span>
+        </div>
+        <div class="tc-body">
+          ユング心理学の<strong>知覚機能（認識機能）</strong>に対応。恋愛において「何を現実として認識するか」の方向性を決める。
+          <div class="tc-key" style="margin-top:10px;">
+            <b>Se</b> 現在の感覚・刺激・強度 ／ <b>Ni</b> パターン・意味・深度<br>
+            <b>Si</b> 記憶・安定・継続性 ／ <b>Ne</b> 可能性・アイデア・自由
+          </div>
+        </div>
+      </div>
+      <div class="theory-card">
+        <div class="tc-head">
+          <span class="tc-badge" style="background:var(--rose-l);color:var(--rose);">軸 2</span>
+          <span class="tc-name">センター（知性の中心）</span>
+        </div>
+        <div class="tc-body">
+          エニアグラムの<strong>三つの知性センター</strong>（心・頭・腸）に対応。恋愛における動機の根源——何のために愛するか——を決める。
+          <div class="tc-key" style="margin-top:10px;">
+            <b>Heart</b> 感情・承認・関係性 ／ <b>Head</b> 思考・分析・安心の設計<br>
+            <b>Guts</b> 本能・直接行動・身体感覚
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AXIS LEGEND -->
+    <div style="margin-bottom:12px;font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);">知覚軸カラー凡例</div>
+    <div class="axis-legend">
+      <div class="al-item"><div class="al-dot" style="background:var(--se);"></div><span class="al-label">Se</span><span class="al-desc">外向感覚 — 現在・刺激</span></div>
+      <div class="al-item"><div class="al-dot" style="background:var(--ni);"></div><span class="al-label">Ni</span><span class="al-desc">内向直観 — パターン・意味</span></div>
+      <div class="al-item"><div class="al-dot" style="background:var(--si);"></div><span class="al-label">Si</span><span class="al-desc">内向感覚 — 記憶・安定</span></div>
+      <div class="al-item"><div class="al-dot" style="background:var(--ne);"></div><span class="al-label">Ne</span><span class="al-desc">外向直観 — 可能性・拡張</span></div>
+    </div>
+    <div style="margin-bottom:12px;font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);">センター凡例</div>
+    <div class="center-legend">
+      <div class="cl-item"><span class="cl-icon">♥</span> Heart — 感情センター（Enn 2・3・4）</div>
+      <div class="cl-item"><span class="cl-icon">◆</span> Head — 思考センター（Enn 5・6・7）</div>
+      <div class="cl-item"><span class="cl-icon">◉</span> Guts — 本能センター（Enn 8・9・1）</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MAIN TABLE — Desktop                                         -->
+    <!-- ============================================================ -->
+    <div class="sec-header">
+      <span class="sec-tag">Cross Reference</span>
+      <h2 class="sec-title"><em>12タイプ</em> × 心理類型 対応表</h2>
+      <p class="sec-note">※ 対応は理論的近似。完全な1対1対応ではなく、各タイプの核心的特性が最も重なるものを示す。</p>
+    </div>
+
+    <div class="table-wrap">
+    <table class="cross-table">
+      <thead>
+        <tr>
+          <th style="min-width:130px;">Pola タイプ</th>
+          <th class="th-center" style="min-width:90px;">知覚軸<br>センター</th>
+          <th style="min-width:140px;">MBTI</th>
+          <th style="min-width:130px;">エニアグラム</th>
+          <th style="min-width:110px;">生得本能</th>
+          <th style="min-width:140px;">ソシオニクス</th>
+          <th style="min-width:150px;">サイコソフィア</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ── SE GROUP ── -->
+        <tr class="group-header-row">
+          <td colspan="7"><span class="gh-se">■ Se群（外向感覚）— 現在の刺激・強度・征服</span></td>
+        </tr>
+
+        <!-- Type 1 -->
+        <tr class="group-se">
+          <td class="td-id">
+            <span class="type-num">TYPE 01</span>
+            <span class="type-name">ロマンハンター</span>
+            <span class="type-sub">狩人</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--se-l);color:var(--se);">Se</span><br>
+            <span class="center-tag">♥ Heart</span>
+          </td>
+          <td>
+            <span class="mbti-main">ESFP</span>
+            <span class="mbti-alt">/ ISFP</span>
+            <span class="mbti-note">Se主機能 + Fi補助。現在の感情体験に全力。感覚と感情が直結。</span>
+          </td>
+          <td>
+            <span class="enn-main">E3</span>
+            <span class="enn-alt">/ E2w3</span>
+            <span class="mbti-note">達成・印象・愛の証明への渇望。確認行動の反復。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">sx</span>
+              <span class="inst-badge">sp</span>
+            </div>
+            <span class="mbti-note">性的本能（sx）優位。一対一の強度・征服衝動。</span>
+          </td>
+          <td>
+            <span class="soc-code">SEE</span>
+            <span class="soc-name">ESFp（感覚－感情型）</span>
+            <span class="soc-funcs">Se / Fe リード</span>
+          </td>
+          <td>
+            <span class="psy-code">EFVL</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">E 感情</span>
+              <span class="psy-aspect psy-2">F 身体</span>
+              <span class="psy-aspect psy-3">V 意志</span>
+              <span class="psy-aspect psy-4">L 論理</span>
+            </div>
+            <span class="psy-note">感情と身体感覚が前景。論理は弱点。</span>
+          </td>
+        </tr>
+
+        <!-- Type 2 -->
+        <tr class="group-se">
+          <td class="td-id">
+            <span class="type-num">TYPE 02</span>
+            <span class="type-name">ストラテジスト</span>
+            <span class="type-sub">戦略家</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--se-l);color:var(--se);">Se</span><br>
+            <span class="center-tag">◆ Head</span>
+          </td>
+          <td>
+            <span class="mbti-main">ESTP</span>
+            <span class="mbti-alt">/ ISTP</span>
+            <span class="mbti-note">Se主機能 + Ti補助。関係を論理的に設計・コントロールする。</span>
+          </td>
+          <td>
+            <span class="enn-main">E3w2</span>
+            <span class="enn-alt">/ E7w8</span>
+            <span class="mbti-note">達成×戦略。感情を管理しながら関係を最適化。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">sx</span>
+              <span class="inst-badge">sp</span>
+            </div>
+            <span class="mbti-note">性的本能（sx）で一対一の主導権を求める。</span>
+          </td>
+          <td>
+            <span class="soc-code">SLE</span>
+            <span class="soc-name">ESTp（感覚－論理型）</span>
+            <span class="soc-funcs">Se / Ti リード</span>
+          </td>
+          <td>
+            <span class="psy-code">FLEV</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">F 身体</span>
+              <span class="psy-aspect psy-2">L 論理</span>
+              <span class="psy-aspect psy-3">E 感情</span>
+              <span class="psy-aspect psy-4">V 意志</span>
+            </div>
+            <span class="psy-note">身体感覚と論理が前景。感情表現は後退。</span>
+          </td>
+        </tr>
+
+        <!-- Type 3 -->
+        <tr class="group-se">
+          <td class="td-id">
+            <span class="type-num">TYPE 03</span>
+            <span class="type-name">チャレンジャー</span>
+            <span class="type-sub">挑戦者</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--se-l);color:var(--se);">Se</span><br>
+            <span class="center-tag">◉ Guts</span>
+          </td>
+          <td>
+            <span class="mbti-main">ESTP</span>
+            <span class="mbti-alt">/ ESFP亜型</span>
+            <span class="mbti-note">Se × 直接行動。衝動的・身体的な力の発現。</span>
+          </td>
+          <td>
+            <span class="enn-main">E8</span>
+            <span class="enn-alt">/ E8w7</span>
+            <span class="mbti-note">パワー・対立・征服。本能センターとSeの完全一致。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">sx</span>
+              <span class="inst-badge">sp</span>
+            </div>
+            <span class="mbti-note">強烈な性的本能。挑戦と制覇で愛を体感。</span>
+          </td>
+          <td>
+            <span class="soc-code">SLE</span>
+            <span class="soc-name">ESTp / LSI亜型</span>
+            <span class="soc-funcs">Se 強リード + Ti</span>
+          </td>
+          <td>
+            <span class="psy-code">VFLE</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">V 意志</span>
+              <span class="psy-aspect psy-2">F 身体</span>
+              <span class="psy-aspect psy-3">L 論理</span>
+              <span class="psy-aspect psy-4">E 感情</span>
+            </div>
+            <span class="psy-note">意志と身体が前景。感情処理が最弱点。</span>
+          </td>
+        </tr>
+
+        <!-- ── NI GROUP ── -->
+        <tr class="group-header-row">
+          <td colspan="7"><span class="gh-ni">■ Ni群（内向直観）— パターン・意味・深度・運命感</span></td>
+        </tr>
+
+        <!-- Type 4 -->
+        <tr class="group-ni">
+          <td class="td-id">
+            <span class="type-num">TYPE 04</span>
+            <span class="type-name">エンパス</span>
+            <span class="type-sub">共感者</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--ni-l);color:var(--ni);">Ni</span><br>
+            <span class="center-tag">♥ Heart</span>
+          </td>
+          <td>
+            <span class="mbti-main">INFJ</span>
+            <span class="mbti-alt">/ ENFJ</span>
+            <span class="mbti-note">Ni主機能 + Fe補助。相手の内面を先読みし、感情で深く繋がる。</span>
+          </td>
+          <td>
+            <span class="enn-main">E4</span>
+            <span class="enn-alt">/ E2w3</span>
+            <span class="mbti-note">個性・深さ・意味への渇望。感情の深さが自己定義。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">sx</span>
+              <span class="inst-badge">so</span>
+            </div>
+            <span class="mbti-note">性的本能で魂のレベルの融合を求める。</span>
+          </td>
+          <td>
+            <span class="soc-code">IEI</span>
+            <span class="soc-name">INFp（直観－感情型）</span>
+            <span class="soc-funcs">Ni / Fe リード</span>
+          </td>
+          <td>
+            <span class="psy-code">ELVF</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">E 感情</span>
+              <span class="psy-aspect psy-2">L 論理</span>
+              <span class="psy-aspect psy-3">V 意志</span>
+              <span class="psy-aspect psy-4">F 身体</span>
+            </div>
+            <span class="psy-note">感情と論理（洞察）が前景。身体感覚が最弱点。</span>
+          </td>
+        </tr>
+
+        <!-- Type 5 -->
+        <tr class="group-ni">
+          <td class="td-id">
+            <span class="type-num">TYPE 05</span>
+            <span class="type-name">オブザーバー</span>
+            <span class="type-sub">観察者</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--ni-l);color:var(--ni);">Ni</span><br>
+            <span class="center-tag">◆ Head</span>
+          </td>
+          <td>
+            <span class="mbti-main">INTJ</span>
+            <span class="mbti-alt">/ INTP</span>
+            <span class="mbti-note">Ni主機能 + Te補助。信頼の蓄積を長期観察で確認する。</span>
+          </td>
+          <td>
+            <span class="enn-main">E5</span>
+            <span class="enn-alt">/ E5w6</span>
+            <span class="mbti-note">観察・分析・不干渉。知識の蓄積で安心を得る。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">sp</span>
+              <span class="inst-badge">sx</span>
+            </div>
+            <span class="mbti-note">自己保存（sp）優位。エネルギーの慎重な配分。</span>
+          </td>
+          <td>
+            <span class="soc-code">ILI</span>
+            <span class="soc-name">INTp（直観－論理型）</span>
+            <span class="soc-funcs">Ni / Te リード</span>
+          </td>
+          <td>
+            <span class="psy-code">LVEF</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">L 論理</span>
+              <span class="psy-aspect psy-2">V 意志</span>
+              <span class="psy-aspect psy-3">E 感情</span>
+              <span class="psy-aspect psy-4">F 身体</span>
+            </div>
+            <span class="psy-note">論理と意志が前景。身体的・感情的表現が弱点。</span>
+          </td>
+        </tr>
+
+        <!-- Type 6 -->
+        <tr class="group-ni">
+          <td class="td-id">
+            <span class="type-num">TYPE 06</span>
+            <span class="type-name">フェイタリスト</span>
+            <span class="type-sub">運命論者</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--ni-l);color:var(--ni);">Ni</span><br>
+            <span class="center-tag">◉ Guts</span>
+          </td>
+          <td>
+            <span class="mbti-main">INTJ</span>
+            <span class="mbti-alt">/ ENTJ亜型</span>
+            <span class="mbti-note">Ni × 直接行動。運命感をもとに決断し、現実を変えようとする。</span>
+          </td>
+          <td>
+            <span class="enn-main">E6</span>
+            <span class="enn-alt">/ E1w9</span>
+            <span class="mbti-note">忠実・不安・原則。「この人で正しいのか」の問いに支配される。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">so</span>
+              <span class="inst-badge">sp</span>
+            </div>
+            <span class="mbti-note">社会的本能（so）優位。関係の意味・役割への固執。</span>
+          </td>
+          <td>
+            <span class="soc-code">LIE</span>
+            <span class="soc-name">ENTj（論理－直観型）</span>
+            <span class="soc-funcs">Te / Ni リード</span>
+          </td>
+          <td>
+            <span class="psy-code">VLEF</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">V 意志</span>
+              <span class="psy-aspect psy-2">L 論理</span>
+              <span class="psy-aspect psy-3">E 感情</span>
+              <span class="psy-aspect psy-4">F 身体</span>
+            </div>
+            <span class="psy-note">意志と論理が前景。感情・身体が弱点領域。</span>
+          </td>
+        </tr>
+
+        <!-- ── SI GROUP ── -->
+        <tr class="group-header-row">
+          <td colspan="7"><span class="gh-si">■ Si群（内向感覚）— 記憶・継続・安定・守護</span></td>
+        </tr>
+
+        <!-- Type 7 -->
+        <tr class="group-si">
+          <td class="td-id">
+            <span class="type-num">TYPE 07</span>
+            <span class="type-name">ガーディアン</span>
+            <span class="type-sub">保護人</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--si-l);color:var(--si);">Si</span><br>
+            <span class="center-tag">♥ Heart</span>
+          </td>
+          <td>
+            <span class="mbti-main">ISFJ</span>
+            <span class="mbti-alt">/ ESFJ</span>
+            <span class="mbti-note">Si主機能 + Fe補助。記憶と感情で相手を包む守護的愛。</span>
+          </td>
+          <td>
+            <span class="enn-main">E2</span>
+            <span class="enn-alt">/ E2w1</span>
+            <span class="mbti-note">援助・守護・奉仕。愛は「行動で証明する」スタイル。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">so</span>
+              <span class="inst-badge">sp</span>
+            </div>
+            <span class="mbti-note">社会的本能（so）優位。関係のハーモニーを最優先。</span>
+          </td>
+          <td>
+            <span class="soc-code">ESE</span>
+            <span class="soc-name">ESFj（感情－感覚型）</span>
+            <span class="soc-funcs">Fe / Si リード</span>
+          </td>
+          <td>
+            <span class="psy-code">FEVL</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">F 身体</span>
+              <span class="psy-aspect psy-2">E 感情</span>
+              <span class="psy-aspect psy-3">V 意志</span>
+              <span class="psy-aspect psy-4">L 論理</span>
+            </div>
+            <span class="psy-note">身体的ケアと感情表現が前景。論理・自律が弱点。</span>
+          </td>
+        </tr>
+
+        <!-- Type 8 -->
+        <tr class="group-si">
+          <td class="td-id">
+            <span class="type-num">TYPE 08</span>
+            <span class="type-name">アーキテクト</span>
+            <span class="type-sub">構築者</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--si-l);color:var(--si);">Si</span><br>
+            <span class="center-tag">◆ Head</span>
+          </td>
+          <td>
+            <span class="mbti-main">ISTJ</span>
+            <span class="mbti-alt">/ ESTJ</span>
+            <span class="mbti-note">Si主機能 + Ti/Te補助。実績と実績で信頼関係を構築する。</span>
+          </td>
+          <td>
+            <span class="enn-main">E1</span>
+            <span class="enn-alt">/ E6w5</span>
+            <span class="mbti-note">原則・構造・秩序。恋愛にも設計図と責任感を持ち込む。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">sp</span>
+              <span class="inst-badge">so</span>
+            </div>
+            <span class="mbti-note">自己保存（sp）優位。安定・安全・現実的基盤への執着。</span>
+          </td>
+          <td>
+            <span class="soc-code">LSE</span>
+            <span class="soc-name">ESTj（論理－感覚型）</span>
+            <span class="soc-funcs">Te / Si リード</span>
+          </td>
+          <td>
+            <span class="psy-code">LFEV</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">L 論理</span>
+              <span class="psy-aspect psy-2">F 身体</span>
+              <span class="psy-aspect psy-3">E 感情</span>
+              <span class="psy-aspect psy-4">V 意志</span>
+            </div>
+            <span class="psy-note">論理と身体的安定が前景。感情・意志の自由は苦手。</span>
+          </td>
+        </tr>
+
+        <!-- Type 9 -->
+        <tr class="group-si">
+          <td class="td-id">
+            <span class="type-num">TYPE 09</span>
+            <span class="type-name">ケアテイカー</span>
+            <span class="type-sub">世話役</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--si-l);color:var(--si);">Si</span><br>
+            <span class="center-tag">◉ Guts</span>
+          </td>
+          <td>
+            <span class="mbti-main">ISFJ</span>
+            <span class="mbti-alt">/ ISTJ亜型</span>
+            <span class="mbti-note">Si × 身体的実践。「いつもそこにいる」という愛の体現。</span>
+          </td>
+          <td>
+            <span class="enn-main">E9</span>
+            <span class="enn-alt">/ E9w1</span>
+            <span class="mbti-note">平和・受容・継続的存在。去らないことが最大の愛表現。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">sp</span>
+              <span class="inst-badge">so</span>
+            </div>
+            <span class="mbti-note">自己保存（sp）最優位。日常のルーティンが愛の土台。</span>
+          </td>
+          <td>
+            <span class="soc-code">SEI</span>
+            <span class="soc-name">ISFp（感覚－感情型）</span>
+            <span class="soc-funcs">Si / Fe リード</span>
+          </td>
+          <td>
+            <span class="psy-code">FVLE</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">F 身体</span>
+              <span class="psy-aspect psy-2">V 意志</span>
+              <span class="psy-aspect psy-3">L 論理</span>
+              <span class="psy-aspect psy-4">E 感情</span>
+            </div>
+            <span class="psy-note">身体的ケアと継続する意志が前景。感情的表現が弱点。</span>
+          </td>
+        </tr>
+
+        <!-- ── NE GROUP ── -->
+        <tr class="group-header-row">
+          <td colspan="7"><span class="gh-ne">■ Ne群（外向直観）— 可能性・自由・拡張・変化</span></td>
+        </tr>
+
+        <!-- Type 10 -->
+        <tr class="group-ne">
+          <td class="td-id">
+            <span class="type-num">TYPE 10</span>
+            <span class="type-name">トラベラー</span>
+            <span class="type-sub">旅人</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--ne-l);color:var(--ne);">Ne</span><br>
+            <span class="center-tag">♥ Heart</span>
+          </td>
+          <td>
+            <span class="mbti-main">ENFP</span>
+            <span class="mbti-alt">/ INFP</span>
+            <span class="mbti-note">Ne主機能 + Fi補助。可能性と感情の探索。新しい愛の旅人。</span>
+          </td>
+          <td>
+            <span class="enn-main">E4w3</span>
+            <span class="enn-alt">/ E7w6</span>
+            <span class="mbti-note">個性と探索のハイブリッド。深さと自由のジレンマを生きる。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">so</span>
+              <span class="inst-badge">sx</span>
+            </div>
+            <span class="mbti-note">社会的本能（so）優位。多様な関係の中で感情を広げる。</span>
+          </td>
+          <td>
+            <span class="soc-code">IEE</span>
+            <span class="soc-name">ENFp（直観－感情型）</span>
+            <span class="soc-funcs">Ne / Fi リード</span>
+          </td>
+          <td>
+            <span class="psy-code">ELVF</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">E 感情</span>
+              <span class="psy-aspect psy-2">L 論理</span>
+              <span class="psy-aspect psy-3">V 意志</span>
+              <span class="psy-aspect psy-4">F 身体</span>
+            </div>
+            <span class="psy-note">感情と直観的論理が前景。身体的現実・継続意志が弱点。</span>
+          </td>
+        </tr>
+
+        <!-- Type 11 -->
+        <tr class="group-ne">
+          <td class="td-id">
+            <span class="type-num">TYPE 11</span>
+            <span class="type-name">エクスプローラー</span>
+            <span class="type-sub">探検家</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--ne-l);color:var(--ne);">Ne</span><br>
+            <span class="center-tag">◆ Head</span>
+          </td>
+          <td>
+            <span class="mbti-main">ENTP</span>
+            <span class="mbti-alt">/ INTP</span>
+            <span class="mbti-note">Ne主機能 + Ti補助。知的可能性の探索として恋愛を体験。</span>
+          </td>
+          <td>
+            <span class="enn-main">E5w4</span>
+            <span class="enn-alt">/ E7w6</span>
+            <span class="mbti-note">知識・探索・システム化。恋愛を観察・分析する知識人型。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">so</span>
+              <span class="inst-badge">sp</span>
+            </div>
+            <span class="mbti-note">社会的本能（so）優位。アイデアと他者の刺激で思考拡張。</span>
+          </td>
+          <td>
+            <span class="soc-code">ILE</span>
+            <span class="soc-name">ENTp（直観－論理型）</span>
+            <span class="soc-funcs">Ne / Ti リード</span>
+          </td>
+          <td>
+            <span class="psy-code">LVEF</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">L 論理</span>
+              <span class="psy-aspect psy-2">V 意志</span>
+              <span class="psy-aspect psy-3">E 感情</span>
+              <span class="psy-aspect psy-4">F 身体</span>
+            </div>
+            <span class="psy-note">論理と知的意志が前景。感情的繋がり・身体接続が弱点。</span>
+          </td>
+        </tr>
+
+        <!-- Type 12 -->
+        <tr class="group-ne">
+          <td class="td-id">
+            <span class="type-num">TYPE 12</span>
+            <span class="type-name">フリースピリット</span>
+            <span class="type-sub">自由人</span>
+          </td>
+          <td class="td-axis">
+            <span class="axis-tag" style="background:var(--ne-l);color:var(--ne);">Ne</span><br>
+            <span class="center-tag">◉ Guts</span>
+          </td>
+          <td>
+            <span class="mbti-main">ENFP</span>
+            <span class="mbti-alt">/ ENTP亜型</span>
+            <span class="mbti-note">Ne × 本能的行動。自由衝動をそのまま生きる。計画より瞬間。</span>
+          </td>
+          <td>
+            <span class="enn-main">E7w8</span>
+            <span class="enn-alt">/ E9w8</span>
+            <span class="mbti-note">自由・冒険・回避。痛みを避けながら新鮮さを求め続ける。</span>
+          </td>
+          <td>
+            <div class="instinct-badges">
+              <span class="inst-badge primary">so</span>
+              <span class="inst-badge">sx</span>
+            </div>
+            <span class="mbti-note">社会的本能（so）と性的本能（sx）が混在。束縛を嫌う。</span>
+          </td>
+          <td>
+            <span class="soc-code">ILE</span>
+            <span class="soc-name">ENTp / IEE亜型</span>
+            <span class="soc-funcs">Ne 強リード</span>
+          </td>
+          <td>
+            <span class="psy-code">VELF</span>
+            <div class="psy-breakdown">
+              <span class="psy-aspect psy-1">V 意志</span>
+              <span class="psy-aspect psy-2">E 感情</span>
+              <span class="psy-aspect psy-3">L 論理</span>
+              <span class="psy-aspect psy-4">F 身体</span>
+            </div>
+            <span class="psy-note">自由意志と感情表現が前景。継続的論理・身体的安定が弱点。</span>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CARD VIEW — Mobile                                            -->
+    <!-- ============================================================ -->
+    <div class="cards-view">
+
+      <!-- Se群 -->
+      <div style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--se);padding:4px 0 8px;border-bottom:2px solid var(--se-l);margin-bottom:4px;">Se群 — 外向感覚</div>
+
+      <!-- Card 1 -->
+      <div class="type-card" style="border-left:3px solid var(--se);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 01</div>
+            <div class="tc2-name">ロマンハンター <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">狩人</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--se-l);color:var(--se);">Se</span>
+              <span class="tc2-center">♥ Heart</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">ESFP / ISFP</div><div class="tc2-item-sub">Se主機能 + Fi補助</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E3 / E2w3</div><div class="tc2-item-badges"><span class="inst-badge primary">sx</span><span class="inst-badge">sp</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">SEE</div><div class="tc2-item-sub">ESFp — Se/Fe</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">EFVL</div><div class="tc2-item-note">感情・身体 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="type-card" style="border-left:3px solid var(--se);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 02</div>
+            <div class="tc2-name">ストラテジスト <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">戦略家</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--se-l);color:var(--se);">Se</span>
+              <span class="tc2-center">◆ Head</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">ESTP / ISTP</div><div class="tc2-item-sub">Se主機能 + Ti補助</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E3w2 / E7w8</div><div class="tc2-item-badges"><span class="inst-badge primary">sx</span><span class="inst-badge">sp</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">SLE</div><div class="tc2-item-sub">ESTp — Se/Ti</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">FLEV</div><div class="tc2-item-note">身体・論理 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="type-card" style="border-left:3px solid var(--se);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 03</div>
+            <div class="tc2-name">チャレンジャー <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">挑戦者</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--se-l);color:var(--se);">Se</span>
+              <span class="tc2-center">◉ Guts</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">ESTP</div><div class="tc2-item-sub">Se × 直接行動</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E8 / E8w7</div><div class="tc2-item-badges"><span class="inst-badge primary">sx</span><span class="inst-badge">sp</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">SLE</div><div class="tc2-item-sub">ESTp — Se強リード</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">VFLE</div><div class="tc2-item-note">意志・身体 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Ni群 -->
+      <div style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ni);padding:4px 0 8px;border-bottom:2px solid var(--ni-l);margin-bottom:4px;margin-top:8px;">Ni群 — 内向直観</div>
+
+      <!-- Card 4 -->
+      <div class="type-card" style="border-left:3px solid var(--ni);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 04</div>
+            <div class="tc2-name">エンパス <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">共感者</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--ni-l);color:var(--ni);">Ni</span>
+              <span class="tc2-center">♥ Heart</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">INFJ / ENFJ</div><div class="tc2-item-sub">Ni主機能 + Fe補助</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E4 / E2w3</div><div class="tc2-item-badges"><span class="inst-badge primary">sx</span><span class="inst-badge">so</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">IEI</div><div class="tc2-item-sub">INFp — Ni/Fe</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">ELVF</div><div class="tc2-item-note">感情・論理(洞察) 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="type-card" style="border-left:3px solid var(--ni);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 05</div>
+            <div class="tc2-name">オブザーバー <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">観察者</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--ni-l);color:var(--ni);">Ni</span>
+              <span class="tc2-center">◆ Head</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">INTJ / INTP</div><div class="tc2-item-sub">Ni主機能 + Te補助</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E5 / E5w6</div><div class="tc2-item-badges"><span class="inst-badge primary">sp</span><span class="inst-badge">sx</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">ILI</div><div class="tc2-item-sub">INTp — Ni/Te</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">LVEF</div><div class="tc2-item-note">論理・意志 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="type-card" style="border-left:3px solid var(--ni);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 06</div>
+            <div class="tc2-name">フェイタリスト <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">運命論者</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--ni-l);color:var(--ni);">Ni</span>
+              <span class="tc2-center">◉ Guts</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">INTJ / ENTJ</div><div class="tc2-item-sub">Ni × 決断・行動</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E6 / E1w9</div><div class="tc2-item-badges"><span class="inst-badge primary">so</span><span class="inst-badge">sp</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">LIE</div><div class="tc2-item-sub">ENTj — Te/Ni</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">VLEF</div><div class="tc2-item-note">意志・論理 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Si群 -->
+      <div style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--si);padding:4px 0 8px;border-bottom:2px solid var(--si-l);margin-bottom:4px;margin-top:8px;">Si群 — 内向感覚</div>
+
+      <!-- Card 7 -->
+      <div class="type-card" style="border-left:3px solid var(--si);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 07</div>
+            <div class="tc2-name">ガーディアン <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">保護人</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--si-l);color:var(--si);">Si</span>
+              <span class="tc2-center">♥ Heart</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">ISFJ / ESFJ</div><div class="tc2-item-sub">Si主機能 + Fe補助</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E2 / E2w1</div><div class="tc2-item-badges"><span class="inst-badge primary">so</span><span class="inst-badge">sp</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">ESE</div><div class="tc2-item-sub">ESFj — Fe/Si</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">FEVL</div><div class="tc2-item-note">身体ケア・感情 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="type-card" style="border-left:3px solid var(--si);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 08</div>
+            <div class="tc2-name">アーキテクト <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">構築者</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--si-l);color:var(--si);">Si</span>
+              <span class="tc2-center">◆ Head</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">ISTJ / ESTJ</div><div class="tc2-item-sub">Si主機能 + Ti/Te補助</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E1 / E6w5</div><div class="tc2-item-badges"><span class="inst-badge primary">sp</span><span class="inst-badge">so</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">LSE</div><div class="tc2-item-sub">ESTj — Te/Si</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">LFEV</div><div class="tc2-item-note">論理・身体 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="type-card" style="border-left:3px solid var(--si);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 09</div>
+            <div class="tc2-name">ケアテイカー <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">世話役</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--si-l);color:var(--si);">Si</span>
+              <span class="tc2-center">◉ Guts</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">ISFJ / ISTJ</div><div class="tc2-item-sub">Si × 身体的実践</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E9 / E9w1</div><div class="tc2-item-badges"><span class="inst-badge primary">sp</span><span class="inst-badge">so</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">SEI</div><div class="tc2-item-sub">ISFp — Si/Fe</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">FVLE</div><div class="tc2-item-note">身体・継続意志 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Ne群 -->
+      <div style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ne);padding:4px 0 8px;border-bottom:2px solid var(--ne-l);margin-bottom:4px;margin-top:8px;">Ne群 — 外向直観</div>
+
+      <!-- Card 10 -->
+      <div class="type-card" style="border-left:3px solid var(--ne);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 10</div>
+            <div class="tc2-name">トラベラー <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">旅人</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--ne-l);color:var(--ne);">Ne</span>
+              <span class="tc2-center">♥ Heart</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">ENFP / INFP</div><div class="tc2-item-sub">Ne主機能 + Fi補助</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E4w3 / E7w6</div><div class="tc2-item-badges"><span class="inst-badge primary">so</span><span class="inst-badge">sx</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">IEE</div><div class="tc2-item-sub">ENFp — Ne/Fi</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">ELVF</div><div class="tc2-item-note">感情・直観 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="type-card" style="border-left:3px solid var(--ne);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 11</div>
+            <div class="tc2-name">エクスプローラー <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">探検家</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--ne-l);color:var(--ne);">Ne</span>
+              <span class="tc2-center">◆ Head</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">ENTP / INTP</div><div class="tc2-item-sub">Ne主機能 + Ti補助</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E5w4 / E7w6</div><div class="tc2-item-badges"><span class="inst-badge primary">so</span><span class="inst-badge">sp</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">ILE</div><div class="tc2-item-sub">ENTp — Ne/Ti</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">LVEF</div><div class="tc2-item-note">論理・意志 前景</div></div>
+        </div>
+      </div>
+
+      <!-- Card 12 -->
+      <div class="type-card" style="border-left:3px solid var(--ne);">
+        <div class="tc2-head">
+          <div class="tc2-head-left">
+            <div class="tc2-num">TYPE 12</div>
+            <div class="tc2-name">フリースピリット <span style="font-size:.7rem;font-family:var(--font-s);color:var(--text-light);">自由人</span></div>
+            <div class="tc2-badges">
+              <span class="tc2-axis" style="background:var(--ne-l);color:var(--ne);">Ne</span>
+              <span class="tc2-center">◉ Guts</span>
+            </div>
+          </div>
+        </div>
+        <div class="tc2-body">
+          <div class="tc2-item"><span class="tc2-item-label">MBTI</span><div class="tc2-item-val">ENFP / ENTP</div><div class="tc2-item-sub">Ne × 本能的行動</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Enneagram</span><div class="tc2-item-val">E7w8 / E9w8</div><div class="tc2-item-badges"><span class="inst-badge primary">so</span><span class="inst-badge">sx</span></div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Socionics</span><div class="tc2-item-val">ILE / IEE</div><div class="tc2-item-sub">Ne 強リード</div></div>
+          <div class="tc2-item"><span class="tc2-item-label">Psychosophy</span><div class="tc2-item-val">VELF</div><div class="tc2-item-note">意志・感情 前景</div></div>
+        </div>
+      </div>
+
+    </div><!-- /cards-view -->
+
+    <!-- ============================================================ -->
+    <!-- THEORY NOTES                                                  -->
+    <!-- ============================================================ -->
+    <div class="sec-header pt-40">
+      <span class="sec-tag">Reading Guide</span>
+      <h2 class="sec-title">各システムの<em>読み方</em></h2>
+    </div>
+
+    <div class="notes-grid">
+      <div class="note-card">
+        <div class="note-head">
+          <span class="note-badge" style="background:#e8e0f0;color:#5b3fa0;">MBTI</span>
+          <span class="note-title">機能スタック対応</span>
+        </div>
+        <div class="note-body">
+          Polaの知覚軸（Se/Ni/Si/Ne）はMBTIの<strong>主機能・補助機能</strong>に直接対応。<br><br>
+          <ul>
+            <li><strong>Se</strong> → ESxP / ISxP（Se主・補助型）</li>
+            <li><strong>Ni</strong> → INxJ / ENxJ（Ni主・補助型）</li>
+            <li><strong>Si</strong> → ISxJ / ESxJ（Si主・補助型）</li>
+            <li><strong>Ne</strong> → ENxP / INxP（Ne主・補助型）</li>
+          </ul><br>
+          センター（Heart/Head）がF/Tの傾向を決定づける。
+        </div>
+      </div>
+      <div class="note-card">
+        <div class="note-head">
+          <span class="note-badge" style="background:#fae0e8;color:#9c3a53;">Enneagram</span>
+          <span class="note-title">センターとトライアド</span>
+        </div>
+        <div class="note-body">
+          Polaのセンター軸はエニアグラムの<strong>知性の3センター</strong>と理論的に同一。<br><br>
+          <ul>
+            <li><strong>Heart</strong> ↔ 心のトライアド（2・3・4番）</li>
+            <li><strong>Head</strong> ↔ 頭のトライアド（5・6・7番）</li>
+            <li><strong>Guts</strong> ↔ 腸のトライアド（8・9・1番）</li>
+          </ul><br>
+          知覚軸がトライアド内の<strong>どの番号か</strong>を絞り込む。
+        </div>
+      </div>
+      <div class="note-card">
+        <div class="note-head">
+          <span class="note-badge" style="background:#deeaf7;color:#3a5a80;">生得本能</span>
+          <span class="note-title">本能スタックの読み方</span>
+        </div>
+        <div class="note-body">
+          生得本能（Instinctual Variants）はエニアグラムの<strong>サブタイプ</strong>。優位な本能が恋愛スタイルを規定する。<br><br>
+          <ul>
+            <li><strong>sx（性的本能）</strong>— 一対一の強度・征服・融合</li>
+            <li><strong>sp（自己保存本能）</strong>— 安全・安定・資源の確保</li>
+            <li><strong>so（社会的本能）</strong>— 集団・役割・承認</li>
+          </ul><br>
+          Se群はsx優位が多く、Si群はsp優位が多い傾向。
+        </div>
+      </div>
+      <div class="note-card">
+        <div class="note-head">
+          <span class="note-badge" style="background:#e4f0d8;color:#3a6a30;">Socionics</span>
+          <span class="note-title">インフォメーションエレメント</span>
+        </div>
+        <div class="note-body">
+          ソシオニクスはユング機能をベースとした<strong>16型システム</strong>。MBTIと近似するが<strong>役割・相互作用理論</strong>が充実。<br><br>
+          略称の読み方：<br>
+          <strong>SEE</strong> = Se/Fe優位（ESFp）<br>
+          <strong>ILI</strong> = Ni/Te優位（INTp）<br>
+          <strong>IEE</strong> = Ne/Fi優位（ENFp）<br><br>
+          対人パターンの分析にはMBTIより精密。
+        </div>
+      </div>
+      <div class="note-card" style="grid-column:1/-1;">
+        <div class="note-head">
+          <span class="note-badge" style="background:#f4f0e8;color:#6a5040;">Psychosophy</span>
+          <span class="note-title">4アスペクトの順位構造（アファナシェフ理論）</span>
+        </div>
+        <div class="note-body">
+          サイコソフィア（心理的ソシオニクス）はA・アファナシェフが提唱した<strong>24型の人格理論</strong>。4アスペクトを強い順に並べる。<br><br>
+          4アスペクト：<strong>V（意志）</strong> ・ <strong>L（論理）</strong> ・ <strong>F（身体/物理）</strong> ・ <strong>E（感情）</strong><br><br>
+          1位・2位が「自信領域」、3位・4位が「弱点・苦手領域」。例えば<strong>EFVL</strong>は感情と身体が強く、意志と論理が弱点。
+          Polaの知覚軸がFの位置を、センター軸がE/L/Vの位置を決定づける。
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      <p><strong>理論的対応について：</strong> この早見表は各心理類型システムの理論的骨格を比較した近似対応です。各システムは独立した構造を持ち、完全な1対1対応は存在しません。同一タイプの人が異なるMBTIやエニアグラムを持つことも十分あり得ます。自己理解の補助ツールとしてご活用ください。</p>
+    </div>
+
+    <!-- SHARE -->
+    <div class="share-block">
+      <div class="share-label">Share</div>
+      <div class="share-btns">
+        <a class="share-btn x-btn" href="https://twitter.com/intent/tweet?text=Pola%20×%20MBTI%20×%20エニアグラム%20対応早見表%20%23Pola診断%20%23MBTI%20%23エニアグラム&url=https%3A%2F%2Futage-jpg.github.io%2FUTAGE_LAB%2Fpola%2Fspecs%2Ftypology_crossref.html" target="_blank" rel="noopener">
+          𝕏 ポストする
+        </a>
+        <a class="share-btn line-btn" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Futage-jpg.github.io%2FUTAGE_LAB%2Fpola%2Fspecs%2Ftypology_crossref.html" target="_blank" rel="noopener">
+          LINE で送る
+        </a>
+        <button class="share-btn copy-btn" onclick="navigator.clipboard.writeText(location.href).then(()=>{this.textContent='✓ コピーしました';setTimeout(()=>{this.textContent='リンクをコピー'},2000})">
+          リンクをコピー
+        </button>
+      </div>
+    </div>
+
+  </section>
+</div><!-- /wrap -->
+
+<footer>
+  <div class="footer-brand"><span>Pola</span> — 恋愛極性診断</div>
+  <div class="footer-copy" style="margin-top:4px;">UTAGE LAB — Psychology &amp; Typology Research</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pola × 他タイプ論 SNSカード | UTAGE LAB</title>
+<meta name="description" content="Pola 12タイプとMBTI・エニアグラム・ソシオニクス・サイコソフィアの対応傾向をSNS投稿用正方形カードで表示">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-s:'Noto Serif JP',serif;
+  --font-m:'DM Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-s);background:#0d0a12;color:#fff;min-height:100vh;overflow-x:hidden;}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(13,10,18,0.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.08);}
+.nav-brand{font-family:var(--font-d);font-size:.85rem;font-weight:700;color:#fff;text-decoration:none;}
+.nav-brand em{font-style:italic;color:#e07090;}
+.nav-table{font-family:var(--font-m);font-size:.58rem;color:rgba(255,255,255,.5);text-decoration:none;padding:4px 10px;border:1px solid rgba(255,255,255,.18);border-radius:100px;letter-spacing:.06em;transition:all .2s;}
+.nav-table:hover{color:#fff;border-color:rgba(255,255,255,.5);}
+
+/* ===== INTRO ===== */
+.intro{padding:68px 20px 20px;text-align:center;max-width:540px;margin:0 auto;}
+.intro-tag{font-family:var(--font-m);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:3px 12px;border:1px solid rgba(255,255,255,.15);border-radius:100px;display:inline-block;margin-bottom:12px;}
+.intro h1{font-family:var(--font-d);font-size:clamp(1.4rem,4vw,1.9rem);font-weight:900;color:#fff;line-height:1.25;margin-bottom:8px;}
+.intro h1 em{font-style:italic;color:#e07090;}
+.intro-sub{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:14px;}
+.intro-hint{display:flex;align-items:center;gap:8px;justify-content:center;font-family:var(--font-m);font-size:.62rem;color:rgba(255,255,255,.4);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px 14px;}
+.intro-hint svg{width:16px;height:16px;opacity:.5;flex-shrink:0;}
+
+/* ===== INDEX ===== */
+.type-index{max-width:540px;margin:16px auto 0;padding:0 20px;}
+.idx-label{font-family:var(--font-m);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.3);margin-bottom:8px;}
+.idx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
+.idx-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 3px;border-radius:9px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);text-decoration:none;transition:all .2s;cursor:pointer;}
+.idx-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);}
+.idx-num{font-family:var(--font-m);font-size:.6rem;color:rgba(255,255,255,.35);}
+.idx-name{font-size:.65rem;color:rgba(255,255,255,.7);margin-top:2px;text-align:center;line-height:1.3;}
+.idx-btn.se{border-color:rgba(201,96,122,.4);}
+.idx-btn.ni{border-color:rgba(123,94,167,.4);}
+.idx-btn.si{border-color:rgba(61,139,139,.4);}
+.idx-btn.ne{border-color:rgba(201,168,76,.4);}
+
+/* ===== CARDS CONTAINER ===== */
+.cards{padding:22px 0 56px;display:flex;flex-direction:column;align-items:center;gap:20px;}
+
+/* ===== CARD BASE ===== */
+.card-wrap{width:min(calc(100vw - 28px), 500px);position:relative;}
+.card{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding:13px 13px 10px;
+}
+
+/* ===== STYLE GRADIENTS ===== */
+.card.se{background:linear-gradient(148deg,#2c0c14 0%,#7a1e32 45%,#3e0e1c 100%);}
+.card.ni{background:linear-gradient(148deg,#1a0830 0%,#4e2284 45%,#280e44 100%);}
+.card.si{background:linear-gradient(148deg,#062020 0%,#1a5e5e 45%,#0c2e2e 100%);}
+.card.ne{background:linear-gradient(148deg,#1c1002 0%,#7a4810 45%,#2e1804 100%);}
+
+/* Noise texture overlay */
+.card::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;
+}
+/* Radial highlight */
+.card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 30% 20%,rgba(255,255,255,.07) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.card > *{position:relative;z-index:1;}
+
+/* ===== CARD HEADER ===== */
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.card-brand{font-family:var(--font-d);font-size:.6rem;font-weight:700;color:rgba(255,255,255,.38);letter-spacing:.04em;}
+.card-brand em{font-style:italic;}
+.card-num{font-family:var(--font-m);font-size:.6rem;font-weight:600;color:rgba(255,255,255,.38);letter-spacing:.14em;}
+
+/* ===== AXES ROW ===== */
+.card-axes{display:flex;gap:5px;margin-bottom:5px;flex-wrap:wrap;}
+.ax{font-family:var(--font-m);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:.05em;}
+.ax.se{background:rgba(201,96,122,.3);color:#ffb8cc;border:1px solid rgba(201,96,122,.5);}
+.ax.ni{background:rgba(123,94,167,.3);color:#d0b8ff;border:1px solid rgba(123,94,167,.5);}
+.ax.si{background:rgba(61,139,139,.3);color:#90e8e8;border:1px solid rgba(61,139,139,.5);}
+.ax.ne{background:rgba(201,168,76,.3);color:#ffe090;border:1px solid rgba(201,168,76,.5);}
+.ax.heart{background:rgba(201,96,122,.25);color:#ffb8cc;border:1px solid rgba(201,96,122,.45);}
+.ax.head{background:rgba(91,127,166,.25);color:#b0d0f0;border:1px solid rgba(91,127,166,.45);}
+.ax.guts{background:rgba(122,156,91,.25);color:#b0dc90;border:1px solid rgba(122,156,91,.45);}
+
+/* ===== TYPE NAME ===== */
+.card-name{font-family:var(--font-d);font-size:clamp(1.85rem,8vw,2.4rem);font-weight:900;color:#fff;line-height:1.0;margin-bottom:2px;letter-spacing:-.02em;}
+.card-name-en{font-family:var(--font-m);font-size:.62rem;font-weight:500;color:rgba(255,255,255,.38);letter-spacing:.14em;margin-bottom:5px;}
+.card-tagline{font-size:clamp(.72rem,2.8vw,.85rem);color:rgba(255,255,255,.65);font-style:italic;line-height:1.45;margin-bottom:6px;font-family:var(--font-d);font-weight:400;}
+
+/* ===== DIVIDER ===== */
+.card-divider{height:1px;background:linear-gradient(90deg,rgba(255,255,255,.2),rgba(255,255,255,.04));margin-bottom:6px;}
+
+/* ===== 4-PANEL GRID ===== */
+.card-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  flex:1;
+  min-height:0;
+}
+.panel{
+  background:rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;
+  padding:6px 8px 7px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  overflow:hidden;
+}
+.panel-label{
+  font-family:var(--font-m);
+  font-size:.58rem;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+  border-bottom:1px solid rgba(255,255,255,.1);
+  padding-bottom:3px;
+  margin-bottom:1px;
+}
+.panel-tags{display:flex;flex-wrap:wrap;gap:3px;}
+/* PRIMARY tags — large & bold, main info */
+.ptag{font-family:var(--font-m);padding:3px 9px;border-radius:6px;white-space:nowrap;line-height:1.2;}
+.ptag.pri{
+  font-size:clamp(.8rem,3.3vw,1rem);
+  font-weight:700;
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  letter-spacing:.02em;
+}
+/* SECONDARY tags — slightly smaller */
+.ptag.sec{
+  font-size:clamp(.7rem,2.8vw,.85rem);
+  font-weight:600;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.65);
+}
+/* Instinct subtypes */
+.ptag.inst-sx{
+  font-size:clamp(.72rem,3vw,.88rem);
+  font-weight:700;
+  background:rgba(200,80,120,.3);
+  color:#ffb8cc;
+  border:1px solid rgba(200,80,120,.4);
+}
+.ptag.inst-sp{
+  font-size:clamp(.72rem,3vw,.88rem);
+  font-weight:700;
+  background:rgba(80,180,110,.25);
+  color:#a8f0c0;
+  border:1px solid rgba(80,180,110,.35);
+}
+.ptag.inst-so{
+  font-size:clamp(.72rem,3vw,.88rem);
+  font-weight:700;
+  background:rgba(90,120,220,.25);
+  color:#b0c8ff;
+  border:1px solid rgba(90,120,220,.35);
+}
+/* panel-note は削除（余白節約） */
+.panel-note{display:none;}
+
+/* ===== CARD FOOTER ===== */
+.card-foot{margin-top:5px;display:flex;align-items:center;justify-content:space-between;}
+.card-foot-url{font-family:var(--font-m);font-size:.52rem;color:rgba(255,255,255,.22);letter-spacing:.06em;}
+.card-foot-disc{font-family:var(--font-m);font-size:.5rem;color:rgba(255,255,255,.22);}
+
+/* ===== DISCLAIMER ===== */
+.page-disc{max-width:540px;margin:0 auto;padding:0 20px 8px;}
+.disc-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 16px;}
+.disc-text{font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.8;}
+.disc-text strong{color:rgba(255,255,255,.65);}
+
+/* ===== TABLE LINK ===== */
+.table-link{max-width:540px;margin:0 auto 0;padding:0 20px;}
+.tlink-inner{border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;background:rgba(255,255,255,.04);transition:all .2s;}
+.tlink-inner:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);}
+.tlink-label{font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:3px;}
+.tlink-title{font-family:var(--font-d);font-size:.92rem;font-weight:700;color:#fff;}
+.tlink-arrow{font-size:1.1rem;color:rgba(255,255,255,.3);}
+
+@media(max-width:360px){
+  .card{padding:11px 11px 8px;}
+  .card-name{font-size:1.6rem;}
+  .ptag.pri{font-size:.75rem;}
+  .ptag.sec{font-size:.68rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../portal/index.html" class="nav-brand"><em>Pola</em> Portal</a>
+  <a href="cross_systems.html" class="nav-table">← 全体早見表</a>
+</nav>
+
+<!-- INTRO -->
+<div class="intro">
+  <span class="intro-tag">SNS Share Cards</span>
+  <h1>Pola × <em>他タイプ論</em><br>SNSカード</h1>
+  <p class="intro-sub">各タイプのMBTI・エニアグラム（生得本能）・ソシオニクス・サイコソフィアとの対応傾向を、SNS投稿用の正方形カードでまとめています。</p>
+  <div class="intro-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+    スクリーンショットしてそのままSNSに投稿できます
+  </div>
+</div>
+
+<!-- TYPE INDEX -->
+<div class="type-index">
+  <div class="idx-label">TYPE INDEX — タップでジャンプ</div>
+  <div class="idx-grid">
+    <a href="#card-1" class="idx-btn se"><span class="idx-num">01</span><span class="idx-name">ロマン<br>ハンター</span></a>
+    <a href="#card-2" class="idx-btn se"><span class="idx-num">02</span><span class="idx-name">ストラ<br>テジスト</span></a>
+    <a href="#card-3" class="idx-btn se"><span class="idx-num">03</span><span class="idx-name">チャレン<br>ジャー</span></a>
+    <a href="#card-4" class="idx-btn ni"><span class="idx-num">04</span><span class="idx-name">エンパス</span></a>
+    <a href="#card-5" class="idx-btn ni"><span class="idx-num">05</span><span class="idx-name">オブザー<br>バー</span></a>
+    <a href="#card-6" class="idx-btn ni"><span class="idx-num">06</span><span class="idx-name">フェイタ<br>リスト</span></a>
+    <a href="#card-7" class="idx-btn si"><span class="idx-num">07</span><span class="idx-name">ガーディ<br>アン</span></a>
+    <a href="#card-8" class="idx-btn si"><span class="idx-num">08</span><span class="idx-name">アーキ<br>テクト</span></a>
+    <a href="#card-9" class="idx-btn si"><span class="idx-num">09</span><span class="idx-name">ケアテイ<br>カー</span></a>
+    <a href="#card-10" class="idx-btn ne"><span class="idx-num">10</span><span class="idx-name">トラベ<br>ラー</span></a>
+    <a href="#card-11" class="idx-btn ne"><span class="idx-num">11</span><span class="idx-name">エクスプ<br>ローラー</span></a>
+    <a href="#card-12" class="idx-btn ne"><span class="idx-num">12</span><span class="idx-name">フリース<br>ピリット</span></a>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="page-disc" style="margin-top:20px;">
+  <div class="disc-box">
+    <div class="disc-text">
+      <strong>⚠ 読み方の注意：</strong>この対応は「1対1の変換表」ではなく、<strong>行動パターン・動機の類似性による傾向対応</strong>です。同じPolaタイプでも異なるMBTI等に分類されることは一般的です。「複数の候補のうち共鳴しやすいもの」として参考にしてください。
+    </div>
+  </div>
+</div>
+
+<!-- TABLE LINK -->
+<div class="table-link" style="margin-top:14px;">
+  <a href="cross_systems.html" class="tlink-inner">
+    <div>
+      <div class="tlink-label">FULL TABLE</div>
+      <div class="tlink-title">全体早見表（横長テーブル版）→</div>
+    </div>
+    <div class="tlink-arrow">↗</div>
+  </a>
+</div>
+
+<!-- ===== CARDS ===== -->
+<div class="cards">
+
+  <!-- =============== TYPE 01 =============== -->
+  <div class="card-wrap" id="card-1">
+    <div class="card se">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 01</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax se">Se 狩猟型</span>
+        <span class="ax heart">❤ 愛情センター</span>
+      </div>
+      <div class="card-name">ロマンハンター</div>
+      <div class="card-name-en">THE HUNTER</div>
+      <div class="card-tagline">愛されていると確信するまで、前進を止めない。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ESFP</span>
+            <span class="ptag pri">ENFJ</span>
+            <span class="ptag sec">ESTP</span>
+            <span class="ptag sec">ISFP</span>
+          </div>
+          <div class="panel-note">Se行動力＋愛情確認欲求が強い型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E2w3</span>
+            <span class="ptag pri">E3w2</span>
+            <span class="ptag sec">E4w3</span>
+            <span class="ptag sec">E6w7</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sx">sx 優位</span>
+            <span class="ptag inst-sp">sp 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">SEE</span>
+            <span class="ptag pri">SLE</span>
+            <span class="ptag sec">EIE</span>
+          </div>
+          <div class="panel-note">Se先導×感情重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E &gt; P</span>
+            <span class="ptag sec">P &gt; E</span>
+          </div>
+          <div class="panel-note">感情(E)・行動(P)が上位に来やすい傾向</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 02 =============== -->
+  <div class="card-wrap" id="card-2">
+    <div class="card se">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 02</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax se">Se 狩猟型</span>
+        <span class="ax head">▲ 安心センター</span>
+      </div>
+      <div class="card-name">ストラテジスト</div>
+      <div class="card-name-en">THE STRATEGIST</div>
+      <div class="card-tagline">安心できる関係を、自分の手で設計しようとする。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ESTP</span>
+            <span class="ptag pri">ENTJ</span>
+            <span class="ptag sec">ESTJ</span>
+            <span class="ptag sec">INTJ</span>
+          </div>
+          <div class="panel-note">行動主導＋関係をコントロールする型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E3w2</span>
+            <span class="ptag pri">E6w5</span>
+            <span class="ptag sec">E8w7</span>
+            <span class="ptag sec">E3w4</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sp">sp 優位</span>
+            <span class="ptag inst-sx">sx 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">SLE</span>
+            <span class="ptag pri">LSE</span>
+            <span class="ptag sec">LIE</span>
+          </div>
+          <div class="panel-note">Se/Te先導×論理重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">L &gt; P</span>
+            <span class="ptag sec">P &gt; L</span>
+          </div>
+          <div class="panel-note">論理(L)と行動(P)が上位に来やすい傾向</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 03 =============== -->
+  <div class="card-wrap" id="card-3">
+    <div class="card se">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 03</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax se">Se 狩猟型</span>
+        <span class="ax guts">◆ 本能センター</span>
+      </div>
+      <div class="card-name">チャレンジャー</div>
+      <div class="card-name-en">THE CHALLENGER</div>
+      <div class="card-tagline">欲しいと感じた瞬間に、もう動いている。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ESTP</span>
+            <span class="ptag pri">ESFP</span>
+            <span class="ptag sec">ISTP</span>
+            <span class="ptag sec">ENTJ</span>
+          </div>
+          <div class="panel-note">衝動的行動力＋本能的独立性が強い型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E8w7</span>
+            <span class="ptag pri">E3w4</span>
+            <span class="ptag sec">E7w8</span>
+            <span class="ptag sec">E1w9</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sp">sp 優位</span>
+            <span class="ptag inst-sx">sx 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">SLE</span>
+            <span class="ptag pri">SEE</span>
+            <span class="ptag sec">LSI</span>
+          </div>
+          <div class="panel-note">Se先導×意志・本能重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">V &gt; P</span>
+            <span class="ptag sec">P &gt; V</span>
+          </div>
+          <div class="panel-note">意志(V)と行動(P)が上位に来やすい傾向</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 04 =============== -->
+  <div class="card-wrap" id="card-4">
+    <div class="card ni">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 04</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax ni">Ni 共鳴型</span>
+        <span class="ax heart">❤ 愛情センター</span>
+      </div>
+      <div class="card-name">エンパス</div>
+      <div class="card-name-en">THE EMPATH</div>
+      <div class="card-tagline">愛することが、自分でいることだと信じている。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">INFJ</span>
+            <span class="ptag pri">ISFJ</span>
+            <span class="ptag sec">INFP</span>
+            <span class="ptag sec">ENFJ</span>
+          </div>
+          <div class="panel-note">深い共感力＋献身的愛情表現が強い型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E2w1</span>
+            <span class="ptag pri">E4w3</span>
+            <span class="ptag sec">E2w3</span>
+            <span class="ptag sec">E9w1</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sx">sx 優位</span>
+            <span class="ptag inst-sp">sp 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">IEI</span>
+            <span class="ptag pri">EII</span>
+            <span class="ptag sec">ESI</span>
+          </div>
+          <div class="panel-note">Ni/Fi先導×感情・共感重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E &gt; L</span>
+            <span class="ptag sec">E &gt; P</span>
+          </div>
+          <div class="panel-note">感情(E)が最上位。論理(L)が抑制されやすい</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 05 =============== -->
+  <div class="card-wrap" id="card-5">
+    <div class="card ni">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 05</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax ni">Ni 共鳴型</span>
+        <span class="ax head">▲ 安心センター</span>
+      </div>
+      <div class="card-name">オブザーバー</div>
+      <div class="card-name-en">THE OBSERVER</div>
+      <div class="card-tagline">確信が持てるまで、全力で委ねることができない。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">INFJ</span>
+            <span class="ptag pri">INTJ</span>
+            <span class="ptag sec">INTP</span>
+            <span class="ptag sec">ISFJ</span>
+          </div>
+          <div class="panel-note">慎重な信頼構築＋内向的観察力が強い型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E5w6</span>
+            <span class="ptag pri">E6w5</span>
+            <span class="ptag sec">E1w9</span>
+            <span class="ptag sec">E4w5</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sp">sp 優位</span>
+            <span class="ptag inst-so">so 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ILI</span>
+            <span class="ptag pri">IEI</span>
+            <span class="ptag sec">LII</span>
+          </div>
+          <div class="panel-note">Ni先導×分析・慎重さ重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">L &gt; E</span>
+            <span class="ptag sec">L &gt; V</span>
+          </div>
+          <div class="panel-note">論理(L)が上位で感情(E)が抑制されやすい</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 06 =============== -->
+  <div class="card-wrap" id="card-6">
+    <div class="card ni">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 06</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax ni">Ni 共鳴型</span>
+        <span class="ax guts">◆ 本能センター</span>
+      </div>
+      <div class="card-name">フェイタリスト</div>
+      <div class="card-name-en">THE FATALIST</div>
+      <div class="card-tagline">流れに乗りながら、芯だけは手放さない。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ISTP</span>
+            <span class="ptag pri">INFJ</span>
+            <span class="ptag sec">INTJ</span>
+            <span class="ptag sec">ISFP</span>
+          </div>
+          <div class="panel-note">流れに乗りながら内なる芯を持つ型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E9w8</span>
+            <span class="ptag pri">E5w4</span>
+            <span class="ptag sec">E8w9</span>
+            <span class="ptag sec">E4w5</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sp">sp 優位</span>
+            <span class="ptag inst-so">so 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ILI</span>
+            <span class="ptag pri">SLI</span>
+            <span class="ptag sec">IEI</span>
+          </div>
+          <div class="panel-note">Ni/Si先導×意志的な内向性に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">V &gt; E</span>
+            <span class="ptag sec">V &gt; L</span>
+          </div>
+          <div class="panel-note">意志(V)が上位で感情(E)が表に出にくい傾向</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 07 =============== -->
+  <div class="card-wrap" id="card-7">
+    <div class="card si">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 07</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax si">Si 守護型</span>
+        <span class="ax heart">❤ 愛情センター</span>
+      </div>
+      <div class="card-name">ガーディアン</div>
+      <div class="card-name-en">THE GUARDIAN</div>
+      <div class="card-tagline">気づかれなくても、今日も誰かのために動いている。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ISFJ</span>
+            <span class="ptag pri">ESFJ</span>
+            <span class="ptag sec">INFP</span>
+            <span class="ptag sec">ENFJ</span>
+          </div>
+          <div class="panel-note">行動で愛を示すケア型＋承認を求める型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E2w1</span>
+            <span class="ptag pri">E6w7</span>
+            <span class="ptag sec">E1w2</span>
+            <span class="ptag sec">E9w1</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-so">so 優位</span>
+            <span class="ptag inst-sp">sp 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">SEI</span>
+            <span class="ptag pri">ESI</span>
+            <span class="ptag sec">ESE</span>
+          </div>
+          <div class="panel-note">Si/Fi先導×感情的ケア重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E &gt; P</span>
+            <span class="ptag sec">P &gt; L</span>
+          </div>
+          <div class="panel-note">感情(E)が上位で行動(P)と連動する傾向</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 08 =============== -->
+  <div class="card-wrap" id="card-8">
+    <div class="card si">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 08</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax si">Si 守護型</span>
+        <span class="ax head">▲ 安心センター</span>
+      </div>
+      <div class="card-name">アーキテクト</div>
+      <div class="card-name-en">THE ARCHITECT</div>
+      <div class="card-tagline">崩れない関係を、一つひとつ丁寧に積み上げる。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ISTJ</span>
+            <span class="ptag pri">ISFJ</span>
+            <span class="ptag sec">ESTJ</span>
+            <span class="ptag sec">INTJ</span>
+          </div>
+          <div class="panel-note">安定構築＋変化回避＋ルーティン重視の型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E1w9</span>
+            <span class="ptag pri">E6w5</span>
+            <span class="ptag sec">E3w4</span>
+            <span class="ptag sec">E5w6</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sp">sp 優位</span>
+            <span class="ptag inst-so">so 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">LSI</span>
+            <span class="ptag pri">SLI</span>
+            <span class="ptag sec">LSE</span>
+          </div>
+          <div class="panel-note">Si/Ti先導×体系・安定重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">L &gt; P</span>
+            <span class="ptag sec">P &gt; V</span>
+          </div>
+          <div class="panel-note">論理(L)と行動(P)で安定を設計する傾向</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 09 =============== -->
+  <div class="card-wrap" id="card-9">
+    <div class="card si">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 09</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax si">Si 守護型</span>
+        <span class="ax guts">◆ 本能センター</span>
+      </div>
+      <div class="card-name">ケアテイカー</div>
+      <div class="card-name-en">THE CARETAKER</div>
+      <div class="card-tagline">言葉にしなくても、ここにいることが答えだ。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ISFP</span>
+            <span class="ptag pri">ISTP</span>
+            <span class="ptag sec">ISTJ</span>
+            <span class="ptag sec">INFP</span>
+          </div>
+          <div class="panel-note">言葉より行動＋不動の忠誠心を持つ型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E9w8</span>
+            <span class="ptag pri">E8w9</span>
+            <span class="ptag sec">E1w9</span>
+            <span class="ptag sec">E5w4</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sp">sp 優位</span>
+            <span class="ptag inst-so">so 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">SLI</span>
+            <span class="ptag pri">SEI</span>
+            <span class="ptag sec">LSI</span>
+          </div>
+          <div class="panel-note">Si先導×実践的忠誠心重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">V &gt; P</span>
+            <span class="ptag sec">P &gt; V</span>
+          </div>
+          <div class="panel-note">意志(V)と行動(P)が上位、感情(E)は内側</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 10 =============== -->
+  <div class="card-wrap" id="card-10">
+    <div class="card ne">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 10</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax ne">Ne 冒険型</span>
+        <span class="ax heart">❤ 愛情センター</span>
+      </div>
+      <div class="card-name">トラベラー</div>
+      <div class="card-name-en">THE TRAVELER</div>
+      <div class="card-tagline">ときめきが続く限り、どこまでも行ける。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ENFP</span>
+            <span class="ptag pri">ESFP</span>
+            <span class="ptag sec">ENFJ</span>
+            <span class="ptag sec">INFP</span>
+          </div>
+          <div class="panel-note">ときめき重視の感情豊かなロマンティスト型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E4w3</span>
+            <span class="ptag pri">E7w6</span>
+            <span class="ptag sec">E2w3</span>
+            <span class="ptag sec">E3w4</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sx">sx 優位</span>
+            <span class="ptag inst-so">so 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">IEE</span>
+            <span class="ptag pri">ESE</span>
+            <span class="ptag sec">EIE</span>
+          </div>
+          <div class="panel-note">Ne/Fe先導×感情的ときめき重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E &gt; P</span>
+            <span class="ptag sec">E &gt; V</span>
+          </div>
+          <div class="panel-note">感情(E)が最上位、可能性との複合も見られる</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 11 =============== -->
+  <div class="card-wrap" id="card-11">
+    <div class="card ne">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 11</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax ne">Ne 冒険型</span>
+        <span class="ax head">▲ 安心センター</span>
+      </div>
+      <div class="card-name">エクスプローラー</div>
+      <div class="card-name-en">THE EXPLORER</div>
+      <div class="card-tagline">「きっとうまくいく」が、最強の処世術。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ENFP</span>
+            <span class="ptag pri">ENTP</span>
+            <span class="ptag sec">INTP</span>
+            <span class="ptag sec">ENTJ</span>
+          </div>
+          <div class="panel-note">楽観的ビジョン＋可能性重視のポジティブ型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E7w6</span>
+            <span class="ptag pri">E7w8</span>
+            <span class="ptag sec">E3w2</span>
+            <span class="ptag sec">E5w4</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-so">so 優位</span>
+            <span class="ptag inst-sx">sx 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">IEE</span>
+            <span class="ptag pri">ILE</span>
+            <span class="ptag sec">LIE</span>
+          </div>
+          <div class="panel-note">Ne先導×可能性・楽観的思考重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">L &gt; E</span>
+            <span class="ptag sec">E &gt; L</span>
+          </div>
+          <div class="panel-note">論理(L)と感情(E)が混在、楽観が橋渡しする</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== TYPE 12 =============== -->
+  <div class="card-wrap" id="card-12">
+    <div class="card ne">
+      <div class="card-head">
+        <span class="card-brand"><em>UTAGE</em> LAB — Pola</span>
+        <span class="card-num">TYPE 12</span>
+      </div>
+      <div class="card-axes">
+        <span class="ax ne">Ne 冒険型</span>
+        <span class="ax guts">◆ 本能センター</span>
+      </div>
+      <div class="card-name">フリースピリット</div>
+      <div class="card-name-en">THE FREE SPIRIT</div>
+      <div class="card-tagline">縛られた瞬間に、自分が死ぬ気がする。</div>
+      <div class="card-divider"></div>
+      <div class="card-grid">
+        <div class="panel">
+          <div class="panel-label">MBTI 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ENFP</span>
+            <span class="ptag pri">ENTP</span>
+            <span class="ptag sec">INFP</span>
+            <span class="ptag sec">INTP</span>
+          </div>
+          <div class="panel-note">自由・独立性・束縛への本能的抵抗が強い型</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">エニアグラム 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">E7w8</span>
+            <span class="ptag pri">E4w5</span>
+            <span class="ptag sec">E9w8</span>
+            <span class="ptag sec">E8w7</span>
+          </div>
+          <div class="panel-tags" style="margin-top:2px;">
+            <span class="ptag inst-sx">sx 優位</span>
+            <span class="ptag inst-sp">sp 次点</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">ソシオニクス 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">ILE</span>
+            <span class="ptag pri">IEE</span>
+            <span class="ptag sec">EIE</span>
+          </div>
+          <div class="panel-note">Ne先導×自律性・独自性重視に共鳴が多い</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">サイコソフィア 傾向</div>
+          <div class="panel-tags">
+            <span class="ptag pri">V &gt; E</span>
+            <span class="ptag sec">V &gt; L</span>
+          </div>
+          <div class="panel-note">意志(V)が最上位、自由への衝動が感情を上回る</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-foot-url">utage-lab.jp / pola</span>
+        <span class="card-foot-disc">傾向参考。1対1の変換ではありません</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /cards -->
+
+<!-- BOTTOM LINK -->
+<div style="max-width:540px;margin:0 auto 32px;padding:0 20px;">
+  <a href="cross_systems.html" class="tlink-inner" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 18px;transition:all .2s;">
+    <div>
+      <div style="font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:3px;">FULL TABLE VIEW</div>
+      <div style="font-family:var(--font-d);font-size:.92rem;font-weight:700;color:#fff;">全体早見表（横長テーブル版）→</div>
+    </div>
+    <div style="font-size:1.1rem;color:rgba(255,255,255,.3);">↗</div>
+  </a>
+</div>
+
+</body>
+</html>

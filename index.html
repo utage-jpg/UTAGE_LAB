@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="_Htm-TWvfCispHd0IePCs-FSKmsCEbqA4mCJ4SNER2I" />
 <title>UTAGE LAB｜総合心理診断ポータル - あなたの深層心理を解き明かす</title>
 <meta name="description" content="UTAGE LABは心理診断・タイプ診断・相性診断・占いを集めた総合心理診断ポータル。MBTIから深層心理まで、自分を知る旅を始めよう。">
 <meta name="keywords" content="心理診断,MBTI,16タイプ,性格診断,相性診断,ソシオニクス,心理テスト">
@@ -636,14 +637,35 @@ body::before {
   letter-spacing: 0.04em;
 }
 .fortune-daily-header {
-  text-align: center;
-  margin-bottom: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  padding: 52px 60px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(201,96,122,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.fortune-daily-header::after {
+  content: '✦';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 220px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,96,122,0.04);
+  right: -20px;
+  bottom: -60px;
+  line-height: 1;
+  pointer-events: none;
 }
 .fortune-daily-logo {
-  max-width: min(420px, 72vw);
+  max-width: min(320px, 100%);
   height: auto;
   display: block;
-  margin: 0 auto 14px;
+  margin: 0 0 16px;
   mix-blend-mode: multiply;
 }
 .fortune-daily-subtitle {
@@ -652,13 +674,87 @@ body::before {
   letter-spacing: 0.22em;
   color: var(--text-light);
   text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.fortune-daily-desc {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+
+/* ── FORTUNE SELECTOR (step UI) ── */
+.fortune-selector {
+  position: relative;
+  min-height: 200px;
+}
+.fortune-sel-step {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.fortune-sel-step.hidden {
+  display: none;
+}
+.fortune-sel-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  min-height: 28px;
+}
+.fortune-sel-badge {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--rose);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+.fortune-sel-back {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.fortune-sel-back:hover { color: var(--rose); }
+.fortune-month-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.fortune-month-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 4px;
+  border-radius: 8px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid rgba(201,96,122,0.15);
+  background: var(--rose-light);
+  color: var(--rose-deep);
+  transition: all 0.22s;
+}
+.fortune-month-btn:hover {
+  background: var(--rose);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(201,96,122,0.3);
+  border-color: transparent;
 }
 .fortune-type-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 9px;
-  max-width: 580px;
-  margin: 0 auto 6px;
 }
 .fortune-type-btn {
   display: flex;
@@ -871,26 +967,69 @@ body::before {
   top: -200px; right: -100px;
   pointer-events: none;
 }
-
-/* Main card */
 .pola-main-card {
   display: block;
   background: white;
-  border: 1px solid rgba(201,96,122,0.2);
-  border-radius: 20px;
-  padding: 48px 52px;
-  text-decoration: none;
-  color: var(--text);
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(white, white),
+    linear-gradient(135deg, #c9a84c 0%, #f0d88a 25%, #e8c96a 50%, #f5edd4 72%, #c9a84c 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 16px;
+  padding: 60px;
   position: relative;
-  overflow: hidden;
-  cursor: pointer;
   transition: all 0.35s;
   margin-bottom: 16px;
+  box-shadow:
+    0 8px 32px rgba(201,168,76,0.15),
+    0 2px 8px rgba(0,0,0,0.04),
+    inset 0 1px 0 rgba(255,255,255,1);
+}
+/* glass top-shine highlight */
+.pola-main-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 52%;
+  border-radius: 14px 14px 60% 60% / 14px 14px 30% 30%;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.72) 0%,
+    rgba(255,255,255,0.28) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+/* gold glow behind border */
+.pola-main-card::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #c9a84c 0%, #f0d88a 40%, #c9a84c 100%);
+  z-index: -1;
+  opacity: 0.45;
+  filter: blur(6px);
+  transition: opacity 0.4s ease, filter 0.4s ease;
 }
 .pola-main-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 28px 72px rgba(201,96,122,0.16);
-  border-color: rgba(201,96,122,0.4);
+  box-shadow:
+    0 28px 72px rgba(201,168,76,0.22),
+    0 0 48px rgba(201,168,76,0.16),
+    inset 0 1px 0 rgba(255,255,255,1),
+    inset 0 -1px 0 rgba(201,168,76,0.10);
+}
+.pola-main-card:hover::after {
+  opacity: 0.65;
+  filter: blur(10px);
+  animation: shimmer 2s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
 }
 .pola-bg-text {
   position: absolute;
@@ -931,6 +1070,10 @@ body::before {
   50% { opacity: 0.5; transform: scale(0.7); }
 }
 
+.pola-main-left {
+  position: relative;
+  z-index: 2;
+}
 .pola-logo-lockup {
   font-family: var(--font-display);
   font-size: clamp(44px, 6vw, 68px);
@@ -1205,12 +1348,89 @@ body::before {
   flex-shrink: 0;
 }
 
+/* ── POLA CARD INNER GRID ── */
+.pola-card-inner {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 28px;
+  align-items: start;
+}
+.pola-type-thumbs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.pola-type-thumb {
+  border-radius: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.07);
+  aspect-ratio: 16 / 9;
+  background: var(--bg2);
+}
+.pola-type-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s;
+}
+.pola-main-card:hover .pola-type-thumb img { transform: scale(1.05); }
+.pola-thumb-note {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--text-light);
+  text-align: center;
+  padding-top: 4px;
+}
+.pola-mode-row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+.pola-mode-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(250,248,245,0.75);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 13px;
+}
+.pola-mode-icon { font-size: 14px; flex-shrink: 0; }
+.pola-mode-label {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.pola-mode-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+  margin-left: auto;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .pola-main-card {
     padding: 28px 24px;
   }
   .pola-bg-text { font-size: 120px; right: -10px; bottom: -20px; }
+}
+@media (max-width: 600px) {
+  .pola-card-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .pola-type-thumbs {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .pola-thumb-note { display: none; }
 }
 
 /* ── FEATURE BANNER (warm light) ── */
@@ -1543,6 +1763,53 @@ body::before {
   gap: 20px;
   align-items: start;
 }
+.plans-grid-wrap {
+  position: relative;
+}
+.coming-soon-overlay {
+  position: absolute;
+  inset: -24px;
+  background: rgba(13, 10, 23, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  border-radius: 20px;
+}
+.coming-soon-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 32px 56px;
+  border: 1.5px solid rgba(201,168,76,0.55);
+  border-radius: 8px;
+  background: rgba(201,168,76,0.06);
+}
+.coming-soon-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.coming-soon-text {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 58px);
+  font-style: italic;
+  color: white;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.coming-soon-sub {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.05em;
+}
 .plan-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
@@ -1844,6 +2111,43 @@ body::before {
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
 }
+.column-top-btn { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 12px; 
+  padding: 16px 36px; 
+  background: white; 
+  border: 1.5px solid var(--border); 
+  border-radius: 4px; 
+  font-family: var(--font-serif); 
+  font-size: 14px; 
+  font-weight: 700; 
+  color: var(--ink); 
+  text-decoration: none; 
+  letter-spacing: 0.04em; 
+  transition: all 0.3s; 
+  position: relative; 
+  overflow: hidden; 
+}
+.column-top-btn::before { 
+  content: ''; 
+  position: absolute; 
+  inset: 0; 
+  background: var(--ink); 
+  transform: translateX(-100%); 
+  transition: transform 0.35s ease; 
+}
+.column-top-btn:hover { 
+  color: white; 
+  border-color: var(--ink); 
+}
+.column-top-btn:hover::before { 
+  transform: translateX(0); 
+}
+.column-top-btn span { 
+  position: relative; 
+  z-index: 1; 
+}
 .col-card {
   text-decoration: none;
   color: var(--text);
@@ -1974,6 +2278,8 @@ body::before {
   .feature-banner-wrap { grid-template-columns: 1fr; padding: 40px; }
   .feature-right { display: none; }
   .fortune-banner { grid-template-columns: 1fr; padding: 40px; gap: 32px; }
+  .fortune-daily-header { grid-template-columns: 1fr; padding: 32px 28px; gap: 32px; }
+  .fortune-daily-logo { margin: 0 auto 16px; max-width: min(280px, 100%); }
   .section { padding: 80px 32px; }
   .footer { padding: 64px 32px 32px; }
 }
@@ -2192,11 +2498,11 @@ body::before {
 <nav class="nav" id="mainNav">
   <a href="#" class="nav-logo">UTAGE LAB</a>
   <ul class="nav-links">
+    <li><a href="#pola-featured">Pola</a></li>
     <li><a href="#diagnoses">診断</a></li>
     <li><a href="#fortune">占い</a></li>
-    <li><a href="#types">タイプ解説</a></li>
-    <li><a href="#column">コラム</a></li>
     <li><a href="#deepdive">研究</a></li>
+    <li><a href="#column">コラム</a></li>
     <li><a href="#premium" class="nav-cta"><span class="cta-inner">✦ プレミアム</span></a></li>
   </ul>
   <div class="nav-hamburger" onclick="toggleMenu()">
@@ -2208,11 +2514,11 @@ body::before {
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-inner">
     <ul>
+      <li><a href="#pola-featured" onclick="toggleMenu()">Pola</a></li>
       <li><a href="#diagnoses" onclick="toggleMenu()">診断</a></li>
       <li><a href="#fortune" onclick="toggleMenu()">占い</a></li>
-      <li><a href="#types" onclick="toggleMenu()">タイプ解説</a></li>
-      <li><a href="#column" onclick="toggleMenu()">コラム</a></li>
       <li><a href="#deepdive" onclick="toggleMenu()">研究</a></li>
+      <li><a href="#column" onclick="toggleMenu()">コラム</a></li>
     </ul>
     <a href="#premium" class="drawer-cta" onclick="toggleMenu()">✦ プレミアム</a>
   </div>
@@ -2345,16 +2651,84 @@ body::before {
 <!-- ===== DAILY FORTUNE ===== -->
 <div class="fortune-daily-wrap" id="daily-fortune">
   <div class="section" style="padding-bottom: 48px;">
+
+    <!-- Section header -->
+    <div class="section-header reveal" style="margin-bottom: 28px;">
+      <div>
+        <div class="section-eyebrow">Daily Fortune</div>
+        <h2 class="section-title">16type × 誕生月占い</h2>
+      </div>
+    </div>
+
+    <!-- Main card (2-column) -->
     <div class="fortune-daily-header reveal">
-      <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank">
-        <img src="assets/fortune-logo.jpg" alt="16type × fortune" class="fortune-daily-logo">
-      </a>
-      <p class="fortune-daily-subtitle">
-        あなたのMBTIタイプを選んで、今日の運勢を確認しよう。毎日更新。
-      </p>
-      <div style="margin-top: 24px;">
+
+      <!-- Left: logo + description + CTA -->
+      <div class="fortune-daily-left">
+        <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank">
+          <img src="assets/fortune-logo.jpg" alt="16type × fortune" class="fortune-daily-logo">
+        </a>
+        <p class="fortune-daily-desc">
+          あなたのMBTIタイプと誕生月を組み合わせた、毎日更新の運勢コンテンツ。16タイプそれぞれに合わせたメッセージを、星の動きと心理学の知見でお届けします。
+        </p>
         <a href="https://utage-jpg.github.io/16type_fortune/" target="_blank" class="fortune-daily-cta"><span>✨ 今日の運勢を見る</span></a>
       </div>
+
+      <!-- Right: 2-step selector (type → month → navigate) -->
+      <div class="fortune-daily-right">
+        <div class="fortune-selector">
+
+          <!-- ナビ表示（ステップ2で選択済みタイプを表示） -->
+          <div class="fortune-sel-nav" id="fortuneNav" style="display:none;">
+            <span class="fortune-sel-badge" id="fortuneTypeBadge"></span>
+            <button class="fortune-sel-back" onclick="fortuneReset()">← タイプを選び直す</button>
+          </div>
+
+          <!-- Step 1: タイプ選択 -->
+          <div class="fortune-sel-step" id="fortuneStepType">
+            <p class="fortune-daily-subtitle" style="margin-bottom: 12px;">① タイプを選ぶ</p>
+            <div class="fortune-type-grid">
+              <button class="fortune-type-btn ft-intj" onclick="fortuneSelectType('INTJ',this)">INTJ</button>
+              <button class="fortune-type-btn ft-intp" onclick="fortuneSelectType('INTP',this)">INTP</button>
+              <button class="fortune-type-btn ft-entj" onclick="fortuneSelectType('ENTJ',this)">ENTJ</button>
+              <button class="fortune-type-btn ft-entp" onclick="fortuneSelectType('ENTP',this)">ENTP</button>
+              <button class="fortune-type-btn ft-infj" onclick="fortuneSelectType('INFJ',this)">INFJ</button>
+              <button class="fortune-type-btn ft-infp" onclick="fortuneSelectType('INFP',this)">INFP</button>
+              <button class="fortune-type-btn ft-enfj" onclick="fortuneSelectType('ENFJ',this)">ENFJ</button>
+              <button class="fortune-type-btn ft-enfp" onclick="fortuneSelectType('ENFP',this)">ENFP</button>
+              <button class="fortune-type-btn ft-istj" onclick="fortuneSelectType('ISTJ',this)">ISTJ</button>
+              <button class="fortune-type-btn ft-isfj" onclick="fortuneSelectType('ISFJ',this)">ISFJ</button>
+              <button class="fortune-type-btn ft-estj" onclick="fortuneSelectType('ESTJ',this)">ESTJ</button>
+              <button class="fortune-type-btn ft-esfj" onclick="fortuneSelectType('ESFJ',this)">ESFJ</button>
+              <button class="fortune-type-btn ft-istp" onclick="fortuneSelectType('ISTP',this)">ISTP</button>
+              <button class="fortune-type-btn ft-isfp" onclick="fortuneSelectType('ISFP',this)">ISFP</button>
+              <button class="fortune-type-btn ft-estp" onclick="fortuneSelectType('ESTP',this)">ESTP</button>
+              <button class="fortune-type-btn ft-esfp" onclick="fortuneSelectType('ESFP',this)">ESFP</button>
+            </div>
+          </div>
+
+          <!-- Step 2: 誕生月選択 -->
+          <div class="fortune-sel-step hidden" id="fortuneStepMonth">
+            <p class="fortune-daily-subtitle" style="margin-bottom: 12px;">② 誕生月を選ぶ</p>
+            <div class="fortune-month-grid">
+              <button class="fortune-month-btn" onclick="fortuneGo(1)">1月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(2)">2月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(3)">3月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(4)">4月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(5)">5月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(6)">6月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(7)">7月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(8)">8月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(9)">9月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(10)">10月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(11)">11月</button>
+              <button class="fortune-month-btn" onclick="fortuneGo(12)">12月</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -2373,39 +2747,63 @@ body::before {
 
     <!-- Main featured card -->
     <div class="pola-main-card reveal">
+      <div class="pola-card-inner">
 
-      <!-- Left content -->
-      <div class="pola-main-left">
-        <div class="pola-badge">
-          <span class="pola-badge-dot"></span>
-          NEW — UTAGE LABの代表作
+        <!-- Left content -->
+        <div class="pola-main-left">
+          <div class="pola-badge">
+            <span class="pola-badge-dot"></span>
+            FLAGSHIP — UTAGE LABの代表作
+          </div>
+
+          <div class="pola-logo-lockup">
+            <span class="pola-logo-p">P</span><span class="pola-logo-rest">ola</span>
+          </div>
+
+          <p class="pola-subtitle">— 恋愛極性診断 —</p>
+
+          <p class="pola-desc">
+            「どう動くか」と「なぜ動くか」。2つの軸が交差するところに、あなたの恋愛の本質がある。12タイプ・5次元スコア分析の本格恋愛診断。
+          </p>
+
+          <div class="pola-mode-row">
+            <div class="pola-mode-item">
+              <span class="pola-mode-icon">⚡</span>
+              <span class="pola-mode-label">簡易診断</span>
+              <span class="pola-mode-sub">15問 · 約3分</span>
+            </div>
+            <div class="pola-mode-item">
+              <span class="pola-mode-icon">📋</span>
+              <span class="pola-mode-label">詳細診断</span>
+              <span class="pola-mode-sub">50問 · 約10〜15分</span>
+            </div>
+          </div>
+
+          <div class="pola-tags">
+            <span class="pola-tag">💡 12タイプ</span>
+            <span class="pola-tag">📊 5次元分析</span>
+            <span class="pola-tag">✦ 有料レポートあり</span>
+          </div>
         </div>
 
-        <div class="pola-logo-lockup">
-          <span class="pola-logo-p">P</span><span class="pola-logo-rest">ola</span>
+        <!-- Right: type thumbnails -->
+        <div class="pola-type-thumbs">
+          <div class="pola-type-thumb"><img src="pola/ogp/type1.png" alt="Type 1" loading="lazy"></div>
+          <div class="pola-type-thumb"><img src="pola/ogp/type4.png" alt="Type 4" loading="lazy"></div>
+          <div class="pola-type-thumb"><img src="pola/ogp/type7.png" alt="Type 7" loading="lazy"></div>
+          <div class="pola-type-thumb"><img src="pola/ogp/type10.png" alt="Type 10" loading="lazy"></div>
+          <div class="pola-thumb-note">全 12 タイプ</div>
         </div>
 
-        <p class="pola-subtitle">— 恋愛極性診断 —</p>
-
-        <p class="pola-desc">
-          「どう動くか」と「なぜ動くか」。2つの軸が交差するところに、あなたの恋愛の本質がある。全30問・12タイプ・深層まで分析する本格恋愛診断。
-        </p>
-
-        <div class="pola-tags">
-          <span class="pola-tag">💡 12タイプ</span>
-          <span class="pola-tag">📝 全30問</span>
-          <span class="pola-tag">⏱ 約5〜7分</span>
-          <span class="pola-tag">👥 受診者急増中</span>
-        </div>
       </div>
     </div>
 
     <!-- CTA row (outside card) -->
     <div class="pola-cta-row reveal">
-      <a href="pola/lp.html" target="_blank" class="pola-btn-main">
+      <a href="pola/lp.html" class="pola-btn-main">
         <span class="pola-btn-inner">診断を始める →</span>
       </a>
-      <a href="https://utage-jpg.github.io/pola_portal/" target="_blank" class="pola-btn-portal">
+      <a href="pola/portal/" class="pola-btn-portal">
         🗺️ タイプ一覧を見る
       </a>
     </div>
@@ -2436,7 +2834,6 @@ body::before {
         <div class="popular-card-cat" style="color: var(--violet)">MBTI系</div>
         <div class="popular-card-title">16タイプ 本格心理診断</div>
         <div class="popular-card-meta">
-          <span>👥 42万人が受診</span>
           <span>⏱ 約5分</span>
         </div>
         <div class="popular-card-cta" style="background: var(--violet-light); color: var(--violet)">診断スタート →</div>
@@ -2454,7 +2851,6 @@ body::before {
         <div class="popular-card-cat" style="color: var(--rose)">恋愛</div>
         <div class="popular-card-title">恋愛タイプ診断 〜 あなたの愛し方は？</div>
         <div class="popular-card-meta">
-          <span>👥 28万人が受診</span>
           <span>⏱ 約3分</span>
         </div>
         <div class="popular-card-cta" style="background: var(--rose-light); color: var(--rose-deep)">診断スタート →</div>
@@ -2472,7 +2868,6 @@ body::before {
         <div class="popular-card-cat" style="color: var(--teal)">深層心理</div>
         <div class="popular-card-title">深層心理テスト〜あなたの無意識が語るもの</div>
         <div class="popular-card-meta">
-          <span>👥 19万人が受診</span>
           <span>⏱ 約4分</span>
         </div>
         <div class="popular-card-cta" style="background: var(--teal-light); color: var(--teal)">診断スタート →</div>
@@ -2606,6 +3001,14 @@ body::before {
       <p class="premium-sub">プレミアム会員限定の詳細分析であなたの心理を完全解明</p>
     </div>
 
+    <div class="plans-grid-wrap">
+      <div class="coming-soon-overlay">
+        <div class="coming-soon-badge">
+          <div class="coming-soon-label">Under Development</div>
+          <div class="coming-soon-text">Coming Soon</div>
+          <div class="coming-soon-sub">プレミアム機能は現在開発中です</div>
+        </div>
+      </div>
     <div class="plans-grid reveal">
       <!-- Free -->
       <div class="plan-card">
@@ -2665,6 +3068,7 @@ body::before {
         <button class="plan-btn plan-btn-silver"><span>Labを始める</span></button>
       </div>
     </div>
+    </div><!-- /.plans-grid-wrap -->
   </div>
 </section>
 
@@ -2717,41 +3121,47 @@ body::before {
       <div class="section-eyebrow">Column</div>
       <h2 class="section-title">心理コラム</h2>
     </div>
-    <a href="href="./column/index.html"" class="section-more">すべて見る →</a>
+    <a href="./colum/mbti/index.html" class="section-more">すべて見る →</a>
+  </div>
+
+  <div style="margin-bottom: 36px;">
+    <a href="./colum/index.html" class="column-top-btn">
+      <span>📖 コラム一覧を見る →</span>
+    </a>
   </div>
 
   <div class="column-grid">
-    <a href="#" class="col-card reveal">
-      <div class="col-img-wrap">
-        <img src="https://picsum.photos/id/1040/500/350" alt="認知機能" loading="lazy">
+    <a href="./colum/mbti/ni.html" class="col-card reveal">
+      <div class="col-img-wrap" style="background: linear-gradient(135deg,#e8e0f4,#ede9f8); display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Playfair Display',serif; font-size:80px; font-weight:900; color:#4a3570; opacity:0.6; line-height:1;">Ni</span>
       </div>
-      <div class="col-cat" style="color: var(--violet)">認知機能</div>
-      <div class="col-title">Niとは何か？未来を見通す「内向的直感」の正体</div>
-      <div class="col-meta">2025.03.01</div>
+      <div class="col-cat" style="color: #4a3570">MBTI 心理機能</div>
+      <div class="col-title">Ni（内向的直観）とは？未来を「見る」予言者の洞察力</div>
+      <div class="col-meta">2025.03.12</div>
     </a>
-    <a href="#" class="col-card reveal reveal-delay-1">
-      <div class="col-img-wrap">
-        <img src="https://picsum.photos/id/1041/500/350" alt="恋愛心理" loading="lazy">
+    <a href="./colum/mbti/fe.html" class="col-card reveal reveal-delay-1">
+      <div class="col-img-wrap" style="background: linear-gradient(135deg,#fae0e6,#ffe4ec); display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Playfair Display',serif; font-size:80px; font-weight:900; color:#c9607a; opacity:0.6; line-height:1;">Fe</span>
       </div>
-      <div class="col-cat" style="color: var(--rose)">恋愛心理</div>
-      <div class="col-title">タイプ別の愛し方 — INFPはなぜ尽くしすぎるのか</div>
-      <div class="col-meta">2025.02.25</div>
+      <div class="col-cat" style="color: var(--rose)">MBTI 心理機能</div>
+      <div class="col-title">Fe（外向的感情）とは？場の空気を読む「調和」の達人</div>
+      <div class="col-meta">2025.03.12</div>
     </a>
-    <a href="#" class="col-card reveal reveal-delay-2">
-      <div class="col-img-wrap">
-        <img src="https://picsum.photos/id/1042/500/350" alt="深層心理" loading="lazy">
+    <a href="./colum/mbti/ne.html" class="col-card reveal reveal-delay-2">
+      <div class="col-img-wrap" style="background: linear-gradient(135deg,#ede9f8,#e8e0f8); display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Playfair Display',serif; font-size:80px; font-weight:900; color:#7b5ea7; opacity:0.6; line-height:1;">Ne</span>
       </div>
-      <div class="col-cat" style="color: var(--ink)">深層心理</div>
-      <div class="col-title">シャドウと向き合う — ユングが語る「影」の統合</div>
-      <div class="col-meta">2025.02.18</div>
+      <div class="col-cat" style="color: var(--violet)">MBTI 心理機能</div>
+      <div class="col-title">Ne（外向的直観）とは？アイデアが止まらない可能性の探求者</div>
+      <div class="col-meta">2025.03.12</div>
     </a>
-    <a href="#" class="col-card reveal reveal-delay-3">
-      <div class="col-img-wrap">
-        <img src="https://picsum.photos/id/1044/500/350" alt="研究" loading="lazy">
+    <a href="./colum/mbti/fi.html" class="col-card reveal reveal-delay-3">
+      <div class="col-img-wrap" style="background: linear-gradient(135deg,#f5e6fa,#ede9f8); display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Playfair Display',serif; font-size:80px; font-weight:900; color:#8e44ad; opacity:0.6; line-height:1;">Fi</span>
       </div>
-      <div class="col-cat" style="color: var(--teal)">研究</div>
-      <div class="col-title">ソシオニクスとMBTIの違いを徹底比較</div>
-      <div class="col-meta">2025.02.10</div>
+      <div class="col-cat" style="color: #8e44ad">MBTI 心理機能</div>
+      <div class="col-title">Fi（内向的感情）とは？「自分だけの価値観」を持つ誠実な魂</div>
+      <div class="col-meta">2025.03.12</div>
     </a>
   </div>
 </div>
@@ -2764,8 +3174,7 @@ body::before {
       <div>
         <div class="footer-brand-name">UTAGE LAB</div>
         <div class="footer-brand-desc">
-          心理診断・タイプ分析・相性診断・占いを融合した<br>
-          日本最大級の総合心理探求プラットフォーム。
+          心理診断・タイプ分析・相性診断・占いを融合した<br>総合心理探求プラットフォーム。
         </div>
         <div style="display:flex; gap:14px;">
           <a href="#" style="color: rgba(247,243,237,0.4); font-size:13px; text-decoration:none; transition: color 0.25s;" onmouseover="this.style.color='rgba(247,243,237,0.85)'" onmouseout="this.style.color='rgba(247,243,237,0.4)'">𝕏 Twitter</a>
@@ -2798,6 +3207,7 @@ body::before {
           <li><a href="#">プロフィール</a></li>
           <li><a href="#">利用規約</a></li>
           <li><a href="#">プライバシー</a></li>
+          <li><a href="tokusho.html">特定商取引法</a></li>
           <li><a href="#">お問い合わせ</a></li>
         </ul>
       </div>
@@ -2826,6 +3236,29 @@ function updateNav() {
 }
 window.addEventListener('scroll', updateNav, { passive: true });
 updateNav();
+
+/* ── FORTUNE STEP SELECTOR ── */
+let fortuneCurrentType = '';
+
+function fortuneSelectType(type, el) {
+  fortuneCurrentType = type;
+  document.getElementById('fortuneTypeBadge').textContent = type;
+  document.getElementById('fortuneNav').style.display = 'flex';
+  document.getElementById('fortuneStepType').classList.add('hidden');
+  document.getElementById('fortuneStepMonth').classList.remove('hidden');
+}
+
+function fortuneGo(month) {
+  const base = 'https://utage-jpg.github.io/16type_fortune/';
+  window.open(base + '?type=' + fortuneCurrentType + '&month=' + month, '_blank');
+}
+
+function fortuneReset() {
+  fortuneCurrentType = '';
+  document.getElementById('fortuneNav').style.display = 'none';
+  document.getElementById('fortuneStepMonth').classList.add('hidden');
+  document.getElementById('fortuneStepType').classList.remove('hidden');
+}
 
 /* ── SCROLL REVEAL ── */
 const observer = new IntersectionObserver((entries) => {
@@ -2907,7 +3340,7 @@ const diagData = {
     title: 'タイプ診断',
     sub: 'MBTI・16タイプ・ソシオニクスなど多様な類型論で自分を知る',
     items: [
-      { name: '16タイプ 本格心理診断', meta: '約5分 ・ 42万人が受診', url: 'pages/16type.html' },
+      { name: '16タイプ 本格心理診断', meta: '約5分', url: 'pages/16type.html' },
       { name: 'MBTI認知機能タイプ診断', meta: '約8分 ・ 精度の高い認知機能分析', url: 'pages/16type.html' },
       { name: 'ソシオニクス診断', meta: '約6分 ・ 16型相関マップ付き', url: 'https://utage-jpg.github.io/socionics/' },
       { name: 'ビッグファイブ性格診断', meta: '約4分 ・ 科学的5因子モデル', url: 'pages/16type.html' },
@@ -2921,7 +3354,7 @@ const diagData = {
     title: '恋愛・相性診断',
     sub: '恋愛スタイル・愛着スタイル・タイプ別相性を詳細分析',
     items: [
-      { name: '恋愛タイプ診断', meta: '約3分 ・ 28万人が受診', url: 'pages/love-type.html' },
+      { name: '恋愛タイプ診断', meta: '約3分', url: 'pages/love-type.html' },
       { name: '愛着スタイル診断', meta: '約5分 ・ 安定型/回避型/不安型', url: 'pages/attachment.html' },
       { name: '16タイプ相性診断', meta: '約4分 ・ タイプ別詳細相性表', url: 'pages/love-type.html' },
       { name: '恋愛コミュニケーションスタイル', meta: '約3分 ・ あなたの愛し方は？', url: 'pages/love-type.html' },
@@ -2934,7 +3367,7 @@ const diagData = {
     title: '深層心理',
     sub: 'ユング心理学・シャドウ・元型など無意識の世界を探る',
     items: [
-      { name: '深層心理テスト', meta: '約4分 ・ 19万人が受診', url: 'pages/deep.html' },
+      { name: '深層心理テスト', meta: '約4分', url: 'pages/deep.html' },
       { name: 'シャドウ診断', meta: '約6分 ・ あなたの隠れた面', url: 'pages/deep.html' },
       { name: 'ユング元型（アーキタイプ）診断', meta: '約5分 ・ 12の元型を探る', url: 'pages/deep.html' },
       { name: '防衛機制スタイル診断', meta: '約4分 ・ 心理的防衛パターン', url: 'pages/deep.html' },

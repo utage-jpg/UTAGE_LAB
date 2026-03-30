@@ -112,34 +112,6 @@
     }
   ],
 
-  "fortune": {
-    "featured": {
-      "title": "16タイプ別\n2025年の運命占い",
-      "description": "MBTIタイプ × 占星術の融合。あなたのタイプが持つ今年の宿命と、最も輝く季節を解き明かします。16通りの専用リーディング付き。",
-      "url": "https://utage-jpg.github.io/16type_fortune/",
-      "ctaText": "✨ 占いを受ける"
-    },
-    "sub": [
-      {
-        "id": "astrology",
-        "icon": "♈",
-        "category": "占星術",
-        "categoryColor": "var(--violet)",
-        "title": "タイプ別 星座運命鑑定",
-        "description": "あなたのMBTIと星座が交差する運命とは",
-        "url": "#"
-      },
-      {
-        "id": "numerology",
-        "icon": "🔢",
-        "category": "数秘術",
-        "categoryColor": "var(--amber)",
-        "title": "ライフパスナンバー診断",
-        "description": "誕生日から導く魂の使命と人格の秘密",
-        "url": "#"
-      }
-    ]
-  },
 
   "premium": {
     "plans": [

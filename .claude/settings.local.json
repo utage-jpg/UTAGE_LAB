@@ -3,6 +3,9 @@
     "allow": [
       "Bash(python -c \":*)",
       "Bash(python3:*)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\017883\\OneDrive\\VScode\\【診断】類型ポータル"
     ]
   }
 }

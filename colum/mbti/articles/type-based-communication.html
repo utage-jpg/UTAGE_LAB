@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なんで伝わってないの？ タイプ別対話法 | UTAGE LAB</title>
+<meta name="description" content="相手に伝わらないのは、あなたのせいでも相手のせいでもないかもしれません。タイプによって「伝わりやすい言語」が根本的に異なります。">
+<meta property="og:title" content="なんで伝わってないの？ タイプ別対話法 | UTAGE LAB">
+<meta property="og:description" content="タイプによって「伝わりやすい言語」が根本的に異なります。チャンネル別の伝え方を解説します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1025; --cream:#faf7f2; --parchment:#f5f0e8; --paper:#fff9f5;
+  --rose:#c9607a; --rose-light:#fae0e6;
+  --violet:#7b5ea7; --violet-light:#ede9f8;
+  --teal:#3d8b8b; --teal-light:#e2f4f4;
+  --amber:#c47d2a; --amber-light:#fef3e0;
+  --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
+  --shadow:rgba(26,16,37,0.12);
+  --func-color: #c47d2a; --func-light: #fef3e0;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-serif:'Noto Serif JP',serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-serif);background:var(--cream);color:var(--text);overflow-x:hidden;font-size:17px;line-height:1.9;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,242,0.95);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border);}
+.nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
+.nav-back{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-back:hover{color:var(--func-color);}
+.hero{padding:120px 40px 80px;background:linear-gradient(135deg,var(--func-light) 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+.hero::before{content:'Talk';position:absolute;right:-10px;top:10px;font-family:var(--font-display);font-size:clamp(120px,18vw,240px);font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(196,125,42,0.07);pointer-events:none;line-height:1;font-style:italic;}
+.hero-inner{max-width:860px;margin:0 auto;position:relative;}
+.breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--text-light);margin-bottom:20px;}
+.breadcrumb a{color:var(--text-light);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--func-color);}
+.breadcrumb-sep{opacity:0.4;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
+.hero-badge::before{content:'';width:28px;height:1px;background:var(--func-color);}
+.hero-title{font-family:var(--font-display);font-size:clamp(26px,4vw,44px);font-weight:700;color:var(--ink);margin-bottom:18px;line-height:1.3;}
+.hero-title em{font-style:italic;color:var(--func-color);}
+.hero-desc{font-size:17px;color:var(--text-light);line-height:2;max-width:620px;}
+.article{max-width:800px;margin:0 auto;padding:60px 40px 100px;}
+.article h2{font-family:var(--font-display);font-size:clamp(20px,3vw,30px);font-weight:700;color:var(--ink);margin:64px 0 24px;line-height:1.35;padding-bottom:12px;border-bottom:2px solid var(--func-light);}
+.article h3{font-family:var(--font-display);font-size:clamp(17px,2.5vw,22px);font-weight:700;color:var(--func-color);margin:40px 0 16px;line-height:1.4;}
+.article p{font-size:17px;line-height:2;margin-bottom:20px;color:var(--text);}
+.article strong{color:var(--ink);}
+.func-card{background:white;border:2px solid var(--func-color);border-radius:20px;padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
+.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#e8a055);}
+.func-card-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
+.func-card-text{font-size:19px;font-weight:700;color:var(--ink);line-height:1.7;}
+.scene{background:var(--parchment);border-left:4px solid var(--func-color);border-radius:0 16px 16px 0;padding:28px 32px;margin:32px 0;font-size:16px;line-height:2;}
+.scene-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.channel-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0;}
+.channel-box{border-radius:16px;padding:24px;}
+.ch-logic{background:linear-gradient(135deg,#dce9f7,#eef4fb);}
+.ch-feel{background:linear-gradient(135deg,#fae0e6,#fff5f8);}
+.ch-poss{background:linear-gradient(135deg,#ede9f8,#f5f0ff);}
+.ch-real{background:linear-gradient(135deg,var(--func-light),#fffbf4);}
+.ch-title{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+.ch-logic .ch-title{color:#1565a0;}
+.ch-feel .ch-title{color:#c9607a;}
+.ch-poss .ch-title{color:#7b5ea7;}
+.ch-real .ch-title{color:var(--func-color);}
+.ch-types{font-family:var(--font-mono);font-size:11px;margin-bottom:10px;opacity:0.7;}
+.ch-desc{font-size:14px;line-height:1.8;color:var(--text-light);}
+.compare-pair{background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;margin:24px 0;}
+.compare-bad{background:#fff8f8;padding:20px 24px;border-left:4px solid #e88;}
+.compare-good{background:#f8fff8;padding:20px 24px;border-left:4px solid #8b8;}
+.compare-pair-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;margin-bottom:6px;}
+.compare-bad .compare-pair-label{color:#c66;}
+.compare-good .compare-pair-label{color:#4a8;}
+.compare-pair-text{font-size:15px;line-height:1.85;}
+.traits{background:white;border-radius:20px;border:1px solid var(--border);padding:36px 40px;margin:32px 0;}
+.trait-item{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);}
+.trait-item:last-child{border-bottom:none;}
+.trait-num{font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--func-color);flex-shrink:0;min-width:36px;padding-top:2px;}
+.trait-text{font-size:16px;line-height:1.9;}
+.trait-text strong{color:var(--ink);display:block;margin-bottom:4px;font-size:17px;}
+.self-check{background:var(--func-light);border-radius:16px;padding:28px 32px;margin:32px 0;}
+.self-check-title{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--func-color);margin-bottom:16px;}
+.self-check ul{list-style:none;padding:0;margin:0;}
+.self-check ul li{font-size:15px;padding:8px 0;border-bottom:1px solid rgba(196,125,42,0.1);line-height:1.8;}
+.self-check ul li:last-child{border-bottom:none;}
+.self-check ul li::before{content:'◆ ';color:var(--func-color);font-size:10px;}
+.pull-quote{border:none;margin:48px 0;padding:0;text-align:center;}
+.pull-quote-text{font-family:var(--font-display);font-size:clamp(18px,3vw,26px);font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:16px;}
+.pull-quote-text::before{content:'\201C';}
+.pull-quote-text::after{content:'\201D';}
+.pull-quote-line{width:60px;height:2px;background:var(--func-color);margin:0 auto;}
+.article-nav{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border);gap:16px;}
+.article-nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;transition:color 0.25s;}
+.article-nav a:hover{color:var(--func-color);}
+.footer{background:var(--ink);color:rgba(247,243,237,0.5);padding:56px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-logo{font-family:var(--font-display);font-size:22px;color:var(--parchment);margin-bottom:12px;}
+.footer-desc{font-size:12px;line-height:1.8;margin-bottom:32px;}
+.footer-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,237,0.4);text-decoration:none;border:1px solid rgba(247,243,237,0.12);padding:10px 22px;border-radius:2px;transition:all 0.25s;}
+.footer-back:hover{color:var(--parchment);border-color:rgba(247,243,237,0.3);}
+.footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .nav{padding:0 24px;}
+  .hero{padding:100px 24px 60px;}
+  .hero::before{font-size:100px;opacity:0.6;}
+  .article{padding:40px 24px 80px;}
+  .channel-grid{grid-template-columns:1fr;}
+  .footer{padding:48px 24px 28px;}
+  .func-card{padding:28px 24px;}
+  .traits{padding:24px 20px;}
+  .scene{padding:24px 20px;}
+  .self-check{padding:22px 20px;}
+  .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back">← MBTI</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">ホーム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../../index.html">コラム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../index.html">MBTI</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>タイプ別対話法</span>
+    </div>
+    <div class="hero-badge">MBTI · コミュニケーション · 対話 · 2026.03.31</div>
+    <h1 class="hero-title">なんで伝わってないの？<br><em>タイプ別</em>対話法</h1>
+    <p class="hero-desc">相手に伝わらないのは、あなたのせいでも相手のせいでもないかもしれません。タイプによって「伝わりやすい言語」が根本的に異なります。</p>
+  </div>
+</div>
+
+<article class="article">
+
+  <div class="func-card reveal">
+    <div class="func-card-label">この記事のキーコンセプト</div>
+    <div class="func-card-text">相手が使っているチャンネルと違うチャンネルで話すと、どれほど熱心に話しても届きにくい。まず「相手の言語」を知ることが、対話の起点になる。</div>
+  </div>
+
+  <p class="reveal">「あんなに言ったのに、なぜ伝わらないんだろう」「この人はいつも論点を外してくる」「話せば話すほど溝が深まる気がする」——こんな経験は誰にでもあると思います。</p>
+  <p class="reveal">そしてその多くは、悪意でも無関心でも話し方の下手さでもなく、<strong>チャンネルのズレ</strong>から来ています。相手が何の情報を使って受け取るか——タイプによって「伝わりやすい言語」が根本的に異なります。</p>
+
+  <h2 class="reveal">対話の4つのチャンネル</h2>
+
+  <p class="reveal">認知機能の観点から、人が情報を受け取るチャンネルは大きく4つに分けられます。</p>
+
+  <div class="channel-grid reveal">
+    <div class="channel-box ch-logic">
+      <div class="ch-title">論理チャンネル</div>
+      <div class="ch-types">Te / Ti が強い人</div>
+      <div class="ch-desc">根拠・データ・構造で話すと伝わる</div>
+    </div>
+    <div class="channel-box ch-feel">
+      <div class="ch-title">感情チャンネル</div>
+      <div class="ch-types">Fe / Fi が強い人</div>
+      <div class="ch-desc">感情・価値観・関係性で話すと伝わる</div>
+    </div>
+    <div class="channel-box ch-poss">
+      <div class="ch-title">可能性チャンネル</div>
+      <div class="ch-types">Ne / Ni が強い人</div>
+      <div class="ch-desc">意味・ビジョン・本質で話すと伝わる</div>
+    </div>
+    <div class="channel-box ch-real">
+      <div class="ch-title">現実チャンネル</div>
+      <div class="ch-types">Se / Si が強い人</div>
+      <div class="ch-desc">具体的事実・実績・手順で話すと伝わる</div>
+    </div>
+  </div>
+
+  <p class="reveal">相手が使っているチャンネルと違うチャンネルで話すと、どれほど熱心に話しても届きにくいのです。</p>
+
+  <h2 class="reveal">チャンネル別の伝え方</h2>
+
+  <h3 class="reveal">論理チャンネル（Te/Ti 優位）の人に伝えるとき</h3>
+  <p class="reveal">このタイプは「なぜそうなのか」その根拠と「どうすれば解決するか」の構造を求めます。感情的な訴えはこのタイプには届きにくいことが多い。</p>
+
+  <div class="compare-pair reveal">
+    <div class="compare-bad">
+      <div class="compare-pair-label">伝わりにくい例</div>
+      <div class="compare-pair-text">「そのとき、すごく傷ついたんだけど、ひどくない？」</div>
+    </div>
+    <div class="compare-good">
+      <div class="compare-pair-label">伝わりやすい例</div>
+      <div class="compare-pair-text">「先日の発言は、これこれという理由で私には問題があった。具体的には〇〇という影響が出た。次回はこうしてほしい」</div>
+    </div>
+  </div>
+
+  <p class="reveal">ポイントは、感情を排除するのではなく、感情を情報として論理的に提示すること。「傷ついた」という感情を「なぜ、どれほど、何が問題か」という構造で伝えると受け取ってもらいやすくなります。</p>
+
+  <h3 class="reveal">感情チャンネル（Fe/Fi 優位）の人に伝えるとき</h3>
+  <p class="reveal">このタイプは、論理の前に「あなたの気持ちはわかってる」という承認を求めます。まず感情的なつながりを作ってから、その後の論理が入ってきやすい。</p>
+
+  <div class="compare-pair reveal">
+    <div class="compare-pair-label" style="padding:12px 24px 0;font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);">伝わりにくい例 → 伝わりやすい例</div>
+    <div class="compare-bad">
+      <div class="compare-pair-label">伝わりにくい例</div>
+      <div class="compare-pair-text">「この件について、データを見るとこちらの方が明らかに正しい」</div>
+    </div>
+    <div class="compare-good">
+      <div class="compare-pair-label">伝わりやすい例</div>
+      <div class="compare-pair-text">「あなたの考えはとても大事にしたい。その上で、私の見方も聞いてほしい」</div>
+    </div>
+  </div>
+
+  <h3 class="reveal">可能性チャンネル（Ne/Ni 優位）の人に伝えるとき</h3>
+  <p class="reveal">このタイプは「なぜこれが重要なのか」「長期的にどうなるのか」「この話の本質は何か」を知りたがります。細かい手順や事実より、大きな意味やビジョンに向けて話すと入りやすい。</p>
+
+  <div class="compare-pair reveal">
+    <div class="compare-bad">
+      <div class="compare-pair-label">伝わりにくい例</div>
+      <div class="compare-pair-text">「この手順でやって。①〜〜、②〜〜、③〜〜です」</div>
+    </div>
+    <div class="compare-good">
+      <div class="compare-pair-label">伝わりやすい例</div>
+      <div class="compare-pair-text">「最終的にこういう状態を目指していて、その中でこのアプローチが最も本質的だと思う。具体的には…」</div>
+    </div>
+  </div>
+
+  <h3 class="reveal">現実チャンネル（Se/Si 優位）の人に伝えるとき</h3>
+  <p class="reveal">このタイプは抽象的な話よりも「何をやるか」「実績はあるか」「具体的にどうすればいいか」がはっきりしている話に安心します。ビジョンや可能性よりも事実と実績が納得の根拠になります。</p>
+
+  <div class="compare-pair reveal">
+    <div class="compare-bad">
+      <div class="compare-pair-label">伝わりにくい例</div>
+      <div class="compare-pair-text">「本質的にこの方向性は間違っている、いつか変える必要がある」</div>
+    </div>
+    <div class="compare-good">
+      <div class="compare-pair-label">伝わりやすい例</div>
+      <div class="compare-pair-text">「先週からこの問題が起き続けている。過去にも同じパターンがあった。だから、この手順で対応したい」</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">「伝わらない」ときの確認ポイント</h2>
+
+  <div class="traits reveal">
+    <div class="trait-item">
+      <div class="trait-num">01</div>
+      <div class="trait-text"><strong>相手のチャンネルで話しているか</strong>自分が感情で話したい場面でも、相手が「論理チャンネル」の人なら、まず論理から入る方が伝わります。自分の話し方の自然さより、相手の受け取りやすさを優先する</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">02</div>
+      <div class="trait-text"><strong>「承認」を先に置いてから主張する</strong>多くの場合、相手の立場や感情をまず承認してから自分の主張をする方が伝わりやすい。「あなたの言うことはわかる、その上で私は〜〜と思う」という構造は、チャンネルをまたいでも有効なことが多い</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">03</div>
+      <div class="trait-text"><strong>タイミングは合っているか</strong>相手が疲れているとき、何かを考えているとき、話を聞ける状態にないときに伝えても届きません。「今、話を受け取れる状態か」相手の様子を読むことも、対話のスキルのひとつです</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">自分のチャンネルを知る</h2>
+
+  <p class="reveal">相手に合わせるためには、まず自分のデフォルトのチャンネルを知っておくことが大事です。</p>
+
+  <div class="self-check reveal">
+    <div class="self-check-title">自分はどのチャンネルか——ストレスを感じているとき、何を求めますか？</div>
+    <ul>
+      <li>「根拠を説明してほしい」→ 論理チャンネル</li>
+      <li>「まず気持ちをわかってほしい」→ 感情チャンネル</li>
+      <li>「この話の本質は何かを聞かせてほしい」→ 可能性チャンネル</li>
+      <li>「具体的に何をすればいいか教えてほしい」→ 現実チャンネル</li>
+    </ul>
+  </div>
+
+  <p class="reveal">自分のデフォルトがわかると、「私はこのチャンネルで話しがち、だがこのタイプにはそれが届きにくいかもしれない」という自覚が生まれます。</p>
+
+  <blockquote class="pull-quote reveal">
+    <div class="pull-quote-text">「なんで伝わってないの？」の多くは、悪意でも無関心でもなく——チャンネルのズレが来ている。</div>
+    <div class="pull-quote-line"></div>
+  </blockquote>
+
+  <h2 class="reveal">まとめ</h2>
+
+  <p class="reveal">「なんで伝わってないの？」の多くは、悪意でも無関心でも話し方の下手さでもなく、チャンネルのズレから来ています。相手が使っているチャンネルで話すこと、承認を先に置いてから主張すること、タイミングを読むこと——この3つを意識するだけで、対話の質は大きく変わります。</p>
+  <p class="reveal">完璧に合わせる必要はありません。「少し相手の言語に翻訳して伝えてみる」という姿勢を持つだけで、ずれは確実に減っていきます。</p>
+
+  <div class="article-nav reveal">
+    <a href="./intj-enfp-relationship.html">← INTJとENFP</a>
+    <a href="./overprotective-parent-mbti.html">過干渉な親とタイプ →</a>
+  </div>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">MBTIコラム — タイプと機能で自分を読み解く</p>
+    <a href="../index.html" class="footer-back">← MBTIトップに戻る</a>
+    <div class="footer-bottom">© 2025 UTAGE LAB · Psychology Column</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

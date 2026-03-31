@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MBTI 心理機能 8つの解説 | UTAGE LAB</title>
-<meta name="description" content="MBTIの8つの心理機能（Se・Si・Ne・Ni・Te・Ti・Fe・Fi）を初学者でも楽しく学べるコラム記事シリーズ。日常の行動から機能の本質を解説。">
+<title>MBTI コラム | UTAGE LAB</title>
+<meta name="description" content="MBTIに関する心理機能解説・知識記事・タイプ論を深掘りするコラム。初学者からコア層まで対応した読み物が揃っています。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
@@ -31,82 +31,53 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-back{font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
 .nav-back:hover{color:var(--violet);}
 
-.page-header{padding:120px 40px 60px;max-width:1200px;margin:0 auto;position:relative;}
+/* PAGE HEADER */
+.page-header{padding:120px 40px 64px;max-width:1200px;margin:0 auto;position:relative;}
 .page-header-eyebrow{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.35em;color:var(--violet);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:18px;}
 .page-header-eyebrow::before{content:'';width:24px;height:1px;background:var(--violet);}
-.page-header-title{font-family:var(--font-display);font-size:clamp(36px,6vw,64px);font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:20px;}
+.page-header-title{font-family:var(--font-display);font-size:clamp(40px,6vw,72px);font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:20px;}
 .page-header-title em{font-style:italic;color:var(--violet);}
-.page-header-desc{font-size:16px;color:var(--text-light);line-height:2;max-width:600px;}
-.page-header-bg{position:absolute;font-family:var(--font-display);font-size:clamp(100px,18vw,220px);color:transparent;-webkit-text-stroke:1px rgba(123,94,167,0.05);right:0;top:60px;line-height:1;pointer-events:none;font-style:italic;}
+.page-header-desc{font-size:1rem;color:var(--text-light);line-height:1.95;max-width:560px;}
+.page-header-bg{position:absolute;font-family:var(--font-display);font-size:clamp(120px,20vw,260px);color:transparent;-webkit-text-stroke:1px rgba(123,94,167,0.05);right:0;top:60px;line-height:1;pointer-events:none;font-style:italic;}
 
-/* INTRO CARD */
-.intro-band{background:linear-gradient(135deg,var(--violet-light),var(--cream));padding:40px;margin:0 0 60px;}
-.intro-inner{max-width:1200px;margin:0 auto;display:flex;gap:32px;align-items:center;flex-wrap:wrap;}
-.intro-icon{font-size:48px;flex-shrink:0;}
-.intro-text h3{font-family:var(--font-display);font-size:20px;color:var(--ink);margin-bottom:8px;}
-.intro-text p{font-size:1rem;color:var(--text-light);line-height:1.9;}
+/* SECTION GRID */
+.sections-wrap{max-width:1200px;margin:0 auto;padding:0 40px 80px;}
+.sections-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
 
-/* FUNCTIONS GRID */
-.funcs-wrap{max-width:1200px;margin:0 auto;padding:0 40px 120px;}
-.funcs-section-title{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.3em;color:var(--text-light);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px;}
-.funcs-section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.sec-card{display:block;background:white;border:1px solid var(--border);border-radius:24px;padding:44px 40px;text-decoration:none;color:var(--text);transition:all 0.35s;position:relative;overflow:hidden;}
+.sec-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:4px;transform:scaleX(0);transform-origin:left;transition:transform 0.35s ease;}
+.sec-card:hover{transform:translateY(-6px);box-shadow:0 28px 64px var(--shadow);border-color:transparent;}
+.sec-card:hover::after{transform:scaleX(1);}
+.sec-card-violet::after{background:var(--violet);}
+.sec-card-teal::after{background:var(--teal);}
 
-.funcs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:48px;}
+.sec-card-icon{font-size:40px;margin-bottom:20px;width:72px;height:72px;border-radius:18px;display:flex;align-items:center;justify-content:center;}
+.sec-card-label{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:10px;}
+.sec-card-title{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:14px;}
+.sec-card-desc{font-size:1rem;color:var(--text-light);line-height:1.9;margin-bottom:24px;}
+.sec-card-meta{display:flex;align-items:center;justify-content:space-between;}
+.sec-card-count{font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.12em;}
+.sec-card-arrow{font-size:20px;transition:transform 0.25s;}
+.sec-card:hover .sec-card-arrow{transform:translateX(5px);}
 
-.func-card{display:block;text-decoration:none;color:var(--text);background:white;border:1px solid var(--border);border-radius:20px;padding:32px;transition:all 0.35s;position:relative;overflow:hidden;}
-.func-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;transition:width 0.3s;}
-.func-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px var(--shadow);border-color:transparent;}
-.func-card-top{display:flex;align-items:flex-start;gap:20px;margin-bottom:16px;}
-.func-symbol{font-family:var(--font-display);font-size:48px;font-weight:900;line-height:1;flex-shrink:0;}
-.func-meta{flex:1;}
-.func-name{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:6px;}
-.func-full-name{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--ink);line-height:1.2;}
-.func-tagline{font-size:1rem;color:var(--text-light);line-height:1.7;margin-bottom:16px;}
-.func-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.func-tag{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.1em;padding:4px 10px;border-radius:4px;font-weight:500;}
-.func-read{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;display:flex;align-items:center;gap:6px;margin-top:16px;transition:gap 0.25s;}
-.func-card:hover .func-read{gap:10px;}
+/* FEATURED ARTICLES */
+.featured-wrap{max-width:1200px;margin:0 auto;padding:0 40px 120px;}
+.featured-title{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.3em;color:var(--text-light);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.featured-title::after{content:'';flex:1;height:1px;background:var(--border);}
 
-/* Color themes */
-.func-se{--c:#c47d2a;--cl:#fef3e0;}
-.func-si{--c:#3d8b8b;--cl:#e2f4f4;}
-.func-ne{--c:#7b5ea7;--cl:#ede9f8;}
-.func-ni{--c:#4a3570;--cl:#e8e0f4;}
-.func-te{--c:#1a6b3a;--cl:#d8f0e0;}
-.func-ti{--c:#1565a0;--cl:#dce9f7;}
-.func-fe{--c:#c9607a;--cl:#fae0e6;}
-.func-fi{--c:#8e44ad;--cl:#f5e6fa;}
-
-.func-se::before,.func-si::before,.func-ne::before,.func-ni::before,
-.func-te::before,.func-ti::before,.func-fe::before,.func-fi::before{background:var(--c);}
-.func-se .func-symbol,.func-si .func-symbol,.func-ne .func-symbol,.func-ni .func-symbol,
-.func-te .func-symbol,.func-ti .func-symbol,.func-fe .func-symbol,.func-fi .func-symbol{color:var(--c);}
-.func-se .func-name,.func-si .func-name,.func-ne .func-name,.func-ni .func-name,
-.func-te .func-name,.func-ti .func-name,.func-fe .func-name,.func-fi .func-name{color:var(--c);}
-.func-se .func-read,.func-si .func-read,.func-ne .func-read,.func-ni .func-read,
-.func-te .func-read,.func-ti .func-read,.func-fe .func-read,.func-fi .func-read{color:var(--c);}
-.func-se .func-tag,.func-si .func-tag,.func-ne .func-tag,.func-ni .func-tag,
-.func-te .func-tag,.func-ti .func-tag,.func-fe .func-tag,.func-fi .func-tag{background:var(--cl);color:var(--c);}
-
-/* TYPE MAP */
-.type-map{background:white;border:1px solid var(--border);border-radius:20px;padding:36px;margin:48px 0;}
-.type-map-title{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.3em;color:var(--text-light);text-transform:uppercase;margin-bottom:24px;}
-.type-map-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.type-cell{border-radius:10px;padding:14px;text-align:center;}
-.type-cell-name{font-family:var(--font-mono);font-size:14px;font-weight:700;margin-bottom:6px;}
-.type-cell-funcs{font-size:0.75rem;color:var(--text-light);line-height:1.6;}
-
-/* ARTICLE CARDS */
-.articles-list{display:flex;flex-direction:column;gap:16px;margin-bottom:48px;}
 .art-card{display:flex;text-decoration:none;color:var(--text);background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;}
 .art-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px var(--shadow);border-color:transparent;}
 .art-card-accent{width:5px;flex-shrink:0;}
 .art-card-inner{padding:24px 28px;flex:1;}
 .art-card-meta{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.22em;text-transform:uppercase;margin-bottom:8px;}
 .art-card-title{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:8px;}
-.art-card-desc{font-size:1rem;color:var(--text-light);line-height:1.85;margin-bottom:0;}
+.art-card-desc{font-size:1rem;color:var(--text-light);line-height:1.85;}
 .art-card-read{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;margin-top:12px;display:inline-flex;align-items:center;gap:6px;transition:gap 0.2s;}
 .art-card:hover .art-card-read{gap:10px;}
+
+.articles-list{display:flex;flex-direction:column;gap:16px;margin-bottom:32px;}
+.more-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--violet);text-decoration:none;border:1px solid rgba(123,94,167,0.25);padding:10px 22px;border-radius:4px;transition:all 0.25s;}
+.more-link:hover{background:var(--violet-light);border-color:var(--violet);}
 
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -124,13 +95,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 @media(max-width:768px){
   .nav{padding:0 24px;}
-  .page-header{padding:100px 24px 40px;}
+  .page-header{padding:100px 24px 48px;}
   .page-header-bg{display:none;}
-  .intro-band{padding:28px 24px;}
-  .funcs-wrap{padding:0 24px 80px;}
-  .funcs-grid{grid-template-columns:1fr;}
-  .type-map-grid{grid-template-columns:repeat(2,1fr);}
-  .art-card-title{font-size:16px;}
+  .sections-wrap{padding:0 24px 60px;}
+  .sections-grid{grid-template-columns:1fr;}
+  .sec-card{padding:32px 28px;}
+  .featured-wrap{padding:0 24px 80px;}
   .footer{padding:48px 24px 28px;}
 }
 </style>
@@ -144,184 +114,50 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 <div class="page-header">
   <div class="page-header-bg">MBTI</div>
-  <div class="page-header-eyebrow">MBTI · 心理機能シリーズ</div>
-  <h1 class="page-header-title">8つの<em>心理機能</em>を<br>やさしく解説</h1>
-  <p class="page-header-desc">Se・Si・Ne・Ni・Te・Ti・Fe・Fi——MBTIの根幹をなす8つの認知機能を、日常のリアルなシーンから楽しく学べる記事シリーズ。初学者歓迎。</p>
+  <div class="page-header-eyebrow">MBTI Column</div>
+  <h1 class="page-header-title"><em>MBTI</em><br>コラム</h1>
+  <p class="page-header-desc">心理機能の仕組みから、タイプ別の恋愛・仕事・ストレス対処まで。MBTIを「知識」から「自己理解」に変える読み物を揃えました。</p>
 </div>
 
-<div class="intro-band">
-  <div class="intro-inner">
-    <div class="intro-icon">🧠</div>
-    <div class="intro-text">
-      <h3>心理機能って何？</h3>
-      <p>MBTIの「INFP」「ENTJ」などのタイプは、実は8つの認知機能の組み合わせで決まります。どの機能を「主に使うか」がタイプを決める鍵。まずは自分が最も共感できる機能を見つけてみてください。</p>
-    </div>
+<div class="sections-wrap">
+  <div class="sections-grid">
+
+    <!-- 心理機能解説 -->
+    <a href="./functions/index.html" class="sec-card sec-card-violet reveal">
+      <div class="sec-card-icon" style="background:var(--violet-light);">🧠</div>
+      <div class="sec-card-label" style="color:var(--violet);">Cognitive Functions</div>
+      <h2 class="sec-card-title">心理機能<br>解説シリーズ</h2>
+      <p class="sec-card-desc">
+        Se・Si・Ne・Ni・Te・Ti・Fe・Fi——8つの認知機能を、日常のリアルなシーンからやさしく解説。
+        自分のタイプの「仕組み」が理解できるシリーズ。
+      </p>
+      <div class="sec-card-meta">
+        <span class="sec-card-count" style="color:var(--violet);">8機能 全解説</span>
+        <span class="sec-card-arrow" style="color:var(--violet);">→</span>
+      </div>
+    </a>
+
+    <!-- MBTI 知識記事 -->
+    <a href="./articles/index.html" class="sec-card sec-card-teal reveal reveal-delay-1">
+      <div class="sec-card-icon" style="background:var(--teal-light);">📖</div>
+      <div class="sec-card-label" style="color:var(--teal);">MBTI Articles</div>
+      <h2 class="sec-card-title">MBTI<br>知識記事</h2>
+      <p class="sec-card-desc">
+        タイプ別の恋愛傾向・仕事スタイル・燃え尽き症候群・コミュニケーションギャップなど、
+        MBTIを日常に活かす知識コラムを掲載。
+      </p>
+      <div class="sec-card-meta">
+        <span class="sec-card-count" style="color:var(--teal);">記事を読む</span>
+        <span class="sec-card-arrow" style="color:var(--teal);">→</span>
+      </div>
+    </a>
+
   </div>
 </div>
 
-<div class="funcs-wrap">
-
-  <div class="funcs-section-title">感覚機能 — Sensing Functions</div>
-
-  <div class="funcs-grid">
-    <a href="./se.html" class="func-card func-se reveal">
-      <div class="func-card-top">
-        <div class="func-symbol">Se</div>
-        <div class="func-meta">
-          <div class="func-name">Extroverted Sensing · 外向的感覚</div>
-          <div class="func-full-name">今この瞬間を<br>全力で生きる</div>
-        </div>
-      </div>
-      <p class="func-tagline">五感で世界を直接つかむ、最も「現在」に近い認知機能。計画より行動、思考より体験。</p>
-      <div class="func-tags">
-        <span class="func-tag">即興</span>
-        <span class="func-tag">五感</span>
-        <span class="func-tag">現在</span>
-        <span class="func-tag">行動力</span>
-      </div>
-      <div class="func-read">記事を読む →</div>
-    </a>
-
-    <a href="./si.html" class="func-card func-si reveal reveal-delay-1">
-      <div class="func-card-top">
-        <div class="func-symbol">Si</div>
-        <div class="func-meta">
-          <div class="func-name">Introverted Sensing · 内向的感覚</div>
-          <div class="func-full-name">記憶と安定を<br>愛する守護者</div>
-        </div>
-      </div>
-      <p class="func-tagline">過去の経験を精密に保存し、「いつもの」が最高の安心感になる。ルーティンが最強の武器。</p>
-      <div class="func-tags">
-        <span class="func-tag">記憶</span>
-        <span class="func-tag">安定</span>
-        <span class="func-tag">ルーティン</span>
-        <span class="func-tag">信頼</span>
-      </div>
-      <div class="func-read">記事を読む →</div>
-    </a>
-  </div>
-
-  <div class="funcs-section-title">直観機能 — Intuitive Functions</div>
-
-  <div class="funcs-grid">
-    <a href="./ne.html" class="func-card func-ne reveal">
-      <div class="func-card-top">
-        <div class="func-symbol">Ne</div>
-        <div class="func-meta">
-          <div class="func-name">Extroverted Intuition · 外向的直観</div>
-          <div class="func-full-name">アイデアが止まらない<br>可能性の探求者</div>
-        </div>
-      </div>
-      <p class="func-tagline">「それって〜にもなる？」——現実の可能性を次々と発見する。発想の泉は永遠に涸れない。</p>
-      <div class="func-tags">
-        <span class="func-tag">発想力</span>
-        <span class="func-tag">可能性</span>
-        <span class="func-tag">つながり</span>
-        <span class="func-tag">創造</span>
-      </div>
-      <div class="func-read">記事を読む →</div>
-    </a>
-
-    <a href="./ni.html" class="func-card func-ni reveal reveal-delay-1">
-      <div class="func-card-top">
-        <div class="func-symbol">Ni</div>
-        <div class="func-meta">
-          <div class="func-name">Introverted Intuition · 内向的直観</div>
-          <div class="func-full-name">未来を「見る」<br>予言者の洞察</div>
-        </div>
-      </div>
-      <p class="func-tagline">深海のように静かで、鋭い。本質を一点に収束させる「収斂の直観」。ぼーっとしてるのに鋭い。</p>
-      <div class="func-tags">
-        <span class="func-tag">洞察</span>
-        <span class="func-tag">本質</span>
-        <span class="func-tag">未来</span>
-        <span class="func-tag">収束</span>
-      </div>
-      <div class="func-read">記事を読む →</div>
-    </a>
-  </div>
-
-  <div class="funcs-section-title">思考機能 — Thinking Functions</div>
-
-  <div class="funcs-grid">
-    <a href="./te.html" class="func-card func-te reveal">
-      <div class="func-card-top">
-        <div class="func-symbol">Te</div>
-        <div class="func-meta">
-          <div class="func-name">Extroverted Thinking · 外向的思考</div>
-          <div class="func-full-name">効率と結果を<br>極める組織化の達人</div>
-        </div>
-      </div>
-      <p class="func-tagline">「もっと速く・うまくできるでしょ？」——現実を論理で最適化し続ける。目標への最短ルートが見える。</p>
-      <div class="func-tags">
-        <span class="func-tag">効率</span>
-        <span class="func-tag">組織化</span>
-        <span class="func-tag">結果</span>
-        <span class="func-tag">リーダー</span>
-      </div>
-      <div class="func-read">記事を読む →</div>
-    </a>
-
-    <a href="./ti.html" class="func-card func-ti reveal reveal-delay-1">
-      <div class="func-card-top">
-        <div class="func-symbol">Ti</div>
-        <div class="func-meta">
-          <div class="func-name">Introverted Thinking · 内向的思考</div>
-          <div class="func-full-name">「なぜ？」を追い続ける<br>論理の職人</div>
-        </div>
-      </div>
-      <p class="func-tagline">理解できないものは信用しない。頭の中に完璧な論理システムを構築し続ける精密な機能。</p>
-      <div class="func-tags">
-        <span class="func-tag">論理</span>
-        <span class="func-tag">精密</span>
-        <span class="func-tag">分析</span>
-        <span class="func-tag">体系化</span>
-      </div>
-      <div class="func-read">記事を読む →</div>
-    </a>
-  </div>
-
-  <div class="funcs-section-title">感情機能 — Feeling Functions</div>
-
-  <div class="funcs-grid">
-    <a href="./fe.html" class="func-card func-fe reveal">
-      <div class="func-card-top">
-        <div class="func-symbol">Fe</div>
-        <div class="func-meta">
-          <div class="func-name">Extroverted Feeling · 外向的感情</div>
-          <div class="func-full-name">場の空気を読む<br>「調和」の達人</div>
-        </div>
-      </div>
-      <p class="func-tagline">「あの人、今元気なさそう」——言葉より前に場の感情が見える。人と人をつなぐ透明な糸。</p>
-      <div class="func-tags">
-        <span class="func-tag">共感</span>
-        <span class="func-tag">調和</span>
-        <span class="func-tag">空気感</span>
-        <span class="func-tag">つながり</span>
-      </div>
-      <div class="func-read">記事を読む →</div>
-    </a>
-
-    <a href="./fi.html" class="func-card func-fi reveal reveal-delay-1">
-      <div class="func-card-top">
-        <div class="func-symbol">Fi</div>
-        <div class="func-meta">
-          <div class="func-name">Introverted Feeling · 内向的感情</div>
-          <div class="func-full-name">「自分だけの価値観」を<br>持つ誠実な魂</div>
-        </div>
-      </div>
-      <p class="func-tagline">「それは私の信念に反する」——深い内面に強い価値の羅針盤を持つ機能。静かだが、決してぶれない。</p>
-      <div class="func-tags">
-        <span class="func-tag">価値観</span>
-        <span class="func-tag">誠実</span>
-        <span class="func-tag">独自性</span>
-        <span class="func-tag">信念</span>
-      </div>
-      <div class="func-read">記事を読む →</div>
-    </a>
-  </div>
-
-  <div class="funcs-section-title">コラム記事 — Column Articles</div>
+<!-- FEATURED ARTICLES -->
+<div class="featured-wrap">
+  <div class="featured-title">注目記事 — Featured Articles</div>
 
   <div class="articles-list">
 
@@ -330,78 +166,40 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div class="art-card-inner">
         <div class="art-card-meta" style="color:#c9607a;">TJタイプ · 感情表現 · 愛情</div>
         <div class="art-card-title">「冷たい」と言われがちなTJタイプが、実は愛情深い理由</div>
-        <p class="art-card-desc">論理的で感情表現が少ないTJタイプは、「行動と責任」という独自の言語で愛情を伝えています。そのギャップを知るだけで、関係は大きく変わります。</p>
+        <p class="art-card-desc">論理的で感情表現が少ないTJタイプは、「行動と責任」という独自の言語で愛情を伝えています。</p>
         <div class="art-card-read" style="color:#c9607a;">記事を読む →</div>
       </div>
     </a>
 
-    <a href="./articles/dominant-function-guide.html" class="art-card reveal">
+    <a href="./articles/dominant-function-guide.html" class="art-card reveal reveal-delay-1">
       <div class="art-card-accent" style="background:#7b5ea7;"></div>
       <div class="art-card-inner">
         <div class="art-card-meta" style="color:#7b5ea7;">認知機能 · 主機能 · 入門</div>
         <div class="art-card-title">あなたの「主機能」はどれ？ 簡単な見分け方</div>
-        <p class="art-card-desc">8つの認知機能から自分の主機能を見分けるための3つの質問。一番生き生きする場面、一番つらいストレス、他人からの印象——この3点で主機能がわかります。</p>
+        <p class="art-card-desc">8つの認知機能から自分の主機能を見分けるための3つの質問。</p>
         <div class="art-card-read" style="color:#7b5ea7;">記事を読む →</div>
       </div>
     </a>
 
-    <a href="./articles/inf-type-burnout-and-recovery.html" class="art-card reveal">
+    <a href="./articles/inf-type-burnout-and-recovery.html" class="art-card reveal reveal-delay-2">
       <div class="art-card-accent" style="background:#3d8b8b;"></div>
       <div class="art-card-inner">
         <div class="art-card-meta" style="color:#3d8b8b;">INFJ · INFP · 燃え尽き · 回復</div>
         <div class="art-card-title">INFタイプが燃え尽きやすい理由と、回復のサイクル</div>
-        <p class="art-card-desc">INFJやINFPが燃え尽きやすいのは弱さではなく構造的な理由があります。消耗の初期サインを知り、自分に合った回復の方法を見つけましょう。</p>
+        <p class="art-card-desc">INFJやINFPが燃え尽きやすいのは弱さではなく構造的な理由があります。</p>
         <div class="art-card-read" style="color:#3d8b8b;">記事を読む →</div>
       </div>
     </a>
 
   </div>
 
-  <!-- TYPE MAP -->
-  <div class="type-map reveal">
-    <div class="type-map-title">参考：主要タイプと主機能の対応</div>
-    <div class="type-map-grid">
-      <div class="type-cell" style="background:#fef3e0;">
-        <div class="type-cell-name" style="color:#c47d2a;">ESTP / ESFP</div>
-        <div class="type-cell-funcs">主機能: Se</div>
-      </div>
-      <div class="type-cell" style="background:#e2f4f4;">
-        <div class="type-cell-name" style="color:#3d8b8b;">ISTJ / ISFJ</div>
-        <div class="type-cell-funcs">主機能: Si</div>
-      </div>
-      <div class="type-cell" style="background:#ede9f8;">
-        <div class="type-cell-name" style="color:#7b5ea7;">ENTP / ENFP</div>
-        <div class="type-cell-funcs">主機能: Ne</div>
-      </div>
-      <div class="type-cell" style="background:#e8e0f4;">
-        <div class="type-cell-name" style="color:#4a3570;">INTJ / INFJ</div>
-        <div class="type-cell-funcs">主機能: Ni</div>
-      </div>
-      <div class="type-cell" style="background:#d8f0e0;">
-        <div class="type-cell-name" style="color:#1a6b3a;">ENTJ / ESTJ</div>
-        <div class="type-cell-funcs">主機能: Te</div>
-      </div>
-      <div class="type-cell" style="background:#dce9f7;">
-        <div class="type-cell-name" style="color:#1565a0;">INTP / ISTP</div>
-        <div class="type-cell-funcs">主機能: Ti</div>
-      </div>
-      <div class="type-cell" style="background:#fae0e6;">
-        <div class="type-cell-name" style="color:#c9607a;">ENFJ / ESFJ</div>
-        <div class="type-cell-funcs">主機能: Fe</div>
-      </div>
-      <div class="type-cell" style="background:#f5e6fa;">
-        <div class="type-cell-name" style="color:#8e44ad;">INFP / ISFP</div>
-        <div class="type-cell-funcs">主機能: Fi</div>
-      </div>
-    </div>
-  </div>
-
+  <a href="./articles/index.html" class="more-link reveal">記事一覧をすべて見る →</a>
 </div>
 
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-logo">UTAGE LAB</div>
-    <p class="footer-desc">MBTI心理機能シリーズ — 8つの機能で自分を読み解く</p>
+    <p class="footer-desc">MBTIコラム — 心理機能と自己理解を深める読み物</p>
     <a href="../index.html" class="footer-back">← コラム一覧に戻る</a>
     <div class="footer-bottom">© 2025 UTAGE LAB · Psychology Column</div>
   </div>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBTI 知識記事一覧 | UTAGE LAB</title>
+<meta name="description" content="MBTIに関する知識コラム一覧。タイプ別の恋愛・仕事・燃え尽き・コミュニケーションを深掘りした記事シリーズ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1025; --cream:#faf7f2; --parchment:#f5f0e8; --paper:#fff9f5;
+  --rose:#c9607a; --rose-light:#fae0e6; --rose-deep:#9e3a52;
+  --gold:#c9a84c; --gold-light:#f5edd4;
+  --violet:#7b5ea7; --violet-light:#ede9f8;
+  --teal:#3d8b8b; --teal-light:#e2f4f4;
+  --amber:#c47d2a; --amber-light:#fef3e0;
+  --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
+  --shadow:rgba(26,16,37,0.12);
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-serif:'Noto Serif JP',serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-serif);font-size:16px;background:var(--cream);color:var(--text);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,242,0.95);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border);}
+.nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
+.nav-back{font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-back:hover{color:var(--teal);}
+
+.page-header{padding:120px 40px 60px;max-width:1200px;margin:0 auto;position:relative;}
+.page-header-eyebrow{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.35em;color:var(--teal);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.page-header-eyebrow::before{content:'';width:24px;height:1px;background:var(--teal);}
+.page-header-title{font-family:var(--font-display);font-size:clamp(36px,6vw,64px);font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:20px;}
+.page-header-title em{font-style:italic;color:var(--teal);}
+.page-header-desc{font-size:16px;color:var(--text-light);line-height:2;max-width:600px;}
+.page-header-bg{position:absolute;font-family:var(--font-display);font-size:clamp(80px,14vw,180px);color:transparent;-webkit-text-stroke:1px rgba(61,139,139,0.05);right:0;top:60px;line-height:1;pointer-events:none;font-style:italic;}
+
+/* FILTER TAGS */
+.filter-wrap{max-width:1200px;margin:0 auto;padding:0 40px 32px;}
+.filter-list{display:flex;flex-wrap:wrap;gap:10px;}
+.filter-tag{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.14em;padding:6px 14px;border-radius:4px;border:1px solid var(--border);background:white;color:var(--text-light);cursor:default;}
+.filter-tag.active{background:var(--teal-light);color:var(--teal);border-color:var(--teal);}
+
+/* ARTICLE LIST */
+.articles-wrap{max-width:1200px;margin:0 auto;padding:0 40px 120px;}
+.articles-list{display:flex;flex-direction:column;gap:20px;}
+
+.art-card{display:flex;text-decoration:none;color:var(--text);background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;}
+.art-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px var(--shadow);border-color:transparent;}
+.art-card-accent{width:5px;flex-shrink:0;}
+.art-card-inner{padding:28px 32px;flex:1;}
+.art-card-meta{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.22em;text-transform:uppercase;margin-bottom:8px;}
+.art-card-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:10px;}
+.art-card-desc{font-size:1rem;color:var(--text-light);line-height:1.85;}
+.art-card-read{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;margin-top:14px;display:inline-flex;align-items:center;gap:6px;transition:gap 0.2s;}
+.art-card:hover .art-card-read{gap:10px;}
+
+/* FUNCTIONS LINK BANNER */
+.func-banner{display:flex;align-items:center;justify-content:space-between;background:var(--violet-light);border:1px solid rgba(123,94,167,0.15);border-radius:16px;padding:24px 32px;text-decoration:none;color:var(--text);transition:all 0.3s;gap:16px;margin-top:60px;}
+.func-banner:hover{transform:translateY(-3px);box-shadow:0 16px 40px var(--shadow);border-color:rgba(123,94,167,0.3);}
+.func-banner-left{display:flex;align-items:center;gap:16px;}
+.func-banner-icon{font-size:28px;}
+.func-banner-text h4{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.func-banner-text p{font-size:0.9rem;color:var(--text-light);}
+.func-banner-arrow{font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.18em;color:var(--violet);text-transform:uppercase;flex-shrink:0;transition:transform 0.25s;}
+.func-banner:hover .func-banner-arrow{transform:translateX(4px);}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.08s;}
+.reveal-delay-2{transition-delay:0.16s;}
+.reveal-delay-3{transition-delay:0.24s;}
+.reveal-delay-4{transition-delay:0.24s;}
+.reveal-delay-5{transition-delay:0.32s;}
+
+.footer{background:var(--ink);color:rgba(247,243,237,0.5);padding:56px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-logo{font-family:var(--font-display);font-size:22px;color:var(--parchment);margin-bottom:12px;}
+.footer-desc{font-size:0.78rem;line-height:1.8;margin-bottom:32px;}
+.footer-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,237,0.4);text-decoration:none;border:1px solid rgba(247,243,237,0.12);padding:10px 22px;border-radius:2px;transition:all 0.25s;}
+.footer-back:hover{color:var(--parchment);border-color:rgba(247,243,237,0.3);}
+.footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
+
+@media(max-width:768px){
+  .nav{padding:0 24px;}
+  .page-header{padding:100px 24px 40px;}
+  .page-header-bg{display:none;}
+  .filter-wrap{padding:0 24px 24px;}
+  .articles-wrap{padding:0 24px 80px;}
+  .art-card-inner{padding:20px 22px;}
+  .art-card-title{font-size:17px;}
+  .func-banner{flex-direction:column;align-items:flex-start;gap:12px;}
+  .footer{padding:48px 24px 28px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back">← MBTI</a>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg">Articles</div>
+  <div class="page-header-eyebrow">MBTI · 知識記事</div>
+  <h1 class="page-header-title">MBTI<br><em>知識記事</em>一覧</h1>
+  <p class="page-header-desc">タイプ別の恋愛・仕事・ストレス・コミュニケーション——MBTIを日常の自己理解に活かす読み物シリーズ。</p>
+</div>
+
+<div class="filter-wrap">
+  <div class="filter-list">
+    <span class="filter-tag active">すべて</span>
+    <span class="filter-tag">恋愛</span>
+    <span class="filter-tag">仕事</span>
+    <span class="filter-tag">燃え尽き</span>
+    <span class="filter-tag">認知機能</span>
+    <span class="filter-tag">入門</span>
+  </div>
+</div>
+
+<div class="articles-wrap">
+  <div class="articles-list">
+
+    <a href="./tj-type-love-language.html" class="art-card reveal">
+      <div class="art-card-accent" style="background:#c9607a;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#c9607a;">TJタイプ · 感情表現 · 愛情</div>
+        <div class="art-card-title">「冷たい」と言われがちなTJタイプが、実は愛情深い理由</div>
+        <p class="art-card-desc">論理的で感情表現が少ないTJタイプは、「行動と責任」という独自の言語で愛情を伝えています。そのギャップを知るだけで、関係は大きく変わります。</p>
+        <div class="art-card-read" style="color:#c9607a;">記事を読む →</div>
+      </div>
+    </a>
+
+    <a href="./dominant-function-guide.html" class="art-card reveal reveal-delay-1">
+      <div class="art-card-accent" style="background:#7b5ea7;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#7b5ea7;">認知機能 · 主機能 · 入門</div>
+        <div class="art-card-title">あなたの「主機能」はどれ？ 簡単な見分け方</div>
+        <p class="art-card-desc">8つの認知機能から自分の主機能を見分けるための3つの質問。一番生き生きする場面、一番つらいストレス、他人からの印象——この3点で主機能がわかります。</p>
+        <div class="art-card-read" style="color:#7b5ea7;">記事を読む →</div>
+      </div>
+    </a>
+
+    <a href="./inf-type-burnout-and-recovery.html" class="art-card reveal reveal-delay-2">
+      <div class="art-card-accent" style="background:#3d8b8b;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#3d8b8b;">INFJ · INFP · 燃え尽き · 回復</div>
+        <div class="art-card-title">INFタイプが燃え尽きやすい理由と、回復のサイクル</div>
+        <p class="art-card-desc">INFJやINFPが燃え尽きやすいのは弱さではなく構造的な理由があります。消耗の初期サインを知り、自分に合った回復の方法を見つけましょう。</p>
+        <div class="art-card-read" style="color:#3d8b8b;">記事を読む →</div>
+      </div>
+    </a>
+
+    <a href="./nf-type-love-exhaustion.html" class="art-card reveal reveal-delay-3">
+      <div class="art-card-accent" style="background:#8e44ad;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#8e44ad;">NFタイプ · 恋愛 · 消耗</div>
+        <div class="art-card-title">NFタイプが恋愛で消耗しやすい理由</div>
+        <p class="art-card-desc">感情に深く共鳴するNFタイプが、なぜ恋愛で疲れてしまうのか。Fi・Feが持つ特性と、健全な関係を保つためのヒント。</p>
+        <div class="art-card-read" style="color:#8e44ad;">記事を読む →</div>
+      </div>
+    </a>
+
+    <a href="./fj-type-love-style.html" class="art-card reveal reveal-delay-4">
+      <div class="art-card-accent" style="background:#c9607a;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#c9607a;">FJタイプ · 恋愛スタイル</div>
+        <div class="art-card-title">FJタイプの恋愛スタイルと、すれ違いやすいパターン</div>
+        <p class="art-card-desc">共感と調和を重視するFJタイプが、なぜ関係の中で「伝わらない」と感じるのか。Feが生み出す愛情表現の特徴を解説。</p>
+        <div class="art-card-read" style="color:#c9607a;">記事を読む →</div>
+      </div>
+    </a>
+
+    <a href="./p-type-planning-struggle.html" class="art-card reveal reveal-delay-5">
+      <div class="art-card-accent" style="background:#c47d2a;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#c47d2a;">Pタイプ · 計画 · 習慣化</div>
+        <div class="art-card-title">Pタイプが計画を立てても続かない、本当の理由</div>
+        <p class="art-card-desc">「やる気はある、でも続かない」——Pタイプに多いこの悩みは、意志の問題ではなく認知スタイルの問題です。</p>
+        <div class="art-card-read" style="color:#c47d2a;">記事を読む →</div>
+      </div>
+    </a>
+
+    <a href="./te-boss-fi-subordinate-conflict.html" class="art-card reveal">
+      <div class="art-card-accent" style="background:#1a6b3a;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#1a6b3a;">Te · Fi · 職場 · 対立</div>
+        <div class="art-card-title">Te上司とFi部下が衝突する理由と、歩み寄り方</div>
+        <p class="art-card-desc">効率を求めるTeと、価値観を優先するFi。職場でよく起きるすれ違いの構造と、互いを尊重するためのアプローチ。</p>
+        <div class="art-card-read" style="color:#1a6b3a;">記事を読む →</div>
+      </div>
+    </a>
+
+    <a href="./type-dealbreakers.html" class="art-card reveal reveal-delay-1">
+      <div class="art-card-accent" style="background:#4a3570;"></div>
+      <div class="art-card-inner">
+        <div class="art-card-meta" style="color:#4a3570;">タイプ別 · 地雷 · 関係性</div>
+        <div class="art-card-title">MBTIタイプ別「これだけはNG」地雷リスト</div>
+        <p class="art-card-desc">各タイプが絶対に許せない言動とは？ 16タイプそれぞれの「最大地雷」をタイプ論から読み解きます。</p>
+        <div class="art-card-read" style="color:#4a3570;">記事を読む →</div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- 心理機能解説へのリンク -->
+  <a href="../functions/index.html" class="func-banner reveal">
+    <div class="func-banner-left">
+      <div class="func-banner-icon">🧠</div>
+      <div class="func-banner-text">
+        <h4>心理機能解説シリーズも読む</h4>
+        <p>Se・Si・Ne・Ni・Te・Ti・Fe・Fi — 8つの認知機能をやさしく解説</p>
+      </div>
+    </div>
+    <div class="func-banner-arrow">解説を見る →</div>
+  </a>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">MBTI知識記事シリーズ — タイプ論を日常の自己理解へ</p>
+    <a href="../index.html" class="footer-back">← MBTIトップに戻る</a>
+    <div class="footer-bottom">© 2025 UTAGE LAB · Psychology Column</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

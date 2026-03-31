@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fi（内向的感情）とは？「自分だけの価値観」を持つ誠実な魂 | UTAGE LAB</title>
-<meta name="description" content="MBTI心理機能「Fi（内向的感情）」をやさしく解説。INFPやISFPが持つ強い価値観と深い感情世界とは？「信念の守護者」の正体を初学者向けに解説。">
+<title>Ti（内向的思考）とは？「なぜ？」を追い続ける論理の職人 | UTAGE LAB</title>
+<meta name="description" content="MBTI心理機能「Ti（内向的思考）」をやさしく解説。INTPやISTPが持つ深い内的論理とは？「理解しないと動けない」人の正体を初学者向けに解説。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
@@ -16,7 +16,7 @@
   --amber:#c47d2a; --amber-light:#fef3e0;
   --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
   --shadow:rgba(26,16,37,0.12);
-  --func-color: #8e44ad; --func-light: #f5e6fa;
+  --func-color: #1565a0; --func-light: #e3f2fd;
   --font-display:'Playfair Display',Georgia,serif;
   --font-serif:'Noto Serif JP',serif;
   --font-mono:'DM Mono','Courier New',monospace;
@@ -29,8 +29,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
 .nav-back{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
 .nav-back:hover{color:var(--func-color);}
-.hero{padding:120px 40px 80px;background:linear-gradient(135deg,var(--func-light) 0%,var(--cream) 60%);position:relative;overflow:hidden;}
-.hero::before{content:'Fi';position:absolute;right:-20px;top:20px;font-family:var(--font-display);font-size:280px;font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(142,68,173,0.08);pointer-events:none;line-height:1;}
+.hero{padding:120px 40px 80px;background:linear-gradient(135deg,#dce9f7 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+.hero::before{content:'Ti';position:absolute;right:-20px;top:20px;font-family:var(--font-display);font-size:280px;font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(21,101,160,0.08);pointer-events:none;line-height:1;}
 .hero-inner{max-width:860px;margin:0 auto;position:relative;}
 .hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
 .hero-badge::before{content:'';width:28px;height:1px;background:var(--func-color);}
@@ -43,7 +43,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .article h2 .num{font-family:var(--font-mono);font-size:12px;color:var(--func-color);letter-spacing:0.2em;display:block;margin-bottom:6px;}
 .article p{font-size:17px;line-height:2;margin-bottom:20px;color:var(--text);}
 .func-card{background:white;border:2px solid var(--func-color);border-radius:20px;padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
-.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#a569d1);}
+.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#1976d2);}
 .func-card-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
 .func-card-text{font-size:20px;font-weight:700;color:var(--ink);line-height:1.7;}
 .scene{background:var(--parchment);border-left:4px solid var(--func-color);border-radius:0 16px 16px 0;padding:28px 32px;margin:32px 0;font-size:17px;line-height:2;}
@@ -54,14 +54,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .trait-emoji{font-size:24px;flex-shrink:0;margin-top:2px;}
 .trait-text{font-size:17px;line-height:1.8;}
 .trait-text strong{color:var(--ink);}
-.values-map{background:linear-gradient(135deg,var(--func-light),white);border-radius:24px;padding:40px;margin:40px 0;}
-.values-title{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;text-align:center;}
-.values-center{background:var(--func-color);color:white;border-radius:16px;padding:16px 24px;text-align:center;font-size:15px;font-weight:700;margin-bottom:16px;}
-.values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-.value-chip{background:white;border-left:3px solid var(--func-color);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13px;line-height:1.5;box-shadow:0 2px 8px var(--shadow);}
-.value-chip strong{color:var(--func-color);display:block;font-size:11px;margin-bottom:2px;}
-.fife-comp{background:linear-gradient(135deg,var(--func-light),white);border-radius:24px;padding:36px;margin:40px 0;}
-.comp-title{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;text-align:center;}
+.tite-comp{background:linear-gradient(135deg,var(--func-light),white);border-radius:24px;padding:36px;margin:40px 0;}
+.tite-title{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;text-align:center;}
 .comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .comp-box{background:white;border-radius:14px;padding:20px;box-shadow:0 3px 12px var(--shadow);}
 .comp-box-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;font-weight:700;margin-bottom:10px;}
@@ -97,11 +91,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .article-nav{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border);}
 .article-nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;transition:color 0.25s;}
 .article-nav a:hover{color:var(--func-color);}
-.final-cta{background:linear-gradient(135deg,var(--func-light),white);border-radius:20px;padding:40px;margin-top:60px;text-align:center;}
-.final-cta h3{font-family:var(--font-display);font-size:24px;color:var(--ink);margin-bottom:12px;}
-.final-cta p{font-size:15px;color:var(--text-light);line-height:1.8;margin-bottom:24px;}
-.cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--func-color);color:white;text-decoration:none;padding:14px 28px;border-radius:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;transition:all 0.25s;}
-.cta-btn:hover{opacity:0.85;transform:translateY(-2px);}
 .footer{background:var(--ink);color:rgba(247,243,237,0.5);padding:56px 48px 32px;}
 .footer-inner{max-width:1200px;margin:0 auto;}
 .footer-logo{font-family:var(--font-display);font-size:22px;color:var(--parchment);margin-bottom:12px;}
@@ -113,88 +102,100 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .reveal.visible{opacity:1;transform:translateY(0);}
 @media(max-width:768px){
   .nav{padding:0 24px;}.hero{padding:100px 24px 60px;}.hero::before{font-size:160px;}
-  .article{padding:40px 24px 80px;}.sc-grid{grid-template-columns:1fr;}.values-grid{grid-template-columns:1fr;}.comp-grid{grid-template-columns:1fr;}.footer{padding:48px 24px 28px;}
+  .article{padding:40px 24px 80px;}.sc-grid{grid-template-columns:1fr;}.comp-grid{grid-template-columns:1fr;}.footer{padding:48px 24px 28px;}
 }
 </style>
 </head>
 <body>
 <nav class="nav">
-  <a href="../../index.html" class="nav-logo">UTAGE LAB</a>
-  <a href="../index.html" class="nav-back">← コラム一覧</a>
+  <a href="../../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="./index.html" class="nav-back">← 心理機能一覧</a>
 </nav>
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">MBTI 心理機能 · 第8回（最終回）</div>
-    <div class="hero-func">Fi</div>
-    <h1 class="hero-title"><em>「自分だけの価値観」</em>を持つ誠実な魂</h1>
-    <p class="hero-desc">「それは私の信念に反する」——内向的感情は、深い内面に強い価値の羅針盤を持つ機能。静かだが、決してぶれない。</p>
+    <div class="hero-badge">MBTI 心理機能 · 第6回</div>
+    <div class="hero-func">Ti</div>
+    <h1 class="hero-title"><em>「なぜ？」</em>を追い続ける論理の職人</h1>
+    <p class="hero-desc">「理解できないものは信用しない」——内向的思考は、頭の中に完璧な論理システムを構築し続ける機能。精密で、孤独で、美しい。</p>
   </div>
 </div>
 
 <article class="article">
 
   <div class="func-card reveal">
-    <div class="func-card-label">Fi とは？ — One Line</div>
-    <div class="func-card-text">「自分の内側に固有の価値観・倫理観・感情基準を構築し、それを羅針盤として行動する機能」</div>
+    <div class="func-card-label">Ti とは？ — One Line</div>
+    <div class="func-card-text">「内側に精密な論理フレームワークを構築し、あらゆる情報をその基準で検証する機能」</div>
   </div>
 
-  <p class="reveal">Fi（Introverted Feeling：内向的感情）は、「何が自分にとって正しいか」「何が自分の価値観と一致するか」を、深い内面の基準で感じ取る機能です。外の評価や多数決より、自分の内側の声が最も重要な判断軸になります。</p>
-  <p class="reveal">Feが「みんなの気持ち」を読むなら、Fiは「自分の気持ち」を深く掘り下げます。感情を外に出すのではなく、内側で静かに処理します。だから「何考えてるかわからない」と言われがちですが、内面では驚くほど豊かな感情世界が広がっています。</p>
+  <p class="reveal">Ti（Introverted Thinking：内向的思考）は、自分だけの論理体系を頭の中に組み上げ、新しい情報や考えをその枠組みで精密に検証する機能です。外の基準（社会通念・権威・多数決）より、「自分の論理」が唯一の判断軸。</p>
+  <p class="reveal">Teが「結果を出す」思考なら、Tiは「理解する」思考。「動けばいい」ではなく「なぜそれが機能するのかを理解してから動く」。時間はかかるが、理解の深さは桁違いです。</p>
 
   <h2 class="reveal"><span class="num">Scene 01</span>こんな日常、心当たりはない？</h2>
 
   <div class="scene reveal">
-    <div class="scene-label">📍 価値観シーン</div>
-    職場の飲み会で、上司が「まあ多少嘘をついても仕事が取れればいいよ」と笑いながら言った。周りは苦笑いしてスルーしているが、Fiが強い人は心の中で強い違和感・嫌悪感を覚える。<br><br>
-    表面上は笑っているが、その夜「あの人とは一緒に仕事をしたくない」という結論を出している。価値観の不一致は、Fiにとって致命的な距離感を生む。
+    <div class="scene-label">📍 議論シーン</div>
+    「この方針でいきましょう！」という提案に対し、「ちょっと待ってください。その前提って本当に正しいですか？」とツッコミを入れてしまう。<br><br>
+    批判したいわけじゃない。本当に「この論理に穴がないか」を確認しないと前に進めない。たまに空気が凍るのはわかってる——でも、矛盾したまま進むのが一番つらい。
   </div>
 
   <div class="scene reveal">
-    <div class="scene-label">📍 感情処理シーン</div>
-    ひどく傷ついた出来事があっても、すぐには表に出さない。「今は言語化できない」という感覚があり、一人の時間で内側で丁寧に処理してから、初めて言葉になる。<br><br>
-    「なんで言ってくれなかったの？」と言われるが、「処理できてから話したかった」という本音がある。これがFiの感情スタイル。
+    <div class="scene-label">📍 学習シーン</div>
+    新しいスキルを学ぶとき、チュートリアルをとばして「まず仕組みを理解しよう」と公式ドキュメントを読み始める。<br><br>
+    「コピペで動かしてから考えよ」と言われても、「なぜそれが動くかわからないと気持ち悪い」。習得に時間はかかるが、一度理解したら応用が利く。
   </div>
 
-  <h2 class="reveal"><span class="num">Traits 02</span>Fiが強い人の「あるある」チェック</h2>
+  <h2 class="reveal"><span class="num">Traits 02</span>Tiが強い人の「あるある」チェック</h2>
 
   <div class="traits reveal">
     <div class="trait-item">
-      <div class="trait-emoji">🧭</div>
-      <div class="trait-text"><strong>「自分らしさ」へのこだわりが強い</strong>——流行より「自分が本当に好きなもの」を選ぶ。他者の目より、自分の美意識・価値観が優先。</div>
+      <div class="trait-emoji">🔍</div>
+      <div class="trait-text"><strong>定義を重視する</strong>——「『成功』って何を指してるの？」「その『普通』ってどういう意味？」言葉の定義があいまいだと会話が続けられない。</div>
     </div>
     <div class="trait-item">
-      <div class="trait-emoji">⚖️</div>
-      <div class="trait-text"><strong>倫理・公正さに敏感</strong>——弱者が理不尽に扱われる場面や、不公平な状況に対し、強い怒り・悲しみを感じる。</div>
+      <div class="trait-emoji">🤔</div>
+      <div class="trait-text"><strong>権威より論理</strong>——「専門家がそう言ってる」だけでは納得できない。「なぜそうなのか」の説明がなければ信じない。</div>
     </div>
     <div class="trait-item">
-      <div class="trait-emoji">🤫</div>
-      <div class="trait-text"><strong>感情を内に秘める</strong>——深い感情があるが、全部を外に出すことに抵抗がある。「わかってくれる人」にしか本音を見せない。</div>
+      <div class="trait-emoji">🧩</div>
+      <div class="trait-text"><strong>体系化・モデル化が好き</strong>——知識をバラバラに持つのが苦手。「全部つながるシステム」として理解したい欲求がある。</div>
     </div>
     <div class="trait-item">
-      <div class="trait-emoji">🎨</div>
-      <div class="trait-text"><strong>独自の美意識・表現への愛</strong>——芸術・音楽・文学など「感情を表現するもの」への強い共鳴がある。「これを作った人の気持ちが伝わる」という体験が好き。</div>
+      <div class="trait-emoji">🎮</div>
+      <div class="trait-text"><strong>仕組みを解析するのが楽しい</strong>——ゲームのシステム、経済の仕組み、人間関係のパターン——「どうなってるか」を分析すること自体が趣味になる。</div>
     </div>
     <div class="trait-item">
-      <div class="trait-emoji">🚫</div>
-      <div class="trait-text"><strong>価値観の違いに妥協できない</strong>——「まあいっか」で自分の信念を曲げることが難しい。妥協すると自分が壊れる感覚がある。</div>
+      <div class="trait-emoji">😑</div>
+      <div class="trait-text"><strong>感情論に辟易する</strong>——「みんながそうしてるから」「雰囲気的に」という理由で何かを決めることに強い違和感を覚える。</div>
     </div>
   </div>
 
-  <h2 class="reveal"><span class="num">Visual 03</span>Fiの「内なる価値観コンパス」</h2>
+  <h2 class="reveal"><span class="num">Visual 03</span>TiとTeの違い——思考の「方向」</h2>
 
-  <div class="values-map reveal">
-    <div class="values-title">Fi — Inner Value Compass</div>
-    <div class="values-center">🧭 自分の「ゆずれないもの」</div>
-    <div class="values-grid">
-      <div class="value-chip"><strong>誠実さ</strong>嘘をつくことへの強い抵抗感</div>
-      <div class="value-chip"><strong>自由</strong>自分らしくいられる空間と時間</div>
-      <div class="value-chip"><strong>公正</strong>弱者や少数者への深い共感</div>
-      <div class="value-chip"><strong>本物</strong>表面的な付き合いより深い繋がり</div>
-      <div class="value-chip"><strong>独自性</strong>流行より「自分が好きなもの」</div>
-      <div class="value-chip"><strong>意味</strong>意味を感じない行動への強い抵抗</div>
+  <div class="tite-comp reveal">
+    <div class="tite-title">Ti vs Te — 思考の違いを比較</div>
+    <div class="comp-grid">
+      <div class="comp-box">
+        <div class="comp-box-label" style="color:var(--func-color);">Ti（内向的思考）</div>
+        <ul>
+          <li>「なぜ？」を理解することが目的</li>
+          <li>自分の内的論理が基準</li>
+          <li>精密さ・正確さを重視</li>
+          <li>一人でじっくり考える</li>
+          <li>結論より過程を大切に</li>
+        </ul>
+      </div>
+      <div class="comp-box">
+        <div class="comp-box-label" style="color:#1a6b3a;">Te（外向的思考）</div>
+        <ul>
+          <li>「どう動かすか？」が目的</li>
+          <li>外のデータ・実績が基準</li>
+          <li>効率・スピードを重視</li>
+          <li>チームで動かす力がある</li>
+          <li>過程より結果を重視</li>
+        </ul>
+      </div>
     </div>
-    <p style="font-size:14px;color:var(--text-light);margin-top:16px;line-height:1.8;text-align:center;">これらの価値観は、外から決まるものではなく、内側から湧き出るもの。それがFiの強さであり、アイデンティティの核心。</p>
   </div>
 
   <h2 class="reveal"><span class="num">Balance 04</span>強みと課題</h2>
@@ -203,21 +204,21 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="sc-box sc-box-s">
       <div class="sc-box-title">✦ 強み</div>
       <ul class="sc-list">
-        <li>強い倫理観・誠実さ</li>
-        <li>深い感情的洞察と共感</li>
-        <li>真のアイデンティティの確立</li>
-        <li>他者の痛みへの深い共鳴</li>
-        <li>自分の信念への一貫したコミット</li>
+        <li>深い理解と精密な分析力</li>
+        <li>論理の矛盾を見つける力</li>
+        <li>複雑なシステムの把握</li>
+        <li>独自の問題解決フレームワーク</li>
+        <li>感情に左右されない客観性</li>
       </ul>
     </div>
     <div class="sc-box sc-box-c">
       <div class="sc-box-title">△ 課題</div>
       <ul class="sc-list">
-        <li>感情を言語化・共有しにくい</li>
-        <li>妥協・柔軟性が難しい場面がある</li>
-        <li>価値観の押しつけになることも</li>
-        <li>傷つきやすく回復に時間がかかる</li>
-        <li>他者の視点を取り入れにくいことも</li>
+        <li>意思決定に時間がかかる</li>
+        <li>感情・共感を後回しにしがち</li>
+        <li>「完璧な理解」を求めすぎて行動が遅れる</li>
+        <li>説明が長くなって伝わりにくい</li>
+        <li>チームワークより独力を好む</li>
       </ul>
     </div>
   </div>
@@ -225,10 +226,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <h2 class="reveal"><span class="num">Types 05</span>主にこの機能が強いタイプ</h2>
 
   <div class="types-wrap reveal">
-    <span class="type-badge type-dom">INFP</span>
-    <span class="type-badge type-dom">ISFP</span>
-    <span class="type-badge type-aux">ENFP</span>
-    <span class="type-badge type-aux">ESFP</span>
+    <span class="type-badge type-dom">INTP</span>
+    <span class="type-badge type-dom">ISTP</span>
+    <span class="type-badge type-aux">ENTP</span>
+    <span class="type-badge type-aux">ESTP</span>
   </div>
   <div class="type-legend">
     <div class="type-legend-item"><div class="type-legend-dot" style="background:var(--func-color);"></div>主機能</div>
@@ -236,19 +237,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <blockquote class="pull-quote reveal">
-    <div class="pull-quote-text">自分の価値観に従うとき、初めて「自分」として生きている気がする。</div>
+    <div class="pull-quote-text">理解なき行動は偶然に頼ること。理解ある行動は必然を生む。</div>
     <div class="pull-quote-line"></div>
   </blockquote>
 
-  <div class="final-cta reveal">
-    <h3>8つの機能、読み終えましたか？</h3>
-    <p>Se・Si・Ne・Ni・Te・Ti・Fe・Fi——8つの機能はすべての人が持っています。あなたが最も強く共感した機能が、あなたの「主機能」かもしれません。</p>
-    <a href="./index.html" class="cta-btn">→ 一覧から他の機能も読む</a>
-  </div>
-
   <div class="article-nav reveal">
-    <a href="./fe.html">← 前の記事：Fe（外向的感情）</a>
-    <a href="./index.html">機能一覧に戻る →</a>
+    <a href="./te.html">← 前の記事：Te（外向的思考）</a>
+    <a href="./fe.html">次の記事：Fe（外向的感情）→</a>
   </div>
 
 </article>
@@ -257,7 +252,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="footer-inner">
     <div class="footer-logo">UTAGE LAB</div>
     <p class="footer-desc">MBTI心理機能シリーズ — 8つの機能で自分を読み解く</p>
-    <a href="../index.html" class="footer-back">← コラム一覧に戻る</a>
+    <a href="./index.html" class="footer-back">← 心理機能一覧に戻る</a>
     <div class="footer-bottom">© 2025 UTAGE LAB · Psychology Column</div>
   </div>
 </footer>

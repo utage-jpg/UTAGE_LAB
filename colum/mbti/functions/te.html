@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ti（内向的思考）とは？「なぜ？」を追い続ける論理の職人 | UTAGE LAB</title>
-<meta name="description" content="MBTI心理機能「Ti（内向的思考）」をやさしく解説。INTPやISTPが持つ深い内的論理とは？「理解しないと動けない」人の正体を初学者向けに解説。">
+<title>Te（外向的思考）とは？ 効率と結果を極める組織化の達人 | UTAGE LAB</title>
+<meta name="description" content="MBTI心理機能「Te（外向的思考）」をやさしく解説。ENTJやESTJがなぜあんなに仕事ができるのか？「効率の天才」の正体を初学者向けに解説。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
@@ -16,7 +16,7 @@
   --amber:#c47d2a; --amber-light:#fef3e0;
   --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
   --shadow:rgba(26,16,37,0.12);
-  --func-color: #1565a0; --func-light: #e3f2fd;
+  --func-color: #1a6b3a; --func-light: #e8f5e9;
   --font-display:'Playfair Display',Georgia,serif;
   --font-serif:'Noto Serif JP',serif;
   --font-mono:'DM Mono','Courier New',monospace;
@@ -27,12 +27,12 @@ body{font-family:var(--font-serif);background:var(--cream);color:var(--text);ove
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
 .nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,242,0.95);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border);}
 .nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
-.nav-back{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-back{font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
 .nav-back:hover{color:var(--func-color);}
-.hero{padding:120px 40px 80px;background:linear-gradient(135deg,#dce9f7 0%,var(--cream) 60%);position:relative;overflow:hidden;}
-.hero::before{content:'Ti';position:absolute;right:-20px;top:20px;font-family:var(--font-display);font-size:280px;font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(21,101,160,0.08);pointer-events:none;line-height:1;}
+.hero{padding:120px 40px 80px;background:linear-gradient(135deg,#d8f0e0 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+.hero::before{content:'Te';position:absolute;right:-20px;top:20px;font-family:var(--font-display);font-size:280px;font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(26,107,58,0.08);pointer-events:none;line-height:1;}
 .hero-inner{max-width:860px;margin:0 auto;position:relative;}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
 .hero-badge::before{content:'';width:28px;height:1px;background:var(--func-color);}
 .hero-func{font-family:var(--font-display);font-size:clamp(80px,14vw,160px);font-weight:900;color:var(--func-color);line-height:1;margin-bottom:8px;opacity:0.9;}
 .hero-title{font-family:var(--font-display);font-size:clamp(28px,4vw,48px);font-weight:700;color:var(--ink);margin-bottom:18px;line-height:1.25;}
@@ -43,35 +43,32 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .article h2 .num{font-family:var(--font-mono);font-size:12px;color:var(--func-color);letter-spacing:0.2em;display:block;margin-bottom:6px;}
 .article p{font-size:17px;line-height:2;margin-bottom:20px;color:var(--text);}
 .func-card{background:white;border:2px solid var(--func-color);border-radius:20px;padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
-.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#1976d2);}
-.func-card-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
+.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#388e3c);}
+.func-card-label{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
 .func-card-text{font-size:20px;font-weight:700;color:var(--ink);line-height:1.7;}
 .scene{background:var(--parchment);border-left:4px solid var(--func-color);border-radius:0 16px 16px 0;padding:28px 32px;margin:32px 0;font-size:17px;line-height:2;}
-.scene-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.scene-label{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
 .traits{background:white;border-radius:20px;border:1px solid var(--border);padding:36px 40px;margin:32px 0;}
 .trait-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);}
 .trait-item:last-child{border-bottom:none;}
 .trait-emoji{font-size:24px;flex-shrink:0;margin-top:2px;}
 .trait-text{font-size:17px;line-height:1.8;}
 .trait-text strong{color:var(--ink);}
-.tite-comp{background:linear-gradient(135deg,var(--func-light),white);border-radius:24px;padding:36px;margin:40px 0;}
-.tite-title{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;text-align:center;}
-.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.comp-box{background:white;border-radius:14px;padding:20px;box-shadow:0 3px 12px var(--shadow);}
-.comp-box-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;font-weight:700;margin-bottom:10px;}
-.comp-box ul{list-style:none;}
-.comp-box ul li{font-size:13px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.05);line-height:1.6;}
-.comp-box ul li:last-child{border-bottom:none;}
-.comp-box ul li::before{content:'→ ';}
+.te-steps{background:linear-gradient(135deg,var(--func-light),white);border-radius:24px;padding:40px;margin:40px 0;}
+.te-steps-title{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:24px;text-align:center;}
+.te-step-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.te-step-box{flex:1;background:white;border-radius:12px;padding:14px 18px;box-shadow:0 3px 12px var(--shadow);font-size:14px;line-height:1.6;}
+.te-step-box strong{color:var(--func-color);display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;margin-bottom:4px;}
+.te-arrow{font-size:18px;color:var(--func-color);flex-shrink:0;}
 .sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0;}
 .sc-box{border-radius:16px;padding:28px;}
 .sc-box-s{background:linear-gradient(135deg,#e8f5e9,#f1f8e9);}
 .sc-box-c{background:linear-gradient(135deg,#fff3e0,#fce4ec);}
-.sc-box-title{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;}
+.sc-box-title{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;}
 .sc-box-s .sc-box-title{color:#388e3c;}
 .sc-box-c .sc-box-title{color:#e64a19;}
 .sc-list{list-style:none;}
-.sc-list li{font-size:15px;padding:7px 0;border-bottom:1px solid rgba(0,0,0,0.06);line-height:1.7;}
+.sc-list li{font-size:1rem;padding:7px 0;border-bottom:1px solid rgba(0,0,0,0.06);line-height:1.7;}
 .sc-list li:last-child{border-bottom:none;}
 .sc-list li::before{content:'• ';font-weight:700;}
 .sc-box-s .sc-list li::before{color:#388e3c;}
@@ -102,100 +99,90 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .reveal.visible{opacity:1;transform:translateY(0);}
 @media(max-width:768px){
   .nav{padding:0 24px;}.hero{padding:100px 24px 60px;}.hero::before{font-size:160px;}
-  .article{padding:40px 24px 80px;}.sc-grid{grid-template-columns:1fr;}.comp-grid{grid-template-columns:1fr;}.footer{padding:48px 24px 28px;}
+  .article{padding:40px 24px 80px;}.sc-grid{grid-template-columns:1fr;}.footer{padding:48px 24px 28px;}
+  .te-step-row{flex-direction:column;}.te-arrow{transform:rotate(90deg);}
 }
 </style>
 </head>
 <body>
 <nav class="nav">
-  <a href="../../index.html" class="nav-logo">UTAGE LAB</a>
-  <a href="../index.html" class="nav-back">← コラム一覧</a>
+  <a href="../../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="./index.html" class="nav-back">← 心理機能一覧</a>
 </nav>
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">MBTI 心理機能 · 第6回</div>
-    <div class="hero-func">Ti</div>
-    <h1 class="hero-title"><em>「なぜ？」</em>を追い続ける論理の職人</h1>
-    <p class="hero-desc">「理解できないものは信用しない」——内向的思考は、頭の中に完璧な論理システムを構築し続ける機能。精密で、孤独で、美しい。</p>
+    <div class="hero-badge">MBTI 心理機能 · 第5回</div>
+    <div class="hero-func">Te</div>
+    <h1 class="hero-title"><em>効率</em>と結果を極める組織化の達人</h1>
+    <p class="hero-desc">「それ、もっと速く・うまくできるでしょ？」——外向的思考は、現実を論理で最適化し続ける機能。目標への最短ルートが本能的に見える。</p>
   </div>
 </div>
 
 <article class="article">
 
   <div class="func-card reveal">
-    <div class="func-card-label">Ti とは？ — One Line</div>
-    <div class="func-card-text">「内側に精密な論理フレームワークを構築し、あらゆる情報をその基準で検証する機能」</div>
+    <div class="func-card-label">Te とは？ — One Line</div>
+    <div class="func-card-text">「外の世界を論理・効率・体系で整理し、目標達成のために最適化する機能」</div>
   </div>
 
-  <p class="reveal">Ti（Introverted Thinking：内向的思考）は、自分だけの論理体系を頭の中に組み上げ、新しい情報や考えをその枠組みで精密に検証する機能です。外の基準（社会通念・権威・多数決）より、「自分の論理」が唯一の判断軸。</p>
-  <p class="reveal">Teが「結果を出す」思考なら、Tiは「理解する」思考。「動けばいい」ではなく「なぜそれが機能するのかを理解してから動く」。時間はかかるが、理解の深さは桁違いです。</p>
+  <p class="reveal">Te（Extroverted Thinking：外向的思考）は、外の世界（仕事・組織・プロジェクト）を論理的に整理し、最も効率的な方法で目標を達成しようとする機能です。「感情より結果」「なんとなくより根拠」が信条。</p>
+  <p class="reveal">Teが強い人は、物事をシステムとして捉えます。「誰が・何を・いつまでに・どうやって」が明確でないと不安になる。「計画なき行動は、行動なき計画と同じ」と思っている節があります。</p>
 
   <h2 class="reveal"><span class="num">Scene 01</span>こんな日常、心当たりはない？</h2>
 
   <div class="scene reveal">
-    <div class="scene-label">📍 議論シーン</div>
-    「この方針でいきましょう！」という提案に対し、「ちょっと待ってください。その前提って本当に正しいですか？」とツッコミを入れてしまう。<br><br>
-    批判したいわけじゃない。本当に「この論理に穴がないか」を確認しないと前に進めない。たまに空気が凍るのはわかってる——でも、矛盾したまま進むのが一番つらい。
+    <div class="scene-label">📍 旅行計画シーン</div>
+    友人グループの旅行で、気づいたら自分が全ての計画を立てていた。スプレッドシートには交通費・宿泊費・観光地・食事スポット・時間ごとのスケジュールが色分けで整理されている。<br><br>
+    「細かすぎない？」と言われるが、「これで当日に無駄な時間が生まれない」と心の中で思っている。自分でもわかってる——でも止められない。
   </div>
 
   <div class="scene reveal">
-    <div class="scene-label">📍 学習シーン</div>
-    新しいスキルを学ぶとき、チュートリアルをとばして「まず仕組みを理解しよう」と公式ドキュメントを読み始める。<br><br>
-    「コピペで動かしてから考えよ」と言われても、「なぜそれが動くかわからないと気持ち悪い」。習得に時間はかかるが、一度理解したら応用が利く。
+    <div class="scene-label">📍 会議シーン</div>
+    会議が感情論になってきたとき、「結論から言うと、選択肢は3つあります。①〜②〜③〜。どれを選択しますか？」とスパッと整理する。<br><br>
+    みんながほっとする一方、たまに「もう少し雑談もしたかった...」と思われていることには気づきにくい。
   </div>
 
-  <h2 class="reveal"><span class="num">Traits 02</span>Tiが強い人の「あるある」チェック</h2>
+  <h2 class="reveal"><span class="num">Traits 02</span>Teが強い人の「あるある」チェック</h2>
 
   <div class="traits reveal">
     <div class="trait-item">
-      <div class="trait-emoji">🔍</div>
-      <div class="trait-text"><strong>定義を重視する</strong>——「『成功』って何を指してるの？」「その『普通』ってどういう意味？」言葉の定義があいまいだと会話が続けられない。</div>
+      <div class="trait-emoji">📊</div>
+      <div class="trait-text"><strong>データ・根拠が大好き</strong>——「なんとなくそう思う」より「この数字を見てください」。直感より証拠を信頼する。</div>
     </div>
     <div class="trait-item">
-      <div class="trait-emoji">🤔</div>
-      <div class="trait-text"><strong>権威より論理</strong>——「専門家がそう言ってる」だけでは納得できない。「なぜそうなのか」の説明がなければ信じない。</div>
+      <div class="trait-emoji">⚙️</div>
+      <div class="trait-text"><strong>非効率に我慢できない</strong>——「この工程、いらなくない？」が口癖。3回同じ作業をしたら自動化を考え始める。</div>
     </div>
     <div class="trait-item">
-      <div class="trait-emoji">🧩</div>
-      <div class="trait-text"><strong>体系化・モデル化が好き</strong>——知識をバラバラに持つのが苦手。「全部つながるシステム」として理解したい欲求がある。</div>
+      <div class="trait-emoji">🏆</div>
+      <div class="trait-text"><strong>結果・成果で物事を評価する</strong>——プロセスより結果。「頑張った」より「達成した」に意味を感じる。</div>
     </div>
     <div class="trait-item">
-      <div class="trait-emoji">🎮</div>
-      <div class="trait-text"><strong>仕組みを解析するのが楽しい</strong>——ゲームのシステム、経済の仕組み、人間関係のパターン——「どうなってるか」を分析すること自体が趣味になる。</div>
+      <div class="trait-emoji">📋</div>
+      <div class="trait-text"><strong>リスト・管理ツールを愛用</strong>——タスク管理アプリのヘビーユーザー。完了にチェックを入れる瞬間が地味に快感。</div>
     </div>
     <div class="trait-item">
-      <div class="trait-emoji">😑</div>
-      <div class="trait-text"><strong>感情論に辟易する</strong>——「みんながそうしてるから」「雰囲気的に」という理由で何かを決めることに強い違和感を覚える。</div>
+      <div class="trait-emoji">😤</div>
+      <div class="trait-text"><strong>「曖昧な返事」にイライラする</strong>——「なんとなく」「たぶん」「まあ...」という回答が苦手。「YesかNoか、どっちですか？」</div>
     </div>
   </div>
 
-  <h2 class="reveal"><span class="num">Visual 03</span>TiとTeの違い——思考の「方向」</h2>
+  <h2 class="reveal"><span class="num">Visual 03</span>Teの「目標達成」プロセス</h2>
 
-  <div class="tite-comp reveal">
-    <div class="tite-title">Ti vs Te — 思考の違いを比較</div>
-    <div class="comp-grid">
-      <div class="comp-box">
-        <div class="comp-box-label" style="color:var(--func-color);">Ti（内向的思考）</div>
-        <ul>
-          <li>「なぜ？」を理解することが目的</li>
-          <li>自分の内的論理が基準</li>
-          <li>精密さ・正確さを重視</li>
-          <li>一人でじっくり考える</li>
-          <li>結論より過程を大切に</li>
-        </ul>
-      </div>
-      <div class="comp-box">
-        <div class="comp-box-label" style="color:#1a6b3a;">Te（外向的思考）</div>
-        <ul>
-          <li>「どう動かすか？」が目的</li>
-          <li>外のデータ・実績が基準</li>
-          <li>効率・スピードを重視</li>
-          <li>チームで動かす力がある</li>
-          <li>過程より結果を重視</li>
-        </ul>
-      </div>
+  <div class="te-steps reveal">
+    <div class="te-steps-title">Te — Goal Achievement Flow</div>
+    <div class="te-step-row">
+      <div class="te-step-box"><strong>Step 1</strong>目標を数値・期限で明確化</div>
+      <div class="te-arrow">→</div>
+      <div class="te-step-box"><strong>Step 2</strong>必要なリソースと障害を洗い出す</div>
     </div>
+    <div class="te-step-row">
+      <div class="te-step-box"><strong>Step 3</strong>最適な手順をシステム化</div>
+      <div class="te-arrow">→</div>
+      <div class="te-step-box"><strong>Step 4</strong>実行・進捗管理・軌道修正</div>
+    </div>
+    <p style="font-size:14px;color:var(--text-light);margin-top:16px;line-height:1.8;text-align:center;">Teはこのサイクルを本能的に回す。「計画がないと不安」「現状維持は退化」が基本スタンス。</p>
   </div>
 
   <h2 class="reveal"><span class="num">Balance 04</span>強みと課題</h2>
@@ -204,21 +191,21 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="sc-box sc-box-s">
       <div class="sc-box-title">✦ 強み</div>
       <ul class="sc-list">
-        <li>深い理解と精密な分析力</li>
-        <li>論理の矛盾を見つける力</li>
-        <li>複雑なシステムの把握</li>
-        <li>独自の問題解決フレームワーク</li>
-        <li>感情に左右されない客観性</li>
+        <li>高い実行力・達成力</li>
+        <li>組織・プロジェクト管理が得意</li>
+        <li>論理的コミュニケーション</li>
+        <li>リーダーシップ・意思決定力</li>
+        <li>非効率を素早く改善する力</li>
       </ul>
     </div>
     <div class="sc-box sc-box-c">
       <div class="sc-box-title">△ 課題</div>
       <ul class="sc-list">
-        <li>意思決定に時間がかかる</li>
-        <li>感情・共感を後回しにしがち</li>
-        <li>「完璧な理解」を求めすぎて行動が遅れる</li>
-        <li>説明が長くなって伝わりにくい</li>
-        <li>チームワークより独力を好む</li>
+        <li>人の感情を後回しにしがち</li>
+        <li>「正論が正義」になりすぎる</li>
+        <li>プロセスや雑談の価値を軽視</li>
+        <li>完璧主義で他者に厳しくなることも</li>
+        <li>自分の感情を認識しにくい</li>
       </ul>
     </div>
   </div>
@@ -226,10 +213,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <h2 class="reveal"><span class="num">Types 05</span>主にこの機能が強いタイプ</h2>
 
   <div class="types-wrap reveal">
-    <span class="type-badge type-dom">INTP</span>
-    <span class="type-badge type-dom">ISTP</span>
-    <span class="type-badge type-aux">ENTP</span>
-    <span class="type-badge type-aux">ESTP</span>
+    <span class="type-badge type-dom">ENTJ</span>
+    <span class="type-badge type-dom">ESTJ</span>
+    <span class="type-badge type-aux">INTJ</span>
+    <span class="type-badge type-aux">ISTJ</span>
   </div>
   <div class="type-legend">
     <div class="type-legend-item"><div class="type-legend-dot" style="background:var(--func-color);"></div>主機能</div>
@@ -237,13 +224,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <blockquote class="pull-quote reveal">
-    <div class="pull-quote-text">理解なき行動は偶然に頼ること。理解ある行動は必然を生む。</div>
+    <div class="pull-quote-text">効率とは、正しいことを正しい方法でやること。それだけだ。</div>
     <div class="pull-quote-line"></div>
   </blockquote>
 
   <div class="article-nav reveal">
-    <a href="./te.html">← 前の記事：Te（外向的思考）</a>
-    <a href="./fe.html">次の記事：Fe（外向的感情）→</a>
+    <a href="./ni.html">← 前の記事：Ni（内向的直観）</a>
+    <a href="./ti.html">次の記事：Ti（内向的思考）→</a>
   </div>
 
 </article>
@@ -252,7 +239,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="footer-inner">
     <div class="footer-logo">UTAGE LAB</div>
     <p class="footer-desc">MBTI心理機能シリーズ — 8つの機能で自分を読み解く</p>
-    <a href="../index.html" class="footer-back">← コラム一覧に戻る</a>
+    <a href="./index.html" class="footer-back">← 心理機能一覧に戻る</a>
     <div class="footer-bottom">© 2025 UTAGE LAB · Psychology Column</div>
   </div>
 </footer>

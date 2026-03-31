@@ -2504,8 +2504,10 @@ body::before {
 <nav class="nav" id="mainNav">
   <a href="#" class="nav-logo">UTAGE LAB</a>
   <ul class="nav-links">
+    <li><a href="#daily-fortune">占い</a></li>
     <li><a href="#pola-featured">Pola</a></li>
-    <li><a href="#diagnoses">診断</a></li>
+    <li><a href="#diagnoses">人気診断</a></li>
+    <li><a href="#categories">カテゴリ</a></li>
     <li><a href="#deepdive">研究</a></li>
     <li><a href="#column">コラム</a></li>
     <li><a href="#premium" class="nav-cta"><span class="cta-inner">✦ プレミアム</span></a></li>
@@ -2519,10 +2521,12 @@ body::before {
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-inner">
     <ul>
+      <li><a href="#daily-fortune" onclick="toggleMenu()">誕生月占い</a></li>
       <li><a href="#pola-featured" onclick="toggleMenu()">Pola</a></li>
-      <li><a href="#diagnoses" onclick="toggleMenu()">診断</a></li>
+      <li><a href="#diagnoses" onclick="toggleMenu()">人気診断</a></li>
+      <li><a href="#categories" onclick="toggleMenu()">診断カテゴリ一覧</a></li>
       <li><a href="#deepdive" onclick="toggleMenu()">研究</a></li>
-      <li><a href="#column" onclick="toggleMenu()">コラム</a></li>
+      <li><a href="#column" onclick="toggleMenu()">心理コラム</a></li>
     </ul>
     <a href="#premium" class="drawer-cta" onclick="toggleMenu()">✦ プレミアム</a>
   </div>
@@ -2628,23 +2632,26 @@ body::before {
 <!-- ===== CATEGORY STRIP ===== -->
 <div class="cat-strip">
   <div class="cat-inner">
-    <a class="cat-item active" href="#diagnoses">
-      <span class="cat-item-icon">🧠</span><span>タイプ診断</span>
+    <a class="cat-item active" href="#daily-fortune">
+      <span class="cat-item-icon">🔮</span><span>誕生月占い</span>
+    </a>
+    <a class="cat-item" href="#pola-featured">
+      <span class="cat-item-icon">💘</span><span>Pola</span>
     </a>
     <a class="cat-item" href="#diagnoses">
-      <span class="cat-item-icon">❤</span><span>相性診断</span>
+      <span class="cat-item-icon">🧠</span><span>人気診断</span>
     </a>
-    <a class="cat-item" href="#diagnoses">
-      <span class="cat-item-icon">🔮</span><span>深層心理</span>
+    <a class="cat-item" href="#categories">
+      <span class="cat-item-icon">📋</span><span>カテゴリ一覧</span>
     </a>
-    <a class="cat-item" href="#column">
-      <span class="cat-item-icon">📖</span><span>コラム</span>
+    <a class="cat-item" href="#premium">
+      <span class="cat-item-icon">✦</span><span>プレミアム</span>
     </a>
     <a class="cat-item" href="#deepdive">
       <span class="cat-item-icon">🔬</span><span>研究</span>
     </a>
-    <a class="cat-item" href="#premium">
-      <span class="cat-item-icon">✦</span><span>プレミアム</span>
+    <a class="cat-item" href="#column">
+      <span class="cat-item-icon">📖</span><span>心理コラム</span>
     </a>
   </div>
 </div>
@@ -2879,7 +2886,7 @@ body::before {
 </div>
 
 <!-- ===== DIAGNOSIS CATEGORIES ===== -->
-<div style="background: var(--parchment);">
+<div id="categories" style="background: var(--parchment);">
 <div class="section" style="padding-top: 0">
   <div class="section-header reveal">
     <div>

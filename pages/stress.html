@@ -162,7 +162,7 @@
         <li>「戦闘型・逃避型・凍結型・適応型」4つのストレス反応タイプを診断</li>
         <li>ストレスのサインと体・心への影響を分析</li>
         <li>タイプ別セルフケアのヒントを提案（無料）</li>
-        <li>MBTI別ストレス傾向との照合も可能（プレミアム）</li>
+
       </ul>
     </div>
   </div>
@@ -247,25 +247,6 @@
         <div class="coping-hint-title">🌿 あなたへのセルフケアのヒント</div>
         <div class="coping-list" id="r-coping"></div>
       </div>
-    </div>
-
-    <div class="upsell-card">
-      <div class="upsell-badge">💎 PREMIUM</div>
-      <div class="upsell-title" id="upsell-title">あなたのストレスを根本から理解する</div>
-      <div class="upsell-desc">ストレスの根本原因、MBTI別のストレス傾向、燃え尽き症候群の予防策、個別セルフケアプログラムを提供します。</div>
-      <div class="upsell-items">
-        <div class="upsell-item">ストレス根本原因の特定</div>
-        <div class="upsell-item">MBTI別ストレス傾向分析</div>
-        <div class="upsell-item">燃え尽き症候群チェック</div>
-        <div class="upsell-item">個別セルフケアプログラム</div>
-        <div class="upsell-item">職場・恋愛別ストレス対処</div>
-        <div class="upsell-item">神経系リセット技法</div>
-      </div>
-      <div class="upsell-price">
-        <span class="upsell-price-num">¥580</span>
-        <span class="upsell-price-sub">/月（初月無料）</span>
-      </div>
-      <button class="btn-premium">ストレス完全分析を見る →</button>
     </div>
 
     <div class="share-section">
@@ -441,7 +422,7 @@ function showResult() {
   document.getElementById('r-free-desc1').textContent = info.desc1;
   document.getElementById('r-free-desc2').textContent = info.desc2;
   document.getElementById('r-coping').innerHTML = info.coping.map(c => '<div class="coping-item">' + c + '</div>').join('');
-  document.getElementById('upsell-title').textContent = 'あなたの「' + info.type + '」を根本から理解する';
+
   const fills = [info.scores.fight, info.scores.flight, info.scores.freeze, info.scores.adapt];
   for (let i = 1; i <= 4; i++) {
     document.getElementById('s' + i + '-pct').textContent = fills[i-1] + '%';

@@ -257,25 +257,6 @@
       </div>
     </div>
 
-    <div class="upsell-card">
-      <div class="upsell-badge">💎 PREMIUM</div>
-      <div class="upsell-title" id="upsell-title">愛着スタイルを根本から理解する</div>
-      <div class="upsell-desc">愛着スタイルの形成背景、パートナーとの相互作用パターン、より安定した愛着への変容プログラムをお届けします。</div>
-      <div class="upsell-items">
-        <div class="upsell-item">愛着形成の背景分析</div>
-        <div class="upsell-item">パートナーとの相互作用</div>
-        <div class="upsell-item">愛着スタイル変容プログラム</div>
-        <div class="upsell-item">MBTI別愛着パターン</div>
-        <div class="upsell-item">トラウマ反応チェック</div>
-        <div class="upsell-item">安定型への成長ロードマップ</div>
-      </div>
-      <div class="upsell-price">
-        <span class="upsell-price-num">¥580</span>
-        <span class="upsell-price-sub">/月（初月無料）</span>
-      </div>
-      <button class="btn-premium">詳細分析レポートを見る →</button>
-    </div>
-
     <div class="share-section">
       <div class="share-title">結果をシェアする</div>
       <div class="share-buttons">
@@ -462,7 +443,7 @@ function showResult() {
   document.getElementById('r-free-desc1').textContent = info.desc1;
   document.getElementById('r-free-desc2').textContent = info.desc2;
   document.getElementById('r-growth').textContent = info.growth;
-  document.getElementById('upsell-title').textContent = 'あなたの「' + info.type + '」をさらに深く理解する';
+
   const fills = [info.scores.secure, info.scores.anxious, info.scores.avoidant, info.scores.disorganized];
   for (let i = 1; i <= 4; i++) {
     document.getElementById('s' + i + '-pct').textContent = fills[i-1] + '%';

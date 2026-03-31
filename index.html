@@ -1763,11 +1763,13 @@ body::before {
   font-size: 14px;
   color: rgba(255,255,255,0.5);
 }
-.plans-grid {
+.premium-items-grid {
   display: grid;
-  grid-template-columns: 1fr 1.12fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  align-items: start;
+}
+@media (max-width: 680px) {
+  .premium-items-grid { grid-template-columns: 1fr; }
 }
 .plans-grid-wrap {
   position: relative;
@@ -1816,78 +1818,71 @@ body::before {
   color: rgba(255,255,255,0.5);
   letter-spacing: 0.05em;
 }
-.plan-card {
+.premium-item-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 16px;
-  padding: 36px 28px;
-  position: relative;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
 }
-.plan-card.featured {
-  border-color: var(--gold);
-  padding-top: 52px;
-  background: rgba(201,168,76,0.06);
+.premium-item-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
 }
-.plan-popular-badge {
-  position: absolute;
-  top: -14px; left: 50%;
-  transform: translateX(-50%);
-  background: var(--gold);
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  padding: 5px 22px;
-  border-radius: 2px;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-.plan-name {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.28em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.plan-price { margin-bottom: 28px; }
-.plan-price-num {
-  font-family: var(--font-display);
-  font-size: 46px;
+.premium-item-name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
   color: white;
-  line-height: 1;
+  margin-bottom: 8px;
 }
-.plan-price-period {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.4);
-  margin-left: 4px;
+.premium-item-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 16px;
+  line-height: 1.7;
 }
-.plan-features {
+.premium-item-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 32px;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex: 1;
 }
-.plan-features li {
+.premium-item-list li {
   font-size: 13px;
   color: rgba(255,255,255,0.75);
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
   line-height: 1.6;
 }
-.plan-features li::before {
+.premium-item-list li::before {
   content: '—';
   color: var(--gold);
   font-size: 12px;
   flex-shrink: 0;
   margin-top: 1px;
 }
-.plan-btn {
+.premium-item-price {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--gold);
+  margin-bottom: 14px;
+  line-height: 1;
+}
+.premium-item-price span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+  margin-left: 2px;
+}
+.premium-item-btn {
   display: block;
+  width: 100%;
   text-align: center;
   padding: 14px;
   border-radius: 4px;
@@ -1895,58 +1890,16 @@ body::before {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-decoration: none;
   cursor: pointer;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  transition: color 0.35s;
-  font-family: var(--font-serif);
-}
-.plan-btn span { position: relative; z-index: 1; }
-.plan-btn-free {
-  border: 1px solid rgba(255,255,255,0.25);
-  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(201,168,76,0.5);
+  color: var(--gold);
   background: transparent;
+  transition: background 0.25s, color 0.25s;
 }
-.plan-btn-free::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(255,255,255,0.1);
-  transform: translateX(-100%);
-  transition: transform 0.35s ease;
-}
-.plan-btn-free:hover { color: white; }
-.plan-btn-free:hover::before { transform: translateX(0); }
-
-.plan-btn-gold {
+.premium-item-btn:hover {
   background: var(--gold);
   color: var(--ink);
 }
-.plan-btn-gold::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: #a07820;
-  transform: translateX(-100%);
-  transition: transform 0.35s ease;
-}
-.plan-btn-gold:hover { color: white; }
-.plan-btn-gold:hover::before { transform: translateX(0); }
-
-.plan-btn-silver {
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.55);
-  background: transparent;
-}
-.plan-btn-silver::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(255,255,255,0.12);
-  transform: translateX(-100%);
-  transition: transform 0.35s ease;
-}
-.plan-btn-silver:hover { color: white; }
-.plan-btn-silver:hover::before { transform: translateX(0); }
 
 /* ── FORTUNE BANNER (16type) ── */
 .fortune-banner {
@@ -2968,7 +2921,7 @@ body::before {
     <div class="premium-header reveal">
       <div class="premium-eyebrow">✦ Premium</div>
       <h2 class="premium-title">あなたの深層を、もっと深く</h2>
-      <p class="premium-sub">プレミアム会員限定の詳細分析であなたの心理を完全解明</p>
+      <p class="premium-sub">気になった診断のプレミアムレポートを1回ずつ購入。<br>サブスクなし・都度課金で気軽にあなたの心理を深掘り。</p>
     </div>
 
     <div class="plans-grid-wrap">
@@ -2979,63 +2932,65 @@ body::before {
           <div class="coming-soon-sub">プレミアム機能は現在開発中です</div>
         </div>
       </div>
-    <div class="plans-grid reveal">
-      <!-- Free -->
-      <div class="plan-card">
-        <div class="plan-name">Free</div>
-        <div class="plan-price">
-          <span class="plan-price-num">¥0</span>
-          <span class="plan-price-period">/ 永久無料</span>
-        </div>
-        <ul class="plan-features">
-          <li>基本タイプ診断（全16タイプ）</li>
-          <li>タイプ説明・基本解説</li>
-          <li>SNS共有機能</li>
-          <li>占いコンテンツ（一部）</li>
-          <li>心理コラム閲覧</li>
-        </ul>
-        <button class="plan-btn plan-btn-free"><span>無料で始める</span></button>
-      </div>
-
-      <!-- Premium -->
-      <div class="plan-card featured">
-        <div class="plan-popular-badge">✦ 最もオトク</div>
-        <div class="plan-name">Premium</div>
-        <div class="plan-price">
-          <span class="plan-price-num">¥580</span>
-          <span class="plan-price-period">/ 月（年払い）</span>
-        </div>
-        <ul class="plan-features">
-          <li>すべての無料コンテンツ</li>
-          <li>詳細心理プロファイル（30ページ+）</li>
-          <li>恋愛タイプ &amp; 愛着スタイル分析</li>
-          <li>全16タイプとの詳細相性データ</li>
-          <li>認知機能スタック分析</li>
-          <li>深層心理・シャドウ解析</li>
+    <div class="premium-items-grid reveal">
+      <!-- Item 1: MBTI詳細レポート -->
+      <div class="premium-item-card">
+        <div class="premium-item-icon">🧠</div>
+        <div class="premium-item-name">MBTI 詳細レポート</div>
+        <div class="premium-item-desc">認知機能スタック・シャドウ分析・人格成長マップを含む30P以上の完全レポート</div>
+        <ul class="premium-item-list">
+          <li>認知機能スタック詳細分析（8機能）</li>
+          <li>シャドウ（影の自己）解析</li>
+          <li>16タイプ相性スコア一覧</li>
           <li>人格統合マップ（ビジュアル）</li>
-          <li>月次占い &amp; タイプ別運勢</li>
-          <li>ソシオニクス診断連携</li>
         </ul>
-        <button class="plan-btn plan-btn-gold"><span>プレミアムを始める</span></button>
+        <div class="premium-item-price">¥300 <span>/ 1回</span></div>
+        <button class="premium-item-btn">詳細レポートを購入する</button>
       </div>
 
-      <!-- Lab -->
-      <div class="plan-card">
-        <div class="plan-name">Lab</div>
-        <div class="plan-price">
-          <span class="plan-price-num">¥1,480</span>
-          <span class="plan-price-period">/ 月</span>
-        </div>
-        <ul class="plan-features">
-          <li>Premiumの全機能</li>
-          <li>ソシオニクス完全診断</li>
-          <li>類型ポータル全コンテンツ</li>
-          <li>研究データベース閲覧</li>
-          <li>有名人タイプ比較分析</li>
-          <li>コミュニティアクセス</li>
-          <li>診断履歴 &amp; トラッキング</li>
+      <!-- Item 2: 恋愛・相性完全分析 -->
+      <div class="premium-item-card">
+        <div class="premium-item-icon">💕</div>
+        <div class="premium-item-name">恋愛・相性 完全分析</div>
+        <div class="premium-item-desc">全16タイプとの相性スコア・愛着スタイル・恋愛深層心理を徹底解析</div>
+        <ul class="premium-item-list">
+          <li>全16タイプ詳細相性データ</li>
+          <li>愛着スタイル完全分析</li>
+          <li>恋愛における深層心理</li>
+          <li>理想のパートナー像・地雷パターン</li>
         </ul>
-        <button class="plan-btn plan-btn-silver"><span>Labを始める</span></button>
+        <div class="premium-item-price">¥300 <span>/ 1回</span></div>
+        <button class="premium-item-btn">詳細レポートを購入する</button>
+      </div>
+
+      <!-- Item 3: 深層心理完全解析 -->
+      <div class="premium-item-card">
+        <div class="premium-item-icon">🔮</div>
+        <div class="premium-item-name">深層心理 完全解析</div>
+        <div class="premium-item-desc">ユング元型・防衛機制・コンプレックス分析による深層心理の完全レポート</div>
+        <ul class="premium-item-list">
+          <li>全12元型の詳細スコア</li>
+          <li>防衛機制パターン解析</li>
+          <li>コンプレックス特定</li>
+          <li>心理的成長の道筋</li>
+        </ul>
+        <div class="premium-item-price">¥300 <span>/ 1回</span></div>
+        <button class="premium-item-btn">詳細レポートを購入する</button>
+      </div>
+
+      <!-- Item 4: キャリア詳細分析 -->
+      <div class="premium-item-card">
+        <div class="premium-item-icon">💼</div>
+        <div class="premium-item-name">キャリア 詳細分析</div>
+        <div class="premium-item-desc">詳細なキャリアパス提案・業界別適性スコア・成長ステップを徹底診断</div>
+        <ul class="premium-item-list">
+          <li>詳細キャリアパス提案（3ルート）</li>
+          <li>業界別適性スコア（20業界）</li>
+          <li>年収傾向と成長ステップ</li>
+          <li>MBTI別キャリア連携分析</li>
+        </ul>
+        <div class="premium-item-price">¥300 <span>/ 1回</span></div>
+        <button class="premium-item-btn">詳細レポートを購入する</button>
       </div>
     </div>
     </div><!-- /.plans-grid-wrap -->

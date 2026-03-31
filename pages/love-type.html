@@ -291,25 +291,6 @@
       </div>
     </div>
 
-    <div class="upsell-card">
-      <div class="upsell-badge">💎 PREMIUM</div>
-      <div class="upsell-title" id="upsell-title">あなたの恋愛をもっと深く理解する</div>
-      <div class="upsell-desc">詳細な相性分析、愛着スタイル診断、恋愛における心理的パターンの完全レポートをお届けします。</div>
-      <div class="upsell-items">
-        <div class="upsell-item">全16タイプとの詳細相性</div>
-        <div class="upsell-item">愛着スタイル完全分析</div>
-        <div class="upsell-item">恋愛における深層心理</div>
-        <div class="upsell-item">理想のパートナー像</div>
-        <div class="upsell-item">恋愛での地雷パターン</div>
-        <div class="upsell-item">口説かれやすい言葉</div>
-      </div>
-      <div class="upsell-price">
-        <span class="upsell-price-num">¥580</span>
-        <span class="upsell-price-sub">/月（初月無料）</span>
-      </div>
-      <button class="btn-premium">初月無料で詳細分析を見る →</button>
-    </div>
-
     <div class="share-section">
       <div class="share-title">結果をシェアする</div>
       <div class="share-buttons">
@@ -489,7 +470,7 @@ function showResult() {
   document.getElementById('r-traits').innerHTML = info.traits.map(t => '<span class="result-hero-trait">' + t + '</span>').join('');
   document.getElementById('r-free-desc1').textContent = info.desc1;
   document.getElementById('r-free-desc2').textContent = info.desc2;
-  document.getElementById('upsell-title').textContent = 'あなたの「' + info.type + '」をもっと深く理解する';
+
   document.getElementById('compat-types').innerHTML = info.compat.map(t => '<span class="compat-type-badge">' + t + '</span>').join('');
   const colors = ['#c9607a', '#3d8b8b', '#7b5ea7', '#c9a84c'];
   const labels = ['情熱性', '安定志向', '自己表現', '献身度'];

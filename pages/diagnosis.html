@@ -728,7 +728,7 @@
         <li>4つの次元（E/I、N/S、T/F、J/P）で測定します</li>
         <li>直感でお答えください。正解・不正解はありません</li>
         <li>基本結果は無料で確認できます</li>
-        <li>プレミアムで詳細な心理プロファイルを取得できます</li>
+
       </ul>
     </div>
   </div>
@@ -830,30 +830,6 @@
       <p id="r-free-desc2"></p>
     </div>
 
-    <!-- Premium Upsell -->
-    <div class="upsell-card">
-      <div class="upsell-badge">✦ Premium</div>
-      <div class="upsell-title" id="upsell-title">あなたのINTJを、さらに深く知る</div>
-      <div class="upsell-desc">
-        基本結果は氷山の一角。プレミアム分析では、
-        あなたの内なる世界を30ページ以上の詳細レポートで解き明かします。
-      </div>
-      <div class="upsell-items">
-        <div class="upsell-item">恋愛スタイル &amp; 理想の相手分析</div>
-        <div class="upsell-item">認知機能スタック（Ni-Te-Fi-Se）</div>
-        <div class="upsell-item">16タイプ全との詳細相性データ</div>
-        <div class="upsell-item">深層心理 &amp; シャドウ解析</div>
-        <div class="upsell-item">職業適性 &amp; キャリア分析</div>
-        <div class="upsell-item">成長段階 &amp; 課題レポート</div>
-        <div class="upsell-item">人格統合マップ（ビジュアル）</div>
-        <div class="upsell-item">ストレス時の行動パターン</div>
-      </div>
-      <button class="upsell-cta" onclick="alert('プレミアム登録ページへ移動します')">
-        ✦ 詳細分析を見る（月額¥580〜）
-      </button>
-      <div class="upsell-price">初月無料 · いつでも解約可能</div>
-    </div>
-
     <!-- SNS Share -->
     <div class="share-section">
       <div class="share-title">📤 結果をシェアしよう</div>
@@ -869,7 +845,7 @@
       <div class="compat-emoji">❤</div>
       <div>
         <div class="compat-text-title" id="compat-title">INTJの相性ランキングを見る →</div>
-        <div class="compat-text-desc">あなたと最も合うタイプは？16タイプとの相性を一覧でチェック（プレミアム）</div>
+        <div class="compat-text-desc">あなたと最も合うタイプは？16タイプとの相性を一覧でチェック</div>
       </div>
     </a>
 
@@ -1123,10 +1099,6 @@ function showResult() {
   // 説明文
   document.getElementById('r-free-desc1').textContent = info.desc1;
   document.getElementById('r-free-desc2').textContent = info.desc2;
-
-  // Upsellタイトル
-  document.getElementById('upsell-title').textContent =
-    'あなたの' + type + 'を、さらに深く知る';
 
   // 相性リンク
   document.getElementById('compat-title').textContent =

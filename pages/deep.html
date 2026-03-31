@@ -230,25 +230,6 @@
       </div>
     </div>
 
-    <div class="upsell-card">
-      <div class="upsell-badge">💎 PREMIUM</div>
-      <div class="upsell-title" id="upsell-title">あなたの深層心理を完全解析する</div>
-      <div class="upsell-desc">全12元型の詳細スコア、防衛機制パターン、コンプレックス分析、成長への道筋を完全レポートとして提供します。</div>
-      <div class="upsell-items">
-        <div class="upsell-item">全12元型の詳細スコア</div>
-        <div class="upsell-item">シャドウ完全分析レポート</div>
-        <div class="upsell-item">防衛機制パターン解析</div>
-        <div class="upsell-item">コンプレックス特定</div>
-        <div class="upsell-item">心理的成長の道筋</div>
-        <div class="upsell-item">MBTI × ユング統合分析</div>
-      </div>
-      <div class="upsell-price">
-        <span class="upsell-price-num">¥580</span>
-        <span class="upsell-price-sub">/月（初月無料）</span>
-      </div>
-      <button class="btn-premium">深層分析レポートを見る →</button>
-    </div>
-
     <div class="share-section">
       <div class="share-title">結果をシェアする</div>
       <div class="share-buttons">
@@ -446,7 +427,7 @@ function showResult() {
   document.getElementById('r-free-desc1').textContent = info.desc1;
   document.getElementById('r-free-desc2').textContent = info.desc2;
   document.getElementById('r-shadow').textContent = info.shadow;
-  document.getElementById('upsell-title').textContent = 'あなたの「' + info.type + '」を完全に解析する';
+
   const archetypeNames = { sage: '賢者', hero: '英雄', magician: '魔術師', outlaw: '反逆者', explorer: '探求者', caregiver: '養育者', lover: '愛好者', ruler: '支配者' };
   const archetypeColors = { sage: '#3d8b8b', hero: '#c9607a', magician: '#9b59b6', outlaw: '#e74c3c', explorer: '#27ae60', caregiver: '#e67e22', lover: '#ff6b9d', ruler: '#c9a84c' };
   const grid = document.getElementById('archetype-grid');

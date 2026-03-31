@@ -98,6 +98,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -188,6 +204,46 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
 
+  <div class="table-label reveal">▍ INFJとINFPの燃え尽きパターンの違い</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>観点</th>
+          <th>INFJ</th>
+          <th>INFP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="観点">主機能</td>
+          <td data-label="INFJ">Ni（内向的直観）</td>
+          <td data-label="INFP">Fi（内向的感情）</td>
+        </tr>
+        <tr>
+          <td data-label="観点">消耗の主な原因</td>
+          <td data-label="INFJ">他者の感情をFeで受け取り続けることによる蓄積疲弊</td>
+          <td data-label="INFP">高い理想と現実のギャップによる自己評価の低下</td>
+        </tr>
+        <tr>
+          <td data-label="観点">燃え尽きる前の状態</td>
+          <td data-label="INFJ">「まだ大丈夫」と感じながら限界まで消耗している</td>
+          <td data-label="INFP">「自分はちゃんとできているのか」という問いが止まらない</td>
+        </tr>
+        <tr>
+          <td data-label="観点">回復に必要なもの</td>
+          <td data-label="INFJ">他者の感情から完全に切り離されたひとりの時間</td>
+          <td data-label="INFP">「自分の感情を言語化する」こと、好きなことだけをする時間</td>
+        </tr>
+        <tr>
+          <td data-label="観点">SOSを出す傾向</td>
+          <td data-label="INFJ">外からは突然崩れたように見える（長期の蓄積）</td>
+          <td data-label="INFP">感情的に閉じ始め、段々と人との接触が減っていく</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 class="reveal">共通する3つの構造的な理由</h2>
 
   <div class="traits reveal">
@@ -248,6 +304,40 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <p class="reveal">これらを感じたら、「燃え尽きの前兆」のサインです。この段階で、少し立ち止まる許可を自分に与えてみてください。</p>
+
+  <div class="table-label reveal">▍ 燃え尽きサインと対処法チェックリスト</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>燃え尽きのサイン</th>
+          <th>対処法</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="燃え尽きのサイン">人と話すことが急に億劫になる</td>
+          <td data-label="対処法">予定をキャンセルしてひとりの時間を作ることを自分に許可する</td>
+        </tr>
+        <tr>
+          <td data-label="燃え尽きのサイン">「どうせ自分だけ」という感情が浮かぶ頻度が増える</td>
+          <td data-label="対処法">信頼できる1人に現状を言語化して話す（解決を求めなくていい）</td>
+        </tr>
+        <tr>
+          <td data-label="燃え尽きのサイン">好きなことに興味がなくなる</td>
+          <td data-label="対処法">「義務」に関係するものを全部一時停止し、好きなことだけをする日を作る</td>
+        </tr>
+        <tr>
+          <td data-label="燃え尽きのサイン">些細なことで傷つきやすくなる</td>
+          <td data-label="対処法">感情を日記や詩で書き出す。言語化することでガス抜きになる</td>
+        </tr>
+        <tr>
+          <td data-label="燃え尽きのサイン">休んでいるのに疲れが取れない感覚がある</td>
+          <td data-label="対処法">「活動を止める」だけでなく「自分が充電される活動」を意識的に行う</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <blockquote class="pull-quote reveal">
     <div class="pull-quote-text">あなたの感受性は、消耗が生じる原因でもあり、あなたの最大の強みでもある。</div>

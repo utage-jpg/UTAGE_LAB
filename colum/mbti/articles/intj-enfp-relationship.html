@@ -96,6 +96,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.new-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.new-compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.new-compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.new-compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.new-compare-card ul{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;padding-left:16px;}
+.new-compare-card ul li{margin-bottom:6px;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .new-compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -167,6 +190,41 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
 
+  <div class="table-label reveal">▍ INTJとENFPの機能スタック対比</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>機能の位置</th>
+          <th>INTJ</th>
+          <th>ENFP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="機能の位置">主機能（Dominant）</td>
+          <td data-label="INTJ">Ni — 本質・パターン・未来を収束させる</td>
+          <td data-label="ENFP">Ne — 可能性・アイデアを広げ続ける</td>
+        </tr>
+        <tr>
+          <td data-label="機能の位置">補助機能（Auxiliary）</td>
+          <td data-label="INTJ">Te — 効率・論理・構造で実行する</td>
+          <td data-label="ENFP">Fi — 価値観・誠実さを内側に持つ</td>
+        </tr>
+        <tr>
+          <td data-label="機能の位置">第3機能（Tertiary）</td>
+          <td data-label="INTJ">Fi — 価値観・誠実さ（やや未発達）</td>
+          <td data-label="ENFP">Te — 論理・効率（やや未発達）</td>
+        </tr>
+        <tr>
+          <td data-label="機能の位置">劣等機能（Inferior）</td>
+          <td data-label="INTJ">Se — 現在の刺激・現実対応（最も弱い）</td>
+          <td data-label="ENFP">Si — 過去の経験・安定（最も弱い）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 class="reveal">なぜ惹かれ合うのか</h2>
 
   <h3 class="reveal">1. 「直観」という共通言語を持つ</h3>
@@ -188,6 +246,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
   <h3 class="reveal">3. 社交性へのスタンス</h3>
   <p class="reveal">ENFPは人との関わりでエネルギーを得ます。週末は友人と会いたいという欲求が自然にある。INTJはひとりの時間でエネルギーを回復します。週末はひとりでいるのが基本です。一緒にいる時間のバランスについて、二タイプの間にはしばしばズレが生まれます。</p>
+
+  <div class="new-compare-grid reveal">
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">惹かれ合う理由</div>
+      <div class="new-compare-card-title">引力の正体</div>
+      <ul>
+        <li>NiとNeという「直観」の共通言語で深く共鳴できる</li>
+        <li>INTJがENFPの自由さと温かさを羨ましいと感じる</li>
+        <li>ENFPがINTJの集中力と深さを頼もしいと感じる</li>
+        <li>Fiという共通の価値観軸で深い信頼が生まれる</li>
+      </ul>
+    </div>
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">ぶつかる理由</div>
+      <div class="new-compare-card-title">摩擦の正体</div>
+      <ul>
+        <li>計画を固めたいINTJ vs その場で決めたいENFP</li>
+        <li>感情を言語化しにくいINTJ vs 素直に感情を出すENFP</li>
+        <li>ひとりで充電したいINTJ vs 人と関わって充電するENFP</li>
+        <li>収束・決定を好むNi vs 可能性を開き続けるNe</li>
+      </ul>
+    </div>
+  </div>
 
   <h2 class="reveal">うまくいくために</h2>
 

@@ -90,6 +90,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.new-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.new-compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.new-compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.new-compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.new-compare-card ul{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;padding-left:16px;}
+.new-compare-card ul li{margin-bottom:6px;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .new-compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -157,6 +180,41 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
   <p class="reveal">これを「冷たい」と感じる人がいます。「解決策じゃなくて共感してほしかっただけなのに」という気持ちは当然です。でもTJタイプにとって、これは<strong>最大限の愛情表現</strong>なのです。</p>
 
+  <div class="table-label reveal">▍ TJタイプ4種の愛情表現比較</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>タイプ</th>
+          <th>愛情を示す行動</th>
+          <th>よく誤解されること</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="タイプ">INTJ</td>
+          <td data-label="愛情を示す行動">相手の将来のために長期計画を一緒に考える。問題をいち早く解決しようとする</td>
+          <td data-label="よく誤解されること">感情表現がなく冷淡に見える。「分析してばかり」と言われる</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ISTJ</td>
+          <td data-label="愛情を示す行動">約束を必ず守る。日常の責任を誠実に果たし続ける</td>
+          <td data-label="よく誤解されること">変化が少なく退屈に見える。感謝を言葉にしない</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ENTJ</td>
+          <td data-label="愛情を示す行動">相手の目標達成を全力でサポートする。困難な問題を一緒に乗り越えようとする</td>
+          <td data-label="よく誤解されること">強引・支配的に見える。「共感より解決を先に出す」と言われる</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ESTJ</td>
+          <td data-label="愛情を示す行動">家族の生活を安定させるために責任を持って動く。実務的な問題を素早く処理する</td>
+          <td data-label="よく誤解されること">感情面での繊細さが見えにくく「融通がきかない」と思われる</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 class="reveal">なぜTJタイプは愛情を言語化しにくいのか</h2>
 
   <p class="reveal">TJタイプの認知機能スタックを見ると、感情機能（FeまたはFi）は第3・第4機能（劣等機能）に位置します。</p>
@@ -179,6 +237,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     普段は論理的な話ばかりなのに、急に「ありがとう」と言う<br>
     冷たそうに見えて、大切な人が傷ついたときだけ激しく反応する<br>
     言葉よりも行動（帰りに好きなものを買ってくる等）で愛情を示す
+  </div>
+
+  <div class="new-compare-grid reveal">
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">冷たいと感じる言動</div>
+      <div class="new-compare-card-title">誤解されやすいTJの言動</div>
+      <ul>
+        <li>「なんで？」「どうすれば？」とすぐ解決策を出す</li>
+        <li>悲しんでいるのに感情ではなく論理で返す</li>
+        <li>「好きだよ」という言葉をほとんど言わない</li>
+        <li>スキンシップが少なく感情的な距離を感じる</li>
+      </ul>
+    </div>
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">実は愛情表現だった言動</div>
+      <div class="new-compare-card-title">翻訳するとこうなる</div>
+      <ul>
+        <li>問題を解決しようとすること＝「あなたを助けたい」</li>
+        <li>帰りに好きなものを買ってくること＝「覚えていたよ」</li>
+        <li>相手の将来のことを一緒に考えること＝「大切にしている」</li>
+        <li>「それは無理だよ」と正直に言うこと＝「本音で話している」</li>
+      </ul>
+    </div>
   </div>
 
   <h2 class="reveal">TJタイプが「好きな人」にするのとの決定的な違い</h2>

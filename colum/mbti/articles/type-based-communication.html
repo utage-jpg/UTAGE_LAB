@@ -103,6 +103,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.new-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.new-compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.new-compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.new-compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.new-compare-card ul{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;padding-left:16px;}
+.new-compare-card ul li{margin-bottom:6px;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .new-compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -181,6 +204,41 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
   <p class="reveal">相手が使っているチャンネルと違うチャンネルで話すと、どれほど熱心に話しても届きにくいのです。</p>
 
+  <div class="table-label reveal">▍ 4つのコミュニケーションチャンネル比較</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>チャンネル</th>
+          <th>特徴</th>
+          <th>効果的な伝え方</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="チャンネル">論理チャンネル（Te/Ti）</td>
+          <td data-label="特徴">根拠・データ・論理的な一貫性で情報を受け取る。感情よりも事実と構造を優先する</td>
+          <td data-label="効果的な伝え方">「なぜなら〜〜だから」という根拠を添えて、感情を情報として論理的に提示する</td>
+        </tr>
+        <tr>
+          <td data-label="チャンネル">感情チャンネル（Fe/Fi）</td>
+          <td data-label="特徴">感情・価値観・関係性の温度で情報を受け取る。まず承認があると話が入りやすい</td>
+          <td data-label="効果的な伝え方">「あなたの気持ちはわかる」と先に承認してから主張を伝える</td>
+        </tr>
+        <tr>
+          <td data-label="チャンネル">可能性チャンネル（Ne/Ni）</td>
+          <td data-label="特徴">意味・ビジョン・本質・長期的な方向性に反応する。手順より「なぜこれが重要か」を知りたい</td>
+          <td data-label="効果的な伝え方">「最終的にこういう状態を目指している」という大きな意味から話し始める</td>
+        </tr>
+        <tr>
+          <td data-label="チャンネル">現実チャンネル（Se/Si）</td>
+          <td data-label="特徴">具体的な事実・実績・手順・過去の経験に安心感を持つ。抽象論より具体的な行動が響く</td>
+          <td data-label="効果的な伝え方">「先週からこういうことが起きている」という具体的な事実から積み上げて伝える</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 class="reveal">チャンネル別の伝え方</h2>
 
   <h3 class="reveal">論理チャンネル（Te/Ti 優位）の人に伝えるとき</h3>
@@ -239,6 +297,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="compare-good">
       <div class="compare-pair-label">伝わりやすい例</div>
       <div class="compare-pair-text">「先週からこの問題が起き続けている。過去にも同じパターンがあった。だから、この手順で対応したい」</div>
+    </div>
+  </div>
+
+  <div class="new-compare-grid reveal">
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">すれ違いが起きる場面</div>
+      <div class="new-compare-card-title">チャンネルがズレる典型例</div>
+      <ul>
+        <li>感情で話したのに論理で返ってきた（Fe→Te）</li>
+        <li>根拠を示したのに「でも気持ちが…」と流された（Te→Fi）</li>
+        <li>ビジョンを語ったのに「で、具体的には？」と止められた（Ni→Si）</li>
+        <li>手順を説明したのに「本質的にどういう意味？」と聞かれた（Si→Ni）</li>
+      </ul>
+    </div>
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">伝わる伝え方</div>
+      <div class="new-compare-card-title">チャンネルを合わせるコツ</div>
+      <ul>
+        <li>相手のチャンネルで「翻訳して」から話し始める</li>
+        <li>「承認→主張」の順番を守るとほぼどのチャンネルでも通りやすい</li>
+        <li>相手のストレス時は特に本来のチャンネルに集中する</li>
+        <li>タイミングを読む：話を受け取れる状態かを先に確認する</li>
+      </ul>
     </div>
   </div>
 

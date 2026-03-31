@@ -107,6 +107,18 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .matrix-grid{grid-template-columns:60px 1fr 1fr;}
   .matrix-cell{padding:12px 14px;}
 }
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .matrix-grid{grid-template-columns:1fr 1fr!important;}
+  .matrix-cell.header:first-child{display:none;}
+  .matrix-cell.axis{grid-column:1/-1;text-align:center;padding:10px 14px;}
+}
 </style>
 </head>
 <body>
@@ -161,16 +173,16 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </thead>
       <tbody>
         <tr>
-          <td><strong>外向（E）</strong></td>
-          <td>外の世界（人・活動・刺激）との関わり</td>
-          <td>長時間の一人時間・刺激のない環境</td>
-          <td>「常に社交的で明るい」は誤解</td>
+          <td data-label="軸"><strong>外向（E）</strong></td>
+          <td data-label="エネルギー回復の場所">外の世界（人・活動・刺激）との関わり</td>
+          <td data-label="消耗するとき">長時間の一人時間・刺激のない環境</td>
+          <td data-label="よくある誤解">「常に社交的で明るい」は誤解</td>
         </tr>
         <tr>
-          <td><strong>内向（I）</strong></td>
-          <td>自分の内側（思考・一人の時間・静けさ）</td>
-          <td>長時間の人付き合い・過剰な外部刺激</td>
-          <td>「人嫌い・口下手」は誤解</td>
+          <td data-label="軸"><strong>内向（I）</strong></td>
+          <td data-label="エネルギー回復の場所">自分の内側（思考・一人の時間・静けさ）</td>
+          <td data-label="消耗するとき">長時間の人付き合い・過剰な外部刺激</td>
+          <td data-label="よくある誤解">「人嫌い・口下手」は誤解</td>
         </tr>
       </tbody>
     </table>

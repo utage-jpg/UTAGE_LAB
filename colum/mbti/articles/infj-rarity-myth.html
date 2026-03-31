@@ -104,6 +104,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
   .matrix-grid-2{grid-template-columns:1fr;}
 }
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+}
 </style>
 </head>
 <body>
@@ -156,24 +165,24 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </thead>
       <tbody>
         <tr>
-          <td><strong>調査によるブレ</strong></td>
-          <td>INFJは調査によって1〜4%程度で変動する</td>
-          <td>「1〜2%」という数字は固定ではない</td>
+          <td data-label="ポイント"><strong>調査によるブレ</strong></td>
+          <td data-label="実態">INFJは調査によって1〜4%程度で変動する</td>
+          <td data-label="解釈時の注意">「1〜2%」という数字は固定ではない</td>
         </tr>
         <tr>
-          <td><strong>自己申告バイアス</strong></td>
-          <td>テストは自己報告形式。INFJだと思いたい人がINFJと答えるケースも</td>
-          <td>テスト分布≠本当のタイプ分布</td>
+          <td data-label="ポイント"><strong>自己申告バイアス</strong></td>
+          <td data-label="実態">テストは自己報告形式。INFJだと思いたい人がINFJと答えるケースも</td>
+          <td data-label="解釈時の注意">テスト分布≠本当のタイプ分布</td>
         </tr>
         <tr>
-          <td><strong>地域・文化差</strong></td>
-          <td>タイプ分布は文化圏によって異なるとされる</td>
-          <td>「世界で最も」という表現は過度に一般化している</td>
+          <td data-label="ポイント"><strong>地域・文化差</strong></td>
+          <td data-label="実態">タイプ分布は文化圏によって異なるとされる</td>
+          <td data-label="解釈時の注意">「世界で最も」という表現は過度に一般化している</td>
         </tr>
         <tr>
-          <td><strong>SNS上の偏り</strong></td>
-          <td>MBTIに関心を持ちやすいINF系タイプがSNSでより多く発信する傾向がある</td>
-          <td>「INFJが多く見える」のはプラットフォームバイアスの可能性</td>
+          <td data-label="ポイント"><strong>SNS上の偏り</strong></td>
+          <td data-label="実態">MBTIに関心を持ちやすいINF系タイプがSNSでより多く発信する傾向がある</td>
+          <td data-label="解釈時の注意">「INFJが多く見える」のはプラットフォームバイアスの可能性</td>
         </tr>
       </tbody>
     </table>

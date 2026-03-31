@@ -80,6 +80,30 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.compare-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;}
+.compare-card ul{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;padding-left:16px;}
+.compare-card ul li{margin-bottom:6px;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -180,6 +204,64 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <li><strong>「もっとしてほしい」と要求する</strong>——「なんでもっと関わってくれないの」という圧力。SPタイプの行動欲求を制限されると、関係そのものが窮屈に感じられます。</li>
     </ul>
     <div class="why-box"><strong>なぜ地雷になるか：</strong>SPタイプはSe（外向的感覚）を主・補助機能に持ちます。Seは今この瞬間の刺激と行動にエネルギーを注ぐ機能です。この自由を奪われると、関係の中で「生きている感覚」を失ってしまいます。</div>
+  </div>
+
+  <div class="table-label reveal">▍ タイプグループ別・最大地雷比較</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>グループ</th>
+          <th>代表タイプ</th>
+          <th>絶対NGな言動</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="グループ">NF（直観×感情）</td>
+          <td data-label="代表タイプ">INFJ / INFP / ENFJ / ENFP</td>
+          <td data-label="絶対NGな言動">感情を笑い飛ばす、表面的な会話だけを続ける、言葉と行動が一致しない</td>
+        </tr>
+        <tr>
+          <td data-label="グループ">NT（直観×思考）</td>
+          <td data-label="代表タイプ">INTJ / INTP / ENTJ / ENTP</td>
+          <td data-label="絶対NGな言動">論理的な指摘に感情で反論する、知的会話を拒絶する、自律性を奪う管理をする</td>
+        </tr>
+        <tr>
+          <td data-label="グループ">SJ（感覚×判断）</td>
+          <td data-label="代表タイプ">ISTJ / ISFJ / ESTJ / ESFJ</td>
+          <td data-label="絶対NGな言動">約束を軽くドタキャンする、責任感のない言動、過去の常識を馬鹿にする</td>
+        </tr>
+        <tr>
+          <td data-label="グループ">SP（感覚×知覚）</td>
+          <td data-label="代表タイプ">ISTP / ISFP / ESTP / ESFP</td>
+          <td data-label="絶対NGな言動">遠い先の予定を過剰に要求する、行動力を批判する、感情的な沈黙攻撃をする</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="compare-grid reveal">
+    <div class="compare-card">
+      <div class="compare-card-label">言ってはいけないこと</div>
+      <div class="compare-card-title">NGフレーズ集</div>
+      <ul>
+        <li>「そんなことで傷つくの？」（NF地雷）</li>
+        <li>「なんで連絡してくれないの」（NT地雷）</li>
+        <li>「もっとフレキシブルになれば？」（SJ地雷）</li>
+        <li>「計画を立てなきゃダメ」（SP地雷）</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-label">代わりに言えること</div>
+      <div class="compare-card-title">代替フレーズ集</div>
+      <ul>
+        <li>「そう感じたんだね、教えてくれてありがとう」（NF向け）</li>
+        <li>「どのくらいの頻度が心地よい？」（NT向け）</li>
+        <li>「一度決めたら安心できるよね」（SJ向け）</li>
+        <li>「当日に決めるのも楽しいよね」（SP向け）</li>
+      </ul>
+    </div>
   </div>
 
   <h2 class="reveal">自分の地雷を相手に伝えることの大切さ</h2>

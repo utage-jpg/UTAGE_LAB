@@ -104,6 +104,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
   .matrix-grid-2{grid-template-columns:1fr;}
 }
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+}
 </style>
 </head>
 <body>
@@ -160,40 +169,40 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </thead>
       <tbody>
         <tr>
-          <td><strong>ENFP / ENTP</strong></td>
-          <td>Ne（外向的直観）</td>
-          <td>Si（内向的感覚）</td>
-          <td>ISFJ / ISTJ</td>
+          <td data-label="タイプ"><strong>ENFP / ENTP</strong></td>
+          <td data-label="主機能">Ne（外向的直観）</td>
+          <td data-label="影の機能">Si（内向的感覚）</td>
+          <td data-label="対応タイプ">ISFJ / ISTJ</td>
         </tr>
         <tr>
-          <td><strong>INFJ / INTJ</strong></td>
-          <td>Ni（内向的直観）</td>
-          <td>Se（外向的感覚）</td>
-          <td>ESFP / ESTP</td>
+          <td data-label="タイプ"><strong>INFJ / INTJ</strong></td>
+          <td data-label="主機能">Ni（内向的直観）</td>
+          <td data-label="影の機能">Se（外向的感覚）</td>
+          <td data-label="対応タイプ">ESFP / ESTP</td>
         </tr>
         <tr>
-          <td><strong>ESFP / ESTP</strong></td>
-          <td>Se（外向的感覚）</td>
-          <td>Ni（内向的直観）</td>
-          <td>INFJ / INTJ</td>
+          <td data-label="タイプ"><strong>ESFP / ESTP</strong></td>
+          <td data-label="主機能">Se（外向的感覚）</td>
+          <td data-label="影の機能">Ni（内向的直観）</td>
+          <td data-label="対応タイプ">INFJ / INTJ</td>
         </tr>
         <tr>
-          <td><strong>ISFJ / ISTJ</strong></td>
-          <td>Si（内向的感覚）</td>
-          <td>Ne（外向的直観）</td>
-          <td>ENFP / ENTP</td>
+          <td data-label="タイプ"><strong>ISFJ / ISTJ</strong></td>
+          <td data-label="主機能">Si（内向的感覚）</td>
+          <td data-label="影の機能">Ne（外向的直観）</td>
+          <td data-label="対応タイプ">ENFP / ENTP</td>
         </tr>
         <tr>
-          <td><strong>ENTJ / ESTJ</strong></td>
-          <td>Te（外向的思考）</td>
-          <td>Fi（内向的感情）</td>
-          <td>INFP / ISFP</td>
+          <td data-label="タイプ"><strong>ENTJ / ESTJ</strong></td>
+          <td data-label="主機能">Te（外向的思考）</td>
+          <td data-label="影の機能">Fi（内向的感情）</td>
+          <td data-label="対応タイプ">INFP / ISFP</td>
         </tr>
         <tr>
-          <td><strong>INFP / ISFP</strong></td>
-          <td>Fi（内向的感情）</td>
-          <td>Te（外向的思考）</td>
-          <td>ENTJ / ESTJ</td>
+          <td data-label="タイプ"><strong>INFP / ISFP</strong></td>
+          <td data-label="主機能">Fi（内向的感情）</td>
+          <td data-label="影の機能">Te（外向的思考）</td>
+          <td data-label="対応タイプ">ENTJ / ESTJ</td>
         </tr>
       </tbody>
     </table>

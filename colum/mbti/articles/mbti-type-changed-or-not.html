@@ -104,6 +104,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
   .matrix-grid-3{grid-template-columns:1fr;}
 }
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+}
 </style>
 </head>
 <body>
@@ -159,22 +168,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </thead>
       <tbody>
         <tr>
-          <td><strong>①機能の発達</strong></td>
-          <td>第3・第4機能が使えるようになり、行動範囲が広がった</td>
-          <td>変わっていない（成長）</td>
-          <td>若い頃のINFPが、社会経験を積んでTeが開花した</td>
+          <td data-label="理由"><strong>①機能の発達</strong></td>
+          <td data-label="何が起きているか">第3・第4機能が使えるようになり、行動範囲が広がった</td>
+          <td data-label="タイプの変化">変わっていない（成長）</td>
+          <td data-label="よくある例">若い頃のINFPが、社会経験を積んでTeが開花した</td>
         </tr>
         <tr>
-          <td><strong>②環境への適応</strong></td>
-          <td>職場・家族など特定の場で求められる振る舞いを身につけた</td>
-          <td>変わっていない（適応）</td>
-          <td>Fタイプが論理重視の職場でTらしく振る舞えるようになった</td>
+          <td data-label="理由"><strong>②環境への適応</strong></td>
+          <td data-label="何が起きているか">職場・家族など特定の場で求められる振る舞いを身につけた</td>
+          <td data-label="タイプの変化">変わっていない（適応）</td>
+          <td data-label="よくある例">Fタイプが論理重視の職場でTらしく振る舞えるようになった</td>
         </tr>
         <tr>
-          <td><strong>③テストの誤差</strong></td>
-          <td>気分・体調・質問の解釈の違いで結果がブレた</td>
-          <td>変わっていない（測定のブレ）</td>
-          <td>疲れているときに答えたらIになった、元気なときはEになった</td>
+          <td data-label="理由"><strong>③テストの誤差</strong></td>
+          <td data-label="何が起きているか">気分・体調・質問の解釈の違いで結果がブレた</td>
+          <td data-label="タイプの変化">変わっていない（測定のブレ）</td>
+          <td data-label="よくある例">疲れているときに答えたらIになった、元気なときはEになった</td>
         </tr>
       </tbody>
     </table>
@@ -212,44 +221,44 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </thead>
       <tbody>
         <tr>
-          <td><strong>Ne（外向的直観）</strong></td>
-          <td>アイデアを出す・可能性を探る・ブレスト</td>
-          <td>ENFP / ENTP</td>
+          <td data-label="主機能"><strong>Ne（外向的直観）</strong></td>
+          <td data-label="エネルギーが湧く場面">アイデアを出す・可能性を探る・ブレスト</td>
+          <td data-label="対応タイプ">ENFP / ENTP</td>
         </tr>
         <tr>
-          <td><strong>Ni（内向的直観）</strong></td>
-          <td>本質を見抜く・ビジョンを描く・長期的な洞察</td>
-          <td>INFJ / INTJ</td>
+          <td data-label="主機能"><strong>Ni（内向的直観）</strong></td>
+          <td data-label="エネルギーが湧く場面">本質を見抜く・ビジョンを描く・長期的な洞察</td>
+          <td data-label="対応タイプ">INFJ / INTJ</td>
         </tr>
         <tr>
-          <td><strong>Se（外向的感覚）</strong></td>
-          <td>今この瞬間を楽しむ・体感・行動のスピード</td>
-          <td>ESFP / ESTP</td>
+          <td data-label="主機能"><strong>Se（外向的感覚）</strong></td>
+          <td data-label="エネルギーが湧く場面">今この瞬間を楽しむ・体感・行動のスピード</td>
+          <td data-label="対応タイプ">ESFP / ESTP</td>
         </tr>
         <tr>
-          <td><strong>Si（内向的感覚）</strong></td>
-          <td>慣れた手順を守る・記憶・安定した積み重ね</td>
-          <td>ISFJ / ISTJ</td>
+          <td data-label="主機能"><strong>Si（内向的感覚）</strong></td>
+          <td data-label="エネルギーが湧く場面">慣れた手順を守る・記憶・安定した積み重ね</td>
+          <td data-label="対応タイプ">ISFJ / ISTJ</td>
         </tr>
         <tr>
-          <td><strong>Te（外向的思考）</strong></td>
-          <td>システム化・効率化・成果を出す構造づくり</td>
-          <td>ENTJ / ESTJ</td>
+          <td data-label="主機能"><strong>Te（外向的思考）</strong></td>
+          <td data-label="エネルギーが湧く場面">システム化・効率化・成果を出す構造づくり</td>
+          <td data-label="対応タイプ">ENTJ / ESTJ</td>
         </tr>
         <tr>
-          <td><strong>Ti（内向的思考）</strong></td>
-          <td>仕組みを理解する・矛盾を見つける・深い分析</td>
-          <td>INTP / ISTP</td>
+          <td data-label="主機能"><strong>Ti（内向的思考）</strong></td>
+          <td data-label="エネルギーが湧く場面">仕組みを理解する・矛盾を見つける・深い分析</td>
+          <td data-label="対応タイプ">INTP / ISTP</td>
         </tr>
         <tr>
-          <td><strong>Fe（外向的感情）</strong></td>
-          <td>場を和ませる・他者の感情を汲む・調和を作る</td>
-          <td>ENFJ / ESFJ</td>
+          <td data-label="主機能"><strong>Fe（外向的感情）</strong></td>
+          <td data-label="エネルギーが湧く場面">場を和ませる・他者の感情を汲む・調和を作る</td>
+          <td data-label="対応タイプ">ENFJ / ESFJ</td>
         </tr>
         <tr>
-          <td><strong>Fi（内向的感情）</strong></td>
-          <td>自分の価値観に従う・信念を守る・深く共感する</td>
-          <td>INFP / ISFP</td>
+          <td data-label="主機能"><strong>Fi（内向的感情）</strong></td>
+          <td data-label="エネルギーが湧く場面">自分の価値観に従う・信念を守る・深く共感する</td>
+          <td data-label="対応タイプ">INFP / ISFP</td>
         </tr>
       </tbody>
     </table>

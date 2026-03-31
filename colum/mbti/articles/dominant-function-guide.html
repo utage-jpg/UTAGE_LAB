@@ -100,6 +100,28 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.compare-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -196,6 +218,61 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
 
+  <div class="table-label reveal">▍ 8つの主機能別「一番生き生きする場面」早見表</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>主機能</th>
+          <th>対応タイプ</th>
+          <th>一番生き生きする場面</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="主機能">Fe（外向的感情）</td>
+          <td data-label="対応タイプ">ENFJ / ESFJ</td>
+          <td data-label="一番生き生きする場面">場の雰囲気を整えて全員が心地よくいられる状態を作れたとき</td>
+        </tr>
+        <tr>
+          <td data-label="主機能">Fi（内向的感情）</td>
+          <td data-label="対応タイプ">INFP / ISFP</td>
+          <td data-label="一番生き生きする場面">自分の信念に忠実な行動を取れたとき、本当の気持ちを言えたとき</td>
+        </tr>
+        <tr>
+          <td data-label="主機能">Te（外向的思考）</td>
+          <td data-label="対応タイプ">ENTJ / ESTJ</td>
+          <td data-label="一番生き生きする場面">計画を立てて実行し、目に見える成果を出せたとき</td>
+        </tr>
+        <tr>
+          <td data-label="主機能">Ti（内向的思考）</td>
+          <td data-label="対応タイプ">INTP / ISTP</td>
+          <td data-label="一番生き生きする場面">複雑な問題の仕組みを完全に理解できたとき</td>
+        </tr>
+        <tr>
+          <td data-label="主機能">Ne（外向的直観）</td>
+          <td data-label="対応タイプ">ENTP / ENFP</td>
+          <td data-label="一番生き生きする場面">新しいアイデアがどんどん出てきて止まらないとき</td>
+        </tr>
+        <tr>
+          <td data-label="主機能">Ni（内向的直観）</td>
+          <td data-label="対応タイプ">INTJ / INFJ</td>
+          <td data-label="一番生き生きする場面">まだ誰も気づいていない本質やパターンが「見えた」とき</td>
+        </tr>
+        <tr>
+          <td data-label="主機能">Se（外向的感覚）</td>
+          <td data-label="対応タイプ">ESTP / ESFP</td>
+          <td data-label="一番生き生きする場面">今この瞬間の体験に全身で没頭しているとき</td>
+        </tr>
+        <tr>
+          <td data-label="主機能">Si（内向的感覚）</td>
+          <td data-label="対応タイプ">ISTJ / ISFJ</td>
+          <td data-label="一番生き生きする場面">信頼できるルーティンを丁寧にこなし、安定した結果を出せたとき</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 class="reveal">自分の主機能を見つける3つの質問</h2>
 
   <p class="reveal">難しく考えなくて大丈夫です。以下の質問に正直に答えてみてください。</p>
@@ -289,6 +366,19 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <div class="type-cell-name" style="color:#3d8b8b;">ISTJ / ISFJ</div>
         <div class="type-cell-func">主機能: Si</div>
       </div>
+    </div>
+  </div>
+
+  <div class="compare-grid reveal">
+    <div class="compare-card">
+      <div class="compare-card-label">主機能診断の問い①②</div>
+      <div class="compare-card-title">「生き生き」と「失うとつらい」</div>
+      <p>何をしているときに一番生き生きするか。そして何を奪われると一番ストレスを感じるか。この2つが一致する機能が、高い確率で主機能です。楽しい場面とストレスな場面は表裏一体です。</p>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-label">主機能診断の問い③</div>
+      <div class="compare-card-title">「他人からどう見られるか」</div>
+      <p>主機能は外からも見えやすい。「あの人はいつも〜〜している」という他者からの印象は、主機能が滲み出ていることが多い。友人からよく言われる言葉を思い出してみてください。</p>
     </div>
   </div>
 

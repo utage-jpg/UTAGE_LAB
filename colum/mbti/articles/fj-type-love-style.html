@@ -90,6 +90,30 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.compare-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;}
+.compare-card ul{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;padding-left:16px;}
+.compare-card ul li{margin-bottom:6px;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -143,6 +167,41 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <p class="reveal">FJタイプはFe（外向的感情）を主機能または補助機能として持ちます。Feとは、他者の感情状態を敏感に察知し、その人が心地よくいられるように動く機能です。</p>
   <p class="reveal">FJタイプが誰かを好きになると、この機能がフル稼働します。</p>
 
+  <div class="table-label reveal">▍ FJタイプ4種の恋愛スタイル比較</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>タイプ</th>
+          <th>愛情表現の仕方</th>
+          <th>すれ違いやすいパターン</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="タイプ">INFJ</td>
+          <td data-label="愛情表現の仕方">相手の深層心理まで察し、言葉にならない感情を先回りして受け止める</td>
+          <td data-label="すれ違いやすいパターン">相手が「わかってほしい」と思う前に動くため、「読まれすぎて怖い」と感じられることがある</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ISFJ</td>
+          <td data-label="愛情表現の仕方">相手の好みや習慣を細かく覚えて、日常の小さな気遣いで愛を示す</td>
+          <td data-label="すれ違いやすいパターン">奉仕が当然になり、感謝されないと静かに傷ついても言葉にしない</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ENFJ</td>
+          <td data-label="愛情表現の仕方">相手の成長を熱心に応援し、感情を引き出して関係を深めようとする</td>
+          <td data-label="すれ違いやすいパターン">熱意が強く「プッシュされすぎ」と感じられやすく、距離感の違いが出る</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ESFJ</td>
+          <td data-label="愛情表現の仕方">記念日・行事・集まりを大切にし、明るく場を盛り上げて愛情を表す</td>
+          <td data-label="すれ違いやすいパターン">相手が感情を共有してくれないと「冷たい」と感じ不安が増幅しやすい</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="scene reveal">
     <div class="scene-label">FJタイプの愛情表現・具体例</div>
     相手が疲れているとき、言葉にならなくても気づく<br>
@@ -192,6 +251,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <li>ひとりの時間を邪魔しない</li>
         <li>察しながらも押しつけない</li>
         <li>自分の欲求と相手の必要を分けて考える</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="compare-grid reveal">
+    <div class="compare-card">
+      <div class="compare-card-label">伝わらないコミュニケーション</div>
+      <div class="compare-card-title">FJタイプが感じる「伝わらない」</div>
+      <ul>
+        <li>「何も言わなくてもわかってほしい」が通じない</li>
+        <li>細かい気遣いに気づいてもらえない</li>
+        <li>感情を素直に出したら「重い」と言われる</li>
+        <li>関係の深さを確認したいのに流される</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-label">伝わるコミュニケーション</div>
+      <div class="compare-card-title">FJタイプに「伝わる」言葉と行動</div>
+      <ul>
+        <li>「今日の気遣い、嬉しかった」と明確に伝える</li>
+        <li>「何か欲しいものある？」と聞いて選ばせる</li>
+        <li>「一人でいたい」と理由を添えて伝える</li>
+        <li>「大切にしている」を行動で示す</li>
       </ul>
     </div>
   </div>

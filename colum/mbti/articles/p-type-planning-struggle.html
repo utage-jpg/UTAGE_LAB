@@ -94,6 +94,30 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.compare-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;}
+.compare-card ul{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;padding-left:16px;}
+.compare-card ul li{margin-bottom:6px;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -170,6 +194,46 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
   <p class="reveal">J型にとって「To-Doリストを作って一つずつ消していく」は自然な行動です。しかしPタイプにとって、これは非常に不自然な動き方を要求されます。</p>
 
+  <div class="table-label reveal">▍ JタイプとPタイプの計画スタイル比較</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>観点</th>
+          <th>Jタイプ</th>
+          <th>Pタイプ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="観点">計画の立て方</td>
+          <td data-label="Jタイプ">詳細なスケジュールを事前に決め、それに沿って実行する</td>
+          <td data-label="Pタイプ">ゴールだけ決めて、プロセスはその場の気分に合わせる</td>
+        </tr>
+        <tr>
+          <td data-label="観点">変更への反応</td>
+          <td data-label="Jタイプ">計画の変更はストレス。できれば避けたい</td>
+          <td data-label="Pタイプ">変更は自然なこと。むしろ柔軟性がある状態が心地よい</td>
+        </tr>
+        <tr>
+          <td data-label="観点">締め切りへの意識</td>
+          <td data-label="Jタイプ">早めに仕上げて安心感を得たい</td>
+          <td data-label="Pタイプ">締め切り直前にエンジンがかかり、集中力が最大になる</td>
+        </tr>
+        <tr>
+          <td data-label="観点">達成感を得る瞬間</td>
+          <td data-label="Jタイプ">タスクを順番通りに完了させたとき</td>
+          <td data-label="Pタイプ">没頭できたとき、流れに乗って動けたとき</td>
+        </tr>
+        <tr>
+          <td data-label="観点">「未決定の状態」について</td>
+          <td data-label="Jタイプ">できるだけ早く解消したい不安要素</td>
+          <td data-label="Pタイプ">可能性が開いていて居心地がよい状態</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 class="reveal">Pタイプの認知構造と「計画」の相性の悪さ</h2>
 
   <p class="reveal">Pタイプの知覚機能（NまたはS）は、外向き（NeまたはSe）に向かっています。</p>
@@ -195,6 +259,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="pattern-num">Pattern 03</div>
     <div class="pattern-title">完璧な計画が崩れると全部捨ててしまう</div>
     <div class="pattern-text">「今日は計画どおりにできなかった」という一度の失敗で、「もういいや計画自体が意味ない」とリセットしてしまいます。これはPタイプが持つ「現在主義」の裏返しです。過去に立てた計画への義務感が薄いため、一度ずれると戻る理由を見つけにくくなります。</div>
+  </div>
+
+  <div class="compare-grid reveal">
+    <div class="compare-card">
+      <div class="compare-card-label">合わない計画術</div>
+      <div class="compare-card-title">Pタイプに合わないやり方</div>
+      <ul>
+        <li>毎日同じ時間に同じタスクを義務化する</li>
+        <li>細かく時間割を決めてしまうスケジュール帳</li>
+        <li>「できなかった」日にペナルティを設ける習慣</li>
+        <li>長期の予定を月単位で細かく決め込む</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-label">合う計画術</div>
+      <div class="compare-card-title">Pタイプに合うやり方</div>
+      <ul>
+        <li>ゴールだけ決めてプロセスは流動的にする</li>
+        <li>「やりたいことリスト」として義務感なく管理する</li>
+        <li>モードに乗ったときだけ集中して全力にする</li>
+        <li>締め切りだけはJ型的に死守する最小限の固定</li>
+      </ul>
+    </div>
   </div>
 
   <h2 class="reveal">Pタイプに合った「計画の持ち方」</h2>

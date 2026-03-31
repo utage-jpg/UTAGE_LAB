@@ -89,6 +89,28 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.new-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.new-compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.new-compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.new-compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.new-compare-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .new-compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -161,6 +183,46 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     補助機能：ENFP・ESFP
   </div>
 
+  <div class="table-label reveal">▍ FeとFiの共感の仕組み比較</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>観点</th>
+          <th>Fe（外向的感情）</th>
+          <th>Fi（内向的感情）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="観点">向かう方向</td>
+          <td data-label="Fe（外向的感情）">外向き：場・他者の感情状態へ</td>
+          <td data-label="Fi（内向的感情）">内向き：自分の価値観・感情へ</td>
+        </tr>
+        <tr>
+          <td data-label="観点">共感の動機</td>
+          <td data-label="Fe（外向的感情）">「場の調和を保ちたい」「この人を楽にしたい」</td>
+          <td data-label="Fi（内向的感情）">「あなたの感情を自分の中で感じたい」「深くわかりたい」</td>
+        </tr>
+        <tr>
+          <td data-label="観点">反応のスピード</td>
+          <td data-label="Fe（外向的感情）">素早く言葉や行動で反応する</td>
+          <td data-label="Fi（内向的感情）">内側で処理してから反応するため、少し時間がかかる</td>
+        </tr>
+        <tr>
+          <td data-label="観点">「助け」の形</td>
+          <td data-label="Fe（外向的感情）">「何かできることある？」と動こうとする</td>
+          <td data-label="Fi（内向的感情）">「本当に辛かったね」と深く承認する</td>
+        </tr>
+        <tr>
+          <td data-label="観点">代表タイプ</td>
+          <td data-label="Fe（外向的感情）">ENFJ・ESFJ（主）/ INFJ・ISFJ（補助）</td>
+          <td data-label="Fi（内向的感情）">INFP・ISFP（主）/ ENFP・ESFP（補助）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 class="reveal">共感の仕方がこんなに違う</h2>
 
   <p class="reveal">具体的な場面で比べてみます。</p>
@@ -197,6 +259,19 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="trait-item">
       <div class="trait-num">Fi</div>
       <div class="trait-text"><strong>Fiの強み</strong>一対一での深い共感が得意。相手の感情を表面でなく本質から理解しようとする。「本当のことを言っていい」と思わせる安心感を与えられる。価値観レベルでのつながりを作る</div>
+    </div>
+  </div>
+
+  <div class="new-compare-grid reveal">
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">Feの反応パターン</div>
+      <div class="new-compare-card-title">「元気にしてあげたい」が先に来る</div>
+      <p>友人が落ち込んでいると、FeはまずAつまりその場の空気を変えようとする。「一緒にご飯行こう」「他の話をして気を紛らわせよう」という行動が自然に出てくる。これが「助け」の形。</p>
+    </div>
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">Fiの反応パターン</div>
+      <div class="new-compare-card-title">「感じたことを感じさせてあげたい」が先に来る</div>
+      <p>友人が落ち込んでいると、Fiはまずその感情をそのまま受け止めようとする。「それはつらかったね」という深い承認と、「今は感じきっていい」という場を作ることが「助け」の形。</p>
     </div>
   </div>
 

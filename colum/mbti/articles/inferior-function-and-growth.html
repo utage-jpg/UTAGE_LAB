@@ -104,6 +104,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
   .matrix-grid-2{grid-template-columns:1fr;}
 }
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+}
 </style>
 </head>
 <body>
@@ -160,52 +169,52 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </thead>
       <tbody>
         <tr>
-          <td><strong>INTJ / INFJ</strong></td>
-          <td>Ni（内向的直観）</td>
-          <td>Se（外向的感覚）</td>
-          <td>過度な快楽追求・感覚的な衝動・過食など</td>
+          <td data-label="タイプ"><strong>INTJ / INFJ</strong></td>
+          <td data-label="主機能">Ni（内向的直観）</td>
+          <td data-label="劣勢機能">Se（外向的感覚）</td>
+          <td data-label="ストレス時の行動例">過度な快楽追求・感覚的な衝動・過食など</td>
         </tr>
         <tr>
-          <td><strong>INTP / ISTP</strong></td>
-          <td>Ti（内向的思考）</td>
-          <td>Fe（外向的感情）</td>
-          <td>突然の感情爆発・過剰な承認欲求・感情的な攻撃</td>
+          <td data-label="タイプ"><strong>INTP / ISTP</strong></td>
+          <td data-label="主機能">Ti（内向的思考）</td>
+          <td data-label="劣勢機能">Fe（外向的感情）</td>
+          <td data-label="ストレス時の行動例">突然の感情爆発・過剰な承認欲求・感情的な攻撃</td>
         </tr>
         <tr>
-          <td><strong>INFP / ISFP</strong></td>
-          <td>Fi（内向的感情）</td>
-          <td>Te（外向的思考）</td>
-          <td>一方的な「論理的」批判・支配的な発言・効率強迫</td>
+          <td data-label="タイプ"><strong>INFP / ISFP</strong></td>
+          <td data-label="主機能">Fi（内向的感情）</td>
+          <td data-label="劣勢機能">Te（外向的思考）</td>
+          <td data-label="ストレス時の行動例">一方的な「論理的」批判・支配的な発言・効率強迫</td>
         </tr>
         <tr>
-          <td><strong>ENFP / ENTP</strong></td>
-          <td>Ne（外向的直観）</td>
-          <td>Si（内向的感覚）</td>
-          <td>過去への執着・細かいルールへの固執・健康強迫</td>
+          <td data-label="タイプ"><strong>ENFP / ENTP</strong></td>
+          <td data-label="主機能">Ne（外向的直観）</td>
+          <td data-label="劣勢機能">Si（内向的感覚）</td>
+          <td data-label="ストレス時の行動例">過去への執着・細かいルールへの固執・健康強迫</td>
         </tr>
         <tr>
-          <td><strong>ENTJ / ESTJ</strong></td>
-          <td>Te（外向的思考）</td>
-          <td>Fi（内向的感情）</td>
-          <td>突然の感傷・ひどく傷つく・アイデンティティの危機</td>
+          <td data-label="タイプ"><strong>ENTJ / ESTJ</strong></td>
+          <td data-label="主機能">Te（外向的思考）</td>
+          <td data-label="劣勢機能">Fi（内向的感情）</td>
+          <td data-label="ストレス時の行動例">突然の感傷・ひどく傷つく・アイデンティティの危機</td>
         </tr>
         <tr>
-          <td><strong>ENFJ / ESFJ</strong></td>
-          <td>Fe（外向的感情）</td>
-          <td>Ti（内向的思考）</td>
-          <td>根拠のない決めつけ・批判への過剰反応・冷笑的な発言</td>
+          <td data-label="タイプ"><strong>ENFJ / ESFJ</strong></td>
+          <td data-label="主機能">Fe（外向的感情）</td>
+          <td data-label="劣勢機能">Ti（内向的思考）</td>
+          <td data-label="ストレス時の行動例">根拠のない決めつけ・批判への過剰反応・冷笑的な発言</td>
         </tr>
         <tr>
-          <td><strong>ESFP / ESTP</strong></td>
-          <td>Se（外向的感覚）</td>
-          <td>Ni（内向的直観）</td>
-          <td>ネガティブな予測の暴走・被害妄想・陰謀論的な思考</td>
+          <td data-label="タイプ"><strong>ESFP / ESTP</strong></td>
+          <td data-label="主機能">Se（外向的感覚）</td>
+          <td data-label="劣勢機能">Ni（内向的直観）</td>
+          <td data-label="ストレス時の行動例">ネガティブな予測の暴走・被害妄想・陰謀論的な思考</td>
         </tr>
         <tr>
-          <td><strong>ISFJ / ISTJ</strong></td>
-          <td>Si（内向的感覚）</td>
-          <td>Ne（外向的直観）</td>
-          <td>最悪のシナリオへの固執・根拠のない不安の連鎖</td>
+          <td data-label="タイプ"><strong>ISFJ / ISTJ</strong></td>
+          <td data-label="主機能">Si（内向的感覚）</td>
+          <td data-label="劣勢機能">Ne（外向的直観）</td>
+          <td data-label="ストレス時の行動例">最悪のシナリオへの固執・根拠のない不安の連鎖</td>
         </tr>
       </tbody>
     </table>

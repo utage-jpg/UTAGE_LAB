@@ -96,6 +96,30 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.compare-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;}
+.compare-card ul{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;padding-left:16px;}
+.compare-card ul li{margin-bottom:6px;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -158,6 +182,46 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
 
+  <div class="table-label reveal">▍ TeとFiの価値観・判断基準の違い</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>観点</th>
+          <th>Te（外向的思考）</th>
+          <th>Fi（内向的感情）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="観点">判断の基準</td>
+          <td data-label="Te（外向的思考）">外部の論理・データ・結果で判断する</td>
+          <td data-label="Fi（内向的感情）">内側の価値観・誠実さ・意義で判断する</td>
+        </tr>
+        <tr>
+          <td data-label="観点">最優先にするもの</td>
+          <td data-label="Te（外向的思考）">効率と成果。目標達成へ向けて最短距離を選ぶ</td>
+          <td data-label="Fi（内向的感情）">自分にとっての正しさ。価値観と一致することが前提</td>
+        </tr>
+        <tr>
+          <td data-label="観点">フィードバックの受け取り方</td>
+          <td data-label="Te（外向的思考）">仕事の問題点の指摘と自分の評価を切り分けられる</td>
+          <td data-label="Fi（内向的感情）">仕事への批判が自己否定のように感じられやすい</td>
+        </tr>
+        <tr>
+          <td data-label="観点">沈黙の解釈</td>
+          <td data-label="Te（外向的思考）">意見なし＝意欲の欠如と読む</td>
+          <td data-label="Fi（内向的感情）">内側が整理できるまで発言できないだけ</td>
+        </tr>
+        <tr>
+          <td data-label="観点">評価してほしいこと</td>
+          <td data-label="Te（外向的思考）">数字・締め切り・成果物の質</td>
+          <td data-label="Fi（内向的感情）">誠実さ・倫理的判断・人格の誠意</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 class="reveal">ぶつかりやすいシーン5選</h2>
 
   <div class="conflict-scene reveal">
@@ -198,6 +262,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="dialog-te dialog"><div class="dialog-label">Te上司が評価する部下</div><div class="dialog-text">数字を出せる、締め切りを守る、報連相が速い、共に戦える</div></div>
     <div class="dialog-fi dialog"><div class="dialog-label">Fi部下が評価してほしいこと</div><div class="dialog-text">誠実に取り組んでいること、倫理的に正しい判断をしていること、チームの雰囲気を大切にしていること、人格を認めてほしいこと</div></div>
     <div class="dialog-inner">評価されたいポイントがずれていると、頑張っているのに認められないという感覚が生まれます。</div>
+  </div>
+
+  <div class="compare-grid reveal">
+    <div class="compare-card">
+      <div class="compare-card-label">Te視点</div>
+      <div class="compare-card-title">Te型上司の歩み寄り方</div>
+      <ul>
+        <li>フィードバック時に「頑張りは見えている」と一言添える</li>
+        <li>仕事の意義を一文で説明してから指示を出す</li>
+        <li>沈黙は意欲なしではなく「考え中」と解釈する</li>
+        <li>Fi型は理由がわかると動く、理由を共有する</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-label">Fi視点</div>
+      <div class="compare-card-title">Fi型部下の歩み寄り方</div>
+      <ul>
+        <li>感情でなく論理の言語で意見を伝える</li>
+        <li>「価値観に合わない」を「こういう理由で問題がある」と言い換える</li>
+        <li>Te型の指摘は攻撃でなく改善の提案と受け取る</li>
+        <li>提案したいことは根拠を添えて整理してから話す</li>
+      </ul>
+    </div>
   </div>
 
   <h2 class="reveal">改善のヒント</h2>

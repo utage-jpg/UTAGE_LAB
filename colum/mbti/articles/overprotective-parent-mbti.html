@@ -82,6 +82,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.new-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.new-compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.new-compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.new-compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.new-compare-card ul{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;padding-left:16px;}
+.new-compare-card ul li{margin-bottom:6px;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .new-compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -164,6 +187,64 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <p class="reveal">感情的な過干渉ではなく、「義務としての干渉」という感じです。そのため本人は「干渉している」という感覚がなく、「当然の責任を果たしている」と思っています。</p>
+
+  <div class="table-label reveal">▍ 過干渉に見えやすいタイプと認知機能の理由</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>タイプ</th>
+          <th>主機能</th>
+          <th>過干渉に見える行動パターン</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="タイプ">ESFJ</td>
+          <td data-label="主機能">Fe（外向的感情）</td>
+          <td data-label="過干渉に見える行動パターン">子どもの感情状態を常に監視し、何か問題があればすぐ動こうとする。「心配してるだけ」が強い</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ISFJ</td>
+          <td data-label="主機能">Si（内向的感覚）</td>
+          <td data-label="過干渉に見える行動パターン">過去の失敗パターンを参照し、「同じことが起きないように」と先回りして介入する</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ENFJ</td>
+          <td data-label="主機能">Fe（外向的感情）</td>
+          <td data-label="過干渉に見える行動パターン">子どもの成長を助けようと問題を代わりに解決してしまう。良かれと思った介入が過干渉になる</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ISTJ / ESTJ</td>
+          <td data-label="主機能">Si / Te（責任感）</td>
+          <td data-label="過干渉に見える行動パターン">「正しい方向に導く責任」から進路・生活習慣へ強い意見を持つ。義務感からの干渉</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="new-compare-grid reveal">
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">過干渉と感じる言動</div>
+      <div class="new-compare-card-title">子ども側が感じること</div>
+      <ul>
+        <li>「また連絡してきた、なぜこんなに心配するのか」</li>
+        <li>「自分で決めたいのに、全部提案してくる」</li>
+        <li>「いつも失敗例を出して行動を制限する」</li>
+        <li>「進路や就職先まで意見を押しつけてくる」</li>
+      </ul>
+    </div>
+    <div class="new-compare-card">
+      <div class="new-compare-card-label">認知機能から見た本当の意図</div>
+      <div class="new-compare-card-title">親側の本音</div>
+      <ul>
+        <li>「子どもが困っていないか、Feが自動的に反応している」</li>
+        <li>「助けることが愛情表現のつもりでいる」</li>
+        <li>「過去の経験から守ろうとしているだけ（Si）」</li>
+        <li>「正しい方向に導くのが親の責任（Te/Si）」</li>
+      </ul>
+    </div>
+  </div>
 
   <h2 class="reveal">「干渉される」側がつらい理由</h2>
 

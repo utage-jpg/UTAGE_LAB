@@ -81,6 +81,28 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;font-weight:500;white-space:nowrap;}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.compare-card{background:white;border-radius:14px;border:1px solid var(--border);padding:22px 24px;}
+.compare-card-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.compare-card-title{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:8px;}
+.compare-card p{font-size:14px;color:var(--text-light);line-height:1.7;margin:0;}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+  .compare-grid{grid-template-columns:1fr!important;}
+}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -154,6 +176,41 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
   <p class="reveal">共通しているのは、人の感情や意味に深く関わろうとする傾向です。これはNFタイプの最大の強みですが、恋愛においては消耗の原因にもなりえます。</p>
 
+  <div class="table-label reveal">▍ NFタイプ4種の主機能と恋愛での消耗パターン</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>タイプ</th>
+          <th>主機能</th>
+          <th>恋愛での消耗パターン</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="タイプ">INFJ</td>
+          <td data-label="主機能">Ni（内向的直観）</td>
+          <td data-label="恋愛での消耗パターン">パートナーの感情をFeで受け取り続け、気づかないうちに限界に達する。境界線がほぼ見えない</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">INFP</td>
+          <td data-label="主機能">Fi（内向的感情）</td>
+          <td data-label="恋愛での消耗パターン">相手への理想が高く、現実とのギャップで深く傷つく。自己犠牲と自己嫌悪が繰り返しやすい</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ENFJ</td>
+          <td data-label="主機能">Fe（外向的感情）</td>
+          <td data-label="恋愛での消耗パターン">相手を幸せにしようと全エネルギーを注ぎ込む。自分のニーズが後回しになり続ける</td>
+        </tr>
+        <tr>
+          <td data-label="タイプ">ENFP</td>
+          <td data-label="主機能">Ne（外向的直観）</td>
+          <td data-label="恋愛での消耗パターン">関係に理想の物語を投影し、現実との乖離で失望する。感情の波が激しくなりやすい</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 class="reveal">原因1：相手の感情を「自分のこと」として受け取る</h2>
 
   <p class="reveal">NFタイプは、好きな人の感情を非常に敏感に感知します。</p>
@@ -202,6 +259,36 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div class="trait-num">・</div>
       <div class="trait-text">「自分はこの関係に何を求めているか」がわからなくなっている</div>
     </div>
+  </div>
+
+  <div class="table-label reveal">▍ 恋愛疲弊のサインと対処法</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>疲弊のサイン</th>
+          <th>対処法</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="疲弊のサイン">相手の気分に合わせて自分の感情を「調節」するのが当然になっている</td>
+          <td data-label="対処法">「相手の感情」と「自分の感情」を意識的に分ける練習をする</td>
+        </tr>
+        <tr>
+          <td data-label="疲弊のサイン">相手が傷つかないよう言葉を選びすぎて、本音が言えなくなっている</td>
+          <td data-label="対処法">「これは私につらい」を小さく伝えることから始める</td>
+        </tr>
+        <tr>
+          <td data-label="疲弊のサイン">関係のことを考えすぎて他のことに集中できない時間が増えている</td>
+          <td data-label="対処法">意識的に「自分の時間」を1日15分確保し、関係から離れる</td>
+        </tr>
+        <tr>
+          <td data-label="疲弊のサイン">「自分はこの関係に何を求めているか」がわからなくなっている</td>
+          <td data-label="対処法">紙に「自分が本当に欲しいもの」を書き出してみる</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <h2 class="reveal">自分を守りながら深く愛するために</h2>

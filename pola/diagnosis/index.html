@@ -1108,8 +1108,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
     <div class="teaser-closing">
       <p class="teaser-closing-text">あなたの恋愛は、"なんとなく"ではなく、<br>理由があってそうなっています。</p>
       <p class="teaser-closing-sub">その構造を知ることで、恋愛は変えられます。</p>
-      <a class="btn-teaser-cta" href="https://buy.stripe.com/5kQ28r0L98le2Ry6I5aAw00" onclick="saveQuizStateForPayment()" style="display:inline-block;text-decoration:none;">¥980 でレポートを購入する →</a>
-      <p class="teaser-price-note" style="margin-top:8px;font-size:.8rem;">クレジットカード決済 · Stripe による安全な決済</p>
+      <a class="btn-teaser-cta" href="javascript:void(0)" onclick="handlePurchaseClick()" style="display:inline-block;text-decoration:none;" id="btnPurchaseCta">レポートを生成する →</a>
+      <p class="teaser-price-note" id="teaser-price-note" style="margin-top:8px;font-size:.8rem;">クレジットカード決済 · Stripe による安全な決済</p>
       <button id="btnPurchased" class="btn-teaser-cta" onclick="proceedIfPaid()" style="display:none;margin-top:10px;background:transparent;color:var(--text-mid);border:1.5px solid var(--border);font-size:.85rem;padding:10px 24px;">購入済みの方はこちら →</button>
       <button class="teaser-back" onclick="goBackToResult()">← 診断結果に戻る</button>
     </div>
@@ -4041,6 +4041,43 @@ restoreReportFromUrl();
 // STRIPE 支払い連携
 // ══════════════════════════════════════
 
+// ── 一時的な決済バイパス設定 ──────────────────────
+// Stripeが停止中のため、一時的に全ユーザーがレポートを生成できるよう設定
+// 決済を復旧する際は以下の手順で対応:
+//   1. PAYMENT_BYPASS を false に変更する
+//   2. #btnPurchaseCta のテキストを「¥980 でレポートを購入する →」に戻す
+//   3. #teaser-price-note のテキストを「クレジットカード決済 · Stripe による安全な決済」に戻す
+const PAYMENT_BYPASS = true;
+const STRIPE_URL = 'https://buy.stripe.com/5kQ28r0L98le2Ry6I5aAw00';
+// ─────────────────────────────────────────────────
+
+// 購入ボタンのクリックハンドラ（バイパス or Stripe）
+function handlePurchaseClick() {
+  if (PAYMENT_BYPASS) {
+    bypassPurchase();
+  } else {
+    saveQuizStateForPayment();
+    window.location.href = STRIPE_URL;
+  }
+}
+
+// バイパス時：決済スキップで直接レポート生成へ進む
+function bypassPurchase() {
+  if (!currentResult) {
+    alert('診断データが見つかりません。\nもう一度診断を最初から行ってください。');
+    return;
+  }
+  _paidThisSession = true;
+  showStatusInput();
+}
+
+// バイパスモード時にボタンテキスト等を調整
+(function initBypassUI() {
+  if (!PAYMENT_BYPASS) return;
+  const note = document.getElementById('teaser-price-note');
+  if (note) note.style.display = 'none';
+})();
+
 // 支払いページへ遷移する前にクイズ状態を保存
 function saveQuizStateForPayment() {
   if (!currentResult) return;
@@ -4073,7 +4110,7 @@ function showPurchasedButton() {
 
 // 支払い済みの方専用：レポート生成済みなら直接表示、未生成ならstatus入力へ
 function proceedIfPaid() {
-  if (!_paidThisSession) {
+  if (!PAYMENT_BYPASS && !_paidThisSession) {
     alert('先にお支払いを完了してください。\n支払い後、自動的にこの画面に戻ります。');
     return;
   }

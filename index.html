@@ -2448,6 +2448,31 @@ body::before {
   transition: transform 0.22s;
 }
 .diag-modal-item:hover .diag-modal-item-arrow { transform: translateX(4px); }
+.diag-modal-item--disabled {
+  position: relative;
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 5px,
+    rgba(0,0,0,0.04) 5px,
+    rgba(0,0,0,0.04) 10px
+  ) !important;
+  border-color: var(--border) !important;
+}
+.diag-modal-item--disabled .diag-modal-item-arrow { display: none; }
+.diag-modal-item-coming {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-light);
+  background: var(--border);
+  border-radius: 4px;
+  padding: 2px 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
 </style>
 </head>
@@ -3266,10 +3291,10 @@ const diagData = {
     sub: 'MBTI・16タイプ・ソシオニクスなど多様な類型論で自分を知る',
     items: [
       { name: '16タイプ 本格心理診断', meta: '約5分', url: 'pages/16type.html' },
-      { name: 'MBTI認知機能タイプ診断', meta: '約8分 ・ 精度の高い認知機能分析', url: 'pages/16type.html' },
+      { name: 'MBTI認知機能タイプ診断', meta: '約8分 ・ 精度の高い認知機能分析', url: 'pages/16type.html', disabled: true },
       { name: 'ソシオニクス診断', meta: '約6分 ・ 16型相関マップ付き', url: 'https://utage-jpg.github.io/socionics/' },
-      { name: 'ビッグファイブ性格診断', meta: '約4分 ・ 科学的5因子モデル', url: 'pages/16type.html' },
-      { name: 'エニアグラム診断', meta: '約6分 ・ 9つのタイプと翼', url: 'pages/16type.html' },
+      { name: 'ビッグファイブ性格診断', meta: '約4分 ・ 科学的5因子モデル', url: 'pages/16type.html', disabled: true },
+      { name: 'エニアグラム診断', meta: '約6分 ・ 9つのタイプと翼', url: 'pages/16type.html', disabled: true },
       { name: '思考タイプ診断（ThinkType）', meta: '約4分 ・ ビジョナリー/アーキテクト型など4タイプ', url: 'pages/thinktype.html' },
     ]
   },
@@ -3281,9 +3306,9 @@ const diagData = {
     items: [
       { name: '恋愛タイプ診断', meta: '約3分', url: 'pages/love-type.html' },
       { name: '愛着スタイル診断', meta: '約5分 ・ 安定型/回避型/不安型', url: 'pages/attachment.html' },
-      { name: '16タイプ相性診断', meta: '約4分 ・ タイプ別詳細相性表', url: 'pages/love-type.html' },
-      { name: '恋愛コミュニケーションスタイル', meta: '約3分 ・ あなたの愛し方は？', url: 'pages/love-type.html' },
-      { name: 'ソウルメイトタイプ診断', meta: '約4分 ・ 運命的相性の探求', url: 'pages/love-type.html' },
+      { name: '16タイプ相性診断', meta: '約4分 ・ タイプ別詳細相性表', url: 'pages/love-type.html', disabled: true },
+      { name: '恋愛コミュニケーションスタイル', meta: '約3分 ・ あなたの愛し方は？', url: 'pages/love-type.html', disabled: true },
+      { name: 'ソウルメイトタイプ診断', meta: '約4分 ・ 運命的相性の探求', url: 'pages/love-type.html', disabled: true },
     ]
   },
   deep: {
@@ -3293,10 +3318,10 @@ const diagData = {
     sub: 'ユング心理学・シャドウ・元型など無意識の世界を探る',
     items: [
       { name: '深層心理テスト', meta: '約4分', url: 'pages/deep.html' },
-      { name: 'シャドウ診断', meta: '約6分 ・ あなたの隠れた面', url: 'pages/deep.html' },
-      { name: 'ユング元型（アーキタイプ）診断', meta: '約5分 ・ 12の元型を探る', url: 'pages/deep.html' },
-      { name: '防衛機制スタイル診断', meta: '約4分 ・ 心理的防衛パターン', url: 'pages/deep.html' },
-      { name: '内向・外向エネルギー診断', meta: '約3分 ・ エネルギー充電スタイル', url: 'pages/deep.html' },
+      { name: 'シャドウ診断', meta: '約6分 ・ あなたの隠れた面', url: 'pages/deep.html', disabled: true },
+      { name: 'ユング元型（アーキタイプ）診断', meta: '約5分 ・ 12の元型を探る', url: 'pages/deep.html', disabled: true },
+      { name: '防衛機制スタイル診断', meta: '約4分 ・ 心理的防衛パターン', url: 'pages/deep.html', disabled: true },
+      { name: '内向・外向エネルギー診断', meta: '約3分 ・ エネルギー充電スタイル', url: 'pages/deep.html', disabled: true },
       { name: '感動タイプ診断', meta: '約3分 ・ What moves you? あなたの感性を探る', url: 'pages/movedtype.html' },
     ]
   },
@@ -3308,9 +3333,9 @@ const diagData = {
     items: [
       { name: '16タイプ今日の運勢', meta: '毎日更新 ・ 全タイプ対応', url: 'https://utage-jpg.github.io/16type_fortune/' },
       { name: 'ライフパスナンバー診断', meta: '約2分 ・ 誕生日から導く使命', url: 'pages/suuhijutu.html' },
-      { name: 'タイプ別星座運命鑑定', meta: '約3分 ・ MBTI × 占星術', url: '#' },
-      { name: '2025年タイプ別運勢占い', meta: '特別版 ・ 全16タイプ分析', url: '#' },
-      { name: 'タロット心理テスト', meta: '約4分 ・ カードが映す深層心理', url: '#' },
+      { name: 'タイプ別星座運命鑑定', meta: '約3分 ・ MBTI × 占星術', url: '#', disabled: true },
+      { name: '2025年タイプ別運勢占い', meta: '特別版 ・ 全16タイプ分析', url: '#', disabled: true },
+      { name: 'タロット心理テスト', meta: '約4分 ・ カードが映す深層心理', url: '#', disabled: true },
     ]
   },
   career: {
@@ -3320,10 +3345,10 @@ const diagData = {
     sub: '職業適性・リーダーシップ・ストレス耐性を測定',
     items: [
       { name: '職業適性タイプ診断', meta: '約5分 ・ タイプ別天職を探る', url: 'pages/career.html' },
-      { name: 'リーダーシップスタイル診断', meta: '約4分 ・ 5つのリーダータイプ', url: 'pages/career.html' },
-      { name: '強み・才能診断', meta: '約5分 ・ StrengthsFinderスタイル', url: 'pages/career.html' },
-      { name: 'チームでの役割診断', meta: '約3分 ・ ベルビン理論ベース', url: 'pages/career.html' },
-      { name: '仕事のモチベーション分析', meta: '約4分 ・ 何があなたを動かすか', url: 'pages/career.html' },
+      { name: 'リーダーシップスタイル診断', meta: '約4分 ・ 5つのリーダータイプ', url: 'pages/career.html', disabled: true },
+      { name: '強み・才能診断', meta: '約5分 ・ StrengthsFinderスタイル', url: 'pages/career.html', disabled: true },
+      { name: 'チームでの役割診断', meta: '約3分 ・ ベルビン理論ベース', url: 'pages/career.html', disabled: true },
+      { name: '仕事のモチベーション分析', meta: '約4分 ・ 何があなたを動かすか', url: 'pages/career.html', disabled: true },
     ]
   },
   growth: {
@@ -3332,10 +3357,10 @@ const diagData = {
     title: '成長・自己理解',
     sub: '防衛機制・成熟度・自己効力感を多面的に評価',
     items: [
-      { name: '自己効力感診断', meta: '約4分 ・ あなたの心の強さ', url: 'pages/attachment.html' },
-      { name: '感情知性（EQ）診断', meta: '約6分 ・ 感情理解と管理力', url: 'pages/attachment.html' },
-      { name: '価値観スタイル診断', meta: '約5分 ・ 何を大切にしているか', url: 'pages/attachment.html' },
-      { name: '成熟度・自己受容診断', meta: '約4分 ・ 心理的成熟レベル', url: 'pages/attachment.html' },
+      { name: '自己効力感診断', meta: '約4分 ・ あなたの心の強さ', url: 'pages/attachment.html', disabled: true },
+      { name: '感情知性（EQ）診断', meta: '約6分 ・ 感情理解と管理力', url: 'pages/attachment.html', disabled: true },
+      { name: '価値観スタイル診断', meta: '約5分 ・ 何を大切にしているか', url: 'pages/attachment.html', disabled: true },
+      { name: '成熟度・自己受容診断', meta: '約4分 ・ 心理的成熟レベル', url: 'pages/attachment.html', disabled: true },
       { name: 'わらいのツボ診断', meta: '約3分 ・ あなたの「笑い」のクセを探る', url: 'pages/uniquetype.html' },
     ]
   },
@@ -3346,9 +3371,9 @@ const diagData = {
     sub: 'ストレス耐性・消耗パターン・回復タイプを測定',
     items: [
       { name: 'ストレス耐性診断', meta: '約4分 ・ あなたの耐久スタイル', url: 'pages/stress.html' },
-      { name: '燃え尽き症候群リスク診断', meta: '約3分 ・ バーンアウト予防', url: 'pages/stress.html' },
-      { name: '回復・リチャージスタイル診断', meta: '約3分 ・ エネルギーを回復する方法', url: 'pages/stress.html' },
-      { name: 'タイプ別消耗パターン診断', meta: '約4分 ・ 何があなたを疲弊させるか', url: 'pages/stress.html' },
+      { name: '燃え尽き症候群リスク診断', meta: '約3分 ・ バーンアウト予防', url: 'pages/stress.html', disabled: true },
+      { name: '回復・リチャージスタイル診断', meta: '約3分 ・ エネルギーを回復する方法', url: 'pages/stress.html', disabled: true },
+      { name: 'タイプ別消耗パターン診断', meta: '約4分 ・ 何があなたを疲弊させるか', url: 'pages/stress.html', disabled: true },
     ]
   }
 };
@@ -3367,15 +3392,28 @@ function openDiagModal(category) {
   title.textContent = data.title;
   sub.textContent = data.sub;
 
-  list.innerHTML = data.items.map(item => `
-    <a href="${item.url}" class="diag-modal-item" ${item.url.startsWith('http') ? 'target="_blank"' : ''}>
-      <div class="diag-modal-item-info">
-        <div class="diag-modal-item-name">${item.name}</div>
-        <div class="diag-modal-item-meta">${item.meta}</div>
-      </div>
-      <div class="diag-modal-item-arrow">→</div>
-    </a>
-  `).join('');
+  list.innerHTML = data.items.map(item => {
+    if (item.disabled) {
+      return `
+        <div class="diag-modal-item diag-modal-item--disabled">
+          <div class="diag-modal-item-info">
+            <div class="diag-modal-item-name">${item.name}</div>
+            <div class="diag-modal-item-meta">${item.meta}</div>
+          </div>
+          <div class="diag-modal-item-coming">準備中</div>
+        </div>
+      `;
+    }
+    return `
+      <a href="${item.url}" class="diag-modal-item" ${item.url.startsWith('http') ? 'target="_blank"' : ''}>
+        <div class="diag-modal-item-info">
+          <div class="diag-modal-item-name">${item.name}</div>
+          <div class="diag-modal-item-meta">${item.meta}</div>
+        </div>
+        <div class="diag-modal-item-arrow">→</div>
+      </a>
+    `;
+  }).join('');
 
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';

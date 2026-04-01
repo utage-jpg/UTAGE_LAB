@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>感情を言葉にできないと思う人——心理機能から見る理由 | UTAGE LAB</title>
+<meta name="description" content="「どう感じているの？」と聞かれてもうまく答えられない。感情の言語化が苦手な理由は、機能スタックによって異なります。">
+<meta property="og:title" content="感情を言葉にできないと思う人——心理機能から見る理由 | UTAGE LAB">
+<meta property="og:description" content="感情の言語化が苦手な理由はタイプによって異なります。Fi・Te・Si・Feの機能スタック別に、感情と言葉の関係を読み解きます。">
+<meta property="og:url" content="https://utage-jpg.github.io/colum/mbti/articles/emotion-verbalization-by-function.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1025; --cream:#faf7f2; --parchment:#f5f0e8; --paper:#fff9f5;
+  --rose:#c9607a; --rose-light:#fae0e6;
+  --violet:#7b5ea7; --violet-light:#ede9f8;
+  --teal:#3d8b8b; --teal-light:#e2f4f4;
+  --amber:#c47d2a; --amber-light:#fef3e0;
+  --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
+  --shadow:rgba(26,16,37,0.12);
+  --func-color: #c9607a; --func-light: #fae0e6;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-serif:'Noto Serif JP',serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-serif);background:var(--cream);color:var(--text);overflow-x:hidden;font-size:17px;line-height:1.9;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,242,0.95);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border);}
+.nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
+.nav-back{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-back:hover{color:var(--func-color);}
+.hero{padding:120px 40px 80px;background:linear-gradient(135deg,var(--func-light) 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+.hero::before{content:'Fi Fe';position:absolute;right:-20px;top:10px;font-family:var(--font-display);font-size:clamp(60px,10vw,160px);font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(201,96,122,0.07);pointer-events:none;line-height:1;font-style:italic;}
+.hero-inner{max-width:860px;margin:0 auto;position:relative;}
+.breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--text-light);margin-bottom:20px;}
+.breadcrumb a{color:var(--text-light);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--func-color);}
+.breadcrumb-sep{opacity:0.4;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
+.hero-badge::before{content:'';width:28px;height:1px;background:var(--func-color);}
+.hero-title{font-family:var(--font-display);font-size:clamp(26px,4vw,44px);font-weight:700;color:var(--ink);margin-bottom:18px;line-height:1.3;}
+.hero-title em{font-style:italic;color:var(--func-color);}
+.hero-desc{font-size:17px;color:var(--text-light);line-height:2;max-width:620px;}
+.article{max-width:800px;margin:0 auto;padding:60px 40px 100px;}
+.article h2{font-family:var(--font-display);font-size:clamp(20px,3vw,30px);font-weight:700;color:var(--ink);margin:64px 0 24px;line-height:1.35;padding-bottom:12px;border-bottom:2px solid var(--func-light);}
+.article p{font-size:17px;line-height:2;margin-bottom:20px;color:var(--text);}
+.article strong{color:var(--ink);}
+.func-card{background:white;border:2px solid var(--func-color);border-radius:20px;padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
+.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#7b5ea7);}
+.func-card-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
+.func-card-text{font-size:19px;font-weight:700;color:var(--ink);line-height:1.7;}
+.scene{background:var(--parchment);border-left:4px solid var(--func-color);border-radius:0 16px 16px 0;padding:28px 32px;margin:32px 0;font-size:16px;line-height:2;}
+.scene-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.traits{background:white;border-radius:20px;border:1px solid var(--border);padding:36px 40px;margin:32px 0;}
+.trait-item{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);}
+.trait-item:last-child{border-bottom:none;}
+.trait-num{font-family:var(--font-mono);font-size:18px;font-weight:700;color:var(--func-color);flex-shrink:0;min-width:36px;padding-top:2px;}
+.trait-text{font-size:16px;line-height:1.9;}
+.trait-text strong{color:var(--ink);display:block;margin-bottom:4px;font-size:17px;}
+.pull-quote{border:none;margin:48px 0;padding:0;text-align:center;}
+.pull-quote-text{font-family:var(--font-display);font-size:clamp(18px,3vw,26px);font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:16px;}
+.pull-quote-text::before{content:'\201C';}
+.pull-quote-text::after{content:'\201D';}
+.pull-quote-line{width:60px;height:2px;background:var(--func-color);margin:0 auto;}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;font-weight:500;}
+.data-table td{padding:14px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.matrix-wrap{margin:32px 0;}
+.matrix-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.matrix-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border-radius:12px;overflow:hidden;}
+.mc{background:white;padding:20px 22px;}
+.mc.h{background:var(--func-color);color:white;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;text-align:center;display:flex;align-items:center;justify-content:center;}
+.mc-t{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:6px;}
+.mc-d{font-size:13px;color:var(--text-light);line-height:1.65;}
+.article-nav{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border);gap:16px;}
+.article-nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;transition:color 0.25s;}
+.article-nav a:hover{color:var(--func-color);}
+.footer{background:var(--ink);color:rgba(247,243,237,0.5);padding:56px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-logo{font-family:var(--font-display);font-size:22px;color:var(--parchment);margin-bottom:12px;}
+.footer-desc{font-size:12px;line-height:1.8;margin-bottom:32px;}
+.footer-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,237,0.4);text-decoration:none;border:1px solid rgba(247,243,237,0.12);padding:10px 22px;border-radius:2px;transition:all 0.25s;}
+.footer-back:hover{color:var(--parchment);border-color:rgba(247,243,237,0.3);}
+.footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .nav{padding:0 24px;}
+  .hero{padding:100px 24px 60px;}
+  .hero::before{font-size:60px;opacity:0.6;}
+  .article{padding:40px 24px 80px;}
+  .footer{padding:48px 24px 28px;}
+  .func-card{padding:28px 24px;}
+  .traits{padding:24px 20px;}
+  .scene{padding:24px 20px;}
+  .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
+  .matrix-grid-2{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back">← MBTI コラム</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">ホーム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../../index.html">コラム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../index.html">MBTI</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>感情を言葉にできない理由</span>
+    </div>
+    <div class="hero-badge">MBTI · 感情 · 2026.04.01</div>
+    <h1 class="hero-title">感情を言葉にできないと思う人<br>——<em>心理機能から見る理由</em></h1>
+    <p class="hero-desc">「どう感じているの？」と聞かれてもうまく答えられない。感情の言語化が苦手な理由は、機能スタックによって異なります。</p>
+  </div>
+</div>
+
+<article class="article">
+
+  <div class="func-card reveal">
+    <div class="func-card-label">この記事のキーコンセプト</div>
+    <div class="func-card-text">感情の言語化が苦手な理由は、感情が薄いからではありません。機能スタックによって、感情の出口の形が根本的に異なります。自分の「出口」を知ることが、言語化の第一歩です。</div>
+  </div>
+
+  <h2 class="reveal">感情の言語化が苦手なのは、感情が薄いからではない</h2>
+
+  <p class="reveal">「あなたは感情がないの？」「もっとちゃんと気持ちを言って」——そう言われた経験がある人は少なくないかもしれません。</p>
+  <p class="reveal">でも、感情の言語化が苦手なことと、感情が薄いことはまったく別の話です。内側では豊かに感じていても、それを言葉にする回路の形が違うだけです。</p>
+  <p class="reveal">MBTIの心理機能で見ると、感情の言語化が難しくなるパターンはいくつかの異なる構造から生じています。</p>
+
+  <h2 class="reveal">Fiタイプ——感情は深いが、外に出すのが苦手</h2>
+
+  <p class="reveal">Fi（内向的感情）を主機能や補助機能に持つタイプ（INFP、ISFP、ENFPなど）は、感情の深さそのものは人一倍あります。ただし、その感情は<strong>内側で完結する性質</strong>を持ちます。</p>
+  <p class="reveal">「どう感じてる？」と聞かれても、言葉にした瞬間にその感情の本質が損なわれるような感覚があり、うまく答えられないことがあります。感情が言葉よりも先に「状態」として存在しているため、言語化のプロセスでどこか不完全になってしまうのです。</p>
+
+  <div class="scene reveal">
+    <div class="scene-label">Fiタイプの内側</div>
+    深く傷ついているのに「別に平気」と言ってしまう。言葉にすると嘘になる気がして、沈黙を選ぶ。
+  </div>
+
+  <h2 class="reveal">Teが強いタイプ——感情より論理が先に来る</h2>
+
+  <p class="reveal">Te（外向的思考）が優位なタイプ（ENTJ、ESTJ、INTJなど）は、入力情報を自動的に「何が問題か・何が正しいか」に変換する傾向があります。感情についても「なぜそう感じるのか」という分析になりやすく、<strong>感情そのものを言葉にする前に論理化</strong>してしまうことがあります。</p>
+  <p class="reveal">結果として「感情を聞いているのに状況説明しか返ってこない」という印象を与えることがあります。</p>
+
+  <h2 class="reveal">Siが強いタイプ——感情より状況で語りがち</h2>
+
+  <p class="reveal">Si（内向的感覚）が強いタイプ（ISTJ、ISFJ、ESTJなど）は、感情を直接語るより、<strong>「あのとき何があったか」という状況の再現で語ろうとする</strong>傾向があります。</p>
+  <p class="reveal">「どう感じた？」に対して「あのときAさんがこう言って、それで私はこうして……」と状況説明が続くのは、感情を避けているのではなく、状況と感情が結びついているからです。</p>
+
+  <h2 class="reveal">Feタイプ——「自分の感情」と「場の感情」が混ざりやすい</h2>
+
+  <p class="reveal">Fe（外向的感情）が強いタイプ（ENFJ、ESFJ、INFJなど）は、場の感情に自然と同調します。そのため、「自分が今どう感じているか」を問われると、<strong>周囲の感情と自分の感情の境界が曖昧</strong>になっていることがあります。</p>
+  <p class="reveal">「みんなが楽しそうだったから楽しかった気がする」——これはFeが強い人によくあるパターンで、純粋な「自分の感情」を切り出すこと自体が難しい構造です。</p>
+
+  <div class="table-label reveal">▍ 機能スタック別・感情言語化の特徴と傾向</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>主な機能</th>
+          <th>感情言語化の特徴</th>
+          <th>困りやすいパターン</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="主な機能"><strong>Fi（内向的感情）</strong></td>
+          <td data-label="感情言語化の特徴">感情は深く豊かだが内側で完結。言語化すると本質が失われる感覚がある</td>
+          <td data-label="困りやすいパターン">「感情がない人」と誤解される。沈黙が多い</td>
+        </tr>
+        <tr>
+          <td data-label="主な機能"><strong>Te（外向的思考）</strong></td>
+          <td data-label="感情言語化の特徴">感情を論理・原因分析に変換してしまう。感情そのものより「なぜ」が先に来る</td>
+          <td data-label="困りやすいパターン">感情を聞いているのに状況説明になる</td>
+        </tr>
+        <tr>
+          <td data-label="主な機能"><strong>Si（内向的感覚）</strong></td>
+          <td data-label="感情言語化の特徴">感情より状況の再現で語ろうとする。出来事と感情が一体化している</td>
+          <td data-label="困りやすいパターン">「感情の話をして」と言われても話が長くなる</td>
+        </tr>
+        <tr>
+          <td data-label="主な機能"><strong>Fe（外向的感情）</strong></td>
+          <td data-label="感情言語化の特徴">場の感情と自分の感情が混ざりやすい。純粋な「自分の感情」の切り出しが難しい</td>
+          <td data-label="困りやすいパターン">自分が疲弊していても「大丈夫」と答えてしまう</td>
+        </tr>
+        <tr>
+          <td data-label="主な機能"><strong>Ti（内向的思考）</strong></td>
+          <td data-label="感情言語化の特徴">感情を分類・定義しようとする。「これは怒りではなく失望だ」という整理が先に来る</td>
+          <td data-label="困りやすいパターン">言語化に時間がかかる。会話のテンポに追いつけない</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="reveal">感情を言語化するための小さなヒント</h2>
+
+  <div class="traits reveal">
+    <div class="trait-item">
+      <div class="trait-num">01</div>
+      <div class="trait-text"><strong>Fiタイプ向け：感情に名前をつけなくていい</strong>「悲しい」「怒っている」と正確に名付けようとしなくていいです。「なんか重い感じ」「胸のあたりがぎゅっとする」という身体感覚の言葉でも十分です。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">02</div>
+      <div class="trait-text"><strong>Teタイプ向け：分析の前に「〜と感じた」を先に言う</strong>理由の説明に入る前に、一言「悔しかった」「嬉しかった」と感情を先出しする練習が有効です。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">03</div>
+      <div class="trait-text"><strong>Siタイプ向け：状況の後に「そのとき〜だった」を足す</strong>状況を話すのが自然なので、それを否定する必要はありません。状況の話の最後に「そのとき、私は〜だった」を一言加えるだけで伝わり方が変わります。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">04</div>
+      <div class="trait-text"><strong>Feタイプ向け：「今の自分の体はどう感じているか」を確認する</strong>場の空気を読みすぎて自分の感情を見失うことがあります。「お腹は張っているか、肩は凝っているか」という身体チェックが、純粋な自分の感情の発見につながります。</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">まとめ</h2>
+
+  <p class="reveal">感情の言語化が苦手な理由は一つではありません。Fiなら感情の深さゆえ、Teなら論理優先ゆえ、Siなら状況と感情の一体化ゆえ、Feなら他者感情との混在ゆえ——それぞれ異なる理由があります。</p>
+  <p class="reveal">自分の機能スタックを知ることは、「自分はどういう出口を持っているか」を知ることです。出口に合った言語化の練習をすれば、感情はもう少し言葉になりやすくなります。</p>
+
+  <div class="matrix-label reveal">▍ 感情言語化スタイル — 方向性マトリクス</div>
+  <div class="matrix-wrap reveal">
+    <div class="matrix-grid-2">
+      <div class="mc h">内向 × 感情主体</div>
+      <div class="mc h">外向 × 感情主体</div>
+      <div class="mc">
+        <div class="mc-t">Fi（INFP / ISFP など）</div>
+        <div class="mc-d">感情は深く豊か。ただし内側に完結しやすく、外に出すと「嘘」になる感覚がある。</div>
+      </div>
+      <div class="mc">
+        <div class="mc-t">Fe（ENFJ / ESFJ など）</div>
+        <div class="mc-d">場の感情に同調するのが得意。ただし自分の感情と他者の感情の境界が曖昧になりやすい。</div>
+      </div>
+      <div class="mc h">内向 × 思考主体</div>
+      <div class="mc h">外向 × 思考主体</div>
+      <div class="mc">
+        <div class="mc-t">Ti（INTP / ISTP など）</div>
+        <div class="mc-d">感情を分類・定義しようとする。言語化に時間がかかるが、一度言語化すると精緻。</div>
+      </div>
+      <div class="mc">
+        <div class="mc-t">Te（ENTJ / ESTJ など）</div>
+        <div class="mc-d">感情を論理・分析に変換してしまう。「なぜそう感じるか」が感情そのものより先に来る。</div>
+      </div>
+    </div>
+  </div>
+
+  <blockquote class="pull-quote reveal">
+    <div class="pull-quote-text">「感情を言えない」のは、感情が薄いのではありません。出口が違うだけです。</div>
+    <div class="pull-quote-line"></div>
+  </blockquote>
+
+  <div class="article-nav reveal">
+    <a href="./socionics-workplace-compatibility.html">← 職場の相性論</a>
+    <a href="./learning-style-by-mbti-function.html">学習スタイルと認知機能 →</a>
+  </div>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">MBTIコラム — タイプと機能で自分を読み解く</p>
+    <a href="../index.html" class="footer-back">← MBTI コラム一覧に戻る</a>
+    <div class="footer-bottom">© 2025 UTAGE LAB · Psychology Column</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ソシオニクスで見る職場の相性論 | UTAGE LAB</title>
+<meta name="description" content="なぜあの人とだけ話が噛み合わないのか。ソシオニクスのインタータイプ関係（デュアル・アクティベーション・コンフリクトなど）を職場文脈で解説します。">
+<meta property="og:title" content="ソシオニクスで見る職場の相性論 | UTAGE LAB">
+<meta property="og:description" content="ソシオニクスのインタータイプ関係を職場文脈で読む。デュアル・アクティベーション・コンフリクト——相性の構造を知れば、距離感の設計ができるようになります。">
+<meta property="og:url" content="https://utage-jpg.github.io/colum/mbti/articles/socionics-workplace-compatibility.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1025; --cream:#faf7f2; --parchment:#f5f0e8; --paper:#fff9f5;
+  --rose:#c9607a; --rose-light:#fae0e6;
+  --violet:#7b5ea7; --violet-light:#ede9f8;
+  --teal:#3d8b8b; --teal-light:#e2f4f4;
+  --amber:#c47d2a; --amber-light:#fef3e0;
+  --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
+  --shadow:rgba(26,16,37,0.12);
+  --func-color: #7b5ea7; --func-light: #ede9f8;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-serif:'Noto Serif JP',serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-serif);background:var(--cream);color:var(--text);overflow-x:hidden;font-size:17px;line-height:1.9;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,242,0.95);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border);}
+.nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
+.nav-back{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-back:hover{color:var(--func-color);}
+.hero{padding:120px 40px 80px;background:linear-gradient(135deg,var(--func-light) 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+.hero::before{content:'Socio';position:absolute;right:-20px;top:10px;font-family:var(--font-display);font-size:clamp(80px,14vw,200px);font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(123,94,167,0.07);pointer-events:none;line-height:1;font-style:italic;}
+.hero-inner{max-width:860px;margin:0 auto;position:relative;}
+.breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--text-light);margin-bottom:20px;}
+.breadcrumb a{color:var(--text-light);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--func-color);}
+.breadcrumb-sep{opacity:0.4;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
+.hero-badge::before{content:'';width:28px;height:1px;background:var(--func-color);}
+.hero-title{font-family:var(--font-display);font-size:clamp(26px,4vw,44px);font-weight:700;color:var(--ink);margin-bottom:18px;line-height:1.3;}
+.hero-title em{font-style:italic;color:var(--func-color);}
+.hero-desc{font-size:17px;color:var(--text-light);line-height:2;max-width:620px;}
+.article{max-width:800px;margin:0 auto;padding:60px 40px 100px;}
+.article h2{font-family:var(--font-display);font-size:clamp(20px,3vw,30px);font-weight:700;color:var(--ink);margin:64px 0 24px;line-height:1.35;padding-bottom:12px;border-bottom:2px solid var(--func-light);}
+.article p{font-size:17px;line-height:2;margin-bottom:20px;color:var(--text);}
+.article strong{color:var(--ink);}
+.func-card{background:white;border:2px solid var(--func-color);border-radius:20px;padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
+.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#4a3570);}
+.func-card-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
+.func-card-text{font-size:19px;font-weight:700;color:var(--ink);line-height:1.7;}
+.scene{background:var(--parchment);border-left:4px solid var(--func-color);border-radius:0 16px 16px 0;padding:28px 32px;margin:32px 0;font-size:16px;line-height:2;}
+.scene-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.traits{background:white;border-radius:20px;border:1px solid var(--border);padding:36px 40px;margin:32px 0;}
+.trait-item{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);}
+.trait-item:last-child{border-bottom:none;}
+.trait-num{font-family:var(--font-mono);font-size:18px;font-weight:700;color:var(--func-color);flex-shrink:0;min-width:36px;padding-top:2px;}
+.trait-text{font-size:16px;line-height:1.9;}
+.trait-text strong{color:var(--ink);display:block;margin-bottom:4px;font-size:17px;}
+.pull-quote{border:none;margin:48px 0;padding:0;text-align:center;}
+.pull-quote-text{font-family:var(--font-display);font-size:clamp(18px,3vw,26px);font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:16px;}
+.pull-quote-text::before{content:'\201C';}
+.pull-quote-text::after{content:'\201D';}
+.pull-quote-line{width:60px;height:2px;background:var(--func-color);margin:0 auto;}
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;font-weight:500;}
+.data-table td{padding:14px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+.matrix-wrap{margin:32px 0;}
+.matrix-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.matrix-axis{display:flex;justify-content:center;align-items:center;font-family:var(--font-mono);font-size:10px;color:var(--text-light);letter-spacing:0.12em;margin-bottom:4px;gap:8px;}
+.matrix-axis span{font-weight:700;color:var(--func-color);}
+.matrix-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border-radius:12px;overflow:hidden;}
+.mc{background:white;padding:20px 22px;}
+.mc.h{background:var(--func-color);color:white;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;text-align:center;display:flex;align-items:center;justify-content:center;}
+.mc-t{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:6px;}
+.mc-d{font-size:13px;color:var(--text-light);line-height:1.65;}
+.article-nav{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border);gap:16px;}
+.article-nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;transition:color 0.25s;}
+.article-nav a:hover{color:var(--func-color);}
+.footer{background:var(--ink);color:rgba(247,243,237,0.5);padding:56px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-logo{font-family:var(--font-display);font-size:22px;color:var(--parchment);margin-bottom:12px;}
+.footer-desc{font-size:12px;line-height:1.8;margin-bottom:32px;}
+.footer-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,237,0.4);text-decoration:none;border:1px solid rgba(247,243,237,0.12);padding:10px 22px;border-radius:2px;transition:all 0.25s;}
+.footer-back:hover{color:var(--parchment);border-color:rgba(247,243,237,0.3);}
+.footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .nav{padding:0 24px;}
+  .hero{padding:100px 24px 60px;}
+  .hero::before{font-size:80px;opacity:0.6;}
+  .article{padding:40px 24px 80px;}
+  .footer{padding:48px 24px 28px;}
+  .func-card{padding:28px 24px;}
+  .traits{padding:24px 20px;}
+  .scene{padding:24px 20px;}
+  .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
+  .matrix-grid-2{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back">← MBTI コラム</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">ホーム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../../index.html">コラム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../index.html">MBTI</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>職場の相性論</span>
+    </div>
+    <div class="hero-badge">ソシオニクス · 人間関係 · 2026.04.01</div>
+    <h1 class="hero-title">ソシオニクスで見る<br><em>職場の相性論</em></h1>
+    <p class="hero-desc">なぜあの人とだけ話が噛み合わないのか。ソシオニクスのインタータイプ関係（デュアル・アクティベーション・コンフリクトなど）を職場文脈で解説します。</p>
+  </div>
+</div>
+
+<article class="article">
+
+  <div class="func-card reveal">
+    <div class="func-card-label">この記事のキーコンセプト</div>
+    <div class="func-card-text">ソシオニクスでは、タイプ同士の関係性（インタータイプ関係）が最初から構造として決まっています。相性の良し悪しを「性格の問題」ではなく「機能の噛み合い方」として理解することが、職場での距離感設計に役立ちます。</div>
+  </div>
+
+  <h2 class="reveal">ソシオニクスの「相性」は固定されている</h2>
+
+  <p class="reveal">ソシオニクスはロシア・東欧で発展した心理タイプ論で、MBTIと同様に16タイプを扱いますが、その中心はタイプ同士の「インタータイプ関係」にあります。</p>
+  <p class="reveal">MBTIが「自分がどんな人間か」を記述するツールだとすれば、ソシオニクスは「どのタイプとどんな関係になりやすいか」を体系的に示します。この関係は、お互いの情報処理の得意・不得意の組み合わせによって構造的に決まります。</p>
+
+  <div class="scene reveal">
+    <div class="scene-label">よくある場面</div>
+    同じチームなのに、Aさんとは話が早いのに、Bさんとは何度説明しても噛み合わない。「性格の相性が悪い」で片付けることもできますが、ソシオニクスの視点では、そこに構造的な理由があることが多いのです。
+  </div>
+
+  <p class="reveal">以下では、職場で特に意識しておくと役立つ代表的なインタータイプ関係を解説します。</p>
+
+  <h2 class="reveal">デュアル関係——最もストレスの少ない相手</h2>
+
+  <p class="reveal">デュアル関係とは、自分の強い機能が相手の弱い機能を補い、相手の強い機能が自分の弱い機能を補う、理想的な補完関係です。</p>
+  <p class="reveal">職場での特徴は「自然に役割分担ができる」こと。説明しなくても動き方が合い、お互いの不得意なところを無意識にカバーし合います。ストレスが少なく、長期的な協働に向いた関係です。</p>
+
+  <div class="scene reveal">
+    <div class="scene-label">職場での例</div>
+    プレゼンが得意な人と資料作成が得意な人が、説明なしに自然と役割を分担している。「この人とだけ仕事がやりやすい」と感じる相手が、デュアル関係にある可能性があります。
+  </div>
+
+  <h2 class="reveal">アクティベーション関係——刺激し合うが、疲れることも</h2>
+
+  <p class="reveal">アクティベーション関係では、お互いが相手の「弱いが嫌いではない機能」を活性化させます。会話が弾み、刺激を受けやすい関係です。</p>
+  <p class="reveal">ただし、長時間の協働では互いに少しずつ消耗することがあります。「面白いけど、なんか疲れる」という感覚がある相手は、この関係かもしれません。短期プロジェクトや創造的な議論では好相性ですが、日常業務の長期パートナーとしては注意が必要です。</p>
+
+  <h2 class="reveal">コンフリクト関係——なぜかうまくいかない相手</h2>
+
+  <p class="reveal">コンフリクト関係は、自分が最も強い機能と相手が最も強い機能が真っ向から対立する組み合わせです。「話せばわかる」が通じにくく、どちらかが配慮しても根本的な認識のズレが残ります。</p>
+  <p class="reveal">これは「どちらが悪い」ということではなく、情報の処理回路そのものが異なるためです。職場では、直接的な対話よりも文書化したり第三者を介したりすることで、摩擦を減らせます。</p>
+
+  <h2 class="reveal">ミラー関係——似ているようで微妙にズレる</h2>
+
+  <p class="reveal">ミラー関係は、同じ機能を使っているが内向・外向が逆になっているタイプとの関係です。最初は「この人、自分と似ている」と感じやすいのですが、深く関わると「微妙に違う」という感覚が出てきます。</p>
+  <p class="reveal">職場では、同じ仕事の仕方をしているように見えて、優先順位や判断基準が微妙にずれることがあります。「なんで最後にそういう結論になるの？」という違和感が繰り返されやすい関係です。</p>
+
+  <div class="table-label reveal">▍ インタータイプ関係の種類比較表</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>関係名</th>
+          <th>特徴</th>
+          <th>職場での使い方・注意点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="関係名"><strong>デュアル</strong></td>
+          <td data-label="特徴">強み・弱みが完全補完。自然に役割分担できる</td>
+          <td data-label="職場での使い方・注意点">長期的なパートナーや上司・部下関係に最適</td>
+        </tr>
+        <tr>
+          <td data-label="関係名"><strong>アクティベーション</strong></td>
+          <td data-label="特徴">互いを活性化させる。刺激が多いが疲労もある</td>
+          <td data-label="職場での使い方・注意点">ブレストや短期プロジェクト向き。常時協働は消耗注意</td>
+        </tr>
+        <tr>
+          <td data-label="関係名"><strong>コンフリクト</strong></td>
+          <td data-label="特徴">処理回路が根本的に対立。噛み合わない感覚が続く</td>
+          <td data-label="職場での使い方・注意点">文書化・第三者介在でトラブル予防。直接折衝は最小化</td>
+        </tr>
+        <tr>
+          <td data-label="関係名"><strong>ミラー</strong></td>
+          <td data-label="特徴">似ているが優先順位が微妙にズレる</td>
+          <td data-label="職場での使い方・注意点">決定基準を言語化し共有することで、すれ違いを防ぐ</td>
+        </tr>
+        <tr>
+          <td data-label="関係名"><strong>同一</strong></td>
+          <td data-label="特徴">全く同じタイプ。理解は深いが盲点も共有する</td>
+          <td data-label="職場での使い方・注意点">同質集団になりやすい。別視点を外から取り入れる意識を</td>
+        </tr>
+        <tr>
+          <td data-label="関係名"><strong>準同一</strong></td>
+          <td data-label="特徴">表面は似ているが価値観の根拠が異なる</td>
+          <td data-label="職場での使い方・注意点">合意したと思っても動き方が変わりやすい。確認を密に</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="reveal">相性論をどう使うか（まとめ）</h2>
+
+  <p class="reveal">ソシオニクスのインタータイプ関係は、「相性が悪い相手とは付き合うな」というものではありません。むしろ逆で、<strong>構造を知ることで、適切な距離感と関わり方を設計できるようになる</strong>のが目的です。</p>
+  <p class="reveal">コンフリクト関係であっても、役割を明確にして接点を整えれば、互いの強みを引き出せます。デュアル関係であっても、それに甘えて全部任せれば関係は崩れます。</p>
+
+  <div class="matrix-label reveal">▍ 距離感と活性度 — インタータイプ関係マトリクス</div>
+  <div class="matrix-wrap reveal">
+    <div class="matrix-grid-2">
+      <div class="mc h">近い距離 × 刺激多い</div>
+      <div class="mc h">遠い距離 × 刺激多い</div>
+      <div class="mc">
+        <div class="mc-t">アクティベーション関係</div>
+        <div class="mc-d">親密で刺激が多い。短期協働では力を発揮するが、常時では消耗しやすい。</div>
+      </div>
+      <div class="mc">
+        <div class="mc-t">コンフリクト関係</div>
+        <div class="mc-d">噛み合わない感覚が続く。距離をとることで互いのストレスを大きく減らせる。</div>
+      </div>
+      <div class="mc h">近い距離 × 刺激少ない</div>
+      <div class="mc h">遠い距離 × 刺激少ない</div>
+      <div class="mc">
+        <div class="mc-t">デュアル関係</div>
+        <div class="mc-d">自然な補完関係。密に関わっても消耗が少なく、長期パートナーとして最適。</div>
+      </div>
+      <div class="mc">
+        <div class="mc-t">ミラー・準同一関係</div>
+        <div class="mc-d">似ているため遠くにおきがち。しかし近づきすぎるとズレが表面化しやすい。</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="reveal">職場での人間関係に疲れたとき、「自分が悪いのか、相手が悪いのか」ではなく、「この組み合わせはどんな構造なのか」という問いを持つだけで、少し楽になることがあります。</p>
+
+  <blockquote class="pull-quote reveal">
+    <div class="pull-quote-text">相性の構造を知ることは、相手を諦めることではなく、適切な距離感を設計することです。</div>
+    <div class="pull-quote-line"></div>
+  </blockquote>
+
+  <div class="article-nav reveal">
+    <a href="../index.html">← MBTI コラム一覧</a>
+    <a href="./emotion-verbalization-by-function.html">感情を言葉にできない理由 →</a>
+  </div>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">MBTIコラム — タイプと機能で自分を読み解く</p>
+    <a href="../index.html" class="footer-back">← MBTI コラム一覧に戻る</a>
+    <div class="footer-bottom">© 2025 UTAGE LAB · Psychology Column</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>タイプ診断にハマる人、興味を持てない人——その差はどこにある | UTAGE LAB</title>
+<meta name="description" content="MBTIにどっぷりハマる人と、サーッと流れる人がいます。この差は熱量の違いではなく、認知機能のスタイルの違いからきていることが多いです。">
+<meta property="og:title" content="タイプ診断にハマる人、興味を持てない人——その差はどこにある | UTAGE LAB">
+<meta property="og:description" content="MBTIにどっぷりハマる人と、サーッと流れる人がいます。この差は熱量の違いではなく、認知機能のスタイルの違いからきていることが多いです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1025; --cream:#faf7f2; --parchment:#f5f0e8; --paper:#fff9f5;
+  --rose:#c9607a; --rose-light:#fae0e6;
+  --violet:#7b5ea7; --violet-light:#ede9f8;
+  --teal:#3d8b8b; --teal-light:#e2f4f4;
+  --amber:#c47d2a; --amber-light:#fef3e0;
+  --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
+  --shadow:rgba(26,16,37,0.12);
+  --func-color:#7b5ea7; --func-light:#ede9f8;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-serif:'Noto Serif JP',serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-serif);background:var(--cream);color:var(--text);overflow-x:hidden;font-size:17px;line-height:1.9;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,242,0.95);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border);}
+.nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
+.nav-back{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-back:hover{color:var(--func-color);}
+.hero{padding:120px 40px 80px;background:linear-gradient(135deg,var(--func-light) 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+.hero::before{content:'Obsess';position:absolute;right:-20px;top:10px;font-family:var(--font-display);font-size:clamp(80px,14vw,200px);font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(123,94,167,0.07);pointer-events:none;line-height:1;font-style:italic;}
+.hero-inner{max-width:860px;margin:0 auto;position:relative;}
+.breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--text-light);margin-bottom:20px;}
+.breadcrumb a{color:var(--text-light);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--func-color);}
+.breadcrumb-sep{opacity:0.4;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
+.hero-badge::before{content:'';width:28px;height:1px;background:var(--func-color);}
+.hero-title{font-family:var(--font-display);font-size:clamp(26px,4vw,44px);font-weight:700;color:var(--ink);margin-bottom:18px;line-height:1.3;}
+.hero-title em{font-style:italic;color:var(--func-color);}
+.hero-desc{font-size:17px;color:var(--text-light);line-height:2;max-width:620px;}
+.article{max-width:800px;margin:0 auto;padding:60px 40px 100px;}
+.article h2{font-family:var(--font-display);font-size:clamp(20px,3vw,30px);font-weight:700;color:var(--ink);margin:64px 0 24px;line-height:1.35;padding-bottom:12px;border-bottom:2px solid var(--func-light);}
+.article p{font-size:17px;line-height:2;margin-bottom:20px;color:var(--text);}
+.article strong{color:var(--ink);}
+.func-card{background:white;border:2px solid var(--func-color);border-radius:20px;padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
+.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#c9607a);}
+.func-card-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
+.func-card-text{font-size:19px;font-weight:700;color:var(--ink);line-height:1.7;}
+.scene{background:var(--parchment);border-left:4px solid var(--func-color);border-radius:0 16px 16px 0;padding:28px 32px;margin:32px 0;font-size:16px;line-height:2;}
+.scene-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.traits{background:white;border-radius:20px;border:1px solid var(--border);padding:36px 40px;margin:32px 0;}
+.trait-item{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);}
+.trait-item:last-child{border-bottom:none;}
+.trait-num{font-family:var(--font-mono);font-size:18px;font-weight:700;color:var(--func-color);flex-shrink:0;min-width:36px;padding-top:2px;}
+.trait-text{font-size:16px;line-height:1.9;}
+.trait-text strong{color:var(--ink);display:block;margin-bottom:4px;font-size:17px;}
+.pull-quote{border:none;margin:48px 0;padding:0;text-align:center;}
+.pull-quote-text{font-family:var(--font-display);font-size:clamp(18px,3vw,26px);font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:16px;}
+.pull-quote-text::before{content:'\201C';}
+.pull-quote-text::after{content:'\201D';}
+.pull-quote-line{width:60px;height:2px;background:var(--func-color);margin:0 auto;}
+/* Tables */
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;font-weight:500;}
+.data-table td{padding:14px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+/* Spectrum */
+.spectrum-wrap{margin:32px 0;}
+.spectrum-bar{display:flex;align-items:stretch;border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+.spectrum-item{flex:1;padding:20px 16px;text-align:center;}
+.spectrum-item.active{background:var(--func-color);color:white;}
+.spectrum-item.mid{background:var(--func-light);}
+.spectrum-item.passive{background:var(--parchment);}
+.spectrum-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;}
+.spectrum-types{font-size:13px;font-weight:700;margin-bottom:6px;}
+.spectrum-desc{font-size:12px;line-height:1.6;opacity:0.85;}
+.spectrum-axis{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;color:var(--text-light);letter-spacing:0.12em;margin-top:8px;padding:0 4px;}
+/* Article nav */
+.article-nav{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border);gap:16px;}
+.article-nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;transition:color 0.25s;}
+.article-nav a:hover{color:var(--func-color);}
+.footer{background:var(--ink);color:rgba(247,243,237,0.5);padding:56px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-logo{font-family:var(--font-display);font-size:22px;color:var(--parchment);margin-bottom:12px;}
+.footer-desc{font-size:12px;line-height:1.8;margin-bottom:32px;}
+.footer-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,237,0.4);text-decoration:none;border:1px solid rgba(247,243,237,0.12);padding:10px 22px;border-radius:2px;transition:all 0.25s;}
+.footer-back:hover{color:var(--parchment);border-color:rgba(247,243,237,0.3);}
+.footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .nav{padding:0 24px;}
+  .hero{padding:100px 24px 60px;}
+  .hero::before{font-size:80px;opacity:0.6;}
+  .article{padding:40px 24px 80px;}
+  .footer{padding:48px 24px 28px;}
+  .func-card{padding:28px 24px;}
+  .traits{padding:24px 20px;}
+  .scene{padding:24px 20px;}
+  .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
+  .spectrum-bar{flex-direction:column;}
+  .spectrum-item{padding:16px;}
+}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back">← MBTI コラム</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">ホーム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../../index.html">コラム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../index.html">MBTI</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>タイプ診断にハマる人</span>
+    </div>
+    <div class="hero-badge">MBTI · 認知機能 · 2026.04.01</div>
+    <h1 class="hero-title">タイプ診断にハマる人、<br>興味を持てない人——<em>その差はどこにある</em></h1>
+    <p class="hero-desc">MBTIにどっぷりハマる人と、サーッと流れる人がいます。この差は熱量の違いではなく、認知機能のスタイルの違いからきていることが多いです。</p>
+  </div>
+</div>
+
+<article class="article">
+
+  <div class="func-card reveal">
+    <div class="func-card-label">この記事のキーコンセプト</div>
+    <div class="func-card-text">診断にハマるかどうかは、性格の良し悪しや知的好奇心の強さとは別の話です。認知機能のどれが優位にあるかで、自己分析への引力が変わります。</div>
+  </div>
+
+  <h2 class="reveal">二つの反応</h2>
+
+  <p class="reveal">MBTIやタイプ診断を初めて知ったとき、人の反応は大きく二つに分かれます。「これめちゃくちゃ当たってる……」と深夜まで調べ続けるパターンと、「ふーん、面白いね」で次の話題に移るパターン。</p>
+  <p class="reveal">この差は、探究心の差でも、知性の差でも、暇の差でもありません。<strong>認知機能のスタイルの差</strong>です。</p>
+
+  <h2 class="reveal">ハマりやすいタイプ——Ne・Ni・Fiが強い</h2>
+
+  <div class="traits reveal">
+    <div class="trait-item">
+      <div class="trait-num">Ne</div>
+      <div class="trait-text"><strong>外向的直観——「もしかして」の連鎖が止まらない</strong>Neは可能性を広げながら情報を繋げる機能です。「このタイプとあのタイプって、こういう関係なんじゃ？」という思考の連鎖が自然に起きます。診断の「枠組み」より「広がり」に惹かれるため、どんどん派生的な考察にハマっていきます。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">Ni</div>
+      <div class="trait-text"><strong>内向的直観——「本質を掴みたい」という衝動</strong>Niは見えない構造やパターンを見抜こうとする機能です。「自分の本質ってなんだろう」という問いが常にあるため、タイプ論は非常に相性がいい。特に「自分はなぜこう感じるのか」という問いへの答えが見つかった瞬間、深くハマります。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">Fi</div>
+      <div class="trait-text"><strong>内向的感情——「自分らしさ」を定義したい</strong>Fiは自分の価値観・感情・アイデンティティを内側で丁寧に扱う機能です。「自分が何者か」を言語化することへの強い欲求があるため、タイプ論は格好の道具になります。自分の感じ方が「正しい」と証明してくれる枠組みへの安堵感も強いです。</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">興味を持ちにくいタイプ——Se・Si・Teが強い</h2>
+
+  <div class="traits reveal">
+    <div class="trait-item">
+      <div class="trait-num">Se</div>
+      <div class="trait-text"><strong>外向的感覚——「今この瞬間」が優先される</strong>Seは現実の刺激に反応し、今ここの体験を最大化する機能です。タイプ診断のように「抽象的な自己分析」は、Seにとって「現実から離れている」と感じやすい。経験の方が情報より価値があるという感覚があります。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">Si</div>
+      <div class="trait-text"><strong>内向的感覚——「実用的か」が判断基準</strong>Siは過去の経験や確かな情報を基盤にする機能です。「これを知って何に使えるの？」という実用性の問いが先に来ます。タイプ論の主張の曖昧さや科学的根拠の薄さが気になり、深く入る前にブレーキがかかりやすいです。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">Te</div>
+      <div class="trait-text"><strong>外向的思考——「効率と結果」で測る</strong>Teは外部の基準に沿って物事を組織化し、効率よく結果を出す機能です。「自己分析に時間をかけるより行動した方が早い」という判断が働きやすく、タイプ診断の「掘り下げ」を非効率に感じる場合があります。</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">「興味がない」は欠点ではない</h2>
+
+  <p class="reveal">ここで強調しておきたいのは、<strong>タイプ診断に興味を持てないことは、自己理解が浅いことを意味しない</strong>、ということです。</p>
+  <p class="reveal">Seが強い人は、行動と体験の中で自己理解を深めます。Siが強い人は、確かな実績と過去の積み重ねの中で自分を知ります。Teが強い人は、成果物や成功体験を通じて自己定義します。これらはタイプ論という「窓」を必要としない別の窓口です。</p>
+
+  <div class="table-label reveal">▍ 機能別「タイプ診断との相性」比較</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>機能</th>
+          <th>ハマりやすい理由</th>
+          <th>自己理解のアプローチ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="機能"><strong>Ne（外向的直観）</strong></td>
+          <td data-label="ハマりやすい理由">可能性の連鎖・比較が楽しい。「あのタイプとの違いは？」の問いが尽きない</td>
+          <td data-label="自己理解のアプローチ">タイプ論をアイデアの発散ツールとして使う</td>
+        </tr>
+        <tr>
+          <td data-label="機能"><strong>Ni（内向的直観）</strong></td>
+          <td data-label="ハマりやすい理由">本質・構造への関心が強い。「自分はなぜこう感じるか」に答えが欲しい</td>
+          <td data-label="自己理解のアプローチ">機能スタックから行動パターンを逆算して理解する</td>
+        </tr>
+        <tr>
+          <td data-label="機能"><strong>Fi（内向的感情）</strong></td>
+          <td data-label="ハマりやすい理由">アイデンティティへの強い関心。自分の感じ方を「正当化」できる枠組みを求めている</td>
+          <td data-label="自己理解のアプローチ">価値観マップの整理ツールとして使う</td>
+        </tr>
+        <tr>
+          <td data-label="機能"><strong>Se（外向的感覚）</strong></td>
+          <td data-label="ハマりにくい理由">今ここの体験が最優先。抽象的な自己分析より実体験の方が情報として濃い</td>
+          <td data-label="自己理解のアプローチ">行動・体験・フィードバックの積み重ねで自己を知る</td>
+        </tr>
+        <tr>
+          <td data-label="機能"><strong>Si（内向的感覚）</strong></td>
+          <td data-label="ハマりにくい理由">実用性・確実性を重視。根拠の曖昧さが気になりやすい</td>
+          <td data-label="自己理解のアプローチ">実績・歴史・確かな経験から自己定義する</td>
+        </tr>
+        <tr>
+          <td data-label="機能"><strong>Te（外向的思考）</strong></td>
+          <td data-label="ハマりにくい理由">効率・結果志向。「知ること」より「やること」に重心がある</td>
+          <td data-label="自己理解のアプローチ">成果・実績・スキルセットから自分の強みを把握する</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="reveal">スペクトルで見るタイプ診断への引力</h2>
+
+  <div class="table-label reveal">▍ 機能別 タイプ診断との親和性スペクトル</div>
+  <div class="spectrum-wrap reveal">
+    <div class="spectrum-bar">
+      <div class="spectrum-item active">
+        <div class="spectrum-label">ハマりやすい</div>
+        <div class="spectrum-types">Ne / Ni / Fi</div>
+        <div class="spectrum-desc">抽象・内省・パターン認識への引力が強く、自己分析と相性が良い機能群</div>
+      </div>
+      <div class="spectrum-item mid">
+        <div class="spectrum-label">状況による</div>
+        <div class="spectrum-types">Fe / Ti</div>
+        <div class="spectrum-desc">他者理解や論理体系の文脈でハマることも。目的次第で深さが変わる</div>
+      </div>
+      <div class="spectrum-item passive">
+        <div class="spectrum-label">ハマりにくい</div>
+        <div class="spectrum-types">Se / Si / Te</div>
+        <div class="spectrum-desc">現実・実用・結果志向の機能群。別の経路で自己理解を深めている</div>
+      </div>
+    </div>
+    <div class="spectrum-axis">
+      <span>引力：強</span>
+      <span>引力：中</span>
+      <span>引力：弱</span>
+    </div>
+  </div>
+
+  <h2 class="reveal">ハマっている人へ</h2>
+
+  <p class="reveal">タイプ論への熱中は、悪いことではありません。ただ、一つだけ気をつけたいことがあります。タイプ論は「窓」であって「部屋」ではない、ということです。</p>
+  <p class="reveal">タイプでわかることは、傾向であり可能性です。そこから外の世界に視点を向けたとき、診断は本来の役割を果たします。「自分はINFPだからこうなんだ」で止まるのではなく、「Fiが強いから、こう感じやすいんだな」という使い方の方が、長期的には自己理解が深まります。</p>
+
+  <h2 class="reveal">まとめ</h2>
+
+  <p class="reveal">タイプ診断にハマるかどうかは、熱量の違いでも知性の違いでもありません。認知機能のスタイルが自己分析という行為とどれだけ相性がいいかの違いです。</p>
+  <p class="reveal">Ne・Ni・Fiが強い人はタイプ論という窓が引力を持ちやすく、Se・Si・Teが強い人は別の窓口で同様の理解に至ります。どちらも正しい自己理解の道筋です。</p>
+
+  <blockquote class="pull-quote reveal">
+    <div class="pull-quote-text">タイプ診断にハマらない人は、別の窓口で自己理解を深めているだけです。</div>
+    <div class="pull-quote-line"></div>
+  </blockquote>
+
+  <div class="article-nav reveal">
+    <a href="../index.html">← MBTI コラム一覧</a>
+    <a href="./mbti-action-engine.html">行動エンジンの違い →</a>
+  </div>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">MBTIコラム — タイプと機能で自分を読み解く</p>
+    <a href="../index.html" class="footer-back">← MBTI コラム一覧に戻る</a>
+    <div class="footer-bottom">© 2026 UTAGE LAB · Psychology Column</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

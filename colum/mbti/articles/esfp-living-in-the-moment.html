@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESFPが計画より今を生きる理由 | UTAGE LAB</title>
+<meta name="description" content="ESFPが計画を立てない・守らないのは、ただのなまけではありません。Se主機能が「今この瞬間」に最適化された設計になっているためです。">
+<meta property="og:title" content="ESFPが計画より今を生きる理由 | UTAGE LAB">
+<meta property="og:description" content="ESFPが計画を立てない・守らないのは、ただのなまけではありません。Se主機能が「今この瞬間」に最適化された設計になっているためです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+JP:wght@300;400;700;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1025; --cream:#faf7f2; --parchment:#f5f0e8; --paper:#fff9f5;
+  --rose:#c9607a; --rose-light:#fae0e6;
+  --violet:#7b5ea7; --violet-light:#ede9f8;
+  --teal:#3d8b8b; --teal-light:#e2f4f4;
+  --amber:#c47d2a; --amber-light:#fef3e0;
+  --text:#2d2140; --text-light:#7a6e88; --border:#e5d8cc;
+  --shadow:rgba(26,16,37,0.12);
+  --func-color:#c47d2a; --func-light:#fef3e0;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-serif:'Noto Serif JP',serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-serif);background:var(--cream);color:var(--text);overflow-x:hidden;font-size:17px;line-height:1.9;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,242,0.95);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border);}
+.nav-logo{font-family:var(--font-display);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:0.1em;}
+.nav-back{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-back:hover{color:var(--func-color);}
+.hero{padding:120px 40px 80px;background:linear-gradient(135deg,var(--func-light) 0%,var(--cream) 60%);position:relative;overflow:hidden;}
+.hero::before{content:'Se';position:absolute;right:-20px;top:10px;font-family:var(--font-display);font-size:clamp(80px,14vw,200px);font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(196,125,42,0.07);pointer-events:none;line-height:1;font-style:italic;}
+.hero-inner{max-width:860px;margin:0 auto;position:relative;}
+.breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--text-light);margin-bottom:20px;}
+.breadcrumb a{color:var(--text-light);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--func-color);}
+.breadcrumb-sep{opacity:0.4;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:20px;}
+.hero-badge::before{content:'';width:28px;height:1px;background:var(--func-color);}
+.hero-title{font-family:var(--font-display);font-size:clamp(26px,4vw,44px);font-weight:700;color:var(--ink);margin-bottom:18px;line-height:1.3;}
+.hero-title em{font-style:italic;color:var(--func-color);}
+.hero-desc{font-size:17px;color:var(--text-light);line-height:2;max-width:620px;}
+.article{max-width:800px;margin:0 auto;padding:60px 40px 100px;}
+.article h2{font-family:var(--font-display);font-size:clamp(20px,3vw,30px);font-weight:700;color:var(--ink);margin:64px 0 24px;line-height:1.35;padding-bottom:12px;border-bottom:2px solid var(--func-light);}
+.article p{font-size:17px;line-height:2;margin-bottom:20px;color:var(--text);}
+.article strong{color:var(--ink);}
+.func-card{background:white;border:2px solid var(--func-color);border-radius:20px;padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
+.func-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--func-color),#c9607a);}
+.func-card-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:var(--func-color);text-transform:uppercase;margin-bottom:12px;}
+.func-card-text{font-size:19px;font-weight:700;color:var(--ink);line-height:1.7;}
+.scene{background:var(--parchment);border-left:4px solid var(--func-color);border-radius:0 16px 16px 0;padding:28px 32px;margin:32px 0;font-size:16px;line-height:2;}
+.scene-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;color:var(--func-color);text-transform:uppercase;margin-bottom:10px;}
+.traits{background:white;border-radius:20px;border:1px solid var(--border);padding:36px 40px;margin:32px 0;}
+.trait-item{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);}
+.trait-item:last-child{border-bottom:none;}
+.trait-num{font-family:var(--font-mono);font-size:18px;font-weight:700;color:var(--func-color);flex-shrink:0;min-width:36px;padding-top:2px;}
+.trait-text{font-size:16px;line-height:1.9;}
+.trait-text strong{color:var(--ink);display:block;margin-bottom:4px;font-size:17px;}
+.pull-quote{border:none;margin:48px 0;padding:0;text-align:center;}
+.pull-quote-text{font-family:var(--font-display);font-size:clamp(18px,3vw,26px);font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:16px;}
+.pull-quote-text::before{content:'\201C';}
+.pull-quote-text::after{content:'\201D';}
+.pull-quote-line{width:60px;height:2px;background:var(--func-color);margin:0 auto;}
+/* Tables */
+.table-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--func-color);text-transform:uppercase;margin-bottom:8px;}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:32px 0;}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;}
+.data-table th{background:var(--func-color);color:white;padding:12px 16px;text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;font-weight:500;}
+.data-table td{padding:14px 16px;border-bottom:1px solid var(--border);line-height:1.7;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--func-light);}
+/* Compare cols */
+.compare-cols{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin:32px 0;}
+.compare-col{padding:28px 24px;}
+.compare-col.left{background:var(--func-light);border-right:1px solid var(--border);}
+.compare-col.right{background:white;}
+.compare-col-head{font-family:var(--font-mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--func-color);margin-bottom:16px;}
+.compare-col.right .compare-col-head{color:var(--text-light);}
+.compare-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:14px;line-height:1.7;}
+.compare-item::before{content:'✓';color:var(--func-color);font-weight:700;flex-shrink:0;margin-top:1px;}
+.compare-col.right .compare-item::before{content:'×';color:var(--text-light);}
+/* Article nav */
+.article-nav{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border);gap:16px;}
+.article-nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--text-light);text-decoration:none;text-transform:uppercase;transition:color 0.25s;}
+.article-nav a:hover{color:var(--func-color);}
+.footer{background:var(--ink);color:rgba(247,243,237,0.5);padding:56px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-logo{font-family:var(--font-display);font-size:22px;color:var(--parchment);margin-bottom:12px;}
+.footer-desc{font-size:12px;line-height:1.8;margin-bottom:32px;}
+.footer-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,237,0.4);text-decoration:none;border:1px solid rgba(247,243,237,0.12);padding:10px 22px;border-radius:2px;transition:all 0.25s;}
+.footer-back:hover{color:var(--parchment);border-color:rgba(247,243,237,0.3);}
+.footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){
+  .nav{padding:0 24px;}
+  .hero{padding:100px 24px 60px;}
+  .hero::before{font-size:80px;opacity:0.6;}
+  .article{padding:40px 24px 80px;}
+  .footer{padding:48px 24px 28px;}
+  .func-card{padding:28px 24px;}
+  .traits{padding:24px 20px;}
+  .scene{padding:24px 20px;}
+  .article-nav{flex-direction:column;align-items:flex-start;gap:12px;}
+  .compare-cols{grid-template-columns:1fr;}
+  .compare-col.left{border-right:none;border-bottom:1px solid var(--border);}
+}
+@media(max-width:640px){
+  .data-table thead{display:none;}
+  .data-table tr{display:block;margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .data-table td{display:block;padding:10px 14px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;}
+  .data-table td:last-child{border-bottom:none;}
+  .data-table td::before{content:attr(data-label);display:block;font-family:var(--font-mono);font-size:9px;color:var(--func-color);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+  .data-table tr:nth-child(even) td{background:white;}
+  .data-table td:first-child{font-weight:700;background:var(--func-light);}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../../../index.html" class="nav-logo">UTAGE LAB</a>
+  <a href="../index.html" class="nav-back">← MBTI コラム</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">ホーム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../../index.html">コラム</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../index.html">MBTI</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>ESFPが今を生きる理由</span>
+    </div>
+    <div class="hero-badge">MBTI · ESFP · Se · 2026.04.01</div>
+    <h1 class="hero-title">ESFPが<em>計画より今</em>を生きる理由</h1>
+    <p class="hero-desc">ESFPが計画を立てない・守らないのは、ただのなまけではありません。Se主機能が「今この瞬間」に最適化された設計になっているためです。</p>
+  </div>
+</div>
+
+<article class="article">
+
+  <div class="func-card reveal">
+    <div class="func-card-label">この記事のキーコンセプト</div>
+    <div class="func-card-text">ESFPの「計画が苦手」は、欠点ではなくSeという機能の特性です。今この瞬間を最大限に生きることが、ESFPの認知の基本設計になっています。</div>
+  </div>
+
+  <h2 class="reveal">イントロ</h2>
+
+  <p class="reveal">「なんでESFPって計画通りに動けないの？」——こういう問いを聞いたことがある人は多いと思います。あるいはESFPの人自身が「自分はなぜこんなに計画が苦手なんだろう」と悩んでいることもあるかもしれません。</p>
+  <p class="reveal">答えは、意志の強さや几帳面さの問題ではありません。<strong>Se（外向的感覚）が主機能にあるESFPの認知スタイルが、本質的に「今」に最適化されているから</strong>です。</p>
+
+  <h2 class="reveal">SeはI「今」を処理する機能</h2>
+
+  <p class="reveal">Se（Extraverted Sensing）は、現実の感覚情報をリアルタイムで処理する機能です。目の前にある色、音、空気感、人の表情——こういった「今ここの情報」を高速かつ正確に取り込みます。</p>
+
+  <div class="scene reveal">
+    <div class="scene-label">Seの処理イメージ</div>
+    賑やかな場所に入った瞬間、どんな音楽が流れているか、誰が楽しそうにしているか、どこに空席があるか——そういった情報が瞬時に処理される。これがSeの得意領域です。
+  </div>
+
+  <p class="reveal">Seが強い人は、過去の記憶や未来のシミュレーションよりも、<strong>今この瞬間の刺激への反応</strong>が主な処理スタイルです。だから「計画」という「まだ来ていない未来」への注意が維持しにくいのは、ある意味当然のことです。</p>
+
+  <h2 class="reveal">計画が苦手に感じる理由（SeとNiの対比）</h2>
+
+  <p class="reveal">ESFPの劣勢機能はNi（内向的直観）です。NiはSeの正反対で、「まだ見えていない未来のパターンを洞察する」機能です。長期ビジョンの構築、抽象的な因果関係の把握、計画の精度——こういったことが得意なのがNiです。</p>
+  <p class="reveal">ESFPにとってNiはスタックの最下位に近い位置にあります。つまり、「計画を立てて守る」という作業は、ESFPが最も得意でない機能を連続して使う行為になります。これが、疲れる・続かない・守れないという感覚につながります。</p>
+
+  <div class="table-label reveal">▍ SeがONな瞬間 vs Seが苦手なこと</div>
+  <div class="compare-cols reveal">
+    <div class="compare-col left">
+      <div class="compare-col-head">SeがONな瞬間（得意）</div>
+      <div class="compare-item">その場の空気を瞬時に読んで対応する</div>
+      <div class="compare-item">即興で面白い提案や行動ができる</div>
+      <div class="compare-item">体を使ったパフォーマンスが楽しい</div>
+      <div class="compare-item">今この人と盛り上がることに集中できる</div>
+      <div class="compare-item">突発的なチャンスをすぐつかめる</div>
+    </div>
+    <div class="compare-col right">
+      <div class="compare-col-head">Seが苦手なこと（計画・未来想定）</div>
+      <div class="compare-item">来月・来年のスケジュールを細かく決める</div>
+      <div class="compare-item">まだ来ていないリスクを想像してケアする</div>
+      <div class="compare-item">長期目標を達成するための逆算をする</div>
+      <div class="compare-item">今楽しくないことを将来のために我慢する</div>
+      <div class="compare-item">決めた計画を変化なく実行し続ける</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">その場の判断は実は精度が高い</h2>
+
+  <p class="reveal">「計画が苦手」というと弱点のように聞こえますが、裏を返せばESFPは<strong>その場の判断が非常に精度高い</strong>ということでもあります。</p>
+  <p class="reveal">今の状況を正確に読み、最もエネルギーが出る選択をするのがSeの本領です。計画通りに動くより、リアルタイムで判断して動く方が、実際のパフォーマンスが高いことも多いです。</p>
+
+  <h2 class="reveal">ESFPが計画と付き合うコツ</h2>
+
+  <div class="traits reveal">
+    <div class="trait-item">
+      <div class="trait-num">01</div>
+      <div class="trait-text"><strong>「計画」を短く刻む</strong>1年計画より今週の目標、今週の目標より今日の優先順位。時間軸が短いほどSeが活かされます。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">02</div>
+      <div class="trait-text"><strong>楽しさを手がかりにする</strong>「やるべき」より「やりたい」を先行させる設計の方が継続しやすいです。計画に楽しさの余白を組み込む。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">03</div>
+      <div class="trait-text"><strong>他者との約束を活用する</strong>Feが補助機能にあるESFPは、人への責任感が動機になりやすいです。誰かと一緒に動く仕組みが有効です。</div>
+    </div>
+    <div class="trait-item">
+      <div class="trait-num">04</div>
+      <div class="trait-text"><strong>「計画を守る」より「今できることをやる」</strong>柔軟に軌道修正しながら進む方が、ESFPにとっては計画「通り」より計画「的」に動くことに近いです。</div>
+    </div>
+  </div>
+
+  <div class="table-label reveal">▍ 時間軸別・機能の処理スタイル</div>
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>機能</th>
+          <th>得意な時間軸</th>
+          <th>苦手な時間軸</th>
+          <th>代表タイプ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="機能"><strong>Se（外向的感覚）</strong></td>
+          <td data-label="得意な時間軸">今この瞬間・即時判断</td>
+          <td data-label="苦手な時間軸">長期の未来計画・抽象的シミュレーション</td>
+          <td data-label="代表タイプ">ESFP・ESTP</td>
+        </tr>
+        <tr>
+          <td data-label="機能"><strong>Ni（内向的直観）</strong></td>
+          <td data-label="得意な時間軸">長期ビジョン・未来のパターン把握</td>
+          <td data-label="苦手な時間軸">今この瞬間の刺激への即応</td>
+          <td data-label="代表タイプ">INTJ・INFJ</td>
+        </tr>
+        <tr>
+          <td data-label="機能"><strong>Si（内向的感覚）</strong></td>
+          <td data-label="得意な時間軸">過去の経験・実績の蓄積</td>
+          <td data-label="苦手な時間軸">前例のない新しい状況への即興対応</td>
+          <td data-label="代表タイプ">ISTJ・ISFJ</td>
+        </tr>
+        <tr>
+          <td data-label="機能"><strong>Ne（外向的直観）</strong></td>
+          <td data-label="得意な時間軸">近未来の可能性の発散・アイデア展開</td>
+          <td data-label="苦手な時間軸">一つのことを長期間コツコツ継続する</td>
+          <td data-label="代表タイプ">ENFP・ENTP</td>
+        </tr>
+        <tr>
+          <td data-label="機能"><strong>Te（外向的思考）</strong></td>
+          <td data-label="得意な時間軸">中期〜長期のプロジェクト管理・結果最適化</td>
+          <td data-label="苦手な時間軸">感情の流れに沿った柔軟な即興対応</td>
+          <td data-label="代表タイプ">ENTJ・ESTJ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="reveal">まとめ</h2>
+
+  <p class="reveal">ESFPが計画より今を生きるのは、意志が弱いわけでも、将来を軽んじているわけでもありません。Se主機能が「今」に最適化されているという、認知の設計の話です。</p>
+  <p class="reveal">この特性を理解すれば、無理に長期計画に縛られる必要はなく、「今できることを最大限やる」というスタイルを自分に合わせた形で活かせます。</p>
+
+  <blockquote class="pull-quote reveal">
+    <div class="pull-quote-text">「今ここ」に全力で存在することは、ESFPにとって最も自然な誠実さの形です。</div>
+    <div class="pull-quote-line"></div>
+  </blockquote>
+
+  <div class="article-nav reveal">
+    <a href="../index.html">← MBTI コラム一覧</a>
+    <a href="./mbti-action-engine.html">行動エンジンの違い →</a>
+  </div>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">UTAGE LAB</div>
+    <p class="footer-desc">MBTIコラム — タイプと機能で自分を読み解く</p>
+    <a href="../index.html" class="footer-back">← MBTI コラム一覧に戻る</a>
+    <div class="footer-bottom">© 2026 UTAGE LAB · Psychology Column</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(python -c \":*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Read(//c/Users/017883/.claude/projects/c--Users-017883-OneDrive-VScode-----UTAGE-LAB/03c1ff53-98b8-4832-851b-aaba533cb8ea/subagents/**)"
     ],
     "additionalDirectories": [
       "C:\\Users\\017883\\OneDrive\\VScode\\【診断】類型ポータル"

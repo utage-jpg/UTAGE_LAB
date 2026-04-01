@@ -93,6 +93,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.article-cta{background:linear-gradient(135deg,var(--func-light),white);border:2px solid var(--func-color);border-radius:20px;padding:32px 36px;margin:48px 0 32px;text-align:center;}
+.article-cta-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--func-color);margin-bottom:12px;}
+.article-cta-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.4;}
+.article-cta-desc{font-size:14px;color:var(--text-light);margin-bottom:20px;line-height:1.8;}
+.article-cta-btn{display:inline-block;background:var(--func-color);color:white;font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;padding:13px 28px;border-radius:4px;text-decoration:none;transition:opacity 0.2s;}
+.article-cta-btn:hover{opacity:0.85;}
+.related-articles{margin:0 0 48px;}
+.related-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--text-light);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.related-list{display:flex;flex-direction:column;gap:10px;}
+.related-item{display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);transition:all 0.25s;}
+.related-item:hover{border-color:var(--func-color);transform:translateX(4px);}
+.related-item-dot{width:8px;height:8px;border-radius:50%;background:var(--func-color);flex-shrink:0;}
+.related-item-text{font-size:14px;line-height:1.5;flex:1;}
+.related-item-arrow{font-family:var(--font-mono);font-size:11px;color:var(--text-light);flex-shrink:0;transition:color 0.2s;}
+.related-item:hover .related-item-arrow{color:var(--func-color);}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -115,6 +131,19 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .data-table td:first-child{font-weight:700;background:var(--func-light);}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ソシオニクスで見る職場の相性論",
+  "description": "なぜあの人とだけ話が噛み合わないのか。ソシオニクスのインタータイプ関係（デュアル・アクティベーション・コンフリクトなど）を職場文脈で解説します。",
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-04-01",
+  "author": {"@type": "Organization", "name": "UTAGE LAB", "url": "https://utage-jpg.github.io/UTAGE_LAB/"},
+  "publisher": {"@type": "Organization", "name": "UTAGE LAB", "url": "https://utage-jpg.github.io/UTAGE_LAB/"},
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/articles/socionics-workplace-compatibility.html"}
+}
+</script>
 </head>
 <body>
 
@@ -266,6 +295,34 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="pull-quote-text">相性の構造を知ることは、相手を諦めることではなく、適切な距離感を設計することです。</div>
     <div class="pull-quote-line"></div>
   </blockquote>
+
+  <div class="article-cta reveal">
+    <div class="article-cta-eyebrow">この記事を読んだ方へ</div>
+    <div class="article-cta-title">ソシオニクス診断で自分の情報代謝タイプを判定する</div>
+    <div class="article-cta-desc">インタータイプ関係を実感するために、まず自分のタイプを知ることから。<br>本格ソシオニクス診断でタイプを確かめてみましょう。</div>
+    <a href="https://utage-jpg.github.io/typing/" target="_blank" class="article-cta-btn">ソシオニクス診断をはじめる →</a>
+  </div>
+
+  <div class="related-articles reveal">
+    <div class="related-label">関連記事</div>
+    <div class="related-list">
+      <a href="./intj-enfp-relationship.html" class="related-item">
+        <div class="related-item-dot"></div>
+        <div class="related-item-text">INTJとENFP——なぜ惹かれ合うのに、ぶつかるのか</div>
+        <div class="related-item-arrow">→</div>
+      </a>
+      <a href="./opposite-type-relationship.html" class="related-item">
+        <div class="related-item-dot"></div>
+        <div class="related-item-text">自分と正反対のタイプと仲良くなる唯一の方法</div>
+        <div class="related-item-arrow">→</div>
+      </a>
+      <a href="./mbti-reply-style.html" class="related-item">
+        <div class="related-item-dot"></div>
+        <div class="related-item-text">返信が遅い人を責める前に——MBTI別・連絡スタイルの違い</div>
+        <div class="related-item-arrow">→</div>
+      </a>
+    </div>
+  </div>
 
   <div class="article-nav reveal">
     <a href="../index.html">← MBTI コラム一覧</a>

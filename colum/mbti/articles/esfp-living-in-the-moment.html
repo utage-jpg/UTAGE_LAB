@@ -95,6 +95,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .footer-bottom{margin-top:40px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;border-top:1px solid rgba(247,243,237,0.08);padding-top:24px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.article-cta{background:linear-gradient(135deg,var(--func-light),white);border:2px solid var(--func-color);border-radius:20px;padding:32px 36px;margin:48px 0 32px;text-align:center;}
+.article-cta-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--func-color);margin-bottom:12px;}
+.article-cta-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.4;}
+.article-cta-desc{font-size:14px;color:var(--text-light);margin-bottom:20px;line-height:1.8;}
+.article-cta-btn{display:inline-block;background:var(--func-color);color:white;font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;padding:13px 28px;border-radius:4px;text-decoration:none;transition:opacity 0.2s;}
+.article-cta-btn:hover{opacity:0.85;}
+.related-articles{margin:0 0 48px;}
+.related-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--text-light);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.related-list{display:flex;flex-direction:column;gap:10px;}
+.related-item{display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);transition:all 0.25s;}
+.related-item:hover{border-color:var(--func-color);transform:translateX(4px);}
+.related-item-dot{width:8px;height:8px;border-radius:50%;background:var(--func-color);flex-shrink:0;}
+.related-item-text{font-size:14px;line-height:1.5;flex:1;}
+.related-item-arrow{font-family:var(--font-mono);font-size:11px;color:var(--text-light);flex-shrink:0;transition:color 0.2s;}
+.related-item:hover .related-item-arrow{color:var(--func-color);}
 @media(max-width:768px){
   .nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -118,6 +134,19 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .data-table td:first-child{font-weight:700;background:var(--func-light);}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ESFPが計画より今を生きる理由",
+  "description": "ESFPが計画を立てない・守らないのは、ただのなまけではありません。Se主機能が「今この瞬間」に最適化された設計になっているためです。",
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-04-01",
+  "author": {"@type": "Organization", "name": "UTAGE LAB", "url": "https://utage-jpg.github.io/UTAGE_LAB/"},
+  "publisher": {"@type": "Organization", "name": "UTAGE LAB", "url": "https://utage-jpg.github.io/UTAGE_LAB/"},
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://utage-jpg.github.io/UTAGE_LAB/colum/mbti/articles/esfp-living-in-the-moment.html"}
+}
+</script>
 </head>
 <body>
 
@@ -272,6 +301,34 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="pull-quote-text">「今ここ」に全力で存在することは、ESFPにとって最も自然な誠実さの形です。</div>
     <div class="pull-quote-line"></div>
   </blockquote>
+
+  <div class="article-cta reveal">
+    <div class="article-cta-eyebrow">この記事を読んだ方へ</div>
+    <div class="article-cta-title">自分の機能スタックを、本格診断で確かめてみる</div>
+    <div class="article-cta-desc">16タイプ本格診断で、あなたの主機能・補助機能を判定します。<br>読んだ知識を、自分自身への理解に変えましょう。</div>
+    <a href="../../../pages/16type.html" class="article-cta-btn">16タイプ診断をはじめる →</a>
+  </div>
+
+  <div class="related-articles reveal">
+    <div class="related-label">関連記事</div>
+    <div class="related-list">
+      <a href="./mbti-action-engine.html" class="related-item">
+        <div class="related-item-dot"></div>
+        <div class="related-item-text">やる気に頼らない——MBTI別・行動エンジンの違い</div>
+        <div class="related-item-arrow">→</div>
+      </a>
+      <a href="./p-type-planning-struggle.html" class="related-item">
+        <div class="related-item-dot"></div>
+        <div class="related-item-text">Pタイプが計画を立てても続かない、本当の理由</div>
+        <div class="related-item-arrow">→</div>
+      </a>
+      <a href="./mbti-who-gets-obsessed.html" class="related-item">
+        <div class="related-item-dot"></div>
+        <div class="related-item-text">タイプ診断にハマる人、興味を持てない人——その差はどこにある</div>
+        <div class="related-item-arrow">→</div>
+      </a>
+    </div>
+  </div>
 
   <div class="article-nav reveal">
     <a href="../index.html">← MBTI コラム一覧</a>
